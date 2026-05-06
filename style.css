@@ -432,11 +432,11 @@ body {
   will-change: transform;
 }
 .tile:hover {
-  background: var(--surface-1);
+  background: var(--surface-2);
   border-color: var(--border-mid);
-  transform: translateY(-2px);
 }
 .tile--light { background: var(--surface-2); }
+.tile--light:hover { background: var(--surface-3); }
 
 .tile__top {
   display: flex;
@@ -501,25 +501,10 @@ body {
   color: var(--text);
 }
 
-/* all tiles — white on hover */
-.tile:hover,
-.tile--light:hover,
 .tile--pkg-featured:hover {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-  transform: translateY(-2px);
+  background: var(--surface-2);
+  border-color: var(--border-mid);
 }
-.tile:hover .tile__tag,
-.tile:hover .tile__desc,
-.tile:hover .tile__title,
-.tile:hover .tile__pkg-name { color: var(--black); }
-.tile:hover .tile__tag { border-color: rgba(0,0,0,0.15); color: #444; }
-.tile:hover .tile__link { color: #333; }
-.tile:hover .tile__link:hover { color: var(--black); }
-.tile:hover .tile__list li { color: #333; }
-.tile:hover .tile__list li::before { color: #999; }
-.tile:hover .tile__icon { color: var(--black); }
 
 .tile__list {
   list-style: none;
