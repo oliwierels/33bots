@@ -472,13 +472,13 @@
         <h2 class="section-title">Zarezerwuj robota<br />na swój event.</h2>
         <p class="body-text">Napisz do nas — odpiszemy w ciągu jednego dnia roboczego z wyceną i dostępnością.</p>
         <div class="contact-details">
-          <a href="mailto:hello@33bots.pl" class="contact-detail">
+          <a href="mailto:kontakt@33bots.pl" class="contact-detail">
             <span class="contact-detail__label">E-mail</span>
-            <span class="contact-detail__val">hello@33bots.pl</span>
+            <span class="contact-detail__val">kontakt@33bots.pl</span>
           </a>
-          <a href="tel:+48500000000" class="contact-detail">
+          <a href="tel:+48531408004" class="contact-detail">
             <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">+48 500 000 000</span>
+            <span class="contact-detail__val">+48 531 408 004</span>
           </a>
           <div class="contact-detail">
             <span class="contact-detail__label">Zasięg</span>
@@ -487,45 +487,69 @@
         </div>
       </div>
       <div class="contact-right">
-        <form id="contactForm" class="form">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-name">Imię i nazwisko *</label>
-              <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required />
-              <span class="form-field__err" aria-live="polite"></span>
+        <form id="contactForm" class="form" novalidate>
+
+          <!-- Step header -->
+          <div class="form-steps-header">
+            <span class="form-step-ind active" id="stepInd1">01 — Dane kontaktowe</span>
+            <span class="form-step-sep">/</span>
+            <span class="form-step-ind" id="stepInd2">02 — Twój event</span>
+          </div>
+
+          <!-- STEP 1 -->
+          <div class="form-step" id="formStep1">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-name">Imię i nazwisko *</label>
+                <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required />
+                <span class="form-field__err" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-company">Firma</label>
+                <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-email">E-mail *</label>
+                <input id="f-email" type="email" name="email" placeholder="kontakt@firma.pl" autocomplete="email" required />
+                <span class="form-field__err" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-phone">Telefon</label>
+                <input id="f-phone" type="tel" name="phone" placeholder="+48 531 408 004" autocomplete="tel" />
+              </div>
+            </div>
+            <button type="button" id="btnNext" class="btn-submit">Dalej — Opowiedz o evencie →</button>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="form-step form-step--hidden" id="formStep2" aria-hidden="true">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-date">Planowana data eventu</label>
+                <input id="f-date" type="date" name="date" />
+              </div>
+              <div class="form-field">
+                <label for="f-location">Miasto / Miejsce</label>
+                <input id="f-location" type="text" name="location" placeholder="np. Warszawa, Hala X" autocomplete="address-level2" />
+              </div>
             </div>
             <div class="form-field">
-              <label for="f-company">Firma</label>
-              <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" />
+              <label for="f-message">Opisz swój event *</label>
+              <textarea id="f-message" name="message" rows="6"
+                placeholder="Rodzaj eventu (targi, konferencja, gala...), orientacyjna liczba gości, jak długo chcesz mieć robota i cokolwiek jeszcze uważasz za ważne." required></textarea>
+              <div class="form-field__footer">
+                <span class="form-field__err" aria-live="polite"></span>
+                <span class="char-counter"><span id="charCount">0</span> / 600</span>
+              </div>
+            </div>
+            <div class="form-step__nav">
+              <button type="button" id="btnBack" class="btn-back">← Wróć</button>
+              <button type="submit" class="btn-submit">Wyślij zapytanie →</button>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-email">E-mail *</label>
-              <input id="f-email" type="email" name="email" placeholder="jan@firma.pl" autocomplete="email" required />
-              <span class="form-field__err" aria-live="polite"></span>
-            </div>
-            <div class="form-field">
-              <label for="f-phone">Telefon</label>
-              <input id="f-phone" type="tel" name="phone" placeholder="+48 123 456 789" autocomplete="tel" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-date">Data eventu</label>
-              <input id="f-date" type="date" name="date" />
-            </div>
-            <div class="form-field">
-              <label for="f-location">Miasto</label>
-              <input id="f-location" type="text" name="location" placeholder="np. Warszawa" autocomplete="address-level2" />
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="f-message">Opisz swój event *</label>
-            <textarea id="f-message" name="message" rows="5" placeholder="Rodzaj eventu, liczba gości, czego oczekujesz..." required></textarea>
-            <span class="form-field__err" aria-live="polite"></span>
-          </div>
-          <button type="submit" class="btn-submit">Wyślij zapytanie →</button>
+
         </form>
       </div>
     </div>
