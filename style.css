@@ -297,46 +297,67 @@ body {
   overflow: hidden;
   z-index: 2;
 }
+.robot-scan::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 0 12px 4px rgba(255,255,255,0.25);
+  animation: scan-line 3s linear infinite;
+  z-index: 3;
+}
 .robot-scan::after {
   content: '';
   position: absolute;
   left: 0; right: 0;
-  height: 80px;
+  height: 120px;
   background: linear-gradient(180deg,
     transparent 0%,
-    rgba(255,255,255,0.055) 50%,
+    rgba(255,255,255,0.07) 50%,
     transparent 100%);
-  animation: scan-line 4s linear infinite;
+  animation: scan-line 3s linear infinite;
 }
 @keyframes scan-line {
-  0%   { top: -80px; }
+  0%   { top: -120px; }
   100% { top: 100%; }
 }
 
-.eye { animation: eye-pulse 5s ease-in-out infinite; }
+.eye { animation: eye-pulse 4s ease-in-out infinite; }
 @keyframes eye-pulse {
-  0%, 40%, 60%, 100% { opacity: 0.92; }
-  50% { opacity: 1; }
-  91% { opacity: 0.92; }
-  93% { opacity: 0.03; }
-  95% { opacity: 0.92; }
+  0%, 35%, 65%, 86%, 100% { opacity: 0.9; }
+  50% { opacity: 1; filter: brightness(2.5); }
+  90% { opacity: 0.02; }
+  92% { opacity: 0.9; }
 }
 @keyframes float {
-  0%, 100% { transform: translateY(0px)    rotate(0deg); }
-  30%       { transform: translateY(-10px)  rotate(0.35deg); }
-  65%       { transform: translateY(-15px)  rotate(-0.2deg); }
+  0%, 100% { transform: translateY(0px)   rotate(0deg); }
+  30%       { transform: translateY(-14px) rotate(0.5deg); }
+  65%       { transform: translateY(-20px) rotate(-0.4deg); }
 }
 @keyframes glow-breathe {
   0%, 100% {
     filter:
       drop-shadow(0 40px 60px rgba(0,0,0,0.95))
-      drop-shadow(0 0 20px rgba(255,255,255,0.04));
+      drop-shadow(0 0 16px rgba(255,255,255,0.06));
   }
   50% {
     filter:
       drop-shadow(0 40px 60px rgba(0,0,0,0.95))
-      drop-shadow(0 0 50px rgba(255,255,255,0.11));
+      drop-shadow(0 0 60px rgba(255,255,255,0.18))
+      drop-shadow(0 0 120px rgba(255,255,255,0.06));
   }
+}
+
+/* glitch burst */
+.hero__robot-wrap.is-glitching .hero__robot {
+  animation: float 6s ease-in-out infinite, glow-breathe 4s ease-in-out infinite, glitch-burst 0.35s steps(3) forwards;
+}
+@keyframes glitch-burst {
+  0%   { transform: translateX(-6px) skewX(-2deg); clip-path: inset(15% 0 70% 0); }
+  33%  { transform: translateX(5px)  skewX(1deg);  clip-path: inset(55% 0 20% 0); }
+  66%  { transform: translateX(-3px) skewX(-1deg); clip-path: inset(30% 0 50% 0); }
+  100% { transform: translateX(0);                 clip-path: none; }
 }
 
 .hero__tag {

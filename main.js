@@ -96,10 +96,12 @@ window.addEventListener('scroll', () => {
   navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : ''; });
 }, { passive: true });
 
-// ── ROBOT PARALLAX ────────────────────────────────────────────
+// ── ROBOT PARALLAX + GLITCH ───────────────────────────────────
 const robotWrap = document.getElementById('robotWrap');
 const heroSection = document.querySelector('.hero');
-if (robotWrap && heroSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (robotWrap && heroSection && !reducedMotion) {
   heroSection.addEventListener('mousemove', (e) => {
     const r = heroSection.getBoundingClientRect();
     const dx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
@@ -109,6 +111,14 @@ if (robotWrap && heroSection && !window.matchMedia('(prefers-reduced-motion: red
   heroSection.addEventListener('mouseleave', () => {
     robotWrap.style.transform = '';
   });
+
+  // periodic glitch
+  function triggerGlitch() {
+    robotWrap.classList.add('is-glitching');
+    setTimeout(() => robotWrap.classList.remove('is-glitching'), 380);
+    setTimeout(triggerGlitch, 5000 + Math.random() * 7000);
+  }
+  setTimeout(triggerGlitch, 2500);
 }
 
 // ── COOKIE BANNER ─────────────────────────────────────────────
