@@ -219,6 +219,17 @@
     </div>
   </section>
 
+  <!-- STATEMENT -->
+  <div class="statement">
+    <div class="statement__inner">
+      <blockquote class="statement__quote">
+        „Kiedy robot wchodzi na salę —<br />wszyscy wyciągają telefony."
+      </blockquote>
+      <p class="statement__sub">To nie metafora. To raport z każdego eventu, który obsłużyliśmy.</p>
+      <a href="#kontakt" class="btn-primary">Sprawdź dostępność →</a>
+    </div>
+  </div>
+
   <!-- EVENTY — kafelki z pakietami -->
   <section class="section tiles-section" id="eventy">
     <div class="section-header">
@@ -479,37 +490,40 @@
         <form id="contactForm" class="form">
           <div class="form-row">
             <div class="form-field">
-              <label>Imię i nazwisko *</label>
-              <input type="text" name="name" placeholder="Jan Kowalski" required />
+              <label for="f-name">Imię i nazwisko *</label>
+              <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required />
+              <span class="form-field__err" aria-live="polite"></span>
             </div>
             <div class="form-field">
-              <label>Firma</label>
-              <input type="text" name="company" placeholder="Nazwa firmy" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label>E-mail *</label>
-              <input type="email" name="email" placeholder="jan@firma.pl" required />
-            </div>
-            <div class="form-field">
-              <label>Telefon</label>
-              <input type="tel" name="phone" placeholder="+48 123 456 789" />
+              <label for="f-company">Firma</label>
+              <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label>Data eventu</label>
-              <input type="date" name="date" />
+              <label for="f-email">E-mail *</label>
+              <input id="f-email" type="email" name="email" placeholder="jan@firma.pl" autocomplete="email" required />
+              <span class="form-field__err" aria-live="polite"></span>
             </div>
             <div class="form-field">
-              <label>Miasto</label>
-              <input type="text" name="location" placeholder="np. Warszawa" />
+              <label for="f-phone">Telefon</label>
+              <input id="f-phone" type="tel" name="phone" placeholder="+48 123 456 789" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-date">Data eventu</label>
+              <input id="f-date" type="date" name="date" />
+            </div>
+            <div class="form-field">
+              <label for="f-location">Miasto</label>
+              <input id="f-location" type="text" name="location" placeholder="np. Warszawa" autocomplete="address-level2" />
             </div>
           </div>
           <div class="form-field">
-            <label>Opisz swój event *</label>
-            <textarea name="message" rows="5" placeholder="Rodzaj eventu, liczba gości, czego oczekujesz..." required></textarea>
+            <label for="f-message">Opisz swój event *</label>
+            <textarea id="f-message" name="message" rows="5" placeholder="Rodzaj eventu, liczba gości, czego oczekujesz..." required></textarea>
+            <span class="form-field__err" aria-live="polite"></span>
           </div>
           <button type="submit" class="btn-submit">Wyślij zapytanie →</button>
         </form>
@@ -520,16 +534,34 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__inner">
-      <span class="logo">33BOTS</span>
+      <div class="footer__brand">
+        <span class="logo">33BOTS</span>
+        <p class="footer__tagline">Wynajem robotów humanoidalnych · Polska</p>
+      </div>
       <div class="footer__links">
         <a href="#uslugi">Usługi</a>
         <a href="#o-nas">O nas</a>
         <a href="#eventy">Eventy</a>
         <a href="#kontakt">Kontakt</a>
       </div>
-      <span class="footer__copy">© 2025 33bots. Polska.</span>
+      <div class="footer__right">
+        <div class="footer__socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social">↗ Instagram</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" class="footer__social">↗ TikTok</a>
+        </div>
+        <span class="footer__copy">© 2025 33bots. Wszelkie prawa zastrzeżone.</span>
+      </div>
     </div>
   </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner" aria-live="polite">
+    <p class="cookie-banner__text">
+      Ta strona używa plików cookie do celów analitycznych.
+      <a href="#" class="cookie-banner__link">Polityka prywatności</a>
+    </p>
+    <button class="cookie-banner__btn" id="cookieAccept">Rozumiem</button>
+  </div>
 
   <script src="main.js"></script>
 </body>
