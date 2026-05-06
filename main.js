@@ -96,6 +96,21 @@ window.addEventListener('scroll', () => {
   navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : ''; });
 }, { passive: true });
 
+// ── ROBOT PARALLAX ────────────────────────────────────────────
+const robotWrap = document.getElementById('robotWrap');
+const heroSection = document.querySelector('.hero');
+if (robotWrap && heroSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const r = heroSection.getBoundingClientRect();
+    const dx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+    const dy = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+    robotWrap.style.transform = `perspective(900px) rotateY(${dx * 7}deg) rotateX(${-dy * 4}deg)`;
+  }, { passive: true });
+  heroSection.addEventListener('mouseleave', () => {
+    robotWrap.style.transform = '';
+  });
+}
+
 // ── COOKIE BANNER ─────────────────────────────────────────────
 const cookieBanner = document.getElementById('cookieBanner');
 if (!localStorage.getItem('33bots-cookies')) {

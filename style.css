@@ -277,25 +277,66 @@ body {
     transparent 70%);
   pointer-events: none;
 }
+.hero__robot-wrap {
+  transform-style: preserve-3d;
+  transition: transform 0.15s var(--ease-out);
+}
 .hero__robot {
   width: 260px;
   position: relative;
   z-index: 1;
-  animation: float 5s ease-in-out infinite;
-  filter:
-    drop-shadow(0 40px 60px rgba(0,0,0,0.95))
-    drop-shadow(0 0 32px rgba(255,255,255,0.05));
+  animation: float 6s ease-in-out infinite, glow-breathe 4s ease-in-out infinite;
 }
-.hero__robot svg { width: 100%; height: auto; }
-.eye { animation: blink 5s ease-in-out infinite; }
+.hero__robot svg { width: 100%; height: auto; display: block; }
 
-@keyframes blink {
-  0%, 85%, 100% { opacity: 0.9; }
-  92% { opacity: 0.04; }
+/* scan line overlay */
+.robot-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.robot-scan::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,255,255,0.055) 50%,
+    transparent 100%);
+  animation: scan-line 4s linear infinite;
+}
+@keyframes scan-line {
+  0%   { top: -80px; }
+  100% { top: 100%; }
+}
+
+.eye { animation: eye-pulse 5s ease-in-out infinite; }
+@keyframes eye-pulse {
+  0%, 40%, 60%, 100% { opacity: 0.92; }
+  50% { opacity: 1; }
+  91% { opacity: 0.92; }
+  93% { opacity: 0.03; }
+  95% { opacity: 0.92; }
 }
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: translateY(0px)    rotate(0deg); }
+  30%       { transform: translateY(-10px)  rotate(0.35deg); }
+  65%       { transform: translateY(-15px)  rotate(-0.2deg); }
+}
+@keyframes glow-breathe {
+  0%, 100% {
+    filter:
+      drop-shadow(0 40px 60px rgba(0,0,0,0.95))
+      drop-shadow(0 0 20px rgba(255,255,255,0.04));
+  }
+  50% {
+    filter:
+      drop-shadow(0 40px 60px rgba(0,0,0,0.95))
+      drop-shadow(0 0 50px rgba(255,255,255,0.11));
+  }
 }
 
 .hero__tag {
@@ -1104,6 +1145,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation-play-state: paused; }
   .hero__robot { animation: none; }
+  .robot-scan::after { animation: none; }
+  .eye { animation: none; }
 }
 
 /* ===== TESTIMONIALE ===== */
