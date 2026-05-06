@@ -5,10 +5,6 @@
 // ─────────────────────────────────────────────────────────────
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjwvray';
 
-// ── SCROLL RESTORE ───────────────────────────────────────────
-history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
-
 // ── SCROLL PROGRESS ──────────────────────────────────────────
 const progressBar = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
