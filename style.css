@@ -1251,7 +1251,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 }
 .map-fig {
   position: relative;
-  aspect-ratio: 6/5;
+  aspect-ratio: 58/55;
   overflow: hidden;
   border: 1px solid var(--border);
 }
