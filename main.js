@@ -1,66 +1,38 @@
-// Nav scroll effect
+// Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
 
 // Mobile menu
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-// Fade-in on scroll
-const fadeEls = document.querySelectorAll(
-  '.about-card, .offer-card, .usecase, .step, .spec-item, .specs-card'
-);
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
+// Fade-up on scroll
+const fadeEls = document.querySelectorAll('.tile, .use-item, .process-step, .stat-item');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
     if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
+      setTimeout(() => e.target.classList.add('in'), i * 60);
+      io.unobserve(e.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => { el.classList.add('fade-up'); io.observe(el); });
 
-fadeEls.forEach((el, i) => {
-  el.classList.add('fade-in');
-  el.style.transitionDelay = `${(i % 3) * 80}ms`;
-  observer.observe(el);
-});
-
-// Contact form handler
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', (e) => {
+// Contact form
+document.getElementById('contactForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  const btn = form.querySelector('button[type="submit"]');
+  const btn = e.target.querySelector('.btn-submit');
   btn.textContent = 'Wysyłanie...';
   btn.disabled = true;
-
-  // Simulate async send — replace with real endpoint
   setTimeout(() => {
-    form.innerHTML = `
+    e.target.innerHTML = `
       <div class="form-success">
-        <h3>Wiadomość wysłana!</h3>
-        <p>Dziękujemy za zapytanie. Odezwiemy się w ciągu 24 godzin roboczych.</p>
-      </div>
-    `;
-  }, 1200);
-});
-
-// Smooth active link highlight
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
-  });
+        <h3>Wiadomość wysłana</h3>
+        <p>Odezwiemy się w ciągu 24 godzin roboczych.</p>
+      </div>`;
+  }, 1000);
 });
