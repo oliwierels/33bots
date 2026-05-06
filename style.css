@@ -437,7 +437,6 @@ body {
   transform: translateY(-2px);
 }
 .tile--light { background: var(--surface-2); }
-.tile--light:hover { background: var(--surface-3); }
 
 .tile__top {
   display: flex;
@@ -498,16 +497,29 @@ body {
   letter-spacing: -0.04em;
 }
 .tile--pkg-featured {
+  background: var(--black);
+  color: var(--text);
+}
+
+/* all tiles — white on hover */
+.tile:hover,
+.tile--light:hover,
+.tile--pkg-featured:hover {
   background: var(--white);
   color: var(--black);
+  border-color: var(--white);
+  transform: translateY(-2px);
 }
-.tile--pkg-featured:hover { background: #f5f5f5; transform: translateY(-2px); }
-.tile--pkg-featured .tile__tag,
-.tile--pkg-featured .tile__desc { color: #777; }
-.tile--pkg-featured .tile__list li { color: #555; }
-.tile--pkg-featured .tile__list li::before { color: #bbb; }
-.tile--pkg-featured .tile__link { color: #aaa; }
-.tile--pkg-featured .tile__link:hover { color: #000; }
+.tile:hover .tile__tag,
+.tile:hover .tile__desc,
+.tile:hover .tile__title,
+.tile:hover .tile__pkg-name { color: var(--black); }
+.tile:hover .tile__tag { border-color: rgba(0,0,0,0.15); color: #444; }
+.tile:hover .tile__link { color: #333; }
+.tile:hover .tile__link:hover { color: var(--black); }
+.tile:hover .tile__list li { color: #333; }
+.tile:hover .tile__list li::before { color: #999; }
+.tile:hover .tile__icon { color: var(--black); }
 
 .tile__list {
   list-style: none;
@@ -1323,6 +1335,22 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   fill: var(--white);
   margin-left: 4px;
 }
+
+/* ===== CURSOR GLOW ===== */
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 35%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s var(--ease-in-out);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+.cursor-glow.visible { opacity: 1; }
 
 /* ===== FADE UP ===== */
 .fade-up {

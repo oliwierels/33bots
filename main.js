@@ -8,6 +8,17 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjwvray';
 // ── SCROLL TO TOP ON LOAD ─────────────────────────────────────
 window.addEventListener('pageshow', () => window.scrollTo(0, 0));
 
+// ── CURSOR GLOW ───────────────────────────────────────────────
+const cursorGlow = document.getElementById('cursorGlow');
+if (cursorGlow && !window.matchMedia('(pointer: coarse)').matches) {
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top  = e.clientY + 'px';
+    cursorGlow.classList.add('visible');
+  }, { passive: true });
+  document.addEventListener('mouseleave', () => cursorGlow.classList.remove('visible'));
+}
+
 // ── SCROLL PROGRESS ──────────────────────────────────────────
 const progressBar = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
