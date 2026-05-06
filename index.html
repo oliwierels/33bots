@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- NAV -->
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -97,31 +100,62 @@
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__item">UNITREE G1</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">HUMANOIDALNY</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">CAŁA POLSKA</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">EVENTY</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">KONFERENCJE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">TARGI</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">GALE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">POKAZY LIVE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">RETAIL</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">BRANDING</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">43 DOF</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">180 CM</span><span class="marquee__sep">·</span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee__item">UNITREE G1</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">HUMANOIDALNY</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">CAŁA POLSKA</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">EVENTY</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">KONFERENCJE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">TARGI</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">GALE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">POKAZY LIVE</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">RETAIL</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">BRANDING</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">43 DOF</span><span class="marquee__sep">·</span>
+      <span class="marquee__item">180 CM</span><span class="marquee__sep">·</span>
+    </div>
+  </div>
+
   <!-- STATS BAR -->
   <div class="statsbar">
     <div class="statsbar__inner">
       <div class="stat-item">
-        <span class="stat-item__n">180 cm</span>
+        <span class="stat-item__n" data-count="180" data-suffix=" cm">180 cm</span>
         <span class="stat-item__l">Wzrost</span>
       </div>
       <div class="stat-item__sep"></div>
       <div class="stat-item">
-        <span class="stat-item__n">43</span>
+        <span class="stat-item__n" data-count="43" data-suffix="">43</span>
         <span class="stat-item__l">Stopnie wolności</span>
       </div>
       <div class="stat-item__sep"></div>
       <div class="stat-item">
-        <span class="stat-item__n">2 m/s</span>
+        <span class="stat-item__n" data-count="2" data-suffix=" m/s">2 m/s</span>
         <span class="stat-item__l">Prędkość chodu</span>
       </div>
       <div class="stat-item__sep"></div>
       <div class="stat-item">
-        <span class="stat-item__n">2 h</span>
+        <span class="stat-item__n" data-count="2" data-suffix=" h">2 h</span>
         <span class="stat-item__l">Czas pracy</span>
       </div>
       <div class="stat-item__sep"></div>
       <div class="stat-item">
-        <span class="stat-item__n">100%</span>
+        <span class="stat-item__n" data-count="100" data-suffix="%">100%</span>
         <span class="stat-item__l">Polska obsługa</span>
       </div>
     </div>
@@ -238,6 +272,37 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALE -->
+  <section class="section testimonials-section">
+    <div class="section-header">
+      <span class="tag">Opinie</span>
+      <h2 class="section-title">Mówią o nas</h2>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p class="testimonial__quote">„Robot stał przy wejściu przez 6 godzin i ani razu nie zrobiło się przy nim pusto. Każdy musiał się z nim sfotografować."</p>
+        <div class="testimonial__meta">
+          <span class="testimonial__name">Marta K.</span>
+          <span class="testimonial__role">Marketing Manager · ITech Summit 2024</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial__quote">„Launch zaczął się od wyjścia robota na scenę. Klip z TikToka zebrał 2,3 mln wyświetleń w ciągu 48 godzin."</p>
+        <div class="testimonial__meta">
+          <span class="testimonial__name">Tomasz W.</span>
+          <span class="testimonial__role">CMO · Warsaw Tech Expo</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial__quote">„Spodziewaliśmy się zainteresowania. Nie spodziewaliśmy się kolejki, która wyszła za drzwi pawilonu."</p>
+        <div class="testimonial__meta">
+          <span class="testimonial__name">Agnieszka R.</span>
+          <span class="testimonial__role">Event Director · Poznań Motor Show</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ZASTOSOWANIA -->
   <section class="section" id="zastosowania">
     <div class="section-header">
@@ -318,6 +383,70 @@
         <div>
           <h4>Show trwa</h4>
           <p>Goście są zachwyceni. Zdjęcia trafiają w social media. Ty świecisz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="section-header">
+      <span class="tag">FAQ</span>
+      <h2 class="section-title">Najczęstsze<br />pytania</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Ile z góry trzeba rezerwować?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Rekomendujemy minimum 2–3 tygodnie przed eventem, ale w miarę dostępności realizujemy też szybsze rezerwacje. Najpopularniejsze weekendy rozchodzą się pierwsze — warto kontaktować się wcześnie.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Czy robot może działać na zewnątrz?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>G1 jest zaprojektowany do środowisk indoor. Krótka ekspozycja outdoor jest możliwa przy sprzyjających warunkach: sucho, temperatura powyżej 10°C, brak silnego wiatru. Decyzję podejmujemy na miejscu z operatorem.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Co się dzieje w razie awarii podczas eventu?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Robot objęty jest naszym ubezpieczeniem. Do pełnodniowych rezerwacji dowozimy zapasowe akumulatory. Nasz operator stale monitoruje stan systemu i reaguje natychmiastowo — nie zostawiamy klienta bez wsparcia.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Czy mogę oznaczyć robota swoim logo?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Tak — w pakietach Event Day i Multi-Day oferujemy branding robota folią lub grafiką (logo, kolory marki). Szczegóły, projekt i montaż uzgadniamy przed eventem bez dodatkowych formalności.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Jakie są wymagania techniczne na miejscu?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Potrzebujemy: jedno gniazdo 230V do ładowania, minimum 3×3 m przestrzeni operacyjnej, równe podłoże (dywany i wykładziny są OK, schody — nie). To wszystko. Resztą zajmujemy się sami.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Jak wygląda bezpieczeństwo gości?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Operator stale nadzoruje robota i utrzymuje bezpieczną strefę wokół niego. G1 w trybie eventowym porusza się spokojnym tempem — bezpiecznym nawet przy dużych tłumach. Posiadamy pełną polisę OC.</p>
         </div>
       </div>
     </div>
