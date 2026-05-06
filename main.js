@@ -3,7 +3,7 @@
 // i wklej swoje ID poniżej (zamiast "YOUR_FORM_ID").
 // Dostajesz 50 wiadomości/mies. za darmo w planie Free.
 // ─────────────────────────────────────────────────────────────
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjwvray';
 
 // ── SCROLL PROGRESS ──────────────────────────────────────────
 const progressBar = document.getElementById('scrollProgress');

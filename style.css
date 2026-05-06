@@ -268,10 +268,23 @@ body {
   align-items: center;
   padding: var(--s8) 0;
 }
+.hero__spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 65% at 50% 42%,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.015) 40%,
+    transparent 70%);
+  pointer-events: none;
+}
 .hero__robot {
-  width: 220px;
+  width: 260px;
+  position: relative;
+  z-index: 1;
   animation: float 5s ease-in-out infinite;
-  filter: drop-shadow(0 32px 48px rgba(0,0,0,0.8));
+  filter:
+    drop-shadow(0 40px 60px rgba(0,0,0,0.95))
+    drop-shadow(0 0 32px rgba(255,255,255,0.05));
 }
 .hero__robot svg { width: 100%; height: auto; }
 .eye { animation: blink 5s ease-in-out infinite; }
