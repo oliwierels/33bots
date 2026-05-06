@@ -1333,7 +1333,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   transform: translate(-50%, -50%);
   transition: opacity 0.4s var(--ease-in-out);
   opacity: 0;
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
 }
 .cursor-glow.visible { opacity: 1; }
 
