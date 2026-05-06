@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>33bots — Wynajem Robotów Humanoidalnych</title>
+  <meta name="description" content="33bots — wynajem robota humanoidalnego Unitree G1 na eventy, konferencje i pokazy technologiczne w Polsce." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">33<span>bots</span></a>
+      <nav class="nav__links">
+        <a href="#o-nas">O nas</a>
+        <a href="#robot">Robot</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#jak-to-dziala">Jak to działa</a>
+        <a href="#kontakt" class="btn btn--sm">Zapytaj o termin</a>
+      </nav>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#o-nas" class="mobile-menu__link">O nas</a>
+    <a href="#robot" class="mobile-menu__link">Robot</a>
+    <a href="#oferta" class="mobile-menu__link">Oferta</a>
+    <a href="#jak-to-dziala" class="mobile-menu__link">Jak to działa</a>
+    <a href="#kontakt" class="mobile-menu__link mobile-menu__cta">Zapytaj o termin</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__grid"></div>
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__badge">🤖 Pierwsza flota G1 w Polsce</div>
+      <h1 class="hero__title">
+        Zachwycaj gości<br />
+        <span class="hero__title--accent">robotem przyszłości</span>
+      </h1>
+      <p class="hero__sub">
+        Wynajmij Unitree G1 — humanoidalnego robota chodzącego — na swój event,
+        targi lub konferencję. Technologia, która zatrzymuje tłumy.
+      </p>
+      <div class="hero__actions">
+        <a href="#kontakt" class="btn btn--primary btn--lg">Zarezerwuj robota</a>
+        <a href="#robot" class="btn btn--ghost btn--lg">Zobacz możliwości</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num">180 cm</span>
+          <span class="stat__label">wzrostu</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">35 kg</span>
+          <span class="stat__label">wagi</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">2 h</span>
+          <span class="stat__label">autonomii</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">43</span>
+          <span class="stat__label">stopnie wolności</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__robot-wrap">
+      <div class="hero__robot">
+        <svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg" class="robot-svg">
+          <!-- Head -->
+          <rect x="110" y="30" width="100" height="90" rx="20" fill="#1a1a2e" stroke="#00f5ff" stroke-width="2"/>
+          <!-- Visor -->
+          <rect x="120" y="50" width="80" height="30" rx="8" fill="#00f5ff" opacity="0.15"/>
+          <rect x="120" y="50" width="80" height="30" rx="8" fill="none" stroke="#00f5ff" stroke-width="1.5"/>
+          <ellipse cx="145" cy="65" rx="12" ry="8" fill="#00f5ff" opacity="0.8" class="eye"/>
+          <ellipse cx="175" cy="65" rx="12" ry="8" fill="#00f5ff" opacity="0.8" class="eye"/>
+          <!-- Neck -->
+          <rect x="148" y="120" width="24" height="20" rx="4" fill="#1a1a2e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Torso -->
+          <rect x="90" y="140" width="140" height="160" rx="16" fill="#0f0f1e" stroke="#00f5ff" stroke-width="2"/>
+          <!-- Chest panel -->
+          <rect x="110" y="160" width="100" height="60" rx="8" fill="#1a1a2e" stroke="#00f5ff" stroke-width="1" opacity="0.7"/>
+          <rect x="120" y="170" width="35" height="20" rx="4" fill="#00f5ff" opacity="0.1"/>
+          <rect x="165" y="170" width="35" height="20" rx="4" fill="#7c3aed" opacity="0.2"/>
+          <circle cx="160" cy="215" r="15" fill="none" stroke="#00f5ff" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="160" cy="215" r="8" fill="#00f5ff" opacity="0.3"/>
+          <!-- 33bots label -->
+          <text x="160" y="275" text-anchor="middle" font-family="monospace" font-size="10" fill="#00f5ff" opacity="0.7">33BOTS</text>
+          <!-- Left arm -->
+          <rect x="42" y="148" width="42" height="120" rx="14" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <rect x="50" y="200" width="26" height="40" rx="8" fill="#1a1a2e" stroke="#00f5ff" stroke-width="1" opacity="0.5"/>
+          <!-- Left hand -->
+          <rect x="48" y="268" width="30" height="30" rx="10" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Right arm -->
+          <rect x="236" y="148" width="42" height="120" rx="14" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <rect x="244" y="200" width="26" height="40" rx="8" fill="#1a1a2e" stroke="#00f5ff" stroke-width="1" opacity="0.5"/>
+          <!-- Right hand -->
+          <rect x="242" y="268" width="30" height="30" rx="10" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Waist -->
+          <rect x="110" y="300" width="100" height="30" rx="8" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1.5"/>
+          <!-- Hips -->
+          <rect x="95" y="330" width="130" height="40" rx="10" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Left leg upper -->
+          <rect x="100" y="370" width="52" height="100" rx="14" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Left knee -->
+          <rect x="104" y="460" width="44" height="30" rx="8" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1.5"/>
+          <!-- Left leg lower -->
+          <rect x="104" y="490" width="44" height="80" rx="12" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Left foot -->
+          <rect x="90" y="560" width="65" height="22" rx="8" fill="#0f0f1e" stroke="#00f5ff" stroke-width="2"/>
+          <!-- Right leg upper -->
+          <rect x="168" y="370" width="52" height="100" rx="14" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Right knee -->
+          <rect x="172" y="460" width="44" height="30" rx="8" fill="#1a1a2e" stroke="#7c3aed" stroke-width="1.5"/>
+          <!-- Right leg lower -->
+          <rect x="172" y="490" width="44" height="80" rx="12" fill="#0f0f1e" stroke="#00f5ff" stroke-width="1.5"/>
+          <!-- Right foot -->
+          <rect x="165" y="560" width="65" height="22" rx="8" fill="#0f0f1e" stroke="#00f5ff" stroke-width="2"/>
+          <!-- Scan line -->
+          <line x1="80" y1="0" x2="80" y2="600" stroke="#00f5ff" stroke-width="0.5" opacity="0.1" class="scanline"/>
+          <!-- Joint dots -->
+          <circle cx="63" cy="148" r="6" fill="#7c3aed"/>
+          <circle cx="257" cy="148" r="6" fill="#7c3aed"/>
+          <circle cx="126" cy="370" r="6" fill="#7c3aed"/>
+          <circle cx="194" cy="370" r="6" fill="#7c3aed"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- O NAS -->
+  <section class="section" id="o-nas">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Kim jesteśmy</span>
+        <h2 class="section__title">Polscy pionierzy<br />robotyki eventowej</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card__icon">⚡</div>
+          <h3>Technologia na wyciągnięcie ręki</h3>
+          <p>33bots to polska firma specjalizująca się w wynajmie robotów humanoidalnych Unitree G1 na eventy komercyjne, targi i pokazy technologiczne.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🇵🇱</div>
+          <h3>Działamy w całej Polsce</h3>
+          <p>Obsługujemy klientów z całego kraju. Dowozimy robota na miejsce eventu, zapewniamy obsługę techniczną i operatora przez cały czas trwania pokazu.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card__icon">🎯</div>
+          <h3>Zero stresu po Twojej stronie</h3>
+          <p>Zajmujemy się wszystkim — od transportu, przez ustawienie, aż po obsługę na miejscu. Ty skupiasz się na gościach, my pilnujemy robota.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROBOT SPECS -->
+  <section class="section section--dark" id="robot">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Sprzęt</span>
+        <h2 class="section__title">Unitree G1<br /><span class="accent">Humanoidalny robot</span></h2>
+        <p class="section__sub">Najnowszy humanoidalny robot firmy Unitree Robotics — chodzi, gestykuluje, reaguje na otoczenie i przyciąga uwagę każdego.</p>
+      </div>
+      <div class="specs-layout">
+        <div class="specs-visual">
+          <div class="specs-card">
+            <div class="specs-card__badge">G1</div>
+            <div class="specs-metrics">
+              <div class="metric">
+                <span class="metric__val">43</span>
+                <span class="metric__key">DOF</span>
+              </div>
+              <div class="metric">
+                <span class="metric__val">1.8m</span>
+                <span class="metric__key">wysokość</span>
+              </div>
+              <div class="metric">
+                <span class="metric__val">2m/s</span>
+                <span class="metric__key">prędkość</span>
+              </div>
+            </div>
+            <div class="specs-bar-group">
+              <div class="specs-bar">
+                <span>Zręczność</span>
+                <div class="bar"><div class="bar__fill" style="width:92%"></div></div>
+              </div>
+              <div class="specs-bar">
+                <span>Stabilność</span>
+                <div class="bar"><div class="bar__fill" style="width:88%"></div></div>
+              </div>
+              <div class="specs-bar">
+                <span>Autonomia</span>
+                <div class="bar"><div class="bar__fill bar__fill--purple" style="width:75%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="specs-list">
+          <div class="spec-item">
+            <span class="spec-item__label">Wysokość</span>
+            <span class="spec-item__val">ok. 180 cm (konfigurowalna)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Waga</span>
+            <span class="spec-item__val">~35 kg</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Stopnie wolności</span>
+            <span class="spec-item__val">43 DOF</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Maks. prędkość chodu</span>
+            <span class="spec-item__val">2 m/s</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Czas pracy</span>
+            <span class="spec-item__val">~2 godziny na ładowaniu</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Czujniki</span>
+            <span class="spec-item__val">LiDAR, kamery 3D, IMU</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Ładunek manipulatora</span>
+            <span class="spec-item__val">do 3 kg per ręka</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Sterowanie</span>
+            <span class="spec-item__val">autonomiczne / zdalny operator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="section" id="oferta">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Pakiety</span>
+        <h2 class="section__title">Wybierz pakiet<br />dla swojego eventu</h2>
+      </div>
+      <div class="offers-grid">
+        <div class="offer-card">
+          <div class="offer-card__tag">Pokaz</div>
+          <h3 class="offer-card__name">Demo</h3>
+          <p class="offer-card__desc">Idealne na krótki pokaz podczas przerwy konferencyjnej lub otwarcia stoiska targowego.</p>
+          <ul class="offer-card__features">
+            <li>✓ Do 3 godzin obecności robota</li>
+            <li>✓ Operator na miejscu</li>
+            <li>✓ Standardowe demo ruchu</li>
+            <li>✓ Transport w Polsce</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--outline">Zapytaj o cenę</a>
+        </div>
+        <div class="offer-card offer-card--featured">
+          <div class="offer-card__tag offer-card__tag--hot">Popularny</div>
+          <h3 class="offer-card__name">Event Day</h3>
+          <p class="offer-card__desc">Pełny dzień z robotem — od ustawienia przez rejestrację gości aż po wieczorny koktajl.</p>
+          <ul class="offer-card__features">
+            <li>✓ Cały dzień eventu (do 8h)</li>
+            <li>✓ Operator + asystent</li>
+            <li>✓ Interakcja z gośćmi</li>
+            <li>✓ Dedykowane choreografie ruchu</li>
+            <li>✓ Branding robota (logo/kolor)</li>
+            <li>✓ Transport w Polsce</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--primary">Zapytaj o cenę</a>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card__tag">Wielodniowy</div>
+          <h3 class="offer-card__name">Multi-Day</h3>
+          <p class="offer-card__desc">Targi, festiwale technologiczne i długie kampanie. Robot zostaje z Tobą przez kilka dni.</p>
+          <ul class="offer-card__features">
+            <li>✓ 2–7 dni (lub więcej)</li>
+            <li>✓ Dedykowany operator</li>
+            <li>✓ Pełna personalizacja</li>
+            <li>✓ Integracja z aplikacją / AR</li>
+            <li>✓ Branding robota</li>
+            <li>✓ Transport + zakwaterowanie operatora</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--outline">Zapytaj o cenę</a>
+        </div>
+      </div>
+      <p class="offers-note">Ceny ustalamy indywidualnie — napisz do nas i otrzymaj ofertę skrojoną pod Twój event.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="section section--dark" id="zastosowania">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Zastosowania</span>
+        <h2 class="section__title">Gdzie sprawdza się G1?</h2>
+      </div>
+      <div class="usecases-grid">
+        <div class="usecase">
+          <span class="usecase__icon">🏢</span>
+          <h4>Konferencje & Szczyty</h4>
+          <p>Robot jako gospodarz, guide po strefach lub atrakcja przy rejestracji gości.</p>
+        </div>
+        <div class="usecase">
+          <span class="usecase__icon">🎪</span>
+          <h4>Targi & Wystawy</h4>
+          <p>Przyciągnij do stoiska 10× więcej uwagi. G1 zatrzymuje przechodniów skuteczniej niż jakikolwiek baner.</p>
+        </div>
+        <div class="usecase">
+          <span class="usecase__icon">🎉</span>
+          <h4>Imprezy Firmowe</h4>
+          <p>Pikniki, jubileusze, wieczory integracyjne — robot to temat rozmów na długo po evencie.</p>
+        </div>
+        <div class="usecase">
+          <span class="usecase__icon">🎓</span>
+          <h4>Dni Otwarte & Edukacja</h4>
+          <p>Szkoły, uczelnie i centra nauki — pokaż uczniom technologię, która zmienia świat.</p>
+        </div>
+        <div class="usecase">
+          <span class="usecase__icon">📸</span>
+          <h4>Sesje Foto & Wideo</h4>
+          <p>Materiały reklamowe z humanoidem? Gwarantowany viral w social mediach.</p>
+        </div>
+        <div class="usecase">
+          <span class="usecase__icon">🛍️</span>
+          <h4>Retailowe Akcje</h4>
+          <p>Launch produktu, otwarcie sklepu lub kampania wizerunkowa — G1 robi show.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK TO DZIAŁA -->
+  <section class="section" id="jak-to-dziala">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Proces</span>
+        <h2 class="section__title">Jak wygląda<br />współpraca?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <div class="step__content">
+            <h4>Napisz do nas</h4>
+            <p>Wypełnij formularz kontaktowy lub napisz maila. Odpiszemy w ciągu 24 godzin z pytaniami o szczegóły eventu.</p>
+          </div>
+        </div>
+        <div class="step__line"></div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <div class="step__content">
+            <h4>Ustalamy szczegóły</h4>
+            <p>Omawiamy datę, miejsce, czas trwania i Twoje potrzeby. Przygotowujemy indywidualną ofertę.</p>
+          </div>
+        </div>
+        <div class="step__line"></div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <div class="step__content">
+            <h4>Podpisujemy umowę</h4>
+            <p>Prosta umowa, przejrzyste warunki. Rezerwujesz termin wpłatą zaliczki.</p>
+          </div>
+        </div>
+        <div class="step__line"></div>
+        <div class="step">
+          <div class="step__num">04</div>
+          <div class="step__content">
+            <h4>Robot przyjeżdża na event</h4>
+            <p>Przywozimy G1, ustawiamy, testujemy. Nasz operator jest z Tobą przez cały czas.</p>
+          </div>
+        </div>
+        <div class="step__line"></div>
+        <div class="step">
+          <div class="step__num">05</div>
+          <div class="step__content">
+            <h4>Show trwa, Ty świecisz</h4>
+            <p>Goście są zachwyceni, zdjęcia trafiają w social media, a Ty zyskujesz wyjątkowe wspomnienie eventu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section section--dark contact" id="kontakt">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Kontakt</span>
+        <h2 class="section__title">Zarezerwuj robota<br />na swój event</h2>
+        <p class="section__sub">Napisz do nas — odpiszemy w ciągu jednego dnia roboczego z wyceną i dostępnością.</p>
+      </div>
+      <div class="contact-layout">
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Imię i nazwisko *</label>
+              <input type="text" id="name" name="name" placeholder="Jan Kowalski" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Firma</label>
+              <input type="text" id="company" name="company" placeholder="Nazwa firmy" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="jan@firma.pl" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" placeholder="+48 123 456 789" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Planowana data eventu</label>
+              <input type="date" id="date" name="date" />
+            </div>
+            <div class="form-group">
+              <label for="location">Miasto / Miejsce</label>
+              <input type="text" id="location" name="location" placeholder="np. Warszawa, hala X" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Opisz swój event *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Opowiedz nam o evencie — rodzaj, liczba gości, czego oczekujesz od robota..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg btn--full">Wyślij zapytanie →</button>
+          <p class="form-note">* Pola wymagane. Odpiszemy w ciągu 24h.</p>
+        </form>
+        <div class="contact-info">
+          <div class="contact-info__card">
+            <h4>Bezpośredni kontakt</h4>
+            <a href="mailto:hello@33bots.pl" class="contact-link">
+              <span class="contact-link__icon">✉</span>
+              hello@33bots.pl
+            </a>
+            <a href="tel:+48500000000" class="contact-link">
+              <span class="contact-link__icon">📞</span>
+              +48 500 000 000
+            </a>
+          </div>
+          <div class="contact-info__card">
+            <h4>Działamy w Polsce</h4>
+            <p>Obsługujemy eventy w całym kraju. Dojeżdżamy wszędzie — od Szczecina po Rzeszów.</p>
+          </div>
+          <div class="contact-info__card contact-info__card--highlight">
+            <p class="highlight-text">„Nasz robot był <strong>hitem</strong> konferencji — kolejka do zdjęć nie kończyła się przez trzy godziny."</p>
+            <span class="highlight-author">— Klient, Warszawa 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="nav__logo">33<span>bots</span></a>
+        <p>Wynajem robotów humanoidalnych<br />na eventy w Polsce.</p>
+      </div>
+      <div class="footer__links">
+        <a href="#o-nas">O nas</a>
+        <a href="#robot">Robot G1</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer__legal">
+        <p>© 2025 33bots. Wszelkie prawa zastrzeżone.</p>
+        <p>NIP: PL0000000000 | Polska</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
