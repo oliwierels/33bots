@@ -38,7 +38,7 @@
 
   <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -56,10 +56,15 @@
     <div class="nav__inner">
       <a href="#" class="logo">33BOTS</a>
       <nav class="nav__links">
-        <a href="#uslugi">Usługi</a>
+        <div class="nav__dropdown">
+          <span class="nav__dropdown-toggle">Oferta <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="nav__dropdown-menu">
+            <a href="oferta-targi.html">Targi</a>
+            <a href="oferta-konferencje.html">Konferencje i Gale</a>
+          </div>
+        </div>
         <a href="#o-nas">O nas</a>
         <a href="#eventy">Eventy</a>
-        <a href="oferta-targi.html">Targi</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
       <button class="hamburger" id="hamburger">
@@ -69,10 +74,11 @@
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#uslugi">Usługi</a>
+    <span class="mobile-menu__label">Oferta</span>
+    <a href="oferta-targi.html" class="mobile-menu__sub">Targi</a>
+    <a href="oferta-konferencje.html" class="mobile-menu__sub">Konferencje i Gale</a>
     <a href="#o-nas">O nas</a>
     <a href="#eventy">Eventy</a>
-    <a href="oferta-targi.html">Targi</a>
     <a href="#kontakt">Kontakt</a>
   </div>
 

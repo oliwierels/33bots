@@ -112,6 +112,79 @@ body {
 .nav__links a:hover { color: var(--text); }
 .nav__links a:hover::after { right: 0; }
 
+/* ── NAV DROPDOWN ── */
+.nav__dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav__dropdown-toggle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s var(--ease-in-out);
+  user-select: none;
+}
+.nav__dropdown-toggle svg {
+  width: 8px;
+  height: 8px;
+  transition: transform 0.2s var(--ease-out);
+}
+.nav__dropdown:hover .nav__dropdown-toggle { color: var(--text); }
+.nav__dropdown:hover .nav__dropdown-toggle svg { transform: rotate(180deg); }
+.nav__dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #080808;
+  border: 1px solid var(--border-mid);
+  border-radius: 8px;
+  padding: 6px 0;
+  min-width: 210px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+  z-index: 200;
+}
+.nav__dropdown:hover .nav__dropdown-menu,
+.nav__dropdown:focus-within .nav__dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.nav__dropdown-menu a {
+  display: block;
+  padding: 11px 18px;
+  font-size: 0.73rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav__dropdown-menu a::after { display: none !important; }
+.nav__dropdown-menu a:hover { color: var(--text); background: var(--surface-2); }
+
+/* Mobile dropdown items */
+.mobile-menu__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: var(--s2) var(--s4) 4px;
+  display: block;
+}
+.mobile-menu__sub { padding-left: calc(var(--s4) + 14px) !important; }
+
 .hamburger {
   display: none;
   flex-direction: column;
