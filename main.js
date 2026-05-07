@@ -246,6 +246,12 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (res.ok) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_submit', {
+          event_category: 'contact',
+          event_label: 'Formularz kontaktowy',
+        });
+      }
       form.innerHTML = `<div class="form-success">
         <h3>Wiadomość wysłana</h3>
         <p>Odezwiemy się na <strong>${payload.email}</strong><br>w ciągu 24 godzin roboczych.</p>
