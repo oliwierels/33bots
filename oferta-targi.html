@@ -42,7 +42,7 @@
 
   <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=11" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -172,6 +172,34 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="section-header">
+      <span class="tag">FAQ</span>
+      <h2 class="section-title">Często zadawane<br />pytania</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Ile miejsca na stoisku potrzebuje robot?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>G1 potrzebuje minimalnej przestrzeni roboczej o wymiarach ok. 2×2 m. Operator zajmuje dodatkowe 1–2 m². Stoisko o powierzchni 6 m² to absolutne minimum — przy 12 m² i więcej efekt obecności robota jest optymalny. Przyjazd i rozstawienie trwa ok. 30–45 minut przed otwarciem targów.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Czy robot może przemawiać głosem naszego prezesa lub z konkretnym scenariuszem?</span>
+          <span class="faq-q__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" hidden>
+          <p>Tak — G1 obsługuje syntezę mowy. Możemy zaprogramować robota tak, by recytował przygotowany przez Ciebie tekst, na przykład powitanie w imieniu firmy, opis produktu lub call-to-action. Jeśli dostarczysz scenariusz minimum 5 dni przed eventem, wdrożymy go bez dodatkowych kosztów.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- KONTAKT -->
   <section class="section" id="kontakt">
     <div class="section-header">
@@ -297,6 +325,11 @@
       <a href="#" class="cookie-banner__link">Polityka prywatności</a>
     </p>
     <button class="cookie-banner__btn" id="cookieAccept">Rozumiem</button>
+  </div>
+
+  <!-- STICKY CTA (mobile) -->
+  <div class="sticky-cta">
+    <a href="#kontakt" class="btn-primary">Zarezerwuj →</a>
   </div>
 
   <script src="main.js"></script>

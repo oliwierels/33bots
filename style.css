@@ -1462,3 +1462,32 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   .statement__inner { padding: var(--s10) var(--s3); }
   .cookie-banner { flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s3); }
 }
+
+/* ── STICKY CTA (mobile) ── */
+.sticky-cta {
+  display: none;
+}
+@media (max-width: 600px) {
+  .sticky-cta {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    padding: var(--s3) var(--s4);
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-mid);
+  }
+  .sticky-cta a {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+  /* make room for sticky bar above footer */
+  body:has(.sticky-cta) .footer {
+    padding-bottom: calc(56px + var(--s4));
+  }
+}
