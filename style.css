@@ -346,9 +346,8 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding: 0;
-  align-self: stretch;
+  align-items: center;
+  padding: var(--s8) 0;
 }
 .hero__spotlight {
   position: absolute;
