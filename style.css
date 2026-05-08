@@ -238,13 +238,13 @@ body {
   min-height: 100vh;
   padding-top: var(--s8);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 1200px;
+  grid-template-columns: 1fr 1.8fr;
+  max-width: 1400px;
   margin: 0 auto;
   padding-left: var(--s4);
   padding-right: var(--s4);
   align-items: center;
-  gap: var(--s8);
+  gap: var(--s6);
   overflow: hidden;
 }
 
@@ -1443,7 +1443,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 .fade-up.in { opacity: 1; transform: none; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   .hero {
     grid-template-columns: 1fr;
     padding-top: var(--s8);
