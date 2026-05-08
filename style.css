@@ -1486,8 +1486,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 @media (max-width: 600px) {
   .section { padding: var(--s8) var(--s3); }
   .hero { padding-left: var(--s3); padding-right: var(--s3); }
-  .hero__title { font-size: 2.2rem; overflow-wrap: break-word; word-break: break-word; }
-  .hero__title br { display: none; }
+  .hero__title { font-size: 2rem; overflow-wrap: normal; word-break: normal; }
   .footer__inner {
     display: flex;
     flex-direction: column;
@@ -1689,6 +1688,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   }
   .robot-gallery__main img,
   .robot-gallery__action img {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: auto;
+    object-fit: initial;
   }
 }
