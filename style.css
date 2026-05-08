@@ -501,7 +501,7 @@ body {
 }
 
 .section-title {
-  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  font-size: clamp(1.75rem, 5vw, 3.8rem);
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -0.03em;
@@ -1183,7 +1183,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 .cookie-banner {
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  z-index: 150;
+  z-index: 160;
   background: var(--surface-2);
   border-top: 1px solid var(--border);
   display: flex;
@@ -1477,6 +1477,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   .onas-body { grid-template-columns: 1fr; gap: var(--s5); }
   .transport-callout { grid-template-columns: 1fr; }
   .transport-callout__left { border-right: none; border-bottom: 1px solid #e0e0e0; }
+  .transport-callout__left,
+  .transport-callout__right { padding: var(--s5) var(--s4); }
   .contact-layout { grid-template-columns: 1fr; gap: var(--s6); }
   .nav__links { display: none; }
   .hamburger { display: flex; }
@@ -1486,7 +1488,12 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   .hero { padding-left: var(--s3); padding-right: var(--s3); }
   .hero__title { font-size: 2.2rem; overflow-wrap: break-word; word-break: break-word; }
   .hero__title br { display: none; }
-  .footer__inner { flex-direction: column; align-items: flex-start; gap: var(--s4); }
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s4);
+  }
   .footer__right { align-items: flex-start; }
   .footer__links { flex-wrap: wrap; gap: var(--s3); }
   .form-row { grid-template-columns: 1fr; }
@@ -1494,8 +1501,13 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   .hero__ctas { flex-direction: column; }
   .hero__ctas > * { text-align: center; justify-content: center; }
   .form { padding: var(--s4) var(--s3); }
-  .statement__inner { padding: var(--s10) var(--s3); }
+  .statement__inner { padding: var(--s8) var(--s3); }
   .cookie-banner { flex-direction: column; align-items: flex-start; gap: var(--s2); padding: var(--s3); }
+  .video-teaser { padding: var(--s10) var(--s3); }
+  .video-teaser__title { font-size: clamp(2rem, 10vw, 3rem); }
+  .tile__pkg-name { font-size: 2.2rem; }
+  .contact-detail__val { word-break: break-all; }
+  .transport-callout__claim { font-size: clamp(1.5rem, 6vw, 2rem); }
 }
 
 /* ── STATS BAR ── */
