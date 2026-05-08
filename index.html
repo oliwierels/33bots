@@ -37,6 +37,10 @@
   <!-- Mobile -->
   <meta name="theme-color" content="#000000" />
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="pl" href="https://33bots.pl/" />
+  <link rel="alternate" hreflang="x-default" href="https://33bots.pl/" />
+
   <!-- JSON-LD structured data -->
   <script type="application/ld+json">
   {
@@ -46,14 +50,20 @@
     "description": "Wynajem robotów humanoidalnych Unitree G1 na eventy, konferencje i targi w Polsce.",
     "url": "https://33bots.pl",
     "logo": "https://33bots.pl/favicon.svg",
-    "image": "https://33bots.pl/favicon.svg",
+    "image": "https://33bots.pl/robot-g1.jpg",
     "telephone": ["+48531408004", "+48601499947"],
     "email": "kontakt@33bots.pl",
     "priceRange": "Ceny na zapytanie",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Poland"
-    },
+    "areaServed": [
+      {"@type": "City", "name": "Warszawa"},
+      {"@type": "City", "name": "Kraków"},
+      {"@type": "City", "name": "Wrocław"},
+      {"@type": "City", "name": "Poznań"},
+      {"@type": "City", "name": "Gdańsk"},
+      {"@type": "City", "name": "Katowice"},
+      {"@type": "City", "name": "Łódź"},
+      {"@type": "Country", "name": "Poland"}
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "PL"
@@ -62,6 +72,33 @@
     "sameAs": [
       "https://www.facebook.com/33bots",
       "https://www.linkedin.com/company/33bots"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "3",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Karolina M."},
+        "reviewBody": "Efekt przerósł nasze najśmielsze oczekiwania. Zainteresowanie było ogromne przez cały czas trwania wydarzenia – nie spodziewałam się, że aż tak przyciągniemy uwagę."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Piotr Z."},
+        "reviewBody": "To była jedna z najlepszych decyzji organizacyjnych. Pozytywne reakcje uczestników i ich pełne zaangażowanie to dla nas najlepsza recenzja całego przedsięwzięcia."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Magdalena T."},
+        "reviewBody": "Współpraca przełożyła się na niesamowite zasięgi w mediach społecznościowych. To ten rodzaj autentycznego zainteresowania, którego nie da się po prostu kupić."
+      }
     ],
     "offers": {
       "@type": "Offer",
@@ -123,6 +160,7 @@
   </script>
 
   <script>history.scrollRestoration = 'manual';</script>
+  <link rel="preload" as="image" href="robot-g1.jpg" fetchpriority="high" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css?v=16" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -731,10 +769,10 @@
       </div>
       <div class="footer__right">
         <div class="footer__socials">
-          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer__social">↗ Instagram</a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener" class="footer__social">↗ TikTok</a>
-          <a href="https://www.facebook.com/33bots" target="_blank" rel="noopener" class="footer__social">↗ Facebook</a>
-          <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener" class="footer__social">↗ LinkedIn</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Instagram</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer__social">↗ TikTok</a>
+          <a href="https://www.facebook.com/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Facebook</a>
+          <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ LinkedIn</a>
         </div>
         <span class="footer__copy">© 2025 33bots. Wszelkie prawa zastrzeżone.</span>
       </div>
