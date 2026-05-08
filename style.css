@@ -1484,6 +1484,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 @media (max-width: 600px) {
   .section { padding: var(--s8) var(--s3); }
   .hero { padding-left: var(--s3); padding-right: var(--s3); }
+  .hero__title { font-size: 2.2rem; overflow-wrap: break-word; word-break: break-word; }
+  .hero__title br { display: none; }
   .footer__inner { flex-direction: column; align-items: flex-start; gap: var(--s4); }
   .footer__right { align-items: flex-start; }
   .footer__links { flex-wrap: wrap; gap: var(--s3); }
