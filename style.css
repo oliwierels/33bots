@@ -297,6 +297,24 @@ body {
 
 .hero__ctas { display: flex; gap: var(--s2); flex-wrap: wrap; }
 
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: var(--s3);
+}
+.hero__trust-item {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border-mid);
+  border-radius: 100px;
+  padding: 5px 13px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 /* ===== BUTTONS ===== */
 .btn-primary {
   display: inline-flex;
