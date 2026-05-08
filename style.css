@@ -363,7 +363,7 @@ body {
   transition: transform 0.15s var(--ease-out);
 }
 .hero__robot {
-  width: 260px;
+  width: min(460px, 100%);
   position: relative;
   z-index: 1;
   animation: float 6s ease-in-out infinite, glow-breathe 4s ease-in-out infinite;
