@@ -1511,11 +1511,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 /* ===== HERO ROBOT IMAGE ===== */
 .hero__robot-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: bottom center;
+  height: auto;
   display: block;
-  border-radius: 4px;
 }
 
 /* ===== ROBOT GALLERY SECTION ===== */
