@@ -21,16 +21,9 @@ if (cursorGlow && !window.matchMedia('(pointer: coarse)').matches) {
 
 // ── SCROLL PROGRESS ──────────────────────────────────────────
 const progressBar = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.width = total > 0 ? `${(window.scrollY / total) * 100}%` : '0%';
-}, { passive: true });
 
 // ── NAV SCROLL ───────────────────────────────────────────────
 const nav = document.getElementById('nav');
-const syncNav = () => nav.classList.toggle('scrolled', window.scrollY > 16);
-window.addEventListener('scroll', syncNav, { passive: true });
-syncNav();
 
 // ── HAMBURGER ────────────────────────────────────────────────
 const hamburger = document.getElementById('hamburger');
@@ -98,14 +91,31 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
-// ── ACTIVE NAV ───────────────────────────────────────────────
+// ── COMBINED SCROLL HANDLER (RAF-throttled) ───────────────────
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
-window.addEventListener('scroll', () => {
+const scrollTotal = () => document.documentElement.scrollHeight - window.innerHeight;
+let rafPending = false;
+
+function handleScroll() {
+  const y = window.scrollY;
+  const total = scrollTotal();
+
+  progressBar.style.width = total > 0 ? `${(y / total) * 100}%` : '0%';
+  nav.classList.toggle('scrolled', y > 16);
+
   let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  sections.forEach(s => { if (y >= s.offsetTop - 100) current = s.id; });
   navLinks.forEach(a => { a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--text)' : ''; });
+
+  rafPending = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!rafPending) { rafPending = true; requestAnimationFrame(handleScroll); }
 }, { passive: true });
+
+handleScroll();
 
 // ── ROBOT PARALLAX + GLITCH ───────────────────────────────────
 const robotWrap = document.getElementById('robotWrap');
