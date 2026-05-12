@@ -190,7 +190,7 @@
   </script>
 
   <script>history.scrollRestoration = 'manual';</script>
-  <link rel="preload" as="image" href="robot-g1.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="robot-g1.webp" fetchpriority="high" type="image/webp" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css?v=18" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -262,12 +262,15 @@
       <div class="hero__robot-wrap" id="robotWrap">
       <div class="hero__robot">
         <div class="robot-scan" aria-hidden="true"></div>
-        <img src="robot-g1.jpg"
-             alt="Robot humanoidalny Unitree G1 — atrakcja na eventy, targi i konferencje w Polsce"
-             class="hero__robot-img"
-             width="600" height="800"
-             loading="eager"
-             fetchpriority="high" />
+        <picture>
+          <source srcset="robot-g1.webp" type="image/webp" />
+          <img src="robot-g1.jpg"
+               alt="Robot humanoidalny Unitree G1 — atrakcja na eventy, targi i konferencje w Polsce"
+               class="hero__robot-img"
+               width="600" height="800"
+               loading="eager"
+               fetchpriority="high" />
+        </picture>
       </div>
       </div>
       <div class="hero__tag hero__tag--1">Unitree G1</div>
@@ -416,18 +419,24 @@
     </div>
     <div class="robot-gallery">
       <figure class="robot-gallery__main">
-        <img src="robot-g1.jpg"
-             alt="Robot humanoidalny Unitree G1 — srebrny humanoid z niebieskim wizjerem, wynajem na eventy w Polsce"
-             width="800" height="800"
-             loading="lazy" />
+        <picture>
+          <source srcset="robot-g1.webp" type="image/webp" />
+          <img src="robot-g1.jpg"
+               alt="Robot humanoidalny Unitree G1 — srebrny humanoid z niebieskim wizjerem, wynajem na eventy w Polsce"
+               width="800" height="800"
+               loading="lazy" />
+        </picture>
         <figcaption>Unitree G1 · 132 cm · 35 kg · 43 stopnie swobody</figcaption>
       </figure>
       <div class="robot-gallery__side">
         <figure class="robot-gallery__action">
-          <img src="robot-g1-action.png"
-               alt="Robot Unitree G1 w dynamicznym ruchu — kopnięcie, choreografia na evencie"
-               width="600" height="600"
-               loading="lazy" />
+          <picture>
+            <source srcset="robot-g1-action.webp" type="image/webp" />
+            <img src="robot-g1-action.jpg"
+                 alt="Robot Unitree G1 w dynamicznym ruchu — kopnięcie, choreografia na evencie"
+                 width="600" height="600"
+                 loading="lazy" />
+          </picture>
           <figcaption>Dynamiczne choreografie i pokazy live</figcaption>
         </figure>
         <div class="robot-gallery__specs">
