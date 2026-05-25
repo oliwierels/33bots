@@ -336,4 +336,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-otwarcie.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-piknik-firmowy.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-gale.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
