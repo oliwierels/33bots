@@ -130,6 +130,10 @@ body {
   gap: 5px;
   transition: color 0.2s var(--ease-in-out);
   user-select: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
 }
 .nav__dropdown-toggle svg {
   width: 8px;
@@ -692,7 +696,7 @@ body {
   margin-bottom: var(--s2);
   font-variant-numeric: tabular-nums;
 }
-.use-item h4 {
+.use-item h3 {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -733,7 +737,7 @@ body {
   transition: color 0.2s;
 }
 .process-step:hover .process-step__n { color: var(--text-2); }
-.process-step h4 {
+.process-step h3 {
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: -0.01em;
