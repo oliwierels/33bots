@@ -1053,6 +1053,59 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   flex-direction: column;
   gap: var(--s1);
 }
+
+.footer__nap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: var(--s2);
+}
+.footer__nap-item {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  transition: color 0.2s var(--ease-in-out);
+}
+.footer__nap-item:hover { color: var(--text-2); }
+
+/* ===== CONTACT MAP ===== */
+.contact-map {
+  margin-top: var(--s4);
+}
+.contact-map__iframe {
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--border);
+  display: block;
+}
+.contact-map__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  background: var(--surface-1);
+  text-align: center;
+  padding: var(--s5) var(--s4);
+}
+.contact-map__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--text-3);
+}
+.contact-map__label {
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+.contact-map__label strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.contact-map__sub {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
 .footer__tagline {
   font-size: 0.65rem;
   letter-spacing: 0.06em;
