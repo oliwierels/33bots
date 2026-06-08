@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Force HTTPS and non-www (canonical: https://33bots.pl)
+RewriteCond %{HTTP_HOST} ^www\.33bots\.pl$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://33bots.pl/$1 [L,R=301]
