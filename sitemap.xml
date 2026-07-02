@@ -466,4 +466,10 @@
       <video:live>no</video:live>
     </video:video>
   </url>
+  <url>
+    <loc>https://33bots.pl/case-study-lexai.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
