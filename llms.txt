@@ -10,6 +10,8 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 
 ## Oferta
 
+- [Pełna oferta wynajmu robota](https://33bots.pl/oferta.html): wszystkie usługi w jednym miejscu
+
 - [Wynajem robota humanoidalnego](https://33bots.pl/wypozyczenie-robota.html): główna strona usługi wynajmu
 - [Robot na targi i wystawy](https://33bots.pl/oferta-targi.html): stoiska targowe, generowanie leadów
 - [Robot na konferencje i gale](https://33bots.pl/oferta-konferencje.html): efekt WOW na scenie i przy wejściu
@@ -21,6 +23,7 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 
 - [Case study LEX AI — od Długiego Targu do TVP](https://33bots.pl/case-study-lexai.html): pokaz w Gdańsku, media ogólnopolskie
 - [Case study WallStreet 30](https://33bots.pl/case-study-wallstreet.html): robot na największej konferencji inwestorskiej w Polsce (Karpacz, 2253 uczestników)
+- [Case study Women in Tech Summit](https://33bots.pl/case-study-women-in-tech.html): robot na największej konferencji women-in-tech w Europie (Warszawa, ~14 000 uczestniczek)
 - [Realizacje wideo](https://33bots.pl/realizacje-wideo.html): nagrania robota z eventów
 
 ## Najczęstsze pytania
