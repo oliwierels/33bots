@@ -6,7 +6,11 @@ Robot Unitree G1: wzrost 132 cm, waga 35 kg, 43 stopnie swobody, prędkość do 
 
 Realizacja dla klienta LEX AI na Długim Targu w Gdańsku trafiła do Teleexpressu TVP oraz reportażu TVP Gdańsk „Pan Mecenas Robot".
 
+Kanał RSS bloga: https://33bots.pl/feed.xml
+
 ## Oferta
+
+- [Pełna oferta wynajmu robota](https://33bots.pl/oferta.html): wszystkie usługi w jednym miejscu
 
 - [Wynajem robota humanoidalnego](https://33bots.pl/wypozyczenie-robota.html): główna strona usługi wynajmu
 - [Robot na targi i wystawy](https://33bots.pl/oferta-targi.html): stoiska targowe, generowanie leadów
@@ -18,6 +22,8 @@ Realizacja dla klienta LEX AI na Długim Targu w Gdańsku trafiła do Teleexpres
 ## Dowody i realizacje
 
 - [Case study LEX AI — od Długiego Targu do TVP](https://33bots.pl/case-study-lexai.html): pokaz w Gdańsku, media ogólnopolskie
+- [Case study WallStreet 30](https://33bots.pl/case-study-wallstreet.html): robot na największej konferencji inwestorskiej w Polsce (Karpacz, 2253 uczestników)
+- [Case study Women in Tech Summit](https://33bots.pl/case-study-women-in-tech.html): robot na największej konferencji women-in-tech w Europie (Warszawa, ~14 000 uczestniczek)
 - [Realizacje wideo](https://33bots.pl/realizacje-wideo.html): nagrania robota z eventów
 
 ## Najczęstsze pytania

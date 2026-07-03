@@ -1742,3 +1742,168 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
     object-fit: initial;
   }
 }
+
+/* ============================================================
+   ===== V19 GLOW-UP — akcent cyjanowy (wizjer G1) + polish =====
+   ============================================================ */
+:root {
+  --accent:      #6fd6ff;
+  --accent-soft: rgba(111, 214, 255, 0.14);
+  --accent-dim:  rgba(111, 214, 255, 0.55);
+}
+
+/* — Fundamenty — */
+::selection { background: var(--accent); color: var(--black); }
+:focus-visible { outline: 2px solid var(--accent-dim); outline-offset: 3px; border-radius: 2px; }
+[id] { scroll-margin-top: 88px; }
+
+/* Scrollbar (WebKit + Firefox) */
+html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 10px; border: 2px solid var(--black); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hi); }
+
+/* — Pasek postępu czytania: sygnaturowy gradient — */
+.scroll-progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--white), var(--accent));
+  box-shadow: 0 0 12px var(--accent-soft);
+}
+
+/* — Hero: gradientowe wyróżnienie (jak poświata wizjera) — */
+.hero__title em {
+  background: linear-gradient(100deg, var(--text) 20%, var(--accent) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent); /* fallback */
+}
+.hero__eyebrow { position: relative; }
+
+/* — Przyciski: cyjanowy oddech na hover — */
+.btn-primary:hover {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 8px 28px rgba(0,0,0,0.55),
+    0 0 32px var(--accent-soft);
+}
+.btn-ghost { transition: color .2s var(--ease-in-out), border-color .2s var(--ease-in-out), box-shadow .3s var(--ease-out), transform .2s var(--ease-out); }
+.btn-ghost:hover { border-color: var(--accent-dim); box-shadow: 0 0 20px var(--accent-soft); transform: translateY(-1px); }
+
+/* — Kafelki: delikatny lift + linia akcentu — */
+.tile { position: relative; }
+.tile::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 0%; height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transition: width .45s var(--ease-out);
+}
+.tile:hover::after { width: 100%; }
+.tile:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
+.tile__link { transition: color .2s, letter-spacing .25s var(--ease-out); }
+.tile:hover .tile__link { color: var(--accent); letter-spacing: 0.02em; }
+
+/* — Tagi sekcji: kropka-status — */
+.tag::before {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 8px;
+  vertical-align: 1px;
+  box-shadow: 0 0 8px var(--accent-dim);
+}
+
+/* — Statystyki: poświata liczb — */
+.stat-item__val { text-shadow: 0 0 24px var(--accent-soft); }
+
+/* — Marquee: miękkie krawędzie — */
+.marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* — FAQ: akcent przy aktywnym pytaniu — */
+.faq-q:hover { color: var(--text); }
+.faq-q:hover .faq-q__icon { color: var(--accent); transform: scale(1.15); }
+.faq-q__icon { transition: transform .25s var(--ease-out), color .2s; }
+.faq-item { transition: border-color .25s var(--ease-in-out); }
+.faq-item:hover { border-color: var(--border-hi); }
+
+/* — Testimoniale: cudzysłów + hover — */
+.testimonial { position: relative; transition: border-color .25s, transform .3s var(--ease-out), box-shadow .3s var(--ease-out); }
+.testimonial:hover { border-color: var(--border-hi); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
+.testimonial::before {
+  content: '„';
+  position: absolute;
+  top: 2px; right: 14px;
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* — Formularz: focus z poświatą — */
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent-dim) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* — Breadcrumbs (nadpisanie inline) — */
+.crumbs a { transition: color .2s; }
+.crumbs a:hover { color: var(--accent) !important; }
+
+/* — Wideo i embedy: ramka premium — */
+video, .video-card { transition: box-shadow .3s var(--ease-out), border-color .3s; }
+video:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 28px var(--accent-soft); border-color: var(--border-hi) !important; }
+.video-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5); border-color: var(--border-hi); }
+
+/* — Galeria robota: subtelny zoom — */
+.robot-gallery__main img, .robot-gallery__action img { transition: transform .6s var(--ease-out); }
+.robot-gallery__main:hover img, .robot-gallery__action:hover img { transform: scale(1.025); }
+.robot-gallery__main, .robot-gallery__action { overflow: hidden; }
+
+/* — Stopka: hover z akcentem — */
+.footer__links a, .footer__social { transition: color .2s; }
+.footer__links a:hover, .footer__social:hover { color: var(--accent); }
+
+/* — Nav: podkreślenie z akcentem — */
+.nav__links a::after { background: var(--accent); }
+.logo { transition: opacity .2s, text-shadow .3s var(--ease-out); }
+.logo:hover { text-shadow: 0 0 18px var(--accent-dim); }
+
+/* — Cursor glow: cyjanowy odcień — */
+.cursor-glow { background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%) !important; }
+
+/* — Karty-linki (inline-styled boxy dostają hover przez atrybut) — */
+a[style*="border-radius:10px"]:hover,
+a[style*="border-radius:12px"]:hover,
+a[style*="border-radius:14px"]:hover {
+  border-color: var(--border-hi) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--ease-out), box-shadow .3s var(--ease-out); }
+
+/* — Redukcja ruchu — */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* — Stopka: bez łamania etykiet — */
+.footer__links a { white-space: nowrap; }
+
+/* — Mobile: zwięzłe hero na podstronach + breadcrumbs — */
+@media (max-width: 768px) {
+  .hero { min-height: auto !important; }
+  .hero__content { padding-top: var(--s5) !important; padding-bottom: var(--s5) !important; }
+  .crumbs { padding-top: calc(var(--s5) + 48px) !important; }
+}
