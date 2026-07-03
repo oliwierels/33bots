@@ -1900,3 +1900,10 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
 
 /* — Stopka: bez łamania etykiet — */
 .footer__links a { white-space: nowrap; }
+
+/* — Mobile: zwięzłe hero na podstronach + breadcrumbs — */
+@media (max-width: 768px) {
+  .hero { min-height: auto !important; }
+  .hero__content { padding-top: var(--s5) !important; padding-bottom: var(--s5) !important; }
+  .crumbs { padding-top: calc(var(--s5) + 48px) !important; }
+}
