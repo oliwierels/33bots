@@ -77,30 +77,80 @@
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://33bots.pl/video/robot-taniec-poster.jpg</video:thumbnail_loc>
+      <video:title>Robot humanoidalny Unitree G1 w akcji — wynajem w Warszawie</video:title>
+      <video:description>Robot Unitree G1 na żywo: chodzi, gestykuluje i tańczy. Wynajem na eventy w Warszawie.</video:description>
+      <video:content_loc>https://33bots.pl/video/robot-taniec.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-07-02</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://33bots.pl/robot-wynajem-krakow.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://33bots.pl/video/robot-taniec-poster.jpg</video:thumbnail_loc>
+      <video:title>Robot humanoidalny Unitree G1 w akcji — wynajem w Krakowie</video:title>
+      <video:description>Robot Unitree G1 na żywo: chodzi, gestykuluje i tańczy. Wynajem na eventy w Krakowie.</video:description>
+      <video:content_loc>https://33bots.pl/video/robot-taniec.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-07-02</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://33bots.pl/robot-wynajem-wroclaw.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://33bots.pl/video/robot-taniec-poster.jpg</video:thumbnail_loc>
+      <video:title>Robot humanoidalny Unitree G1 w akcji — wynajem w Wrocławiu</video:title>
+      <video:description>Robot Unitree G1 na żywo: chodzi, gestykuluje i tańczy. Wynajem na eventy w Wrocławiu.</video:description>
+      <video:content_loc>https://33bots.pl/video/robot-taniec.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-07-02</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://33bots.pl/robot-wynajem-poznan.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://33bots.pl/video/robot-taniec-poster.jpg</video:thumbnail_loc>
+      <video:title>Robot humanoidalny Unitree G1 w akcji — wynajem w Poznaniu</video:title>
+      <video:description>Robot Unitree G1 na żywo: chodzi, gestykuluje i tańczy. Wynajem na eventy w Poznaniu.</video:description>
+      <video:content_loc>https://33bots.pl/video/robot-taniec.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-07-02</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://33bots.pl/robot-wynajem-gdansk.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://33bots.pl/video/robot-taniec-poster.jpg</video:thumbnail_loc>
+      <video:title>Robot humanoidalny Unitree G1 w akcji — wynajem w Gdańsku</video:title>
+      <video:description>Robot Unitree G1 na żywo: chodzi, gestykuluje i tańczy. Wynajem na eventy w Gdańsku.</video:description>
+      <video:content_loc>https://33bots.pl/video/robot-taniec.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-07-02</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://33bots.pl/robot-wynajem-katowice.html</loc>
