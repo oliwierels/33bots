@@ -18,6 +18,7 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Robot na dni otwarte i showroomy](https://33bots.pl/oferta-dni-otwarte.html): pokazy technologii
 - [Robot na event i imprezę firmową](https://33bots.pl/robot-na-impreze.html): imprezy firmowe, integracje
 - [Robot na wesele](https://33bots.pl/robot-na-wesele.html): atrakcja weselna
+- [Atrakcje na event — katalog wszystkich scenariuszy](https://33bots.pl/atrakcje-na-event.html): pełny katalog podstron — role robota (konferansjer, prelegent, tancerz, recepcjonista), miejsca (hotele, galerie handlowe, uczelnie), typy wydarzeń (targi, gale, konferencje, pikniki), eventy branżowe (IT, medyczne, finansowe i inne) oraz imprezy prywatne (urodziny, sylwester, komunie)
 
 ## Dowody i realizacje
 
