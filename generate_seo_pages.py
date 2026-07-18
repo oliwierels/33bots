@@ -413,6 +413,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <section class="section" style="padding-block:var(--s6) var(--s4); background:var(--surface-1)">
+    <div class="container" style="max-width:1140px; margin-inline:auto; padding-inline:var(--s4)">
+      <h2 style="font-size:clamp(1rem,2vw,1.4rem); font-weight:700; margin-bottom:var(--s3); color:var(--text-1)">Wynajem robota w Twoim mieście</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+{city_chips}
+      </div>
+    </div>
+  </section>
+
   </main>
   <footer class="footer">
     <div class="footer__inner">
@@ -463,6 +472,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 """
 
 H3_STYLE = 'style="font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin:var(--s6) 0 var(--s2); color:var(--text);"'
+
+CHIP_CITIES = [
+    ("robot-wynajem-warszawa.html", "Warszawa"), ("robot-wynajem-krakow.html", "Kraków"),
+    ("robot-wynajem-wroclaw.html", "Wrocław"), ("robot-wynajem-poznan.html", "Poznań"),
+    ("robot-wynajem-gdansk.html", "Gdańsk"), ("robot-wynajem-katowice.html", "Katowice"),
+    ("robot-wynajem-lodz.html", "Łódź"), ("robot-wynajem-szczecin.html", "Szczecin"),
+    ("robot-wynajem-lublin.html", "Lublin"), ("robot-wynajem-rzeszow.html", "Rzeszów"),
+]
+
+CHIP_STYLE = ('padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; '
+              'font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s')
+
+
+def render_city_chips():
+    return "\n".join(
+        f'        <a href="{href}" style="{CHIP_STYLE}">{name}</a>'
+        for href, name in CHIP_CITIES
+    )
 
 
 def render_tiles(tiles):
@@ -603,6 +630,7 @@ def build_page(p):
         kontakt_h2=p["kontakt_h2"],
         product_json=product_json, breadcrumb_json=breadcrumb_json,
         faq_json=faq_json, video_json=video_json,
+        city_chips=render_city_chips(),
     )
     return html
 
