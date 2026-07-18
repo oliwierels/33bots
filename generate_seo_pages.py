@@ -179,6 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="oferta-targi.html">Targi</a>
             <a href="oferta-konferencje.html">Konferencje i Gale</a>
             <a href="oferta-dni-otwarte.html">Dni otwarte i showroomy</a>
+            <a href="atrakcje-na-event.html">Wszystkie atrakcje</a>
           </div>
         </div>
         <a href="index.html#o-nas">O nas</a>
@@ -200,6 +201,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="oferta-targi.html" class="mobile-menu__sub">Targi</a>
     <a href="oferta-konferencje.html" class="mobile-menu__sub">Konferencje i Gale</a>
     <a href="oferta-dni-otwarte.html" class="mobile-menu__sub">Dni otwarte i showroomy</a>
+    <a href="atrakcje-na-event.html" class="mobile-menu__sub">Wszystkie atrakcje</a>
     <a href="index.html#o-nas">O nas</a>
     <a href="index.html#eventy">Eventy</a>
     <a href="blog.html">Blog</a>
@@ -657,6 +659,23 @@ def build_directory():
     return "\n".join(out)
 
 
+def build_itemlist_json():
+    """Schema ItemList dla strony-hubu — lista wszystkich podstron katalogu."""
+    from seo_pages_content import ALL_PAGES
+    items = [
+        {"@type": "ListItem", "position": i + 1, "name": p["crumb"], "url": f"{DOMAIN}/{p['slug']}.html"}
+        for i, p in enumerate(pp for pp in ALL_PAGES if pp["slug"] != "atrakcje-na-event")
+    ]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Atrakcje na event — katalog scenariuszy wynajmu robota",
+        "numberOfItems": len(items),
+        "itemListElement": items,
+    }
+    return '  <script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False, indent=2) + "\n  </script>\n"
+
+
 def main():
     from seo_pages_content import ALL_PAGES
     slugs = []
@@ -664,6 +683,7 @@ def main():
         html = build_page(p)
         if p["slug"] == "atrakcje-na-event":
             html = html.replace("  <!-- WIDEO -->", build_directory() + "\n\n  <!-- WIDEO -->", 1)
+            html = html.replace("</head>", build_itemlist_json() + "</head>", 1)
         fname = os.path.join(BASE, p["slug"] + ".html")
         with open(fname, "w", encoding="utf-8") as f:
             f.write(html)
