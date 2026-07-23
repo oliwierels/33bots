@@ -92,14 +92,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 }})(window,document,'script','dataLayer','GTM-MR7R7CJ3');</script>
 <!-- End Google Tag Manager -->
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNE9Y0S9QV"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){{dataLayer.push(arguments);}}
-    gtag('js', new Date());
-    gtag('config', 'G-MNE9Y0S9QV');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
@@ -562,19 +554,20 @@ def build_page(p):
 
     product_json = json.dumps({
         "@context": "https://schema.org",
-        "@type": "Product",
+        "@type": "Service",
         "name": p["schema_name"],
         "description": p["schema_desc"],
         "url": url,
         "image": "https://33bots.pl/robot-g1.jpg",
-        "brand": {"@type": "Brand", "name": "Unitree"},
-        "offers": {"@type": "AggregateOffer", "lowPrice": 1, "highPrice": 10000, "priceCurrency": "PLN", "offerCount": 3},
-        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3", "bestRating": "5", "worstRating": "1"},
-        "review": [
-            {"@type": "Review", "author": {"@type": "Person", "name": "Karolina M."}, "datePublished": "2025-10-12", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "Efekt przerósł nasze najśmielsze oczekiwania. Zainteresowanie było ogromne przez cały czas trwania wydarzenia – nie spodziewałam się, że aż tak przyciągniemy uwagę."},
-            {"@type": "Review", "author": {"@type": "Person", "name": "Piotr Z."}, "datePublished": "2025-11-03", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "To była jedna z najlepszych decyzji organizacyjnych. Pozytywne reakcje uczestników i ich pełne zaangażowanie to dla nas najlepsza recenzja całego przedsięwzięcia."},
-            {"@type": "Review", "author": {"@type": "Person", "name": "Magdalena T."}, "datePublished": "2025-12-08", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "reviewBody": "Współpraca przełożyła się na niesamowite zasięgi w mediach społecznościowych. To ten rodzaj autentycznego zainteresowania, którego nie da się po prostu kupić."},
-        ],
+        "serviceType": "Wynajem robota humanoidalnego na eventy",
+        "provider": {
+            "@type": "Organization",
+            "name": "33bots",
+            "url": "https://33bots.pl/",
+            "email": "kontakt@33bots.pl",
+            "telephone": "+48 531 408 004",
+        },
+        "areaServed": {"@type": "Country", "name": "Polska"},
     }, ensure_ascii=False, indent=2)
 
     breadcrumb_json = json.dumps({

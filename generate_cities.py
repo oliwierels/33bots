@@ -517,14 +517,6 @@ def generate_html(city):
     html = f"""<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNE9Y0S9QV"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){{dataLayer.push(arguments);}}
-    gtag('js', new Date());
-    gtag('config', 'G-MNE9Y0S9QV');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wynajem robota humanoidalnego {name} — Unitree G1 | 33bots</title>

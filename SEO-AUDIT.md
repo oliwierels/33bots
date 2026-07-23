@@ -79,6 +79,21 @@ Obrazy poniżej fold na pozostałych stronach ładują się eagerly. Wpływ mał
 
 ---
 
+## Status wdrożenia (2026-07-23)
+
+| Problem | Status |
+|---|---|
+| `lowPrice: 1` + sitewide `aggregateRating` | ✅ Naprawione — podstrony przeszły na schemat `Service` (bez cen i ocen), `aggregateRating` + recenzje zostały tylko na stronie głównej; poprawiono też generator `generate_seo_pages.py` |
+| Doorway pages (42 miasta) | ✅ Ograniczone — każda strona miejska dostała unikalną sekcję „Miejsca eventowe i logistyka" z realnymi obiektami, dzielnicami i lokalnym kontekstem (nakładanie się treści spadło z ~63% do ~54–60%) |
+| Podwójny pomiar GA4 | ✅ Naprawione — usunięty bezpośredni snippet gtag.js ze 194 stron i 3 generatorów; pomiar wyłącznie przez GTM |
+| Meta description >165 zn. | ✅ Naprawione — 19 stron skrócono (razem z og:/twitter:description) |
+| Title >65 zn. | ✅ Naprawione — ~90 stron skrócono (razem z og:/twitter:title), zero duplikatów po zmianie |
+| Wspólny og-image.jpg | ✅ Naprawione — 191 unikalnych grafik OG (katalog `og/`, 1200×630, nagłówek strony + branding) |
+| `loading="lazy"` | ✅ Nie wymagało zmian — wszystkie istniejące `<img>` mają atrybut `loading`; niska liczba z audytu wynikała z tego, że większość podstron nie zawiera obrazów w treści |
+| Sitemap | ✅ Zaktualizowano `lastmod` po zmianach |
+
+> Uwaga po wdrożeniu GA4: jeśli tag GA4 jest skonfigurowany także w kontenerze GTM-MR7R7CJ3, pomiar działa dalej normalnie. Jeśli GA4 było tylko wpięte bezpośrednio w kod, trzeba dodać tag GA4 (G-MNE9Y0S9QV) w panelu GTM.
+
 ## Rekomendowana kolejność działań
 
 1. Usunąć/urealnić `lowPrice: 1` i ograniczyć `aggregateRating` do 1–2 stron (szybkie, największe ryzyko).
