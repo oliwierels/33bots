@@ -6,7 +6,14 @@
     <atom:link href="https://33bots.pl/feed.xml" rel="self" type="application/rss+xml" />
     <description>Wynajem robotów humanoidalnych Unitree G1 na eventy, targi i konferencje. Porady, ceny, porównania i case studies.</description>
     <language>pl</language>
-    <lastBuildDate>Thu, 02 Jul 2026 08:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 08:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Jak wybrać firmę do wynajmu robota humanoidalnego? Porównanie ofert 2026</title>
+      <link>https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html</link>
+      <guid isPermaLink="true">https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html</guid>
+      <pubDate>Thu, 23 Jul 2026 08:00:00 +0000</pubDate>
+      <description>Jak porównywać oferty wynajmu robota humanoidalnego: co musi być w cenie, jakie dopłaty są red flagą, jak sprawdzić referencje. Z tabelą kontrolną i checklistą 7 pytań.</description>
+    </item>
     <item>
       <title>Jak wybrać robota na event? Przewodnik organizatora</title>
       <link>https://33bots.pl/blog-jak-wybrac-robota-na-event.html</link>
