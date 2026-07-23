@@ -85,6 +85,7 @@ Obrazy poniżej fold na pozostałych stronach ładują się eagerly. Wpływ mał
 |---|---|
 | `lowPrice: 1` + sitewide `aggregateRating` | ✅ Naprawione — podstrony przeszły na schemat `Service` (bez cen i ocen), `aggregateRating` + recenzje zostały tylko na stronie głównej; poprawiono też generator `generate_seo_pages.py` |
 | Doorway pages (42 miasta) | ✅ Ograniczone — każda strona miejska dostała unikalną sekcję „Miejsca eventowe i logistyka" z realnymi obiektami, dzielnicami i lokalnym kontekstem (nakładanie się treści spadło z ~63% do ~54–60%) |
+| Doorway pages — konsolidacja aglomeracji | ✅ Usunięto 7 stron-satelitów konurbacji śląskiej (Bytom, Chorzów, Dąbrowa Górnicza, Jaworzno, Sosnowiec, Tychy, Zabrze) z przekierowaniem 301 do Katowic; strona Katowic jawnie obejmuje teraz całą aglomerację (treść + `areaServed` w schemacie); wyczyszczono linki wewnętrzne, sitemapę i generator — zostało 35 miast |
 | Podwójny pomiar GA4 | ✅ Naprawione — usunięty bezpośredni snippet gtag.js ze 194 stron i 3 generatorów; pomiar wyłącznie przez GTM |
 | Meta description >165 zn. | ✅ Naprawione — 19 stron skrócono (razem z og:/twitter:description) |
 | Title >65 zn. | ✅ Naprawione — ~90 stron skrócono (razem z og:/twitter:title), zero duplikatów po zmianie |
