@@ -6,6 +6,8 @@ Robot Unitree G1: wzrost 132 cm, waga 35 kg, 43 stopnie swobody, prędkość do 
 
 Realizacja dla klienta LEX AI na Długim Targu w Gdańsku trafiła do Teleexpressu TVP oraz reportażu TVP Gdańsk „Pan Mecenas Robot".
 
+Zaufali nam m.in.: Fundacja Perspektywy (Women in Tech Summit — największa konferencja women-in-tech w Europie), DSV (globalny operator logistyczny), Cashify oraz LEX AI.
+
 Kanał RSS bloga: https://33bots.pl/feed.xml
 
 ## Oferta
@@ -32,6 +34,7 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Ile kosztuje wynajem robota? Ceny i pakiety](https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html): wycena indywidualna, pakiety Impuls / Standard / Multi-Day, transport i operator zawsze w cenie
 - [Jak wynająć robota — przewodnik krok po kroku](https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html)
 - [Jak wynająć robota — checklist w 7 punktach](https://33bots.pl/blog-jak-wynajac-robota-checklist.html)
+- [Jak wybrać firmę do wynajmu robota humanoidalnego — porównanie ofert](https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html): co musi być w cenie (transport, operator, branding, OC), jak sprawdzić referencje
 - [Unitree G1 — specyfikacja i możliwości](https://33bots.pl/blog-unitree-g1-robot.html)
 
 ## Zasięg
