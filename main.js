@@ -66,7 +66,7 @@ const io = new IntersectionObserver((entries) => {
     io.unobserve(entry.target);
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.tile, .use-item, .process-step, .stat-item, .testimonial, .faq-item, .video-teaser__content')
+document.querySelectorAll('.tile, .use-item, .process-step, .stat-item, .testimonial, .faq-item, .video-teaser__content, .price-card, .pricing-promo')
   .forEach(el => { el.classList.add('fade-up'); io.observe(el); });
 
 // ── FAQ ───────────────────────────────────────────────────────
