@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wynajem robota humanoidalnego na event — od 5500 zł | 33bots</title>
-<meta name="description" content="Wynajem robota humanoidalnego Unitree G1 na targi, konferencje i gale. Cały dzień od 5500 zł — transport, operator i branding w cenie. Zero zaliczki, faktura po evencie." />
+<meta name="description" content="Wynajem robota humanoidalnego Unitree G1 na targi, konferencje i gale. Od kilku godzin po realizacje wielodniowe. Cały dzień od 5500 zł — transport, operator i branding w cenie. Zero zaliczki, faktura po evencie." />
 <link rel="canonical" href="https://33bots.pl/" />
 <meta name="theme-color" content="#050505" />
 
@@ -44,9 +44,30 @@
 
   /* ——— Robot w hero: wtopienie krawędzi kadru w tło ——— */
   .hero-robot {
-    -webkit-mask-image: radial-gradient(ellipse 72% 82% at 50% 48%, #000 52%, transparent 96%);
-            mask-image: radial-gradient(ellipse 72% 82% at 50% 48%, #000 52%, transparent 96%);
+    /* tło kadru to niemal czerń (3,2,10) — "screen" sprawia, że znika bez śladu ramki */
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
+            mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
   }
+
+  /* ——— Przesuwające się pasy zdjęć ——— */
+  .strip { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+                              mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .strip-track { display: flex; gap: 1rem; width: max-content; animation: slide 52s linear infinite; }
+  .strip-track--rev { animation-direction: reverse; animation-duration: 64s; }
+  .strip:hover .strip-track { animation-play-state: paused; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .strip-item { position: relative; flex: 0 0 auto; width: 260px; height: 340px; border-radius: 20px;
+                overflow: hidden; border: 1px solid #2a2a30; background: #111113; }
+  .strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+               opacity: .9; transition: transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease; }
+  .strip-item:hover .strip-img { transform: scale(1.07); opacity: 1; }
+  .strip-item::after { content: ''; position: absolute; inset: 0;
+                       background: linear-gradient(to top, rgba(5,5,5,.9), transparent 55%); }
+  .strip-cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
+               font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff; }
+  @media (max-width: 640px) { .strip-item { width: 190px; height: 250px; } }
+  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } .strip { overflow-x: auto; } }
 
   /* ——— Ziarno: premium film grain ——— */
   .grain::after {
@@ -102,11 +123,11 @@
 </style>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Zero dopłat, zero zaliczki, faktura po evencie."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
+{"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero dopłat, zero zaliczki, faktura po evencie."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Ile kosztuje wynajem robota humanoidalnego na event?","acceptedAnswer":{"@type":"Answer","text":"Cały dzień realizacji to koszt od 5500 zł — ostateczna cena zależy wyłącznie od lokalizacji eventu. W cenie jest wszystko: transport w całej Polsce, certyfikowany operator, branding robota i ubezpieczenie. Robot-pies to opcja dodatkowa za 1900 zł za dzień, a przy realizacjach dwudniowych i dłuższych obowiązuje 15% zniżki na każdy dzień."}},
+{"@type":"Question","name":"Ile kosztuje wynajem robota humanoidalnego na event?","acceptedAnswer":{"@type":"Answer","text":"Cały dzień realizacji to koszt od 5500 zł — ostateczna cena zależy wyłącznie od lokalizacji eventu. Możliwy jest też krótszy wynajem, np. kilkugodzinny pokaz, wyceniany indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach dwudniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport w całej Polsce, certyfikowany operator, branding robota i ubezpieczenie; robot-pies to opcja dodatkowa za 1900 zł za dzień."}},
 {"@type":"Question","name":"Czy muszę wpłacać zaliczkę, żeby zarezerwować termin?","acceptedAnswer":{"@type":"Answer","text":"Nie. Rezerwacja terminu jest bezpłatna, bez zaliczki. Fakturę wystawiamy dopiero po zakończonym wydarzeniu, a w razie potrzeby ustalimy dłuższy termin płatności."}},
 {"@type":"Question","name":"Czy muszę umieć sterować robotem?","acceptedAnswer":{"@type":"Answer","text":"Nie. Przez cały event obecny jest nasz certyfikowany operator, który odpowiada za konfigurację, obsługę i bezpieczeństwo pokazu."}},
 {"@type":"Question","name":"Czy mogę umieścić logo firmy na robocie?","acceptedAnswer":{"@type":"Answer","text":"Tak, i nie pobieramy za to opłaty. Na klatce piersiowej robota umieszczamy logo oraz kod QR Twojej marki."}},
@@ -180,9 +201,11 @@
         Wynajem robotów humanoidalnych · cała Polska
       </p>
 
-      <h1 class="reveal font-display text-[2.35rem] font-700 leading-[.98] tracking-[-.03em] text-white sm:text-5xl xl:text-[3.5rem]" style="--d:.12s">
-        Wynajem robota,<br />przy którym goście<br />
-        <span class="bg-gradient-to-r from-white via-accent to-accent-deep bg-clip-text text-transparent">wyjmują telefony.</span>
+      <h1 class="reveal font-display font-700 tracking-[-.03em] text-white" style="--d:.12s">
+        <span class="block text-[1.15rem] font-600 leading-tight text-neutral-300 sm:text-2xl xl:text-[1.7rem]">Wynajem robotów humanoidalnych</span>
+        <span class="mt-2 block text-[2.2rem] leading-[1.02] sm:text-[2.9rem] xl:text-[3.15rem]">na wydarzenia, które<br />
+          <span class="bg-gradient-to-r from-white via-accent to-accent-deep bg-clip-text text-transparent">zapadają w pamięć.</span>
+        </span>
       </h1>
 
       <p class="reveal mt-5 max-w-lg leading-relaxed text-neutral-400 md:text-lg" style="--d:.2s">
@@ -275,106 +298,176 @@
       </h2>
     </div>
     <p class="reveal max-w-sm text-neutral-400" style="--d:.16s">
-      Najedź na kafelek — zobaczysz nagranie z prawdziwej realizacji. Bez montażu, bez efektów.
+      Najedź na kadr — pas się zatrzyma, a nagranie ruszy. Wszystko z prawdziwych realizacji, bez montażu.
     </p>
   </div>
 
-  <!-- Siatka bento -->
-  <div class="grid auto-rows-[172px] grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+  <!-- ═══════════════════════════════════════════════════════════════
+       GALERIA: dwa przesuwające się pasy (prawo→lewo i lewo→prawo).
+       Najechanie kursorem zatrzymuje pas i odtwarza wideo.
 
-    <!-- 1. Duży: taniec (wideo odpalane na hover) -->
-    <article class="bento reveal group relative col-span-2 row-span-2 overflow-hidden rounded-3xl border border-line-mid bg-surface-2" style="--d:.05s">
-      <video class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
-             poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
-             onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-      <source-marker data-src="video/robot-taniec.mp4"></source-marker>
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 p-6">
-        <span class="mb-2 inline-block rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[10px] font-600 uppercase tracking-widest text-accent backdrop-blur">Najedź, żeby odtworzyć</span>
-        <h3 class="font-display text-xl font-700 leading-tight text-white md:text-3xl">Tańczy tak,<br />że parkiet staje</h3>
-        <p class="mt-2 hidden max-w-xs text-sm text-neutral-300 sm:block">Choreografie zsynchronizowane z Twoim DJ-em — moment, który goście nagrywają sami.</p>
-      </div>
-    </article>
+       ▸ DODAWANIE NOWEGO ZDJĘCIA = jedna linijka:
+         <figure class="strip-item"><picture><source srcset="PLIK.webp" type="image/webp"/>
+         <img src="PLIK.jpg" alt="OPIS" loading="lazy" class="strip-img"/></picture></figure>
+         Wklej ją DWA RAZY w tym samym pasie (raz w bloku oryginalnym,
+         raz w bloku oznaczonym "kopia") — dzięki temu pętla jest bezszwowa.
+       ═══════════════════════════════════════════════════════════════ -->
 
-    <!-- 2. Wysoki: gala, czerwony dywan (bez podpisu — sam kadr robi robotę) -->
-    <article class="bento reveal group relative col-span-1 row-span-2 overflow-hidden rounded-3xl border border-line-mid bg-surface-2" style="--d:.1s">
-      <picture>
-        <source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-dresden.jpg" loading="lazy" width="1100" height="1467"
-             alt="Robot humanoidalny w cekinowym smokingu i koronie na czerwonym dywanie gali, przed ścianką sponsorską"
-             class="absolute inset-0 h-full w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100" />
-      </picture>
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"></div>
-      <span class="absolute left-4 top-4 rounded-full border border-white/15 bg-black/45 px-3 py-1 text-[10px] font-600 uppercase tracking-widest text-white backdrop-blur">Gala · czerwony dywan</span>
-    </article>
+  <!-- PAS 1 — przesuw w lewo -->
+  <div class="strip reveal -mx-5 md:-mx-8" style="--d:.05s">
+    <div class="strip-track py-1">
 
-    <!-- 3. Licznik -->
-    <article class="bento reveal group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-line-mid bg-gradient-to-br from-surface-2 to-surface p-5 transition-colors duration-500 hover:border-accent/40" style="--d:.15s">
-      <span class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Zasięgi</span>
-      <div>
-        <p class="font-display text-4xl font-700 leading-none text-white"><span data-count="10" data-suffix="×">0</span></p>
-        <p class="mt-1.5 text-[12px] leading-snug text-neutral-400 md:text-[13px]">więcej uwagi niż baner na stoisku</p>
-      </div>
-    </article>
+      <!-- ORYGINAŁ -->
+      <figure class="strip-item group">
+        <picture><source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
+        <img src="realizacja-robot-gala-dresden.jpg" alt="Robot humanoidalny w smokingu i koronie na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Gala · czerwony dywan</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-taniec.mp4"></source-marker>
+        <figcaption class="strip-cap">Taniec · najedź</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
+        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <picture><source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
+        <img src="realizacja-robot-gala-portret.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/robot-spacer-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-spacer.mp4"></source-marker>
+        <figcaption class="strip-cap">Chodzi wśród gości</figcaption>
+      </figure>
 
-    <!-- 4. TVP -->
+      <!-- KOPIA (bezszwowa pętla) -->
+      <figure class="strip-item group" aria-hidden="true">
+        <picture><source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
+        <img src="realizacja-robot-gala-dresden.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Gala · czerwony dywan</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-taniec.mp4"></source-marker>
+        <figcaption class="strip-cap">Taniec · najedź</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
+        <img src="robot-pies-branding-klienta.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <picture><source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
+        <img src="realizacja-robot-gala-portret.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/robot-spacer-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-spacer.mp4"></source-marker>
+        <figcaption class="strip-cap">Chodzi wśród gości</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- PAS 2 — przesuw w prawo, wolniej -->
+  <div class="strip reveal -mx-5 mt-4 md:-mx-8" style="--d:.12s">
+    <div class="strip-track strip-track--rev py-1">
+
+      <!-- ORYGINAŁ -->
+      <figure class="strip-item group">
+        <picture><source srcset="robot-g1-studio.webp" type="image/webp" />
+        <img src="robot-g1-studio.jpg" alt="Robot humanoidalny Unitree G1 — ujęcie studyjne" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Unitree G1</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/robot-powitanie-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-powitanie.mp4"></source-marker>
+        <figcaption class="strip-cap">Wita gości</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <picture><source srcset="robot-g1-action.webp" type="image/webp" />
+        <img src="robot-g1-action.jpg" alt="Robot humanoidalny w dynamicznej choreografii podczas pokazu" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/robot-gesty-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-gesty.mp4"></source-marker>
+        <figcaption class="strip-cap">Gestykuluje i pozuje</figcaption>
+      </figure>
+      <figure class="strip-item group">
+        <video class="strip-img" poster="video/33bots-robot-event-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/33bots-robot-event.mp4"></source-marker>
+        <figcaption class="strip-cap">Pokaz na evencie</figcaption>
+      </figure>
+
+      <!-- KOPIA (bezszwowa pętla) -->
+      <figure class="strip-item group" aria-hidden="true">
+        <picture><source srcset="robot-g1-studio.webp" type="image/webp" />
+        <img src="robot-g1-studio.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Unitree G1</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/robot-powitanie-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-powitanie.mp4"></source-marker>
+        <figcaption class="strip-cap">Wita gości</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <picture><source srcset="robot-g1-action.webp" type="image/webp" />
+        <img src="robot-g1-action.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/robot-gesty-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-gesty.mp4"></source-marker>
+        <figcaption class="strip-cap">Gestykuluje i pozuje</figcaption>
+      </figure>
+      <figure class="strip-item group" aria-hidden="true">
+        <video class="strip-img" poster="video/33bots-robot-event-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/33bots-robot-event.mp4"></source-marker>
+        <figcaption class="strip-cap">Pokaz na evencie</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Pas kluczowych atutów pod galerią -->
+  <div class="mt-10 grid gap-3 sm:grid-cols-3">
+    <div class="reveal rounded-2xl border border-line-mid bg-surface-2 p-5" style="--d:.05s">
+      <p class="font-display text-3xl font-700 text-white"><span data-count="10" data-suffix="×">0</span></p>
+      <p class="mt-1 text-[13px] text-neutral-400">więcej uwagi niż baner na stoisku</p>
+    </div>
+    <div class="reveal rounded-2xl border border-accent/30 bg-accent/[.07] p-5" style="--d:.12s">
+      <p class="font-display text-3xl font-700 text-accent">0 zł</p>
+      <p class="mt-1 text-[13px] text-neutral-300">za branding — Twoje logo i kod QR na robocie</p>
+    </div>
     <a href="https://www.tiktok.com/@teleexpress.tvp/video/7654958168786619680" target="_blank" rel="noopener noreferrer"
-       class="bento reveal group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-line-mid bg-surface-2 p-5 transition-colors duration-500 hover:border-accent/40" style="--d:.2s">
-      <span class="flex items-center gap-2 text-[10px] font-600 uppercase tracking-widest text-neutral-500">
+       class="reveal group rounded-2xl border border-line-mid bg-surface-2 p-5 transition hover:border-accent/40" style="--d:.19s">
+      <p class="flex items-center gap-2 font-display text-lg font-700 text-white">
         <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500"></span> Teleexpress TVP
-      </span>
-      <div>
-        <p class="font-display text-[15px] font-700 leading-tight text-white md:text-lg">Nasz robot w ogólnopolskiej TV</p>
-        <span class="mt-2 inline-block text-[12px] text-accent transition-transform duration-300 group-hover:translate-x-1">Zobacz materiał ↗</span>
-      </div>
-    </a>
-
-    <!-- 5. Szeroki: branding (wideo) -->
-    <article class="bento reveal group relative col-span-2 overflow-hidden rounded-3xl border border-line-mid bg-surface-2" style="--d:.25s">
-      <video class="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
-             poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
-             onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-      <source-marker data-src="video/robot-branding.mp4"></source-marker>
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-transparent"></div>
-      <div class="relative flex h-full flex-col justify-center p-6">
-        <span class="mb-2 inline-block w-fit rounded-full bg-accent px-3 py-1 text-[10px] font-700 uppercase tracking-widest text-ink">0 zł</span>
-        <h3 class="font-display text-base font-700 leading-tight text-white md:text-2xl">Twoje logo i kod QR<br class="hidden md:block" /> na robocie</h3>
-        <p class="mt-1.5 hidden max-w-xs text-[13px] text-neutral-400 sm:block">Jako jedyni w Polsce nie liczymy za branding ani złotówki.</p>
-      </div>
-    </article>
-
-    <!-- 6. Detal z gali (bez podpisu) -->
-    <article class="bento reveal group relative overflow-hidden rounded-3xl border border-line-mid bg-surface-2" style="--d:.3s">
-      <picture>
-        <source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-portret.jpg" loading="lazy" width="1000" height="1333"
-             alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu podczas gali"
-             class="absolute inset-0 h-full w-full object-cover object-[50%_30%] opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" />
-      </picture>
-      <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5"></div>
-    </article>
-
-    <!-- 7. Studio (bez podpisu) -->
-    <article class="bento reveal group relative overflow-hidden rounded-3xl border border-line-mid bg-surface-2" style="--d:.35s">
-      <picture>
-        <source srcset="robot-g1-studio.webp" type="image/webp" />
-        <img src="robot-g1-studio.jpg" loading="lazy" width="900" height="675"
-             alt="Robot humanoidalny Unitree G1 — ujęcie studyjne"
-             class="absolute inset-0 h-full w-full object-cover opacity-85 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" />
-      </picture>
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
-      <span class="absolute bottom-4 left-4 font-display text-[13px] font-700 uppercase tracking-widest text-white/80">Unitree G1</span>
-    </article>
-
-    <!-- 8. Case study — pełna szerokość -->
-    <a href="case-study-wallstreet.html"
-       class="bento reveal group relative col-span-2 flex items-center justify-between overflow-hidden rounded-3xl border border-line-mid bg-gradient-to-br from-surface-2 to-surface p-6 transition-colors duration-500 hover:border-accent/40 md:col-span-4" style="--d:.4s">
-      <div>
-        <span class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Case study</span>
-        <h3 class="mt-1.5 font-display text-lg font-700 text-white md:text-xl">WallStreet 30 · Karpacz</h3>
-        <p class="mt-1 text-[13px] text-neutral-400">Największa konferencja inwestorska w Polsce.</p>
-      </div>
-      <span class="font-display text-2xl text-accent transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+      </p>
+      <p class="mt-1 text-[13px] text-neutral-400">nasz robot w ogólnopolskiej telewizji
+        <span class="inline-block text-accent transition-transform group-hover:translate-x-1">↗</span></p>
     </a>
   </div>
   <div class="reveal mt-10 flex justify-center" style="--d:.1s">
@@ -398,9 +491,28 @@
         Najlepsze ceny w Polsce
       </h2>
       <p class="reveal mx-auto mt-5 max-w-xl text-neutral-400" style="--d:.16s">
-        Realnie taniej za tę jakość po prostu się nie da. Jedna kwota, zero gwiazdek —
-        <span class="text-white">to, co usłyszysz w wycenie, zobaczysz na fakturze</span>.
+        Realnie taniej za tę jakość po prostu się nie da. Wynajmiesz robota na kilka godzin, cały dzień albo na całe targi —
+        <span class="text-white">a to, co usłyszysz w wycenie, zobaczysz na fakturze</span>.
       </p>
+    </div>
+
+    <!-- Wybór długości realizacji -->
+    <div class="mb-5 grid gap-3 sm:grid-cols-3">
+      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-line-hi" style="--d:.02s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Krócej niż dzień</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Kilka godzin</p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Pokaz na przerwę konferencyjną, otwarcie stoiska albo wejście gości. <span class="text-neutral-300">Wycena indywidualna — zawsze taniej niż pełny dzień.</span></p>
+      </div>
+      <div class="reveal rounded-2xl border border-accent/50 bg-accent/[.07] p-5 shadow-[0_0_30px_rgba(111,214,255,.12)] transition duration-500 hover:-translate-y-1" style="--d:.08s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-accent">Najczęściej wybierane</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Cały dzień</p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-300">Pełna obsługa od montażu po finał. <span class="font-600 text-white">od 5 500 zł</span></p>
+      </div>
+      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.14s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Dwa dni i więcej</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Wielodniowo <span class="text-accent">−15%</span></p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Targi, festiwale, roadshow. <span class="text-neutral-300">Rabat naliczamy na każdy dzień realizacji.</span></p>
+      </div>
     </div>
 
     <div class="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
@@ -555,7 +667,7 @@
           <span class="font-600 text-white">Ile dokładnie kosztuje wynajem?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Od 5500 zł za cały dzień realizacji — ostateczna kwota zależy wyłącznie od lokalizacji eventu. W cenie transport, operator, branding i ubezpieczenie. Robot-pies to dodatkowe 1900 zł/dzień, a przy realizacjach 2-dniowych i dłuższych obowiązuje 15% zniżki na każdy dzień.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Od 5500 zł za cały dzień realizacji — ostateczna kwota zależy wyłącznie od lokalizacji eventu. Robota wynajmiesz też na krótszy pokaz, np. kilka godzin podczas przerwy konferencyjnej — wtedy wyceniamy indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach 2-dniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport, operator, branding i ubezpieczenie; robot-pies to dodatkowe 1900 zł za dzień.</p></div>
       </div>
       <div class="faq-item" open-state="0">
         <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
