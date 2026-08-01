@@ -4,3 +4,13 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.33bots\.pl$ [NC,OR]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://33bots.pl/$1 [L,R=301]
+
+# Konsolidacja stron miejskich aglomeracji śląskiej do Katowic
+# (odpowiednik reguł z _redirects, który działa tylko na Netlify)
+Redirect 301 /robot-wynajem-bytom.html            /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-chorzow.html          /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-dabrowa-gornicza.html /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-jaworzno.html         /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-sosnowiec.html        /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-tychy.html            /robot-wynajem-katowice.html
+Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
