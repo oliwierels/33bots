@@ -873,40 +873,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Formularz -->
-    <form id="leadForm" class="reveal rounded-[28px] border border-line-mid bg-surface-2/80 p-7 backdrop-blur md:p-9" style="--d:.1s" novalidate>
-      <div class="grid gap-4 sm:grid-cols-2">
-        <label class="block sm:col-span-2">
-          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Imię i nazwisko *</span>
-          <input name="name" required placeholder="Jan Kowalski"
-                 class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
-        </label>
-        <label class="block">
-          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Telefon *</span>
-          <input name="phone" type="tel" required placeholder="600 000 000"
-                 class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
-        </label>
-        <label class="block">
-          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">E-mail</span>
-          <input name="email" type="email" placeholder="kontakt@firma.pl"
-                 class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
-        </label>
-        <label class="block">
-          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Data eventu</span>
-          <input name="date" type="date"
-                 class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
-        </label>
-        <label class="block">
-          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Miasto</span>
-          <input name="location" placeholder="Warszawa"
-                 class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
-        </label>
+    <form id="contactForm" class="reveal rounded-[28px] border border-line-mid bg-surface-2/80 p-7 backdrop-blur md:p-9" style="--d:.1s" novalidate>
+
+      <!-- Wskaźnik kroków -->
+      <div class="mb-7 flex items-center gap-3 text-[11px] font-600 uppercase tracking-widest">
+        <span id="stepInd1" class="text-accent transition-colors">01 — Dane kontaktowe</span>
+        <span class="text-neutral-700">/</span>
+        <span id="stepInd2" class="text-neutral-600 transition-colors">02 — Twój event</span>
       </div>
 
-      <button type="submit"
-              class="cta-shine group mt-6 flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)]">
-        Wyślij i odbierz wycenę
-        <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-      </button>
+      <!-- KROK 1 -->
+      <div id="formStep1" class="transition-opacity duration-200">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Imię i nazwisko *</span>
+            <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+            <span class="mt-1.5 block text-[12px] text-red-400" data-err aria-live="polite"></span>
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Firma</span>
+            <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">E-mail *</span>
+            <input id="f-email" type="email" name="email" placeholder="kontakt@firma.pl" autocomplete="email" required class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+            <span class="mt-1.5 block text-[12px] text-red-400" data-err aria-live="polite"></span>
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Telefon</span>
+            <input id="f-phone" type="tel" name="phone" placeholder="+48 531 408 004" autocomplete="tel" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+        </div>
+        <button type="button" id="btnNext" class="cta-shine group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)] mt-6">
+          Dalej — opowiedz o evencie
+          <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+        </button>
+      </div>
+
+      <!-- KROK 2 -->
+      <div id="formStep2" class="hidden transition-opacity duration-200" aria-hidden="true">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Planowana data eventu</span>
+            <input id="f-date" type="date" name="date" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Miasto / Miejsce</span>
+            <input id="f-location" type="text" name="location" placeholder="np. Warszawa, Hala X" autocomplete="address-level2" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+        </div>
+        <label class="mt-4 block">
+          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Opisz swój event *</span>
+          <textarea id="f-message" name="message" rows="5" required
+            placeholder="Rodzaj eventu (targi, konferencja, gala...), orientacyjna liczba gości, jak długo chcesz mieć robota i cokolwiek jeszcze uważasz za ważne."
+            class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)] resize-y"></textarea>
+          <span class="mt-1.5 flex items-center justify-between text-[12px]">
+            <span class="text-red-400" data-err aria-live="polite"></span>
+            <span class="text-neutral-600"><span id="charCount">0</span> / 600</span>
+          </span>
+        </label>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+          <button type="button" id="btnBack" class="rounded-2xl border border-line-hi px-6 py-5 font-display text-sm font-600 uppercase tracking-wider text-neutral-400 transition hover:border-accent/50 hover:text-white sm:w-auto">← Wróć</button>
+          <button type="submit" class="cta-shine group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)] flex-1">
+            Wyślij i odbierz darmową wycenę
+            <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+          </button>
+        </div>
+      </div>
+
       <p id="formMsg" class="mt-4 text-center text-[13px] text-neutral-500">Odpowiadamy w ciągu 24 godzin roboczych.</p>
     </form>
   </div>
@@ -1139,29 +1173,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.key === 'ArrowRight') pokaz(idx + 1);
   });
 
-  /* ——— Formularz → Formspree ——— */
-  const form = document.getElementById('leadForm');
-  const msg = document.getElementById('formMsg');
+  /* ——— Formularz kontaktowy: dwa kroki + Formspree ——— */
+  const form    = document.getElementById('contactForm');
+  const krok1   = document.getElementById('formStep1');
+  const krok2   = document.getElementById('formStep2');
+  const wsk1    = document.getElementById('stepInd1');
+  const wsk2    = document.getElementById('stepInd2');
+  const msg     = document.getElementById('formMsg');
+
+  const bledy = { valueMissing: 'To pole jest wymagane', typeMismatch: 'Nieprawidłowy format' };
+
+  function sprawdzPole(pole) {
+    const etykieta = pole.closest('label');
+    const errEl = etykieta?.querySelector('[data-err]');
+    if (!pole.validity.valid) {
+      if (errEl) errEl.textContent = pole.validity.valueMissing ? bledy.valueMissing
+                                   : pole.validity.typeMismatch ? bledy.typeMismatch
+                                   : 'Sprawdź to pole';
+      pole.classList.add('border-red-500/70');
+      return false;
+    }
+    pole.classList.remove('border-red-500/70');
+    if (errEl) errEl.textContent = '';
+    return true;
+  }
+
+  const sprawdzKrok = el =>
+    [...el.querySelectorAll('input[required], textarea[required]')].map(sprawdzPole).every(Boolean);
+
+  form.querySelectorAll('input, textarea').forEach(pole => {
+    pole.addEventListener('blur', () => sprawdzPole(pole));
+    pole.addEventListener('input', () => {
+      if (pole.classList.contains('border-red-500/70')) sprawdzPole(pole);
+    });
+  });
+
+  function przejdz(z, doKroku, wskZ, wskDo) {
+    z.style.opacity = '0';
+    setTimeout(() => {
+      z.classList.add('hidden');
+      z.setAttribute('aria-hidden', 'true');
+      doKroku.classList.remove('hidden');
+      doKroku.removeAttribute('aria-hidden');
+      requestAnimationFrame(() => { doKroku.style.opacity = '1'; });
+      wskZ.className = 'text-neutral-600 transition-colors';
+      wskDo.className = 'text-accent transition-colors';
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 200);
+  }
+
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (sprawdzKrok(krok1)) przejdz(krok1, krok2, wsk1, wsk2);
+  });
+  document.getElementById('btnBack').addEventListener('click', () => przejdz(krok2, krok1, wsk2, wsk1));
+
+  const opis = document.getElementById('f-message');
+  const licznik = document.getElementById('charCount');
+  opis.addEventListener('input', () => { licznik.textContent = opis.value.length; });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const btn = form.querySelector('button[type=submit]');
-    const data = Object.fromEntries(new FormData(form));
-    if (!data.name || !data.phone) { msg.textContent = 'Podaj imię i numer telefonu.'; msg.className = 'mt-4 text-center text-[13px] text-red-400'; return; }
-    btn.disabled = true; btn.style.opacity = '.6';
-    const original = btn.innerHTML; btn.innerHTML = 'Wysyłanie…';
+    if (!sprawdzKrok(krok2)) return;
+
+    const btn = krok2.querySelector('button[type=submit]');
+    const pierwotny = btn.innerHTML;
+    btn.disabled = true; btn.style.opacity = '.6'; btn.innerHTML = 'Wysyłanie…';
+
+    const d = new FormData(form);
+    const payload = {
+      name:     d.get('name'),
+      company:  d.get('company')  || '—',
+      email:    d.get('email'),
+      phone:    d.get('phone')    || '—',
+      date:     d.get('date')     || '—',
+      location: d.get('location') || '—',
+      message:  d.get('message'),
+    };
+
     try {
       const res = await fetch('https://formspree.io/f/mnjwvray', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const odp = await res.json().catch(() => ({}));
+        throw new Error(odp?.errors?.map(x => x.message).join(', ') || `HTTP ${res.status}`);
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_submit', { event_category: 'contact', event_label: 'Formularz kontaktowy' });
+      }
       form.innerHTML = `<div class="py-12 text-center">
-        <p class="font-display text-2xl font-700 text-white">Zapytanie wysłane</p>
-        <p class="mt-3 text-neutral-400">Oddzwonimy w ciągu 24 godzin roboczych.</p></div>`;
-    } catch {
-      btn.disabled = false; btn.style.opacity = '1'; btn.innerHTML = original;
-      msg.innerHTML = 'Coś poszło nie tak — napisz na <a class="text-accent underline" href="mailto:kontakt@33bots.pl">kontakt@33bots.pl</a>';
+        <p class="font-display text-2xl font-700 text-white">Wiadomość wysłana</p>
+        <p class="mt-3 text-neutral-400">Odezwiemy się na <strong class="text-white">${payload.email}</strong><br />w ciągu 24 godzin roboczych.</p></div>`;
+    } catch (err) {
+      console.error('Formularz — błąd wysyłki:', err?.message || err);
+      btn.disabled = false; btn.style.opacity = '1'; btn.innerHTML = pierwotny;
+      msg.innerHTML = 'Nie udało się wysłać — zadzwoń: <a class="text-accent underline" href="tel:+48531408004">531 408 004</a> lub napisz na <a class="text-accent underline" href="mailto:kontakt@33bots.pl">kontakt@33bots.pl</a>';
       msg.className = 'mt-4 text-center text-[13px] text-red-400';
     }
   });
