@@ -4,7 +4,7 @@ Przygotowanie zdjęć do galerii na stronie głównej.
 
 Bierze zdjęcia z katalogu (HEIC z iPhone'a, JPG, PNG), konwertuje je do
 WebP + JPG w rozmiarze odpowiednim dla pasów galerii, a na koniec wypisuje
-gotowy HTML do wklejenia w index-redesign.html.
+gotowy HTML do wklejenia w index.html.
 
 UŻYCIE
     python3 dodaj-zdjecia.py ~/zdjecia-z-eventow
@@ -94,7 +94,7 @@ def main() -> None:
         )
 
     print('\n' + '─' * 70)
-    print('HTML do wklejenia w index-redesign.html')
+    print('HTML do wklejenia w index.html')
     print('Każdy blok wklej DWA RAZY w tym samym pasie: raz w części')
     print('oznaczonej ORYGINAŁ, raz w części KOPIA (bezszwowa pętla).')
     print('Uzupełnij alt i figcaption — alt jest ważny dla SEO.')
