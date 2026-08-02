@@ -55,7 +55,8 @@
                               mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
   .strip-track { display: flex; gap: 1rem; width: max-content; animation: slide 52s linear infinite; }
   .strip-track--rev { animation-direction: reverse; animation-duration: 64s; }
-  .strip:hover .strip-track { animation-play-state: paused; }
+  .strip:hover .strip-track,
+  .strip.paused .strip-track { animation-play-state: paused; }
   @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .strip-item { position: relative; flex: 0 0 auto; width: 260px; height: 340px; border-radius: 20px;
                 overflow: hidden; border: 1px solid #2a2a30; background: #111113; }
@@ -66,7 +67,35 @@
                        background: linear-gradient(to top, rgba(5,5,5,.9), transparent 55%); }
   .strip-cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
                font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff; }
-  @media (max-width: 640px) { .strip-item { width: 190px; height: 250px; } }
+  .strip-item--wide   { width: 380px; }
+  .strip-item--narrow { width: 190px; }
+  .strip-item[data-full] { cursor: zoom-in; }
+  @media (max-width: 640px) {
+    .strip-item { width: 180px; height: 240px; }
+    .strip-item--wide { width: 260px; }
+    .strip-item--narrow { width: 140px; }
+  }
+
+  /* ——— Lightbox ——— */
+  .lb { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center;
+        background: rgba(5,5,5,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        opacity: 0; pointer-events: none; transition: opacity .35s ease; padding: 4vh 4vw; }
+  .lb.open { opacity: 1; pointer-events: auto; }
+  .lb img { max-width: 100%; max-height: 88vh; border-radius: 18px; transform: scale(.94);
+            transition: transform .4s cubic-bezier(.16,1,.3,1); box-shadow: 0 40px 120px rgba(0,0,0,.7); }
+  .lb.open img { transform: scale(1); }
+  .lb-cap { position: absolute; bottom: 3vh; left: 0; right: 0; text-align: center;
+            font-size: 13px; color: #a3a3a3; padding: 0 1rem; }
+  .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px;
+            border-radius: 50%; border: 1px solid #3a3a42; background: rgba(17,17,19,.8);
+            color: #fff; font-size: 20px; display: grid; place-items: center; transition: all .25s ease; }
+  .lb-btn:hover { border-color: #6fd6ff; box-shadow: 0 0 20px rgba(111,214,255,.3); }
+  .lb-prev { left: 2vw; } .lb-next { right: 2vw; }
+  .lb-close { position: absolute; top: 3vh; right: 3vw; width: 44px; height: 44px; border-radius: 50%;
+              border: 1px solid #3a3a42; background: rgba(17,17,19,.8); color: #fff; font-size: 22px;
+              display: grid; place-items: center; transition: all .25s ease; }
+  .lb-close:hover { border-color: #6fd6ff; transform: rotate(90deg); }
+  @media (max-width: 640px) { .lb-btn { width: 44px; height: 44px; } }
   @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } .strip { overflow-x: auto; } }
 
   /* ——— Ziarno: premium film grain ——— */
@@ -298,159 +327,193 @@
       </h2>
     </div>
     <p class="reveal max-w-sm text-neutral-400" style="--d:.16s">
-      Najedź na kadr — pas się zatrzyma, a nagranie ruszy. Wszystko z prawdziwych realizacji, bez montażu.
+      Najedź na kadr — pas się zatrzyma, a nagranie ruszy. Kliknij, żeby powiększyć.<br class="hidden md:block" /><span class="text-neutral-500">14 zdjęć z prawdziwych realizacji. Bez stocków, bez renderów.</span>
     </p>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       GALERIA: dwa przesuwające się pasy (prawo→lewo i lewo→prawo).
-       Najechanie kursorem zatrzymuje pas i odtwarza wideo.
+       GALERIA REALIZACJI — dwa pasy w przeciwnych kierunkach.
+       Najechanie zatrzymuje pas, kliknięcie otwiera zdjęcie na pełnym ekranie.
+       Szerokości kafelków celowo przeplatane (wąski / zwykły / szeroki),
+       żeby rytm przewijania nie był monotonny.
 
-       ▸ DODAWANIE NOWEGO ZDJĘCIA = jedna linijka:
-         <figure class="strip-item"><picture><source srcset="PLIK.webp" type="image/webp"/>
-         <img src="PLIK.jpg" alt="OPIS" loading="lazy" class="strip-img"/></picture></figure>
-         Wklej ją DWA RAZY w tym samym pasie (raz w bloku oryginalnym,
-         raz w bloku oznaczonym "kopia") — dzięki temu pętla jest bezszwowa.
+       ▸ NOWE ZDJĘCIE: uruchom  python3 dodaj-zdjecia.py <katalog>
+         i wklej wygenerowany blok DWA RAZY — w części ORYGINAŁ i KOPIA.
        ═══════════════════════════════════════════════════════════════ -->
-
-  <!-- PAS 1 — przesuw w lewo -->
   <div class="strip reveal -mx-5 md:-mx-8" style="--d:.05s">
     <div class="strip-track py-1">
-
       <!-- ORYGINAŁ -->
-      <figure class="strip-item group">
-        <picture><source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-dresden.jpg" alt="Robot humanoidalny w smokingu i koronie na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Gala · czerwony dywan</figcaption>
+      <figure class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali">
+        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
-      <figure class="strip-item group">
+      <figure class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
+        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
+      </figure>
+      <figure class="strip-item ">
         <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
                onmouseenter="this.play()" onmouseleave="this.pause()"></video>
         <source-marker data-src="video/robot-taniec.mp4"></source-marker>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
-      <figure class="strip-item group">
+      <figure class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
+        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Ulica przystaje</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
+        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami">
+        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Eventy plenerowe</figcaption>
+      </figure>
+      <figure class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego">
         <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
-        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej" loading="lazy" class="strip-img" /></picture>
+        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" class="strip-img" /></picture>
         <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-branding.mp4"></source-marker>
-        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy">
+        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Pokazy nocne</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <picture><source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-portret.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+      <!-- KOPIA — bezszwowa pętla -->
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali">
+        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <video class="strip-img" poster="video/robot-spacer-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-spacer.mp4"></source-marker>
-        <figcaption class="strip-cap">Chodzi wśród gości</figcaption>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
+        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
       </figure>
-
-      <!-- KOPIA (bezszwowa pętla) -->
-      <figure class="strip-item group" aria-hidden="true">
-        <picture><source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-dresden.jpg" alt="" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Gala · czerwony dywan</figcaption>
-      </figure>
-      <figure class="strip-item group" aria-hidden="true">
+      <figure aria-hidden="true" class="strip-item ">
         <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
                onmouseenter="this.play()" onmouseleave="this.pause()"></video>
         <source-marker data-src="video/robot-taniec.mp4"></source-marker>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
-      <figure class="strip-item group" aria-hidden="true">
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
+        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Ulica przystaje</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
+        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami">
+        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Eventy plenerowe</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego">
         <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
-        <img src="robot-pies-branding-klienta.jpg" alt="" loading="lazy" class="strip-img" /></picture>
+        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" class="strip-img" /></picture>
         <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
       </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-branding.mp4"></source-marker>
-        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
-      </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <picture><source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
-        <img src="realizacja-robot-gala-portret.jpg" alt="" loading="lazy" class="strip-img" /></picture>
-      </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <video class="strip-img" poster="video/robot-spacer-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-spacer.mp4"></source-marker>
-        <figcaption class="strip-cap">Chodzi wśród gości</figcaption>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy">
+        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Pokazy nocne</figcaption>
       </figure>
     </div>
   </div>
-
-  <!-- PAS 2 — przesuw w prawo, wolniej -->
-  <div class="strip reveal -mx-5 mt-4 md:-mx-8" style="--d:.12s">
+  <div class="strip reveal -mx-5 md:-mx-8 mt-4" style="--d:.12s">
     <div class="strip-track strip-track--rev py-1">
-
       <!-- ORYGINAŁ -->
-      <figure class="strip-item group">
-        <picture><source srcset="robot-g1-studio.webp" type="image/webp" />
-        <img src="robot-g1-studio.jpg" alt="Robot humanoidalny Unitree G1 — ujęcie studyjne" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Unitree G1</figcaption>
+      <figure class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
+        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <video class="strip-img" poster="video/robot-powitanie-poster.jpg" muted loop playsinline preload="none"
+      <figure class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
+        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Goście robią zdjęcia</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu">
+        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Także w deszczu</figcaption>
+      </figure>
+      <figure class="strip-item ">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
                onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-powitanie.mp4"></source-marker>
-        <figcaption class="strip-cap">Wita gości</figcaption>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <picture><source srcset="robot-g1-action.webp" type="image/webp" />
-        <img src="robot-g1-action.jpg" alt="Robot humanoidalny w dynamicznej choreografii podczas pokazu" loading="lazy" class="strip-img" /></picture>
+      <figure class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
+        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Marketing w mieście</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <video class="strip-img" poster="video/robot-gesty-poster.jpg" muted loop playsinline preload="none"
+      <figure class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
+        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Pałacowe wnętrza</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego">
+        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Spotkania firmowe</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami">
+        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wśród gości</figcaption>
+      </figure>
+      <!-- KOPIA — bezszwowa pętla -->
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
+        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
+        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Goście robią zdjęcia</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu">
+        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Także w deszczu</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item ">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
                onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-gesty.mp4"></source-marker>
-        <figcaption class="strip-cap">Gestykuluje i pozuje</figcaption>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
-      <figure class="strip-item group">
-        <video class="strip-img" poster="video/33bots-robot-event-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/33bots-robot-event.mp4"></source-marker>
-        <figcaption class="strip-cap">Pokaz na evencie</figcaption>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
+        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Marketing w mieście</figcaption>
       </figure>
-
-      <!-- KOPIA (bezszwowa pętla) -->
-      <figure class="strip-item group" aria-hidden="true">
-        <picture><source srcset="robot-g1-studio.webp" type="image/webp" />
-        <img src="robot-g1-studio.jpg" alt="" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Unitree G1</figcaption>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
+        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Pałacowe wnętrza</figcaption>
       </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <video class="strip-img" poster="video/robot-powitanie-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-powitanie.mp4"></source-marker>
-        <figcaption class="strip-cap">Wita gości</figcaption>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego">
+        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Spotkania firmowe</figcaption>
       </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <picture><source srcset="robot-g1-action.webp" type="image/webp" />
-        <img src="robot-g1-action.jpg" alt="" loading="lazy" class="strip-img" /></picture>
-      </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <video class="strip-img" poster="video/robot-gesty-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/robot-gesty.mp4"></source-marker>
-        <figcaption class="strip-cap">Gestykuluje i pozuje</figcaption>
-      </figure>
-      <figure class="strip-item group" aria-hidden="true">
-        <video class="strip-img" poster="video/33bots-robot-event-poster.jpg" muted loop playsinline preload="none"
-               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
-        <source-marker data-src="video/33bots-robot-event.mp4"></source-marker>
-        <figcaption class="strip-cap">Pokaz na evencie</figcaption>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami">
+        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wśród gości</figcaption>
       </figure>
     </div>
   </div>
-
   <!-- Pas kluczowych atutów pod galerią -->
   <div class="mt-10 grid gap-3 sm:grid-cols-3">
     <div class="reveal rounded-2xl border border-line-mid bg-surface-2 p-5" style="--d:.05s">
@@ -857,6 +920,15 @@
 </div>
 <div class="h-20 md:hidden"></div>
 
+<!-- Lightbox galerii -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie">
+  <button class="lb-close" id="lbClose" aria-label="Zamknij">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Poprzednie zdjęcie">‹</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Następne zdjęcie">›</button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -938,6 +1010,41 @@
       document.querySelectorAll('.faq-item').forEach(i => i.setAttribute('open-state', '0'));
       item.setAttribute('open-state', open ? '0' : '1');
     });
+  });
+
+  /* ——— Pasy: dotknięcie zatrzymuje przewijanie (mobile nie ma hovera) ——— */
+  document.querySelectorAll('.strip').forEach(pas => {
+    pas.addEventListener('touchstart', () => pas.classList.add('paused'), { passive: true });
+    pas.addEventListener('touchend', () => setTimeout(() => pas.classList.remove('paused'), 2500), { passive: true });
+  });
+
+  /* ——— Lightbox galerii ——— */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  const kadry = [...document.querySelectorAll('.strip-item[data-full]:not([aria-hidden])')];
+  let idx = 0;
+
+  const pokaz = i => {
+    idx = (i + kadry.length) % kadry.length;
+    const el = kadry[idx];
+    lbImg.src = el.dataset.full;
+    lbImg.alt = el.dataset.alt || '';
+    lbCap.textContent = `${el.dataset.alt || ''}  ·  ${idx + 1} / ${kadry.length}`;
+  };
+  const otworz = i => { pokaz(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const zamknij = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+
+  kadry.forEach((el, i) => el.addEventListener('click', () => otworz(i)));
+  document.getElementById('lbClose').addEventListener('click', zamknij);
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); pokaz(idx - 1); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); pokaz(idx + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) zamknij(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') zamknij();
+    if (e.key === 'ArrowLeft') pokaz(idx - 1);
+    if (e.key === 'ArrowRight') pokaz(idx + 1);
   });
 
   /* ——— Formularz → Formspree ——— */
