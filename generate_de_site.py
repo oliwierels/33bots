@@ -113,24 +113,25 @@ def city_name(pl_file):
 
 # ── Wspólne fragmenty HTML ────────────────────────────────────────────
 def gtm_head():
-    return (f"""  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
-new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-}})(window,document,'script','dataLayer','{GTM_ID}');</script>
-<!-- End Google Tag Manager -->""")
+    """Tagi analityczne ładowane WYŁĄCZNIE po zgodzie użytkownika.
+
+    Wymóg § 25 TDDDG (dawniej TTDSG) i art. 6 DSGVO: skrypty analityczne oraz
+    identyfikatory w urządzeniu użytkownika wymagają uprzedniej, aktywnej zgody.
+    Dlatego brak tu bezwarunkowego wstrzyknięcia GTM i brak wariantu <noscript>
+    (ten ładowałby się bez zgody). Ładowanie realizuje consent.js.
+    """
+    return (f"""  <!-- Zgoda na cookies (TDDDG/DSGVO): tagi ładują się dopiero po akceptacji -->
+  <script>window.dataLayer=window.dataLayer||[];window.__gtmId={GTM_ID!r};window.__albacrossId={ALBACROSS_ID!r};</script>
+  <script src="consent.js" defer></script>""")
 
 
 def gtm_body():
-    return (f"""  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->""")
+    return "  <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 25 TDDDG) -->"
 
 
 def nav_html(home="index.html"):
-    return f"""  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+    return f"""  <a href="#hauptinhalt" class="skip-link">Zum Hauptinhalt springen</a>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
@@ -154,7 +155,7 @@ def nav_html(home="index.html"):
       <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span></button>
     </div>
   </header>
-  <main>
+  <main id="hauptinhalt" tabindex="-1">
 """
 
 
@@ -296,6 +297,10 @@ def footer_html(home="index.html"):
         <a href="{home}#ueber-uns">Über uns</a>
         <a href="{de('blog.html')}">Blog</a>
         <a href="#kontakt">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>
+        <button type="button" class="footer__consent-link" id="consentReopen">Datenschutz-Einstellungen</button>
       </div>
       <div class="footer__right">
         <div class="footer__socials">
@@ -309,21 +314,101 @@ def footer_html(home="index.html"):
     </div>
   </footer>
 
-  <div class="cookie-banner" id="cookieBanner" aria-live="polite">
-    <p class="cookie-banner__text">Diese Website verwendet Cookies zu Analysezwecken. <a href="#" class="cookie-banner__link">Datenschutzerklärung</a></p>
-    <button class="cookie-banner__btn" id="cookieAccept">Verstanden</button>
-  </div>
-
+{consent_banner()}
+{a11y_widget()}
   <div class="sticky-cta">
     <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
   </div>
 
   <script src="main.js"></script>
-  <!-- Albacross -->
-  <script>window._nQc="{ALBACROSS_ID}";</script>
-  <script async src="https://serve.albacross.com/track.js"></script>
+  <script src="a11y.js" defer></script>
 </body>
 </html>
+"""
+
+
+def consent_banner():
+    """Baner zgody w modelu opt-in — równorzędne przyciski akceptacji i odrzucenia."""
+    return """  <div class="consent" id="consentBanner" role="dialog" aria-modal="false"
+       aria-labelledby="consentTitle" aria-describedby="consentText" hidden>
+    <div class="consent__box">
+      <h2 class="consent__title" id="consentTitle">Datenschutz-Einstellungen</h2>
+      <p class="consent__text" id="consentText">
+        Wir verwenden technisch notwendige Cookies, damit diese Website funktioniert. Zusätzlich möchten wir
+        Analyse-Dienste (Google Tag Manager, Albacross) einsetzen, um die Nutzung der Website auszuwerten.
+        Diese setzen wir nur mit Ihrer Einwilligung ein. Sie können Ihre Entscheidung jederzeit über den Link
+        „Datenschutz-Einstellungen“ im Seitenfuß ändern.
+        <a href="datenschutz.html" class="consent__link">Datenschutzerklärung</a> ·
+        <a href="impressum.html" class="consent__link">Impressum</a>
+      </p>
+      <div class="consent__options" id="consentOptions" hidden>
+        <label class="consent__opt">
+          <input type="checkbox" checked disabled /> <span><strong>Notwendig</strong> — für den Betrieb der Website
+          erforderlich, immer aktiv.</span>
+        </label>
+        <label class="consent__opt">
+          <input type="checkbox" id="consentAnalytics" /> <span><strong>Analyse</strong> — Google Tag Manager und
+          Albacross zur Auswertung der Websitenutzung.</span>
+        </label>
+      </div>
+      <div class="consent__actions">
+        <button type="button" class="consent__btn consent__btn--primary" id="consentAcceptAll">Alle akzeptieren</button>
+        <button type="button" class="consent__btn" id="consentRejectAll">Nur notwendige</button>
+        <button type="button" class="consent__btn consent__btn--ghost" id="consentSettings">Einstellungen</button>
+        <button type="button" class="consent__btn consent__btn--primary" id="consentSave" hidden>Auswahl speichern</button>
+      </div>
+    </div>
+  </div>
+"""
+
+
+def a11y_widget():
+    """Panel dostępności — wymóg BFSG (Barrierefreiheitsstärkungsgesetz)."""
+    return """  <button type="button" class="a11y-toggle" id="a11yToggle"
+          aria-expanded="false" aria-controls="a11yPanel" aria-label="Barrierefreiheit-Einstellungen öffnen">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
+      <circle cx="12" cy="4" r="2"/>
+      <path d="M19 8h-5v13h-2v-6h-0.9v6H9V8H4V6h15v2z"/>
+    </svg>
+  </button>
+  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-labelledby="a11yTitle" hidden>
+    <h2 class="a11y-panel__title" id="a11yTitle">Barrierefreiheit</h2>
+
+    <fieldset class="a11y-group">
+      <legend class="a11y-group__label">Textgrösse</legend>
+      <div class="a11y-opts" role="group">
+        <button type="button" class="a11y-opt" data-a11y="font" data-value="normal">Standard</button>
+        <button type="button" class="a11y-opt" data-a11y="font" data-value="large">Gross</button>
+        <button type="button" class="a11y-opt" data-a11y="font" data-value="xlarge">Sehr gross</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="a11y-group">
+      <legend class="a11y-group__label">Darstellung</legend>
+      <div class="a11y-opts" role="group">
+        <button type="button" class="a11y-opt" data-a11y="theme" data-value="dark">Dunkel</button>
+        <button type="button" class="a11y-opt" data-a11y="theme" data-value="light">Hell</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="a11y-group">
+      <legend class="a11y-group__label">Kontrast</legend>
+      <div class="a11y-opts" role="group">
+        <button type="button" class="a11y-opt" data-a11y="contrast" data-value="normal">Standard</button>
+        <button type="button" class="a11y-opt" data-a11y="contrast" data-value="high">Hoch</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="a11y-group">
+      <legend class="a11y-group__label">Animationen</legend>
+      <div class="a11y-opts" role="group">
+        <button type="button" class="a11y-opt" data-a11y="motion" data-value="on">An</button>
+        <button type="button" class="a11y-opt" data-a11y="motion" data-value="off">Aus</button>
+      </div>
+    </fieldset>
+
+    <button type="button" class="a11y-reset" id="a11yReset">Zurücksetzen</button>
+  </div>
 """
 
 
@@ -361,12 +446,10 @@ def head_assets(extra_style=""):
     return f"""  <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css?v=1" />
-  <link rel="dns-prefetch" href="//serve.albacross.com" />
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>{extra_style}"""
+  <link rel="stylesheet" href="a11y.css?v=1" />
+  <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
+       consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
+  <link rel="stylesheet" href="fonts/inter.css" />{extra_style}"""
 
 
 HERO_STYLE = """
@@ -963,14 +1046,25 @@ def copy_assets():
     shutil.copyfile(os.path.join(BASE, "style.css"), os.path.join(OUT, "style.css"))
     WRITTEN.append("style.css")
 
-    # pojedyncze pliki w rootcie
+    # zasoby graficzne serwisu — te same pliki co w wersji PL.
+    # Pomijamy oryginały z aparatu (IMG_*.HEIC/DNG/JPG), które nie są używane na stronach.
     for name in os.listdir(BASE):
         src = os.path.join(BASE, name)
         if not os.path.isfile(src):
             continue
-        if name.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".svg", ".heic", ".dng")):
+        if name.startswith("IMG_"):
+            continue
+        if name.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".svg")):
             shutil.copyfile(src, os.path.join(OUT, name))
             WRITTEN.append(name)
+
+    # lokalnie hostowana czcionka (bez Google Fonts)
+    src_fonts = os.path.join(BASE, "fonts")
+    dst_fonts = os.path.join(OUT, "fonts")
+    os.makedirs(dst_fonts, exist_ok=True)
+    for name in os.listdir(src_fonts):
+        shutil.copyfile(os.path.join(src_fonts, name), os.path.join(dst_fonts, name))
+        WRITTEN.append(f"fonts/{name}")
 
     # katalog video 1:1
     src_video = os.path.join(BASE, "video")
@@ -1011,6 +1105,285 @@ def build_main_js():
             raise SystemExit(f"main.js: brak fragmentu do tłumaczenia: {old}")
         src = src.replace(old, new)
     return src
+
+
+def build_a11y_css():
+    """Style panelu dostępności, banera zgody i trybów kontrastu/rozmiaru tekstu."""
+    return """/* ─────────────────────────────────────────────────────────────
+   Barrierefreiheit (BFSG) + Consent (TDDDG/DSGVO)
+   Ergänzt style.css und überschreibt nur, was für die
+   Bedienhilfen nötig ist.
+   ───────────────────────────────────────────────────────────── */
+
+/* Sprunglink für Tastaturnutzung */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:10000;padding:12px 20px;
+  background:#fff;color:#000;font-weight:700;border-radius:0 0 8px 0;}
+.skip-link:focus{left:0;}
+
+/* Sichtbarer Fokus auf allen interaktiven Elementen */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
+select:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid #ff6a3d;outline-offset:2px;border-radius:4px;}
+main:focus{outline:none;}
+
+/* ── Textgrösse ───────────────────────────────────────────── */
+html[data-a11y-font="large"]{font-size:112.5%;}
+html[data-a11y-font="xlarge"]{font-size:131.25%;}
+
+/* ── Helles Erscheinungsbild ──────────────────────────────── */
+html[data-a11y-theme="light"]{
+  --bg:#ffffff;--surface-1:#f5f5f7;--surface-2:#ececef;
+  --text:#101014;--text-1:#101014;--text-2:#3a3a42;--text-3:#5f5f6b;
+  --border:#d3d3da;--border-mid:#c2c2cc;}
+html[data-a11y-theme="light"] body{background:#fff;color:#101014;}
+html[data-a11y-theme="light"] .cursor-glow,
+html[data-a11y-theme="light"] .hero__spotlight,
+html[data-a11y-theme="light"] .robot-scan{display:none;}
+html[data-a11y-theme="light"] .tile--light{background:#101014;color:#fff;}
+
+/* ── Hoher Kontrast ───────────────────────────────────────── */
+html[data-a11y-contrast="high"]{--text-2:#f2f2f2;--text-3:#e2e2e2;--border-mid:#8a8a95;}
+html[data-a11y-contrast="high"] body{background:#000;}
+html[data-a11y-contrast="high"] .tile__desc,
+html[data-a11y-contrast="high"] .body-text,
+html[data-a11y-contrast="high"] p{color:#f2f2f2;}
+html[data-a11y-contrast="high"] a{text-decoration:underline;}
+html[data-a11y-theme="light"][data-a11y-contrast="high"]{--text-2:#000;--text-3:#1a1a1a;--border-mid:#555;}
+html[data-a11y-theme="light"][data-a11y-contrast="high"] .tile__desc,
+html[data-a11y-theme="light"][data-a11y-contrast="high"] .body-text,
+html[data-a11y-theme="light"][data-a11y-contrast="high"] p{color:#000;}
+
+/* ── Animationen aus ──────────────────────────────────────── */
+html[data-a11y-motion="off"] *,
+html[data-a11y-motion="off"] *::before,
+html[data-a11y-motion="off"] *::after{
+  animation-duration:0.001ms !important;animation-iteration-count:1 !important;
+  transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+html[data-a11y-motion="off"] .cursor-glow,
+html[data-a11y-motion="off"] .robot-scan{display:none !important;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.001ms !important;transition-duration:0.001ms !important;}
+  .cursor-glow,.robot-scan{display:none !important;}
+}
+
+/* ── Panel Barrierefreiheit ───────────────────────────────── */
+.a11y-toggle{position:fixed;left:20px;bottom:20px;z-index:9998;width:52px;height:52px;
+  border-radius:50%;border:1px solid var(--border-mid,#333);background:var(--surface-2,#1a1a1f);
+  color:var(--text,#fff);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,.35);}
+.a11y-toggle:hover{border-color:#ff6a3d;}
+.a11y-panel{position:fixed;left:20px;bottom:84px;z-index:9999;width:min(340px,calc(100vw - 40px));
+  padding:24px;border-radius:16px;border:1px solid var(--border-mid,#333);
+  background:var(--surface-1,#151519);box-shadow:0 12px 40px rgba(0,0,0,.5);
+  max-height:calc(100vh - 120px);overflow-y:auto;}
+.a11y-panel[hidden]{display:none;}
+.a11y-panel__title{font-size:1.15rem;font-weight:700;margin:0 0 18px;color:var(--text,#fff);}
+.a11y-group{border:0;padding:0;margin:0 0 18px;}
+.a11y-group__label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3,#8b8b95);padding:0;margin:0 0 8px;}
+.a11y-opts{display:flex;gap:8px;flex-wrap:wrap;}
+.a11y-opt{flex:1 1 auto;min-width:90px;padding:12px 10px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--border-mid,#333);background:transparent;color:var(--text,#fff);
+  font-size:.95rem;font-weight:600;font-family:inherit;}
+.a11y-opt:hover{border-color:#ff6a3d;}
+.a11y-opt[aria-pressed="true"]{border-color:#ff6a3d;color:#ff6a3d;}
+.a11y-reset{background:none;border:0;padding:0;cursor:pointer;font-family:inherit;
+  color:var(--text,#fff);font-size:.9rem;text-decoration:underline;text-underline-offset:3px;}
+
+/* ── Consent-Banner ───────────────────────────────────────── */
+.consent{position:fixed;inset:auto 0 0 0;z-index:10000;padding:16px;display:flex;justify-content:center;}
+.consent[hidden]{display:none;}
+.consent__box{width:min(760px,100%);padding:24px;border-radius:16px;
+  border:1px solid var(--border-mid,#333);background:var(--surface-1,#151519);
+  box-shadow:0 -8px 40px rgba(0,0,0,.5);}
+.consent__title{font-size:1.1rem;font-weight:700;margin:0 0 8px;color:var(--text,#fff);}
+.consent__text{font-size:.9rem;line-height:1.65;color:var(--text-2,#c3c3cc);margin:0 0 16px;}
+.consent__link{color:var(--text,#fff);text-decoration:underline;text-underline-offset:3px;}
+.consent__options{display:grid;gap:10px;margin:0 0 16px;}
+.consent__opt{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;line-height:1.55;
+  color:var(--text-2,#c3c3cc);}
+.consent__opt strong{color:var(--text,#fff);}
+.consent__actions{display:flex;gap:10px;flex-wrap:wrap;}
+.consent__btn{padding:12px 20px;border-radius:10px;cursor:pointer;font-family:inherit;
+  font-size:.92rem;font-weight:700;border:1px solid var(--border-mid,#333);
+  background:transparent;color:var(--text,#fff);}
+.consent__btn:hover{border-color:#ff6a3d;}
+.consent__btn--primary{background:#ff6a3d;border-color:#ff6a3d;color:#0b0b0d;}
+.consent__btn--ghost{border-style:dashed;}
+.footer__consent-link{background:none;border:0;padding:0;cursor:pointer;font-family:inherit;
+  font-size:inherit;color:inherit;text-align:left;text-decoration:underline;text-underline-offset:3px;}
+
+@media (max-width:640px){
+  .a11y-toggle{left:12px;bottom:12px;}
+  .a11y-panel{left:12px;right:12px;bottom:74px;width:auto;}
+  .consent__actions .consent__btn{flex:1 1 100%;}
+}
+"""
+
+
+def build_a11y_js():
+    """Logika panelu dostępności — ustawienia zapisywane lokalnie u użytkownika."""
+    return """/* Barrierefreiheit-Panel (BFSG).
+   Einstellungen werden ausschliesslich lokal im Browser gespeichert
+   (localStorage) und nicht an den Server uebertragen. */
+(function () {
+  'use strict';
+  var KEY = 'a11y-prefs';
+  var DEFAULTS = { font: 'normal', theme: 'dark', contrast: 'normal', motion: 'on' };
+  var root = document.documentElement;
+
+  function load() {
+    try { return Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(KEY) || '{}')); }
+    catch (e) { return Object.assign({}, DEFAULTS); }
+  }
+  function save(p) {
+    try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) { /* Speicher gesperrt */ }
+  }
+  function apply(p) {
+    root.setAttribute('data-a11y-font', p.font);
+    root.setAttribute('data-a11y-theme', p.theme);
+    root.setAttribute('data-a11y-contrast', p.contrast);
+    root.setAttribute('data-a11y-motion', p.motion);
+    document.querySelectorAll('.a11y-opt').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(p[b.dataset.a11y] === b.dataset.value));
+    });
+  }
+
+  var prefs = load();
+  apply(prefs);
+
+  var toggle = document.getElementById('a11yToggle');
+  var panel = document.getElementById('a11yPanel');
+  if (!toggle || !panel) return;
+
+  function open(state) {
+    panel.hidden = !state;
+    toggle.setAttribute('aria-expanded', String(state));
+    toggle.setAttribute('aria-label', state
+      ? 'Barrierefreiheit-Einstellungen schliessen'
+      : 'Barrierefreiheit-Einstellungen oeffnen');
+    if (state) { var f = panel.querySelector('.a11y-opt'); if (f) f.focus(); }
+  }
+
+  toggle.addEventListener('click', function () { open(panel.hidden); });
+
+  panel.addEventListener('click', function (e) {
+    var btn = e.target.closest('.a11y-opt');
+    if (!btn) return;
+    prefs[btn.dataset.a11y] = btn.dataset.value;
+    save(prefs);
+    apply(prefs);
+  });
+
+  var reset = document.getElementById('a11yReset');
+  if (reset) reset.addEventListener('click', function () {
+    prefs = Object.assign({}, DEFAULTS);
+    save(prefs);
+    apply(prefs);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) { open(false); toggle.focus(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!panel.hidden && !panel.contains(e.target) && !toggle.contains(e.target)) open(false);
+  });
+})();
+"""
+
+
+def build_consent_js():
+    """Zgoda na cookies w modelu opt-in — tagi ładowane dopiero po akceptacji."""
+    return """/* Cookie-Einwilligung nach § 25 TDDDG und Art. 6 DSGVO.
+   Analyse-Dienste (Google Tag Manager, Albacross) werden erst nach
+   ausdruecklicher Einwilligung geladen. Ohne Einwilligung laeuft die
+   Website vollstaendig ohne diese Dienste. */
+(function () {
+  'use strict';
+  var KEY = 'consent-v1';
+  var loaded = false;
+
+  function read() {
+    try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; }
+  }
+  function write(v) {
+    try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* Speicher gesperrt */ }
+  }
+
+  function loadAnalytics() {
+    if (loaded) return;
+    loaded = true;
+    var id = window.__gtmId;
+    if (id) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+      document.head.appendChild(g);
+    }
+    if (window.__albacrossId) {
+      window._nQc = window.__albacrossId;
+      var a = document.createElement('script');
+      a.async = true;
+      a.src = 'https://serve.albacross.com/track.js';
+      document.head.appendChild(a);
+    }
+  }
+
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  var stored = read();
+  if (stored && stored.analytics) loadAnalytics();
+
+  ready(function () {
+    var banner = document.getElementById('consentBanner');
+    if (!banner) return;
+    var options = document.getElementById('consentOptions');
+    var analytics = document.getElementById('consentAnalytics');
+    var btnAll = document.getElementById('consentAcceptAll');
+    var btnNone = document.getElementById('consentRejectAll');
+    var btnSettings = document.getElementById('consentSettings');
+    var btnSave = document.getElementById('consentSave');
+    var reopen = document.getElementById('consentReopen');
+
+    function show() {
+      banner.hidden = false;
+      var s = read();
+      if (analytics) analytics.checked = !!(s && s.analytics);
+    }
+    function decide(useAnalytics) {
+      write({ analytics: !!useAnalytics, ts: Date.now() });
+      if (useAnalytics) loadAnalytics();
+      banner.hidden = true;
+    }
+
+    if (!stored) show();
+
+    if (btnAll) btnAll.addEventListener('click', function () { decide(true); });
+    if (btnNone) btnNone.addEventListener('click', function () { decide(false); });
+    if (btnSettings) btnSettings.addEventListener('click', function () {
+      if (options) options.hidden = false;
+      btnSettings.hidden = true;
+      if (btnSave) btnSave.hidden = false;
+    });
+    if (btnSave) btnSave.addEventListener('click', function () {
+      decide(analytics && analytics.checked);
+    });
+    if (reopen) reopen.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (options) options.hidden = false;
+      if (btnSettings) btnSettings.hidden = true;
+      if (btnSave) btnSave.hidden = false;
+      show();
+      banner.scrollIntoView({ block: 'nearest' });
+    });
+  });
+})();
+"""
 
 
 def build_robots():
@@ -1070,6 +1443,9 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     copy_assets()
     write("main.js", build_main_js())
+    write("a11y.css", build_a11y_css())
+    write("a11y.js", build_a11y_js())
+    write("consent.js", build_consent_js())
 
     # 98 podstron SEO
     for p in PL.ALL_PAGES:
