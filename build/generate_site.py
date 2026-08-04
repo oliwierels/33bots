@@ -70,12 +70,19 @@ COMPANY = {
         "stützt sich auf Art. 49 Abs. 1 lit. b DSGVO, da sie zur Beantwortung "
         "Ihrer Anfrage erforderlich ist."),
 
+    "legal_name": "33Bots Bartosz Wysocki",
+    "represented_by": "Bartosz Wysocki",
+    # Jednoosobowa działalność gospodarcza — rejestr CEIDG, nie sąd rejestrowy
+    "register": ("Eingetragen im Zentralregister für Wirtschaftstätigkeit der Republik Polen "
+                 "(CEIDG, Centralna Ewidencja i Informacja o Działalności Gospodarczej) · "
+                 "REGON: 544792095"),
+    # NIP zweryfikowany sumą kontrolną. Formę PL… podajemy jako USt-IdNr tylko
+    # przy rejestracji do transakcji wewnątrzunijnych (VAT-UE) — patrz README.
+    "vat_id": "PL5253090645 (NIP: 5253090645)",
+    "content_responsible": ("Bartosz Wysocki, Plac Jana Henryka Dąbrowskiego 12, "
+                            "00-055 Warszawa, Polen"),
+
     # ── do uzupełnienia przez właściciela ────────────────────────────
-    "legal_name": "",        # pełna firma wraz z formą prawną, np. "Jan Kowalski – 33Bots"
-    "represented_by": "",    # osoba uprawniona do reprezentacji
-    "register": "",          # CEIDG albo KRS wraz z numerem
-    "vat_id": "",            # NIP / VAT-UE, np. "PL1234567890"
-    "content_responsible": "",  # § 18 ust. 2 MStV: imię, nazwisko i adres
     "gtm_services": "",      # usługi faktycznie wyzwalane w kontenerze GTM
 }
 

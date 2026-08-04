@@ -764,6 +764,15 @@ def legal_block(h2, paragraphs, items=()):
     return "\n".join(out)
 
 
+def editorial_note(text):
+    """Notatka redakcyjna — znika, gdy wszystkie dane rejestrowe są uzupełnione."""
+    if all(v.strip() for v in _("COMPANY").values()):
+        return ""
+    return ('        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
+            'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
+            f'<strong>Hinweis für die Redaktion:</strong> {text}</p>')
+
+
 def C(field):
     """Skrót do danych rejestrowych z konfiguracji generatora."""
     return _("company")(field)
@@ -807,11 +816,9 @@ def build_legal_pages(write):
         legal_block("Urheberrecht",
                     ["Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem "
                      "deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet."]),
-        '        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
-        'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
-        '<strong>Hinweis für die Redaktion:</strong> Die gelb markierten Felder müssen vor der Veröffentlichung '
-        'mit den tatsächlichen Unternehmensdaten befüllt werden. Ein unvollständiges Impressum ist in Deutschland '
-        'abmahnfähig.</p>',
+        editorial_note("Die gelb markierten Felder müssen vor der Veröffentlichung mit den tatsächlichen "
+                       "Unternehmensdaten befüllt werden. Ein unvollständiges Impressum ist in Deutschland "
+                       "abmahnfähig."),
     ])
     write("impressum.html", legal_page(
         "impressum.html", "Impressum", "Impressum | 33bots",
@@ -892,11 +899,9 @@ def build_legal_pages(write):
                      "Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.",
                      f"Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu. Zuständig "
                      f"ist: {C('supervisory_authority')}"]),
-        '        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
-        'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
-        '<strong>Hinweis für die Redaktion:</strong> Diese Datenschutzerklärung bildet den technischen Stand '
-        'dieser Website ab. Die gelb markierten Stellen müssen mit Ihren tatsächlichen Unternehmens- und '
-        'Vertragsdaten befüllt und vor der Veröffentlichung juristisch geprüft werden.</p>',
+        editorial_note("Diese Datenschutzerklärung bildet den technischen Stand dieser Website ab. Die gelb "
+                       "markierten Stellen müssen befüllt und vor der Veröffentlichung juristisch geprüft "
+                       "werden."),
     ])
     write("datenschutz.html", legal_page(
         "datenschutz.html", "Datenschutzerklärung", "Datenschutzerklärung | 33bots",
@@ -945,11 +950,8 @@ def build_legal_pages(write):
         legal_block("Durchsetzungsverfahren",
                     [f"Wenn Sie mit unserer Antwort nicht zufrieden sind, können Sie sich an die zuständige "
                      f"Marktüberwachungsstelle für Barrierefreiheit wenden: {C('market_surveillance')}"]),
-        '        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
-        'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
-        '<strong>Hinweis für die Redaktion:</strong> Ob das BFSG für Ihr Angebot verbindlich gilt, hängt von '
-        'Unternehmensgröße und Art der angebotenen Dienstleistung ab. Die technischen Maßnahmen sind umgesetzt; '
-        'die gelb markierten Angaben müssen Sie ergänzen.</p>',
+        editorial_note("Ob das BFSG für Ihr Angebot verbindlich gilt, hängt von Unternehmensgröße und Art der "
+                       "angebotenen Dienstleistung ab. Die technischen Maßnahmen sind umgesetzt."),
     ])
     write("barrierefreiheit.html", legal_page(
         "barrierefreiheit.html", "Barrierefreiheit", "Erklärung zur Barrierefreiheit | 33bots",

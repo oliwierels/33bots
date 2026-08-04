@@ -82,36 +82,51 @@ stehen oben in `build/generate_site.py`.
 
 ### Vor dem Livegang zu erledigen
 
-**1. Firmendaten für Impressum und Datenschutz — zwingend erforderlich**
+**1. Google-Tag-Manager-Dienste — letzte offene Angabe**
 
-Alle rechtlich vorgeschriebenen Angaben stehen gebündelt im Block `COMPANY`
-oben in `build/generate_site.py`. Solange ein Feld leer ist, erscheint an der
-Stelle ein gelber Marker auf der Seite und der Build gibt eine Warnung aus.
+Im Block `COMPANY` oben in `build/generate_site.py` fehlt noch ein Feld:
 
 ```python
-COMPANY = {
-    "legal_name": "33bots GmbH",
-    "street": "Musterstraße 1",
-    "postcode_city": "10115 Berlin",
-    ...
-}
+"gtm_services": "",   # z. B. "Google Analytics 4" oder "keine weiteren Dienste"
 ```
 
-Danach `cd build && python3 generate_site.py`. Der Build meldet, sobald alle
-zwölf Felder gefüllt sind. **Ein unvollständiges Impressum ist in Deutschland
-abmahnfähig** — vor dem Livegang muss die Warnung verschwunden sein.
+Die DSGVO verlangt, die Empfänger personenbezogener Daten zu benennen. Prüfen
+Sie im GTM-Container, welche Tags tatsächlich ausgespielt werden, tragen Sie
+diese ein und bauen Sie neu:
+
+```bash
+cd build && python3 generate_site.py
+```
+
+Sobald das Feld gefüllt ist, verschwinden der gelbe Marker auf der Seite, die
+Redaktionshinweise und die Build-Warnung automatisch.
+
+Alle übrigen Pflichtangaben sind hinterlegt: Firmierung, Anschrift, Vertretung,
+CEIDG-Eintrag mit REGON, Steuernummer, inhaltlich Verantwortlicher,
+Datenschutz-Aufsichtsbehörde (UODO) und Marktüberwachungsstelle (MLBF).
+
+**2. Umsatzsteuer-Identifikationsnummer prüfen**
+
+Im Impressum steht `PL5253090645` als USt-IdNr. Das ist die korrekte Form der
+NIP für innergemeinschaftliche Umsätze — **sofern eine Registrierung als
+EU-Umsatzsteuerzahler (VAT-UE) besteht.** Ist das nicht der Fall, darf die
+Nummer nicht als USt-IdNr. geführt werden; dann in `COMPANY["vat_id"]` auf
+`Steuernummer (NIP): 5253090645` ändern.
+
+Prüfbar über das VIES-Portal der EU-Kommission:
+<https://ec.europa.eu/taxation_customs/vies/>
 
 Die Datenschutzerklärung bildet den technischen Stand dieser Website korrekt
 ab, sollte aber vor der Veröffentlichung juristisch gegengelesen werden.
 
-**2. Telefonnummern**
+**3. Telefonnummern**
 
 Die E-Mail-Adresse ist auf `kontakt@33bots.de` gesetzt. Die Rufnummern sind
 weiterhin die polnischen (+48) — sie funktionieren, wirken auf einer .de-Domain
 aber ungewohnt. Anpassung in `build/generate_site.py`, Konstanten
 `PHONE_HUMAN`, `PHONE_RAW`, `PHONE2_HUMAN`, `PHONE2_RAW`.
 
-**3. Google Tag Manager**
+**4. Google Tag Manager**
 
 Derzeit derselbe Container wie die polnische Seite (`GTM_ID`). Für eine saubere
 Auswertung einen eigenen Container anlegen und die ID eintragen. Läuft der
