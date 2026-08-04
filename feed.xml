@@ -1,312 +1,289 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0">
   <channel>
-    <title>33bots — blog o robotach humanoidalnych na eventy</title>
-    <link>https://33bots.pl/blog.html</link>
-    <atom:link href="https://33bots.pl/feed.xml" rel="self" type="application/rss+xml" />
-    <description>Wynajem robotów humanoidalnych Unitree G1 na eventy, targi i konferencje. Porady, ceny, porównania i case studies.</description>
-    <language>pl</language>
-    <lastBuildDate>Thu, 23 Jul 2026 08:00:00 +0000</lastBuildDate>
+    <title>33bots — Blog</title>
+    <link>https://33bots.de/blog.html</link>
+    <description>Wissen über humanoide Roboter auf Veranstaltungen, Messen und Konferenzen.</description>
+    <language>de-DE</language>
     <item>
-      <title>Jak wybrać firmę do wynajmu robota humanoidalnego? Porównanie ofert 2026</title>
-      <link>https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html</guid>
-      <pubDate>Thu, 23 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak porównywać oferty wynajmu robota humanoidalnego: co musi być w cenie, jakie dopłaty są red flagą, jak sprawdzić referencje. Z tabelą kontrolną i checklistą 7 pytań.</description>
+      <title>5 Gründe, warum Ihr Event einen Humanoiden braucht</title>
+      <link>https://33bots.de/blog-roboter-auf-dem-event.html</link>
+      <guid>https://33bots.de/blog-roboter-auf-dem-event.html</guid>
+      <description>Ein Roboter auf dem Event ist kein Gadget, sondern eine strategische Marketingentscheidung. Warum der G1 Leads, virale Reichweite und Erinnerung erzeugt.</description>
+      <pubDate>2025-10-01</pubDate>
     </item>
     <item>
-      <title>Jak wybrać robota na event? Przewodnik organizatora</title>
-      <link>https://33bots.pl/blog-jak-wybrac-robota-na-event.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-jak-wybrac-robota-na-event.html</guid>
-      <pubDate>Wed, 08 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak wybrać robota na event: cele, typy robotów, pytania do wynajmującego i budżet. Praktyczny przewodnik dla organizatora wydarzeń — krok po kroku.</description>
+      <title>Robotik im modernen B2B-Marketing</title>
+      <link>https://33bots.de/blog-robotik-im-marketing.html</link>
+      <guid>https://33bots.de/blog-robotik-im-marketing.html</guid>
+      <description>Wie humanoide Roboter das Marketing in IT und Industrie verändern — Strategie für den Einsatz eines Humanoiden in der Markenkommunikation.</description>
+      <pubDate>2025-10-15</pubDate>
     </item>
     <item>
-      <title>Jak przekonać zarząd do robota na evencie — gotowy business case</title>
-      <link>https://33bots.pl/blog-jak-przekonac-zarzad-do-robota.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-jak-przekonac-zarzad-do-robota.html</guid>
-      <pubDate>Fri, 10 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak przekonać zarząd do wynajmu robota na event firmowy: argumenty biznesowe, liczby, odpowiedzi na obiekcje i gotowa struktura business case'u.</description>
+      <title>Attraktion für das Firmenevent: Roboter vs. Alternativen</title>
+      <link>https://33bots.de/blog-attraktion-firmenevent.html</link>
+      <guid>https://33bots.de/blog-attraktion-firmenevent.html</guid>
+      <description>Vergleich der gängigen Event-Attraktionen nach WOW-Effekt, Social-Media-Reichweite und geschäftlichem Nutzen.</description>
+      <pubDate>2025-11-01</pubDate>
     </item>
     <item>
-      <title>Psychologia spotkania z robotem humanoidalnym: dlaczego to działa</title>
-      <link>https://33bots.pl/blog-psychologia-robota-humanoidalnego.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-psychologia-robota-humanoidalnego.html</guid>
-      <pubDate>Sun, 12 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Dlaczego robot humanoidalny tak działa na ludzi? Efekt nowości, antropomorfizacja i dolina niesamowitości — psychologia spotkania z humanoidem na evencie.</description>
+      <title>Was kostet die Miete eines Roboters? Preise 2026</title>
+      <link>https://33bots.de/blog-was-kostet-roboter-mieten.html</link>
+      <guid>https://33bots.de/blog-was-kostet-roboter-mieten.html</guid>
+      <description>Transparenter Leitfaden zu den Kosten der Miete eines Unitree G1: Was im Preis enthalten ist, wovon er abhängt und warum die Anfahrt bei uns inklusive ist.</description>
+      <pubDate>2025-11-15</pubDate>
     </item>
     <item>
-      <title>ROI robota na stoisku targowym — policzmy to na chłodno</title>
-      <link>https://33bots.pl/blog-robot-na-stoisku-targowym-roi.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-stoisku-targowym-roi.html</guid>
-      <pubDate>Tue, 14 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Czy robot na stoisku targowym się opłaca? Jak policzyć ROI: mierniki, model kalkulacji koszt–lead i praktyki, które maksymalizują zwrot z inwestycji.</description>
+      <title>Event-Attraktionen 2026 — Ranking und Vergleich</title>
+      <link>https://33bots.de/blog-event-attraktionen-ranking.html</link>
+      <guid>https://33bots.de/blog-event-attraktionen-ranking.html</guid>
+      <description>Welche Event-Attraktionen funktionieren am besten? Ranking und Vergleich mit dem humanoiden Roboter im Feld der Alternativen.</description>
+      <pubDate>2025-12-01</pubDate>
     </item>
     <item>
-      <title>12 kreatywnych sposobów wykorzystania robota na evencie</title>
-      <link>https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html</guid>
-      <pubDate>Wed, 15 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot na evencie to nie tylko pokaz tańca. 12 kreatywnych scenariuszy: od wręczania nagród i wróżb andrzejkowych po teledyski i zaręczyny z robotem.</description>
+      <title>Roboter auf der Hochzeit — ergibt das Sinn?</title>
+      <link>https://33bots.de/blog-roboter-auf-der-hochzeit.html</link>
+      <guid>https://33bots.de/blog-roboter-auf-der-hochzeit.html</guid>
+      <description>Ein humanoider Roboter auf der Hochzeit sorgt dafür, dass die Gäste jahrelang davon sprechen. Wann es passt und wann nicht.</description>
+      <pubDate>2025-12-15</pubDate>
     </item>
     <item>
-      <title>Robot i artysta na scenie — duety, które robią widowisko</title>
-      <link>https://33bots.pl/blog-robot-i-artysta-na-scenie.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-i-artysta-na-scenie.html</guid>
-      <pubDate>Thu, 16 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny w duecie z wokalistą, tancerzem czy iluzjonistą. Jak reżyserujemy występy człowieka z maszyną i dla jakich wydarzeń to działa.</description>
+      <title>Wie wählt man den richtigen Roboter fürs Event?</title>
+      <link>https://33bots.de/blog-roboter-fuer-event-auswaehlen.html</link>
+      <guid>https://33bots.de/blog-roboter-fuer-event-auswaehlen.html</guid>
+      <description>Humanoid, mobiler Roboter oder Bildschirm auf Rädern? Ein Leitfaden für Veranstalter — Ziele, Robotertypen, Fragen an den Anbieter und Budget.</description>
+      <pubDate>2026-07-08</pubDate>
     </item>
     <item>
-      <title>Case study: robot humanoidalny na Women in Tech Summit w Warszawie</title>
-      <link>https://33bots.pl/case-study-women-in-tech.html</link>
-      <guid isPermaLink="true">https://33bots.pl/case-study-women-in-tech.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny 33bots na Perspektywy Women in Tech Summit w Warszawie — największej konferencji kobiet w technologii w Europie (~14 000 uczestniczek). Zobacz case study.</description>
+      <title>Humanoider vs. mobiler Roboter — was passt wann?</title>
+      <link>https://33bots.de/blog-humanoider-vs-mobiler-roboter.html</link>
+      <guid>https://33bots.de/blog-humanoider-vs-mobiler-roboter.html</guid>
+      <description>Der direkte Vergleich: humanoider Roboter gegen mobile Roboterplattform. Kosten, Wirkung, Einsatzgebiete und Grenzen.</description>
+      <pubDate>2026-07-09</pubDate>
     </item>
     <item>
-      <title>Case study: robot humanoidalny na Konferencji WallStreet 30 w Karpaczu</title>
-      <link>https://33bots.pl/case-study-wallstreet.html</link>
-      <guid isPermaLink="true">https://33bots.pl/case-study-wallstreet.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny 33bots na Konferencji WallStreet 30 w Karpaczu — największym spotkaniu inwestorów indywidualnych w Polsce (2253 uczestników). Zobacz case study.</description>
+      <title>Roboter am Messestand — so entstehen Leads</title>
+      <link>https://33bots.de/blog-roboter-am-messestand.html</link>
+      <guid>https://33bots.de/blog-roboter-am-messestand.html</guid>
+      <description>Wie ein humanoider Roboter auf Messen Menschenmengen stoppt und Standfrequenz in echte Verkaufskontakte verwandelt.</description>
+      <pubDate>2026-07-10</pubDate>
     </item>
     <item>
-      <title>Case study: robot humanoidalny dla LEX AI — od Długiego Targu do TVP</title>
-      <link>https://33bots.pl/case-study-lexai.html</link>
-      <guid isPermaLink="true">https://33bots.pl/case-study-lexai.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak robot humanoidalny 33bots promował aplikację LEX AI na Długim Targu w Gdańsku i trafił do Teleexpressu oraz reportażu TVP „Pan Mecenas Robot</description>
+      <title>Roboter mieten — Checkliste in 7 Punkten</title>
+      <link>https://33bots.de/blog-roboter-mieten-checkliste.html</link>
+      <guid>https://33bots.de/blog-roboter-mieten-checkliste.html</guid>
+      <description>Bevor Sie unterschreiben: sieben Punkte, mit denen Sie einen humanoiden Roboter ohne Überraschungen, Aufschläge und Stress am Eventtag mieten.</description>
+      <pubDate>2026-07-11</pubDate>
     </item>
     <item>
-      <title>Roboty humanoidalne na eventach w Polsce — trendy 2026/2027</title>
-      <link>https://33bots.pl/blog-roboty-humanoidalne-na-eventach-trendy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-roboty-humanoidalne-na-eventach-trendy.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Rynek robotów humanoidalnych na eventach rośnie: ceny spadają, możliwości rosną, media są głodne tematów. Analiza trendów event-tech 2026/2027 w Polsce.</description>
+      <title>Was kann ein humanoider Roboter? 12 Fähigkeiten</title>
+      <link>https://33bots.de/blog-was-kann-ein-humanoider-roboter.html</link>
+      <guid>https://33bots.de/blog-was-kann-ein-humanoider-roboter.html</guid>
+      <description>Zwölf Dinge, die der Unitree G1 auf einer Veranstaltung tatsächlich kann — von Gehen und Tanzen bis zu Gesprächen dank KI.</description>
+      <pubDate>2026-07-12</pubDate>
     </item>
     <item>
-      <title>Robot zamiast hostessy? Porównanie kosztów i efektów na evencie</title>
-      <link>https://33bots.pl/blog-robot-zamiast-hostessy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-zamiast-hostessy.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Hostessa czy robot humanoidalny na stoisko? Porównujemy koszty, zasięgi i skuteczność w przyciąganiu uwagi na targach i eventach.</description>
+      <title>Ist ein Roboter auf dem Event sicher?</title>
+      <link>https://33bots.de/blog-sicherheit-roboter-event.html</link>
+      <guid>https://33bots.de/blog-sicherheit-roboter-event.html</guid>
+      <description>Sensorik, Operator, Versicherung: wie die Sicherheit eines humanoiden Roboters auf Veranstaltungen mit Publikum tatsächlich organisiert ist.</description>
+      <pubDate>2026-07-13</pubDate>
     </item>
     <item>
-      <title>Robot z AI rozmawiający po polsku — interakcje głosowe na evencie</title>
-      <link>https://33bots.pl/blog-robot-z-ai-rozmawiajacy-po-polsku.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-z-ai-rozmawiajacy-po-polsku.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot z AI mówiący po polsku na event: synteza mowy, scenariusze dialogów i interakcje z gośćmi. Jak działają rozmowy z robotem humanoidalnym Unitree G1.</description>
+      <title>KI-Roboter, der Deutsch spricht</title>
+      <link>https://33bots.de/blog-ki-roboter-spricht-deutsch.html</link>
+      <guid>https://33bots.de/blog-ki-roboter-spricht-deutsch.html</guid>
+      <description>Wie die Sprachfunktion des Unitree G1 funktioniert: Sprachmodelle, Sprachsynthese und was der Roboter über Ihr Unternehmen erzählen kann.</description>
+      <pubDate>2026-07-14</pubDate>
     </item>
     <item>
-      <title>Robot na evencie a viral marketing — jak zamienić pokaz w zasięgi</title>
-      <link>https://33bots.pl/blog-robot-viral-marketing-event.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-viral-marketing-event.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak wycisnąć maksimum zasięgu z pokazu robota: mechaniki UGC, hasztagi, kadry, współprace z twórcami. Przewodnik viral marketingu eventowego.</description>
+      <title>Der Roboter als Viral — Eventmarketing</title>
+      <link>https://33bots.de/blog-roboter-viral-marketing.html</link>
+      <guid>https://33bots.de/blog-roboter-viral-marketing.html</guid>
+      <description>Wie aus einem Roboter auf der Veranstaltung organische Reichweite wird — und was Sie tun müssen, damit die Aufnahmen Ihre Marke tragen.</description>
+      <pubDate>2026-07-15</pubDate>
     </item>
     <item>
-      <title>Robot recepcjonista — robot konferencyjny witający gości na evencie</title>
-      <link>https://33bots.pl/blog-robot-recepcjonista-witajacy-gosci.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-recepcjonista-witajacy-gosci.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot witający gości na konferencji: powitania głosem, wskazywanie sal, interakcje przy wejściu. Zobacz, jak działa robot recepcjonista Unitree G1.</description>
+      <title>Der Roboter als Markenbotschafter</title>
+      <link>https://33bots.de/blog-roboter-als-markenbotschafter.html</link>
+      <guid>https://33bots.de/blog-roboter-als-markenbotschafter.html</guid>
+      <description>Wie ein humanoider Roboter mit Ihrem Branding zum physischen Botschafter Ihrer Marke wird — Einsatzformen und Grenzen.</description>
+      <pubDate>2026-07-16</pubDate>
     </item>
     <item>
-      <title>Robot na targi pracy — employer branding, który zatrzymuje kandydatów</title>
-      <link>https://33bots.pl/blog-robot-na-targi-pracy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-targi-pracy.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na targach pracy przyciąga kandydatów do stoiska i buduje wizerunek innowacyjnego pracodawcy. Zobacz, jak działa G1 w rekrutacji.</description>
+      <title>Roboter statt Hostess? Der Vergleich</title>
+      <link>https://33bots.de/blog-roboter-statt-hostess.html</link>
+      <guid>https://33bots.de/blog-roboter-statt-hostess.html</guid>
+      <description>Was ein humanoider Roboter im Vergleich zu Messehostessen leistet — und wo Menschen klar überlegen bleiben.</description>
+      <pubDate>2026-07-17</pubDate>
     </item>
     <item>
-      <title>Robot na premierę produktu — launch, o którym będą pisać</title>
-      <link>https://33bots.pl/blog-robot-na-premiere-produktu.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-premiere-produktu.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na premierze produktu buduje skojarzenie marki z innowacją. Sprawdź scenariusze premier z Unitree G1: unveiling, demo, media.</description>
+      <title>Roboter auf Messe vs. Konferenz</title>
+      <link>https://33bots.de/blog-roboter-messe-vs-konferenz.html</link>
+      <guid>https://33bots.de/blog-roboter-messe-vs-konferenz.html</guid>
+      <description>Zwei Formate, zwei völlig unterschiedliche Einsatzarten für einen humanoiden Roboter — was jeweils funktioniert.</description>
+      <pubDate>2026-07-18</pubDate>
     </item>
     <item>
-      <title>Robot na piknik firmowy — atrakcja, która łączy pokolenia</title>
-      <link>https://33bots.pl/blog-robot-na-piknik-firmowy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-piknik-firmowy.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na pikniku firmowym bawi dzieci i dorosłych. Sprawdź, jak Unitree G1 sprawdza się na imprezach plenerowych i integracjach.</description>
+      <title>Roboter auf Kinder- veranstaltungen — der Leitfaden</title>
+      <link>https://33bots.de/blog-roboter-kinderveranstaltung.html</link>
+      <guid>https://33bots.de/blog-roboter-kinderveranstaltung.html</guid>
+      <description>Worauf man bei einem humanoiden Roboter auf Kinderfesten achten muss: Sicherheit, Ablauf, Altersgruppen und Reaktionen.</description>
+      <pubDate>2026-07-19</pubDate>
     </item>
     <item>
-      <title>Robot na otwarcie sklepu i salonu — jak przyciągnąć tłum od pierwszego dnia</title>
-      <link>https://33bots.pl/blog-robot-na-otwarcie-sklepu.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-otwarcie-sklepu.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na otwarciu sklepu, salonu lub galerii przyciąga przechodniów i media. Zobacz, jak Unitree G1 robi frekwencję na otwarciach.</description>
+      <title>Unitree G1 — der Roboter im Detail</title>
+      <link>https://33bots.de/blog-unitree-g1-roboter.html</link>
+      <guid>https://33bots.de/blog-unitree-g1-roboter.html</guid>
+      <description>Technische Daten, Fähigkeiten und Grenzen des Unitree G1: Größe, Gewicht, Freiheitsgrade, Sensorik und Einsatzpraxis.</description>
+      <pubDate>2026-07-20</pubDate>
     </item>
     <item>
-      <title>Robot na juwenalia i festiwale — atrakcja dla tysięcy uczestników</title>
-      <link>https://33bots.pl/blog-robot-na-juwenalia-festiwal.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-juwenalia-festiwal.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na juwenaliach, festiwalu miejskim lub studenckim. Jak Unitree G1 obsługuje wydarzenia masowe i generuje zasięgi w social media.</description>
+      <title>Roboter mieten — der komplette Leitfaden</title>
+      <link>https://33bots.de/blog-roboter-mieten-leitfaden.html</link>
+      <guid>https://33bots.de/blog-roboter-mieten-leitfaden.html</guid>
+      <description>Von der Anfrage bis zur Rechnung: wie die Miete eines humanoiden Roboters Schritt für Schritt abläuft.</description>
+      <pubDate>2026-07-21</pubDate>
     </item>
     <item>
-      <title>Robot na event plenerowy — warunki, pogoda, nawierzchnie</title>
-      <link>https://33bots.pl/blog-robot-na-event-plenerowy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-event-plenerowy.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Czy robot humanoidalny może wystąpić w plenerze? Nawierzchnie, deszcz, temperatura, zasilanie — wszystko o pokazach Unitree G1 na zewnątrz.</description>
+      <title>Was kostet ein humanoider Roboter? Kauf vs. Miete</title>
+      <link>https://33bots.de/blog-was-kostet-humanoider-roboter.html</link>
+      <guid>https://33bots.de/blog-was-kostet-humanoider-roboter.html</guid>
+      <description>Anschaffungspreis, Betriebskosten und Wartung eines humanoiden Roboters — und warum Mieten für Events fast immer günstiger ist.</description>
+      <pubDate>2026-07-22</pubDate>
     </item>
     <item>
-      <title>Interaktywny robot na event dla dzieci — uczy i bawi</title>
-      <link>https://33bots.pl/blog-robot-na-event-dla-dzieci.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-event-dla-dzieci.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na evencie dla dzieci: pikniki naukowe, dni dziecka, wydarzenia edukacyjne. Zobacz, jak G1 łączy zabawę z edukacją STEM.</description>
+      <title>Anbieter für Roboter- Vermietung wählen</title>
+      <link>https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html</link>
+      <guid>https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html</guid>
+      <description>Woran Sie einen seriösen Anbieter für die Miete humanoider Roboter erkennen — und welche Warnsignale es gibt.</description>
+      <pubDate>2026-07-23</pubDate>
     </item>
     <item>
-      <title>Robot ambasador marki — humanoid na prezentację produktu i premierę</title>
-      <link>https://33bots.pl/blog-robot-ambasador-marki.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-ambasador-marki.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot ambasador marki: współprowadzi prezentacje produktów, premiery aut i otwarcia obiektów. Branding, scenariusz mowy i pokazy z Unitree G1.</description>
+      <title>Die Geschäftsführung überzeugen — Business Case</title>
+      <link>https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html</link>
+      <guid>https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html</guid>
+      <description>Wie Sie intern für einen humanoiden Roboter argumentieren: Zielgrößen, Vergleichskosten und die häufigsten Einwände.</description>
+      <pubDate>2026-07-24</pubDate>
     </item>
     <item>
-      <title>Jak wygląda dzień eventu z robotem? Logistyka od przyjazdu do finału</title>
-      <link>https://33bots.pl/blog-logistyka-robota-w-dniu-eventu.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-logistyka-robota-w-dniu-eventu.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Backstage wynajmu robota: przyjazd, rozstawienie, testy, pokazy, ładowanie i demontaż. Zobacz, jak wygląda dzień eventu z Unitree G1 krok po kroku.</description>
+      <title>Kann ein Roboter ein Event moderieren?</title>
+      <link>https://33bots.de/blog-kann-roboter-event-moderieren.html</link>
+      <guid>https://33bots.de/blog-kann-roboter-event-moderieren.html</guid>
+      <description>Was ein humanoider Roboter in der Moderation tatsächlich leisten kann — und warum das Duo mit einem Menschen fast immer besser funktioniert.</description>
+      <pubDate>2026-07-25</pubDate>
     </item>
     <item>
-      <title>Ile kosztuje robot humanoidalny? Cena kupna vs wynajem 2026</title>
-      <link>https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Ile kosztuje robot humanoidalny w 2026? Ceny kupna Unitree G1 i innych humanoidów, koszty ukryte (operator, serwis, ubezpieczenie) i kiedy wynajem opłaca się bardziej.</description>
+      <title>Branding des Roboters auf dem Event</title>
+      <link>https://33bots.de/blog-roboter-branding-event.html</link>
+      <guid>https://33bots.de/blog-roboter-branding-event.html</guid>
+      <description>Wie das Branding eines humanoiden Roboters funktioniert: Logo, QR-Code, Farben — und was technisch möglich ist.</description>
+      <pubDate>2026-07-26</pubDate>
     </item>
     <item>
-      <title>Czy robot może prowadzić event? Robot-konferansjer w praktyce</title>
-      <link>https://33bots.pl/blog-czy-robot-moze-prowadzic-event.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-czy-robot-moze-prowadzic-event.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny jako współprowadzący event: zapowiedzi, wręczanie nagród, interakcje ze sceny. Co potrafi robot-konferansjer Unitree G1.</description>
+      <title>Logistik am Eventtag — Ablauf und Anforderungen</title>
+      <link>https://33bots.de/blog-logistik-am-eventtag.html</link>
+      <guid>https://33bots.de/blog-logistik-am-eventtag.html</guid>
+      <description>Was am Veranstaltungstag konkret passiert: Anlieferung, Aufbau, Stromversorgung, Flächenbedarf und Abbau.</description>
+      <pubDate>2026-07-27</pubDate>
     </item>
     <item>
-      <title>Co potrafi robot humanoidalny na evencie? 12 umiejętności Unitree G1</title>
-      <link>https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Taniec, gesty, mowa, piątki, pozowanie — pełna lista umiejętności robota humanoidalnego Unitree G1 na evencie. Sprawdź, co robot może zrobić dla Twojej marki.</description>
+      <title>Psychologie humanoider Roboter — warum sie wirken</title>
+      <link>https://33bots.de/blog-psychologie-humanoider-roboter.html</link>
+      <guid>https://33bots.de/blog-psychologie-humanoider-roboter.html</guid>
+      <description>Warum Menschen auf humanoide Roboter emotional reagieren: Anthropomorphismus, Uncanny Valley und die Praxis auf Events.</description>
+      <pubDate>2026-07-28</pubDate>
     </item>
     <item>
-      <title>Branding robota na event — Twoje logo na humanoidzie (bezpłatnie)</title>
-      <link>https://33bots.pl/blog-branding-robota-na-event.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-branding-robota-na-event.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Jak wygląda branding robota humanoidalnego: logo, kod QR i kolory marki na Unitree G1. U 33bots oklejenie robota jest bezpłatne przy każdym wynajmie.</description>
+      <title>Kreative Einsatzideen für einen Roboter</title>
+      <link>https://33bots.de/blog-kreative-einsatzideen-roboter.html</link>
+      <guid>https://33bots.de/blog-kreative-einsatzideen-roboter.html</guid>
+      <description>Zehn Einsatzideen jenseits der Standardshow: Preisübergabe, Enthüllung, Tanz-Battle, Empfang und mehr.</description>
+      <pubDate>2026-07-29</pubDate>
     </item>
     <item>
-      <title>Czy robot humanoidalny na evencie jest bezpieczny? BHP, OC i procedury</title>
-      <link>https://33bots.pl/blog-bezpieczenstwo-robota-na-evencie.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-bezpieczenstwo-robota-na-evencie.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Bezpieczeństwo robota humanoidalnego na evencie: nadzór operatora, ubezpieczenie OC, strefy pokazowe i procedury awaryjne. Wszystko, co musi wiedzieć organizator.</description>
+      <title>Roboter und Künstler auf der Bühne</title>
+      <link>https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html</link>
+      <guid>https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html</guid>
+      <description>Wie sich ein humanoider Roboter mit Tänzern, Musikern und Performern kombinieren lässt — Ablauf, Proben und Grenzen.</description>
+      <pubDate>2026-07-30</pubDate>
     </item>
     <item>
-      <title>Atrakcje technologiczne na imprezy firmowe — co działa w 2026?</title>
-      <link>https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Atrakcje technologiczne na imprezy firmowe: robot humanoidalny, VR, drony, fotobudki AI. Porównanie efektu WOW, zasięgów i kosztów — co wybrać na event firmowy.</description>
+      <title>Roboter als Empfang — Gäste begrüßen</title>
+      <link>https://33bots.de/blog-roboter-als-empfang.html</link>
+      <guid>https://33bots.de/blog-roboter-als-empfang.html</guid>
+      <description>Wie ein humanoider Roboter den Empfang übernimmt: Begrüßung, Wegweisung, Informationen dank KI und Wirkung auf den ersten Eindruck.</description>
+      <pubDate>2026-07-31</pubDate>
     </item>
     <item>
-      <title>Atrakcja na galę firmową — co zamiast zespołu i kabaretu?</title>
-      <link>https://33bots.pl/blog-atrakcja-na-gale-firmowa.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-atrakcja-na-gale-firmowa.html</guid>
-      <pubDate>Thu, 02 Jul 2026 08:00:00 +0000</pubDate>
-      <description>Szukasz atrakcji na galę firmową? Porównaj klasyczne opcje z robotem humanoidalnym Unitree G1 — atrakcją, która robi efekt WOW na scenie i w social mediach.</description>
+      <title>ROI eines Roboters am Messestand</title>
+      <link>https://33bots.de/blog-roi-roboter-messestand.html</link>
+      <guid>https://33bots.de/blog-roi-roboter-messestand.html</guid>
+      <description>Wie sich der wirtschaftliche Nutzen eines humanoiden Roboters auf der Messe rechnen lässt — und welche Größen realistisch messbar sind.</description>
+      <pubDate>2026-08-01</pubDate>
     </item>
     <item>
-      <title>Robot na targi czy na konferencję — co wybrać?</title>
-      <link>https://33bots.pl/blog-robot-targi-vs-konferencja.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-targi-vs-konferencja.html</guid>
-      <pubDate>Mon, 29 Jun 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na targi i robot na konferencję — czym się różni dobór scenariusza? Sprawdź, kiedy wynająć robota na targi, a kiedy na konferencję.</description>
+      <title>Roboter auf der Karrieremesse</title>
+      <link>https://33bots.de/blog-roboter-karrieremesse.html</link>
+      <guid>https://33bots.de/blog-roboter-karrieremesse.html</guid>
+      <description>Wie ein humanoider Roboter auf Karrieremessen Kandidaten an den Stand zieht und Employer Branding greifbar macht.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Robot na stoisko targowe — jak przyciągnąć tłumy i generować leady</title>
-      <link>https://33bots.pl/blog-robot-na-stoisko-targowe.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-stoisko-targowe.html</guid>
-      <pubDate>Mon, 29 Jun 2026 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na stoisku targowym przyciąga tłumy i generuje leady. Sprawdź, jak wykorzystać robota Unitree G1 na targach, by zwiększyć ruch i liczbę kontaktów.</description>
+      <title>Roboter beim Produktlaunch</title>
+      <link>https://33bots.de/blog-roboter-produktlaunch.html</link>
+      <guid>https://33bots.de/blog-roboter-produktlaunch.html</guid>
+      <description>Wie ein humanoider Roboter die Produktpremiere inszeniert: Enthüllung, Präsentation und Bilder für die Fachpresse.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Robot humanoidalny na event — czym różni się od innych robotów?</title>
-      <link>https://33bots.pl/blog-robot-humanoidalny-vs-mobilny.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-humanoidalny-vs-mobilny.html</guid>
-      <pubDate>Mon, 29 Jun 2026 08:00:00 +0000</pubDate>
-      <description>Dlaczego robot humanoidalny robi większe wrażenie na evencie niż robot mobilny czy kiosk interaktywny? Porównanie i wskazówki przed wynajmem.</description>
+      <title>Roboter zur Store-Eröffnung</title>
+      <link>https://33bots.de/blog-roboter-store-eroeffnung.html</link>
+      <guid>https://33bots.de/blog-roboter-store-eroeffnung.html</guid>
+      <description>Wie ein humanoider Roboter bei einer Ladeneröffnung Passanten stoppt, lokale Medien anzieht und Frequenz erzeugt.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Jak wynająć robota na event — checklist w 7 punktach</title>
-      <link>https://33bots.pl/blog-jak-wynajac-robota-checklist.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-jak-wynajac-robota-checklist.html</guid>
-      <pubDate>Mon, 29 Jun 2026 08:00:00 +0000</pubDate>
-      <description>Jak wynająć robota humanoidalnego na event bez niespodzianek? 7-punktowa checklist: o co zapytać firmę, na co zwrócić uwagę i jak nie przepłacić.</description>
+      <title>Roboter auf dem Betriebsfest</title>
+      <link>https://33bots.de/blog-roboter-betriebsfest.html</link>
+      <guid>https://33bots.de/blog-roboter-betriebsfest.html</guid>
+      <description>Warum ein humanoider Roboter auf dem Sommerfest gleichzeitig bei Kindern und Geschäftsführung funktioniert.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Jak wynająć robota humanoidalnego — kompletny przewodnik 2026</title>
-      <link>https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html</guid>
-      <pubDate>Fri, 08 May 2026 08:00:00 +0000</pubDate>
-      <description>Jak wynająć robota humanoidalnego na event? Co zawiera usługa, ile kosztuje, na co zwrócić uwagę. Kompletny przewodnik krok po kroku dla organizatorów eventów.</description>
+      <title>Roboter beim Outdoor-Event</title>
+      <link>https://33bots.de/blog-roboter-outdoor-event.html</link>
+      <guid>https://33bots.de/blog-roboter-outdoor-event.html</guid>
+      <description>Was ein humanoider Roboter draußen leisten kann: Untergrund, Wetter, Strom und die Grenzen des Einsatzes.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Unitree G1 — specyfikacja, możliwości i wynajem</title>
-      <link>https://33bots.pl/blog-unitree-g1-robot.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-unitree-g1-robot.html</guid>
-      <pubDate>Fri, 08 May 2026 08:00:00 +0000</pubDate>
-      <description>Unitree G1 — wszystko o najnowszym robocie humanoidalnym: wzrost 132 cm, 23 DoF, prędkość 2 m/s. Specyfikacja techniczna, porównanie i wynajem w Polsce.</description>
+      <title>Roboter auf dem Campusfest</title>
+      <link>https://33bots.de/blog-roboter-campusfest.html</link>
+      <guid>https://33bots.de/blog-roboter-campusfest.html</guid>
+      <description>Wie ein humanoider Roboter auf Campusfesten und studentischen Festivals funktioniert — Publikum, Ablauf und Reichweite.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Wynajem robota na wesele — czy to ma sens?</title>
-      <link>https://33bots.pl/blog-robot-na-wesele.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-wesele.html</guid>
-      <pubDate>Mon, 15 Dec 2025 08:00:00 +0000</pubDate>
-      <description>Robot humanoidalny na wesele — hit czy faux pas? Jak G1 sprawdza się jako atrakcja: powitanie gości, parkiet, viralowe zdjęcia i konkretne ceny.</description>
+      <title>Attraktion für die Firmengala — Leitfaden</title>
+      <link>https://33bots.de/blog-attraktion-firmengala.html</link>
+      <guid>https://33bots.de/blog-attraktion-firmengala.html</guid>
+      <description>Welche Attraktion zu einer Firmengala passt und wie ein humanoider Roboter in einen eleganten Abend eingebaut wird.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Atrakcje na event firmowy 2026 — robot humanoidalny vs inne opcje</title>
-      <link>https://33bots.pl/blog-atrakcje-eventowe.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-atrakcje-eventowe.html</guid>
-      <pubDate>Mon, 01 Dec 2025 08:00:00 +0000</pubDate>
-      <description>Jakie atrakcje eventowe sprawdzają się najlepiej dla firm w 2026 roku? Porównanie: robot humanoidalny vs team building, VR, kabarety i inne. Sprawdź →</description>
+      <title>Technologische Attraktionen für Firmenfeiern</title>
+      <link>https://33bots.de/blog-technologische-attraktionen-firmenfeier.html</link>
+      <guid>https://33bots.de/blog-technologische-attraktionen-firmenfeier.html</guid>
+      <description>VR, Hologramme, Robotik: welche technologischen Attraktionen auf Firmenfeiern tatsächlich funktionieren und welche nicht.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
     <item>
-      <title>Ile kosztuje wynajem robota humanoidalnego? Ceny i pakiety 2026</title>
-      <link>https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html</guid>
-      <pubDate>Sat, 15 Nov 2025 08:00:00 +0000</pubDate>
-      <description>Ile kosztuje wynajem robota humanoidalnego Unitree G1? Pakiety, co wchodzi w cenę, darmowy transport i jak wygląda wycena. Przewodnik 2026.</description>
-    </item>
-    <item>
-      <title>Atrakcja na event firmowy 2026 — robot vs inne opcje</title>
-      <link>https://33bots.pl/blog-atrakcja-na-event-firmowy.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-atrakcja-na-event-firmowy.html</guid>
-      <pubDate>Sat, 01 Nov 2025 08:00:00 +0000</pubDate>
-      <description>Porównanie atrakcji eventowych: robot humanoidalny, artyści, food trucki, VR. Które rozwiązanie generuje największy efekt WOW i zwrot z inwestycji?</description>
-    </item>
-    <item>
-      <title>Robotyka w marketingu B2B — innowacje dla firm</title>
-      <link>https://33bots.pl/blog-robotyka-w-marketingu.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robotyka-w-marketingu.html</guid>
-      <pubDate>Wed, 15 Oct 2025 08:00:00 +0000</pubDate>
-      <description>Jak roboty humanoidalne zmieniają marketing B2B w IT i przemyśle? Innowacje w B2B, bezpieczeństwo Unitree G1, strategia marketingowa. Przeczytaj →</description>
-    </item>
-    <item>
-      <title>5 powodów, dla których Twój event potrzebuje humanoida</title>
-      <link>https://33bots.pl/blog-robot-na-evencie.html</link>
-      <guid isPermaLink="true">https://33bots.pl/blog-robot-na-evencie.html</guid>
-      <pubDate>Wed, 01 Oct 2025 08:00:00 +0000</pubDate>
-      <description>Dlaczego wynajem robota humanoidalnego Unitree G1 to najlepsza atrakcja eventowa? Więcej leadów, viralowy zasięg, efekt WOW — sprawdź i zarezerwuj!</description>
+      <title>Trends: humanoide Roboter auf Events</title>
+      <link>https://33bots.de/blog-trends-humanoide-roboter-events.html</link>
+      <guid>https://33bots.de/blog-trends-humanoide-roboter-events.html</guid>
+      <description>Wohin sich der Einsatz humanoider Roboter auf Veranstaltungen entwickelt — Sprachfunktion, Mehrfacheinsätze und sinkende Neuheitsprämie.</description>
+      <pubDate>2026-08-02</pubDate>
     </item>
   </channel>
 </rss>

@@ -1,7 +1,2 @@
 __pycache__/
-
-# Surowe zdjęcia z aparatu — do repo trafiają wyłącznie wersje webowe
-IMG_*.HEIC
-IMG_*.DNG
-IMG_*.JPG
-IMG_*.PNG
+*.pyc

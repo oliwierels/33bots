@@ -164,14 +164,14 @@ const btnNext  = document.getElementById('btnNext');
 const btnBack  = document.getElementById('btnBack');
 
 // ── Validation helpers ────────────────────────────────────────
-const errorMsg = { valueMissing: 'To pole jest wymagane', typeMismatch: 'Nieprawidłowy format' };
+const errorMsg = { valueMissing: 'Dieses Feld ist erforderlich', typeMismatch: 'Ungültiges Format' };
 
 function validateField(field) {
   const wrap = field.closest('.form-field');
   if (!wrap) return true;
   const errEl = wrap.querySelector('.form-field__err');
   if (!field.validity.valid) {
-    if (errEl) errEl.textContent = field.validity.valueMissing ? errorMsg.valueMissing : field.validity.typeMismatch ? errorMsg.typeMismatch : 'Sprawdź to pole';
+    if (errEl) errEl.textContent = field.validity.valueMissing ? errorMsg.valueMissing : field.validity.typeMismatch ? errorMsg.typeMismatch : 'Bitte prüfen Sie dieses Feld';
     wrap.classList.add('has-error');
     return false;
   }
@@ -234,7 +234,7 @@ form.addEventListener('submit', async (e) => {
   if (!validateStep(step2)) return;
 
   const btn = step2.querySelector('button[type="submit"]');
-  btn.textContent = 'Wysyłanie...';
+  btn.textContent = 'Wird gesendet …';
   btn.disabled = true;
 
   const data = new FormData(form);
@@ -259,20 +259,20 @@ form.addEventListener('submit', async (e) => {
       if (typeof gtag === 'function') {
         gtag('event', 'form_submit', {
           event_category: 'contact',
-          event_label: 'Formularz kontaktowy',
+          event_label: 'Kontaktformular',
         });
       }
       form.innerHTML = `<div class="form-success">
-        <h3>Wiadomość wysłana</h3>
-        <p>Odezwiemy się na <strong>${payload.email}</strong><br>w ciągu 24 godzin roboczych.</p>
+        <h3>Nachricht gesendet</h3>
+        <p>Wir melden uns an <strong>${payload.email}</strong><br>innerhalb von 24 Werkstunden.</p>
       </div>`;
     } else {
       throw new Error('server');
     }
   } catch {
-    btn.textContent = 'Spróbuj ponownie';
+    btn.textContent = 'Erneut versuchen';
     btn.disabled = false;
     const errEl = step2.querySelector('.form-field__err');
-    if (errEl) { errEl.textContent = 'Coś poszło nie tak. Napisz bezpośrednio na kontakt@33bots.pl'; }
+    if (errEl) { errEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt an kontakt@33bots.pl'; }
   }
 });
