@@ -764,26 +764,30 @@ def legal_block(h2, paragraphs, items=()):
     return "\n".join(out)
 
 
-TODO = ('<mark style="background:#ffe08a; color:#000; padding:0 4px;">[BITTE AUSFÜLLEN]</mark>')
+def C(field):
+    """Skrót do danych rejestrowych z konfiguracji generatora."""
+    return _("company")(field)
 
 
 def build_legal_pages(write):
     EMAIL, PHONE_HUMAN, DOMAIN = _("EMAIL"), _("PHONE_HUMAN"), _("DOMAIN")
 
     # ── Impressum (§ 5 DDG) ───────────────────────────────────────────
+    address = " · ".join(x for x in [C("street"), C("postcode_city"), C("country")]
+                         if x and "AUSFÜLLEN" not in x) or C("street")
     imp = "\n".join([
         legal_block("Angaben gemäß § 5 DDG",
-                    [f"Diensteanbieter: {TODO} (vollständige Firmierung laut Handelsregister)",
-                     f"Anschrift: {TODO} (Straße, Hausnummer, PLZ, Ort, Land)",
-                     f"Vertretungsberechtigte Person: {TODO}",
-                     f"Registergericht und Registernummer: {TODO}",
-                     f"Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: {TODO}"]),
+                    [f"Diensteanbieter: {C('legal_name')}",
+                     f"Anschrift: {address}",
+                     f"Vertretungsberechtigte Person: {C('represented_by')}",
+                     f"Registergericht und Registernummer: {C('register')}",
+                     f"Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: {C('vat_id')}"]),
         legal_block("Kontakt",
                     [f"E-Mail: <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); text-decoration:underline; "
                      f"text-underline-offset:3px;\">{EMAIL}</a>",
                      f"Telefon: {PHONE_HUMAN}"]),
         legal_block("Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
-                    [f"{TODO} (Name und vollständige Anschrift der verantwortlichen Person)"]),
+                    [C("content_responsible")]),
         legal_block("Verbraucherstreitbeilegung",
                     ["Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer "
                      "Verbraucherschlichtungsstelle teilzunehmen.",
@@ -817,8 +821,8 @@ def build_legal_pages(write):
     # ── Datenschutzerklärung (DSGVO) ──────────────────────────────────
     ds = "\n".join([
         legal_block("1. Verantwortlicher",
-                    [f"Verantwortlich für die Datenverarbeitung auf dieser Website ist: {TODO} "
-                     f"(vollständige Firmierung und Anschrift, siehe "
+                    [f"Verantwortlich für die Datenverarbeitung auf dieser Website ist: "
+                     f"{C('legal_name')}, {address} (siehe "
                      f"<a href=\"impressum.html\" style=\"color:var(--text); text-decoration:underline; "
                      f"text-underline-offset:3px;\">Impressum</a>).",
                      f"Kontakt: <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); text-decoration:underline; "
@@ -845,9 +849,7 @@ def build_legal_pages(write):
                      "entgegenstehen.",
                      f"Die Übermittlung des Formulars erfolgt über den Dienstleister Formspree "
                      f"(Formspree, Inc., USA). Dabei werden die von Ihnen eingegebenen Daten an dessen Server "
-                     f"übertragen. {TODO} — bitte prüfen und ergänzen Sie, ob ein Auftragsverarbeitungsvertrag "
-                     f"besteht und auf welcher Grundlage die Übermittlung in die USA erfolgt "
-                     f"(z. B. EU-US Data Privacy Framework oder Standardvertragsklauseln)."]),
+                     f"übertragen. {C('formspree_note')}"]),
         legal_block("4. Cookies und Einwilligung",
                     ["Wir setzen technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich "
                      "sind. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
@@ -860,8 +862,7 @@ def build_legal_pages(write):
                     ["Nach Ihrer Einwilligung laden wir den Google Tag Manager (Google Ireland Limited, Gordon "
                      "House, Barrow Street, Dublin 4, Irland). Der Tag Manager selbst erstellt keine Profile, "
                      "steuert aber das Laden weiterer Tags.",
-                     f"{TODO} — bitte listen Sie hier die im Tag Manager tatsächlich ausgespielten Dienste auf "
-                     f"(z. B. Google Analytics, Google Ads) samt Zweck, Speicherdauer und Empfängern.",
+                     f"Über den Tag Manager werden folgende Dienste ausgespielt: {C('gtm_services')}",
                      "Eine Übermittlung personenbezogener Daten in die USA kann nicht ausgeschlossen werden. "
                      "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und Art. 49 Abs. 1 "
                      "lit. a DSGVO."]),
@@ -890,7 +891,7 @@ def build_legal_pages(write):
                      "Datenübertragbarkeit (Art. 20 DSGVO) sowie ein Widerspruchsrecht (Art. 21 DSGVO).",
                      "Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.",
                      f"Zudem steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu. Zuständig "
-                     f"ist die Aufsichtsbehörde am Sitz des Verantwortlichen: {TODO}"]),
+                     f"ist: {C('supervisory_authority')}"]),
         '        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
         'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
         '<strong>Hinweis für die Redaktion:</strong> Diese Datenschutzerklärung bildet den technischen Stand '
@@ -933,9 +934,8 @@ def build_legal_pages(write):
                      "finden Sie jeweils neben dem Video.",
                      "Einzelne dekorative Effekte sind in der hellen Darstellung abgeschaltet, um die "
                      "Lesbarkeit zu sichern.",
-                     f"{TODO} — bitte ergänzen Sie hier das Ergebnis Ihrer abschließenden Prüfung "
-                     f"(z. B. durch einen externen Barrierefreiheits-Test) und das Datum der Erstellung "
-                     f"dieser Erklärung."]),
+                     "Diese Erklärung beruht auf einer internen Prüfung der Website. Eine externe "
+                     "Begutachtung steht noch aus."]),
         legal_block("Feedback und Kontakt",
                     [f"Ihnen sind Barrieren aufgefallen oder Sie benötigen Informationen in einem anderen Format? "
                      f"Schreiben Sie uns an <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); "
@@ -944,8 +944,7 @@ def build_legal_pages(write):
                      f"Inhalte auf einem für Sie zugänglichen Weg zur Verfügung."]),
         legal_block("Durchsetzungsverfahren",
                     [f"Wenn Sie mit unserer Antwort nicht zufrieden sind, können Sie sich an die zuständige "
-                     f"Marktüberwachungsstelle für Barrierefreiheit wenden: {TODO} (zuständige Stelle nach "
-                     f"Sitz des Unternehmens)."]),
+                     f"Marktüberwachungsstelle für Barrierefreiheit wenden: {C('market_surveillance')}"]),
         '        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
         'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
         '<strong>Hinweis für die Redaktion:</strong> Ob das BFSG für Ihr Angebot verbindlich gilt, hängt von '

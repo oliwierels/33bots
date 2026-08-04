@@ -3,19 +3,10 @@
 # Aufruf: ./build/scripts/indexnow-submit.sh [url1 url2 ...]
 # Nach jedem Deployment ausführen.
 #
-# WICHTIG: Der IndexNow-Key gilt immer nur für eine Domain. Der Key der
-# polnischen Seite ist hier bewusst NICHT übernommen. Vor der ersten Nutzung:
-#   1. Neuen Key erzeugen (32 Hex-Zeichen), z. B.:  openssl rand -hex 16
-#   2. Datei <KEY>.txt mit dem Key als Inhalt ins Wurzelverzeichnis legen
-#   3. KEY unten eintragen
-KEY="BITTE_NEUEN_KEY_EINTRAGEN"
+# Der Key gilt nur für diese Domain und liegt als <KEY>.txt im Wurzelverzeichnis.
+# Beides muss zusammen deployt werden, sonst weist IndexNow die Meldung ab.
+KEY="a2813e79cb1d1017ecf75f8b739153a3"
 HOST="33bots.de"
-
-if [ "$KEY" = "BITTE_NEUEN_KEY_EINTRAGEN" ]; then
-  echo "Fehler: Es ist noch kein IndexNow-Key für ${HOST} hinterlegt." >&2
-  echo "Key erzeugen mit: openssl rand -hex 16" >&2
-  exit 1
-fi
 
 URLS=("$@")
 if [ ${#URLS[@]} -eq 0 ]; then

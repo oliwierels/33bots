@@ -34,7 +34,7 @@ OUT = BASE
 
 # ── Konfiguracja rynku DE ─────────────────────────────────────────────
 DOMAIN = "https://33bots.de"
-EMAIL = "kontakt@33bots.pl"
+EMAIL = "kontakt@33bots.de"
 PHONE_HUMAN = "+48 531 408 004"
 PHONE_RAW = "+48531408004"
 PHONE2_HUMAN = "+48 601 499 947"
@@ -42,6 +42,36 @@ PHONE2_RAW = "+48601499947"
 GTM_ID = "GTM-MR7R7CJ3"
 ALBACROSS_ID = "89159321"
 LASTMOD = "2026-08-03"
+
+# ── Dane rejestrowe do Impressum i Datenschutz ────────────────────────
+# Wymagane przez § 5 DDG, § 18 ust. 2 MStV i art. 13 DSGVO. Puste pole zostaje
+# na stronie oznaczone żółtym markerem — serwisu nie wolno publikować, dopóki
+# którekolwiek jest puste (niekompletne Impressum jest w Niemczech abmahnfähig).
+COMPANY = {
+    "legal_name": "",        # pełna firma zgodna z rejestrem, np. "33bots GmbH"
+    "street": "",            # ulica i numer
+    "postcode_city": "",     # kod pocztowy i miejscowość
+    "country": "",           # kraj, np. "Deutschland" albo "Polen"
+    "represented_by": "",    # osoba uprawniona do reprezentacji
+    "register": "",          # sąd i numer rejestrowy, np. "Amtsgericht Berlin, HRB 123456"
+    "vat_id": "",            # NIP UE wg § 27a UStG, np. "DE123456789"
+    "content_responsible": "",  # odpowiedzialny za treść wg § 18 ust. 2 MStV: imię, nazwisko i adres
+    "supervisory_authority": "",  # organ nadzorczy ds. ochrony danych właściwy dla siedziby
+    "market_surveillance": "",    # organ nadzoru rynku ds. dostępności (BFSG)
+    "formspree_note": "",    # podstawa przekazania danych do USA przy formularzu
+    "gtm_services": "",      # usługi faktycznie wyzwalane w GTM
+}
+
+
+def company(field):
+    """Wartość pola albo widoczny marker do uzupełnienia."""
+    value = COMPANY.get(field, "").strip()
+    return value or MISSING
+
+
+MISSING = ('<mark style="background:#ffe08a; color:#000; padding:0 4px;">'
+           '[BITTE AUSFÜLLEN]</mark>')
+
 
 PRICE_RANGE = "1.290 – 1.590 €"
 PRICE_LOW = "1290"
@@ -1587,6 +1617,17 @@ def main():
 
     html_count = len([f for f in WRITTEN if f.endswith(".html")])
     print(f"Wygenerowano {len(WRITTEN)} plików w {OUT}/ (w tym {html_count} stron HTML)")
+
+    empty = [k for k, v in COMPANY.items() if not v.strip()]
+    if empty:
+        print()
+        print("!" * 72)
+        print("NIE PUBLIKUJ JESZCZE — brak danych rejestrowych w Impressum/Datenschutz.")
+        print(f"Nieuzupełnione pola ({len(empty)}) w COMPANY na górze build/generate_site.py:")
+        for k in empty:
+            print(f"  - {k}")
+        print("Niekompletne Impressum jest w Niemczech abmahnfähig.")
+        print("!" * 72)
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
   const open = mobileMenu.classList.toggle('open');
   hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-label', open ? 'Zamknij menu' : 'Menu');
+  hamburger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
 });
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   mobileMenu.classList.remove('open');
@@ -142,137 +142,135 @@ if (robotWrap && heroSection && !reducedMotion) {
   setTimeout(triggerGlitch, 2500);
 }
 
-// ── COOKIE BANNER ─────────────────────────────────────────────
-const cookieBanner = document.getElementById('cookieBanner');
-if (!localStorage.getItem('33bots-cookies')) {
-  setTimeout(() => cookieBanner.classList.add('visible'), 1200);
-}
-document.getElementById('cookieAccept').addEventListener('click', () => {
-  localStorage.setItem('33bots-cookies', '1');
-  cookieBanner.classList.remove('visible');
-});
+// ── COOKIE-EINWILLIGUNG ───────────────────────────────────────
+// Wird von consent.js verwaltet (Opt-in nach § 25 TDDDG). Der frühere
+// einfache Hinweis-Banner wurde bewusst entfernt: er hat die Nutzung nur
+// bestätigt statt eine Einwilligung einzuholen.
 
 // ═════════════════════════════════════════════════════════════
 // CONTACT FORM — multi-step + Formspree
 // ═════════════════════════════════════════════════════════════
-const form     = document.getElementById('contactForm');
-const step1    = document.getElementById('formStep1');
-const step2    = document.getElementById('formStep2');
-const ind1     = document.getElementById('stepInd1');
-const ind2     = document.getElementById('stepInd2');
-const btnNext  = document.getElementById('btnNext');
-const btnBack  = document.getElementById('btnBack');
+const form = document.getElementById('contactForm');
+if (form) {
+  const step1    = document.getElementById('formStep1');
+  const step2    = document.getElementById('formStep2');
+  const ind1     = document.getElementById('stepInd1');
+  const ind2     = document.getElementById('stepInd2');
+  const btnNext  = document.getElementById('btnNext');
+  const btnBack  = document.getElementById('btnBack');
 
-// ── Validation helpers ────────────────────────────────────────
-const errorMsg = { valueMissing: 'Dieses Feld ist erforderlich', typeMismatch: 'Ungültiges Format' };
+  // ── Validation helpers ────────────────────────────────────────
+  const errorMsg = { valueMissing: 'Dieses Feld ist erforderlich', typeMismatch: 'Ungültiges Format' };
 
-function validateField(field) {
-  const wrap = field.closest('.form-field');
-  if (!wrap) return true;
-  const errEl = wrap.querySelector('.form-field__err');
-  if (!field.validity.valid) {
-    if (errEl) errEl.textContent = field.validity.valueMissing ? errorMsg.valueMissing : field.validity.typeMismatch ? errorMsg.typeMismatch : 'Bitte prüfen Sie dieses Feld';
-    wrap.classList.add('has-error');
-    return false;
-  }
-  wrap.classList.remove('has-error');
-  if (errEl) errEl.textContent = '';
-  return true;
-}
-
-function validateStep(stepEl) {
-  return [...stepEl.querySelectorAll('input[required], textarea[required]')]
-    .map(validateField).every(Boolean);
-}
-
-// live clearing on input
-form.querySelectorAll('input, textarea').forEach(field => {
-  field.addEventListener('blur', () => validateField(field));
-  field.addEventListener('input', () => {
-    if (field.closest('.form-field')?.classList.contains('has-error')) validateField(field);
-  });
-});
-
-// ── Slide between steps ───────────────────────────────────────
-function goToStep(from, to, fromInd, toInd) {
-  from.style.opacity = '0';
-  setTimeout(() => {
-    from.classList.add('form-step--hidden');
-    from.setAttribute('aria-hidden', 'true');
-    to.classList.remove('form-step--hidden');
-    to.removeAttribute('aria-hidden');
-    requestAnimationFrame(() => { to.style.opacity = '1'; });
-    fromInd.classList.remove('active');
-    toInd.classList.add('active');
-    // scroll form into view smoothly
-    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 200);
-}
-
-btnNext.addEventListener('click', () => {
-  if (!validateStep(step1)) return;
-  goToStep(step1, step2, ind1, ind2);
-});
-
-btnBack.addEventListener('click', () => {
-  goToStep(step2, step1, ind2, ind1);
-});
-
-// ── Character counter ─────────────────────────────────────────
-const textarea  = document.getElementById('f-message');
-const charCount = document.getElementById('charCount');
-const MAX_CHARS = 600;
-textarea.addEventListener('input', () => {
-  const len = textarea.value.length;
-  charCount.textContent = len;
-  charCount.closest('.char-counter').classList.toggle('near-limit', len > MAX_CHARS * 0.85);
-});
-
-// ── Submit → Formspree ────────────────────────────────────────
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!validateStep(step2)) return;
-
-  const btn = step2.querySelector('button[type="submit"]');
-  btn.textContent = 'Wird gesendet …';
-  btn.disabled = true;
-
-  const data = new FormData(form);
-  const payload = {
-    name:     data.get('name'),
-    company:  data.get('company') || '—',
-    email:    data.get('email'),
-    phone:    data.get('phone') || '—',
-    date:     data.get('date') || '—',
-    location: data.get('location') || '—',
-    message:  data.get('message'),
-  };
-
-  try {
-    const res = await fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (res.ok) {
-      if (typeof gtag === 'function') {
-        gtag('event', 'form_submit', {
-          event_category: 'contact',
-          event_label: 'Kontaktformular',
-        });
-      }
-      form.innerHTML = `<div class="form-success">
-        <h3>Nachricht gesendet</h3>
-        <p>Wir melden uns an <strong>${payload.email}</strong><br>innerhalb von 24 Werkstunden.</p>
-      </div>`;
-    } else {
-      throw new Error('server');
+  function validateField(field) {
+    const wrap = field.closest('.form-field');
+    if (!wrap) return true;
+    const errEl = wrap.querySelector('.form-field__err');
+    if (!field.validity.valid) {
+      if (errEl) errEl.textContent = field.validity.valueMissing ? errorMsg.valueMissing : field.validity.typeMismatch ? errorMsg.typeMismatch : 'Bitte prüfen Sie dieses Feld';
+      wrap.classList.add('has-error');
+      return false;
     }
-  } catch {
-    btn.textContent = 'Erneut versuchen';
-    btn.disabled = false;
-    const errEl = step2.querySelector('.form-field__err');
-    if (errEl) { errEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt an kontakt@33bots.pl'; }
+    wrap.classList.remove('has-error');
+    if (errEl) errEl.textContent = '';
+    return true;
   }
-});
+
+  function validateStep(stepEl) {
+    return [...stepEl.querySelectorAll('input[required], textarea[required]')]
+      .map(validateField).every(Boolean);
+  }
+
+  // live clearing on input
+  form.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => {
+      if (field.closest('.form-field')?.classList.contains('has-error')) validateField(field);
+    });
+  });
+
+  // ── Slide between steps ───────────────────────────────────────
+  function goToStep(from, to, fromInd, toInd) {
+    from.style.opacity = '0';
+    setTimeout(() => {
+      from.classList.add('form-step--hidden');
+      from.setAttribute('aria-hidden', 'true');
+      to.classList.remove('form-step--hidden');
+      to.removeAttribute('aria-hidden');
+      requestAnimationFrame(() => { to.style.opacity = '1'; });
+      fromInd.classList.remove('active');
+      toInd.classList.add('active');
+      // scroll form into view smoothly
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 200);
+  }
+
+  btnNext.addEventListener('click', () => {
+    if (!validateStep(step1)) return;
+    goToStep(step1, step2, ind1, ind2);
+  });
+
+  btnBack.addEventListener('click', () => {
+    goToStep(step2, step1, ind2, ind1);
+  });
+
+  // ── Character counter ─────────────────────────────────────────
+  const textarea  = document.getElementById('f-message');
+  const charCount = document.getElementById('charCount');
+  const MAX_CHARS = 600;
+  textarea.addEventListener('input', () => {
+    const len = textarea.value.length;
+    charCount.textContent = len;
+    charCount.closest('.char-counter').classList.toggle('near-limit', len > MAX_CHARS * 0.85);
+  });
+
+  // ── Submit → Formspree ────────────────────────────────────────
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateStep(step2)) return;
+
+    const btn = step2.querySelector('button[type="submit"]');
+    btn.textContent = 'Wird gesendet …';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    const payload = {
+      name:     data.get('name'),
+      company:  data.get('company') || '—',
+      email:    data.get('email'),
+      phone:    data.get('phone') || '—',
+      date:     data.get('date') || '—',
+      location: data.get('location') || '—',
+      message:  data.get('message'),
+    };
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'form_submit', {
+            event_category: 'contact',
+            event_label: 'Kontaktformular',
+          });
+        }
+        form.innerHTML = `<div class="form-success">
+          <h3>Nachricht gesendet</h3>
+          <p>Wir melden uns an <strong>${payload.email}</strong><br>innerhalb von 24 Werkstunden.</p>
+        </div>`;
+      } else {
+        throw new Error('server');
+      }
+    } catch {
+      btn.textContent = 'Erneut versuchen';
+      btn.disabled = false;
+      const errEl = step2.querySelector('.form-field__err');
+      if (errEl) { errEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt an kontakt@33bots.de'; }
+    }
+  });
+
+}
