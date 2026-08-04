@@ -31,7 +31,7 @@ def simple_page(out_file, crumb, title, desc, keywords, eyebrow, h1, sub,
         "name": title.split(" | ")[0], "description": desc.rstrip(" →"), "url": url,
         "image": f"{DOMAIN}/robot-g1.jpg",
         "provider": {"@type": "Organization", "name": "33bots", "url": f"{DOMAIN}/",
-                     "email": _("EMAIL"), "telephone": _("PHONE_HUMAN")},
+                     "email": _("EMAIL")},
         "areaServed": {"@type": "Country", "name": "Deutschland"},
     }, ensure_ascii=False, indent=2)]
 
@@ -180,8 +180,7 @@ def video_section(key, copy):
 def build_index():
     import json
     DOMAIN = _("DOMAIN")
-    EMAIL, PHONE_RAW, PHONE_HUMAN = _("EMAIL"), _("PHONE_RAW"), _("PHONE_HUMAN")
-    PHONE2_RAW, PHONE2_HUMAN = _("PHONE2_RAW"), _("PHONE2_HUMAN")
+    EMAIL = _("EMAIL")
     PRICE_RANGE, PRICE_LOW, PRICE_HIGH = _("PRICE_RANGE"), _("PRICE_LOW"), _("PRICE_HIGH")
     DOG_PRICE = _("DOG_PRICE")
     cities = _("de_cities").CITIES
@@ -264,11 +263,11 @@ def build_index():
         "url": DOMAIN, "logo": f"{DOMAIN}/logo.png", "image": f"{DOMAIN}/robot-g1.jpg",
         "description": "Vermietung humanoider Roboter Unitree G1 für Events, Konferenzen und Messen in ganz "
                        "Deutschland. Anfahrt und zertifizierter Operator inklusive.",
-        "telephone": PHONE_RAW, "email": EMAIL,
+        "email": EMAIL,
         "areaServed": {"@type": "Country", "name": "Deutschland"},
         "sameAs": ["https://www.facebook.com/33bots", "https://www.instagram.com/33bots_/",
                    "https://www.linkedin.com/company/33bots", "https://www.tiktok.com/@aimforum"],
-        "contactPoint": {"@type": "ContactPoint", "telephone": PHONE_RAW, "email": EMAIL,
+        "contactPoint": {"@type": "ContactPoint", "email": EMAIL,
                          "contactType": "sales", "areaServed": "DE",
                          "availableLanguage": ["German", "English", "Polish"]},
         "knowsAbout": ["humanoiden Roboter mieten", "Roboter für Events", "Roboter für Messen",
@@ -669,12 +668,6 @@ def build_index():
           <a href="mailto:{EMAIL}" class="contact-detail" itemprop="email" content="{EMAIL}">
             <span class="contact-detail__label">E-Mail</span><span class="contact-detail__val">{EMAIL}</span>
           </a>
-          <a href="tel:{PHONE_RAW}" class="contact-detail" itemprop="telephone" content="{PHONE_RAW}">
-            <span class="contact-detail__label">Telefon</span><span class="contact-detail__val">{PHONE_HUMAN}</span>
-          </a>
-          <a href="tel:{PHONE2_RAW}" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span><span class="contact-detail__val">{PHONE2_HUMAN}</span>
-          </a>
           <div class="contact-detail">
             <span class="contact-detail__label">Einsatzgebiet</span>
             <span class="contact-detail__val" itemprop="areaServed">Deutschlandweit</span>
@@ -764,9 +757,56 @@ def legal_block(h2, paragraphs, items=()):
     return "\n".join(out)
 
 
+def analytics_sections():
+    """Punkty o cookies i analityce — treść zależna od tego, co strona realnie ładuje."""
+    if not _("ANALYTICS"):
+        return legal_block(
+            "4. Cookies",
+            ["Diese Website setzt ausschließlich technisch notwendige Cookies ein, die für ihren Betrieb "
+             "erforderlich sind. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
+             "Analyse-, Tracking- oder Marketing-Dienste setzen wir derzeit nicht ein. Es werden keine "
+             "Nutzungsprofile erstellt und keine Daten zu diesem Zweck an Dritte übermittelt. Eine "
+             "Einwilligung in nicht notwendige Cookies ist deshalb nicht erforderlich."])
+    return "\n".join([
+        legal_block("4. Cookies und Einwilligung",
+                    ["Wir setzen technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich "
+                     "sind. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
+                     "Alle weiteren Dienste — insbesondere die unten genannten Analyse-Dienste — setzen wir "
+                     "ausschließlich nach Ihrer ausdrücklichen Einwilligung ein (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 "
+                     "lit. a DSGVO). Ohne Einwilligung werden diese Dienste nicht geladen.",
+                     "Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen — über den "
+                     "Link „Datenschutz-Einstellungen“ im Seitenfuß."]),
+        legal_block("5. Google Tag Manager und Google-Dienste",
+                    ["Nach Ihrer Einwilligung laden wir den Google Tag Manager (Google Ireland Limited, Gordon "
+                     "House, Barrow Street, Dublin 4, Irland). Der Tag Manager selbst erstellt keine Profile, "
+                     "steuert aber das Laden weiterer Tags.",
+                     f"Über den Tag Manager werden folgende Dienste ausgespielt: {C('gtm_services')}",
+                     "Eine Übermittlung personenbezogener Daten in die USA kann nicht ausgeschlossen werden. "
+                     "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und Art. 49 Abs. 1 "
+                     "lit. a DSGVO."]),
+        legal_block("6. Albacross",
+                    ["Nach Ihrer Einwilligung laden wir Albacross (Albacross Nordic AB, Schweden). Der Dienst "
+                     "erkennt anhand der IP-Adresse Unternehmen, die unsere Website besuchen, um uns Hinweise auf "
+                     "geschäftliches Interesse zu geben.",
+                     "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Ohne Einwilligung "
+                     "wird der Dienst nicht geladen."]),
+    ])
+
+
+def nr(title):
+    """Numeracja punktów Datenschutz — przesuwa się, gdy analityki nie ma."""
+    order = ["Eingebettete Videos", "Schriftarten", "Barrierefreiheit-Einstellungen", "Ihre Rechte"]
+    start = 7 if _("ANALYTICS") else 5
+    return f"{start + order.index(title)}. {title}"
+
+
 def editorial_note(text):
     """Notatka redakcyjna — znika, gdy wszystkie dane rejestrowe są uzupełnione."""
-    if all(v.strip() for v in _("COMPANY").values()):
+    required = dict(_("COMPANY"))
+    if not _("ANALYTICS"):
+        # bez analityki lista usług GTM nie jest do niczego potrzebna
+        required.pop("gtm_services", None)
+    if all(v.strip() for v in required.values()):
         return ""
     return ('        <p class="body-text" style="margin-top:var(--s7); padding:var(--s4) var(--s5); '
             'background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px;">'
@@ -779,7 +819,7 @@ def C(field):
 
 
 def build_legal_pages(write):
-    EMAIL, PHONE_HUMAN, DOMAIN = _("EMAIL"), _("PHONE_HUMAN"), _("DOMAIN")
+    EMAIL, DOMAIN = _("EMAIL"), _("DOMAIN")
 
     # ── Impressum (§ 5 DDG) ───────────────────────────────────────────
     address = " · ".join(x for x in [C("street"), C("postcode_city"), C("country")]
@@ -794,7 +834,7 @@ def build_legal_pages(write):
         legal_block("Kontakt",
                     [f"E-Mail: <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); text-decoration:underline; "
                      f"text-underline-offset:3px;\">{EMAIL}</a>",
-                     f"Telefon: {PHONE_HUMAN}"]),
+                     "Wir antworten in der Regel innerhalb eines Werktags."]),
         legal_block("Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
                     [C("content_responsible")]),
         legal_block("Verbraucherstreitbeilegung",
@@ -833,7 +873,7 @@ def build_legal_pages(write):
                      f"<a href=\"impressum.html\" style=\"color:var(--text); text-decoration:underline; "
                      f"text-underline-offset:3px;\">Impressum</a>).",
                      f"Kontakt: <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); text-decoration:underline; "
-                     f"text-underline-offset:3px;\">{EMAIL}</a>, Telefon {PHONE_HUMAN}"]),
+                     f"text-underline-offset:3px;\">{EMAIL}</a>"]),
         legal_block("2. Hosting und Server-Logfiles",
                     ["Beim Aufruf dieser Website erhebt der Hosting-Anbieter automatisch Informationen, die Ihr "
                      "Browser übermittelt (Server-Logfiles). Dazu gehören insbesondere:"],
@@ -857,42 +897,21 @@ def build_legal_pages(write):
                      f"Die Übermittlung des Formulars erfolgt über den Dienstleister Formspree "
                      f"(Formspree, Inc., USA). Dabei werden die von Ihnen eingegebenen Daten an dessen Server "
                      f"übertragen. {C('formspree_note')}"]),
-        legal_block("4. Cookies und Einwilligung",
-                    ["Wir setzen technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich "
-                     "sind. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
-                     "Alle weiteren Dienste — insbesondere die unten genannten Analyse-Dienste — setzen wir "
-                     "ausschließlich nach Ihrer ausdrücklichen Einwilligung ein (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 "
-                     "lit. a DSGVO). Ohne Einwilligung werden diese Dienste nicht geladen.",
-                     "Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen — über den "
-                     "Link „Datenschutz-Einstellungen“ im Seitenfuß."]),
-        legal_block("5. Google Tag Manager und Google-Dienste",
-                    ["Nach Ihrer Einwilligung laden wir den Google Tag Manager (Google Ireland Limited, Gordon "
-                     "House, Barrow Street, Dublin 4, Irland). Der Tag Manager selbst erstellt keine Profile, "
-                     "steuert aber das Laden weiterer Tags.",
-                     f"Über den Tag Manager werden folgende Dienste ausgespielt: {C('gtm_services')}",
-                     "Eine Übermittlung personenbezogener Daten in die USA kann nicht ausgeschlossen werden. "
-                     "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und Art. 49 Abs. 1 "
-                     "lit. a DSGVO."]),
-        legal_block("6. Albacross",
-                    ["Nach Ihrer Einwilligung laden wir Albacross (Albacross Nordic AB, Schweden). Der Dienst "
-                     "erkennt anhand der IP-Adresse Unternehmen, die unsere Website besuchen, um uns Hinweise auf "
-                     "geschäftliches Interesse zu geben.",
-                     "Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Ohne Einwilligung "
-                     "wird der Dienst nicht geladen."]),
-        legal_block("7. Eingebettete Videos",
+        analytics_sections(),
+        legal_block(nr("Eingebettete Videos"),
                     ["Die auf dieser Website eingebundenen Videos werden direkt von unserem eigenen Server "
                      "ausgeliefert. Es findet keine Einbindung von YouTube, Vimeo oder vergleichbaren Diensten "
                      "statt, sodass beim Abspielen keine Daten an Dritte übertragen werden."]),
-        legal_block("8. Schriftarten",
+        legal_block(nr("Schriftarten"),
                     ["Die verwendete Schriftart „Inter“ wird ausschließlich von unserem eigenen Server "
                      "ausgeliefert. Es besteht keine Einbindung von Google Fonts, sodass beim Aufruf der Seite "
                      "keine Verbindung zu Servern von Google aufgebaut und keine IP-Adresse an Google "
                      "übertragen wird."]),
-        legal_block("9. Barrierefreiheit-Einstellungen",
+        legal_block(nr("Barrierefreiheit-Einstellungen"),
                     ["Die von Ihnen im Barrierefreiheit-Panel gewählten Einstellungen (Textgröße, Darstellung, "
                      "Kontrast, Animationen) werden ausschließlich lokal in Ihrem Browser gespeichert und nicht an "
                      "uns übertragen."]),
-        legal_block("10. Ihre Rechte",
+        legal_block(nr("Ihre Rechte"),
                     ["Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), "
                      "Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), "
                      "Datenübertragbarkeit (Art. 20 DSGVO) sowie ein Widerspruchsrecht (Art. 21 DSGVO).",
@@ -945,7 +964,7 @@ def build_legal_pages(write):
                     [f"Ihnen sind Barrieren aufgefallen oder Sie benötigen Informationen in einem anderen Format? "
                      f"Schreiben Sie uns an <a href=\"mailto:{EMAIL}\" style=\"color:var(--text); "
                      f"text-decoration:underline; text-underline-offset:3px;\">{EMAIL}</a> oder rufen Sie an unter "
-                     f"{PHONE_HUMAN}. Wir antworten innerhalb eines Werktags und stellen Ihnen die gewünschten "
+                     f"Wir antworten innerhalb eines Werktags und stellen Ihnen die gewünschten "
                      f"Inhalte auf einem für Sie zugänglichen Weg zur Verfügung."]),
         legal_block("Durchsetzungsverfahren",
                     [f"Wenn Sie mit unserer Antwort nicht zufrieden sind, können Sie sich an die zuständige "

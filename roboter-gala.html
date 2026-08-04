@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <!-- Einwilligung (TDDDG/DSGVO): Analyse-Tags laden erst nach Zustimmung -->
-  <script>window.dataLayer=window.dataLayer||[];window.__gtmId='GTM-MR7R7CJ3';window.__albacrossId='89159321';</script>
-  <script src="consent.js" defer></script>
+  <!-- Keine Analyse-Dienste eingebunden: Diese Seite setzt ausschließlich
+       technisch notwendige Cookies, eine Einwilligung ist nicht erforderlich. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roboter für Galas — humanoiden Roboter mieten | 33bots</title>
@@ -44,8 +43,7 @@
     "@type": "Organization",
     "name": "33bots",
     "url": "https://33bots.de/",
-    "email": "kontakt@33bots.de",
-    "telephone": "+48 531 408 004"
+    "email": "kontakt@33bots.de"
   },
   "areaServed": {
     "@type": "Country",
@@ -449,14 +447,6 @@
             <span class="contact-detail__label">E-Mail</span>
             <span class="contact-detail__val">kontakt@33bots.de</span>
           </a>
-          <a href="tel:+48531408004" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">+48 531 408 004</span>
-          </a>
-          <a href="tel:+48601499947" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">+48 601 499 947</span>
-          </a>
           <div class="contact-detail">
             <span class="contact-detail__label">Einsatzgebiet</span>
             <span class="contact-detail__val">Deutschlandweit — Anfahrt inklusive</span>
@@ -549,7 +539,6 @@
         <span class="logo">33BOTS</span>
         <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Humanoide Roboter mieten</a> · Deutschlandweit</p>
         <div class="footer__nap">
-          <a href="tel:+48531408004" class="footer__nap-item">+48 531 408 004</a>
           <a href="mailto:kontakt@33bots.de" class="footer__nap-item">kontakt@33bots.de</a>
         </div>
       </div>
@@ -564,7 +553,6 @@
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
         <a href="barrierefreiheit.html">Barrierefreiheit</a>
-        <button type="button" class="footer__consent-link" id="consentReopen">Datenschutz-Einstellungen</button>
       </div>
       <div class="footer__right">
         <div class="footer__socials">
@@ -578,36 +566,6 @@
     </div>
   </footer>
 
-  <div class="consent" id="consentBanner" role="dialog" aria-modal="false"
-       aria-labelledby="consentTitle" aria-describedby="consentText" hidden>
-    <div class="consent__box">
-      <h2 class="consent__title" id="consentTitle">Datenschutz-Einstellungen</h2>
-      <p class="consent__text" id="consentText">
-        Wir verwenden technisch notwendige Cookies, damit diese Website funktioniert. Zusätzlich möchten wir
-        Analyse-Dienste (Google Tag Manager, Albacross) einsetzen, um die Nutzung der Website auszuwerten.
-        Diese setzen wir nur mit Ihrer Einwilligung ein. Sie können Ihre Entscheidung jederzeit über den Link
-        „Datenschutz-Einstellungen“ im Seitenfuß ändern.
-        <a href="datenschutz.html" class="consent__link">Datenschutzerklärung</a> ·
-        <a href="impressum.html" class="consent__link">Impressum</a>
-      </p>
-      <div class="consent__options" id="consentOptions" hidden>
-        <label class="consent__opt">
-          <input type="checkbox" checked disabled /> <span><strong>Notwendig</strong> — für den Betrieb der Website
-          erforderlich, immer aktiv.</span>
-        </label>
-        <label class="consent__opt">
-          <input type="checkbox" id="consentAnalytics" /> <span><strong>Analyse</strong> — Google Tag Manager und
-          Albacross zur Auswertung der Websitenutzung.</span>
-        </label>
-      </div>
-      <div class="consent__actions">
-        <button type="button" class="consent__btn consent__btn--primary" id="consentAcceptAll">Alle akzeptieren</button>
-        <button type="button" class="consent__btn" id="consentRejectAll">Nur notwendige</button>
-        <button type="button" class="consent__btn consent__btn--ghost" id="consentSettings">Einstellungen</button>
-        <button type="button" class="consent__btn consent__btn--primary" id="consentSave" hidden>Auswahl speichern</button>
-      </div>
-    </div>
-  </div>
 
   <button type="button" class="a11y-toggle" id="a11yToggle"
           aria-expanded="false" aria-controls="a11yPanel" aria-label="Barrierefreiheit-Einstellungen öffnen">

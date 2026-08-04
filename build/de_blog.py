@@ -964,7 +964,7 @@ Firmenfeiern in ganz Deutschland.
 - Optional: Roboterhund für {_("DOG_PRICE")} pro Veranstaltungstag
 - Ab zwei Veranstaltungstagen 15 % Rabatt auf jeden Tag
 - Terminreservierung kostenlos, keine Anzahlung, Rechnung erst nach der Veranstaltung
-- Kontakt: {_("EMAIL")}, {_("PHONE_HUMAN")}
+- Kontakt: {_("EMAIL")}
 
 ## Wichtige Seiten
 - Startseite: {DOMAIN}/

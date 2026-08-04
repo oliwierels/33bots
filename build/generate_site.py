@@ -35,12 +35,18 @@ OUT = BASE
 # ── Konfiguracja rynku DE ─────────────────────────────────────────────
 DOMAIN = "https://33bots.de"
 EMAIL = "kontakt@33bots.de"
-PHONE_HUMAN = "+48 531 408 004"
-PHONE_RAW = "+48531408004"
-PHONE2_HUMAN = "+48 601 499 947"
-PHONE2_RAW = "+48601499947"
-GTM_ID = "GTM-MR7R7CJ3"
-ALBACROSS_ID = "89159321"
+# Kontakt wyłącznie mailowy. Numer telefonu nie jest w Impressum obowiązkowy,
+# o ile dostępny jest drugi kanał szybkiej komunikacji — tu formularz kontaktowy
+# na każdej stronie (TSUE C-298/07, Deutsche Internet Versicherung).
+# Analityka wyłączona do czasu założenia własnego kontenera dla domeny .de.
+# Kontener polskiej strony celowo nie jest tu wpisany: mieszałby dane obu rynków,
+# a jego tagi nie są ujawnione w niemieckiej Datenschutzerklärung, czego wymaga
+# art. 13 ust. 1 lit. e RODO. Po wpisaniu ID wraca baner zgody i sekcje o
+# analityce w Datenschutz — bez ID strona nie ustawia żadnych cookies poza
+# niezbędnymi, więc zgoda nie jest w ogóle potrzebna.
+GTM_ID = ""
+ALBACROSS_ID = ""
+ANALYTICS = bool(GTM_ID or ALBACROSS_ID)
 LASTMOD = "2026-08-03"
 
 # ── Dane rejestrowe do Impressum i Datenschutz ────────────────────────
@@ -220,6 +226,9 @@ def gtm_head():
     Dlatego brak tu bezwarunkowego wstrzyknięcia GTM i brak wariantu <noscript>
     (ten ładowałby się bez zgody). Ładowanie realizuje consent.js.
     """
+    if not ANALYTICS:
+        return ("  <!-- Keine Analyse-Dienste eingebunden: Diese Seite setzt ausschließlich\n"
+                "       technisch notwendige Cookies, eine Einwilligung ist nicht erforderlich. -->")
     return (f"""  <!-- Einwilligung (TDDDG/DSGVO): Analyse-Tags laden erst nach Zustimmung -->
   <script>window.dataLayer=window.dataLayer||[];window.__gtmId={GTM_ID!r};window.__albacrossId={ALBACROSS_ID!r};</script>
   <script src="consent.js" defer></script>""")
@@ -355,14 +364,6 @@ def contact_section(h2, area="Deutschlandweit — Anfahrt inklusive", location_p
             <span class="contact-detail__label">E-Mail</span>
             <span class="contact-detail__val">{EMAIL}</span>
           </a>
-          <a href="tel:{PHONE_RAW}" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">{PHONE_HUMAN}</span>
-          </a>
-          <a href="tel:{PHONE2_RAW}" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">{PHONE2_HUMAN}</span>
-          </a>
           <div class="contact-detail">
             <span class="contact-detail__label">Einsatzgebiet</span>
             <span class="contact-detail__val">{area}</span>
@@ -378,6 +379,8 @@ def contact_section(h2, area="Deutschlandweit — Anfahrt inklusive", location_p
 
 
 def footer_html(home="index.html"):
+    consent_link = ('\n        <button type="button" class="footer__consent-link" '
+                    'id="consentReopen">Datenschutz-Einstellungen</button>') if ANALYTICS else ""
     return f"""  </main>
   <footer class="footer">
     <div class="footer__inner">
@@ -385,7 +388,6 @@ def footer_html(home="index.html"):
         <span class="logo">33BOTS</span>
         <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Humanoide Roboter mieten</a> · Deutschlandweit</p>
         <div class="footer__nap">
-          <a href="tel:{PHONE_RAW}" class="footer__nap-item">{PHONE_HUMAN}</a>
           <a href="mailto:{EMAIL}" class="footer__nap-item">{EMAIL}</a>
         </div>
       </div>
@@ -399,8 +401,7 @@ def footer_html(home="index.html"):
         <a href="#kontakt">Kontakt</a>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="barrierefreiheit.html">Barrierefreiheit</a>
-        <button type="button" class="footer__consent-link" id="consentReopen">Datenschutz-Einstellungen</button>
+        <a href="barrierefreiheit.html">Barrierefreiheit</a>{consent_link}
       </div>
       <div class="footer__right">
         <div class="footer__socials">
@@ -414,7 +415,7 @@ def footer_html(home="index.html"):
     </div>
   </footer>
 
-{consent_banner()}
+{consent_banner() if ANALYTICS else ""}
 {a11y_widget()}
   <div class="sticky-cta">
     <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
@@ -722,7 +723,7 @@ def build_seo_page(p):
         "image": f"{DOMAIN}/robot-g1.jpg",
         "serviceType": "Vermietung humanoider Roboter für Events",
         "provider": {"@type": "Organization", "name": "33bots", "url": f"{DOMAIN}/",
-                     "email": EMAIL, "telephone": PHONE_HUMAN},
+                     "email": EMAIL},
         "areaServed": {"@type": "Country", "name": "Deutschland"},
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR",
                    "lowPrice": PRICE_LOW, "highPrice": PRICE_HIGH,
@@ -936,7 +937,7 @@ def build_city_page(pl_file):
         "url": url, "image": f"{DOMAIN}/robot-g1.jpg",
         "serviceType": "Vermietung humanoider Roboter für Events",
         "provider": {"@type": "LocalBusiness", "name": "33bots – Humanoide Roboter mieten",
-                     "url": DOMAIN, "telephone": PHONE_RAW, "email": EMAIL,
+                     "url": DOMAIN, "email": EMAIL,
                      "sameAs": ["https://www.facebook.com/33bots", "https://www.instagram.com/33bots_/",
                                 "https://www.linkedin.com/company/33bots", "https://www.tiktok.com/@aimforum"]},
         "areaServed": {"@type": "City", "name": city},
@@ -1605,7 +1606,8 @@ def main():
     write("a11y.css", build_a11y_css())
     write("gallery.css", build_gallery_css())
     write("a11y.js", build_a11y_js())
-    write("consent.js", build_consent_js())
+    if ANALYTICS:
+        write("consent.js", build_consent_js())
 
     # 98 podstron SEO
     for p in de_structure.PAGES:
@@ -1642,7 +1644,13 @@ def main():
     html_count = len([f for f in WRITTEN if f.endswith(".html")])
     print(f"Wygenerowano {len(WRITTEN)} plików w {OUT}/ (w tym {html_count} stron HTML)")
 
-    empty = [k for k, v in COMPANY.items() if not v.strip()]
+    required = dict(COMPANY)
+    if not ANALYTICS:
+        required.pop("gtm_services", None)
+    empty = [k for k, v in required.items() if not v.strip()]
+    if not ANALYTICS:
+        print("\nAnalityka wyłączona (GTM_ID i ALBACROSS_ID puste) — strona nie ustawia\n"
+              "żadnych cookies poza niezbędnymi, baner zgody nie jest renderowany.")
     if empty:
         print()
         print("!" * 72)

@@ -21,7 +21,6 @@ Unterverzeichnis der polnischen Seite.
   gallery.css         Fotogalerie der Realisierungen
   main.js             Navigation, FAQ, Kontaktformular
   a11y.js             Logik des Barrierefreiheit-Panels
-  consent.js          Cookie-Einwilligung, lädt Analyse-Tags erst nach Opt-in
   fonts/              Inter, lokal gehostet (kein Google Fonts)
   og/                 Open-Graph-Bilder je Seite
   video/              Videos der Roboter-Einsätze
@@ -57,8 +56,8 @@ cd build && python3 generate_site.py
 ```
 
 Der Generator schreibt alle HTML-Dateien sowie `a11y.css`, `gallery.css`,
-`a11y.js`, `consent.js`, `robots.txt`, `sitemap.xml`, `feed.xml`, `llms.txt`
-und `_redirects` ins Wurzelverzeichnis. Bilder, Videos, Schriften und
+`a11y.js`, `robots.txt`, `sitemap.xml`, `feed.xml`, `llms.txt` und `_redirects`
+ins Wurzelverzeichnis. Bilder, Videos, Schriften und
 `style.css` liegen dort fest und werden nur auf Vollständigkeit geprüft.
 
 Texte werden **nicht** in den HTML-Dateien geändert, sondern in den Modulen
@@ -69,9 +68,14 @@ stehen oben in `build/generate_site.py`.
 
 ## Rechtliche Konformität
 
-- **Cookies opt-in** (§ 25 TDDDG, Art. 6 DSGVO): Google Tag Manager und
-  Albacross laden erst nach ausdrücklicher Einwilligung. Kein GTM-`noscript`,
-  keine Preconnects zu Analyse-Diensten.
+- **Keine Analyse-Dienste aktiv**: Die Seite setzt ausschließlich technisch
+  notwendige Cookies. Es werden keine Nutzungsprofile erstellt und keine Daten
+  an Dritte übermittelt — eine Cookie-Einwilligung ist daher nicht erforderlich
+  und es wird kein Banner ausgespielt.
+- **Einwilligung vorbereitet** (§ 25 TDDDG, Art. 6 DSGVO): Sobald in
+  `build/generate_site.py` eine `GTM_ID` oder `ALBACROSS_ID` eingetragen wird,
+  erscheinen automatisch der Opt-in-Banner, `consent.js` und die passenden
+  Abschnitte der Datenschutzerklärung. Tags laden dann erst nach Zustimmung.
 - **Inter lokal gehostet** statt Google Fonts (LG München I, 3 O 17493/20).
   Beim Seitenaufruf werden keinerlei Verbindungen zu Dritten aufgebaut.
 - **Impressum** (§ 5 DDG), **Datenschutzerklärung** (Art. 13 DSGVO),
@@ -80,58 +84,60 @@ stehen oben in `build/generate_site.py`.
   Kontrast und das Abschalten von Animationen; Sprunglink zum Hauptinhalt,
   sichtbarer Tastaturfokus, Unterstützung von `prefers-reduced-motion`.
 
-### Vor dem Livegang zu erledigen
+### Status: bereit zum Deployment
 
-**1. Google-Tag-Manager-Dienste — letzte offene Angabe**
+Alle Pflichtangaben sind hinterlegt, es sind keine Platzhalter mehr offen.
+Der Build läuft ohne Warnung durch.
 
-Im Block `COMPANY` oben in `build/generate_site.py` fehlt noch ein Feld:
+| Punkt | Stand |
+|---|---|
+| Impressum § 5 DDG | vollständig |
+| Datenschutzerklärung Art. 13 DSGVO | vollständig, bildet den technischen Stand ab |
+| Erklärung zur Barrierefreiheit (BFSG) | vollständig |
+| Cookies / Einwilligung | keine nicht notwendigen Cookies, kein Banner nötig |
+| Verbindungen zu Dritten | keine |
+| Kontakt | `kontakt@33bots.de` + Kontaktformular auf jeder Seite |
+
+### Deployment
+
+Alles im Wurzelverzeichnis **außer `build/`** wird ausgeliefert:
+
+```
+*.html  *.css  *.js  fonts/  og/  video/  *.jpg  *.webp  *.png  *.svg
+robots.txt  sitemap.xml  feed.xml  llms.txt  _redirects
+<indexnow-key>.txt
+```
+
+Bei Netlify genügt es, den Branch zu verbinden — `_redirects` erzwingt die
+Weiterleitung von `www` und `http` auf `https://33bots.de`. Ein Build-Command
+wird nicht benötigt, die Seite ist statisch.
+
+### Optional, nach dem Livegang
+
+**Telefonnummer.** Es ist bewusst keine hinterlegt. Nach § 5 DDG ist das
+zulässig, solange ein zweiter Kanal für schnelle Kommunikation existiert — das
+ist hier das Kontaktformular auf jeder Seite (EuGH C-298/07, Deutsche Internet
+Versicherung). Soll doch eine Nummer erscheinen, muss sie in `contact_section`,
+im Footer-NAP und in den JSON-LD-Blöcken ergänzt werden.
+
+**Umsatzsteuer-Identifikationsnummer.** Im Impressum steht `PL5253090645`. Das
+ist die korrekte Form der NIP für innergemeinschaftliche Umsätze — **sofern
+eine Registrierung als EU-Umsatzsteuerzahler (VAT-UE) besteht.** Falls nicht,
+in `COMPANY["vat_id"]` auf `Steuernummer (NIP): 5253090645` ändern. Prüfbar
+über <https://ec.europa.eu/taxation_customs/vies/>.
+
+**Analytics aktivieren.** Einen eigenen GTM-Container für die .de-Domain
+anlegen (nicht den polnischen verwenden — sonst vermischen sich die Daten
+beider Märkte und die ausgespielten Tags stehen nicht in der deutschen
+Datenschutzerklärung). Dann in `build/generate_site.py`:
 
 ```python
-"gtm_services": "",   # z. B. "Google Analytics 4" oder "keine weiteren Dienste"
+GTM_ID = "GTM-XXXXXXX"
+COMPANY["gtm_services"] = "Google Analytics 4"   # tatsächlich ausgespielte Dienste
 ```
 
-Die DSGVO verlangt, die Empfänger personenbezogener Daten zu benennen. Prüfen
-Sie im GTM-Container, welche Tags tatsächlich ausgespielt werden, tragen Sie
-diese ein und bauen Sie neu:
-
-```bash
-cd build && python3 generate_site.py
-```
-
-Sobald das Feld gefüllt ist, verschwinden der gelbe Marker auf der Seite, die
-Redaktionshinweise und die Build-Warnung automatisch.
-
-Alle übrigen Pflichtangaben sind hinterlegt: Firmierung, Anschrift, Vertretung,
-CEIDG-Eintrag mit REGON, Steuernummer, inhaltlich Verantwortlicher,
-Datenschutz-Aufsichtsbehörde (UODO) und Marktüberwachungsstelle (MLBF).
-
-**2. Umsatzsteuer-Identifikationsnummer prüfen**
-
-Im Impressum steht `PL5253090645` als USt-IdNr. Das ist die korrekte Form der
-NIP für innergemeinschaftliche Umsätze — **sofern eine Registrierung als
-EU-Umsatzsteuerzahler (VAT-UE) besteht.** Ist das nicht der Fall, darf die
-Nummer nicht als USt-IdNr. geführt werden; dann in `COMPANY["vat_id"]` auf
-`Steuernummer (NIP): 5253090645` ändern.
-
-Prüfbar über das VIES-Portal der EU-Kommission:
-<https://ec.europa.eu/taxation_customs/vies/>
-
-Die Datenschutzerklärung bildet den technischen Stand dieser Website korrekt
-ab, sollte aber vor der Veröffentlichung juristisch gegengelesen werden.
-
-**3. Telefonnummern**
-
-Die E-Mail-Adresse ist auf `kontakt@33bots.de` gesetzt. Die Rufnummern sind
-weiterhin die polnischen (+48) — sie funktionieren, wirken auf einer .de-Domain
-aber ungewohnt. Anpassung in `build/generate_site.py`, Konstanten
-`PHONE_HUMAN`, `PHONE_RAW`, `PHONE2_HUMAN`, `PHONE2_RAW`.
-
-**4. Google Tag Manager**
-
-Derzeit derselbe Container wie die polnische Seite (`GTM_ID`). Für eine saubere
-Auswertung einen eigenen Container anlegen und die ID eintragen. Läuft der
-deutsche Traffic weiter über den polnischen Container, vermischen sich die
-Daten beider Märkte.
+Nach dem Neubau erscheinen Consent-Banner und die Analyse-Abschnitte der
+Datenschutzerklärung automatisch.
 
 ## Nach dem Deployment
 
