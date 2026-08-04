@@ -94,6 +94,45 @@ GUIDE_LABELS = {
     "blog-robot-z-ai-rozmawiajacy-po-polsku.html": "KI-Roboter, der Deutsch spricht →",
 }
 
+# ── Zdjęcia z realizacji ──────────────────────────────────────────────
+# Ten sam zestaw plików co w serwisie PL (index-redesign.html), przeniesiony
+# do layoutu produkcyjnego. Kolejność dobrana tak, by od razu było widać skalę
+# i różnorodność wydarzeń: gale, summity, ulica, plener, noc, deszcz.
+GALLERY = [
+    ("realizacja-women-in-tech-tlum", "wide", "Alle zücken ihr Handy",
+     "Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys"),
+    ("realizacja-gala-czerwony-dywan", "", "Roter Teppich",
+     "Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala"),
+    ("realizacja-women-in-tech-wybieg", "", "Women in Tech Summit",
+     "Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum"),
+    ("realizacja-lexai-starowka", "wide", "Die Straße bleibt stehen",
+     "Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn"),
+    ("realizacja-gala-detal", "narrow", "Bis ins Detail",
+     "Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking"),
+    ("realizacja-gala-zdjecia-gosci", "wide", "Schlange am Fotobereich",
+     "Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand"),
+    ("realizacja-robot-gala-dresden", "", "Gala in Dresden",
+     "Humanoider Roboter Unitree G1 bei einer Gala in Dresden zwischen den Gästen"),
+    ("realizacja-gala-palac", "", "Ballsaal",
+     "Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals"),
+    ("realizacja-gala-wsrod-gosci", "wide", "Mitten unter den Gästen",
+     "Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern"),
+    ("realizacja-event-nad-woda", "", "Outdoor am Wasser",
+     "Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen"),
+    ("realizacja-nocny-pokaz", "narrow", "Nachtshows",
+     "Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude"),
+    ("realizacja-lexai-ulica", "", "Unterwegs für LEX AI",
+     "Humanoider Roboter für LEX AI mit Aktentasche in der Altstadtgasse"),
+    ("realizacja-spotkanie-biznesowe", "", "Business-Termin",
+     "Humanoider Roboter im Firmenshirt auf der Terrasse bei einem Geschäftstermin"),
+    ("robot-pies-branding-klienta", "", "Roboterhund im Kunden-Branding",
+     "Roboterhund im Firmenshirt des Kunden bei einer Promotionaktion im Autohaus"),
+    ("realizacja-robot-w-deszczu", "narrow", "Auch bei Regen",
+     "Humanoider Roboter im roten Shirt hält bei Regen einen Regenschirm"),
+    ("realizacja-robot-gala-portret", "", "Porträt",
+     "Porträtaufnahme des humanoiden Roboters Unitree G1 im Galaoutfit"),
+]
+
 H3 = 'style="font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin:var(--s6) 0 var(--s2); color:var(--text);"'
 CHIP = ('padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; '
         'font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s')
@@ -447,6 +486,7 @@ def head_assets(extra_style=""):
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css?v=1" />
   <link rel="stylesheet" href="a11y.css?v=1" />
+  <link rel="stylesheet" href="gallery.css?v=1" />
   <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
        consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
   <link rel="stylesheet" href="fonts/inter.css" />{extra_style}"""
@@ -531,6 +571,42 @@ def render_faq(faqs):
                    f'        <div class="faq-a" hidden><p>{a}</p></div>\n'
                    '      </div>')
     return "\n".join(out)
+
+
+def gallery_items(limit=None):
+    items = GALLERY[:limit] if limit else GALLERY
+    out = []
+    for slug, mod, cap, alt in items:
+        cls = f"shot shot--{mod}" if mod else "shot"
+        out.append(f"""        <figure class="{cls}">
+          <picture>
+            <source srcset="{slug}.webp" type="image/webp" />
+            <img src="{slug}.jpg" alt="{alt}" loading="lazy" decoding="async" class="shot__img" />
+          </picture>
+          <figcaption class="shot__cap">{cap}</figcaption>
+        </figure>""")
+    return "\n".join(out)
+
+
+def gallery_section(limit=None, tag="Realisierungen",
+                    heading="Aufnahmen aus<br />echten Einsätzen",
+                    lead=None, more_link=True):
+    lead_html = f'\n      <p class="shots__lead">{lead}</p>' if lead else ""
+    more = (f'\n      <div class="shots__more">\n'
+            f'        <a href="{de("realizacje-wideo.html")}" class="btn-ghost" style="display:inline-flex;">'
+            f'Alle Referenzen ansehen →</a>\n      </div>' if more_link else "")
+    return f"""  <section class="section shots-section" id="realisierungen">
+    <div class="section-header">
+      <span class="tag">{tag}</span>
+      <h2 class="section-title">{heading}</h2>
+    </div>
+    <div class="shots-wrap">{lead_html}
+      <div class="shots">
+{gallery_items(limit)}
+      </div>{more}
+    </div>
+  </section>
+"""
 
 
 def render_city_chips():
@@ -729,6 +805,19 @@ def build_seo_page(p):
       <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s4);">Leitfäden vor der Buchung</p>
       <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--s4);">
 {render_guides(PLGEN.GUIDES[p.get('guides', 'default')])}
+      </div>
+    </div>
+  </section>
+
+  <!-- REALISIERUNGEN -->
+  <section class="section" style="padding-top:0;">
+    <div class="shots-wrap">
+      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Aus echten Einsätzen</p>
+      <div class="shots shots--strip">
+{gallery_items(6)}
+      </div>
+      <div class="shots__more">
+        <a href="{de('realizacje-wideo.html')}" class="btn-ghost" style="display:inline-flex;">Alle Referenzen ansehen →</a>
       </div>
     </div>
   </section>
@@ -970,6 +1059,9 @@ def build_city_page(pl_file):
   <section class="section" style="padding-top:0;">
     <div style="max-width:860px; margin:0 auto;">
       <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Erprobt bei großen Veranstaltungen</p>
+      <div class="shots shots--strip" style="margin-bottom:var(--s4);">
+{gallery_items(6)}
+      </div>
       <div style="display:flex; flex-wrap:wrap; gap:var(--s3);">
         <a href="{de('case-study-wallstreet.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">WallStreet 30 · 2 253 Teilnehmende →</a>
         <a href="{de('case-study-women-in-tech.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">Women in Tech Summit · ~14 000 →</a>
@@ -1105,6 +1197,69 @@ def build_main_js():
             raise SystemExit(f"main.js: brak fragmentu do tłumaczenia: {old}")
         src = src.replace(old, new)
     return src
+
+
+def build_gallery_css():
+    """Galeria zdjęć z realizacji — mozaika w tokenach style.css."""
+    return """/* ─────────────────────────────────────────────────────────────
+   Realisierungen — Fotogalerie
+   Nutzt ausschliesslich die Design-Tokens aus style.css, damit die
+   Optik mit dem uebrigen Layout identisch bleibt.
+   ───────────────────────────────────────────────────────────── */
+
+.shots-wrap{max-width:1200px;margin:0 auto;padding:0 var(--s5);}
+.shots__lead{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:660px;
+  margin:0 auto var(--s6);text-align:center;}
+
+.shots{display:grid;gap:var(--s3);
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  grid-auto-flow:dense;}
+
+.shot{position:relative;margin:0;overflow:hidden;border-radius:14px;
+  border:1px solid var(--border-mid);background:var(--surface-2);
+  aspect-ratio:4/5;}
+.shot--wide{grid-column:span 2;aspect-ratio:16/10;}
+.shot--narrow{aspect-ratio:3/4;}
+
+.shot__img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;}
+.shot:hover .shot__img,.shot:focus-within .shot__img{transform:scale(1.04);}
+
+.shot__cap{position:absolute;left:0;right:0;bottom:0;
+  padding:28px 14px 12px;font-size:.82rem;font-weight:600;color:#fff;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));
+  letter-spacing:-.01em;}
+
+.shots__more{display:flex;justify-content:center;margin-top:var(--s6);}
+
+/* Helle Darstellung: Rahmen etwas kraeftiger, damit die Kacheln stehen */
+html[data-a11y-theme="light"] .shot{border-color:#c2c2cc;}
+
+/* Hoher Kontrast: Bildunterschriften ohne Verlauf, voll deckend */
+html[data-a11y-contrast="high"] .shot__cap{background:#000;padding:10px 14px;}
+html[data-a11y-theme="light"][data-a11y-contrast="high"] .shot__cap{
+  background:#000;color:#fff;}
+
+/* Animationen aus: kein Zoom beim Hover */
+html[data-a11y-motion="off"] .shot__img{transition:none;}
+html[data-a11y-motion="off"] .shot:hover .shot__img{transform:none;}
+
+/* Kompakter Streifen auf Stadt- und Unterseiten */
+.shots--strip{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s2);}
+.shots--strip .shot{aspect-ratio:1/1;}
+.shots--strip .shot--wide{grid-column:span 2;aspect-ratio:2/1;}
+.shots--strip .shot--narrow{aspect-ratio:1/1;}
+.shots--strip .shot__cap{font-size:.72rem;padding:22px 10px 9px;}
+
+@media (max-width:900px){
+  .shots{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+}
+@media (max-width:560px){
+  .shots{grid-template-columns:repeat(2,1fr);}
+  .shot--wide{grid-column:span 2;}
+  .shots-wrap{padding:0 var(--s4);}
+}
+"""
 
 
 def build_a11y_css():
@@ -1444,6 +1599,7 @@ def main():
     copy_assets()
     write("main.js", build_main_js())
     write("a11y.css", build_a11y_css())
+    write("gallery.css", build_gallery_css())
     write("a11y.js", build_a11y_js())
     write("consent.js", build_consent_js())
 

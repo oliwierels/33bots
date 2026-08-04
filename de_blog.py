@@ -797,6 +797,15 @@ def build_article(art):
   </article>
 
   <section class="section" style="padding-top:0;">
+    <div class="shots-wrap" style="max-width:960px;">
+      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Aus echten Einsätzen</p>
+      <div class="shots shots--strip">
+{_("gallery_items")(4)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
     <div style="max-width:760px; margin:0 auto;">
       <div style="padding:var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:16px; text-align:center;">
         <h2 style="font-size:1.3rem; font-weight:700; color:var(--text); margin:0 0 var(--s2);">{art['cta_title']}</h2>
@@ -911,6 +920,8 @@ def build_hub():
 {chr(10).join(cards)}
     </div>
   </section>
+
+{_("gallery_section")(limit=8, tag="Realisierungen", heading="Aus echten<br />Einsätzen", more_link=True)}
 
 {_("contact_section")("Termin für Ihre<br />Veranstaltung sichern.", date_text=True)}
 {_("footer_html")()}"""

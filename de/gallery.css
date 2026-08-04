@@ -1,0 +1,58 @@
+/* ─────────────────────────────────────────────────────────────
+   Realisierungen — Fotogalerie
+   Nutzt ausschliesslich die Design-Tokens aus style.css, damit die
+   Optik mit dem uebrigen Layout identisch bleibt.
+   ───────────────────────────────────────────────────────────── */
+
+.shots-wrap{max-width:1200px;margin:0 auto;padding:0 var(--s5);}
+.shots__lead{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:660px;
+  margin:0 auto var(--s6);text-align:center;}
+
+.shots{display:grid;gap:var(--s3);
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  grid-auto-flow:dense;}
+
+.shot{position:relative;margin:0;overflow:hidden;border-radius:14px;
+  border:1px solid var(--border-mid);background:var(--surface-2);
+  aspect-ratio:4/5;}
+.shot--wide{grid-column:span 2;aspect-ratio:16/10;}
+.shot--narrow{aspect-ratio:3/4;}
+
+.shot__img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;}
+.shot:hover .shot__img,.shot:focus-within .shot__img{transform:scale(1.04);}
+
+.shot__cap{position:absolute;left:0;right:0;bottom:0;
+  padding:28px 14px 12px;font-size:.82rem;font-weight:600;color:#fff;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));
+  letter-spacing:-.01em;}
+
+.shots__more{display:flex;justify-content:center;margin-top:var(--s6);}
+
+/* Helle Darstellung: Rahmen etwas kraeftiger, damit die Kacheln stehen */
+html[data-a11y-theme="light"] .shot{border-color:#c2c2cc;}
+
+/* Hoher Kontrast: Bildunterschriften ohne Verlauf, voll deckend */
+html[data-a11y-contrast="high"] .shot__cap{background:#000;padding:10px 14px;}
+html[data-a11y-theme="light"][data-a11y-contrast="high"] .shot__cap{
+  background:#000;color:#fff;}
+
+/* Animationen aus: kein Zoom beim Hover */
+html[data-a11y-motion="off"] .shot__img{transition:none;}
+html[data-a11y-motion="off"] .shot:hover .shot__img{transform:none;}
+
+/* Kompakter Streifen auf Stadt- und Unterseiten */
+.shots--strip{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s2);}
+.shots--strip .shot{aspect-ratio:1/1;}
+.shots--strip .shot--wide{grid-column:span 2;aspect-ratio:2/1;}
+.shots--strip .shot--narrow{aspect-ratio:1/1;}
+.shots--strip .shot__cap{font-size:.72rem;padding:22px 10px 9px;}
+
+@media (max-width:900px){
+  .shots{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+}
+@media (max-width:560px){
+  .shots{grid-template-columns:repeat(2,1fr);}
+  .shot--wide{grid-column:span 2;}
+  .shots-wrap{padding:0 var(--s4);}
+}

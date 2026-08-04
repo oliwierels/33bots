@@ -20,7 +20,7 @@ def _(name):
 # ── Wspólny szkielet podstrony ────────────────────────────────────────
 def simple_page(out_file, crumb, title, desc, keywords, eyebrow, h1, sub,
                 sections, faqs=None, kontakt_h2="Termin für Ihre<br />Veranstaltung sichern.",
-                schema_type="Service"):
+                schema_type="Service", gallery=True):
     import json
     DOMAIN, H3 = _("DOMAIN"), _("H3")
     url = f"{DOMAIN}/{out_file}"
@@ -62,6 +62,21 @@ def simple_page(out_file, crumb, title, desc, keywords, eyebrow, h1, sub,
 
     ld_html = "\n".join(f'  <script type="application/ld+json">\n{j}\n  </script>\n' for j in ld)
 
+    gallery_block = ""
+    if gallery:
+        gallery_block = f"""  <section class="section" style="padding-top:0;">
+    <div class="shots-wrap">
+      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Aus echten Einsätzen</p>
+      <div class="shots shots--strip">
+{_("gallery_items")(8)}
+      </div>
+      <div class="shots__more">
+        <a href="{de('realizacje-wideo.html')}" class="btn-ghost" style="display:inline-flex;">Alle Referenzen ansehen →</a>
+      </div>
+    </div>
+  </section>
+"""
+
     return f"""<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -96,7 +111,7 @@ def simple_page(out_file, crumb, title, desc, keywords, eyebrow, h1, sub,
   </section>
 
 {sections}
-
+{gallery_block}
   <section class="section" style="padding-block:var(--s6) var(--s4); background:var(--surface-1)">
     <div class="container" style="max-width:1140px; margin-inline:auto; padding-inline:var(--s4)">
       <h2 style="font-size:clamp(1rem,2vw,1.4rem); font-weight:700; margin-bottom:var(--s3); color:var(--text-1)">Roboter mieten in Ihrer Stadt</h2>
@@ -341,7 +356,8 @@ def build_index():
     </div>
   </div>
 
-  <!-- REFERENZEN -->
+{_("gallery_section")(lead="Keine Renderings, keine Studioaufnahmen: Galas, Summits, Straßenaktionen, Outdoor-Events und Nachtshows — Bilder aus Veranstaltungen, die wir tatsächlich betreut haben.")}
+  <!-- VERTRAUEN UNS -->
   <section class="section" id="referenzen" style="padding-top:var(--s8); padding-bottom:var(--s8);">
     <div style="max-width:1000px; margin:0 auto; text-align:center;">
       <h2 style="font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s5);">Vertrauen uns</h2>
@@ -364,11 +380,6 @@ def build_index():
         </a>
       </div>
       <p style="margin-top:var(--s5); color:var(--text-2); font-size:0.95rem; max-width:680px; margin-left:auto; margin-right:auto; line-height:1.7;">Unsere humanoiden Roboter waren unter anderem im Einsatz für die <strong style="color:var(--text);">Perspektywy Foundation</strong> (Veranstalter des Women in Tech Summit — der größten Women-in-Tech-Konferenz Europas), den globalen Logistikkonzern <strong style="color:var(--text);">DSV</strong>, <strong style="color:var(--text);">Cashify</strong> sowie <strong style="color:var(--text);">LEX AI</strong>.</p>
-      <figure style="margin:var(--s7) auto 0; max-width:720px;">
-        <picture><source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
-          <img src="realizacja-robot-gala-dresden.jpg" alt="Humanoider Roboter Unitree G1 bei einer Gala in Dresden" width="720" height="480" loading="lazy" style="width:100%; height:auto; border-radius:16px; border:1px solid var(--border-mid);" /></picture>
-        <figcaption style="margin-top:var(--s2); font-size:0.85rem; color:var(--text-3);">Gala-Einsatz in Dresden — der G1 zwischen den Gästen</figcaption>
-      </figure>
       <div style="display:flex; gap:var(--s5); justify-content:center; flex-wrap:wrap; margin-top:var(--s4);">
         <a href="{de('case-study-lexai.html')}" style="display:inline-flex; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Case Study LEX AI →</a>
         <a href="{de('case-study-wallstreet.html')}" style="display:inline-flex; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Case Study WallStreet 30 →</a>
@@ -1307,7 +1318,17 @@ def build_referenzen():
         </figcaption>
       </figure>""")
 
-    sections = f"""  <section class="section">
+    sections = _("gallery_section")(
+        tag="Fotos",
+        heading="Bilder aus<br />echten Einsätzen",
+        lead="Jede Aufnahme stammt von einer realen Veranstaltung — vom Sektempfang auf dem roten Teppich "
+             "über den Summit mit 14 000 Gästen bis zur Straßenaktion in der Altstadt.",
+        more_link=False)
+    sections += f"""  <section class="section">
+    <div class="section-header">
+      <span class="tag">Videos</span>
+      <h2 class="section-title">Der Roboter<br />in Bewegung</h2>
+    </div>
     <div style="max-width:1100px; margin:0 auto;">
       <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:var(--s5);">
 {chr(10).join(cards)}
@@ -1468,7 +1489,7 @@ def build_case_studies(write):
                        ["Ablauf, Auftrittszeiten, Rolle des Operators, Branding."], cta=False)
         + text_section("Ergebnis", "Was ist dabei herausgekommen?",
                        ["Messbare und beobachtete Effekte, Reichweite, Reaktionen."], cta=False),
-        kontakt_h2="Termin für Ihre<br />Veranstaltung sichern."))
+        kontakt_h2="Termin für Ihre<br />Veranstaltung sichern.", gallery=False))
 
     # index-redesign.html — wariant roboczy strony głównej, jak w serwisie PL
     write(de("index-redesign.html"), simple_page(
