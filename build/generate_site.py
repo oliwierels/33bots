@@ -48,18 +48,35 @@ LASTMOD = "2026-08-03"
 # na stronie oznaczone żółtym markerem — serwisu nie wolno publikować, dopóki
 # którekolwiek jest puste (niekompletne Impressum jest w Niemczech abmahnfähig).
 COMPANY = {
-    "legal_name": "",        # pełna firma zgodna z rejestrem, np. "33bots GmbH"
-    "street": "",            # ulica i numer
-    "postcode_city": "",     # kod pocztowy i miejscowość
-    "country": "",           # kraj, np. "Deutschland" albo "Polen"
+    # ── uzupełnione ──────────────────────────────────────────────────
+    "street": "Plac Jana Henryka Dąbrowskiego 12",
+    "postcode_city": "00-055 Warszawa",
+    "country": "Polen",
+    # Polski organ nadzorczy — siedziba zmieniona w lipcu 2025 r.
+    "supervisory_authority": (
+        "Prezes des Amts für den Schutz personenbezogener Daten "
+        "(Prezes Urzędu Ochrony Danych Osobowych), ul. Moniuszki 1A, "
+        "00-014 Warszawa, Polen, uodo.gov.pl"),
+    # Organ nadzoru rynku ds. dostępności wg BFSG (16 krajów związkowych)
+    "market_surveillance": (
+        "Marktüberwachungsstelle der Länder für die Barrierefreiheit von "
+        "Produkten und Dienstleistungen (MLBF), Carl-Miller-Straße 6, "
+        "39112 Magdeburg, kontakt@mlbf-barrierefrei.de"),
+    "formspree_note": (
+        "Formspree betreibt seine Dienste auf Servern von Amazon Web Services "
+        "in den Vereinigten Staaten und ist nach SOC 2 Typ 2 zertifiziert. Für "
+        "die Verarbeitung in unserem Auftrag besteht ein Vertrag zur "
+        "Auftragsverarbeitung nach Art. 28 DSGVO. Die Übermittlung in die USA "
+        "stützt sich auf Art. 49 Abs. 1 lit. b DSGVO, da sie zur Beantwortung "
+        "Ihrer Anfrage erforderlich ist."),
+
+    # ── do uzupełnienia przez właściciela ────────────────────────────
+    "legal_name": "",        # pełna firma wraz z formą prawną, np. "Jan Kowalski – 33Bots"
     "represented_by": "",    # osoba uprawniona do reprezentacji
-    "register": "",          # sąd i numer rejestrowy, np. "Amtsgericht Berlin, HRB 123456"
-    "vat_id": "",            # NIP UE wg § 27a UStG, np. "DE123456789"
-    "content_responsible": "",  # odpowiedzialny za treść wg § 18 ust. 2 MStV: imię, nazwisko i adres
-    "supervisory_authority": "",  # organ nadzorczy ds. ochrony danych właściwy dla siedziby
-    "market_surveillance": "",    # organ nadzoru rynku ds. dostępności (BFSG)
-    "formspree_note": "",    # podstawa przekazania danych do USA przy formularzu
-    "gtm_services": "",      # usługi faktycznie wyzwalane w GTM
+    "register": "",          # CEIDG albo KRS wraz z numerem
+    "vat_id": "",            # NIP / VAT-UE, np. "PL1234567890"
+    "content_responsible": "",  # § 18 ust. 2 MStV: imię, nazwisko i adres
+    "gtm_services": "",      # usługi faktycznie wyzwalane w kontenerze GTM
 }
 
 
