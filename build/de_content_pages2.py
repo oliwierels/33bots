@@ -11,7 +11,7 @@ Kalendarz imprez prywatnych dopasowany do realiów niemieckich: w miejsce
 imienin — Polterabend, w miejsce andrzejek — Oktoberfest.
 """
 
-from de_content_helpers import ev, br, priv, DOG_PRICE, PRICE_RANGE
+from de_content_helpers import ev, br, priv, DOG_PRICE, PRICE_FROM
 
 TEXT = {}
 

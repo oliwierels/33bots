@@ -103,10 +103,11 @@ MISSING = ('<mark style="background:#ffe08a; color:#000; padding:0 4px;">'
            '[BITTE AUSFÜLLEN]</mark>')
 
 
-PRICE_RANGE = "1.290 – 1.590 €"
-PRICE_LOW = "1290"
-PRICE_HIGH = "1590"
-DOG_PRICE = "450 €"
+# Komunikacja cenowa: stawka wyjściowa bez górnej granicy.
+PRICE_FROM = "ab 2.500 €"      # do zdań typu „kostet ab 2.500 €"
+PRICE_MIN = "2.500 €"          # sama kwota
+PRICE_LOW = "2500"             # dane strukturalne (lowPrice)
+DOG_PRICE = "850 €"
 
 DE_TEXT = {}
 DE_TEXT.update(de_content_pages.TEXT)
@@ -726,7 +727,7 @@ def build_seo_page(p):
                      "email": EMAIL},
         "areaServed": {"@type": "Country", "name": "Deutschland"},
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR",
-                   "lowPrice": PRICE_LOW, "highPrice": PRICE_HIGH,
+                   "lowPrice": PRICE_LOW,
                    "availability": "https://schema.org/InStock"},
     }, ensure_ascii=False, indent=2)
 
@@ -921,7 +922,7 @@ def build_city_page(pl_file):
          f"Ja — die Anfahrt ist deutschlandweit im Preis enthalten, auch nach {city}. Es gibt keine "
          f"Kilometerpauschale und keine Nachberechnung. Der Preis im Angebot ist der Endpreis."),
         (f"Was kostet die Miete eines Roboters in {city}?",
-         f"{PRICE_RANGE} pro kompletten Veranstaltungstag — inklusive Anfahrt, zertifiziertem Operator, "
+         f"{PRICE_FROM} pro kompletten Veranstaltungstag — inklusive Anfahrt, zertifiziertem Operator, "
          f"Branding und Versicherung. Ab zwei Tagen erhalten Sie 15 % Rabatt auf jeden Tag."),
     ]
 
@@ -942,7 +943,7 @@ def build_city_page(pl_file):
                                 "https://www.linkedin.com/company/33bots", "https://www.tiktok.com/@aimforum"]},
         "areaServed": {"@type": "City", "name": city},
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR",
-                   "lowPrice": PRICE_LOW, "highPrice": PRICE_HIGH,
+                   "lowPrice": PRICE_LOW,
                    "availability": "https://schema.org/InStock"},
     }, ensure_ascii=False, indent=2)
 

@@ -181,21 +181,21 @@ def build_index():
     import json
     DOMAIN = _("DOMAIN")
     EMAIL = _("EMAIL")
-    PRICE_RANGE, PRICE_LOW, PRICE_HIGH = _("PRICE_RANGE"), _("PRICE_LOW"), _("PRICE_HIGH")
+    PRICE_FROM, PRICE_MIN, PRICE_LOW = _("PRICE_FROM"), _("PRICE_MIN"), _("PRICE_LOW")
     DOG_PRICE = _("DOG_PRICE")
     cities = _("de_cities").CITIES
 
     title = "Humanoide Roboter für Events mieten — deutschlandweit | 33bots"
     desc = (f"Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ganzer Tag ab "
-            f"{PRICE_LOW.replace('1290', '1.290')} € — Anfahrt, Operator und Branding inklusive, keine Anzahlung, "
+            f"{PRICE_MIN} — Anfahrt, Operator und Branding inklusive, keine Anzahlung, "
             f"Rechnung nach dem Event. Angebot in 24 h.")
     kw = ("humanoide roboter mieten, roboter mieten event, roboter für messe mieten, Unitree G1 mieten, "
           "roboter konferenz, event attraktion roboter, humanoider roboter Deutschland")
 
     faqs = [
         ("Was kostet die Miete eines humanoiden Roboters für ein Event?",
-         f"Ein kompletter Veranstaltungstag kostet {PRICE_RANGE} — der endgültige Preis hängt ausschließlich vom "
-         f"Veranstaltungsort ab. Im Preis ist alles enthalten: deutschlandweite Anfahrt, zertifizierter Operator, "
+         f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — der endgültige Preis hängt von "
+         f"Veranstaltungsort und Umfang der Show ab. Im Preis ist alles enthalten: deutschlandweite Anfahrt, zertifizierter Operator, "
          f"Branding des Roboters und Versicherung. Optional buchen Sie den Roboterhund für {DOG_PRICE} pro Tag; "
          f"ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag."),
         ("Muss ich eine Anzahlung leisten, um einen Termin zu reservieren?",
@@ -243,7 +243,7 @@ def build_index():
         "url": DOMAIN, "image": f"{DOMAIN}/robot-g1.jpg",
         "brand": {"@type": "Brand", "name": "Unitree"},
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR", "lowPrice": PRICE_LOW,
-                   "highPrice": PRICE_HIGH, "availability": "https://schema.org/InStock",
+                   "availability": "https://schema.org/InStock",
                    "url": f"{DOMAIN}/#preise",
                    "description": "Kompletter Veranstaltungstag inklusive Anfahrt, Operator und Branding. "
                                   "Keine Zusatzkosten, keine Anzahlung, Rechnung nach dem Event."},
@@ -272,7 +272,7 @@ def build_index():
                          "availableLanguage": ["German", "English", "Polish"]},
         "knowsAbout": ["humanoiden Roboter mieten", "Roboter für Events", "Roboter für Messen",
                        "Roboter für Konferenzen", "Unitree G1", "Event-Attraktionen"],
-        "priceRange": f"{PRICE_LOW}-{PRICE_HIGH} EUR",
+        "priceRange": f"ab {PRICE_LOW} EUR",
     }, ensure_ascii=False, indent=2))
 
     ld.append(json.dumps({
@@ -535,10 +535,10 @@ def build_index():
         <h3 class="price-card__name">Humanoider Roboter Unitree G1</h3>
         <p class="price-card__for">Der Star Ihrer Veranstaltung — Messe, Konferenz, Gala oder Eröffnung. Den ganzen Tag.</p>
         <div class="price-card__price">
-          <span class="price-card__amount">{PRICE_RANGE}</span>
+          <span class="price-card__amount">{PRICE_FROM}</span>
           <span class="price-card__period">pro Veranstaltungstag</span>
         </div>
-        <p class="price-card__note">Der endgültige Preis hängt ausschließlich vom Veranstaltungsort ab. Wir nennen den Betrag sofort — und genau dieser Betrag steht später auf der Rechnung.</p>
+        <p class="price-card__note">Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Wir nennen den Betrag sofort — und genau dieser Betrag steht später auf der Rechnung.</p>
         <ul class="price-card__list">
           <li>Roboter-Show über den gesamten Veranstaltungstag</li>
           <li>Zertifizierter Operator von Anfang bis Ende</li>
@@ -981,7 +981,7 @@ def build_legal_pages(write):
 
 
 def build_offer_pages(write):
-    PRICE_RANGE, DOG_PRICE = _("PRICE_RANGE"), _("DOG_PRICE")
+    PRICE_FROM, DOG_PRICE = _("PRICE_FROM"), _("DOG_PRICE")
 
     # oferta.html → leistungen.html
     write(de("oferta.html"), simple_page(
@@ -1003,7 +1003,7 @@ def build_offer_pages(write):
                                                       "die Belegschaft wochenlang spricht."),
         ]) + text_section(
             "Was in jedem Paket enthalten ist",
-            f"Ein kompletter Veranstaltungstag kostet {PRICE_RANGE} — und in diesem Preis ist bereits alles "
+            f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — und in diesem Preis ist bereits alles "
             f"enthalten, was Sie für die Show brauchen.",
             ["Wir kalkulieren keine Anfahrt nach, berechnen kein Branding und rechnen keine Zusatzoptionen ab. Der "
              "Betrag, den Sie im Angebot sehen, ist der Betrag auf der Rechnung."],
@@ -1072,7 +1072,7 @@ def build_offer_pages(write):
              "Ja. Wir liefern die nötigen Angaben zu Gerät, Stromversorgung und Betrieb, damit Sie die Freigabe beim "
              "Messeveranstalter problemlos einholen können. Eine Haftpflichtversicherung besteht."),
             ("Was kostet ein Messetag?",
-             f"{PRICE_RANGE} pro Tag inklusive Anfahrt, Operator, Branding und Versicherung. Ab zwei Tagen 15 % "
+             f"{PRICE_FROM} pro Tag inklusive Anfahrt, Operator, Branding und Versicherung. Ab zwei Tagen 15 % "
              f"Rabatt pro Tag."),
         ]))
 
@@ -1107,7 +1107,7 @@ def build_offer_pages(write):
                                                "Unser Operator ist während der gesamten Veranstaltung ansprechbar."),
                 ("Internationales Publikum", "Der Effekt funktioniert sprachunabhängig — er entsteht über Bewegung "
                                              "und Präsenz. Ihr Branding bleibt in jedem Foto sichtbar."),
-                ("Konditionen", f"{PRICE_RANGE} pro Veranstaltungstag, alles inklusive. Kostenlose "
+                ("Konditionen", f"{PRICE_FROM} pro Veranstaltungstag, alles inklusive. Kostenlose "
                                 f"Terminreservierung, keine Anzahlung, Rechnung erst nach dem Event."),
             ]) + video_section("taniec",
                                'Der <strong style="color:var(--text);">Unitree G1</strong> im Gala-Einsatz — Empfang, '
@@ -1155,7 +1155,7 @@ def build_offer_pages(write):
                 ("Sicherheit bei viel Publikum", "LiDAR und Computer Vision lassen den Roboter Personen in Echtzeit "
                                                  "ausweichen; unser Operator begleitet den Einsatz durchgehend. "
                                                  "Gerade bei Kindern ist diese doppelte Absicherung wichtig."),
-                ("Kosten", f"{PRICE_RANGE} für den kompletten Veranstaltungstag, inklusive Anfahrt, Operator, "
+                ("Kosten", f"{PRICE_FROM} für den kompletten Veranstaltungstag, inklusive Anfahrt, Operator, "
                            f"Branding und Versicherung. Optional ergänzt der Roboterhund für {DOG_PRICE} pro Tag "
                            f"das Programm."),
             ]) + video_section("gesty",
@@ -1177,7 +1177,7 @@ def build_offer_pages(write):
     write(de("wypozyczenie-robota.html"), simple_page(
         de("wypozyczenie-robota.html"), "Humanoiden Roboter mieten",
         "Humanoiden Roboter mieten — Unitree G1 für Ihr Event | 33bots",
-        f"Humanoiden Roboter Unitree G1 mieten: {PRICE_RANGE} pro Veranstaltungstag, Anfahrt, Operator und Branding "
+        f"Humanoiden Roboter Unitree G1 mieten: {PRICE_FROM} pro Veranstaltungstag, Anfahrt, Operator und Branding "
         f"inklusive. Keine Anzahlung, Rechnung nach dem Event →",
         "humanoiden roboter mieten, roboter mieten, Unitree G1 mieten, roboter vermietung, event roboter",
         "Roboter mieten · Deutschlandweit · Alles inklusive",
@@ -1204,7 +1204,7 @@ def build_offer_pages(write):
                                                        "einsatzbereit."),
                 ("Sicherheit", "LiDAR und Computer Vision lassen den G1 Hindernissen und Personen in Echtzeit "
                                "ausweichen. Eine Haftpflichtversicherung ist im Preis enthalten."),
-                ("Preis und Konditionen", f"{PRICE_RANGE} pro Veranstaltungstag, abhängig ausschließlich vom Ort. Ab "
+                ("Preis und Konditionen", f"{PRICE_FROM} pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang der Show. Ab "
                                           f"zwei Tagen 15 % Rabatt auf jeden Tag. Der Roboterhund ist optional für "
                                           f"{DOG_PRICE} pro Tag buchbar."),
             ]) + video_section("branding",
@@ -1253,7 +1253,7 @@ def build_offer_pages(write):
                                             "Showfläche fest — ein Podest genügt."),
                 ("Musik", "Die Choreografie synchronisieren wir mit Ihrem Wunschtitel, sofern Sie ihn rechtzeitig "
                           "durchgeben. Alternativ übernimmt der Roboter die Playlist Ihres DJs."),
-                ("Preis", f"{PRICE_RANGE} für den kompletten Tag, inklusive Anfahrt, Operator, Branding und "
+                ("Preis", f"{PRICE_FROM} für den kompletten Tag, inklusive Anfahrt, Operator, Branding und "
                           f"Versicherung. Terminreservierung kostenlos, Rechnung erst nach der Hochzeit."),
             ]) + video_section("taniec",
                                'So sieht der <strong style="color:var(--text);">Unitree G1</strong> auf der '
@@ -1299,7 +1299,7 @@ def build_offer_pages(write):
                                 "völlig aus. Dazu eine 230-V-Steckdose."),
                 ("Ablauf", "Wir stimmen die Auftritte vorab ab, damit sie zum Rhythmus Ihres Abends passen. Der "
                            "Operator bleibt den ganzen Abend vor Ort."),
-                ("Preis", f"{PRICE_RANGE} für den kompletten Tag. Optional der Roboterhund für {DOG_PRICE} pro Tag."),
+                ("Preis", f"{PRICE_FROM} für den kompletten Tag. Optional der Roboterhund für {DOG_PRICE} pro Tag."),
             ]) + video_section("taniec",
                                'Der <strong style="color:var(--text);">Unitree G1</strong> auf der Tanzfläche — '
                                'genau das passiert, wenn er auf Ihrer Feier auftritt.'),

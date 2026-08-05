@@ -9,10 +9,10 @@ odpowiednik PL). Różni się wyłącznie język i realia rynku niemieckiego.
 """
 
 # ── Stałe handlowe rynku DE ───────────────────────────────────────────
-PRICE_RANGE = "1.290 – 1.590 €"
-PRICE_LOW = "1290"
-PRICE_HIGH = "1590"
-DOG_PRICE = "450 €"
+PRICE_FROM = "ab 2.500 €"
+PRICE_MIN = "2.500 €"
+PRICE_LOW = "2500"
+DOG_PRICE = "850 €"
 
 
 def _seed(slug):
@@ -35,10 +35,10 @@ def _pick2(pool, slug):
 # ── Powtarzalne FAQ ───────────────────────────────────────────────────
 def faq_price(x):
     return (f"Was kostet ein Roboter {x}?",
-            f"Ein kompletter Veranstaltungstag kostet {PRICE_RANGE} — der endgültige Preis hängt ausschließlich "
-            f"vom Veranstaltungsort ab. Anfahrt, zertifizierter Operator, Branding und Versicherung sind immer "
-            f"enthalten. Schreiben Sie uns über das Formular oder rufen Sie an — Sie erhalten das Angebot "
-            f"innerhalb von 24 Stunden.")
+            f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — der endgültige Preis hängt von "
+            f"Veranstaltungsort und Umfang der Show ab. Anfahrt, zertifizierter Operator, Branding und "
+            f"Versicherung sind immer enthalten. Schreiben Sie uns über das Formular — Sie erhalten das "
+            f"Angebot innerhalb von 24 Stunden.")
 
 
 def faq_safe():

@@ -498,7 +498,7 @@ c("robot-wynajem-elblag.html",
   faq=[("Passt der Roboter zu einem Kongress im Rosengarten?",
         "Ja. Im Kongressumfeld setzen wir den G1 gerne im Foyer ein: Er empfängt Teilnehmende, sorgt in den Pausen für Gesprächsstoff und lenkt nicht vom Programm im Saal ab."),
        ("Können wir den Roboter zusätzlich zum Roboterhund buchen?",
-        "Ja. Der Roboterhund kostet 450 € pro Veranstaltungstag und ist als Ergänzung buchbar — Operator inklusive.")])
+        "Ja. Der Roboterhund kostet 850 € pro Veranstaltungstag und ist als Ergänzung buchbar — Operator inklusive.")])
 
 c("robot-wynajem-walbrzych.html",
   name="Augsburg", region="Augsburg und Schwaben",
@@ -740,7 +740,7 @@ c("robot-wynajem-pila.html",
   faq=[("Kommen Sie auch zu einer Hausmesse auf unser Werksgelände?",
         "Ja — Hausmessen und Tage der offenen Tür auf Firmengelände sind eines unserer häufigsten Formate. Wir brauchen nur eine ebene Fläche und eine 230-V-Steckdose."),
        ("Was kostet ein Einsatztag in Krefeld?",
-        "1.290 – 1.590 € pro kompletten Veranstaltungstag — inklusive Anfahrt, Operator, Branding und Versicherung.")])
+        "ab 2.500 € pro kompletten Veranstaltungstag — inklusive Anfahrt, Operator, Branding und Versicherung.")])
 
 c("robot-wynajem-karpacz.html",
   name="Mainz", region="Mainz und Rheinhessen",

@@ -63,7 +63,8 @@ ins Wurzelverzeichnis. Bilder, Videos, Schriften und
 Texte werden **nicht** in den HTML-Dateien geändert, sondern in den Modulen
 unter `build/` — sonst überschreibt der nächste Lauf die Änderung.
 
-Zentrale Einstellungen (Domain, Kontaktdaten, Preise, GTM- und Albacross-ID)
+Zentrale Einstellungen (Domain, Kontaktdaten, Preise `PRICE_FROM`/`DOG_PRICE`,
+GTM- und Albacross-ID)
 stehen oben in `build/generate_site.py`.
 
 ## Rechtliche Konformität

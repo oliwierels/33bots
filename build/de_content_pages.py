@@ -7,7 +7,7 @@ generator dokłada strukturę: related, guides, wideo — 1:1 z serwisem PL).
 """
 
 from de_content_helpers import (
-    PRICE_RANGE, faq_price, faq_safe, faq_operator, faq_transport, faq_book,
+    PRICE_FROM, faq_price, faq_safe, faq_operator, faq_transport, faq_book,
 )
 
 TEXT = {}

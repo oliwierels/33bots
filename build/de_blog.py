@@ -89,12 +89,12 @@ ARTICLES = [
    "Was kostet die Miete<br />eines Roboters?<br />Preise 2026",
    "Ein transparenter Überblick über die Kosten — ohne Sternchen und ohne „auf Anfrage“.",
    "Die häufigste Frage in unserem Postfach ist auch die einfachste: Was kostet das? Hier ist die vollständige Antwort.",
-   [("Der Tagessatz", "1.290 – 1.590 € pro Veranstaltungstag",
-     ["Der Preis hängt ausschließlich vom Veranstaltungsort ab. Wir nennen den Betrag sofort, und genau dieser Betrag steht später auf der Rechnung."]),
+   [("Der Tagessatz", "ab 2.500 € pro Veranstaltungstag",
+     ["Der Preis hängt von Veranstaltungsort und Umfang der Show ab. Wir nennen den Betrag sofort, und genau dieser Betrag steht später auf der Rechnung."]),
     ("Inklusive", "Was ohne Aufpreis dabei ist",
      ["Anfahrt deutschlandweit ohne Kilometerlimit, zertifizierter Operator für den gesamten Tag, Branding mit Logo und QR-Code, Haftpflichtversicherung und technische Betreuung vor Ort."]),
     ("Optionen", "Was zusätzlich buchbar ist",
-     [f"Der Roboterhund kostet 450 € pro Veranstaltungstag inklusive Operator. Ab zwei Veranstaltungstagen sinkt der Tagessatz um 15 % — bei Messen ist das der Regelfall, siehe {link('robot-na-targi.html', 'Roboter für Messen')}."]),
+     [f"Der Roboterhund kostet 850 € pro Veranstaltungstag inklusive Operator. Ab zwei Veranstaltungstagen sinkt der Tagessatz um 15 % — bei Messen ist das der Regelfall, siehe {link('robot-na-targi.html', 'Roboter für Messen')}."]),
     ("Konditionen", "Warum es keine Anzahlung gibt",
      [f"Die Terminreservierung ist kostenlos, die Rechnung stellen wir erst nach der Veranstaltung. Wie der gesamte Ablauf aussieht, steht in unserer {link('blog-jak-wynajac-robota-checklist.html', 'Checkliste zur Buchung')}."])],
    "Angebot für Ihren Termin?", "Nennen Sie uns Datum und Ort — Sie bekommen den konkreten Betrag innerhalb von 24 Stunden."),
@@ -958,7 +958,7 @@ def build_llms():
 33bots vermietet humanoide Roboter Unitree G1 für Veranstaltungen, Messen, Konferenzen und
 Firmenfeiern in ganz Deutschland.
 
-- Preis: {_("PRICE_RANGE")} pro Veranstaltungstag, abhängig ausschließlich vom Veranstaltungsort
+- Preis: {_("PRICE_FROM")} pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang
 - Immer inklusive: Anfahrt deutschlandweit, zertifizierter Operator, Branding (Logo und QR-Code),
   Haftpflichtversicherung
 - Optional: Roboterhund für {_("DOG_PRICE")} pro Veranstaltungstag
