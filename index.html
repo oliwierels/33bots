@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MR7R7CJ3');</script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wynajem robota humanoidalnego na event — od 5500 zł | 33bots</title>
+
+<!-- Zasoby krytyczne najpierw: przeglądarka zaczyna je pobierać zanim dojdzie
+     do reszty <head>. Skrypty analityczne czekają na koniec sekcji. -->
+<link rel="preload" as="image" href="robot-g1-960.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-latin.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-latin-ext.woff2" crossorigin />
+
+<!-- Fonty hostowane lokalnie — bez łączenia z fonts.googleapis.com i fonts.gstatic.com
+     (dwa handshake'i DNS+TLS mniej na ścieżce krytycznej renderowania).
+     Podzbiory latin + latin-ext (polskie znaki), zmienne, font-display: swap. -->
+<link rel="stylesheet" href="fonts.css" />
+
+<!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
+     Przebudowa po zmianach w HTML:
+     npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
+<link rel="stylesheet" href="assets-redesign.css" />
 <meta name="description" content="Wynajem robota humanoidalnego Unitree G1 na targi, konferencje i gale. Od kilku godzin po realizacje wielodniowe. Cały dzień od 5500 zł — ostateczną kwotę podajemy w wycenie. Zero zaliczki, faktura po evencie." />
 <link rel="canonical" href="https://33bots.pl/" />
 <meta name="theme-color" content="#050505" />
@@ -36,15 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="alternate" type="application/rss+xml" title="33bots — blog RSS" href="https://33bots.pl/feed.xml" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <script>history.scrollRestoration = 'manual';</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
-<link rel="preload" as="image" href="robot-g1-960.webp" type="image/webp" fetchpriority="high" />
-
-<!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
-     Przebudowa po zmianach w HTML:
-     npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
-<link rel="stylesheet" href="assets-redesign.css" />
 
 <style>
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -58,6 +58,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     opacity: 1; transform: none;
     transition: opacity .8s cubic-bezier(.16,1,.3,1) var(--d, 0s),
                 transform .8s cubic-bezier(.16,1,.3,1) var(--d, 0s);
+  }
+
+  /* Pierwszy ekran odsłania się animacją CSS od razu przy wczytaniu, bez
+     czekania na IntersectionObserver. Wcześniej obraz robota — czyli element
+     LCP — stał w opacity:0 aż do startu JS, co wypychało LCP do ~2,3 s.
+     Kaskada (--d) zostaje bez zmian, zmienia się tylko to, co ją uruchamia. */
+  #hero .reveal { animation: revealIn .8s cubic-bezier(.16,1,.3,1) var(--d, 0s) both; }
+  @keyframes revealIn {
+    from { opacity: 0; transform: translateY(28px) scale(.985); }
+    to   { opacity: 1; transform: none; }
   }
 
   /* ——— Robot w hero: wtopienie krawędzi kadru w tło ——— */
@@ -289,6 +299,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
   </script>
+
+<!-- Google Tag Manager — na końcu <head>, żeby nie opóźniał wykrycia CSS,
+     fontów i obrazu hero. Ładowany po pierwszym malowaniu strony. -->
+<script>
+  (function (w, d, s, l, i) {
+    var started = false;
+    function loadGTM() {
+      if (started) return; started = true;
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    }
+    // po załadowaniu strony albo przy pierwszej interakcji — zależnie co pierwsze
+    if (d.readyState === 'complete') loadGTM();
+    else w.addEventListener('load', loadGTM, { once: true });
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+      w.addEventListener(e, loadGTM, { once: true, passive: true });
+    });
+  })(window, document, 'script', 'dataLayer', 'GTM-MR7R7CJ3');
+</script>
 </head>
 
 <body class="grain bg-ink font-sans text-neutral-200 antialiased selection:bg-accent selection:text-ink">
@@ -324,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════
      1. HERO — animowane tło (aurora + siatka + orbity), parallax
      ══════════════════════════════════════════════════════ -->
-<section class="relative flex min-h-[100svh] items-center overflow-hidden px-5 pt-24 pb-14 md:px-8">
+<section id="hero" class="relative flex min-h-[100svh] items-center overflow-hidden px-5 pt-24 pb-14 md:px-8">
 
   <!-- Warstwy tła -->
   <div class="pointer-events-none absolute inset-0 -z-10">
@@ -464,13 +496,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="strip-track py-1">
       <!-- ORYGINAŁ -->
       <figure class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali">
-        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
-        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-czerwony-dywan-400.webp 400w, realizacja-gala-czerwony-dywan.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
       <figure class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
-        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
-        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-women-in-tech-tlum-400.webp 400w, realizacja-women-in-tech-tlum.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
       </figure>
       <figure class="strip-item ">
@@ -480,38 +512,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
       <figure class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
-        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
-        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-lexai-starowka-400.webp 400w, realizacja-lexai-starowka.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Ulica przystaje</figcaption>
       </figure>
       <figure class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
-        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
-        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" decoding="async" class="strip-img" /></picture>
       </figure>
       <figure class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami">
-        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
-        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-event-nad-woda-400.webp 400w, realizacja-event-nad-woda.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Eventy plenerowe</figcaption>
       </figure>
       <figure class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego">
         <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
-        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" class="strip-img" /></picture>
+        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
       </figure>
       <figure class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy">
-        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
-        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-nocny-pokaz-400.webp 400w, realizacja-nocny-pokaz.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Pokazy nocne</figcaption>
       </figure>
       <!-- KOPIA — bezszwowa pętla -->
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali">
-        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
-        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-czerwony-dywan-400.webp 400w, realizacja-gala-czerwony-dywan.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
-        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
-        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-women-in-tech-tlum-400.webp 400w, realizacja-women-in-tech-tlum.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item ">
@@ -521,27 +553,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
-        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
-        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-lexai-starowka-400.webp 400w, realizacja-lexai-starowka.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Ulica przystaje</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
-        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
-        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" loading="lazy" decoding="async" class="strip-img" /></picture>
       </figure>
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami">
-        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
-        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-event-nad-woda-400.webp 400w, realizacja-event-nad-woda.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Eventy plenerowe</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego">
         <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
-        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" class="strip-img" /></picture>
+        <img src="robot-pies-branding-klienta.jpg" alt="Robot-pies w firmowej koszulce klienta podczas akcji promocyjnej salonu samochodowego" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Robot-pies w brandingu</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy">
-        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
-        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-nocny-pokaz-400.webp 400w, realizacja-nocny-pokaz.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Robot humanoidalny w czerwonej pelerynie podczas nocnego pokazu przy zabytkowej kamienicy" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Pokazy nocne</figcaption>
       </figure>
     </div>
@@ -550,18 +582,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="strip-track strip-track--rev py-1">
       <!-- ORYGINAŁ -->
       <figure class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
-        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
-        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-women-in-tech-wybieg-400.webp 400w, realizacja-women-in-tech-wybieg.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Women in Tech Summit</figcaption>
       </figure>
       <figure class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
-        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
-        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-zdjecia-gosci-400.webp 400w, realizacja-gala-zdjecia-gosci.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Goście robią zdjęcia</figcaption>
       </figure>
       <figure class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu">
-        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
-        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-robot-w-deszczu-400.webp 400w, realizacja-robot-w-deszczu.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Także w deszczu</figcaption>
       </figure>
       <figure class="strip-item ">
@@ -571,39 +603,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
       <figure class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
-        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
-        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Marketing w mieście</figcaption>
       </figure>
       <figure class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
-        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
-        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-palac-400.webp 400w, realizacja-gala-palac.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Pałacowe wnętrza</figcaption>
       </figure>
       <figure class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego">
-        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
-        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-spotkanie-biznesowe-400.webp 400w, realizacja-spotkanie-biznesowe.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Spotkania firmowe</figcaption>
       </figure>
       <figure class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami">
-        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
-        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-wsrod-gosci-400.webp 400w, realizacja-gala-wsrod-gosci.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Wśród gości</figcaption>
       </figure>
       <!-- KOPIA — bezszwowa pętla -->
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
-        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
-        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-women-in-tech-wybieg-400.webp 400w, realizacja-women-in-tech-wybieg.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Women in Tech Summit</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
-        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
-        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-zdjecia-gosci-400.webp 400w, realizacja-gala-zdjecia-gosci.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Goście robią zdjęcia</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu">
-        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
-        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-robot-w-deszczu-400.webp 400w, realizacja-robot-w-deszczu.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce trzymający parasol podczas deszczu" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Także w deszczu</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item ">
@@ -613,23 +645,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
-        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
-        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Marketing w mieście</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
-        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
-        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-palac-400.webp 400w, realizacja-gala-palac.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Pałacowe wnętrza</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego">
-        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
-        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-spotkanie-biznesowe-400.webp 400w, realizacja-spotkanie-biznesowe.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w firmowej koszulce na tarasie podczas spotkania biznesowego" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Spotkania firmowe</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami">
-        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
-        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" class="strip-img" /></picture>
+        <picture><source srcset="realizacja-gala-wsrod-gosci-400.webp 400w, realizacja-gala-wsrod-gosci.webp 760w" sizes="(max-width: 640px) 260px, 380px" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" decoding="async" class="strip-img" /></picture>
         <figcaption class="strip-cap">Wśród gości</figcaption>
       </figure>
     </div>

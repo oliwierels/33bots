@@ -14,3 +14,66 @@ Redirect 301 /robot-wynajem-jaworzno.html         /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-sosnowiec.html        /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-tychy.html            /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
+
+# ═══════════════════════════════════════════════════════════════
+# Wydajność. Każdy blok w <IfModule> — na serwerze bez danego
+# modułu reguły są po prostu pomijane, nic się nie psuje.
+# ═══════════════════════════════════════════════════════════════
+
+# ——— Kompresja: HTML strony głównej to ~100 KB, po gzipie ~20 KB ———
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json application/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/rss+xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml image/svg+xml
+</IfModule>
+
+# ——— Poprawne typy MIME (bez nich fonty i webp bywają serwowane jako octet-stream) ———
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType video/mp4 .mp4
+</IfModule>
+
+# ——— Cache przeglądarki ———
+# HTML: zawsze świeży (treść i ceny się zmieniają).
+# CSS/JS: tydzień — pliki nie mają hasha w nazwie, więc po deployu
+#         muszą się odświeżyć w rozsądnym czasie.
+# Obrazy/wideo/fonty: długo, bo są stabilne. Przy podmianie treści
+#         obrazka zmień nazwę pliku, inaczej wracający użytkownik
+#         zobaczy starą wersję.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType text/css                  "access plus 7 days"
+  ExpiresByType text/javascript           "access plus 7 days"
+  ExpiresByType application/javascript    "access plus 7 days"
+  ExpiresByType image/webp                "access plus 30 days"
+  ExpiresByType image/jpeg                "access plus 30 days"
+  ExpiresByType image/png                 "access plus 30 days"
+  ExpiresByType image/svg+xml             "access plus 30 days"
+  ExpiresByType video/mp4                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.woff2$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.mp4$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Nie wysyłaj ciasteczek przy zasobach statycznych
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|woff2|mp4|css|js)$">
+    Header unset Set-Cookie
+  </FilesMatch>
+</IfModule>

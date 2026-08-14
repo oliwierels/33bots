@@ -1,0 +1,37 @@
+# Nagłówki cache dla Netlify — odpowiednik reguł z .htaccess,
+# który działa tylko na Apache. Na innym hoście plik jest ignorowany.
+# Kompresję (gzip/brotli) Netlify włącza sam.
+
+# HTML zawsze świeży — treść i ceny się zmieniają
+/*.html
+  Cache-Control: no-cache, must-revalidate
+
+/
+  Cache-Control: no-cache, must-revalidate
+
+# Fonty i wideo są niezmienne
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/video/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS/JS bez hasha w nazwie — tydzień, żeby deploy dotarł do wracających
+/*.css
+  Cache-Control: public, max-age=604800
+
+/*.js
+  Cache-Control: public, max-age=604800
+
+# Obrazy: przy podmianie treści zmień nazwę pliku
+/*.webp
+  Cache-Control: public, max-age=2592000
+
+/*.jpg
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.svg
+  Cache-Control: public, max-age=2592000
