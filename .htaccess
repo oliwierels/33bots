@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Plik stanu deployu z GitHub Actions — trzymany na serwerze, ale nie do wglądu publicznego
+RewriteRule ^\.ftp-deploy-sync-state\.json$ - [F,L]
+
 # Force HTTPS and non-www (canonical: https://33bots.pl)
 RewriteCond %{HTTP_HOST} ^www\.33bots\.pl$ [NC,OR]
 RewriteCond %{HTTPS} off

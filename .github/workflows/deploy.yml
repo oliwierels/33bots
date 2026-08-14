@@ -1,0 +1,86 @@
+name: Deploy na hosting (FTP)
+
+# Każdy push na gałąź domyślną automatycznie wysyła stronę na serwer.
+# Można też uruchomić ręcznie: zakładka Actions -> "Deploy na hosting (FTP)" -> "Run workflow".
+on:
+  push:
+    branches:
+      - main
+      - claude/33bots-website-T0REs
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Próba na sucho — pokaż co zostałoby wysłane, ale nic nie wysyłaj"
+        type: boolean
+        default: false
+
+# Tylko jeden deploy naraz. Równoległe wysyłki po FTP psują plik stanu na serwerze.
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Wyślij pliki na s126.cyber-folks.pl
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v5
+
+      - name: Sprawdź czy sekrety FTP są ustawione
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          missing=""
+          [ -z "$FTP_USER" ] && missing="$missing FTP_USER"
+          [ -z "$FTP_PASS" ] && missing="$missing FTP_PASS"
+          if [ -n "$missing" ]; then
+            echo "::error::Brakuje sekretów:$missing"
+            echo "Dodaj je w: Settings -> Secrets and variables -> Actions -> New repository secret"
+            exit 1
+          fi
+          echo "Sekrety FTP obecne."
+
+      - name: Wyślij przez FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST || vars.FTP_HOST || 's126.cyber-folks.pl' }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+
+          # Szyfrowane FTP. Jeśli hosting nie przyjmie połączenia, ustaw zmienną
+          # repozytorium FTP_PROTOCOL na "ftp" (Settings -> Variables).
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+
+          local-dir: ./
+          # Katalog docelowy na serwerze. Konto FTP założone dla samej domeny
+          # bywa od razu zalogowane w public_html — wtedy ustaw zmienną
+          # repozytorium FTP_SERVER_DIR na "./".
+          server-dir: ${{ vars.FTP_SERVER_DIR || '/domains/33bots.pl/public_html/' }}
+
+          dry-run: ${{ inputs.dry_run == true }}
+          log-level: standard
+
+          # Uwaga: podanie exclude nadpisuje listę domyślną, więc powtarzamy
+          # tu również jej wpisy (.git*, node_modules, .DS_Store).
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            **/__pycache__/**
+            **/*.py
+            **/*.md
+            scripts/**
+            **/tailwind.config.js
+            **/tw-input.css
+            **/IMG_*.HEIC
+            **/IMG_*.DNG
+            **/IMG_*.JPG
+            **/IMG_*.PNG
