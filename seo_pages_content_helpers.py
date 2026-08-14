@@ -22,15 +22,15 @@ def _pick2(pool, slug):
 
 
 DESCS = [
-    "Robot {na} — atrakcja, której goście nie zapomną. Unitree G1: powitanie gości, pokaz tańca, rozmowy z AI. Darmowy transport, operator w cenie →",
+    "Robot {na} — atrakcja, której goście nie zapomną. Unitree G1: powitanie gości, pokaz tańca, rozmowy z AI. Dojazd w całej Polsce, operator w cenie →",
     "Wynajmij robota humanoidalnego {na}. Unitree G1 wita gości, tańczy i rozmawia dzięki AI. Cała Polska, transport i operator w cenie →",
-    "Robot humanoidalny {na}: pokaz choreografii, interakcje z gośćmi i strefa zdjęć. Unitree G1 z certyfikowanym operatorem, darmowy transport →",
+    "Robot humanoidalny {na}: pokaz choreografii, interakcje z gośćmi i strefa zdjęć. Unitree G1 z certyfikowanym operatorem, dojazd w całej Polsce →",
 ]
 
 EYEBROWS = [
     "Wynajem robota · Atrakcja eventowa · Cała Polska",
     "Robot humanoidalny · Unitree G1 · Pokaz z operatorem",
-    "Atrakcja premium · Unitree G1 · Darmowy transport",
+    "Atrakcja premium · Unitree G1 · Cała Polska",
 ]
 
 TILES_H2 = [
@@ -53,7 +53,7 @@ def _tile_pool(Loc):
          f"{Loc} większość gości pierwszy raz w życiu widzi humanoida na żywo. Robot buduje wokół siebie tłum w kilka minut — bez zapowiedzi i bez zaproszeń."),
         ("Viral", "Content robi się sam",
          "Każda interakcja z robotem kończy się nagraniem. Relacje i rolki z Twojego wydarzenia trafiają do sieci jeszcze w trakcie jego trwania."),
-        ("Bez stresu", "Operator i transport w cenie",
+        ("Bez stresu", "Operator w cenie, dojazd według lokalizacji",
          "Przyjeżdżamy, rozstawiamy się i prowadzimy pokaz od A do Z. Certyfikowany operator czuwa nad wszystkim — Ty zajmujesz się gośćmi."),
         ("Zdjęcia", "Strefa foto, która nie pustoszeje",
          f"G1 pozuje, przybija piątki i gestykuluje — {loc} kolejka do zdjęcia z robotem to najdłużej działający punkt programu."),
@@ -123,7 +123,7 @@ def br(suffix, nom, na, Loc, aud, uniq, faq,
 PRIV_DESCS = [
     "Robot {na} — niespodzianka, o której będzie mówić cała rodzina. Unitree G1 tańczy, składa życzenia i pozuje do zdjęć. Operator w cenie →",
     "Wynajmij robota humanoidalnego {na}. Taniec, życzenia, wspólne zdjęcia — atrakcja, której nie zapomni żaden gość. Cała Polska →",
-    "Robot humanoidalny {na}: pokaz tańca, interakcje z gośćmi i pamiątkowe zdjęcia. Z certyfikowanym operatorem, transport w cenie →",
+    "Robot humanoidalny {na}: pokaz tańca, interakcje z gośćmi i pamiątkowe zdjęcia. Z certyfikowanym operatorem, dojazd w całej Polsce →",
 ]
 
 

@@ -53,7 +53,7 @@ SERVICES = [
     mk(
         slug="atrakcje-na-event", crumb="Atrakcje na event",
         title="Atrakcje na event — robot humanoidalny Unitree G1 | 33bots",
-        desc="Szukasz atrakcji na event? Robot humanoidalny Unitree G1: wita gości, tańczy, rozmawia z AI i pozuje do zdjęć. Darmowy transport, operator w cenie →",
+        desc="Szukasz atrakcji na event? Robot humanoidalny Unitree G1: wita gości, tańczy, rozmawia z AI i pozuje do zdjęć. Dojazd w całej Polsce, operator w cenie →",
         keywords="atrakcje na event, atrakcja eventowa, atrakcje na imprezę firmową, nietypowe atrakcje na event, robot na event",
         eyebrow="Atrakcje eventowe · Robot humanoidalny · Cała Polska",
         h1="Atrakcja na event, która<br />przyćmi wszystkie inne.",
@@ -138,7 +138,7 @@ SERVICES = [
     mk(
         slug="wynajem-robota-do-firmy", crumb="Wynajem robota do firmy",
         title="Wynajem robota do firmy — eventy firmowe i marketing | 33bots",
-        desc="Wynajem robota humanoidalnego do firmy: eventy wewnętrzne, spotkania z klientami, content marketingowy i employer branding. Operator i transport w cenie →",
+        desc="Wynajem robota humanoidalnego do firmy: eventy wewnętrzne, spotkania z klientami, content marketingowy i employer branding. Operator w cenie, dojazd według lokalizacji →",
         keywords="wynajem robota do firmy, robot dla firmy, robot na spotkanie firmowe, robot do biura, wynajem robota humanoidalnego dla firm",
         eyebrow="B2B · Eventy firmowe · Marketing",
         h1="Wynajem robota do firmy —<br />technologia, która sprzedaje.",
@@ -166,14 +166,14 @@ SERVICES = [
     mk(
         slug="wynajem-robotow", crumb="Wynajem robotów",
         title="Wynajem robotów humanoidalnych na eventy — cała Polska | 33bots",
-        desc="Wynajem robotów humanoidalnych Unitree G1 na eventy, targi, konferencje i imprezy. Certyfikowany operator i darmowy transport w całej Polsce →",
+        desc="Wynajem robotów humanoidalnych Unitree G1 na eventy, targi, konferencje i imprezy. Certyfikowany operator i dojazd w całej Polsce w całej Polsce →",
         keywords="wynajem robotów, wynajem robotów humanoidalnych, wypożyczalnia robotów, roboty na wynajem, wynajem robota na event",
         eyebrow="Wynajem · Unitree G1 · Cała Polska",
         h1="Wynajem robotów —<br />humanoid na Twój event.",
         sub="Wynajmujemy roboty humanoidalne Unitree G1 na wydarzenia w całej Polsce. W cenie zawsze: certyfikowany operator, transport, ubezpieczenie i program pokazu dopasowany do Twojego eventu.",
         tiles_h2="Wynajem bez ryzyka<br />i bez niespodzianek",
         tiles=[
-            ("All inclusive", "Operator i transport w cenie", "Nie kupujesz sprzętu — kupujesz gotowe widowisko. Przyjeżdżamy, rozstawiamy się, prowadzimy pokaz i sprzątamy po sobie. Ty zajmujesz się gośćmi."),
+            ("All inclusive", "Operator w cenie, dojazd według lokalizacji", "Nie kupujesz sprzętu — kupujesz gotowe widowisko. Przyjeżdżamy, rozstawiamy się, prowadzimy pokaz i sprzątamy po sobie. Ty zajmujesz się gośćmi."),
             ("Zasięg", "Cała Polska", "Warszawa, Kraków, Trójmiasto, Śląsk — i każde miejsce pomiędzy. Dojazd jest wliczony w cenę wynajmu, bez ukrytych kosztów."),
             ("Pewność", "Sprawdzony scenariusz", "Za nami dziesiątki eventów: targi, gale, konferencje, wesela. Wiemy, co działa na publiczność i jak ułożyć pokaz pod Twoją agendę."),
         ],

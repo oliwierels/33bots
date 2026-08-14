@@ -39,7 +39,7 @@ DNS_SEARCH   = '<link rel="preconnect" href="https://fonts.googleapis.com" />'
 META_OVERRIDES = {
     "index.html": (
         "Wynajmij robota humanoidalnego Unitree G1 na event, targi lub konferencję w Polsce. "
-        "Najniższe ceny, darmowy transport, certyfikowany operator. Sprawdź dostępność →"
+        "Najniższe ceny, dojazd w całej Polsce, certyfikowany operator. Sprawdź dostępność →"
     ),
     "blog-atrakcja-na-event-firmowy.html": (
         "Porównanie atrakcji eventowych: robot humanoidalny, artyści, food trucki, VR. "
@@ -47,7 +47,7 @@ META_OVERRIDES = {
     ),
     "blog-ile-kosztuje-wynajem-robota.html": (
         "Ile kosztuje wynajem robota humanoidalnego Unitree G1? Pakiety, co wchodzi w cenę, "
-        "darmowy transport i jak wygląda wycena. Przewodnik 2026."
+        "dojazd w całej Polsce i jak wygląda wycena. Przewodnik 2026."
     ),
     "blog-robot-na-wesele.html": (
         "Robot humanoidalny na wesele — hit czy faux pas? Jak G1 sprawdza się jako atrakcja: "
@@ -59,31 +59,31 @@ META_OVERRIDES = {
     ),
     "oferta-dni-otwarte.html": (
         "Wynajem robota humanoidalnego na dzień otwarty lub showroom. "
-        "G1 przyciąga tłumy i generuje viral w social mediach. Darmowy transport →"
+        "G1 przyciąga tłumy i generuje viral w social mediach. Dojazd w całej Polsce →"
     ),
     "oferta-targi.html": (
         "Wynajmij robota humanoidalnego Unitree G1 na stoisko targowe. "
-        "Więcej leadów, viralowy zasięg w social mediach. Darmowy transport — zapytaj →"
+        "Więcej leadów, viralowy zasięg w social mediach. Dojazd w całej Polsce — zapytaj →"
     ),
     "robot-na-impreze.html": (
         "Wynajmij robota humanoidalnego na imprezę firmową, galę lub uroczystość. "
-        "Unitree G1 — darmowy transport, certyfikowany operator. Wycena w 24h →"
+        "Unitree G1 — dojazd w całej Polsce, certyfikowany operator. Wycena w 24h →"
     ),
     "robot-wynajem-dabrowa-gornicza.html": (
         "Wynajem robota humanoidalnego G1 w Dąbrowie Górniczej — eventy, konferencje, targi. "
-        "Darmowy transport, certyfikowany operator. Sprawdź dostępność →"
+        "Dojazd w całej Polsce, certyfikowany operator. Sprawdź dostępność →"
     ),
     "robot-wynajem-gdansk.html": (
         "Wynajem robota humanoidalnego G1 w Gdańsku i Trójmieście — Amberexpo, konferencje, gale. "
-        "Darmowy transport, certyfikowany operator →"
+        "Dojazd w całej Polsce, certyfikowany operator →"
     ),
     "robot-wynajem-wroclaw.html": (
         "Wynajem robota humanoidalnego G1 we Wrocławiu — Hala Stulecia, targi, konferencje. "
-        "Darmowy transport, certyfikowany operator. Sprawdź →"
+        "Dojazd w całej Polsce, certyfikowany operator. Sprawdź →"
     ),
     "wypozyczenie-robota.html": (
         "Wypożycz robota humanoidalnego Unitree G1 na event, targi lub konferencję. "
-        "Robot do wynajęcia w Polsce — darmowy transport, operator w cenie →"
+        "Robot do wynajęcia w Polsce — dojazd w całej Polsce, operator w cenie →"
     ),
 }
 

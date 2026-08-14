@@ -55,13 +55,13 @@ CITIES = [
         "hero_sub": "Obsługujemy eventy w Płocku i regionie Mazowsza Płockiego. Robot Unitree G1 dotrze do Orlen Campus, Ratusza, Centrum Konferencyjnego Gostynin i każdego hotelu konferencyjnego w mieście.",
         "faq_q1": "Czy robot może wziąć udział w eventach przemysłowych i petrochemicznych w Płocku?",
         "faq_a1": "Tak — G1 świetnie sprawdza się jako atrakcja na konferencjach branżowych i eventach korporacyjnych w środowiskach przemysłowych. Robot może być elementem stoiska targowego, prezentacji innowacji lub gali pracowniczej w każdym obiekcie w Płocku.",
-        "faq_q2": "Czy obsługujecie Płock i okolice bez dopłat za dojazd?",
-        "faq_a2": "Tak — darmowy transport obejmuje Płock i cały region Mazowsza Płockiego, w tym Gostynin, Sierpc i Kutno. Cena wyceny to cena ostateczna, bez żadnych ukrytych kosztów.",
+        "faq_q2": "Czy obsługujecie Płock i okolice?",
+        "faq_a2": "Tak — dojeżdżamy do Płocka i całego regionu Mazowsza Płockiego, w tym Gostynina, Sierpca i Kutna. Cena wyceny to cena ostateczna, bez żadnych ukrytych kosztów.",
         "section_title": "Płock — miasto przemysłu i kultury nad Wisłą",
         "p1": "Płock to jedno z najważniejszych miast przemysłowych w Polsce, znane przede wszystkim z obecności Orlenu. Rozwijający się rynek eventów korporacyjnych, konferencji branżowych i gal dla pracowników sprawia, że zapotrzebowanie na unikatowe atrakcje stale rośnie.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Płocku to doskonały sposób na wyróżnienie się podczas dni otwartych, eventów pracowniczych i konferencji innowacyjnych. G1 wzbudza zachwyt zarówno wśród pracowników przemysłowych, jak i gości targów i pokazów technologii.",
         "p2_header": "Gdzie w Płocku sprawdza się robot?",
-        "p3": "33bots dostarczy robota do każdego miejsca w Płocku — czy to do sali konferencyjnej hotelu, centrum kultury, czy obiektu przemysłowego. Darmowy transport, certyfikowany operator i własny sprzęt to nasza gwarancja bezproblemowej realizacji.",
+        "p3": "33bots dostarczy robota do każdego miejsca w Płocku — czy to do sali konferencyjnej hotelu, centrum kultury, czy obiektu przemysłowego. Dojazd w całej Polsce, certyfikowany operator i własny sprzęt to nasza gwarancja bezproblemowej realizacji.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Orlen Campus, Płocki Dom Kultury, hotele konferencyjne, Ratusz Miejski i przestrzenie eventowe nad Wisłą",
         "region": "Płock i okolice",
@@ -83,7 +83,7 @@ CITIES = [
         "p1": "Elbląg to dynamicznie rozwijające się miasto Warmii i Mazur z silnym przemysłem i rosnącym sektorem usług. Miasto organizuje coraz więcej wydarzeń biznesowych, festiwali miejskich i konferencji, przyciągając uczestników z całego regionu.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Elblągu to idealne rozwiązanie na eventy korporacyjne, dni otwarte uczelni i zakładów pracy, festiwale miejskie oraz imprezy targowe. G1 przyciąga tłumy i generuje content, który żyje w social mediach długo po zakończeniu wydarzenia.",
         "p2_header": "Gdzie w Elblągu sprawdza się robot?",
-        "p3": "33bots oferuje kompleksową obsługę — własny sprzęt Unitree G1, certyfikowanego operatora i darmowy transport do Elbląga. Skontaktuj się z nami, a wycenę otrzymasz w 24 godziny.",
+        "p3": "33bots oferuje kompleksową obsługę — własny sprzęt Unitree G1, certyfikowanego operatora i dojazd w całej Polsce do Elbląga. Skontaktuj się z nami, a wycenę otrzymasz w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Centrum Spotkań Europejskich, hotele konferencyjne, przestrzenie eventowe w Starym Mieście i obiekty przemysłowe",
         "region": "Elbląg i okolice",
@@ -105,7 +105,7 @@ CITIES = [
         "p1": "Wałbrzych przeszedł imponującą transformację — z dawnego centrum górnictwa węglowego w nowoczesne centrum gospodarcze i kulturalne. Wałbrzyska Strefa Ekonomiczna przyciąga inwestorów z całego świata, a rozwijający się sektor turystyczny i eventowy tworzy nowe możliwości dla organizatorów imprez.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Wałbrzychu to idealne rozwiązanie na gale korporacyjne, eventy dla pracowników stref ekonomicznych, festiwale miejskie i pokazy innowacji. G1 przyciąga uwagę gości i generuje zasięgi w social mediach.",
         "p2_header": "Gdzie w Wałbrzychu sprawdza się robot?",
-        "p3": "33bots dostarczy robota do każdego miejsca w Wałbrzychu i okolicach — zamku Książ, hoteli konferencyjnych czy obiektów stref ekonomicznych. Darmowy transport, certyfikowany operator i elastyczne terminy to nasza gwarancja.",
+        "p3": "33bots dostarczy robota do każdego miejsca w Wałbrzychu i okolicach — zamku Książ, hoteli konferencyjnych czy obiektów stref ekonomicznych. Dojazd w całej Polsce, certyfikowany operator i elastyczne terminy to nasza gwarancja.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Zamek Książ, Stara Kopalnia — Centrum Nauki i Sztuki, hotele konferencyjne, obiekty Wałbrzyskiej Strefy Ekonomicznej",
         "region": "Wałbrzych i okolice",
@@ -127,7 +127,7 @@ CITIES = [
         "p1": "Włocławek to największe miasto Kujaw i ważny ośrodek biznesowy regionu. Rozwijający się sektor przemysłowy, handlowy i edukacyjny tworzy stałe zapotrzebowanie na unikatowe atrakcje eventowe na gale, konferencje i dni otwarte.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 we Włocławku to doskonały pomysł na wyróżnienie swojego eventu. G1 sprawdza się zarówno na dużych galach korporacyjnych, jak i mniejszych pokazach innowacji, targach lokalnych czy dniach otwartych szkół i uczelni.",
         "p2_header": "Gdzie we Włocławku sprawdza się robot?",
-        "p3": "33bots zapewnia kompleksową obsługę — dowozimy robota do Włocławka bez dopłat, zapewniamy certyfikowanego operatora i dbamy o całą logistykę eventu. Wycenę wyślemy w ciągu 24 godzin.",
+        "p3": "33bots zapewnia kompleksową obsługę — dowozimy robota do Włocławka, zapewniamy certyfikowanego operatora i dbamy o całą logistykę eventu. Wycenę wyślemy w ciągu 24 godzin.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Regionalne Centrum Kultury i Sztuki, hotele konferencyjne nad Wisłą, Centrum Handlowe Wzorcownia, lokalne obiekty sportowe",
         "region": "Włocławek i okolice",
@@ -144,12 +144,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się podczas Tarnowskiego Festiwalu Kultury?",
         "faq_a1": "Tak — G1 jest atrakcją, która pasuje zarówno do wydarzeń kulturalnych, jak i biznesowych. Na festiwalach miejskich robot przyciąga setki zdjęć i relacji w mediach społecznościowych, budując zasięg organizatora.",
         "faq_q2": "Czy obsługujecie firmy z Tarnowa i okolicznych gmin?",
-        "faq_a2": "Tak — dojeżdżamy do Tarnowa i całej Małopolski Wschodniej bez dopłat. Obsługujemy eventy w samym Tarnowie, jak i w okolicznych miejscowościach przemysłowych i turystycznych.",
+        "faq_a2": "Tak — dojeżdżamy do Tarnowa i całej Małopolski Wschodniej. Koszt dojazdu ustalamy przy wycenie. Obsługujemy eventy w samym Tarnowie, jak i w okolicznych miejscowościach przemysłowych i turystycznych.",
         "section_title": "Tarnów — małopolskie centrum biznesu i kultury",
         "p1": "Tarnów to ważny ośrodek biznesowy i kulturalny wschodniej Małopolski. Miasto łączy tradycję z nowoczesnością — obok historycznego centrum rozwijają się nowoczesne strefy przemysłowe i centra usługowe, a rynek eventowy dynamicznie rośnie.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Tarnowie to hit na gale korporacyjne firm chemicznych i produkcyjnych, dni otwarte uczelni i szkół, festiwale miejskie oraz konferencje regionalne. G1 wzbudza zachwyt gości w każdym wieku i generuje content, który żyje w sieci długo po evencie.",
         "p2_header": "Gdzie w Tarnowie sprawdza się robot?",
-        "p3": "33bots dostarczy robota do każdego miejsca w Tarnowie — od historycznych sal po nowoczesne centra konferencyjne. Darmowy transport, certyfikowany operator i elastyczny harmonogram to nasza oferta.",
+        "p3": "33bots dostarczy robota do każdego miejsca w Tarnowie — od historycznych sal po nowoczesne centra konferencyjne. Dojazd w całej Polsce, certyfikowany operator i elastyczny harmonogram to nasza oferta.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Centrum Konferencyjne MCDN, hotele biznesowe, Centrum Handlowe Gemini Park, Park Miejski i historyczne obiekty tarnowskiego centrum",
         "region": "Tarnów i okolice",
@@ -166,7 +166,7 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na Festiwalu Filmów Fabularnych w Koszalinie?",
         "faq_a1": "Tak — G1 to doskonała atrakcja na festiwalach filmowych i kulturalnych. Robot przyciąga fanów kina i media, stając się ikoną eventu. Obsługujemy zarówno uroczyste otwarcia, jak i side-eventy.",
         "faq_q2": "Czy obsługujecie hotele nadmorskie w okolicach Koszalina?",
-        "faq_a2": "Tak — dojeżdżamy do Koszalina i całego Środkowego Pomorza, w tym Mielna, Darłowa i Kołobrzegu. Darmowy transport obejmuje całą Polskę bez wyjątków.",
+        "faq_a2": "Tak — dojeżdżamy do Koszalina i całego Środkowego Pomorza, w tym Mielna, Darłowa i Kołobrzegu. Dojazd obejmuje całą Polskę bez wyjątków.",
         "section_title": "Koszalin — centrum Środkowego Pomorza",
         "p1": "Koszalin to największe miasto Środkowego Pomorza i ważny ośrodek biznesowy, kulturalny i akademicki. Bliskość Bałtyku przyciąga korporacje organizujące eventy wyjazdowe i team-buildingowe, a rosnąca baza hotelowo-konferencyjna oferuje doskonałe warunki do organizacji eventów.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Koszalinie to idealna atrakcja na eventy wyjazdowe, gale korporacyjne, festiwale miejskie i konferencje regionalne. G1 dostarcza niezapomnianych wrażeń i generuje viralowy content w mediach społecznościowych.",
@@ -188,12 +188,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na eventach Legnickiej Specjalnej Strefy Ekonomicznej?",
         "faq_a1": "Tak — G1 to idealna atrakcja na dni otwarte zakładów produkcyjnych, konferencje innowacyjne i gale korporacyjne firm z LSSE. Robot podkreśla nowoczesny charakter firm i przyciąga uwagę pracowników oraz gości.",
         "faq_q2": "Jak szybko dotrzecie do Legnicy?",
-        "faq_a2": "Legnica leży przy autostradzie A4, co ułatwia szybki dojazd. Standardowo dostarczamy robota dzień przed eventem. Darmowy transport obejmuje całą Polskę.",
+        "faq_a2": "Legnica leży przy autostradzie A4, co ułatwia szybki dojazd. Standardowo dostarczamy robota dzień przed eventem. Dojazd obejmuje całą Polskę.",
         "section_title": "Legnica — dolnośląskie centrum gospodarcze",
         "p1": "Legnica to jedno z największych miast Dolnego Śląska, z bogatą historią i dynamicznie rozwijającą się gospodarką. Legnicka Specjalna Strefa Ekonomiczna przyciąga inwestorów z całego świata, tworząc zapotrzebowanie na nowoczesne atrakcje eventowe na gale i konferencje korporacyjne.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Legnicy to doskonały pomysł na eventy korporacyjne, dni otwarte firm ze stref ekonomicznych, targi branżowe i festiwale miejskie. G1 wzbudza zainteresowanie gości każdego eventu i zostawia trwałe wrażenie.",
         "p2_header": "Gdzie w Legnicy sprawdza się robot?",
-        "p3": "33bots zapewnia bezproblemową obsługę w Legnicy — darmowy transport, certyfikowany operator i własny sprzęt Unitree G1. Wycenę wyślemy w ciągu 24 godzin od pierwszego kontaktu.",
+        "p3": "33bots zapewnia bezproblemową obsługę w Legnicy — dojazd w całej Polsce, certyfikowany operator i własny sprzęt Unitree G1. Wycenę wyślemy w ciągu 24 godzin od pierwszego kontaktu.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Zamek Piastów Śląskich, PWSZ Legnica, hotele konferencyjne, Centrum Handlowe Galeria Piastów i obiekty LSSE",
         "region": "Legnica i okolice",
@@ -210,12 +210,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na Kaliskich Spotkaniach Teatralnych?",
         "faq_a1": "Tak — G1 jest atrakcją, która doskonale komponuje się z wydarzeniami kulturalnymi i teatralnymi. Na festiwalach i pokazach robot przyciąga uwagę mediów i publiczności, budując zasięg organizatora.",
         "faq_q2": "Czy obsługujecie firmy z Kalisza i Ostrowskiego Okręgu Przemysłowego?",
-        "faq_a2": "Tak — dojeżdżamy do Kalisza i całego regionu Wielkopolski Południowej bez dopłat. Obsługujemy eventy zarówno w centrum miasta, jak i w okolicznych strefach przemysłowych.",
+        "faq_a2": "Tak — dojeżdżamy do Kalisza i całego regionu Wielkopolski Południowej. Koszt dojazdu ustalamy przy wycenie. Obsługujemy eventy zarówno w centrum miasta, jak i w okolicznych strefach przemysłowych.",
         "section_title": "Kalisz — jedno z najstarszych miast Polski",
         "p1": "Kalisz to jedno z najstarszych miast Polski z bogatą tradycją i dynamicznym rynkiem biznesowym. Miasto jest ważnym centrum przemysłowym i handlowym Wielkopolski Południowej, a lokalni przedsiębiorcy coraz chętniej inwestują w nowoczesne eventy i konferencje.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Kaliszu to unikalna atrakcja na gale firmowe, dni otwarte uczelni i zakładów pracy, targi regionalne oraz imprezy miejskie. G1 sprawdza się wszędzie tam, gdzie chcesz zrobić niezapomniane wrażenie.",
         "p2_header": "Gdzie w Kaliszu sprawdza się robot?",
-        "p3": "33bots oferuje darmowy transport do Kalisza, certyfikowanego operatora i własny sprzęt Unitree G1. Organizacja pokazu robota jest prosta — skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
+        "p3": "33bots oferuje dojazd w całej Polsce do Kalisza, certyfikowanego operatora i własny sprzęt Unitree G1. Organizacja pokazu robota jest prosta — skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Centrum Kultury i Sztuki w Kaliszu, hotele biznesowe, Galeria Amber i Centrum Sportowo-Rekreacyjne Trójka",
         "region": "Kalisz i okolice",
@@ -232,12 +232,12 @@ CITIES = [
         "faq_q1": "Czy robot może uczestniczyć w eventach przemysłowych w Grudziądzu?",
         "faq_a1": "Tak — G1 świetnie sprawdza się na dniach otwartych zakładów produkcyjnych, konferencjach innowacyjnych i galach korporacyjnych. Robot podkreśla nowoczesny charakter firmy i przyciąga uwagę pracowników oraz mediów.",
         "faq_q2": "Jak szybko robot może dotrzeć do Grudziądza?",
-        "faq_a2": "Grudziądz leży w pobliżu Torunia i Bydgoszczy, co ułatwia logistykę dojazdu. Standardowo dostarczamy robota dzień przed eventem. Darmowy transport obejmuje całą Polskę bez wyjątków.",
+        "faq_a2": "Grudziądz leży w pobliżu Torunia i Bydgoszczy, co ułatwia logistykę dojazdu. Standardowo dostarczamy robota dzień przed eventem. Dojazd obejmuje całą Polskę bez wyjątków.",
         "section_title": "Grudziądz — kujawsko-pomorski ośrodek przemysłowy",
         "p1": "Grudziądz to ważne miasto przemysłowe i handlowe Kujaw i Pomorza. Historyczne spichlerze nad Wisłą sąsiadują z nowoczesnymi zakładami produkcyjnymi, a rosnący sektor usługowy tworzy nowe możliwości dla organizatorów eventów i konferencji.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Grudziądzu to doskonała atrakcja na eventy korporacyjne, dni otwarte uczelni i zakładów pracy, festiwale miejskie i regionalne targi branżowe. G1 wzbudza autentyczne zachwycenie i generuje organiczny zasięg w mediach społecznościowych.",
         "p2_header": "Gdzie w Grudziądzu sprawdza się robot?",
-        "p3": "33bots dostarczy robota do Grudziądza bez żadnych ukrytych kosztów. Własny sprzęt Unitree G1, certyfikowany operator i darmowy transport — skontaktuj się z nami i otrzymaj wycenę w 24 godziny.",
+        "p3": "33bots dostarczy robota do Grudziądza bez żadnych ukrytych kosztów. Własny sprzęt Unitree G1, certyfikowany operator i dojazd w całej Polsce — skontaktuj się z nami i otrzymaj wycenę w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Grudziądzkie Centrum Kultury, hotele konferencyjne, historyczne spichlerze nad Wisłą i obiekty GCOP",
         "region": "Grudziądz i okolice",
@@ -256,12 +256,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na Rybnickim Festiwalu Filmowym?",
         "faq_a1": "Tak — G1 to doskonała atrakcja na festiwalach filmowych i kulturalnych. Robot przyciąga uwagę mediów i fanów, stając się integralną częścią eventu i generując zasięg w social mediach.",
         "faq_q2": "Czy obsługujecie firmy z subregionu zachodniego Śląska?",
-        "faq_a2": "Tak — dojeżdżamy do Rybnika i całego subregionu zachodniego, w tym Żor, Jastrzębia-Zdroju, Wodzisławia Śląskiego i Raciborza. Darmowy transport obejmuje całą aglomerację.",
+        "faq_a2": "Tak — dojeżdżamy do Rybnika i całego subregionu zachodniego, w tym Żor, Jastrzębia-Zdroju, Wodzisławia Śląskiego i Raciborza. Dojeżdżamy w całej aglomeracji.",
         "section_title": "Rybnik — centrum Subregionu Zachodniego Śląska",
         "p1": "Rybnik to dynamiczne miasto w zachodniej części Górnego Śląska, będące centrum administracyjnym i kulturalnym subregionu. Miasto systematycznie się modernizuje, rozwijając nowoczesną infrastrukturę eventową i konferencyjną.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Rybniku to idealna atrakcja na gale korporacyjne, festiwale miejskie, dni otwarte firm i uczelni oraz targi regionalne. G1 wzbudza autentyczne zachwycenie i tworzy content, który żyje w mediach społecznościowych.",
         "p2_header": "Gdzie w Rybniku sprawdza się robot?",
-        "p3": "33bots dostarczy robota do Rybnika bez ukrytych kosztów. Własny sprzęt, certyfikowany operator i darmowy transport to nasza standardowa oferta. Skontaktuj się z nami — wycenę wyślemy w 24 godziny.",
+        "p3": "33bots dostarczy robota do Rybnika bez ukrytych kosztów. Własny sprzęt, certyfikowany operator i dojazd w całej Polsce to nasza standardowa oferta. Skontaktuj się z nami — wycenę wyślemy w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Rybnickie Centrum Kultury, Teatr Ziemi Rybnickiej, hotele konferencyjne i nowoczesne przestrzenie eventowe",
         "region": "Rybnik i okolice",
@@ -280,14 +280,14 @@ CITIES = [
         "keywords": "wynajem robota Słupsk, robot humanoidalny Słupsk, Unitree G1 Słupsk, atrakcja eventowa Słupsk, wynajem robota na event Słupsk",
         "hero_sub": "Obsługujemy eventy w Słupsku i Środkowym Pomorzu. Robot Unitree G1 dotrze do Słupskiego Centrum Kultury, hoteli nadmorskich i każdego miejsca eventowego w regionie.",
         "faq_q1": "Czy robot sprawdzi się na eventach nadmorskich w okolicach Słupska?",
-        "faq_a1": "Tak — G1 to doskonała atrakcja na eventy wyjazdowe w nadmorskich hotelach w okolicach Ustki i Łeby. Darmowy transport obejmuje całe Środkowe Pomorze, w tym miejscowości nadmorskie.",
+        "faq_a1": "Tak — G1 to doskonała atrakcja na eventy wyjazdowe w nadmorskich hotelach w okolicach Ustki i Łeby. Dojeżdżamy na całym Środkowym Pomorzu, w tym do miejscowości nadmorskich.",
         "faq_q2": "Jak szybko robot może dotrzeć do Słupska?",
         "faq_a2": "Słupsk leży przy trasie S6, co ułatwia szybki dojazd. Standardowo dostarczamy robota dzień przed eventem. Transport jest bezpłatny dla klientów z całej Polski.",
         "section_title": "Słupsk — brama Środkowego Wybrzeża",
         "p1": "Słupsk to ważne centrum administracyjne i kulturalne Środkowego Pomorza. Miasto i okoliczne miejscowości nadmorskie — Ustka, Łeba — przyciągają korporacje organizujące eventy wyjazdowe i team-buildingowe, a rosnąca baza konferencyjna oferuje doskonałe warunki.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Słupsku to atrakcja, która sprawdza się na galach korporacyjnych, festiwalach miejskich, eventach wyjazdowych i dniach otwartych. G1 wzbudza zachwyt zarówno lokalnych mieszkańców, jak i turystów odwiedzających region.",
         "p2_header": "Gdzie w Słupsku sprawdza się robot?",
-        "p3": "33bots dostarczy robota do Słupska bez ukrytych kosztów. Własny sprzęt Unitree G1, certyfikowany operator i darmowy transport — wycenę wyślemy w 24 godziny.",
+        "p3": "33bots dostarczy robota do Słupska bez ukrytych kosztów. Własny sprzęt Unitree G1, certyfikowany operator i dojazd w całej Polsce — wycenę wyślemy w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Słupskie Centrum Kultury, Zamek Książąt Pomorskich, hotele konferencyjne i obiekty nadmorskie w Ustce i Łebie",
         "region": "Słupsk i okolice",
@@ -304,12 +304,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na Festiwalu Kultury Żydowskiej w Nowym Sączu?",
         "faq_a1": "Tak — G1 to atrakcja, która pasuje do różnych wydarzeń kulturalnych. Na festiwalach i eventach plenerowych robot przyciąga uwagę mediów i uczestników, budując zasięg organizatora.",
         "faq_q2": "Czy obsługujecie firmy z Nowego Sącza i Sądeckiego Parku Przemysłowego?",
-        "faq_a2": "Tak — dojeżdżamy do Nowego Sącza i całego regionu Sądecczyzny bez dopłat. Obsługujemy eventy zarówno w centrum miasta, jak i w strefach przemysłowych i turystycznych.",
+        "faq_a2": "Tak — dojeżdżamy do Nowego Sącza i całego regionu Sądecczyzny. Koszt dojazdu ustalamy przy wycenie. Obsługujemy eventy zarówno w centrum miasta, jak i w strefach przemysłowych i turystycznych.",
         "section_title": "Nowy Sącz — centrum Sądecczyzny",
         "p1": "Nowy Sącz to największe miasto Sądecczyzny i ważny ośrodek biznesowy oraz kulturalny wschodniej Małopolski. Miasto łączy tradycję z nowoczesnością — obok zabytkowego centrum rozwijają się nowoczesne strefy przemysłowe i centra usługowe.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Nowym Sączu to doskonała atrakcja na gale korporacyjne firm z SSE Nowy Sącz, dni otwarte uczelni, festiwale miejskie i regionalne eventy turystyczne. G1 wzbudza zachwyt i generuje content, który żyje w sieci.",
         "p2_header": "Gdzie w Nowym Sączu sprawdza się robot?",
-        "p3": "33bots oferuje darmowy transport do Nowego Sącza, certyfikowanego operatora i własny sprzęt Unitree G1. Organizacja pokazu jest prosta — skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
+        "p3": "33bots oferuje dojazd w całej Polsce do Nowego Sącza, certyfikowanego operatora i własny sprzęt Unitree G1. Organizacja pokazu jest prosta — skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Centrum Konferencyjne NOVUM, Ratusz Miejski, hotele konferencyjne, obiekty SSE Nowy Sącz i przestrzenie eventowe w centrum",
         "region": "Nowy Sącz i okolice",
@@ -326,12 +326,12 @@ CITIES = [
         "faq_q1": "Czy robot sprawdzi się na eventach w Pilskiej Strefie Aktywności Gospodarczej?",
         "faq_a1": "Tak — G1 to idealna atrakcja na konferencje innowacyjne, dni otwarte firm i gale pracownicze organizowane przez firmy z PSAG. Robot podkreśla nowoczesny charakter firmy i wzbudza zachwyt gości.",
         "faq_q2": "Jak daleko jest z bazy do Piły?",
-        "faq_a2": "Piła leży w Wielkopolsce Północnej — dojeżdżamy bez problemu i bez dopłat za kilometry. Darmowy transport obejmuje całą Polskę, w tym Piłę i okoliczne gminy.",
+        "faq_a2": "Piła leży w Wielkopolsce Północnej — dojeżdżamy bez problemu i. Dojazd obejmuje całą Polskę, w tym Piłę i okoliczne gminy.",
         "section_title": "Piła — centrum Krajny i Noteci",
         "p1": "Piła to największe miasto Wielkopolski Północnej i ważny węzeł komunikacyjny regionu. Dynamicznie rozwijająca się baza przemysłowa i usługowa, rosnące uczelnie wyższe i aktywny sektor handlowy tworzą doskonałe warunki dla eventów biznesowych i kulturalnych.",
         "p2": "Wynajem robota humanoidalnego Unitree G1 w Pile to atrakcja, która sprawdza się na galach korporacyjnych, dniach otwartych uczelni, targach branżowych i festiwalach miejskich. G1 wzbudza autentyczny zachwyt i generuje zasięg w mediach społecznościowych.",
         "p2_header": "Gdzie w Pile sprawdza się robot?",
-        "p3": "33bots dostarczy robota do Piły bez ukrytych kosztów — darmowy transport, certyfikowany operator i własny sprzęt Unitree G1. Skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
+        "p3": "33bots dostarczy robota do Piły bez ukrytych kosztów — dojazd w całej Polsce, certyfikowany operator i własny sprzęt Unitree G1. Skontaktuj się z nami, a wycenę wyślemy w 24 godziny.",
         "p3_header": "Dlaczego 33bots?",
         "venues": "Pilskie Centrum Kultury i Filmowe, hotele konferencyjne, Galeria Vivo! Piła i obiekty Pilskiej Strefy Aktywności Gospodarczej",
         "region": "Piła i okolice",
@@ -366,7 +366,7 @@ def generate_html(city):
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wynajem robota humanoidalnego {name} — Unitree G1 | 33bots</title>
-  <meta name="description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Darmowy transport, certyfikowany operator. Sprawdź dostępność →" />
+  <meta name="description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Dojazd w całej Polsce, certyfikowany operator. Sprawdź dostępność →" />
   <meta name="keywords" content="{city['keywords']}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://33bots.pl/{filename}" />
@@ -375,7 +375,7 @@ def generate_html(city):
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://33bots.pl/{filename}" />
   <meta property="og:title" content="Wynajem robota humanoidalnego {name} — Unitree G1 | 33bots" />
-  <meta property="og:description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Darmowy transport, certyfikowany operator. Sprawdź dostępność →" />
+  <meta property="og:description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Dojazd w całej Polsce, certyfikowany operator. Sprawdź dostępność →" />
   <meta property="og:image" content="https://33bots.pl/robot-g1.jpg" />
   <meta property="og:image:alt" content="Robot humanoidalny Unitree G1 — wynajem {loc}" />
   <meta property="og:locale" content="pl_PL" />
@@ -384,7 +384,7 @@ def generate_html(city):
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Wynajem robota humanoidalnego {name} — Unitree G1 | 33bots" />
-  <meta name="twitter:description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Darmowy transport, certyfikowany operator. Sprawdź dostępność →" />
+  <meta name="twitter:description" content="Wynajem robota humanoidalnego Unitree G1 {loc} — eventy, konferencje, targi. Dojazd w całej Polsce, certyfikowany operator. Sprawdź dostępność →" />
 
   <!-- Mobile -->
   <meta name="theme-color" content="#000000" />
@@ -398,7 +398,7 @@ def generate_html(city):
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Wynajem robota humanoidalnego {loc}",
-    "description": "Wynajem robota Unitree G1 na eventy, konferencje i targi {loc}. Darmowy transport, certyfikowany operator.",
+    "description": "Wynajem robota Unitree G1 na eventy, konferencje i targi {loc}. Dojazd w całej Polsce, certyfikowany operator.",
     "url": "https://33bots.pl/{filename}",
     "image": "https://33bots.pl/robot-g1.jpg",
     "provider": {{
@@ -445,7 +445,7 @@ def generate_html(city):
       {{
         "@type": "Question",
         "name": "Czy transport do {name} jest naprawdę bezpłatny?",
-        "acceptedAnswer": {{"@type": "Answer", "text": "Tak — darmowy transport to nasza obietnica dla każdego klienta w Polsce, w tym {loc}. Nie ma żadnych ukrytych kosztów dojazdu. Cena w wycenie jest ceną ostateczną."}}
+        "acceptedAnswer": {{"@type": "Answer", "text": "Tak — dojeżdżamy do każdego klienta w Polsce, w tym {loc}. Nie ma żadnych ukrytych kosztów dojazdu. Cena w wycenie jest ceną ostateczną."}}
       }}
     ]
   }}
@@ -511,7 +511,7 @@ def generate_html(city):
       </div>
       <div class="hero__trust">
         <span class="hero__trust-item">✓ Najniższe ceny na rynku</span>
-        <span class="hero__trust-item">✓ Darmowy transport</span>
+        <span class="hero__trust-item">✓ Dojazd w całej Polsce</span>
         <span class="hero__trust-item">✓ Operator w cenie</span>
         <span class="hero__trust-item">✓ Branding bez dopłat</span>
       </div>
@@ -538,8 +538,8 @@ def generate_html(city):
       </div>
       <div class="tile">
         <div class="tile__top"><span class="tile__tag">Dojazd</span></div>
-        <h3 class="tile__title">Darmowy transport</h3>
-        <p class="tile__desc">Dowozimy robota {loc} bez żadnych dopłat za kilometry. Cena, którą podajemy, to cena ostateczna — bez niespodzianek.</p>
+        <h3 class="tile__title">Dojazd w całej Polsce</h3>
+        <p class="tile__desc">Dowozimy robota {loc}, a koszt dojazdu ustalamy przy wycenie. Cena, którą podajemy, to cena ostateczna — bez niespodzianek.</p>
         <a href="#kontakt" class="tile__link">Zapytaj o wycenę →</a>
       </div>
     </div>
@@ -607,7 +607,7 @@ def generate_html(city):
           <span>Czy transport do {name} jest naprawdę bezpłatny?</span>
           <span class="faq-q__icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" hidden><p>Tak — darmowy transport to nasza obietnica dla każdego klienta w Polsce, w tym {loc}. Nie ma żadnych ukrytych kosztów dojazdu. Cena w wycenie jest ceną ostateczną.</p></div>
+        <div class="faq-a" hidden><p>Tak — dojeżdżamy do każdego klienta w Polsce, w tym {loc}. Nie ma żadnych ukrytych kosztów dojazdu. Cena w wycenie jest ceną ostateczną.</p></div>
       </div>
     </div>
   </section>

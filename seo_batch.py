@@ -221,7 +221,7 @@ for filename, city_name in CITIES_MAP.items():
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Wynajem robota humanoidalnego — {city_name}",
-    "description": "Wynajem robota Unitree G1 na eventy, konferencje i targi w {city_name}. Darmowy transport, certyfikowany operator.",
+    "description": "Wynajem robota Unitree G1 na eventy, konferencje i targi w {city_name}. Dojazd w całej Polsce, certyfikowany operator.",
     "url": "https://33bots.pl/{filename}",
     "image": "https://33bots.pl/robot-g1.jpg",
     "provider": {{
