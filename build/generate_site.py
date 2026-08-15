@@ -104,9 +104,9 @@ MISSING = ('<mark style="background:#ffe08a; color:#000; padding:0 4px;">'
 
 
 # Komunikacja cenowa: stawka wyjściowa bez górnej granicy.
-PRICE_FROM = "ab 2.500 €"      # do zdań typu „kostet ab 2.500 €"
-PRICE_MIN = "2.500 €"          # sama kwota
-PRICE_LOW = "2500"             # dane strukturalne (lowPrice)
+PRICE_FROM = "ab 2.499 €"      # do zdań typu „kostet ab 2.499 €"
+PRICE_MIN = "2.499 €"          # sama kwota
+PRICE_LOW = "2499"             # dane strukturalne (lowPrice)
 DOG_PRICE = "850 €"
 
 DE_TEXT = {}
@@ -353,7 +353,7 @@ def contact_form(location_ph="z. B. Berlin", date_text=False):
         </form>"""
 
 
-def contact_section(h2, area="Deutschlandweit — Anfahrt inklusive", location_ph="z. B. Berlin", date_text=False):
+def contact_section(h2, area="Deutschlandweit im Einsatz", location_ph="z. B. Berlin", date_text=False):
     return f"""  <section class="section" id="kontakt">
     <div class="contact-layout">
       <div class="contact-left">
@@ -918,23 +918,24 @@ def build_city_page(pl_file):
     video = VIDEOS["taniec"]
 
     faqs = list(d["faq"]) + [
-        (f"Ist die Anfahrt nach {city} wirklich kostenlos?",
-         f"Ja — die Anfahrt ist deutschlandweit im Preis enthalten, auch nach {city}. Es gibt keine "
-         f"Kilometerpauschale und keine Nachberechnung. Der Preis im Angebot ist der Endpreis."),
+        (f"Kommen Sie auch nach {city}?",
+         f"Ja — wir sind deutschlandweit im Einsatz, auch in {city}. Anfahrt und Logistik stimmen wir "
+         f"vorab ab und halten sie im Angebot fest."),
         (f"Was kostet die Miete eines Roboters in {city}?",
-         f"{PRICE_FROM} pro kompletten Veranstaltungstag — inklusive Anfahrt, zertifiziertem Operator, "
-         f"Branding und Versicherung. Ab zwei Tagen erhalten Sie 15 % Rabatt auf jeden Tag."),
+         f"{PRICE_FROM} pro kompletten Veranstaltungstag. Der genaue Betrag hängt von Veranstaltungsort "
+         f"und Umfang der Show ab; Sie erhalten ein individuelles Angebot. Ab zwei Tagen erhalten Sie "
+         f"15 % Rabatt auf jeden Tag."),
     ]
 
     title = f"Humanoiden Roboter mieten {city} — Roboter für Events | 33bots"
-    desc = (f"Humanoiden Roboter Unitree G1 in {city} mieten — Messen, Konferenzen, Galas. Anfahrt und "
-            f"zertifizierter Operator inklusive. Angebot in 24 h →")
+    desc = (f"Humanoiden Roboter Unitree G1 in {city} mieten — Messen, Konferenzen, Galas. Mit "
+            f"zertifiziertem Operator vor Ort. Angebot in 24 h →")
 
     service_json = json.dumps({
         "@context": "https://schema.org", "@type": "Service",
         "name": f"Humanoiden Roboter mieten — {city}",
         "description": f"Vermietung des Roboters Unitree G1 für Events, Konferenzen und Messen in {city}. "
-                       f"Anfahrt und zertifizierter Operator inklusive.",
+                       f"Mit zertifiziertem Operator vor Ort.",
         "url": url, "image": f"{DOMAIN}/robot-g1.jpg",
         "serviceType": "Vermietung humanoider Roboter für Events",
         "provider": {"@type": "LocalBusiness", "name": "33bots – Humanoide Roboter mieten",
@@ -1034,9 +1035,9 @@ def build_city_page(pl_file):
       </div>
       <div class="hero__trust">
         <span class="hero__trust-item">✓ Bester Preis am Markt</span>
-        <span class="hero__trust-item">✓ Anfahrt inklusive</span>
-        <span class="hero__trust-item">✓ Operator inklusive</span>
-        <span class="hero__trust-item">✓ Branding ohne Aufpreis</span>
+        <span class="hero__trust-item">✓ Zertifizierter Operator vor Ort</span>
+        <span class="hero__trust-item">✓ Deutschlandweit im Einsatz</span>
+        <span class="hero__trust-item">✓ Angebot in 24 h</span>
       </div>
     </div>
   </section>
@@ -1061,8 +1062,8 @@ def build_city_page(pl_file):
       </div>
       <div class="tile">
         <div class="tile__top"><span class="tile__tag">Anfahrt</span></div>
-        <h3 class="tile__title">Anfahrt inklusive</h3>
-        <p class="tile__desc">Wir bringen den Roboter ohne Kilometeraufschlag nach {city}. Der genannte Preis ist der Endpreis — ohne Überraschungen.</p>
+        <h3 class="tile__title">Deutschlandweit vor Ort</h3>
+        <p class="tile__desc">Wir bringen den Roboter zu Ihrer Location in {city}. Anfahrt und Logistik planen wir gemeinsam und halten sie im Angebot fest.</p>
         <a href="#kontakt" class="tile__link">Angebot anfragen →</a>
       </div>
     </div>
@@ -1073,7 +1074,7 @@ def build_city_page(pl_file):
       <div class="onas-text">
         <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem); margin-bottom:var(--s4);">{d['section_title']}</h2>
         <p class="lead-text">{d['p1']}</p>
-        <p class="body-text">Die Miete eines humanoiden Roboters Unitree G1 in {city} ist der einfachste Weg, sich in einem dichten Veranstaltungsmarkt abzuheben. Wir liefern den G1 direkt an Ihre Location — ohne Anfahrtsaufschlag. Bedient werden {d['around']}.</p>
+        <p class="body-text">Die Miete eines humanoiden Roboters Unitree G1 in {city} ist der einfachste Weg, sich in einem dichten Veranstaltungsmarkt abzuheben. Wir liefern den G1 direkt an Ihre Location. Bedient werden {d['around']}.</p>
 
         <h3 {H3}>{d['p2_header']}</h3>
         <p class="body-text">{d['p2']}</p>
@@ -1172,7 +1173,7 @@ def build_city_page(pl_file):
 {venue_items}
         </ul>
         <h3 {H3}>Anfahrt und bediente Umgebung</h3>
-        <p class="body-text">Zu jeder Location in {city} fahren wir ohne Kilometeraufschlag — bedient werden {d['around']}. Der Roboter braucht vor Ort rund 2×2 m ebene Fläche und eine 230-V-Steckdose; wir bringen ihn selbst herein und sind in der Regel 30–45 Minuten vor Veranstaltungsbeginn einsatzbereit. Schreiben Sie uns, wo Ihre Veranstaltung in {city} stattfindet, und Sie erhalten innerhalb von 24 Stunden ein konkretes Angebot.</p>
+        <p class="body-text">Zu jeder Location in {city} kommen wir mit eigener Technik — bedient werden {d['around']}. Der Roboter braucht vor Ort rund 2×2 m ebene Fläche und eine 230-V-Steckdose; wir bringen ihn selbst herein und sind in der Regel 30–45 Minuten vor Veranstaltungsbeginn einsatzbereit. Schreiben Sie uns, wo Ihre Veranstaltung in {city} stattfindet, und Sie erhalten innerhalb von 24 Stunden ein konkretes Angebot.</p>
       </div>
     </div>
   </section>

@@ -102,9 +102,9 @@ def simple_page(out_file, crumb, title, desc, keywords, eyebrow, h1, sub,
         <a href="index.html#preise" class="btn-ghost">Preise ansehen ↓</a>
       </div>
       <div class="hero__trust">
-        <span class="hero__trust-item">✓ Anfahrt inklusive</span>
-        <span class="hero__trust-item">✓ Operator inklusive</span>
-        <span class="hero__trust-item">✓ Branding ohne Aufpreis</span>
+        <span class="hero__trust-item">✓ Zertifizierter Operator vor Ort</span>
+        <span class="hero__trust-item">✓ Deutschlandweit im Einsatz</span>
+        <span class="hero__trust-item">✓ Angebot in 24 h</span>
         <span class="hero__trust-item">✓ Keine Anzahlung</span>
       </div>
     </div>
@@ -187,7 +187,7 @@ def build_index():
 
     title = "Humanoide Roboter für Events mieten — deutschlandweit | 33bots"
     desc = (f"Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ganzer Tag ab "
-            f"{PRICE_MIN} — Anfahrt, Operator und Branding inklusive, keine Anzahlung, "
+            f"{PRICE_MIN} pro Veranstaltungstag, mit zertifiziertem Operator vor Ort. Keine Anzahlung, "
             f"Rechnung nach dem Event. Angebot in 24 h.")
     kw = ("humanoide roboter mieten, roboter mieten event, roboter für messe mieten, Unitree G1 mieten, "
           "roboter konferenz, event attraktion roboter, humanoider roboter Deutschland")
@@ -195,8 +195,8 @@ def build_index():
     faqs = [
         ("Was kostet die Miete eines humanoiden Roboters für ein Event?",
          f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — der endgültige Preis hängt von "
-         f"Veranstaltungsort und Umfang der Show ab. Im Preis ist alles enthalten: deutschlandweite Anfahrt, zertifizierter Operator, "
-         f"Branding des Roboters und Versicherung. Optional buchen Sie den Roboterhund für {DOG_PRICE} pro Tag; "
+         f"Veranstaltungsort und Umfang der Show ab. Den genauen Betrag nennen wir im individuellen Angebot. "
+         f"Optional buchen Sie den Roboterhund für {DOG_PRICE} pro Tag; "
          f"ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag."),
         ("Muss ich eine Anzahlung leisten, um einen Termin zu reservieren?",
          "Nein. Die Terminreservierung ist vollständig kostenlos — wir schließen einen einfachen Vertrag ohne "
@@ -209,11 +209,11 @@ def build_index():
          "Selbstverständlich. Die Unitree-Roboter kommen mit unterschiedlichen Untergründen zurecht (Asphalt, Rasen, "
          "Teppich) und funktionieren daher sowohl im Bürogebäude als auch bei Outdoor-Veranstaltungen."),
         ("Kann ich mein Firmenlogo auf dem Roboter platzieren?",
-         "Ja — und zwar kostenlos. Ihr Logo und ein QR-Code kommen auf die Brustplatte des Roboters. Bei uns ist das "
-         "Branding Teil des Standardpakets und wird nicht extra berechnet."),
+         "Ja. Ihr Logo und ein QR-Code kommen auf die Brustplatte des Roboters. Umfang und Umsetzung "
+         "stimmen wir vor der Veranstaltung gemeinsam ab."),
         ("Ist der Roboter für die Teilnehmenden sicher?",
          "Ja. Der Roboter verfügt über LiDAR und Computer Vision und weicht Hindernissen sowie Menschen in Echtzeit "
-         "aus. Zusätzlich überwacht unser Operator den Einsatz durchgehend. Eine Haftpflichtversicherung ist inklusive."),
+         "aus. Zusätzlich überwacht unser Operator den Einsatz durchgehend. Der Einsatz ist haftpflichtversichert."),
         ("Welche technischen Voraussetzungen brauchen Sie vor Ort?",
          "Eine gewöhnliche 230-V-Steckdose und rund 2×2 m freie Fläche. Internet oder besondere Beleuchtung sind "
          "nicht erforderlich. Unser Operator bringt die komplette Ausrüstung mit und ist in 30–45 Minuten "
@@ -222,7 +222,7 @@ def build_index():
          "Und wie. Der Unitree G1 beherrscht mehrere Choreografien, die auch ein professioneller Tänzer nicht "
          "verstecken müsste. Wenn bei Ihrer Veranstaltung ein DJ auflegt, übernimmt unser Roboter gerne die Tanzfläche."),
         ("Ist die Vermietung deutschlandweit verfügbar?",
-         "Ja — 33bots ist in ganz Deutschland im Einsatz, mit kostenloser Anfahrt unabhängig von Stadt und "
+         "Ja — 33bots ist in ganz Deutschland im Einsatz, unabhängig von Stadt und "
          "Entfernung. Wir bedienen Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf und Dutzende "
          "weitere Städte."),
         ("Welche Unternehmen haben bereits einen Roboter bei Ihnen gemietet?",
@@ -230,9 +230,9 @@ def build_index():
          "Europas), der globale Logistikkonzern DSV, Cashify sowie LEX AI, dessen Show mit unserem Roboter im "
          "öffentlich-rechtlichen Fernsehen ausgestrahlt wurde."),
         ("Was unterscheidet 33bots von anderen Roboter-Vermietungen?",
-         "Im Preis ist immer das Komplettpaket enthalten: Anfahrt ohne Kilometerbegrenzung, ein zertifizierter "
-         "Operator für die gesamte Veranstaltung und kostenloses Branding des Roboters (Logo und QR-Code). Wir "
-         "berechnen weder Anfahrt noch Zusatzoptionen nach."),
+         "Eigene Technik statt Zwischenhändler, ein zertifizierter Operator für die gesamte Veranstaltung "
+         "und Branding des Roboters mit Logo und QR-Code. Jedes Angebot rechnen wir individuell für Ihre "
+         "Veranstaltung."),
     ]
 
     ld = []
@@ -245,8 +245,8 @@ def build_index():
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR", "lowPrice": PRICE_LOW,
                    "availability": "https://schema.org/InStock",
                    "url": f"{DOMAIN}/#preise",
-                   "description": "Kompletter Veranstaltungstag inklusive Anfahrt, Operator und Branding. "
-                                  "Keine Zusatzkosten, keine Anzahlung, Rechnung nach dem Event."},
+                   "description": "Kompletter Veranstaltungstag mit zertifiziertem Operator vor Ort. "
+                                  "Keine Anzahlung, Rechnung nach dem Event."},
         "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3",
                             "bestRating": "5", "worstRating": "1"},
     }, ensure_ascii=False, indent=2))
@@ -262,7 +262,7 @@ def build_index():
         "name": "33bots – Humanoide Roboter für Events und Messen mieten", "alternateName": "33bots",
         "url": DOMAIN, "logo": f"{DOMAIN}/logo.png", "image": f"{DOMAIN}/robot-g1.jpg",
         "description": "Vermietung humanoider Roboter Unitree G1 für Events, Konferenzen und Messen in ganz "
-                       "Deutschland. Anfahrt und zertifizierter Operator inklusive.",
+                       "Deutschland. Mit zertifiziertem Operator vor Ort.",
         "email": EMAIL,
         "areaServed": {"@type": "Country", "name": "Deutschland"},
         "sameAs": ["https://www.facebook.com/33bots", "https://www.instagram.com/33bots_/",
@@ -312,7 +312,7 @@ def build_index():
     <div class="hero__content">
       <p class="hero__eyebrow">Humanoide Roboter mieten · Deutschlandweit · Bestpreis</p>
       <h1 class="hero__title">Humanoide Roboter<br />mieten —<br /><em>Unitree G1.</em></h1>
-      <p class="hero__sub">Der Roboter, der Menschenmengen stoppt und Ihre Veranstaltung wochenlang zum Gesprächsthema macht. Ein kompletter Showtag mit Anfahrt, Operator und Branding im Preis — <strong>ohne Anzahlung und ohne versteckte Kosten</strong>.</p>
+      <p class="hero__sub">Der Roboter, der Menschenmengen stoppt und Ihre Veranstaltung wochenlang zum Gesprächsthema macht. Ein kompletter Showtag mit zertifiziertem Operator vor Ort — <strong>ohne Anzahlung, Rechnung erst nach dem Event</strong>.</p>
       <div class="hero__ctas">
         <a href="#kontakt" class="btn-cta">Kostenloses Angebot anfordern →</a>
         <a href="#preise" class="btn-cta--ghost">Preise ansehen ↓</a>
@@ -320,9 +320,9 @@ def build_index():
       <p class="hero__cta-note">Angebot in 24 h · Keine Anzahlung · Rechnung erst nach dem Event</p>
       <div class="hero__trust">
         <span class="hero__trust-item">✓ Bester Preis am Markt</span>
-        <span class="hero__trust-item">✓ Anfahrt inklusive</span>
-        <span class="hero__trust-item">✓ Operator inklusive</span>
-        <span class="hero__trust-item">✓ Branding ohne Aufpreis</span>
+        <span class="hero__trust-item">✓ Zertifizierter Operator vor Ort</span>
+        <span class="hero__trust-item">✓ Deutschlandweit im Einsatz</span>
+        <span class="hero__trust-item">✓ Angebot in 24 h</span>
       </div>
     </div>
     <div class="hero__visual">
@@ -437,7 +437,7 @@ def build_index():
         <p class="body-text">Sehen Sie sich unsere spezialisierten Angebote an: <a href="{de('oferta-targi.html')}" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Roboter für Messen und Ausstellungen</a> sowie <a href="{de('oferta-konferencje.html')}" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Roboter für Konferenzen und Galas</a>.</p>
       </div>
       <ul class="onas-usps">
-        <li>Eigene Technik — keine Zwischenhändler, keine Überraschungen</li>
+        <li>Eigene Technik — keine Zwischenhändler</li>
         <li>Dedizierter Operator für die gesamte Veranstaltungsdauer</li>
         <li>Vollständiger Haftpflichtschutz — Sicherheit auf beiden Seiten</li>
         <li>Einsätze in jeder deutschen Stadt</li>
@@ -448,13 +448,13 @@ def build_index():
     <div class="transport-callout">
       <div class="transport-callout__glow" aria-hidden="true"></div>
       <div class="transport-callout__left">
-        <span class="transport-callout__eyebrow">Bei uns Standard</span>
-        <p class="transport-callout__claim"><em>Anfahrt inklusive</em><br />in ganz<br />Deutschland.</p>
+        <span class="transport-callout__eyebrow">Einsatzgebiet</span>
+        <p class="transport-callout__claim"><em>Deutschlandweit</em><br />im<br />Einsatz.</p>
       </div>
       <div class="transport-callout__right">
-        <p class="transport-callout__note">Keine Kilometerpauschale, keine Mindestentfernung, keine versteckten Kosten. Wir bringen den Roboter zu jeder Veranstaltung — von Hamburg bis München, von Köln bis Dresden — und berechnen dafür keinen Cent extra.</p>
+        <p class="transport-callout__note">Wir bringen den Roboter zu jeder Veranstaltung — von Hamburg bis München, von Köln bis Dresden. Anfahrt und Logistik planen wir vorab und halten sie im Angebot fest.</p>
         <ul class="transport-callout__stats">
-          <li><strong>0 €</strong><span>pro Kilometer</span></li>
+          <li><strong>30–45 Min</strong><span>bis einsatzbereit</span></li>
           <li><strong>100 %</strong><span>Deutschland abgedeckt</span></li>
           <li><strong>24 h</strong><span>bis zum Angebot</span></li>
         </ul>
@@ -526,28 +526,28 @@ def build_index():
   <section class="section pricing-section" id="preise">
     <div class="section-header">
       <span class="tag">Preise</span>
-      <h2 class="section-title">Ein Preis.<br />Alles inklusive.</h2>
-      <p class="pricing-lead">Ein transparenter Tagessatz und alles ist enthalten. Keine Sternchen, keine Aufschläge, keine „Zusatzkosten“, die in der letzten Mail auftauchen.</p>
+      <h2 class="section-title">Ein Tagessatz.<br />Individuell kalkuliert.</h2>
+      <p class="pricing-lead">Ein Tagessatz als Ausgangspunkt. Was Ihre Veranstaltung konkret kostet, hängt von Ort, Dauer und Umfang der Show ab — den Betrag nennen wir Ihnen im Angebot.</p>
     </div>
     <div class="pricing-grid">
       <article class="price-card price-card--main">
-        <span class="price-card__badge">Komplettpaket — alles inklusive</span>
+        <span class="price-card__badge">Der Showtag</span>
         <h3 class="price-card__name">Humanoider Roboter Unitree G1</h3>
         <p class="price-card__for">Der Star Ihrer Veranstaltung — Messe, Konferenz, Gala oder Eröffnung. Den ganzen Tag.</p>
         <div class="price-card__price">
           <span class="price-card__amount">{PRICE_FROM}</span>
           <span class="price-card__period">pro Veranstaltungstag</span>
         </div>
-        <p class="price-card__note">Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Wir nennen den Betrag sofort — und genau dieser Betrag steht später auf der Rechnung.</p>
+        <p class="price-card__note">Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Den Betrag nennen wir Ihnen im Angebot, in der Regel innerhalb von 24 Stunden.</p>
         <ul class="price-card__list">
           <li>Roboter-Show über den gesamten Veranstaltungstag</li>
           <li>Zertifizierter Operator von Anfang bis Ende</li>
-          <li>Anfahrt deutschlandweit inklusive — ohne Kilometerlimit</li>
-          <li>Kostenloses Branding: Ihr Logo und QR-Code auf dem Roboter</li>
+          <li>Anfahrt deutschlandweit — Logistik nach Absprache</li>
+          <li>Branding: Ihr Logo und QR-Code auf dem Roboter</li>
           <li>Choreografien, Interaktion mit Gästen und Tanz-Shows</li>
           <li>Haftpflichtversicherung und technische Betreuung vor Ort</li>
         </ul>
-        <p class="price-card__zero">Der Preis enthält absolut alles. <strong>KEINE Zusatzkosten.</strong></p>
+        <p class="price-card__zero">Angebot in 24 Stunden. <strong>KEINE Anzahlung.</strong></p>
         <a href="#kontakt" class="btn-cta">Kostenloses Angebot anfordern →</a>
       </article>
       <aside class="price-card price-card--addon">
@@ -561,7 +561,7 @@ def build_index():
         <ul class="price-card__list">
           <li>Dynamische Shows, Tricks und Interaktionen</li>
           <li>Magnet für Fotos und Videos der Gäste</li>
-          <li>Operator im Preis enthalten</li>
+          <li>Mit eigenem Operator vor Ort</li>
         </ul>
         <a href="#kontakt" class="tile__link">Zum Angebot hinzufügen →</a>
       </aside>
@@ -600,7 +600,7 @@ def build_index():
     <div class="process">
       <div class="process-step"><span class="process-step__n">01</span><div><h3>Schneller Kontakt</h3><p>Sie füllen ein kurzes Formular aus oder schreiben eine E-Mail. Das dauert zwei Minuten.</p></div></div>
       <div class="process-step"><span class="process-step__n">02</span><div><h3>Rückruf von uns</h3><p>Wir rufen zurück, lernen Ihre Veranstaltung kennen und empfehlen das passende Showformat.</p></div></div>
-      <div class="process-step"><span class="process-step__n">03</span><div><h3>Angebot in 24 Stunden</h3><p>Ein konkreter Betrag ohne Sternchen — meist noch am selben Tag.</p></div></div>
+      <div class="process-step"><span class="process-step__n">03</span><div><h3>Angebot in 24 Stunden</h3><p>Ein konkreter Betrag für Ihren Termin — meist noch am selben Tag.</p></div></div>
       <div class="process-step process-step--key"><span class="process-step__n">04</span><div><h3>Einfacher Vertrag</h3><p><strong>Kostenlose Terminreservierung, KEINE Anzahlung.</strong> Sie brauchen ein längeres Zahlungsziel? Wir richten es ein.</p></div></div>
       <div class="process-step"><span class="process-step__n">05</span><div><h3>Wir übernehmen alles</h3><p>Anfahrt, Aufbau, Operator und eine Show auf höchstem Niveau.</p></div></div>
       <div class="process-step process-step--key"><span class="process-step__n">06</span><div><h3>Zahlung nach dem Event</h3><p>Die Rechnung stellen wir <strong>erst nach der Veranstaltung</strong>. Zuerst das Ergebnis, dann die Zahlung.</p></div></div>
@@ -675,11 +675,11 @@ def build_index():
         </div>
 
         <nav class="coverage" aria-label="Roboter mieten — bediente Städte">
-          <p class="coverage__label">Wir kommen ohne Aufpreis nach:</p>
+          <p class="coverage__label">Wir sind im Einsatz in:</p>
           <ul class="coverage__cities">
 {coverage}
           </ul>
-          <p class="coverage__note">und überall sonst — die Anfahrt ist im Preis enthalten</p>
+          <p class="coverage__note">und überall sonst in Deutschland</p>
         </nav>
       </div>
       <div class="contact-right">
@@ -988,12 +988,12 @@ def build_offer_pages(write):
         de("oferta.html"), "Leistungen & Angebot",
         "Leistungen und Angebot — humanoide Roboter mieten | 33bots",
         "Das komplette Angebot von 33bots: humanoide Roboter für Messen, Konferenzen, Galas, Firmenfeiern und Tage "
-        "der offenen Tür. Anfahrt und Operator deutschlandweit inklusive →",
+        "der offenen Tür. Zertifizierter Operator, deutschlandweit im Einsatz →",
         "roboter mieten angebot, leistungen roboter vermietung, roboter für events angebot, 33bots leistungen",
         "Leistungen · Angebot · Deutschlandweit",
         "Unser Angebot —<br />ein Roboter, jede Bühne.",
         "Wir vermieten humanoide Roboter Unitree G1 für alles, was eine Bühne, einen Stand oder einen Saal hat. "
-        "Hier finden Sie das komplette Leistungsspektrum — mit dem, was in jedem Paket immer enthalten ist.",
+        "Hier finden Sie das komplette Leistungsspektrum — und was zu jedem Einsatztag gehört.",
         tiles_section("Kernangebote", "Drei Formate,<br />die am häufigsten gebucht werden", [
             ("Messen", "Roboter am Messestand", "Mehr Standfrequenz, mehr Gespräche, mehr Leads. Der G1 arbeitet "
                                                 "den kompletten Messetag vor Ihrem Stand."),
@@ -1002,24 +1002,24 @@ def build_offer_pages(write):
             ("Feiern", "Roboter auf der Firmenfeier", "Sommerfest, Jubiläum, Weihnachtsfeier — eine Show, über die "
                                                       "die Belegschaft wochenlang spricht."),
         ]) + text_section(
-            "Was in jedem Paket enthalten ist",
-            f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — und in diesem Preis ist bereits alles "
-            f"enthalten, was Sie für die Show brauchen.",
-            ["Wir kalkulieren keine Anfahrt nach, berechnen kein Branding und rechnen keine Zusatzoptionen ab. Der "
-             "Betrag, den Sie im Angebot sehen, ist der Betrag auf der Rechnung."],
+            "Was zu einem Veranstaltungstag gehört",
+            f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — den genauen Betrag kalkulieren wir "
+            f"für Ihre Veranstaltung.",
+            ["Was der Tag konkret kostet, hängt von Veranstaltungsort, Dauer und Umfang der Show ab. Sie "
+             "erhalten dazu ein individuelles Angebot."],
             subheads=[
-                ("Immer inklusive", "Anfahrt deutschlandweit ohne Kilometerlimit, zertifizierter Operator für den "
+                ("Immer dabei", "Zertifizierter Operator für den "
                                     "gesamten Tag, Branding mit Logo und QR-Code auf der Brustplatte, "
                                     "Haftpflichtversicherung und technische Betreuung vor Ort."),
-                ("Optionen", f"Der Roboterhund ist für {DOG_PRICE} pro Veranstaltungstag zubuchbar, inklusive "
-                             f"Operator. Ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag."),
+                ("Optionen", f"Der Roboterhund ist für {DOG_PRICE} pro Veranstaltungstag zubuchbar, mit "
+                             f"eigenem Operator. Ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag."),
                 ("Konditionen", "Terminreservierung kostenlos, keine Anzahlung, Rechnung erst nach der "
                                 "Veranstaltung. Auf Wunsch mit längerem Zahlungsziel."),
             ]),
         faqs=[
             ("Wie schnell bekomme ich ein Angebot?",
              "In der Regel innerhalb von 24 Stunden, oft noch am selben Tag. Sie erhalten einen konkreten Betrag "
-             "ohne Sternchen."),
+             "für Ihren Termin."),
             ("Arbeiten Sie auch mit Eventagenturen zusammen?",
              "Ja — wir liefern die Roboter-Show als Modul im Subauftrag, inklusive Präsentationsmaterial und "
              "technischem Rider. Bei fester Zusammenarbeit gibt es Partnerkonditionen."),
@@ -1032,8 +1032,8 @@ def build_offer_pages(write):
     write(de("oferta-targi.html"), simple_page(
         de("oferta-targi.html"), "Messen & Ausstellungen",
         "Roboter für Messen mieten — mehr Standbesucher | 33bots",
-        "Humanoiden Roboter für Ihren Messestand mieten. Mehr Standfrequenz, mehr Gespräche, mehr Leads — Anfahrt "
-        "und Operator deutschlandweit inklusive →",
+        "Humanoiden Roboter für Ihren Messestand mieten. Mehr Standfrequenz, mehr Gespräche, mehr Leads — mit "
+        "zertifiziertem Operator, deutschlandweit im Einsatz →",
         "roboter messe mieten, messestand attraktion, publikumsmagnet messestand, roboter messestand, Unitree G1 messe",
         "Messen · Standfrequenz · Leadgenerierung",
         "Roboter für Messen<br />und Ausstellungen.",
@@ -1072,7 +1072,7 @@ def build_offer_pages(write):
              "Ja. Wir liefern die nötigen Angaben zu Gerät, Stromversorgung und Betrieb, damit Sie die Freigabe beim "
              "Messeveranstalter problemlos einholen können. Eine Haftpflichtversicherung besteht."),
             ("Was kostet ein Messetag?",
-             f"{PRICE_FROM} pro Tag inklusive Anfahrt, Operator, Branding und Versicherung. Ab zwei Tagen 15 % "
+             f"{PRICE_FROM} pro Tag, abhängig von Veranstaltungsort und Umfang der Show. Ab zwei Tagen 15 % "
              f"Rabatt pro Tag."),
         ]))
 
@@ -1081,7 +1081,7 @@ def build_offer_pages(write):
         de("oferta-konferencje.html"), "Konferenzen & Galas",
         "Roboter für Konferenzen und Galas mieten | 33bots",
         "Humanoiden Roboter für Konferenz, Kongress oder Gala mieten. Empfang, Bühnenmoment und Fotoanlass — "
-        "Operator und Anfahrt deutschlandweit inklusive →",
+        "mit zertifiziertem Operator, deutschlandweit im Einsatz →",
         "roboter konferenz mieten, roboter gala, kongress attraktion, roboter bühne event, Unitree G1 konferenz",
         "Konferenzen · Galas · Award-Abende",
         "Roboter für Konferenzen<br />und Galas.",
@@ -1107,7 +1107,7 @@ def build_offer_pages(write):
                                                "Unser Operator ist während der gesamten Veranstaltung ansprechbar."),
                 ("Internationales Publikum", "Der Effekt funktioniert sprachunabhängig — er entsteht über Bewegung "
                                              "und Präsenz. Ihr Branding bleibt in jedem Foto sichtbar."),
-                ("Konditionen", f"{PRICE_FROM} pro Veranstaltungstag, alles inklusive. Kostenlose "
+                ("Konditionen", f"{PRICE_FROM} pro Veranstaltungstag. Kostenlose "
                                 f"Terminreservierung, keine Anzahlung, Rechnung erst nach dem Event."),
             ]) + video_section("taniec",
                                'Der <strong style="color:var(--text);">Unitree G1</strong> im Gala-Einsatz — Empfang, '
@@ -1128,7 +1128,7 @@ def build_offer_pages(write):
         de("oferta-dni-otwarte.html"), "Tage der offenen Tür",
         "Roboter für den Tag der offenen Tür mieten | 33bots",
         "Humanoiden Roboter für Tag der offenen Tür, Showroom oder Karrieremesse mieten. Der Programmpunkt, über den "
-        "alle sprechen — Operator und Anfahrt inklusive →",
+        "alle sprechen — mit zertifiziertem Operator vor Ort →",
         "roboter tag der offenen tür, roboter showroom, employer branding roboter, karrieremesse attraktion",
         "Tage der offenen Tür · Showrooms · Employer Branding",
         "Roboter für Tage<br />der offenen Tür.",
@@ -1155,8 +1155,8 @@ def build_offer_pages(write):
                 ("Sicherheit bei viel Publikum", "LiDAR und Computer Vision lassen den Roboter Personen in Echtzeit "
                                                  "ausweichen; unser Operator begleitet den Einsatz durchgehend. "
                                                  "Gerade bei Kindern ist diese doppelte Absicherung wichtig."),
-                ("Kosten", f"{PRICE_FROM} für den kompletten Veranstaltungstag, inklusive Anfahrt, Operator, "
-                           f"Branding und Versicherung. Optional ergänzt der Roboterhund für {DOG_PRICE} pro Tag "
+                ("Kosten", f"{PRICE_FROM} für den kompletten Veranstaltungstag, abhängig von Ort und Umfang "
+                           f"der Show. Optional ergänzt der Roboterhund für {DOG_PRICE} pro Tag "
                            f"das Programm."),
             ]) + video_section("gesty",
                                'Der <strong style="color:var(--text);">Unitree G1</strong> in der Interaktion — '
@@ -1177,19 +1177,19 @@ def build_offer_pages(write):
     write(de("wypozyczenie-robota.html"), simple_page(
         de("wypozyczenie-robota.html"), "Humanoiden Roboter mieten",
         "Humanoiden Roboter mieten — Unitree G1 für Ihr Event | 33bots",
-        f"Humanoiden Roboter Unitree G1 mieten: {PRICE_FROM} pro Veranstaltungstag, Anfahrt, Operator und Branding "
-        f"inklusive. Keine Anzahlung, Rechnung nach dem Event →",
+        f"Humanoiden Roboter Unitree G1 mieten: {PRICE_FROM} pro Veranstaltungstag, mit zertifiziertem "
+        f"Operator vor Ort. Keine Anzahlung, Rechnung nach dem Event →",
         "humanoiden roboter mieten, roboter mieten, Unitree G1 mieten, roboter vermietung, event roboter",
-        "Roboter mieten · Deutschlandweit · Alles inklusive",
+        "Roboter mieten · Deutschlandweit · Ganzer Showtag",
         "Humanoiden Roboter<br />mieten.",
-        "Ein kompletter Showtag mit dem Unitree G1 — Anfahrt, zertifizierter Operator, Branding und Versicherung "
-        "sind im Preis enthalten. Sie buchen einmal und bekommen alles.",
-        tiles_section("Was Sie bekommen", "Ein Paket,<br />keine Extras", [
+        "Ein kompletter Showtag mit dem Unitree G1 — zertifizierter Operator, Branding und Versicherung "
+        "gehören zum Einsatz. Sie buchen einmal, um den Rest kümmern wir uns.",
+        tiles_section("Was Sie bekommen", "Ein Showtag,<br />ein Ansprechpartner", [
             ("Ganzer Tag", "Showtag statt Stundentakt", "Der Roboter ist den kompletten Veranstaltungstag im "
-                                                        "Einsatz — kein Stundenzähler, keine Verlängerungsaufschläge."),
-            ("Operator", "Zertifizierter Operator inklusive", "Unser Operator baut auf, steuert den Roboter und "
+                                                        "Einsatz — nicht im Stundentakt."),
+            ("Operator", "Zertifizierter Operator vor Ort", "Unser Operator baut auf, steuert den Roboter und "
                                                               "beantwortet die Fragen Ihrer Gäste."),
-            ("Branding", "Ihr Logo ohne Aufpreis", "Logo und QR-Code kommen auf die Brustplatte des G1 — in jedem "
+            ("Branding", "Ihr Logo auf dem Roboter", "Logo und QR-Code kommen auf die Brustplatte des G1 — in jedem "
                                                    "Foto Ihrer Gäste sichtbar."),
         ]) + text_section(
             "Was der Unitree G1 auf Ihrer Veranstaltung macht",
@@ -1203,13 +1203,13 @@ def build_offer_pages(write):
                                                        "Unser Operator ist 30–45 Minuten vor Türöffnung "
                                                        "einsatzbereit."),
                 ("Sicherheit", "LiDAR und Computer Vision lassen den G1 Hindernissen und Personen in Echtzeit "
-                               "ausweichen. Eine Haftpflichtversicherung ist im Preis enthalten."),
+                               "ausweichen. Der Einsatz ist haftpflichtversichert."),
                 ("Preis und Konditionen", f"{PRICE_FROM} pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang der Show. Ab "
                                           f"zwei Tagen 15 % Rabatt auf jeden Tag. Der Roboterhund ist optional für "
                                           f"{DOG_PRICE} pro Tag buchbar."),
             ]) + video_section("branding",
                                'Der <strong style="color:var(--text);">Unitree G1</strong> mit dem Branding des '
-                               'Kunden — Logo und QR-Code auf der Brustplatte, ohne Aufpreis.'),
+                               'Kunden — Logo und QR-Code auf der Brustplatte.'),
         faqs=[
             ("Wie schnell bekomme ich ein Angebot?",
              "In der Regel innerhalb von 24 Stunden, oft noch am selben Tag."),
@@ -1218,7 +1218,7 @@ def build_offer_pages(write):
              "Veranstaltung."),
             ("Ist der Roboterhund einzeln buchbar?",
              f"Der Roboterhund ist als Ergänzung zum humanoiden Roboter konzipiert und kostet {DOG_PRICE} pro "
-             f"Veranstaltungstag inklusive Operator."),
+             f"Veranstaltungstag, mit eigenem Operator."),
         ]))
 
     # robot-na-wesele.html
@@ -1226,7 +1226,7 @@ def build_offer_pages(write):
         de("robot-na-wesele.html"), "Roboter zur Hochzeit",
         "Roboter zur Hochzeit mieten — Attraktion für Ihren Tag | 33bots",
         "Humanoiden Roboter zur Hochzeit mieten: Er begrüßt die Gäste, tanzt mit dem Brautpaar und posiert für "
-        "Fotos. Operator und Anfahrt deutschlandweit inklusive →",
+        "Fotos. Mit zertifiziertem Operator, deutschlandweit im Einsatz →",
         "roboter hochzeit, roboter zur hochzeit mieten, hochzeit attraktion, roboter tanzt hochzeit, hochzeitsüberraschung",
         "Hochzeit · Überraschung · Tanzfläche",
         "Roboter zur Hochzeit —<br />die Überraschung des Abends.",
@@ -1253,8 +1253,8 @@ def build_offer_pages(write):
                                             "Showfläche fest — ein Podest genügt."),
                 ("Musik", "Die Choreografie synchronisieren wir mit Ihrem Wunschtitel, sofern Sie ihn rechtzeitig "
                           "durchgeben. Alternativ übernimmt der Roboter die Playlist Ihres DJs."),
-                ("Preis", f"{PRICE_FROM} für den kompletten Tag, inklusive Anfahrt, Operator, Branding und "
-                          f"Versicherung. Terminreservierung kostenlos, Rechnung erst nach der Hochzeit."),
+                ("Preis", f"{PRICE_FROM} für den kompletten Tag, abhängig von Ort und Umfang der Show. "
+                          f"Terminreservierung kostenlos, Rechnung erst nach der Hochzeit."),
             ]) + video_section("taniec",
                                'So sieht der <strong style="color:var(--text);">Unitree G1</strong> auf der '
                                'Tanzfläche aus. Genau dieser Ablauf funktioniert auf jeder Hochzeit.'),
@@ -1274,8 +1274,8 @@ def build_offer_pages(write):
     write(de("robot-na-impreze.html"), simple_page(
         de("robot-na-impreze.html"), "Roboter für Ihre Feier",
         "Roboter für Ihre Feier mieten — Party mit Humanoid | 33bots",
-        "Humanoiden Roboter für Ihre Feier mieten: Tanzshow, Interaktion mit den Gästen und Fotobereich. Operator "
-        "und Anfahrt deutschlandweit inklusive →",
+        "Humanoiden Roboter für Ihre Feier mieten: Tanzshow, Interaktion mit den Gästen und Fotobereich. Mit "
+        "zertifiziertem Operator, deutschlandweit im Einsatz →",
         "roboter party mieten, roboter feier, party attraktion, roboter tanzt party, humanoider roboter feier",
         "Party · Tanzfläche · Fotobereich",
         "Roboter für Ihre Feier —<br />die Party wird zur Legende.",
@@ -1362,7 +1362,7 @@ def build_referenzen():
         "nachgestellt oder animiert.",
         ["Was Sie sehen, ist der Standardablauf: Der Roboter begrüßt Gäste, geht durch die Fläche, gestikuliert, "
          "posiert für Fotos und tanzt eine Choreografie zur Musik. Auf der Brustplatte ist bei Kundeneinsätzen das "
-         "Branding der jeweiligen Marke zu sehen — bei uns ohne Aufpreis.",
+         "Branding der jeweiligen Marke zu sehen.",
          "Wenn Sie sehen möchten, wie das bei Ihrer Veranstaltung aussehen würde, schreiben Sie uns kurz, worum es "
          "geht. Sie bekommen innerhalb von 24 Stunden einen Vorschlag für den Ablauf und ein konkretes Angebot."])
 
@@ -1520,7 +1520,7 @@ def build_case_studies(write):
         "Humanoide Roboter<br />mieten — Unitree G1.",
         "Entwurfsvariante der Startseite. Die produktive Fassung finden Sie auf der Startseite des Serviceangebots.",
         text_section("Humanoide Roboter für Ihre Veranstaltung",
-                     "Ein kompletter Showtag mit Anfahrt, Operator und Branding im Preis.",
+                     "Ein kompletter Showtag mit zertifiziertem Operator vor Ort.",
                      ["Diese Seite spiegelt die Entwurfsvariante des polnischen Serviceangebots und dient dem "
                       "Vergleich von Layoutvarianten."]),
         kontakt_h2="Termin für Ihre<br />Veranstaltung sichern."))

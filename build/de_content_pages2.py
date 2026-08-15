@@ -128,7 +128,7 @@ EVENTS = [
 
     ev("robot-na-roadshow", "Roboter für Roadshows", "für Roadshows", "Auf einer Roadshow",
        sub="Eine Roadshow lebt vom wiederholbaren Effekt in jeder Stadt der Route. Der humanoide Roboter ist die Attraktion, die in Hamburg genauso stark wirkt wie in München — und die Logistik übernehmen wir.",
-       uniq_tile=("Route", "Ganz Deutschland in einem Projekt", "Wir planen die Präsenz des Roboters auf der gesamten Route: Termine, Transport, dasselbe Team und derselbe Showstandard in jeder Stadt. Sie haben einen Ansprechpartner und null Überraschungen."),
+       uniq_tile=("Route", "Ganz Deutschland in einem Projekt", "Wir planen die Präsenz des Roboters auf der gesamten Route: Termine, Transport, dasselbe Team und derselbe Showstandard in jeder Stadt. Sie haben einen Ansprechpartner für die gesamte Route."),
        uniq_scen=("Dasselbe Drehbuch, neue Stadt", "An jedem Standort spielt der Roboter das erprobte Programm: Shows, Interaktionen, Fotobereich mit Branding. Eine Konsistenz, die jeder Brand Manager zu schätzen weiß."),
        faq_uniq=("Wie wird eine Tour durch mehrere Städte abgerechnet?", "Für Roadshows erstellen wir ein Paketangebot für die gesamte Route — günstiger als die Summe der Einzeleinsätze. Schreiben Sie uns mit der geplanten Städteliste.")),
 

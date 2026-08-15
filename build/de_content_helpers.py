@@ -9,9 +9,9 @@ odpowiednik PL). Różni się wyłącznie język i realia rynku niemieckiego.
 """
 
 # ── Stałe handlowe rynku DE ───────────────────────────────────────────
-PRICE_FROM = "ab 2.500 €"
-PRICE_MIN = "2.500 €"
-PRICE_LOW = "2500"
+PRICE_FROM = "ab 2.499 €"
+PRICE_MIN = "2.499 €"
+PRICE_LOW = "2499"
 DOG_PRICE = "850 €"
 
 
@@ -36,8 +36,7 @@ def _pick2(pool, slug):
 def faq_price(x):
     return (f"Was kostet ein Roboter {x}?",
             f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — der endgültige Preis hängt von "
-            f"Veranstaltungsort und Umfang der Show ab. Anfahrt, zertifizierter Operator, Branding und "
-            f"Versicherung sind immer enthalten. Schreiben Sie uns über das Formular — Sie erhalten das "
+            f"Veranstaltungsort und Umfang der Show ab. Schreiben Sie uns über das Formular — Sie erhalten das "
             f"Angebot innerhalb von 24 Stunden.")
 
 
@@ -45,19 +44,19 @@ def faq_safe():
     return ("Ist der Roboter für die Gäste sicher?",
             "Ja — der Unitree G1 erkennt über LiDAR und Computer Vision Hindernisse und Personen in Echtzeit und "
             "weicht ihnen aus. Zusätzlich arbeitet er durchgehend unter Aufsicht eines zertifizierten "
-            "33bots-Operators, der den Sicherheitsabstand kontrolliert. Eine Haftpflichtversicherung ist inklusive.")
+            "33bots-Operators, der den Sicherheitsabstand kontrolliert. Der Einsatz ist haftpflichtversichert.")
 
 
 def faq_operator():
     return ("Kommt der Roboter mit Betreuung?",
-            "Ja — im Mietpreis ist immer ein zertifizierter Operator enthalten, der den Roboter steuert, für "
+            "Ja — bei jedem Einsatz ist ein zertifizierter Operator dabei, der den Roboter steuert, für "
             "Sicherheit sorgt und die Interaktionen mit den Gästen begleitet. Sie müssen selbst nichts bedienen.")
 
 
 def faq_transport():
     return ("Kommen Sie auch in unsere Stadt?",
-            "Ja — wir sind deutschlandweit im Einsatz und die Anfahrt ist im Preis enthalten. Wir bedienen sowohl "
-            "Großstädte als auch kleinere Orte, ohne Kilometerpauschale und ohne Mindestentfernung.")
+            "Ja — wir sind deutschlandweit im Einsatz. Wir bedienen sowohl Großstädte als auch kleinere "
+            "Orte; Anfahrt und Logistik halten wir im Angebot fest.")
 
 
 def faq_book(x):
@@ -90,17 +89,17 @@ def mk(**kw):
 # ── Pule tekstowe ─────────────────────────────────────────────────────
 DESCS = [
     "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Gästeempfang, Tanzshow, "
-    "Gespräche dank KI. Anfahrt und Operator inklusive →",
+    "Gespräche dank KI. Mit zertifiziertem Operator vor Ort →",
     "Humanoiden Roboter {na} mieten. Der Unitree G1 begrüßt Gäste, tanzt und spricht dank KI. Deutschlandweit, "
-    "Anfahrt und Operator im Preis →",
+    "mit zertifiziertem Operator vor Ort →",
     "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich. Unitree G1 mit "
-    "zertifiziertem Operator, Anfahrt inklusive →",
+    "zertifiziertem Operator vor Ort →",
 ]
 
 EYEBROWS = [
     "Roboter mieten · Event-Attraktion · Deutschlandweit",
     "Humanoider Roboter · Unitree G1 · Show mit Operator",
-    "Premium-Attraktion · Unitree G1 · Anfahrt inklusive",
+    "Premium-Attraktion · Unitree G1 · Deutschlandweit",
 ]
 
 TILES_H2 = [
@@ -127,7 +126,7 @@ def _tile_pool(Loc):
         ("Viral", "Der Content entsteht von selbst",
          "Jede Interaktion mit dem Roboter endet mit einer Aufnahme. Stories und Clips von Ihrer Veranstaltung "
          "landen im Netz, während sie noch läuft."),
-        ("Stressfrei", "Operator und Anfahrt inklusive",
+        ("Stressfrei", "Operator und Logistik von uns",
          "Wir kommen, bauen auf und führen die Show von A bis Z durch. Ein zertifizierter Operator behält alles "
          "im Blick — Sie kümmern sich um Ihre Gäste."),
         ("Fotos", "Ein Fotobereich, der nicht leer wird",
@@ -206,11 +205,11 @@ def br(suffix, nom, na, Loc, aud, uniq, faq, guides="default", video=None, blog=
 
 PRIV_DESCS = [
     "Roboter {na} — die Überraschung, über die die ganze Familie spricht. Der Unitree G1 tanzt, gratuliert und "
-    "posiert für Fotos. Operator inklusive →",
+    "posiert für Fotos. Mit eigenem Operator →",
     "Humanoiden Roboter {na} mieten. Tanz, Glückwünsche, gemeinsame Fotos — eine Attraktion, die kein Gast "
     "vergisst. Deutschlandweit →",
     "Humanoider Roboter {na}: Tanzshow, Interaktion mit den Gästen und Erinnerungsfotos. Mit zertifiziertem "
-    "Operator, Anfahrt inklusive →",
+    "Operator vor Ort →",
 ]
 
 

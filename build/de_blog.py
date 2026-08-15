@@ -84,17 +84,17 @@ ARTICLES = [
 
  a("blog-ile-kosztuje-wynajem-robota.html", "2025-11-15", "Preise · Pakete",
    "Was kostet die Miete eines Roboters? Preise 2026 | 33bots",
-   "Transparenter Leitfaden zu den Kosten der Miete eines Unitree G1: Was im Preis enthalten ist, wovon er abhängt und warum die Anfahrt bei uns inklusive ist.",
+   "Transparenter Leitfaden zu den Kosten der Miete eines Unitree G1: Was den Tagessatz ausmacht, wovon er abhängt und wie wir kalkulieren.",
    "was kostet roboter mieten, roboter mieten preis, roboter vermietung kosten, preis humanoider roboter",
    "Was kostet die Miete<br />eines Roboters?<br />Preise 2026",
-   "Ein transparenter Überblick über die Kosten — ohne Sternchen und ohne „auf Anfrage“.",
+   "Ein transparenter Überblick über die Kosten und darüber, wovon der Tagessatz abhängt.",
    "Die häufigste Frage in unserem Postfach ist auch die einfachste: Was kostet das? Hier ist die vollständige Antwort.",
-   [("Der Tagessatz", "ab 2.500 € pro Veranstaltungstag",
-     ["Der Preis hängt von Veranstaltungsort und Umfang der Show ab. Wir nennen den Betrag sofort, und genau dieser Betrag steht später auf der Rechnung."]),
-    ("Inklusive", "Was ohne Aufpreis dabei ist",
-     ["Anfahrt deutschlandweit ohne Kilometerlimit, zertifizierter Operator für den gesamten Tag, Branding mit Logo und QR-Code, Haftpflichtversicherung und technische Betreuung vor Ort."]),
+   [("Der Tagessatz", "ab 2.499 € pro Veranstaltungstag",
+     ["Der Preis hängt von Veranstaltungsort und Umfang der Show ab. Den Betrag nennen wir Ihnen im individuellen Angebot."]),
+    ("Leistungen", "Was zu einem Einsatztag gehört",
+     ["Ein zertifizierter Operator für den gesamten Tag, Branding mit Logo und QR-Code, Haftpflichtversicherung und technische Betreuung vor Ort."]),
     ("Optionen", "Was zusätzlich buchbar ist",
-     [f"Der Roboterhund kostet 850 € pro Veranstaltungstag inklusive Operator. Ab zwei Veranstaltungstagen sinkt der Tagessatz um 15 % — bei Messen ist das der Regelfall, siehe {link('robot-na-targi.html', 'Roboter für Messen')}."]),
+     [f"Der Roboterhund kostet 850 € pro Veranstaltungstag, mit eigenem Operator. Ab zwei Veranstaltungstagen sinkt der Tagessatz um 15 % — bei Messen ist das der Regelfall, siehe {link('robot-na-targi.html', 'Roboter für Messen')}."]),
     ("Konditionen", "Warum es keine Anzahlung gibt",
      [f"Die Terminreservierung ist kostenlos, die Rechnung stellen wir erst nach der Veranstaltung. Wie der gesamte Ablauf aussieht, steht in unserer {link('blog-jak-wynajac-robota-checklist.html', 'Checkliste zur Buchung')}."])],
    "Angebot für Ihren Termin?", "Nennen Sie uns Datum und Ort — Sie bekommen den konkreten Betrag innerhalb von 24 Stunden."),
@@ -147,7 +147,7 @@ ARTICLES = [
     ("Schritt 3", "Fragen, die Sie dem Anbieter stellen sollten",
      ["Ist der Operator im Preis? Wie hoch ist die Anfahrtspauschale? Kostet Branding extra? Gibt es Ersatztechnik? Und: Ist der Roboter im Eigentum des Anbieters oder untervermietet?"]),
     ("Schritt 4", "Budget realistisch ansetzen",
-     [f"Vergleichen Sie Endpreise, nicht Tagessätze. Was bei uns enthalten ist, steht in {link('blog-ile-kosztuje-wynajem-robota.html', 'unserem Preisleitfaden')}."])],
+     [f"Vergleichen Sie Endpreise, nicht Tagessätze. Wie wir kalkulieren, steht in {link('blog-ile-kosztuje-wynajem-robota.html', 'unserem Preisleitfaden')}."])],
    "Lieber direkt sprechen?", "Beschreiben Sie uns Ihre Veranstaltung — wir beraten zum Format und schicken ein Angebot in 24 Stunden."),
 
  a("blog-robot-humanoidalny-vs-mobilny.html", "2026-07-09", "Vergleich · Technik",
@@ -186,7 +186,7 @@ ARTICLES = [
 
  a("blog-jak-wynajac-robota-checklist.html", "2026-07-11", "Checkliste · Buchung",
    "Roboter mieten — Checkliste in 7 Punkten | 33bots",
-   "Bevor Sie unterschreiben: sieben Punkte, mit denen Sie einen humanoiden Roboter ohne Überraschungen, Aufschläge und Stress am Eventtag mieten.",
+   "Bevor Sie unterschreiben: sieben Punkte, mit denen Sie einen humanoiden Roboter ohne Stress am Eventtag mieten.",
    "roboter mieten checkliste, roboter buchen ablauf, roboter vermietung vertrag",
    "Roboter mieten —<br />Checkliste in 7 Punkten",
    "Sieben Fragen, die Sie vor der Unterschrift klären sollten — bei uns und bei jedem anderen Anbieter.",
@@ -230,7 +230,7 @@ ARTICLES = [
     ("Organisatorisch", "Der Operator als zweite Instanz",
      ["Unser Operator ist durchgehend vor Ort und kontrolliert Abstand und Ablauf. Bei Kinderveranstaltungen arbeiten wir zusätzlich mit einem abgegrenzten Interaktionsbereich."]),
     ("Rechtlich", "Haftpflichtversicherung",
-     ["Eine Haftpflichtversicherung ist im Preis enthalten. Für Messeveranstalter liefern wir die nötigen Angaben zu Gerät und Betrieb."]),
+     ["Der Einsatz ist haftpflichtversichert. Für Messeveranstalter liefern wir die nötigen Angaben zu Gerät und Betrieb."]),
     ("Kinder", "Was wir zusätzlich beachten",
      [f"Wir beginnen aus Distanz, erklären die Regeln spielerisch und lassen Interaktionen nur unter Aufsicht zu. Details in {link('blog-robot-na-event-dla-dzieci.html', 'Roboter auf Kinderveranstaltungen')}."])],
    "Sicherheitsfragen offen?", "Wir schicken Ihnen die technischen Angaben, die Ihr Veranstalter oder Ihre Versicherung braucht."),
@@ -284,7 +284,7 @@ ARTICLES = [
      [f"Am {link('robot-na-targi.html', 'Messestand')}, bei der {link('robot-na-premiere-produktu.html', 'Produktpremiere')} und in {link('robot-do-marketingu.html', 'Marketing-Aktivierungen')} im Stadtraum."]),
     ("Grenzen", "Was ein Roboter nicht ersetzt",
      ["Er ersetzt keine inhaltliche Botschaft und keine Beziehung zu Kunden. Er verschafft beidem nur Aufmerksamkeit."])],
-   "Marke sichtbar machen?", "Wir stimmen Branding und Ablauf auf Ihre Kampagne ab — ohne Aufpreis fürs Branding."),
+   "Marke sichtbar machen?", "Wir stimmen Branding und Ablauf auf Ihre Kampagne ab."),
 
  a("blog-robot-zamiast-hostessy.html", "2026-07-17", "Vergleich · Personal",
    "Roboter statt Hostess? Der Vergleich | 33bots",
@@ -364,7 +364,7 @@ ARTICLES = [
    [("Schritt 1–2", "Anfrage und Rückruf",
      ["Sie schreiben uns Datum, Ort und Art der Veranstaltung. Wir rufen zurück und klären, welches Showformat passt."]),
     ("Schritt 3", "Angebot in 24 Stunden",
-     ["Sie bekommen einen konkreten Betrag. Keine Spannen, keine Sternchen, keine Nachberechnung."]),
+     ["Sie bekommen einen konkreten Betrag für Ihren Termin."]),
     ("Schritt 4", "Vertrag ohne Anzahlung",
      ["Die Terminreservierung ist kostenlos. Auf Wunsch vereinbaren wir ein längeres Zahlungsziel."]),
     ("Schritt 5–6", "Durchführung und Rechnung",
@@ -417,7 +417,7 @@ ARTICLES = [
     ("Vergleich", "Gegen welche Kosten Sie rechnen",
      ["Vergleichen Sie mit dem, was Sie sonst für dieselbe Aufmerksamkeit ausgeben: zusätzliche Standfläche, Mediabudget oder ein prominenter Speaker."]),
     ("Einwände", "Die drei häufigsten",
-     ["„Zu verspielt“ — lässt sich über den Ton der Show lösen. „Zu teuer“ — siehe Vergleichsrechnung. „Zu riskant“ — Versicherung und Operator sind inklusive."]),
+     ["„Zu verspielt“ — lässt sich über den Ton der Show lösen. „Zu teuer“ — siehe Vergleichsrechnung. „Zu riskant“ — Versicherung und Operator gehören zu jedem Einsatz."]),
     ("Beleg", "Referenzen zeigen",
      [f"Konkrete Fälle helfen mehr als Argumente. Zeigen Sie {link('case-study-wallstreet.html', 'unsere Case Studies')} aus vergleichbaren Formaten."])],
    "Unterlagen für die Freigabe?", "Wir stellen Ihnen Material zusammen, das Sie direkt in Ihre interne Vorlage übernehmen können."),
@@ -445,7 +445,7 @@ ARTICLES = [
    "roboter branding, logo auf roboter, roboter mit firmenlogo event",
    "Branding des Roboters<br />auf dem Event",
    "Ihr Logo auf der Brustplatte ist der Grund, warum die Gästefotos Ihnen etwas bringen.",
-   "Branding ist bei uns kein Aufpreis, sondern Standard. Hier, was möglich ist und was nicht.",
+   "Branding gehört bei uns zum Standard. Hier, was möglich ist und was nicht.",
    [("Standard", "Logo und QR-Code auf der Brustplatte",
      ["Das ist die sichtbarste Fläche und in praktisch jeder Aufnahme im Bild. Der QR-Code kann auf jede beliebige Zielseite führen."]),
     ("Erweitert", "Umfeld und Fotobereich",
@@ -959,7 +959,7 @@ def build_llms():
 Firmenfeiern in ganz Deutschland.
 
 - Preis: {_("PRICE_FROM")} pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang
-- Immer inklusive: Anfahrt deutschlandweit, zertifizierter Operator, Branding (Logo und QR-Code),
+- Immer dabei: zertifizierter Operator, Branding (Logo und QR-Code),
   Haftpflichtversicherung
 - Optional: Roboterhund für {_("DOG_PRICE")} pro Veranstaltungstag
 - Ab zwei Veranstaltungstagen 15 % Rabatt auf jeden Tag
