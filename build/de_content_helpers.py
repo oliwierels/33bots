@@ -88,12 +88,12 @@ def mk(**kw):
 
 # ── Pule tekstowe ─────────────────────────────────────────────────────
 DESCS = [
-    "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Gästeempfang, Tanzshow, "
-    "Gespräche dank KI. Mit zertifiziertem Operator vor Ort →",
-    "Humanoiden Roboter {na} mieten. Der Unitree G1 begrüßt Gäste, tanzt und spricht dank KI. Deutschlandweit, "
-    "mit zertifiziertem Operator vor Ort →",
-    "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich. Unitree G1 mit "
-    "zertifiziertem Operator vor Ort →",
+    "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Gästeempfang, "
+    "Tanzshow, Gespräche dank KI →",
+    "Humanoiden Roboter {na} mieten. Der Unitree G1 begrüßt Gäste, tanzt und spricht dank KI — "
+    "deutschlandweit im Einsatz →",
+    "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich — "
+    "mit Operator vor Ort →",
 ]
 
 EYEBROWS = [
@@ -160,7 +160,9 @@ def ev(slug, crumb, na, Loc, sub, uniq_tile, uniq_scen, faq_uniq,
     loc = Loc[0].lower() + Loc[1:]
     d = mk(
         slug=slug, crumb=crumb,
-        title=f"Roboter {na} — humanoiden Roboter mieten | 33bots",
+        # Kurz genug, damit Google den Titel nicht abschneidet (~60 Zeichen):
+        # der Zusatz „humanoiden Roboter mieten" wiederholte nur H1 und Description.
+        title=f"Roboter {na} mieten | 33bots",
         desc=_pick(DESCS, slug).format(na=na),
         keywords=(f"roboter {na}, roboter mieten {na}, attraktion {na}, humanoider roboter {na}, "
                   f"Unitree G1 {na}"),
@@ -204,8 +206,8 @@ def br(suffix, nom, na, Loc, aud, uniq, faq, guides="default", video=None, blog=
 
 
 PRIV_DESCS = [
-    "Roboter {na} — die Überraschung, über die die ganze Familie spricht. Der Unitree G1 tanzt, gratuliert und "
-    "posiert für Fotos. Mit eigenem Operator →",
+    "Roboter {na} — die Überraschung, über die die ganze Familie spricht. Der Unitree G1 tanzt, "
+    "gratuliert und posiert für Fotos →",
     "Humanoiden Roboter {na} mieten. Tanz, Glückwünsche, gemeinsame Fotos — eine Attraktion, die kein Gast "
     "vergisst. Deutschlandweit →",
     "Humanoider Roboter {na}: Tanzshow, Interaktion mit den Gästen und Erinnerungsfotos. Mit zertifiziertem "
@@ -235,7 +237,9 @@ def priv(slug, crumb, na, Loc, sub, uniq_scen, faq_uniq, guides_override=None):
     loc = Loc[0].lower() + Loc[1:]
     d = mk(
         slug=slug, crumb=crumb,
-        title=f"{crumb} — humanoiden Roboter mieten | 33bots",
+        # Wie bei ev(): der Zusatz sprengte mit langen crumb-Werten die
+        # ~60 Zeichen und wurde in den Suchergebnissen abgeschnitten.
+        title=f"{crumb} mieten | 33bots",
         desc=_pick(PRIV_DESCS, slug).format(na=na),
         keywords=(f"roboter {na}, roboter mieten {na}, attraktion {na}, humanoider roboter {na}, "
                   f"überraschung {na}"),

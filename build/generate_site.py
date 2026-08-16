@@ -47,7 +47,8 @@ EMAIL = "kontakt@33bots.de"
 GTM_ID = ""
 ALBACROSS_ID = ""
 ANALYTICS = bool(GTM_ID or ALBACROSS_ID)
-LASTMOD = "2026-08-03"
+# Bei inhaltlichen Aenderungen hochsetzen — steht als <lastmod> in der Sitemap.
+LASTMOD = "2026-08-16"
 
 # ── Dane rejestrowe do Impressum i Datenschutz ────────────────────────
 # Wymagane przez § 5 DDG, § 18 ust. 2 MStV i art. 13 DSGVO. Puste pole zostaje
@@ -422,7 +423,7 @@ def footer_html(home="index.html"):
     <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
   </div>
 
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
   <script src="a11y.js" defer></script>
 </body>
 </html>
@@ -545,8 +546,14 @@ def head_common(title, desc, keywords, out_file, og_image, og_alt, extra_style="
 
 
 def head_assets(extra_style=""):
+    # Preload des Latin-Subsets: fonts/inter.css ist ein verketteter Request
+    # (HTML -> CSS -> woff2). Der Preload holt die Datei parallel zum CSS,
+    # damit der Textwechsel nach dem font-display:swap frueher passiert.
+    # Deutsche Umlaute liegen komplett im Latin-Subset (U+0000-00FF).
     return f"""  <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" />
   <link rel="stylesheet" href="style.css?v=1" />
   <link rel="stylesheet" href="a11y.css?v=1" />
   <link rel="stylesheet" href="gallery.css?v=1" />
@@ -636,15 +643,50 @@ def render_faq(faqs):
     return "\n".join(out)
 
 
+def jpeg_size(path):
+    """Liest Breite/Hoehe direkt aus dem JPEG-Header (kein Pillow noetig).
+
+    Wird fuer width/height an den Galeriebildern gebraucht: ohne die Attribute
+    kennt der Browser das Seitenverhaeltnis erst nach dem Laden und schiebt das
+    Layout nach (CLS). Faellt eine Datei weg, liefern wir None und geben das
+    Bild wie bisher ohne Attribute aus, statt den Build zu brechen.
+    """
+    import struct
+    try:
+        with open(path, 'rb') as f:
+            if f.read(2) != b'\xff\xd8':
+                return None
+            while True:
+                b = f.read(1)
+                while b and b != b'\xff':
+                    b = f.read(1)
+                m = f.read(1)
+                while m == b'\xff':
+                    m = f.read(1)
+                if not m:
+                    return None
+                if m in (b'\xc0', b'\xc1', b'\xc2', b'\xc3', b'\xc5', b'\xc6',
+                         b'\xc7', b'\xc9', b'\xca', b'\xcb', b'\xcd', b'\xce', b'\xcf'):
+                    f.read(3)
+                    h, w = struct.unpack('>HH', f.read(4))
+                    return w, h
+                ln = struct.unpack('>H', f.read(2))[0]
+                f.read(ln - 2)
+    except (OSError, struct.error):
+        return None
+
+
 def gallery_items(limit=None):
     items = GALLERY[:limit] if limit else GALLERY
     out = []
     for slug, mod, cap, alt in items:
         cls = f"shot shot--{mod}" if mod else "shot"
+        size = jpeg_size(os.path.join(OUT, f"{slug}.jpg"))
+        dim = f' width="{size[0]}" height="{size[1]}"' if size else ""
         out.append(f"""        <figure class="{cls}">
           <picture>
             <source srcset="{slug}.webp" type="image/webp" />
-            <img src="{slug}.jpg" alt="{alt}" loading="lazy" decoding="async" class="shot__img" />
+            <img src="{slug}.jpg" alt="{alt}"{dim} loading="lazy" decoding="async" class="shot__img" />
           </picture>
           <figcaption class="shot__cap">{cap}</figcaption>
         </figure>""")
@@ -927,7 +969,10 @@ def build_city_page(pl_file):
          f"15 % Rabatt auf jeden Tag."),
     ]
 
-    title = f"Humanoiden Roboter mieten {city} — Roboter für Events | 33bots"
+    # Ohne den Zusatz „— Roboter für Events": mit langen Stadtnamen (Frankfurt am
+    # Main, Mönchengladbach) lief der Titel sonst auf 71–73 Zeichen und wurde in
+    # den Suchergebnissen abgeschnitten. Das lokale Keyword steht vorne.
+    title = f"Humanoiden Roboter mieten {city} | 33bots"
     desc = (f"Humanoiden Roboter Unitree G1 in {city} mieten — Messen, Konferenzen, Galas. Mit "
             f"zertifiziertem Operator vor Ort. Angebot in 24 h →")
 
@@ -1560,6 +1605,72 @@ def build_redirects():
             f"http://{host}/* {DOMAIN}/:splat 301!\n")
 
 
+def build_htaccess():
+    """Apache-Pendant zu _redirects (das nur auf Netlify greift).
+
+    Wird mitgeneriert, damit die Datei nicht auf eine fremde Domain zeigen
+    kann: die vorherige Version stammte aus dem polnischen Projekt und hat
+    jeden Aufruf auf 33bots.pl umgeleitet. Zusaetzlich Kompression und
+    Cache-Header — beides betrifft jede Seite und ist der groesste Hebel
+    fuer die Ladezeit auf klassischem Apache-Hosting.
+    """
+    host = DOMAIN.replace("https://", "")
+    return f"""# Automatisch erzeugt von build/generate_site.py — nicht von Hand aendern.
+RewriteEngine On
+
+# Kanonische Adresse: HTTPS ohne www ({DOMAIN})
+# Getrennte Regeln mit X-Forwarded-Proto: hinter einem Proxy/Load Balancer
+# meldet %{{HTTPS}} dauerhaft "off" — kombiniert mit [OR] gibt das eine
+# Redirect-Schleife.
+RewriteCond %{{HTTPS}} off
+RewriteCond %{{HTTP:X-Forwarded-Proto}} !https
+RewriteRule ^(.*)$ {DOMAIN}/$1 [L,R=301]
+
+RewriteCond %{{HTTP_HOST}} ^www\\.{host.replace('.', chr(92) + '.')}$ [NC]
+RewriteRule ^(.*)$ {DOMAIN}/$1 [L,R=301]
+
+ErrorDocument 404 /404.html
+
+# ── Kompression ──────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/rss+xml image/svg+xml
+</IfModule>
+
+# ── Cache ────────────────────────────────────────────────────────────
+# HTML kurz (Inhalte sollen nach dem Deploy sofort sichtbar sein), statische
+# Dateien lang: CSS/JS haengen an ?v=, Bilder und Videos wechseln den Namen.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType video/mp4                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\\.(css|js|jpg|jpeg|png|webp|svg|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\\.html$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+"""
+
+
 def build_sitemap(pages):
     urls = []
     for path, prio in pages:
@@ -1629,6 +1740,7 @@ def main():
     write("404.html", build_404())
     write("robots.txt", build_robots())
     write("_redirects", build_redirects())
+    write(".htaccess", build_htaccess())
 
     html_pages = sorted(f for f in WRITTEN if f.endswith(".html") and f != "404.html")
     prio = {}

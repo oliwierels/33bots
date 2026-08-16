@@ -1,16 +1,53 @@
+# Automatisch erzeugt von build/generate_site.py — nicht von Hand aendern.
 RewriteEngine On
 
-# Force HTTPS and non-www (canonical: https://33bots.pl)
-RewriteCond %{HTTP_HOST} ^www\.33bots\.pl$ [NC,OR]
+# Kanonische Adresse: HTTPS ohne www (https://33bots.de)
+# Getrennte Regeln mit X-Forwarded-Proto: hinter einem Proxy/Load Balancer
+# meldet %{HTTPS} dauerhaft "off" — kombiniert mit [OR] gibt das eine
+# Redirect-Schleife.
 RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://33bots.pl/$1 [L,R=301]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
 
-# Konsolidacja stron miejskich aglomeracji śląskiej do Katowic
-# (odpowiednik reguł z _redirects, który działa tylko na Netlify)
-Redirect 301 /robot-wynajem-bytom.html            /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-chorzow.html          /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-dabrowa-gornicza.html /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-jaworzno.html         /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-sosnowiec.html        /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-tychy.html            /robot-wynajem-katowice.html
-Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
+RewriteCond %{HTTP_HOST} ^www\.33bots\.de$ [NC]
+RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
+
+ErrorDocument 404 /404.html
+
+# ── Kompression ──────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/rss+xml image/svg+xml
+</IfModule>
+
+# ── Cache ────────────────────────────────────────────────────────────
+# HTML kurz (Inhalte sollen nach dem Deploy sofort sichtbar sein), statische
+# Dateien lang: CSS/JS haengen an ?v=, Bilder und Videos wechseln den Namen.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType video/mp4                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|jpg|jpeg|png|webp|svg|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>

@@ -186,9 +186,8 @@ def build_index():
     cities = _("de_cities").CITIES
 
     title = "Humanoide Roboter für Events mieten — deutschlandweit | 33bots"
-    desc = (f"Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ganzer Tag ab "
-            f"{PRICE_MIN} pro Veranstaltungstag, mit zertifiziertem Operator vor Ort. Keine Anzahlung, "
-            f"Rechnung nach dem Event. Angebot in 24 h.")
+    desc = (f"Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ab "
+            f"{PRICE_MIN} pro Veranstaltungstag, mit Operator vor Ort. Keine Anzahlung, Angebot in 24 h.")
     kw = ("humanoide roboter mieten, roboter mieten event, roboter für messe mieten, Unitree G1 mieten, "
           "roboter konferenz, event attraktion roboter, humanoider roboter Deutschland")
 
@@ -987,8 +986,8 @@ def build_offer_pages(write):
     write(de("oferta.html"), simple_page(
         de("oferta.html"), "Leistungen & Angebot",
         "Leistungen und Angebot — humanoide Roboter mieten | 33bots",
-        "Das komplette Angebot von 33bots: humanoide Roboter für Messen, Konferenzen, Galas, Firmenfeiern und Tage "
-        "der offenen Tür. Zertifizierter Operator, deutschlandweit im Einsatz →",
+        "Das komplette Angebot von 33bots: humanoide Roboter für Messen, Konferenzen, Galas und "
+        "Firmenfeiern — deutschlandweit im Einsatz →",
         "roboter mieten angebot, leistungen roboter vermietung, roboter für events angebot, 33bots leistungen",
         "Leistungen · Angebot · Deutschlandweit",
         "Unser Angebot —<br />ein Roboter, jede Bühne.",
@@ -1225,8 +1224,8 @@ def build_offer_pages(write):
     write(de("robot-na-wesele.html"), simple_page(
         de("robot-na-wesele.html"), "Roboter zur Hochzeit",
         "Roboter zur Hochzeit mieten — Attraktion für Ihren Tag | 33bots",
-        "Humanoiden Roboter zur Hochzeit mieten: Er begrüßt die Gäste, tanzt mit dem Brautpaar und posiert für "
-        "Fotos. Mit zertifiziertem Operator, deutschlandweit im Einsatz →",
+        "Humanoiden Roboter zur Hochzeit mieten: Er begrüßt die Gäste, tanzt mit dem Brautpaar und "
+        "posiert für Fotos — mit eigenem Operator →",
         "roboter hochzeit, roboter zur hochzeit mieten, hochzeit attraktion, roboter tanzt hochzeit, hochzeitsüberraschung",
         "Hochzeit · Überraschung · Tanzfläche",
         "Roboter zur Hochzeit —<br />die Überraschung des Abends.",
@@ -1369,8 +1368,8 @@ def build_referenzen():
     return simple_page(
         out_file, "Referenzen",
         "Referenzen und Videos — humanoider Roboter im Einsatz | 33bots",
-        "Videoaufnahmen aus echten Einsätzen des humanoiden Roboters Unitree G1: Begrüßung, Tanzshow, Interaktion "
-        "und Branding. Sehen Sie, wie es bei Ihrer Veranstaltung aussehen kann →",
+        "Videoaufnahmen aus echten Einsätzen des Unitree G1: Begrüßung, Tanzshow, Interaktion und "
+        "Branding — sehen Sie den Roboter in Aktion →",
         "roboter referenzen, roboter video einsatz, humanoider roboter video, Unitree G1 einsatz video",
         "Referenzen · Videos · Echte Einsätze",
         "Referenzen —<br />der Roboter im Einsatz.",
@@ -1421,7 +1420,7 @@ def build_case_studies(write):
             "und Bilder erzeugen Reichweite."])]),
 
         ("case-study-wallstreet.html", "Case Study: WallStreet 30",
-         "Case Study WallStreet 30 — Roboter auf einer Investorenkonferenz | 33bots",
+         "Case Study WallStreet 30 — Investorenkonferenz | 33bots",
          "Case Study WallStreet 30: humanoider Roboter auf einer Konferenz mit 2 253 Teilnehmenden — Empfang, "
          "Bühnenmoment und Fotobereich →",
          "case study roboter konferenz, roboter investorenkonferenz, roboter event referenz",
@@ -1449,7 +1448,7 @@ def build_case_studies(write):
             "das über die Konferenztage hinaus lief."])]),
 
         ("case-study-women-in-tech.html", "Case Study: Women in Tech Summit",
-         "Case Study Women in Tech Summit — Roboter vor ~14 000 Gästen | 33bots",
+         "Case Study Women in Tech — Roboter vor 14 000 Gästen | 33bots",
          "Case Study Women in Tech Summit: humanoider Roboter auf der größten Women-in-Tech-Konferenz Europas mit "
          "rund 14 000 Teilnehmenden →",
          "case study roboter summit, roboter women in tech, roboter große konferenz referenz",
