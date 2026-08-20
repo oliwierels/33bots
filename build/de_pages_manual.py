@@ -700,7 +700,11 @@ def build(gen_globals):
     import de_blog
     G["blog_cards"] = de_blog.make_cards(G)
 
-    write("index.html", build_index())
+    # index.html wird NICHT mehr hier generiert: die Startseite läuft jetzt auf
+    # dem Tailwind-Redesign (wie das PL-Original), von Hand gepflegt, nicht aus
+    # build_index() gebaut. build_index() bleibt als Referenz bestehen, wird
+    # aber absichtlich nicht mehr geschrieben, damit ein erneuter Build die
+    # Datei nicht überschreibt.
     build_offer_pages(write)
     build_case_studies(write)
     build_legal_pages(write)

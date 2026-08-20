@@ -1742,7 +1742,11 @@ def main():
     write("_redirects", build_redirects())
     write(".htaccess", build_htaccess())
 
-    html_pages = sorted(f for f in WRITTEN if f.endswith(".html") and f != "404.html")
+    # index.html wird nicht mehr von build_index() geschrieben (siehe
+    # de_pages_manual.py) und steht damit nicht mehr in WRITTEN — für die
+    # Sitemap zaehlt das nicht: die Startseite existiert weiterhin als Datei
+    # und gehoert mit Prioritaet 1.0 hinein.
+    html_pages = sorted({f for f in WRITTEN if f.endswith(".html") and f != "404.html"} | {"index.html"})
     prio = {}
     for f in html_pages:
         if f == "index.html":

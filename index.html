@@ -1,1126 +1,1466 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <!-- Keine Analyse-Dienste eingebunden: Diese Seite setzt ausschließlich
-       technisch notwendige Cookies, eine Einwilligung ist nicht erforderlich. -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Humanoide Roboter für Events mieten — deutschlandweit | 33bots</title>
-  <meta name="description" content="Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ab 2.499 € pro Veranstaltungstag, mit Operator vor Ort. Keine Anzahlung, Angebot in 24 h." />
-  <meta name="keywords" content="humanoide roboter mieten, roboter mieten event, roboter für messe mieten, Unitree G1 mieten, roboter konferenz, event attraktion roboter, humanoider roboter Deutschland" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://33bots.de/" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Humanoiden Roboter mieten für Events — ab 2.499 € | 33bots</title>
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://33bots.de/" />
-  <meta property="og:title" content="Humanoide Roboter für Events mieten — deutschlandweit | 33bots" />
-  <meta property="og:description" content="Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ab 2.499 € pro Veranstaltungstag, mit Operator vor Ort. Keine Anzahlung, Angebot in 24 h." />
-  <meta property="og:image" content="https://33bots.de/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Humanoider Roboter Unitree G1 — Miete für Events in Deutschland" />
-  <meta property="og:locale" content="de_DE" />
-  <meta property="og:site_name" content="33bots" />
+<!-- Kritische Ressourcen zuerst: der Browser beginnt sie zu laden, bevor der
+     Rest des <head> verarbeitet ist. -->
+<link rel="preload" as="image" href="robot-g1-960.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-latin.woff2" crossorigin />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Humanoide Roboter für Events mieten — deutschlandweit | 33bots" />
-  <meta name="twitter:description" content="Humanoiden Roboter Unitree G1 für Event, Messe und Konferenz mieten. Ab 2.499 € pro Veranstaltungstag, mit Operator vor Ort. Keine Anzahlung, Angebot in 24 h." />
+<!-- Fonts lokal gehostet — keine Verbindung zu fonts.googleapis.com und
+     fonts.gstatic.com (zwei DNS+TLS-Handshakes weniger auf dem kritischen
+     Rendering-Pfad, und keine Drittanbieter-Verbindung beim Seitenaufruf). -->
+<link rel="stylesheet" href="fonts.css" />
 
-  <meta name="theme-color" content="#000000" />
-  <link rel="alternate" hreflang="de" href="https://33bots.de/" />
-  <link rel="alternate" hreflang="x-default" href="https://33bots.de/" />
+<!-- Tailwind statisch kompiliert (30 KB) — kein CDN, kein JS zur Laufzeit.
+     Neu bauen nach Änderungen am HTML:
+     npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
+<link rel="stylesheet" href="assets-redesign.css" />
+<meta name="description" content="Humanoiden Roboter Unitree G1 für Messen, Konferenzen und Galas mieten. Vom kurzen Auftritt bis zum mehrtägigen Einsatz. Ganzer Tag ab 2.499 € — den endgültigen Betrag nennen wir im Angebot. Keine Anzahlung, Rechnung nach dem Event." />
+<link rel="canonical" href="https://33bots.de/" />
+<meta name="theme-color" content="#050505" />
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Miete eines humanoiden Roboters Unitree G1",
-  "description": "Vermietung humanoider Roboter Unitree G1 für Events, Konferenzen und Messen in ganz Deutschland.",
-  "url": "https://33bots.de",
-  "image": "https://33bots.de/robot-g1.jpg",
-  "brand": {
-    "@type": "Brand",
-    "name": "Unitree"
-  },
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "EUR",
-    "lowPrice": "2499",
-    "availability": "https://schema.org/InStock",
-    "url": "https://33bots.de/#preise",
-    "description": "Kompletter Veranstaltungstag mit zertifiziertem Operator vor Ort. Keine Anzahlung, Rechnung nach dem Event."
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "3",
-    "bestRating": "5",
-    "worstRating": "1"
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://33bots.de/" />
+<meta property="og:title" content="Humanoiden Roboter mieten für Events — ab 2.499 € | 33bots" />
+<meta property="og:description" content="Unitree G1 auf Ihrem Event. Ganzer Tag ab 2.499 € — der Betrag hängt von Ort und Umfang ab. Keine Anzahlung, Rechnung nach dem Event." />
+<meta property="og:image" content="https://33bots.de/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Humanoider Roboter Unitree G1 — Miete für Events in Deutschland" />
+<meta property="og:video" content="https://33bots.de/video/33bots-robot-event.mp4" />
+<meta property="og:video:type" content="video/mp4" />
+<meta property="og:video:width" content="540" />
+<meta property="og:video:height" content="960" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:site_name" content="33bots" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="alternate" hreflang="de" href="https://33bots.de/" />
+<link rel="alternate" hreflang="x-default" href="https://33bots.de/" />
+<link rel="alternate" type="application/rss+xml" title="33bots — Blog RSS" href="https://33bots.de/feed.xml" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<script>history.scrollRestoration = 'manual';</script>
+
+<style>
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { background: #050505; }
+  [id] { scroll-margin-top: 90px; }
+  ::selection { background: #6fd6ff; color: #050505; }
+
+  /* ——— Scroll-Reveal: gestaffeltes Einblenden mit Verzögerung ——— */
+  .reveal { opacity: 0; transform: translateY(28px) scale(.985); }
+  .reveal.in {
+    opacity: 1; transform: none;
+    transition: opacity .8s cubic-bezier(.16,1,.3,1) var(--d, 0s),
+                transform .8s cubic-bezier(.16,1,.3,1) var(--d, 0s);
   }
-}
-  </script>
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Was kostet die Miete eines humanoiden Roboters für ein Event?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ein kompletter Veranstaltungstag kostet ab 2.499 € — der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Den genauen Betrag nennen wir im individuellen Angebot. Optional buchen Sie den Roboterhund für 850 € pro Tag; ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Muss ich eine Anzahlung leisten, um einen Termin zu reservieren?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nein. Die Terminreservierung ist vollständig kostenlos — wir schließen einen einfachen Vertrag ohne Anzahlung und stellen die Rechnung erst nach der Veranstaltung. Bei Bedarf vereinbaren wir ein längeres Zahlungsziel."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Muss ich den Roboter selbst bedienen können?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nein. Ein zertifizierter Operator von 33bots ist den gesamten Veranstaltungstag vor Ort, übernimmt Aufbau, Konfiguration und Steuerung. Sie brauchen keinerlei technisches Vorwissen."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann der Roboter auch bei einem Tag der offenen Tür oder Betriebsfest eingesetzt werden?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Selbstverständlich. Die Unitree-Roboter kommen mit unterschiedlichen Untergründen zurecht (Asphalt, Rasen, Teppich) und funktionieren daher sowohl im Bürogebäude als auch bei Outdoor-Veranstaltungen."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann ich mein Firmenlogo auf dem Roboter platzieren?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja. Ihr Logo und ein QR-Code kommen auf die Brustplatte des Roboters. Umfang und Umsetzung stimmen wir vor der Veranstaltung gemeinsam ab."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ist der Roboter für die Teilnehmenden sicher?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja. Der Roboter verfügt über LiDAR und Computer Vision und weicht Hindernissen sowie Menschen in Echtzeit aus. Zusätzlich überwacht unser Operator den Einsatz durchgehend. Der Einsatz ist haftpflichtversichert."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Welche technischen Voraussetzungen brauchen Sie vor Ort?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Eine gewöhnliche 230-V-Steckdose und rund 2×2 m freie Fläche. Internet oder besondere Beleuchtung sind nicht erforderlich. Unser Operator bringt die komplette Ausrüstung mit und ist in 30–45 Minuten einsatzbereit."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann der Roboter tanzen?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Und wie. Der Unitree G1 beherrscht mehrere Choreografien, die auch ein professioneller Tänzer nicht verstecken müsste. Wenn bei Ihrer Veranstaltung ein DJ auflegt, übernimmt unser Roboter gerne die Tanzfläche."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ist die Vermietung deutschlandweit verfügbar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja — 33bots ist in ganz Deutschland im Einsatz, unabhängig von Stadt und Entfernung. Wir bedienen Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf und Dutzende weitere Städte."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Welche Unternehmen haben bereits einen Roboter bei Ihnen gemietet?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Unter anderem die Perspektywy Foundation (Women in Tech Summit — die größte Women-in-Tech-Konferenz Europas), der globale Logistikkonzern DSV, Cashify sowie LEX AI, dessen Show mit unserem Roboter im öffentlich-rechtlichen Fernsehen ausgestrahlt wurde."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Was unterscheidet 33bots von anderen Roboter-Vermietungen?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Eigene Technik statt Zwischenhändler, ein zertifizierter Operator für die gesamte Veranstaltung und Branding des Roboters mit Logo und QR-Code. Jedes Angebot rechnen wir individuell für Ihre Veranstaltung."
-      }
-    }
-  ]
-}
-  </script>
+  /* Der erste Bildschirm blendet sich per CSS-Animation sofort beim Laden
+     ein, ohne auf den IntersectionObserver zu warten. Vorher stand das
+     Roboterbild — das LCP-Element — bis zum JS-Start bei opacity:0, was
+     den LCP auf ~2,3 s hinausgezögert hat. Die Kaskade (--d) bleibt
+     unverändert, nur der Auslöser ändert sich. */
+  #hero .reveal { animation: revealIn .8s cubic-bezier(.16,1,.3,1) var(--d, 0s) both; }
+  @keyframes revealIn {
+    from { opacity: 0; transform: translateY(28px) scale(.985); }
+    to   { opacity: 1; transform: none; }
+  }
 
-  <script type="application/ld+json">
+  /* ——— Roboter im Hero: Kanten verschmelzen mit dem Hintergrund ——— */
+  .hero-robot {
+    /* Bildhintergrund ist fast Schwarz (3,2,10) — "screen" lässt ihn
+       ohne sichtbaren Rahmen verschwinden */
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
+            mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
+  }
+
+  /* ——— Durchlaufende Bilderstreifen ——— */
+  .strip { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+                              mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .strip-track { display: flex; gap: 1rem; width: max-content; animation: slide 52s linear infinite; }
+  .strip-track--rev { animation-direction: reverse; animation-duration: 64s; }
+  .strip:hover .strip-track,
+  .strip.paused .strip-track { animation-play-state: paused; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .strip-item { position: relative; flex: 0 0 auto; width: 260px; height: 340px; border-radius: 20px;
+                overflow: hidden; border: 1px solid #2a2a30; background: #111113; }
+  .strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+               opacity: .9; transition: transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease; }
+  .strip-item:hover .strip-img { transform: scale(1.07); opacity: 1; }
+  .strip-item::after { content: ''; position: absolute; inset: 0;
+                       background: linear-gradient(to top, rgba(5,5,5,.9), transparent 55%); }
+  .strip-cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
+               font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff; }
+  .strip-item--wide   { width: 380px; }
+  .strip-item--narrow { width: 190px; }
+  .strip-item[data-full] { cursor: zoom-in; }
+  @media (max-width: 640px) {
+    .strip-item { width: 180px; height: 240px; }
+    .strip-item--wide { width: 260px; }
+    .strip-item--narrow { width: 140px; }
+  }
+
+  /* ——— Lightbox ——— */
+  .lb { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center;
+        background: rgba(5,5,5,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        opacity: 0; pointer-events: none; transition: opacity .35s ease; padding: 4vh 4vw; }
+  .lb.open { opacity: 1; pointer-events: auto; }
+  .lb img { max-width: 100%; max-height: 88vh; border-radius: 18px; transform: scale(.94);
+            transition: transform .4s cubic-bezier(.16,1,.3,1); box-shadow: 0 40px 120px rgba(0,0,0,.7); }
+  .lb.open img { transform: scale(1); }
+  .lb-cap { position: absolute; bottom: 3vh; left: 0; right: 0; text-align: center;
+            font-size: 13px; color: #a3a3a3; padding: 0 1rem; }
+  .lb-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px;
+            border-radius: 50%; border: 1px solid #3a3a42; background: rgba(17,17,19,.8);
+            color: #fff; font-size: 20px; display: grid; place-items: center; transition: all .25s ease; }
+  .lb-btn:hover { border-color: #6fd6ff; box-shadow: 0 0 20px rgba(111,214,255,.3); }
+  .lb-prev { left: 2vw; } .lb-next { right: 2vw; }
+  .lb-close { position: absolute; top: 3vh; right: 3vw; width: 44px; height: 44px; border-radius: 50%;
+              border: 1px solid #3a3a42; background: rgba(17,17,19,.8); color: #fff; font-size: 22px;
+              display: grid; place-items: center; transition: all .25s ease; }
+  .lb-close:hover { border-color: #6fd6ff; transform: rotate(90deg); }
+  @media (max-width: 640px) { .lb-btn { width: 44px; height: 44px; } }
+  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } .strip { overflow-x: auto; } }
+
+  /* ——— Filmkorn ——— */
+  .grain::after {
+    content: ''; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ——— Geometrisches Raster im Hintergrund ——— */
+  .bg-grid {
+    background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+
+  /* ——— CTA: durchlaufender Glanz ——— */
+  .cta-shine {
+    background-image: linear-gradient(110deg, #fff 0%, #fff 38%, #cdf0ff 50%, #fff 62%, #fff 100%);
+    background-size: 200% 100%;
+  }
+  .cta-shine:hover { animation: shimmer 1.4s linear infinite; }
+
+  /* ——— Bento: Rahmen reagiert auf den Cursor ——— */
+  .bento { position: relative; isolation: isolate; }
+  .bento::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; z-index: 2;
+    background: radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(111,214,255,.8), transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0; transition: opacity .45s ease;
+  }
+  .bento:hover::before { opacity: 1; }
+
+  /* ——— Prozesslinie, beim Scrollen gezeichnet ——— */
+  .track-line { transform: scaleX(0); transform-origin: left; transition: transform 1.6s cubic-bezier(.16,1,.3,1); }
+  .track-line.in { transform: scaleX(1); }
+  @media (max-width: 767px) {
+    .track-line { transform: scaleY(0); transform-origin: top; }
+    .track-line.in { transform: scaleY(1); }
+  }
+
+  /* ——— FAQ ——— */
+  .faq-panel { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(.16,1,.3,1); }
+  .faq-item[open-state="1"] .faq-panel { max-height: 320px; }
+  .faq-item[open-state="1"] .faq-sign { transform: rotate(45deg); color: #6fd6ff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+    .track-line { transform: none; }
+  }
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"Miete eines humanoiden Roboters Unitree G1","description":"Vermietung des humanoiden Roboters Unitree G1 für Events, Messen und Konferenzen in ganz Deutschland.","url":"https://33bots.de","image":"https://33bots.de/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"2499","availability":"https://schema.org/InStock","url":"https://33bots.de/#preise","description":"Startpreis für den kompletten Veranstaltungstag — den endgültigen Betrag nennen wir im Angebot, abhängig von Ort und Umfang des Events. Im Startpreis enthalten: zertifizierter Operator, Branding, Drehbuch und Haftpflichtversicherung; die Anfahrt kalkulieren wir je nach Ort. Kürzere Auftritte sind auf Anfrage möglich, bei mehrtägigen Einsätzen 15 % Rabatt auf jeden Tag. Keine Anzahlung, Rechnung nach dem Event."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
+</script>
+<script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "33bots – Humanoide Roboter für Events und Messen mieten",
-  "alternateName": "33bots",
-  "url": "https://33bots.de",
-  "logo": "https://33bots.de/logo.png",
-  "image": "https://33bots.de/robot-g1.jpg",
-  "description": "Vermietung humanoider Roboter Unitree G1 für Events, Konferenzen und Messen in ganz Deutschland. Mit zertifiziertem Operator vor Ort.",
-  "email": "kontakt@33bots.de",
-  "areaServed": {
-    "@type": "Country",
-    "name": "Deutschland"
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Was kostet die Miete genau?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ab 2.499 € für den kompletten Veranstaltungstag — das ist der Startpreis, der endgültige Betrag hängt von Ort und Umfang des Events ab und steht im Angebot. Im Startpreis enthalten: zertifizierter Operator, Branding, Drehbuch und Haftpflichtversicherung — die Anfahrt kalkulieren wir je nach Ort. Der Roboter ist auch für einen kürzeren Auftritt buchbar, z. B. einige Stunden während einer Konferenzpause — dafür erstellen wir ein individuelles, stets günstigeres Angebot. Ab zwei Veranstaltungstagen gilt ein Rabatt von 15 % auf jeden Tag. Der Roboterhund kostet zusätzlich 850 € pro Tag."
+   }
   },
-  "sameAs": [
-    "https://www.facebook.com/33bots",
-    "https://www.instagram.com/33bots_/",
-    "https://www.linkedin.com/company/33bots",
-    "https://www.tiktok.com/@aimforum"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "kontakt@33bots.de",
-    "contactType": "sales",
-    "areaServed": "DE",
-    "availableLanguage": [
-      "German",
-      "English",
-      "Polish"
+  {
+   "@type": "Question",
+   "name": "Spricht der Roboter mit den Gästen?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja. Der Roboter spricht Deutsch mit natürlicher Sprachsynthese — begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Vor dem Event legen wir seinen Charakter fest und laden Wissen über Ihr Unternehmen hoch: Angebot, Produktnamen, häufige Kundenfragen und die Agenda des Events. Die Konfiguration ist im Mietpreis enthalten."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Muss ich eine Anzahlung leisten?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Nein. Die Terminreservierung ist kostenlos und ohne Anzahlung. Die Rechnung stellen wir erst nach der Veranstaltung, bei Bedarf vereinbaren wir ein längeres Zahlungsziel."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Muss ich den Roboter selbst steuern können?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Nein. Während des gesamten Events ist unser zertifizierter Operator vor Ort — er übernimmt Konfiguration, Bedienung und die Sicherheit des Auftritts."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Ist der Roboter sicher für die Gäste?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja. LiDAR und Computer Vision lassen ihn Menschen und Hindernissen in Echtzeit ausweichen, der Operator begleitet den Auftritt durchgehend, und der Einsatz ist haftpflichtversichert."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Kommen Sie auch in meine Stadt?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja — wir sind deutschlandweit im Einsatz. Die Anfahrtskosten kalkulieren wir im Angebot, abhängig vom Ort Ihres Events."
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"33bots – Humanoide Roboter für Events und Messen mieten","url":"https://33bots.de","logo":"https://33bots.de/logo.png","image":"https://33bots.de/robot-g1.jpg","email":"kontakt@33bots.de","priceRange":"ab 2499 EUR","areaServed":{"@type":"Country","name":"Deutschland"},"sameAs":["https://www.instagram.com/33bots_/","https://www.linkedin.com/company/33bots","https://www.tiktok.com/@aimforum"]}
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "So mieten Sie einen humanoiden Roboter — 5 Schritte ohne Anzahlung",
+    "step": [
+      {"@type":"HowToStep","position":1,"name":"Schneller Kontakt","text":"Sie hinterlassen Ihre Kontaktdaten im Formular — dauert zwei Minuten."},
+      {"@type":"HowToStep","position":2,"name":"Rückruf und schnelles Angebot","text":"Wir rufen zurück, besprechen Ihr Event und nennen einen konkreten Betrag — meist noch am selben Tag."},
+      {"@type":"HowToStep","position":3,"name":"Einfacher Vertrag","text":"Kostenlose Terminreservierung, keine Anzahlung, bei Bedarf ein längeres Zahlungsziel."},
+      {"@type":"HowToStep","position":4,"name":"Durchführung","text":"Wir reisen an, konfigurieren und führen den Auftritt durch. Sie kümmern sich um Ihre Gäste."},
+      {"@type":"HowToStep","position":5,"name":"Rechnung nach dem Event","text":"Die Zahlung erfolgt erst nach der abgeschlossenen Veranstaltung."}
     ]
-  },
-  "knowsAbout": [
-    "humanoiden Roboter mieten",
-    "Roboter für Events",
-    "Roboter für Messen",
-    "Roboter für Konferenzen",
-    "Unitree G1",
-    "Event-Attraktionen"
-  ],
-  "priceRange": "ab 2499 EUR"
-}
-  </script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "33bots",
-  "alternateName": "33bots — humanoide Roboter mieten",
-  "url": "https://33bots.de/",
-  "inLanguage": "de-DE",
-  "description": "Humanoide Roboter Unitree G1 für Events, Messen und Konferenzen in ganz Deutschland mieten.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "33bots",
-    "url": "https://33bots.de/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://33bots.de/logo.png"
+  }
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Humanoider Roboter Unitree G1 im Einsatz — Miete für Events | 33bots",
+    "description": "Der humanoide Roboter Unitree G1 live: geht, gestikuliert, begrüßt Gäste und tanzt. Branding mit Logo und QR-Code inklusive. Miete für Events, Messen und Konferenzen in ganz Deutschland.",
+    "thumbnailUrl": "https://33bots.de/video/33bots-robot-event-poster.jpg",
+    "contentUrl": "https://33bots.de/video/33bots-robot-event.mp4",
+    "uploadDate": "2026-07-02",
+    "duration": "PT35S",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Organization",
+      "name": "33bots",
+      "url": "https://33bots.de",
+      "logo": { "@type": "ImageObject", "url": "https://33bots.de/logo.png" }
     }
   }
-}
-  </script>
-
-  <link rel="preload" as="image" href="robot-g1-960.webp" imagesrcset="robot-g1-960.webp 960w, robot-g1.webp 2390w" imagesizes="45vw" fetchpriority="high" type="image/webp" media="(min-width: 769px)" />
-  <link rel="alternate" type="application/rss+xml" title="33bots — Blog RSS" href="https://33bots.de/feed.xml" />
-  <script>history.scrollRestoration = 'manual';</script>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-        href="fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" />
-  <link rel="stylesheet" href="style.css?v=1" />
-  <link rel="stylesheet" href="a11y.css?v=1" />
-  <link rel="stylesheet" href="gallery.css?v=1" />
-  <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
-       consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
-  <link rel="stylesheet" href="fonts/inter.css" />
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "33bots",
+    "alternateName": "33bots — humanoide Roboter mieten",
+    "url": "https://33bots.de/",
+    "inLanguage": "de-DE",
+    "description": "Vermietung humanoider Roboter Unitree G1 für Events, Messen und Konferenzen in ganz Deutschland. Zertifizierter Operator im Startpreis, Anfahrt je nach Ort kalkuliert.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "33bots",
+      "url": "https://33bots.de/",
+      "logo": { "@type": "ImageObject", "url": "https://33bots.de/logo.png" }
+    }
+  }
+</script>
 </head>
-<body>
-  <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 25 TDDDG) -->
 
-  <a href="#hauptinhalt" class="skip-link">Zum Hauptinhalt springen</a>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<body class="grain bg-ink font-sans text-neutral-200 antialiased selection:bg-accent selection:text-ink">
 
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="logo">33BOTS</a>
-      <nav class="nav__links">
-        <div class="nav__dropdown">
-          <button class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button">Angebot <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="nav__dropdown-menu">
-            <a href="angebot-messen.html">Messen</a>
-            <a href="angebot-konferenzen-galas.html">Konferenzen &amp; Galas</a>
-            <a href="angebot-tag-der-offenen-tuer.html">Tage der offenen Tür</a>
-            <a href="event-attraktionen.html">Alle Attraktionen</a>
-          </div>
-        </div>
-        <a href="#ueber-uns">Über uns</a>
-        <a href="#events">Events</a>
-        <a href="blog.html">Blog</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span></button>
-    </div>
-  </header>
-  <main id="hauptinhalt" tabindex="-1">
+<!-- ══════════ FORTSCHRITTSBALKEN ══════════ -->
+<div id="progress" class="fixed inset-x-0 top-0 z-[70] h-[2px] w-0 bg-gradient-to-r from-accent to-white shadow-[0_0_12px_rgba(111,214,255,.5)]"></div>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <span class="mobile-menu__label">Angebot</span>
-    <a href="angebot-messen.html" class="mobile-menu__sub">Messen</a>
-    <a href="angebot-konferenzen-galas.html" class="mobile-menu__sub">Konferenzen &amp; Galas</a>
-    <a href="angebot-tag-der-offenen-tuer.html" class="mobile-menu__sub">Tage der offenen Tür</a>
-    <a href="event-attraktionen.html" class="mobile-menu__sub">Alle Attraktionen</a>
-    <a href="#ueber-uns">Über uns</a>
-    <a href="#events">Events</a>
-    <a href="blog.html">Blog</a>
-    <a href="#kontakt">Kontakt</a>
+<!-- ══════════ NAV ══════════ -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-500">
+  <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-8">
+    <a href="#" class="font-display text-lg font-700 tracking-tight text-white">33BOTS</a>
+    <nav class="hidden items-center gap-8 text-sm text-neutral-400 md:flex">
+      <a href="#referenzen" class="transition hover:text-white">Referenzen</a>
+      <a href="#leistungen" class="transition hover:text-white">Leistungen</a>
+      <a href="#preise" class="transition hover:text-white">Preise</a>
+      <a href="#ablauf" class="transition hover:text-white">Ablauf</a>
+      <a href="leistungen.html" class="transition hover:text-white">Angebot</a>
+    </nav>
+    <a href="#kontakt"
+       class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-[13px] font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(111,214,255,.45)]">
+      Kostenloses Angebot
+      <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════
+     1. HERO — animierter Hintergrund (Aurora + Raster + Orbits), Parallax
+     ══════════════════════════════════════════════════════ -->
+<section id="hero" class="relative flex min-h-[100svh] items-center overflow-hidden px-5 pt-24 pb-14 md:px-8">
+
+  <!-- Hintergrundebenen -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-grid animate-grid-pan"></div>
+    <div class="absolute -left-[10%] top-[6%] h-[38rem] w-[38rem] rounded-full bg-accent/20 blur-[130px] animate-aurora"></div>
+    <div class="absolute -right-[8%] bottom-[2%] h-[34rem] w-[34rem] rounded-full bg-violet/15 blur-[130px] animate-aurora-slow"></div>
+    <div class="absolute left-1/2 top-1/3 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-accent-deep/10 blur-[120px] animate-aurora"></div>
+    <!-- geometrische Akzente -->
+    <div class="absolute left-[12%] top-[22%] h-24 w-24 rotate-12 rounded-2xl border border-white/10 animate-float"></div>
+    <div class="absolute right-[16%] top-[62%] h-16 w-16 rounded-full border border-accent/25 animate-float [animation-delay:1.5s]"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-ink to-transparent"></div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero__content">
-      <p class="hero__eyebrow">Humanoide Roboter mieten · Deutschlandweit · Bestpreis</p>
-      <h1 class="hero__title">Humanoide Roboter<br />mieten —<br /><em>Unitree G1.</em></h1>
-      <p class="hero__sub">Der Roboter, der Menschenmengen stoppt und Ihre Veranstaltung wochenlang zum Gesprächsthema macht. Ein kompletter Showtag mit zertifiziertem Operator vor Ort — <strong>ohne Anzahlung, Rechnung erst nach dem Event</strong>.</p>
-      <div class="hero__ctas">
-        <a href="#kontakt" class="btn-cta">Kostenloses Angebot anfordern →</a>
-        <a href="#preise" class="btn-cta--ghost">Preise ansehen ↓</a>
-      </div>
-      <p class="hero__cta-note">Angebot in 24 h · Keine Anzahlung · Rechnung erst nach dem Event</p>
-      <div class="hero__trust">
-        <span class="hero__trust-item">✓ Bester Preis am Markt</span>
-        <span class="hero__trust-item">✓ Zertifizierter Operator vor Ort</span>
-        <span class="hero__trust-item">✓ Deutschlandweit im Einsatz</span>
-        <span class="hero__trust-item">✓ Angebot in 24 h</span>
-      </div>
-    </div>
-    <div class="hero__visual">
-      <div class="hero__spotlight" aria-hidden="true"></div>
-      <div class="hero__robot-wrap" id="robotWrap">
-      <div class="hero__robot">
-        <div class="robot-scan" aria-hidden="true"></div>
-        <picture>
-          <source srcset="robot-g1-960.webp 960w, robot-g1.webp 2390w" sizes="(min-width: 769px) 45vw, 1px" type="image/webp" />
-          <img src="robot-g1.jpg" alt="Humanoider Roboter Unitree G1 — Attraktion für Events, Messen und Konferenzen in Deutschland" class="hero__robot-img" width="600" height="800" loading="eager" fetchpriority="high" />
-        </picture>
-      </div>
-      </div>
-      <div class="hero__tag hero__tag--1">Unitree G1</div>
-      <div class="hero__tag hero__tag--2">23 DOF</div>
-      <div class="hero__tag hero__tag--3">~132 cm</div>
-    </div>
-  </section>
+  <div class="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_.95fr]">
 
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stats-bar__inner">
-      <div class="stat-item"><span class="stat-item__val" data-count="35" data-suffix="+">0</span><span class="stat-item__lbl">Städte in Deutschland</span></div>
-      <div class="stat-item__div" aria-hidden="true"></div>
-      <div class="stat-item"><span class="stat-item__val" data-count="5" data-suffix=".0 ★">0</span><span class="stat-item__lbl">Kundenbewertung</span></div>
-      <div class="stat-item__div" aria-hidden="true"></div>
-      <div class="stat-item"><span class="stat-item__val" data-count="24" data-suffix="h">0</span><span class="stat-item__lbl">bis zum Angebot</span></div>
-      <div class="stat-item__div" aria-hidden="true"></div>
-      <div class="stat-item"><span class="stat-item__val" data-count="0" data-suffix=" €">0</span><span class="stat-item__lbl">Anfahrt</span></div>
-    </div>
-  </div>
+    <!-- Textspalte -->
+    <div>
+      <p class="reveal mb-6 inline-flex items-center gap-2.5 rounded-full border border-line-mid bg-white/[.03] px-4 py-2 text-[11px] font-600 uppercase tracking-[.18em] text-neutral-400 backdrop-blur" style="--d:.05s">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-accent animate-pulse-ring"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent"></span>
+        </span>
+        Humanoide Roboter mieten · deutschlandweit
+      </p>
 
-  <section class="section shots-section" id="realisierungen">
-    <div class="section-header">
-      <span class="tag">Realisierungen</span>
-      <h2 class="section-title">Aufnahmen aus<br />echten Einsätzen</h2>
-    </div>
-    <div class="shots-wrap">
-      <p class="shots__lead">Keine Renderings, keine Studioaufnahmen: Galas, Summits, Straßenaktionen, Outdoor-Events und Nachtshows — Bilder aus Veranstaltungen, die wir tatsächlich betreut haben.</p>
-      <div class="shots">
-        <figure class="shot shot--wide">
-          <picture>
-            <source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
-            <img src="realizacja-women-in-tech-tlum.jpg" alt="Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Alle zücken ihr Handy</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
-            <img src="realizacja-gala-czerwony-dywan.jpg" alt="Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Roter Teppich</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
-            <img src="realizacja-women-in-tech-wybieg.jpg" alt="Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Women in Tech Summit</figcaption>
-        </figure>
-        <figure class="shot shot--wide">
-          <picture>
-            <source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
-            <img src="realizacja-lexai-starowka.jpg" alt="Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Die Straße bleibt stehen</figcaption>
-        </figure>
-        <figure class="shot shot--narrow">
-          <picture>
-            <source srcset="realizacja-gala-detal.webp" type="image/webp" />
-            <img src="realizacja-gala-detal.jpg" alt="Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Bis ins Detail</figcaption>
-        </figure>
-        <figure class="shot shot--wide">
-          <picture>
-            <source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
-            <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Schlange am Fotobereich</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-robot-gala-dresden.webp" type="image/webp" />
-            <img src="realizacja-robot-gala-dresden.jpg" alt="Humanoider Roboter Unitree G1 bei einer Gala in Dresden zwischen den Gästen" width="1100" height="1467" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Gala in Dresden</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-gala-palac.webp" type="image/webp" />
-            <img src="realizacja-gala-palac.jpg" alt="Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Ballsaal</figcaption>
-        </figure>
-        <figure class="shot shot--wide">
-          <picture>
-            <source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
-            <img src="realizacja-gala-wsrod-gosci.jpg" alt="Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Mitten unter den Gästen</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
-            <img src="realizacja-event-nad-woda.jpg" alt="Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Outdoor am Wasser</figcaption>
-        </figure>
-        <figure class="shot shot--narrow">
-          <picture>
-            <source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
-            <img src="realizacja-nocny-pokaz.jpg" alt="Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Nachtshows</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
-            <img src="realizacja-lexai-ulica.jpg" alt="Humanoider Roboter für LEX AI mit Aktentasche in der Altstadtgasse" width="900" height="1186" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Unterwegs für LEX AI</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
-            <img src="realizacja-spotkanie-biznesowe.jpg" alt="Humanoider Roboter im Firmenshirt auf der Terrasse bei einem Geschäftstermin" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Business-Termin</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
-            <img src="robot-pies-branding-klienta.jpg" alt="Roboterhund im Firmenshirt des Kunden bei einer Promotionaktion im Autohaus" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Roboterhund im Kunden-Branding</figcaption>
-        </figure>
-        <figure class="shot shot--narrow">
-          <picture>
-            <source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
-            <img src="realizacja-robot-w-deszczu.jpg" alt="Humanoider Roboter im roten Shirt hält bei Regen einen Regenschirm" width="900" height="1200" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Auch bei Regen</figcaption>
-        </figure>
-        <figure class="shot">
-          <picture>
-            <source srcset="realizacja-robot-gala-portret.webp" type="image/webp" />
-            <img src="realizacja-robot-gala-portret.jpg" alt="Porträtaufnahme des humanoiden Roboters Unitree G1 im Galaoutfit" width="1000" height="1333" loading="lazy" decoding="async" class="shot__img" />
-          </picture>
-          <figcaption class="shot__cap">Porträt</figcaption>
-        </figure>
-      </div>
-      <div class="shots__more">
-        <a href="referenzen-videos.html" class="btn-ghost" style="display:inline-flex;">Alle Referenzen ansehen →</a>
-      </div>
-    </div>
-  </section>
+      <h1 class="reveal font-display font-700 tracking-[-.03em] text-white" style="--d:.12s">
+        <span class="block text-[1.15rem] font-600 leading-tight text-neutral-300 sm:text-2xl xl:text-[1.7rem]">Humanoide Roboter mieten</span>
+        <span class="mt-2 block text-[2.2rem] leading-[1.02] sm:text-[2.9rem] xl:text-[3.15rem]">für Auftritte, die<br />
+          <span class="bg-gradient-to-r from-white via-accent to-accent-deep bg-clip-text text-transparent">in Erinnerung bleiben.</span>
+        </span>
+      </h1>
 
-  <!-- VERTRAUEN UNS -->
-  <section class="section" id="referenzen" style="padding-top:var(--s8); padding-bottom:var(--s8);">
-    <div style="max-width:1000px; margin:0 auto; text-align:center;">
-      <h2 style="font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s5);">Vertrauen uns</h2>
-      <div style="display:flex; flex-wrap:wrap; align-items:stretch; justify-content:center; gap:var(--s4);">
-        <a href="case-study-women-in-tech.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; text-decoration:none; min-width:220px; text-align:left;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Bildung · Women in Tech Summit</span>
-          <span style="font-size:1.05rem; font-weight:700; color:var(--text);">Perspektywy Foundation →</span>
+      <p class="reveal mt-5 max-w-lg leading-relaxed text-neutral-400 md:text-lg" style="--d:.2s">
+        Der Humanoid Unitree G1 auf Ihrer Messe, Konferenz oder Gala.
+        Der ganze Tag als Showtag — <span class="text-white">mit zertifiziertem Operator und Ihrem Branding</span>.
+      </p>
+
+      <!-- Preisanker -->
+      <div class="reveal mt-6 flex items-end gap-4 border-l-2 border-accent/60 pl-5" style="--d:.26s">
+        <div>
+          <p class="font-display text-4xl font-700 leading-none text-white">ab 2.499 €</p>
+          <p class="mt-1.5 text-xs font-600 uppercase tracking-[.14em] text-neutral-500">pro Tag · Startpreis</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal mt-7 flex flex-col gap-3 sm:flex-row" style="--d:.32s">
+        <a href="#kontakt"
+           class="cta-shine group relative inline-flex items-center justify-center gap-3 rounded-2xl px-9 py-5 font-display text-base font-700 uppercase tracking-wider text-ink shadow-[0_0_40px_rgba(111,214,255,.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(111,214,255,.5)]">
+          Kostenloses Angebot anfordern
+          <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
         </a>
-        <div style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; min-width:220px; text-align:left;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Transport &amp; Logistik</span>
-          <span style="font-size:1.05rem; font-weight:700; color:var(--text);">DSV</span>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; min-width:220px; text-align:left;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Technologie · Fintech</span>
-          <span style="font-size:1.05rem; font-weight:700; color:var(--text);">Cashify</span>
-        </div>
-        <a href="case-study-lexai.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; text-decoration:none; min-width:220px; text-align:left;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Legal Tech · TV-Beitrag</span>
-          <span style="font-size:1.05rem; font-weight:700; color:var(--text);">LEX AI →</span>
+        <a href="#preise"
+           class="inline-flex items-center justify-center gap-2 rounded-2xl border border-line-hi px-9 py-5 font-display text-base font-600 uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-white/[.03] hover:shadow-[0_0_30px_rgba(111,214,255,.18)]">
+          Preise ansehen ↓
         </a>
       </div>
-      <p style="margin-top:var(--s5); color:var(--text-2); font-size:0.95rem; max-width:680px; margin-left:auto; margin-right:auto; line-height:1.7;">Unsere humanoiden Roboter waren unter anderem im Einsatz für die <strong style="color:var(--text);">Perspektywy Foundation</strong> (Veranstalter des Women in Tech Summit — der größten Women-in-Tech-Konferenz Europas), den globalen Logistikkonzern <strong style="color:var(--text);">DSV</strong>, <strong style="color:var(--text);">Cashify</strong> sowie <strong style="color:var(--text);">LEX AI</strong>.</p>
-      <div style="display:flex; gap:var(--s5); justify-content:center; flex-wrap:wrap; margin-top:var(--s4);">
-        <a href="case-study-lexai.html" style="display:inline-flex; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Case Study LEX AI →</a>
-        <a href="case-study-wallstreet.html" style="display:inline-flex; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Case Study WallStreet 30 →</a>
-        <a href="referenzen-videos.html" style="display:inline-flex; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Alle Referenzvideos →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- LEISTUNGEN -->
-  <section class="section tiles-section" id="leistungen">
-    <div class="section-header">
-      <span class="tag">Leistungen</span>
-      <h2 class="section-title">Was wir für Sie<br />übernehmen</h2>
-    </div>
-    <div class="tiles">
-      <div class="tile">
-        <div class="tile__top">
-          <svg class="tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <span class="tile__tag">Der Star Ihres Events</span>
-        </div>
-        <h3 class="tile__title">Roboter<br />für Events</h3>
-        <p class="tile__desc">Sie wollen, dass über Ihre Veranstaltung gesprochen wird? Der G1 kommt zu Ihrer Konferenz, Eröffnung oder Gala — und sorgt garantiert für Andrang. <a href="roboter-party.html" style="color:inherit; text-decoration:underline;">Roboter für Ihre Feier →</a></p>
-        <a href="#kontakt" class="tile__link">Mehr erfahren →</a>
-      </div>
-      <div class="tile tile--light">
-        <div class="tile__top">
-          <svg class="tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <span class="tile__tag">Unsere Flotte</span>
-        </div>
-        <h3 class="tile__title">Roboter<br />mieten</h3>
-        <p class="tile__desc">Wir verfügen über eine eigene Flotte von Unitree-G1-Robotern — für Messen, Logistik, Retail und Markenauftritte. Eigene Technik, keine Zwischenhändler.</p>
-        <a href="#kontakt" class="tile__link">Mehr erfahren →</a>
-      </div>
-      <div class="tile">
-        <div class="tile__top">
-          <svg class="tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-          <span class="tile__tag">Reichweite, die man nicht kauft</span>
-        </div>
-        <h3 class="tile__title">Social-Media-<br />Reichweite</h3>
-        <p class="tile__desc">Ein Unitree-Roboter erzeugt mehr organische Reichweite als so mancher Top-Influencer — aus jedem einzelnen Gästehandy heraus.</p>
-        <a href="#kontakt" class="tile__link">Mehr erfahren →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ÜBER UNS -->
-  <section class="section onas-section" id="ueber-uns">
-    <div class="onas-head">
-      <span class="tag">Über uns</span>
-      <h2 class="section-title">Spezialisten für<br />Event-Robotik</h2>
-    </div>
-    <div class="onas-body">
-      <div class="onas-text">
-        <p class="lead-text">33bots ist auf die <a href="humanoiden-roboter-mieten.html" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Vermietung humanoider Roboter Unitree G1</a> für Events, Messen und Technologie-Shows spezialisiert. Das ist unser einziges Geschäft — wir sind keine Agentur, die alles ein bisschen macht.</p>
-        <p class="body-text">Die Miete eines humanoiden Roboters bei 33bots bedeutet immer Rundum-Betreuung: Wir bringen den Roboter zu Ihnen, stellen einen Operator für die gesamte Veranstaltungsdauer und kümmern uns um alles — vom Aufbau bis zur finalen Show. Wir sind in Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf und in jeder weiteren deutschen Stadt im Einsatz.</p>
-        <p class="body-text">Sehen Sie sich unsere spezialisierten Angebote an: <a href="angebot-messen.html" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Roboter für Messen und Ausstellungen</a> sowie <a href="angebot-konferenzen-galas.html" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Roboter für Konferenzen und Galas</a>.</p>
-      </div>
-      <ul class="onas-usps">
-        <li>Eigene Technik — keine Zwischenhändler</li>
-        <li>Dedizierter Operator für die gesamte Veranstaltungsdauer</li>
-        <li>Vollständiger Haftpflichtschutz — Sicherheit auf beiden Seiten</li>
-        <li>Einsätze in jeder deutschen Stadt</li>
-        <li>Bester Preis für die Miete eines humanoiden Roboters am Markt</li>
+      <!-- Vertrauens-Kurzhinweise -->
+      <ul class="reveal mt-6 flex flex-wrap gap-x-6 gap-y-2.5 text-[13px] text-neutral-400" style="--d:.38s">
+        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Keine Anzahlung</li>
+        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Rechnung nach dem Event</li>
+        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Deutschlandweit im Einsatz</li>
+        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Angebot in 24 h</li>
       </ul>
     </div>
 
-    <div class="transport-callout">
-      <div class="transport-callout__glow" aria-hidden="true"></div>
-      <div class="transport-callout__left">
-        <span class="transport-callout__eyebrow">Einsatzgebiet</span>
-        <p class="transport-callout__claim"><em>Deutschlandweit</em><br />im<br />Einsatz.</p>
-      </div>
-      <div class="transport-callout__right">
-        <p class="transport-callout__note">Wir bringen den Roboter zu jeder Veranstaltung — von Hamburg bis München, von Köln bis Dresden. Anfahrt und Logistik planen wir vorab und halten sie im Angebot fest.</p>
-        <ul class="transport-callout__stats">
-          <li><strong>30–45 Min</strong><span>bis einsatzbereit</span></li>
-          <li><strong>100 %</strong><span>Deutschland abgedeckt</span></li>
-          <li><strong>24 h</strong><span>bis zum Angebot</span></li>
-        </ul>
-        <a href="#kontakt" class="btn-primary">Termin mit Anfahrt sichern →</a>
-      </div>
+    <!-- Roboter mit Parallax -->
+    <div class="relative hidden lg:block" data-par data-speed="-.06">
+      <div class="absolute inset-0 -z-10 rounded-full bg-accent/10 blur-[100px]"></div>
+      <img src="robot-g1-960.webp" alt="Humanoider Roboter Unitree G1 — Miete für Events in ganz Deutschland"
+           width="600" height="800" fetchpriority="high"
+           class="reveal mx-auto max-h-[68vh] w-auto hero-robot" style="--d:.2s" />
+      <!-- schwebende Spezifikations-Labels -->
+      <span class="reveal absolute left-2 top-[28%] rounded-lg border border-line-mid bg-surface-2/80 px-3 py-1.5 text-[11px] font-600 uppercase tracking-widest text-neutral-400 backdrop-blur animate-float" style="--d:.5s">23 DOF</span>
+      <span class="reveal absolute right-2 top-[52%] rounded-lg border border-line-mid bg-surface-2/80 px-3 py-1.5 text-[11px] font-600 uppercase tracking-widest text-neutral-400 backdrop-blur animate-float [animation-delay:2s]" style="--d:.6s">132 cm</span>
+      <span class="reveal absolute bottom-[14%] left-6 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-600 uppercase tracking-widest text-accent backdrop-blur animate-float [animation-delay:1s]" style="--d:.7s">2 m/s</span>
     </div>
-  </section>
+  </div>
 
-  <!-- GALERIE -->
-  <section class="section robot-gallery-section">
-    <div class="section-header">
-      <span class="tag">Roboter</span>
-      <h2 class="section-title">Unitree G1 —<br />Humanoid neuer Generation</h2>
+  <!-- Scroll-Hinweis -->
+  <a href="#vertrauen" class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral-600 transition hover:text-accent md:flex">
+    <span class="text-[10px] uppercase tracking-[.25em]">Scrollen</span>
+    <span class="animate-bob text-lg">↓</span>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     2. VERTRAUENSLEISTE — eine Zeile, kein unnötiger Platz
+     ══════════════════════════════════════════════════════ -->
+<section id="vertrauen" class="border-y border-line bg-surface/60 py-8">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+      <p class="reveal text-[11px] font-600 uppercase tracking-[.18em] text-neutral-600">Vertrauen uns</p>
+      <div class="reveal flex flex-wrap items-center justify-center gap-x-9 gap-y-3 font-display text-lg font-600 text-neutral-400" style="--d:.08s">
+        <a href="case-study-women-in-tech.html" class="transition hover:text-white">Perspektywy Foundation</a>
+        <span class="text-neutral-500">DSV</span>
+        <span class="text-neutral-500">Cashify</span>
+        <a href="case-study-lexai.html" class="transition hover:text-white">LEX AI</a>
+      </div>
+      <a href="case-study-lexai.html"
+         class="reveal group inline-flex items-center gap-2 rounded-full border border-line-mid px-4 py-2 text-[12px] text-neutral-400 transition hover:border-accent/50 hover:text-white" style="--d:.16s">
+        <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+        Im TV zu sehen
+        <span class="transition-transform group-hover:translate-x-1">↗</span>
+      </a>
     </div>
-    <div class="robot-gallery">
-      <figure class="robot-gallery__main">
-        <picture><source srcset="robot-g1-960.webp 960w, robot-g1.webp 2390w" sizes="(min-width: 769px) 800px, 92vw" type="image/webp" />
-          <img src="robot-g1.jpg" alt="Humanoider Roboter Unitree G1 — silberner Humanoid mit blauem Visier" width="800" height="800" loading="lazy" /></picture>
-        <figcaption>Unitree G1 · 132 cm · 35 kg · 23 Freiheitsgrade</figcaption>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     3. BENTO BOX — Leistungen / Referenzen, Video beim Hover
+     ══════════════════════════════════════════════════════ -->
+<section id="referenzen" class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+  <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Referenzen</p>
+      <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl" style="--d:.08s">
+        Was er auf dem Event macht
+      </h2>
+    </div>
+    <p class="reveal max-w-sm text-neutral-400" style="--d:.16s">
+      Mit der Maus über ein Bild fahren — der Streifen stoppt, die Aufnahme läuft an. Klicken zum Vergrößern.<br class="hidden md:block" /><span class="text-neutral-500">14 Fotos aus echten Einsätzen. Keine Stockfotos, keine Renderings.</span>
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       EINSATZ-GALERIE — zwei Streifen in Gegenrichtung.
+       Hover stoppt den Streifen, Klick öffnet das Foto im Vollbild.
+       Kachelbreiten bewusst gemischt (schmal / normal / breit), damit
+       der Scroll-Rhythmus nicht monoton wirkt.
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="strip reveal -mx-5 md:-mx-8" style="--d:.05s">
+    <div class="strip-track py-1">
+      <!-- ORIGINAL -->
+      <figure class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala">
+        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Roter Teppich</figcaption>
       </figure>
-      <div class="robot-gallery__side">
-        <figure class="robot-gallery__action">
-          <picture><source srcset="robot-g1-action.webp" type="image/webp" />
-            <img src="robot-g1-action.jpg" alt="Unitree G1 in einer Tanzchoreografie — Aufnahme von einer echten 33bots-Show" width="600" height="600" loading="lazy" /></picture>
-          <figcaption>Dynamische Choreografien und Live-Shows</figcaption>
-        </figure>
-        <div class="robot-gallery__specs">
-          <div class="robot-spec"><span class="robot-spec__val">132 cm</span><span class="robot-spec__lbl">Größe</span></div>
-          <div class="robot-spec"><span class="robot-spec__val">35 kg</span><span class="robot-spec__lbl">Gewicht</span></div>
-          <div class="robot-spec"><span class="robot-spec__val">23</span><span class="robot-spec__lbl">DOF</span></div>
-          <div class="robot-spec"><span class="robot-spec__val">2 m/s</span><span class="robot-spec__lbl">Geschwindigkeit</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEO -->
-  <section class="section" id="video">
-    <div class="section-header">
-      <span class="tag">Video</span>
-      <h2 class="section-title">Der Roboter<br />im Einsatz</h2>
-    </div>
-    <div style="display:flex; flex-wrap:wrap; gap:var(--s6); align-items:center; justify-content:center; max-width:1000px; margin:0 auto;">
-      <video controls muted playsinline preload="none" poster="video/33bots-robot-event-poster.jpg" width="360" height="640"
-             style="width:min(360px,90vw); border-radius:16px; border:1px solid var(--border-mid); background:var(--surface-2);"
-             aria-label="Humanoider Roboter Unitree G1 im Einsatz">
-        <source src="video/33bots-robot-event.mp4" type="video/mp4" />
-        Ihr Browser unterstützt kein HTML5-Video.
-      </video>
-      <div style="max-width:420px; display:flex; flex-direction:column; gap:var(--s4); text-align:left;">
-        <p style="color:var(--text-2); font-size:1rem; line-height:1.8; margin:0;">So sieht der <strong style="color:var(--text);">Unitree G1</strong> live aus: Er läuft, gestikuliert, begrüßt Gäste und tanzt. Auf der Brustplatte sehen Sie unseren Standard — <strong style="color:var(--text);">kostenloses Branding</strong> mit Logo und QR-Code Ihrer Marke.</p>
-        <a href="referenzen-videos.html" style="display:inline-flex; align-items:center; gap:8px; color:var(--text); font-size:0.9rem; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Mehr Aufnahmen aus Einsätzen →</a>
-        <a href="#kontakt" class="btn-primary" style="display:inline-flex; align-self:flex-start;">Show reservieren →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATEMENT -->
-  <div class="statement">
-    <div class="statement__inner">
-      <blockquote class="statement__quote">„Wenn der Roboter den Saal betritt —<br />zücken alle ihr Handy."</blockquote>
-      <p class="statement__sub">Das ist keine Metapher, sondern der Bericht von jeder Veranstaltung, die wir betreut haben.</p>
-      <a href="#kontakt" class="btn-cta">Termin auf Verfügbarkeit prüfen →</a>
+      <figure class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys">
+        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Alle zücken ihr Handy</figcaption>
+      </figure>
+      <figure class="strip-item ">
+        <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-taniec.mp4"></source-marker>
+        <figcaption class="strip-cap">Tanz · Maus drüber</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn">
+        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Die Straße bleibt stehen</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking">
+        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking" loading="lazy" decoding="async" class="strip-img" /></picture>
+      </figure>
+      <figure class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen">
+        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Open-Air-Events</figcaption>
+      </figure>
+      <figure class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Roboterhund im Firmenshirt eines Kunden bei einer Promo-Aktion eines Autohauses">
+        <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
+        <img src="robot-pies-branding-klienta.jpg" alt="Roboterhund im Firmenshirt eines Kunden bei einer Promo-Aktion eines Autohauses" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Roboterhund im Branding</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude">
+        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Abendshows</figcaption>
+      </figure>
+      <!-- KOPIE — nahtlose Schleife -->
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-czerwony-dywan.jpg" data-alt="Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala">
+        <picture><source srcset="realizacja-gala-czerwony-dywan.webp" type="image/webp" />
+        <img src="realizacja-gala-czerwony-dywan.jpg" alt="Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Roter Teppich</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys">
+        <picture><source srcset="realizacja-women-in-tech-tlum.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-tlum.jpg" alt="Teilnehmerinnen des Women in Tech Summit filmen den humanoiden Roboter mit ihren Handys" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Alle zücken ihr Handy</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item ">
+        <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-taniec.mp4"></source-marker>
+        <figcaption class="strip-cap">Tanz · Maus drüber</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn">
+        <picture><source srcset="realizacja-lexai-starowka.webp" type="image/webp" />
+        <img src="realizacja-lexai-starowka.jpg" alt="Humanoider Roboter im LEX-AI-Shirt in der Altstadt, Passanten fotografieren ihn" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Die Straße bleibt stehen</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking">
+        <picture><source srcset="realizacja-gala-detal.webp" type="image/webp" />
+        <img src="realizacja-gala-detal.jpg" alt="Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking" loading="lazy" decoding="async" class="strip-img" /></picture>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-event-nad-woda.jpg" data-alt="Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen">
+        <picture><source srcset="realizacja-event-nad-woda.webp" type="image/webp" />
+        <img src="realizacja-event-nad-woda.jpg" alt="Humanoider Roboter winkt auf einer Terrasse über einem Yachthafen" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Open-Air-Events</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="robot-pies-branding-klienta.jpg" data-alt="Roboterhund im Firmenshirt eines Kunden bei einer Promo-Aktion eines Autohauses">
+        <picture><source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
+        <img src="robot-pies-branding-klienta.jpg" alt="Roboterhund im Firmenshirt eines Kunden bei einer Promo-Aktion eines Autohauses" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Roboterhund im Branding</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-nocny-pokaz.jpg" data-alt="Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude">
+        <picture><source srcset="realizacja-nocny-pokaz.webp" type="image/webp" />
+        <img src="realizacja-nocny-pokaz.jpg" alt="Humanoider Roboter im roten Umhang bei einer Nachtshow vor einem historischen Gebäude" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Abendshows</figcaption>
+      </figure>
     </div>
   </div>
-
-  <!-- PREISE -->
-  <span id="events" aria-hidden="true"></span>
-  <section class="section pricing-section" id="preise">
-    <div class="section-header">
-      <span class="tag">Preise</span>
-      <h2 class="section-title">Ein Tagessatz.<br />Individuell kalkuliert.</h2>
-      <p class="pricing-lead">Ein Tagessatz als Ausgangspunkt. Was Ihre Veranstaltung konkret kostet, hängt von Ort, Dauer und Umfang der Show ab — den Betrag nennen wir Ihnen im Angebot.</p>
+  <div class="strip reveal -mx-5 md:-mx-8 mt-4" style="--d:.12s">
+    <div class="strip-track strip-track--rev py-1">
+      <!-- ORIGINAL -->
+      <figure class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum">
+        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand">
+        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Gäste machen Fotos</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Humanoider Roboter im roten Shirt hält einen Regenschirm im Regen">
+        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Humanoider Roboter im roten Shirt hält einen Regenschirm im Regen" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Auch bei Regen</figcaption>
+      </figure>
+      <figure class="strip-item ">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo & QR-Code · 0 €</figcaption>
+      </figure>
+      <figure class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Humanoider Roboter LEX AI geht mit einer Aktentasche durch die Altstadt">
+        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Humanoider Roboter LEX AI geht mit einer Aktentasche durch die Altstadt" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Marketing in der Stadt</figcaption>
+      </figure>
+      <figure class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals">
+        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Repräsentative Innenräume</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Humanoider Roboter im Firmenshirt auf einer Terrasse während eines Geschäftstreffens">
+        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Humanoider Roboter im Firmenshirt auf einer Terrasse während eines Geschäftstreffens" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Firmentreffen</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern">
+        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Mitten unter den Gästen</figcaption>
+      </figure>
+      <!-- KOPIE — nahtlose Schleife -->
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum">
+        <picture><source srcset="realizacja-women-in-tech-wybieg.webp" type="image/webp" />
+        <img src="realizacja-women-in-tech-wybieg.jpg" alt="Humanoider Roboter auf dem pinken Laufsteg des Women in Tech Summit vor Publikum" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand">
+        <picture><source srcset="realizacja-gala-zdjecia-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-zdjecia-gosci.jpg" alt="Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Gäste machen Fotos</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-robot-w-deszczu.jpg" data-alt="Humanoider Roboter im roten Shirt hält einen Regenschirm im Regen">
+        <picture><source srcset="realizacja-robot-w-deszczu.webp" type="image/webp" />
+        <img src="realizacja-robot-w-deszczu.jpg" alt="Humanoider Roboter im roten Shirt hält einen Regenschirm im Regen" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Auch bei Regen</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item ">
+        <video class="strip-img" poster="video/robot-branding-poster.jpg" muted loop playsinline preload="none"
+               onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+        <source-marker data-src="video/robot-branding.mp4"></source-marker>
+        <figcaption class="strip-cap">Logo & QR-Code · 0 €</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Humanoider Roboter LEX AI geht mit einer Aktentasche durch die Altstadt">
+        <picture><source srcset="realizacja-lexai-ulica.webp" type="image/webp" />
+        <img src="realizacja-lexai-ulica.jpg" alt="Humanoider Roboter LEX AI geht mit einer Aktentasche durch die Altstadt" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Marketing in der Stadt</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals">
+        <picture><source srcset="realizacja-gala-palac.webp" type="image/webp" />
+        <img src="realizacja-gala-palac.jpg" alt="Humanoider Roboter im Smoking im Inneren eines Palais-Ballsaals" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Repräsentative Innenräume</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-spotkanie-biznesowe.jpg" data-alt="Humanoider Roboter im Firmenshirt auf einer Terrasse während eines Geschäftstreffens">
+        <picture><source srcset="realizacja-spotkanie-biznesowe.webp" type="image/webp" />
+        <img src="realizacja-spotkanie-biznesowe.jpg" alt="Humanoider Roboter im Firmenshirt auf einer Terrasse während eines Geschäftstreffens" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Firmentreffen</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-wsrod-gosci.jpg" data-alt="Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern">
+        <picture><source srcset="realizacja-gala-wsrod-gosci.webp" type="image/webp" />
+        <img src="realizacja-gala-wsrod-gosci.jpg" alt="Humanoider Roboter zwischen gut gelaunten Galagästen mit Sektgläsern" loading="lazy" decoding="async" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Mitten unter den Gästen</figcaption>
+      </figure>
     </div>
-    <div class="pricing-grid">
-      <article class="price-card price-card--main">
-        <span class="price-card__badge">Der Showtag</span>
-        <h3 class="price-card__name">Humanoider Roboter Unitree G1</h3>
-        <p class="price-card__for">Der Star Ihrer Veranstaltung — Messe, Konferenz, Gala oder Eröffnung. Den ganzen Tag.</p>
-        <div class="price-card__price">
-          <span class="price-card__amount">ab 2.499 €</span>
-          <span class="price-card__period">pro Veranstaltungstag</span>
+  </div>
+  <!-- Kernvorteile unter der Galerie -->
+  <div class="mt-10 grid gap-3 sm:grid-cols-3">
+    <div class="reveal rounded-2xl border border-line-mid bg-surface-2 p-5" style="--d:.05s">
+      <p class="font-display text-3xl font-700 text-white"><span data-count="10" data-suffix="×">0</span></p>
+      <p class="mt-1 text-[13px] text-neutral-400">mehr Aufmerksamkeit als jede andere Attraktion</p>
+    </div>
+    <div class="reveal rounded-2xl border border-accent/30 bg-accent/[.07] p-5" style="--d:.12s">
+      <p class="font-display text-3xl font-700 text-accent">0 €</p>
+      <p class="mt-1 text-[13px] text-neutral-300">für Branding — Ihr Logo und QR-Code auf dem Roboter</p>
+    </div>
+    <a href="case-study-lexai.html"
+       class="reveal group rounded-2xl border border-line-mid bg-surface-2 p-5 transition hover:border-accent/40" style="--d:.19s">
+      <p class="flex items-center gap-2 font-display text-lg font-700 text-white">
+        <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500"></span> TV-Beitrag
+      </p>
+      <p class="mt-1 text-[13px] text-neutral-400">unser Roboter im öffentlich-rechtlichen Fernsehen
+        <span class="inline-block text-accent transition-transform group-hover:translate-x-1">↗</span></p>
+    </a>
+  </div>
+  <div class="reveal mt-10 flex justify-center" style="--d:.1s">
+    <a href="leistungen.html" class="group inline-flex items-center gap-2 text-sm font-600 text-neutral-400 transition hover:text-white">
+      Alle Leistungen ansehen
+      <span class="transition-transform group-hover:translate-x-1">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     ROBOTER-LEISTUNGEN — was er kann und warum es sich lohnt
+     ══════════════════════════════════════════════════════ -->
+<section id="leistungen" class="relative overflow-hidden border-t border-line py-24 md:py-32">
+  <div class="pointer-events-none absolute right-0 top-1/4 -z-10 h-[28rem] w-[42rem] rounded-full bg-violet/10 blur-[140px]"></div>
+
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+
+    <div class="mb-12 max-w-3xl">
+      <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Leistungen</p>
+      <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl" style="--d:.08s">
+        Keine Attraktion für eine Viertelstunde.<br />Ein Gesprächsthema für Wochen.
+      </h2>
+      <p class="reveal mt-6 text-lg leading-relaxed text-neutral-400" style="--d:.16s">
+        Vor dem Event bekommt der Roboter eine Stimme, einen Charakter und Wissen darüber, was bei Ihnen passiert.
+        <span class="text-white">Der Effekt: der Saal wird still, die Handys gehen hoch, und die Gäste erzählen noch lange nach Hause davon.</span>
+      </p>
+    </div>
+
+    <!-- Zwei Kernfähigkeiten -->
+    <div class="grid gap-4 lg:grid-cols-2">
+
+      <!-- Sprache und Gespräch -->
+      <article class="reveal group relative overflow-hidden rounded-[28px] border border-accent/30 bg-surface-2 p-7 transition-all duration-500 hover:border-accent/60 md:p-9" style="--d:.05s">
+        <div class="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-accent/12 blur-3xl transition-transform duration-700 group-hover:scale-150"></div>
+
+        <div class="relative">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10 text-accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-6 w-6" aria-hidden="true">
+              <path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z" stroke-linecap="round"/>
+              <path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8" stroke-linecap="round"/>
+            </svg>
+          </span>
+
+          <h3 class="mt-5 font-display text-2xl font-700 text-white">Spricht und unterhält sich auf Deutsch</h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-neutral-400">
+            Begrüßt Gäste, beantwortet Fragen, macht Witze und kündigt Programmpunkte an — mit natürlicher Sprache,
+            ohne künstlichen, robotischen Klang. Die Leute sprechen ihn aus Neugier an und bleiben für ein längeres Gespräch.
+          </p>
+
+          <!-- Beispielgespräch -->
+          <div class="mt-6 space-y-2.5 rounded-2xl border border-line-mid bg-ink/50 p-4">
+            <p class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-surface-3 px-4 py-2.5 text-[13px] text-neutral-300">
+              Tanzt du mit mir?
+            </p>
+            <p class="w-fit max-w-[90%] rounded-2xl rounded-bl-sm bg-accent/15 px-4 py-2.5 text-[13px] text-white">
+              Gerne. Ich habe 23 Freiheitsgrade und keine Hemmungen — führst du oder führe ich?
+            </p>
+          </div>
+
+          <p class="mt-5 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+            <span class="font-600 text-white">Warum das wirkt:</span> niemand filmt ein Exponat.
+            Alle filmen jemanden, der gerade geantwortet hat — und schicken es noch am selben Abend an Freunde.
+          </p>
         </div>
-        <p class="price-card__note">Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Den Betrag nennen wir Ihnen im Angebot, in der Regel innerhalb von 24 Stunden.</p>
-        <ul class="price-card__list">
-          <li>Roboter-Show über den gesamten Veranstaltungstag</li>
-          <li>Zertifizierter Operator von Anfang bis Ende</li>
-          <li>Anfahrt deutschlandweit — Logistik nach Absprache</li>
-          <li>Branding: Ihr Logo und QR-Code auf dem Roboter</li>
-          <li>Choreografien, Interaktion mit Gästen und Tanz-Shows</li>
-          <li>Haftpflichtversicherung und technische Betreuung vor Ort</li>
-        </ul>
-        <p class="price-card__zero">Angebot in 24 Stunden. <strong>KEINE Anzahlung.</strong></p>
-        <a href="#kontakt" class="btn-cta">Kostenloses Angebot anfordern →</a>
       </article>
-      <aside class="price-card price-card--addon">
-        <span class="price-card__badge price-card__badge--addon">Zusatzoption</span>
-        <h3 class="price-card__name">Roboterhund</h3>
-        <p class="price-card__for">Das perfekte Duo: Der Humanoid macht die Show, der Roboterhund erobert die Herzen der Gäste.</p>
-        <div class="price-card__price">
-          <span class="price-card__amount">850 €</span>
-          <span class="price-card__period">pro Veranstaltungstag</span>
+
+      <!-- Charakter und Wissen -->
+      <article class="reveal group relative flex flex-col overflow-hidden rounded-[28px] border border-line-mid bg-surface-2 p-7 transition-all duration-500 hover:border-accent/40 md:p-9" style="--d:.12s">
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-line-hi bg-surface-3 text-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-6 w-6" aria-hidden="true">
+            <path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z" stroke-linecap="round"/>
+            <path d="M5 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1" stroke-linecap="round"/>
+            <circle cx="18.5" cy="6.5" r="2.5"/>
+          </svg>
+        </span>
+
+        <h3 class="mt-5 font-display text-2xl font-700 text-white">Charakter und Wissensbasis für Ihr Event</h3>
+        <p class="mt-3 text-[15px] leading-relaxed text-neutral-400">
+          Vor dem Event legen wir den Charakter des Roboters fest und laden Wissen darüber hoch, was bei Ihnen
+          passiert: wer Jubiläum hat, wer auf der Bühne auftritt, welches Motto das Event hat und was sich mit
+          einem Augenzwinkern erwähnen lässt.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="rounded-full border border-line-hi bg-surface-3 px-3.5 py-1.5 text-[12px] text-neutral-300">Eleganter Conférencier</span>
+          <span class="rounded-full border border-line-hi bg-surface-3 px-3.5 py-1.5 text-[12px] text-neutral-300">Spaßvogel</span>
+          <span class="rounded-full border border-line-hi bg-surface-3 px-3.5 py-1.5 text-[12px] text-neutral-300">Technikexperte</span>
+          <span class="rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 text-[12px] text-accent">Kennt das Bühnenprogramm</span>
+          <span class="rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 text-[12px] text-accent">Kennt Ihre Insider-Witze</span>
         </div>
-        <ul class="price-card__list">
-          <li>Dynamische Shows, Tricks und Interaktionen</li>
-          <li>Magnet für Fotos und Videos der Gäste</li>
-          <li>Mit eigenem Operator vor Ort</li>
+
+        <p class="mt-auto pt-6 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+          <span class="font-600 text-white">Warum das wirkt:</span> am meisten Aufsehen erregt der Moment,
+          in dem der Roboter etwas sagt, das er eigentlich nicht wissen konnte. Dann wird der Saal laut, und alle rufen ihre Freunde herbei.
+        </p>
+      </article>
+    </div>
+
+    <!-- Weitere Fähigkeiten -->
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+      <article class="reveal group flex flex-col rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.05s">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-hi bg-surface-3 text-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5" aria-hidden="true">
+            <path d="M4 7h3l2-3h6l2 3h3v13H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5"/>
+          </svg>
+        </span>
+        <h3 class="mt-4 font-display text-lg font-700 leading-snug text-white md:min-h-[3.25rem]">Posiert für Fotos</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">
+          Stellt sich für Selfies bereit, winkt in die Kamera, posiert mit Gästen. Die Schlange bildet sich von selbst.
+        </p>
+        <p class="mt-auto pt-3 text-[13px] leading-relaxed text-accent">Fotos kursieren noch während des Events in den sozialen Medien.</p>
+      </article>
+
+      <article class="reveal group flex flex-col rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.12s">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-hi bg-surface-3 text-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5" aria-hidden="true">
+            <path d="M9 18V5l11-2v13" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>
+          </svg>
+        </span>
+        <h3 class="mt-4 font-display text-lg font-700 leading-snug text-white md:min-h-[3.25rem]">Tanzt zur Musik</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">
+          Vollständige, rhythmisch abgestimmte Choreografien — von ruhig bis spektakulär.
+        </p>
+        <p class="mt-auto pt-3 text-[13px] leading-relaxed text-accent">Der Moment, in dem der ganze Saal gleichzeitig zum Handy greift.</p>
+      </article>
+
+      <article class="reveal group flex flex-col rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.19s">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-hi bg-surface-3 text-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5" aria-hidden="true">
+            <path d="M8 4h8v4a4 4 0 0 1-8 0z" stroke-linejoin="round"/>
+            <path d="M12 12v4M8 20h8" stroke-linecap="round"/><path d="M4 6h2M18 6h2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3 class="mt-4 font-display text-lg font-700 leading-snug text-white md:min-h-[3.25rem]">Drehbuch für Ihren Tag</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">
+          Begrüßung der Gäste, Ansage des Redners, Countdown um Mitternacht, Preisübergabe.
+        </p>
+        <p class="mt-auto pt-3 text-[13px] leading-relaxed text-accent">Die Überraschung im perfekten Moment, statt einer Attraktion am Rand.</p>
+      </article>
+
+      <article class="reveal group flex flex-col rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.26s">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line-hi bg-surface-3 text-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 20h1M18 20h-1v1" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3 class="mt-4 font-display text-lg font-700 leading-snug text-white md:min-h-[3.25rem]">Trägt Ihre Marke</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">
+          Logo und QR-Code auf der Brustplatte, ein Outfit passend zum Charakter des Events.
+        </p>
+        <p class="mt-auto pt-3 text-[13px] leading-relaxed text-accent">Ihr Logo landet auf Hunderten Fotos der Gäste.</p>
+      </article>
+    </div>
+
+    <!-- Abschluss -->
+    <div class="reveal mt-10 flex flex-col items-center gap-4 rounded-[24px] border border-line bg-surface/50 px-7 py-8 text-center md:flex-row md:justify-between md:text-left" style="--d:.1s">
+      <p class="max-w-2xl text-[15px] leading-relaxed text-neutral-300">
+        Ein Gespräch genügt — Sie sagen, welchen Eindruck Sie hinterlassen wollen, wir bereiten Stimme,
+        Charakter und Drehbuch vor. <span class="text-white">Das ist Standard der Miete, kein bezahlter Zusatz.</span>
+      </p>
+      <a href="#kontakt" class="inline-flex shrink-0 items-center gap-2 rounded-2xl bg-white px-7 py-4 font-display text-sm font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_36px_rgba(111,214,255,.4)]">
+        Ihr Drehbuch besprechen
+        <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     4. PREISE — kompakte Karte + Upsell + Rabatt
+     ══════════════════════════════════════════════════════ -->
+<section id="preise" class="relative overflow-hidden border-y border-line py-24 md:py-32">
+  <div class="pointer-events-none absolute left-1/2 top-0 -z-10 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]"></div>
+
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="mb-12 text-center">
+      <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Preise</p>
+      <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl" style="--d:.08s">
+        Bester Preis am Markt
+      </h2>
+      <p class="reveal mx-auto mt-5 max-w-xl text-neutral-400" style="--d:.16s">
+        Für diese Qualität günstiger geht es realistisch nicht. Sie mieten den Roboter für einige Stunden, den ganzen Tag oder eine mehrtägige Messe —
+        <span class="text-white">und was im Angebot steht, steht auch auf der Rechnung</span>.
+      </p>
+    </div>
+
+    <!-- Wahl der Einsatzdauer -->
+    <div class="mb-5 grid gap-3 sm:grid-cols-3">
+      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-line-hi" style="--d:.02s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Kürzer als ein Tag</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Einige Stunden</p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Ein wirkungsvoller Auftritt, die Begrüßung der Gäste oder der Höhepunkt des Abends. <span class="text-neutral-300">Individuelles Angebot — immer günstiger als der ganze Tag.</span></p>
+      </div>
+      <div class="reveal rounded-2xl border border-accent/50 bg-accent/[.07] p-5 shadow-[0_0_30px_rgba(111,214,255,.12)] transition duration-500 hover:-translate-y-1" style="--d:.08s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-accent">Am häufigsten gewählt</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Ganzer Tag</p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-300">Vollständige Betreuung vom Aufbau bis zum Ende. <span class="font-600 text-white">ab 2.499 €</span></p>
+      </div>
+      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.14s">
+        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Zwei Tage und mehr</p>
+        <p class="mt-2 font-display text-xl font-700 text-white">Mehrtägig <span class="text-accent">−15%</span></p>
+        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Messen, Festivals, Roadshows. <span class="text-neutral-300">Den Rabatt rechnen wir auf jeden Einsatztag an.</span></p>
+      </div>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
+
+      <!-- Hauptkarte -->
+      <article class="reveal group relative overflow-hidden rounded-[28px] border border-accent/40 bg-surface-2 p-8 shadow-[0_0_70px_rgba(111,214,255,.12)] transition-all duration-500 hover:border-accent/70 hover:shadow-[0_0_90px_rgba(111,214,255,.22)] md:p-10" style="--d:.05s">
+        <div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-accent/15 blur-3xl transition-transform duration-700 group-hover:scale-150"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <span class="rounded-full bg-accent px-4 py-1.5 text-[11px] font-700 uppercase tracking-widest text-ink">Startpreis</span>
+          <span class="text-[12px] font-600 uppercase tracking-widest text-neutral-500">Unitree G1 · ganzer Tag</span>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-end gap-x-4 gap-y-1">
+          <span class="font-display text-xl font-600 text-neutral-500">ab</span>
+          <span class="font-display text-6xl font-700 leading-none tracking-[-.03em] text-white md:text-7xl">2.499</span>
+          <span class="font-display text-3xl font-600 text-neutral-400">€</span>
+        </div>
+        <p class="mt-3 text-sm text-neutral-400">
+          Startpreis für den kompletten Veranstaltungstag. Den endgültigen Betrag nennen wir im Angebot — abhängig von Ort und Umfang des Events.
+        </p>
+
+        <p class="mt-8 text-[11px] font-600 uppercase tracking-widest text-neutral-500">Im Startpreis enthalten</p>
+        <ul class="mt-3 grid gap-3 sm:grid-cols-2">
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Roboter den ganzen Tag</li>
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Zertifizierter Operator</li>
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Branding: Logo und QR-Code</li>
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Choreografien und Interaktionen</li>
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Drehbuch und Konfiguration</li>
+          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Haftpflichtversicherung</li>
         </ul>
-        <a href="#kontakt" class="tile__link">Zum Angebot hinzufügen →</a>
-      </aside>
-    </div>
-    <div class="pricing-promo">
-      <span class="pricing-promo__badge">Aktion</span>
-      <p class="pricing-promo__text"><strong>−15 % auf jeden Tag</strong> ab zwei Veranstaltungstagen. Messen, Festivals, Roadshows — je länger der Roboter bleibt, desto weniger zahlen Sie pro Tag.</p>
-      <a href="#kontakt" class="btn-primary">Angebot für Ihren Termin anfragen →</a>
-    </div>
-  </section>
 
-  <section class="section testimonials-section">
-    <div class="section-header">
-      <span class="tag">Stimmen</span>
-      <h2 class="section-title">Was Kunden sagen</h2>
-    </div>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p class="testimonial__quote">„Der Effekt hat unsere kühnsten Erwartungen übertroffen. Das Interesse war während der gesamten Veranstaltung enorm — ich hätte nicht gedacht, dass wir so viel Aufmerksamkeit bekommen."</p>
-        <div class="testimonial__meta">
-          <span class="testimonial__name">Karolina M.</span>
-          <span class="testimonial__role">Marketing · IT-Branche</span>
-        </div>
+        <p class="mt-7 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-3.5 text-center text-sm text-white">
+          Die Anfahrt kalkulieren wir je nach Ort des Events. <strong class="font-700 text-accent">Keine versteckten Kosten.</strong>
+        </p>
+
+        <a href="#kontakt"
+           class="cta-shine group/btn mt-7 flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)]">
+          Kostenloses Angebot anfordern
+          <span class="transition-transform duration-300 group-hover/btn:translate-x-1.5">→</span>
+        </a>
+      </article>
+
+      <!-- Seitenspalte -->
+      <div class="flex flex-col gap-4">
+        <!-- Upsell: Roboterhund -->
+        <article class="reveal group relative overflow-hidden rounded-[28px] border border-line-mid bg-surface transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.12s">
+          <picture>
+            <source srcset="robot-pies-branding-klienta.webp" type="image/webp" />
+            <img src="robot-pies-branding-klienta.jpg" loading="lazy" width="900" height="1200"
+                 alt="Roboterhund im Firmenshirt eines Kunden bei einer Promo-Aktion eines Autohauses"
+                 class="absolute inset-0 h-full w-full object-cover object-[62%_50%] opacity-40 transition-all duration-700 group-hover:scale-105 group-hover:opacity-60" />
+          </picture>
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-surface/40"></div>
+          <div class="relative p-7">
+            <span class="rounded-full border border-line-hi bg-surface-3/80 px-3.5 py-1.5 text-[10px] font-600 uppercase tracking-widest text-neutral-300 backdrop-blur">Zusatzoption</span>
+            <h3 class="mt-5 font-display text-2xl font-700 text-white">Roboterhund</h3>
+            <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">
+              Ein unschlagbares Duo: der Humanoid macht die Show, der Roboterhund erobert die Herzen der Gäste. In Ihrem Branding.
+            </p>
+            <p class="mt-5 font-display text-4xl font-700 leading-none text-white">850 <span class="text-2xl text-neutral-400">€</span></p>
+            <p class="mt-1.5 text-[11px] font-600 uppercase tracking-widest text-neutral-500">pro Tag</p>
+            <a href="#kontakt" class="mt-5 inline-flex items-center gap-2 text-[13px] font-600 text-accent transition-transform duration-300 hover:translate-x-1">Zum Angebot hinzufügen →</a>
+          </div>
+        </article>
+
+        <!-- Rabatt -->
+        <article class="reveal group relative flex-1 overflow-hidden rounded-[28px] border border-dashed border-accent/40 bg-gradient-to-br from-accent/[.08] to-transparent p-7 transition-all duration-500 hover:-translate-y-1 hover:border-accent/70" style="--d:.18s">
+          <span class="text-[10px] font-600 uppercase tracking-widest text-accent">Rabatt bei längerer Buchung</span>
+          <p class="mt-4 font-display text-5xl font-700 leading-none text-white">−15%</p>
+          <p class="mt-3 text-[13px] leading-relaxed text-neutral-300">
+            auf <strong class="text-white">jeden Tag</strong> bei Einsätzen ab zwei Tagen. Messen, Festivals, Roadshows.
+          </p>
+        </article>
       </div>
-      <div class="testimonial">
-        <p class="testimonial__quote">„Das war eine der besten organisatorischen Entscheidungen. Die positiven Reaktionen der Teilnehmenden und ihr Engagement sind für uns die beste Bewertung des gesamten Projekts."</p>
-        <div class="testimonial__meta">
-          <span class="testimonial__name">Piotr Z.</span>
-          <span class="testimonial__role">Veranstalter · Firmengala</span>
-        </div>
-      </div>
-      <div class="testimonial">
-        <p class="testimonial__quote">„Die Zusammenarbeit hat zu unglaublicher Reichweite in den sozialen Medien geführt. Das ist die Art von echtem Interesse, die man nicht einfach kaufen kann."</p>
-        <div class="testimonial__meta">
-          <span class="testimonial__name">Magdalena T.</span>
-          <span class="testimonial__role">PR-Managerin · Technologiemesse</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EINSATZBEREICHE -->
-  <section class="section" id="einsatzbereiche">
-    <div class="section-header">
-      <span class="tag">Einsatzbereiche</span>
-      <h2 class="section-title">Wo der G1<br />überzeugt</h2>
-    </div>
-    <div class="use-grid">
-      <div class="use-item"><span class="use-num">01</span><h3>Konferenzen &amp; Summits</h3><p>Der Roboter als Gastgeber, Guide oder Attraktion am Registration Desk.</p><a href="angebot-konferenzen-galas.html" class="tile__link" style="margin-top:var(--s2);display:inline-flex;">Konferenz-Angebot →</a></div>
-      <div class="use-item"><span class="use-num">02</span><h3>Messen &amp; Ausstellungen</h3><p>Ziehen Sie zehnmal mehr Aufmerksamkeit an den Stand als mit jedem Banner.</p><a href="angebot-messen.html" class="tile__link" style="margin-top:var(--s2);display:inline-flex;">Mehr erfahren →</a></div>
-      <div class="use-item"><span class="use-num">03</span><h3>Firmenfeiern &amp; Hochzeiten</h3><p>Sommerfeste, Jubiläen, Galas, Hochzeiten — Gesprächsstoff weit über den Abend hinaus.</p><a href="roboter-hochzeit.html" class="tile__link" style="margin-top:var(--s2);display:inline-flex;">Roboter zur Hochzeit →</a></div>
-      <div class="use-item"><span class="use-num">04</span><h3>Tage der offenen Tür &amp; Bildung</h3><p>Schulen, Hochschulen, Science Center — Technologie, die die Welt verändert.</p><a href="angebot-tag-der-offenen-tuer.html" class="tile__link" style="margin-top:var(--s2);display:inline-flex;">Mehr erfahren →</a></div>
-      <div class="use-item"><span class="use-num">05</span><h3>Foto- &amp; Videoproduktion</h3><p>Werbematerial mit einem Humanoiden. Aufmerksamkeit garantiert.</p></div>
-      <div class="use-item"><span class="use-num">06</span><h3>Produktlaunch</h3><p>Store-Eröffnung oder Imagekampagne — der G1 macht die Show.</p></div>
-    </div>
-  </section>
-
-  <!-- ABLAUF -->
-  <section class="section process-section" id="ablauf">
-    <div class="section-header">
-      <span class="tag">So arbeiten wir</span>
-      <h2 class="section-title">Zusammenarbeit ohne Stress<br />und ohne Anzahlung</h2>
-      <p class="process-lead">Sie reservieren den Termin kostenlos und erhalten die Rechnung erst nach der erfolgreichen Veranstaltung. Das Risiko tragen wir — Sie wählen nur das Datum.</p>
-    </div>
-    <div class="process">
-      <div class="process-step"><span class="process-step__n">01</span><div><h3>Schneller Kontakt</h3><p>Sie füllen ein kurzes Formular aus oder schreiben eine E-Mail. Das dauert zwei Minuten.</p></div></div>
-      <div class="process-step"><span class="process-step__n">02</span><div><h3>Rückruf von uns</h3><p>Wir rufen zurück, lernen Ihre Veranstaltung kennen und empfehlen das passende Showformat.</p></div></div>
-      <div class="process-step"><span class="process-step__n">03</span><div><h3>Angebot in 24 Stunden</h3><p>Ein konkreter Betrag für Ihren Termin — meist noch am selben Tag.</p></div></div>
-      <div class="process-step process-step--key"><span class="process-step__n">04</span><div><h3>Einfacher Vertrag</h3><p><strong>Kostenlose Terminreservierung, KEINE Anzahlung.</strong> Sie brauchen ein längeres Zahlungsziel? Wir richten es ein.</p></div></div>
-      <div class="process-step"><span class="process-step__n">05</span><div><h3>Wir übernehmen alles</h3><p>Anfahrt, Aufbau, Operator und eine Show auf höchstem Niveau.</p></div></div>
-      <div class="process-step process-step--key"><span class="process-step__n">06</span><div><h3>Zahlung nach dem Event</h3><p>Die Rechnung stellen wir <strong>erst nach der Veranstaltung</strong>. Zuerst das Ergebnis, dann die Zahlung.</p></div></div>
-    </div>
-    <div class="process-cta">
-      <a href="#kontakt" class="btn-cta">Mit dem kostenlosen Angebot starten →</a>
-      <p class="hero__cta-note">Unverbindlich · Antwort innerhalb von 24 h</p>
-    </div>
-  </section>
-
-  <div class="video-teaser">
-    <div class="video-teaser__content">
-      <span class="tag">Live</span>
-      <h2 class="video-teaser__title">Sie wollen den G1<br />live erleben?</h2>
-      <a href="#kontakt" class="btn-cta">Kostenloses Angebot anfordern →</a>
-      <p class="video-teaser__note">Unverbindlich · Keine Anzahlung · Antwort in 24 h</p>
     </div>
   </div>
+</section>
 
-  <section class="section faq-section">
-    <div class="section-header">
-      <span class="tag">FAQ</span>
-      <h2 class="section-title">Häufige<br />Fragen</h2>
-    </div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Was kostet die Miete eines humanoiden Roboters für ein Event?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Ein kompletter Veranstaltungstag kostet ab 2.499 € — der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Den genauen Betrag nennen wir im individuellen Angebot. Optional buchen Sie den Roboterhund für 850 € pro Tag; ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Muss ich eine Anzahlung leisten, um einen Termin zu reservieren?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Nein. Die Terminreservierung ist vollständig kostenlos — wir schließen einen einfachen Vertrag ohne Anzahlung und stellen die Rechnung erst nach der Veranstaltung. Bei Bedarf vereinbaren wir ein längeres Zahlungsziel.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Muss ich den Roboter selbst bedienen können?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Nein. Ein zertifizierter Operator von 33bots ist den gesamten Veranstaltungstag vor Ort, übernimmt Aufbau, Konfiguration und Steuerung. Sie brauchen keinerlei technisches Vorwissen.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Kann der Roboter auch bei einem Tag der offenen Tür oder Betriebsfest eingesetzt werden?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Selbstverständlich. Die Unitree-Roboter kommen mit unterschiedlichen Untergründen zurecht (Asphalt, Rasen, Teppich) und funktionieren daher sowohl im Bürogebäude als auch bei Outdoor-Veranstaltungen.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Kann ich mein Firmenlogo auf dem Roboter platzieren?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Ja. Ihr Logo und ein QR-Code kommen auf die Brustplatte des Roboters. Umfang und Umsetzung stimmen wir vor der Veranstaltung gemeinsam ab.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Ist der Roboter für die Teilnehmenden sicher?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Ja. Der Roboter verfügt über LiDAR und Computer Vision und weicht Hindernissen sowie Menschen in Echtzeit aus. Zusätzlich überwacht unser Operator den Einsatz durchgehend. Der Einsatz ist haftpflichtversichert.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Welche technischen Voraussetzungen brauchen Sie vor Ort?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Eine gewöhnliche 230-V-Steckdose und rund 2×2 m freie Fläche. Internet oder besondere Beleuchtung sind nicht erforderlich. Unser Operator bringt die komplette Ausrüstung mit und ist in 30–45 Minuten einsatzbereit.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Kann der Roboter tanzen?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Und wie. Der Unitree G1 beherrscht mehrere Choreografien, die auch ein professioneller Tänzer nicht verstecken müsste. Wenn bei Ihrer Veranstaltung ein DJ auflegt, übernimmt unser Roboter gerne die Tanzfläche.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Ist die Vermietung deutschlandweit verfügbar?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Ja — 33bots ist in ganz Deutschland im Einsatz, unabhängig von Stadt und Entfernung. Wir bedienen Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf und Dutzende weitere Städte.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Welche Unternehmen haben bereits einen Roboter bei Ihnen gemietet?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Unter anderem die Perspektywy Foundation (Women in Tech Summit — die größte Women-in-Tech-Konferenz Europas), der globale Logistikkonzern DSV, Cashify sowie LEX AI, dessen Show mit unserem Roboter im öffentlich-rechtlichen Fernsehen ausgestrahlt wurde.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Was unterscheidet 33bots von anderen Roboter-Vermietungen?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Eigene Technik statt Zwischenhändler, ein zertifizierter Operator für die gesamte Veranstaltung und Branding des Roboters mit Logo und QR-Code. Jedes Angebot rechnen wir individuell für Ihre Veranstaltung.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOG -->
-  <section class="section" id="blog">
-    <div class="section-header">
-      <span class="tag">Blog</span>
-      <h2 class="section-title">Wissen über<br />Event-Robotik</h2>
-    </div>
-    <div class="tiles tiles--blog">
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Events · Strategie</span></div>
-        <h3 class="tile__title">5 Gründe, warum Ihr Event einen Humanoiden braucht</h3>
-        <p class="tile__desc">Ein Roboter auf der Veranstaltung ist kein Spielzeug. Er ist das Element, das über Aufmerksamkeit, Reichweite und Erinnerung entscheidet.</p>
-        <a href="blog-roboter-auf-dem-event.html" class="tile__link">Artikel lesen →</a>
-      </div>
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Marketing · B2B</span></div>
-        <h3 class="tile__title">Robotik im modernen B2B-Marketing</h3>
-        <p class="tile__desc">Im B2B-Marketing ist Aufmerksamkeit die knappste Ressource. Robotik ist eines der wenigen Mittel, die sie zuverlässig erzeugen.</p>
-        <a href="blog-robotik-im-marketing.html" class="tile__link">Artikel lesen →</a>
-      </div>
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Vergleich · Firmenevent</span></div>
-        <h3 class="tile__title">Attraktion für das Firmenevent: Roboter vs. Alternativen</h3>
-        <p class="tile__desc">Fotobox, Zauberer, Casino-Abend oder Roboter? Ein nüchterner Vergleich nach drei Kriterien, die tatsächlich zählen.</p>
-        <a href="blog-attraktion-firmenevent.html" class="tile__link">Artikel lesen →</a>
-      </div>
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Preise · Pakete</span></div>
-        <h3 class="tile__title">Was kostet die Miete eines Roboters? Preise 2026</h3>
-        <p class="tile__desc">Ein transparenter Überblick über die Kosten und darüber, wovon der Tagessatz abhängt.</p>
-        <a href="blog-was-kostet-roboter-mieten.html" class="tile__link">Artikel lesen →</a>
-      </div>
-    </div>
-    <div style="text-align:center; margin:0 0 var(--s10);">
-      <a href="blog.html" class="btn-ghost" style="display:inline-flex;">Alle Artikel ansehen →</a>
-    </div>
-
-    <div style="margin-top:var(--s8); max-width:900px; margin-left:auto; margin-right:auto;">
-      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Roboter mieten in Ihrer Stadt</p>
-      <div style="display:flex; flex-wrap:wrap; gap:var(--s2);">
-        <a href="roboter-mieten-berlin.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Berlin</a>
-        <a href="roboter-mieten-muenchen.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">München</a>
-        <a href="roboter-mieten-hamburg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Hamburg</a>
-        <a href="roboter-mieten-koeln.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Köln</a>
-        <a href="roboter-mieten-frankfurt.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Frankfurt am Main</a>
-        <a href="roboter-mieten-stuttgart.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Stuttgart</a>
-        <a href="roboter-mieten-duesseldorf.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Düsseldorf</a>
-        <a href="roboter-mieten-leipzig.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Leipzig</a>
-        <a href="roboter-mieten-dortmund.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Dortmund</a>
-        <a href="roboter-mieten-essen.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Essen</a>
-        <a href="roboter-mieten-bremen.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Bremen</a>
-        <a href="roboter-mieten-dresden.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Dresden</a>
-        <a href="roboter-mieten-hannover.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Hannover</a>
-        <a href="roboter-mieten-nuernberg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Nürnberg</a>
-        <a href="roboter-mieten-duisburg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Duisburg</a>
-        <a href="roboter-mieten-bochum.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Bochum</a>
-        <a href="roboter-mieten-wuppertal.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Wuppertal</a>
-        <a href="roboter-mieten-bielefeld.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Bielefeld</a>
-        <a href="roboter-mieten-bonn.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Bonn</a>
-        <a href="roboter-mieten-muenster.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Münster</a>
-        <a href="roboter-mieten-karlsruhe.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Karlsruhe</a>
-        <a href="roboter-mieten-mannheim.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Mannheim</a>
-        <a href="roboter-mieten-augsburg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Augsburg</a>
-        <a href="roboter-mieten-wiesbaden.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Wiesbaden</a>
-        <a href="roboter-mieten-moenchengladbach.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Mönchengladbach</a>
-        <a href="roboter-mieten-braunschweig.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Braunschweig</a>
-        <a href="roboter-mieten-kiel.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Kiel</a>
-        <a href="roboter-mieten-chemnitz.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Chemnitz</a>
-        <a href="roboter-mieten-aachen.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Aachen</a>
-        <a href="roboter-mieten-halle.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Halle (Saale)</a>
-        <a href="roboter-mieten-magdeburg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Magdeburg</a>
-        <a href="roboter-mieten-freiburg.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Freiburg</a>
-        <a href="roboter-mieten-krefeld.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Krefeld</a>
-        <a href="roboter-mieten-mainz.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Mainz</a>
-        <a href="roboter-mieten-luebeck.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Lübeck</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section class="section contact-section" id="kontakt">
-    <div class="contact-layout">
-      <div class="contact-left">
-        <span class="tag">Kontakt</span>
-        <h2 class="section-title">Kostenloses Angebot<br />für Ihr Event.</h2>
-        <p class="body-text">Schreiben Sie uns — wir rufen zurück und erstellen umgehend ein konkretes Angebot. Die Terminreservierung ist kostenlos und ohne Anzahlung, die Rechnung stellen wir erst nach der Veranstaltung.</p>
-        <div class="contact-details" itemscope itemtype="https://schema.org/ProfessionalService">
-          <meta itemprop="name" content="33bots – Humanoide Roboter mieten" />
-          <meta itemprop="url" content="https://33bots.de" />
-          <div class="contact-detail">
-            <span class="contact-detail__label">Unternehmen</span>
-            <span class="contact-detail__val" itemprop="name">33bots – Humanoide Roboter mieten</span>
-          </div>
-          <a href="mailto:kontakt@33bots.de" class="contact-detail" itemprop="email" content="kontakt@33bots.de">
-            <span class="contact-detail__label">E-Mail</span><span class="contact-detail__val">kontakt@33bots.de</span>
-          </a>
-          <div class="contact-detail">
-            <span class="contact-detail__label">Einsatzgebiet</span>
-            <span class="contact-detail__val" itemprop="areaServed">Deutschlandweit</span>
-          </div>
-        </div>
-
-        <nav class="coverage" aria-label="Roboter mieten — bediente Städte">
-          <p class="coverage__label">Wir sind im Einsatz in:</p>
-          <ul class="coverage__cities">
-            <li><a href="roboter-mieten-berlin.html">Berlin</a></li>
-            <li><a href="roboter-mieten-muenchen.html">München</a></li>
-            <li><a href="roboter-mieten-hamburg.html">Hamburg</a></li>
-            <li><a href="roboter-mieten-koeln.html">Köln</a></li>
-            <li><a href="roboter-mieten-frankfurt.html">Frankfurt am Main</a></li>
-            <li><a href="roboter-mieten-stuttgart.html">Stuttgart</a></li>
-            <li><a href="roboter-mieten-duesseldorf.html">Düsseldorf</a></li>
-            <li><a href="roboter-mieten-leipzig.html">Leipzig</a></li>
-            <li><a href="roboter-mieten-dortmund.html">Dortmund</a></li>
-            <li><a href="roboter-mieten-essen.html">Essen</a></li>
-            <li><a href="roboter-mieten-bremen.html">Bremen</a></li>
-            <li><a href="roboter-mieten-dresden.html">Dresden</a></li>
-            <li><a href="roboter-mieten-hannover.html">Hannover</a></li>
-            <li><a href="roboter-mieten-nuernberg.html">Nürnberg</a></li>
-            <li><a href="roboter-mieten-duisburg.html">Duisburg</a></li>
-            <li><a href="roboter-mieten-bochum.html">Bochum</a></li>
-            <li><a href="roboter-mieten-wuppertal.html">Wuppertal</a></li>
-            <li><a href="roboter-mieten-bielefeld.html">Bielefeld</a></li>
-            <li><a href="roboter-mieten-bonn.html">Bonn</a></li>
-            <li><a href="roboter-mieten-muenster.html">Münster</a></li>
-            <li><a href="roboter-mieten-karlsruhe.html">Karlsruhe</a></li>
-            <li><a href="roboter-mieten-mannheim.html">Mannheim</a></li>
-            <li><a href="roboter-mieten-augsburg.html">Augsburg</a></li>
-            <li><a href="roboter-mieten-wiesbaden.html">Wiesbaden</a></li>
-            <li><a href="roboter-mieten-moenchengladbach.html">Mönchengladbach</a></li>
-            <li><a href="roboter-mieten-braunschweig.html">Braunschweig</a></li>
-            <li><a href="roboter-mieten-kiel.html">Kiel</a></li>
-            <li><a href="roboter-mieten-chemnitz.html">Chemnitz</a></li>
-            <li><a href="roboter-mieten-aachen.html">Aachen</a></li>
-            <li><a href="roboter-mieten-halle.html">Halle (Saale)</a></li>
-            <li><a href="roboter-mieten-magdeburg.html">Magdeburg</a></li>
-            <li><a href="roboter-mieten-freiburg.html">Freiburg</a></li>
-            <li><a href="roboter-mieten-krefeld.html">Krefeld</a></li>
-            <li><a href="roboter-mieten-mainz.html">Mainz</a></li>
-            <li><a href="roboter-mieten-luebeck.html">Lübeck</a></li>
-          </ul>
-          <p class="coverage__note">und überall sonst in Deutschland</p>
-        </nav>
-      </div>
-      <div class="contact-right">
-        <form id="contactForm" class="form" novalidate>
-          <div class="form-steps-header">
-            <span class="form-step-ind active" id="stepInd1">01 — Kontaktdaten</span>
-            <span class="form-step-sep">/</span>
-            <span class="form-step-ind" id="stepInd2">02 — Ihre Veranstaltung</span>
-          </div>
-          <div class="form-step" id="formStep1">
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-name">Vor- und Nachname *</label>
-                <input id="f-name" type="text" name="name" placeholder="Max Mustermann" autocomplete="name" required />
-                <span class="form-field__err" aria-live="polite"></span>
-              </div>
-              <div class="form-field">
-                <label for="f-company">Unternehmen (optional)</label>
-                <input id="f-company" type="text" name="company" placeholder="Firmenname" autocomplete="organization" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-email">E-Mail *</label>
-                <input id="f-email" type="email" name="email" placeholder="kontakt@firma.de" autocomplete="email" required />
-                <span class="form-field__err" aria-live="polite"></span>
-              </div>
-              <div class="form-field">
-                <label for="f-phone">Telefon</label>
-                <input id="f-phone" type="tel" name="phone" placeholder="+49 30 1234567" autocomplete="tel" />
-              </div>
-            </div>
-            <button type="button" id="btnNext" class="btn-submit">Weiter — Ihre Veranstaltung →</button>
-          </div>
-          <div class="form-step form-step--hidden" id="formStep2" aria-hidden="true">
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-date">Veranstaltungsdatum</label>
-                <input id="f-date" type="date" name="date" />
-              </div>
-              <div class="form-field">
-                <label for="f-location">Ort / Stadt</label>
-                <input id="f-location" type="text" name="location" placeholder="z. B. Berlin, Messe Halle 3" autocomplete="address-level2" />
-              </div>
-            </div>
-            <div class="form-field">
-              <label for="f-message">Beschreiben Sie Ihre Veranstaltung *</label>
-              <textarea id="f-message" name="message" rows="6" placeholder="Gästezahl, Dauer, Art der Veranstaltung …" required></textarea>
-              <div class="form-field__footer">
-                <span class="form-field__err" aria-live="polite"></span>
-                <span class="char-counter"><span id="charCount">0</span> / 600</span>
-              </div>
-            </div>
-            <div class="form-step__nav">
-              <button type="button" id="btnBack" class="btn-back">← Zurück</button>
-              <button type="submit" class="btn-submit">Anfrage senden →</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  </main>
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="logo">33BOTS</span>
-        <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Humanoide Roboter mieten</a> · Deutschlandweit</p>
-        <div class="footer__nap">
-          <a href="mailto:kontakt@33bots.de" class="footer__nap-item">kontakt@33bots.de</a>
-        </div>
-      </div>
-      <div class="footer__links">
-        <a href="leistungen.html">Leistungen &amp; Angebot</a>
-        <a href="event-attraktionen.html">Event-Attraktionen</a>
-        <a href="referenzen-videos.html">Referenzen</a>
-        <a href="case-study-lexai.html">Case Study</a>
-        <a href="#ueber-uns">Über uns</a>
-        <a href="blog.html">Blog</a>
-        <a href="#kontakt">Kontakt</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="barrierefreiheit.html">Barrierefreiheit</a>
-      </div>
-      <div class="footer__right">
-        <div class="footer__socials">
-          <a href="https://www.instagram.com/33bots_/" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Instagram</a>
-          <a href="https://www.tiktok.com/@aimforum" target="_blank" rel="noopener noreferrer" class="footer__social">↗ TikTok</a>
-          <a href="https://www.facebook.com/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Facebook</a>
-          <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ LinkedIn</a>
-        </div>
-        <span class="footer__copy">© 2026 33bots. Alle Rechte vorbehalten.</span>
-      </div>
-    </div>
-  </footer>
-
-
-  <button type="button" class="a11y-toggle" id="a11yToggle"
-          aria-expanded="false" aria-controls="a11yPanel" aria-label="Barrierefreiheit-Einstellungen öffnen">
-    <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
-      <circle cx="12" cy="4" r="2"/>
-      <path d="M19 8h-5v13h-2v-6h-0.9v6H9V8H4V6h15v2z"/>
-    </svg>
-  </button>
-  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-labelledby="a11yTitle" hidden>
-    <h2 class="a11y-panel__title" id="a11yTitle">Barrierefreiheit</h2>
-
-    <fieldset class="a11y-group">
-      <legend class="a11y-group__label">Textgrösse</legend>
-      <div class="a11y-opts" role="group">
-        <button type="button" class="a11y-opt" data-a11y="font" data-value="normal">Standard</button>
-        <button type="button" class="a11y-opt" data-a11y="font" data-value="large">Gross</button>
-        <button type="button" class="a11y-opt" data-a11y="font" data-value="xlarge">Sehr gross</button>
-      </div>
-    </fieldset>
-
-    <fieldset class="a11y-group">
-      <legend class="a11y-group__label">Darstellung</legend>
-      <div class="a11y-opts" role="group">
-        <button type="button" class="a11y-opt" data-a11y="theme" data-value="dark">Dunkel</button>
-        <button type="button" class="a11y-opt" data-a11y="theme" data-value="light">Hell</button>
-      </div>
-    </fieldset>
-
-    <fieldset class="a11y-group">
-      <legend class="a11y-group__label">Kontrast</legend>
-      <div class="a11y-opts" role="group">
-        <button type="button" class="a11y-opt" data-a11y="contrast" data-value="normal">Standard</button>
-        <button type="button" class="a11y-opt" data-a11y="contrast" data-value="high">Hoch</button>
-      </div>
-    </fieldset>
-
-    <fieldset class="a11y-group">
-      <legend class="a11y-group__label">Animationen</legend>
-      <div class="a11y-opts" role="group">
-        <button type="button" class="a11y-opt" data-a11y="motion" data-value="on">An</button>
-        <button type="button" class="a11y-opt" data-a11y="motion" data-value="off">Aus</button>
-      </div>
-    </fieldset>
-
-    <button type="button" class="a11y-reset" id="a11yReset">Zurücksetzen</button>
+<!-- ══════════════════════════════════════════════════════
+     5. ABLAUF — Zeitachse mit animierter Linie
+     ══════════════════════════════════════════════════════ -->
+<section id="ablauf" class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+  <div class="mb-14 text-center">
+    <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">So arbeiten wir</p>
+    <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl" style="--d:.08s">
+      Stressfrei ab dem ersten Anruf
+    </h2>
+    <p class="reveal mx-auto mt-5 max-w-lg text-neutral-400" style="--d:.16s">
+      Sie reservieren den Termin kostenlos. Bezahlt wird erst nach dem erfolgreichen Event. Das Risiko tragen wir.
+    </p>
   </div>
 
-  <div class="sticky-cta">
-    <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
+  <div class="relative">
+    <!-- animierte Linie -->
+    <div class="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent via-accent/40 to-transparent track-line md:left-0 md:top-6 md:h-px md:w-full md:bg-gradient-to-r"></div>
+
+    <ol class="relative grid gap-8 md:grid-cols-5 md:gap-4">
+      <li class="reveal pl-16 md:pl-0" style="--d:.05s">
+        <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-line-mid bg-surface-2 font-display text-sm font-700 text-neutral-400 md:relative md:mb-6">01</span>
+        <h3 class="font-display text-base font-700 text-white">Schneller Kontakt</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Sie hinterlassen Ihre Kontaktdaten. Zwei Minuten Aufwand.</p>
+      </li>
+      <li class="reveal pl-16 md:pl-0" style="--d:.13s">
+        <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-line-mid bg-surface-2 font-display text-sm font-700 text-neutral-400 md:relative md:mb-6">02</span>
+        <h3 class="font-display text-base font-700 text-white">Rückruf und Angebot</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Wir rufen zurück und nennen einen konkreten Betrag — meist noch am selben Tag.</p>
+      </li>
+      <li class="reveal pl-16 md:pl-0" style="--d:.21s">
+        <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-accent font-display text-sm font-700 text-ink shadow-[0_0_28px_rgba(111,214,255,.45)] md:relative md:mb-6">03</span>
+        <h3 class="font-display text-base font-700 text-accent">Einfacher Vertrag</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400"><strong class="text-white">Kostenlose Reservierung, keine Anzahlung.</strong> Längeres Zahlungsziel möglich.</p>
+      </li>
+      <li class="reveal pl-16 md:pl-0" style="--d:.29s">
+        <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-line-mid bg-surface-2 font-display text-sm font-700 text-neutral-400 md:relative md:mb-6">04</span>
+        <h3 class="font-display text-base font-700 text-white">Durchführung</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Wir arbeiten, Sie entspannen sich und kümmern sich um Ihre Gäste.</p>
+      </li>
+      <li class="reveal pl-16 md:pl-0" style="--d:.37s">
+        <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-accent font-display text-sm font-700 text-ink shadow-[0_0_28px_rgba(111,214,255,.45)] md:relative md:mb-6">05</span>
+        <h3 class="font-display text-base font-700 text-accent">Rechnung nach dem Event</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Erst der Erfolg, dann die Zahlung. Nicht umgekehrt.</p>
+      </li>
+    </ol>
   </div>
 
-  <script src="main.js" defer></script>
-  <script src="a11y.js" defer></script>
+  <!-- Stimmen: kompakte Leiste -->
+  <div class="mt-20 grid gap-4 md:grid-cols-3">
+    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.05s">
+      <p class="text-[14px] leading-relaxed text-neutral-300">„Der Effekt hat unsere kühnsten Erwartungen übertroffen. Das Interesse war während der gesamten Veranstaltung enorm."</p>
+      <footer class="mt-4 text-[12px] text-neutral-500">Karolina M. · Marketing, IT-Branche</footer>
+    </blockquote>
+    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.12s">
+      <p class="text-[14px] leading-relaxed text-neutral-300">„Eine der besten organisatorischen Entscheidungen. Die Reaktionen der Teilnehmenden sind für uns die beste Bewertung."</p>
+      <footer class="mt-4 text-[12px] text-neutral-500">Piotr Z. · Firmengala</footer>
+    </blockquote>
+    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.19s">
+      <p class="text-[14px] leading-relaxed text-neutral-300">„Unglaubliche Reichweite in den sozialen Medien. Diese Art von Aufmerksamkeit kann man sich nicht einfach kaufen."</p>
+      <footer class="mt-4 text-[12px] text-neutral-500">Magdalena T. · Technologiemesse</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     6. FAQ — kompaktes Akkordeon
+     ══════════════════════════════════════════════════════ -->
+<section id="faq" class="border-t border-line py-24 md:py-28">
+  <div class="mx-auto max-w-3xl px-5 md:px-8">
+    <h2 class="reveal mb-10 text-center font-display text-3xl font-700 tracking-[-.02em] text-white md:text-4xl">Bevor Sie fragen</h2>
+    <div class="divide-y divide-line border-y border-line">
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Was kostet die Miete genau?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Ab 2.499 € für den kompletten Veranstaltungstag — das ist der Startpreis, der endgültige Betrag hängt von Ort und Umfang des Events ab und steht im Angebot. Im Startpreis enthalten: zertifizierter Operator, Branding, Drehbuch und Haftpflichtversicherung — die Anfahrt kalkulieren wir je nach Ort. Der Roboter ist auch für einen kürzeren Auftritt buchbar, z. B. einige Stunden während einer Konferenzpause — dafür erstellen wir ein individuelles, stets günstigeres Angebot. Ab zwei Veranstaltungstagen gilt ein Rabatt von 15 % auf jeden Tag. Der Roboterhund kostet zusätzlich 850 € pro Tag.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Spricht der Roboter mit den Gästen?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Ja. Der Roboter spricht Deutsch mit natürlicher Sprachsynthese — begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Vor dem Event legen wir seinen Charakter fest und laden Wissen über Ihr Unternehmen hoch: Angebot, Produktnamen, häufige Kundenfragen und die Agenda des Events. Die Konfiguration ist im Mietpreis enthalten.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Muss ich eine Anzahlung leisten?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Nein. Die Terminreservierung ist kostenlos und ohne Anzahlung. Die Rechnung stellen wir erst nach der Veranstaltung, bei Bedarf vereinbaren wir ein längeres Zahlungsziel.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Muss ich den Roboter selbst steuern können?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Nein. Während des gesamten Events ist unser zertifizierter Operator vor Ort — er übernimmt Konfiguration, Bedienung und die Sicherheit des Auftritts.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Ist der Roboter sicher für die Gäste?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Ja. LiDAR und Computer Vision lassen ihn Menschen und Hindernissen in Echtzeit ausweichen, der Operator begleitet den Auftritt durchgehend, und der Einsatz ist haftpflichtversichert.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+          <span class="font-600 text-white">Kommen Sie auch in meine Stadt?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Ja — wir sind deutschlandweit im Einsatz. Die Anfahrtskosten kalkulieren wir im Angebot, abhängig vom Ort Ihres Events.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     7. ABSCHLIESSENDER CTA + kompaktes Formular
+     ══════════════════════════════════════════════════════ -->
+<section id="kontakt" class="relative overflow-hidden border-t border-line py-24 md:py-32">
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute left-1/2 top-1/2 h-[36rem] w-[70rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/12 blur-[150px] animate-aurora"></div>
+    <div class="absolute inset-0 bg-grid opacity-60"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-6xl items-center gap-14 px-5 md:px-8 lg:grid-cols-2">
+    <div>
+      <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl">
+        Prüfen Sie, ob Ihr<br />Termin frei ist.
+      </h2>
+      <p class="reveal mt-6 max-w-md text-lg text-neutral-400" style="--d:.08s">
+        Hinterlassen Sie Ihre Kontaktdaten — wir melden uns mit einem konkreten Betrag. Unverbindlich, ohne Anzahlung.
+      </p>
+
+      <div class="reveal mt-8 flex flex-col gap-3" style="--d:.16s">
+        <a href="mailto:kontakt@33bots.de" class="group flex items-center gap-4 text-2xl font-600 text-white transition hover:text-accent md:text-3xl">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full border border-line-mid text-base transition group-hover:border-accent">✉</span>
+          kontakt@33bots.de
+        </a>
+      </div>
+
+      <ul class="reveal mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-neutral-500" style="--d:.24s">
+        <li>✓ Antwort in 24 h</li>
+        <li>✓ Keine Anzahlung</li>
+        <li>✓ Deutschlandweit</li>
+      </ul>
+    </div>
+
+    <!-- Formular -->
+    <form id="contactForm" class="reveal rounded-[28px] border border-line-mid bg-surface-2/80 p-7 backdrop-blur md:p-9" style="--d:.1s" novalidate>
+
+      <!-- Schrittanzeige -->
+      <div class="mb-7 flex items-center gap-3 text-[11px] font-600 uppercase tracking-widest">
+        <span id="stepInd1" class="text-accent transition-colors">01 — Kontaktdaten</span>
+        <span class="text-neutral-700">/</span>
+        <span id="stepInd2" class="text-neutral-600 transition-colors">02 — Ihr Event</span>
+      </div>
+
+      <!-- SCHRITT 1 -->
+      <div id="formStep1" class="transition-opacity duration-200">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Name *</span>
+            <input id="f-name" type="text" name="name" placeholder="Max Mustermann" autocomplete="name" required class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+            <span class="mt-1.5 block text-[12px] text-red-400" data-err aria-live="polite"></span>
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Firma</span>
+            <input id="f-company" type="text" name="company" placeholder="Firmenname" autocomplete="organization" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">E-Mail *</span>
+            <input id="f-email" type="email" name="email" placeholder="kontakt@firma.de" autocomplete="email" required class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+            <span class="mt-1.5 block text-[12px] text-red-400" data-err aria-live="polite"></span>
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Telefon</span>
+            <input id="f-phone" type="tel" name="phone" placeholder="+49 …" autocomplete="tel" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+        </div>
+        <button type="button" id="btnNext" class="cta-shine group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)] mt-6">
+          Weiter — erzählen Sie von Ihrem Event
+          <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+        </button>
+      </div>
+
+      <!-- SCHRITT 2 -->
+      <div id="formStep2" class="hidden transition-opacity duration-200" aria-hidden="true">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Geplantes Eventdatum</span>
+            <input id="f-date" type="date" name="date" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Stadt / Ort</span>
+            <input id="f-location" type="text" name="location" placeholder="z. B. Berlin, Halle X" autocomplete="address-level2" class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)]" />
+          </label>
+        </div>
+        <label class="mt-4 block">
+          <span class="mb-2 block text-[11px] font-600 uppercase tracking-widest text-neutral-500">Beschreiben Sie Ihr Event *</span>
+          <textarea id="f-message" name="message" rows="5" required
+            placeholder="Art des Events (Messe, Konferenz, Gala …), ungefähre Gästezahl, wie lange Sie den Roboter haben möchten und alles Weitere, das wichtig ist."
+            class="w-full rounded-xl border border-line-mid bg-ink/60 px-4 py-3.5 text-white outline-none transition focus:border-accent focus:shadow-[0_0_0_3px_rgba(111,214,255,.15)] resize-y"></textarea>
+          <span class="mt-1.5 flex items-center justify-between text-[12px]">
+            <span class="text-red-400" data-err aria-live="polite"></span>
+            <span class="text-neutral-600"><span id="charCount">0</span> / 600</span>
+          </span>
+        </label>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+          <button type="button" id="btnBack" class="rounded-2xl border border-line-hi px-6 py-5 font-display text-sm font-600 uppercase tracking-wider text-neutral-400 transition hover:border-accent/50 hover:text-white sm:w-auto">← Zurück</button>
+          <button type="submit" class="cta-shine group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)] flex-1">
+            Absenden und Angebot erhalten
+            <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+          </button>
+        </div>
+      </div>
+
+      <p id="formMsg" class="mt-4 text-center text-[13px] text-neutral-500">Wir antworten innerhalb von 24 Werkstunden.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="border-t border-line bg-surface/40 px-5 py-14 md:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div>
+        <p class="font-display text-lg font-700 text-white">33BOTS</p>
+        <p class="mt-2 text-[13px] text-neutral-500">Humanoide Roboter mieten · deutschlandweit</p>
+        <div class="mt-4 flex gap-4 text-[13px] text-neutral-400">
+          <a href="mailto:kontakt@33bots.de" class="transition hover:text-white">kontakt@33bots.de</a>
+        </div>
+      </div>
+      <nav class="flex flex-wrap gap-x-7 gap-y-2 text-[13px] text-neutral-400">
+        <a href="leistungen.html" class="transition hover:text-white">Angebot</a>
+        <a href="angebot-messen.html" class="transition hover:text-white">Messen</a>
+        <a href="angebot-konferenzen-galas.html" class="transition hover:text-white">Konferenzen</a>
+        <a href="blog.html" class="transition hover:text-white">Blog</a>
+      </nav>
+      <div class="flex gap-4 text-[13px] text-neutral-400">
+        <a href="https://www.instagram.com/33bots_/" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">Instagram</a>
+        <a href="https://www.tiktok.com/@aimforum" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">TikTok</a>
+        <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Städte: SEO, eingeklappt -->
+    <details class="mt-10 border-t border-line pt-6">
+      <summary class="cursor-pointer list-none text-[11px] font-600 uppercase tracking-widest text-neutral-600 transition hover:text-neutral-400">Roboter mieten in Ihrer Stadt ▾</summary>
+      <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-[12px] text-neutral-500">
+        <a href="roboter-mieten-berlin.html" class="transition hover:text-accent">Berlin</a>
+        <a href="roboter-mieten-hamburg.html" class="transition hover:text-accent">Hamburg</a>
+        <a href="roboter-mieten-muenchen.html" class="transition hover:text-accent">München</a>
+        <a href="roboter-mieten-koeln.html" class="transition hover:text-accent">Köln</a>
+        <a href="roboter-mieten-frankfurt.html" class="transition hover:text-accent">Frankfurt am Main</a>
+        <a href="roboter-mieten-stuttgart.html" class="transition hover:text-accent">Stuttgart</a>
+        <a href="roboter-mieten-duesseldorf.html" class="transition hover:text-accent">Düsseldorf</a>
+        <a href="roboter-mieten-leipzig.html" class="transition hover:text-accent">Leipzig</a>
+        <a href="roboter-mieten-dortmund.html" class="transition hover:text-accent">Dortmund</a>
+        <a href="roboter-mieten-essen.html" class="transition hover:text-accent">Essen</a>
+        <a href="roboter-mieten-bremen.html" class="transition hover:text-accent">Bremen</a>
+        <a href="roboter-mieten-dresden.html" class="transition hover:text-accent">Dresden</a>
+        <a href="roboter-mieten-hannover.html" class="transition hover:text-accent">Hannover</a>
+        <a href="roboter-mieten-nuernberg.html" class="transition hover:text-accent">Nürnberg</a>
+        <a href="roboter-mieten-duisburg.html" class="transition hover:text-accent">Duisburg</a>
+        <a href="roboter-mieten-bochum.html" class="transition hover:text-accent">Bochum</a>
+        <a href="roboter-mieten-wuppertal.html" class="transition hover:text-accent">Wuppertal</a>
+        <a href="roboter-mieten-bielefeld.html" class="transition hover:text-accent">Bielefeld</a>
+        <a href="roboter-mieten-bonn.html" class="transition hover:text-accent">Bonn</a>
+        <a href="roboter-mieten-muenster.html" class="transition hover:text-accent">Münster</a>
+        <a href="roboter-mieten-karlsruhe.html" class="transition hover:text-accent">Karlsruhe</a>
+        <a href="roboter-mieten-mannheim.html" class="transition hover:text-accent">Mannheim</a>
+        <a href="roboter-mieten-augsburg.html" class="transition hover:text-accent">Augsburg</a>
+        <a href="roboter-mieten-wiesbaden.html" class="transition hover:text-accent">Wiesbaden</a>
+        <a href="roboter-mieten-moenchengladbach.html" class="transition hover:text-accent">Mönchengladbach</a>
+        <a href="roboter-mieten-chemnitz.html" class="transition hover:text-accent">Chemnitz</a>
+        <a href="roboter-mieten-braunschweig.html" class="transition hover:text-accent">Braunschweig</a>
+        <a href="roboter-mieten-kiel.html" class="transition hover:text-accent">Kiel</a>
+        <a href="roboter-mieten-aachen.html" class="transition hover:text-accent">Aachen</a>
+        <a href="roboter-mieten-magdeburg.html" class="transition hover:text-accent">Magdeburg</a>
+        <a href="roboter-mieten-freiburg.html" class="transition hover:text-accent">Freiburg</a>
+        <a href="roboter-mieten-krefeld.html" class="transition hover:text-accent">Krefeld</a>
+        <a href="roboter-mieten-luebeck.html" class="transition hover:text-accent">Lübeck</a>
+        <a href="roboter-mieten-mainz.html" class="transition hover:text-accent">Mainz</a>
+        <a href="roboter-mieten-halle.html" class="transition hover:text-accent">Halle (Saale)</a>
+      </div>
+    </details>
+
+    <p class="mt-8 text-[12px] text-neutral-600">© 2026 33bots. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>
+
+<!-- ══════════ STICKY CTA (mobil) ══════════ -->
+<div class="fixed inset-x-0 bottom-0 z-50 border-t border-line-mid bg-ink/95 p-3 backdrop-blur md:hidden">
+  <a href="#kontakt" class="cta-shine flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-display text-sm font-700 uppercase tracking-wider text-ink">
+    Kostenloses Angebot →
+  </a>
+</div>
+<div class="h-20 md:hidden"></div>
+
+<!-- Galerie-Lightbox -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Vergrößertes Foto">
+  <button class="lb-close" id="lbClose" aria-label="Schließen">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Vorheriges Foto">‹</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Nächstes Foto">›</button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ——— Video-Quellen anhängen (preload=none, lazy geladen) ——— */
+  document.querySelectorAll('source-marker').forEach(m => {
+    const video = m.previousElementSibling;
+    if (video && video.tagName === 'VIDEO') {
+      const s = document.createElement('source');
+      s.src = m.dataset.src; s.type = 'video/mp4';
+      video.appendChild(s);
+    }
+    m.remove();
+  });
+
+  /* ——— Gestaffeltes Einblenden der Elemente ——— */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .track-line').forEach(el => io.observe(el));
+
+  /* ——— Zähler ——— */
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '', t0 = performance.now();
+      const tick = now => {
+        const p = Math.min((now - t0) / 1100, 1);
+        el.textContent = Math.round(easeOut(p) * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: .6 });
+  document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+  /* ——— Parallax + Fortschrittsbalken + Nav ——— */
+  const nav = document.getElementById('nav');
+  const bar = document.getElementById('progress');
+  const parItems = [...document.querySelectorAll('[data-par]')];
+  let ticking = false;
+
+  const onScroll = () => {
+    const y = scrollY;
+    const total = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = total > 0 ? (y / total * 100) + '%' : '0%';
+
+    if (y > 20) nav.classList.add('bg-ink/80', 'backdrop-blur-xl', 'border-b', 'border-line');
+    else nav.classList.remove('bg-ink/80', 'backdrop-blur-xl', 'border-b', 'border-line');
+
+    if (!reduce) parItems.forEach(el => {
+      const speed = parseFloat(el.dataset.speed || '-.05');
+      el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+    });
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ——— Bento: Randbeleuchtung folgt dem Cursor ——— */
+  document.querySelectorAll('.bento').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+  });
+
+  /* ——— FAQ ——— */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-btn').addEventListener('click', () => {
+      const open = item.getAttribute('open-state') === '1';
+      document.querySelectorAll('.faq-item').forEach(i => i.setAttribute('open-state', '0'));
+      item.setAttribute('open-state', open ? '0' : '1');
+    });
+  });
+
+  /* ——— Streifen: Berühren stoppt das Scrollen (mobil ohne Hover) ——— */
+  document.querySelectorAll('.strip').forEach(streifen => {
+    streifen.addEventListener('touchstart', () => streifen.classList.add('paused'), { passive: true });
+    streifen.addEventListener('touchend', () => setTimeout(() => streifen.classList.remove('paused'), 2500), { passive: true });
+  });
+
+  /* ——— Galerie-Lightbox ——— */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  const kacheln = [...document.querySelectorAll('.strip-item[data-full]:not([aria-hidden])')];
+  let idx = 0;
+
+  const zeigen = i => {
+    idx = (i + kacheln.length) % kacheln.length;
+    const el = kacheln[idx];
+    lbImg.src = el.dataset.full;
+    lbImg.alt = el.dataset.alt || '';
+    lbCap.textContent = `${el.dataset.alt || ''}  ·  ${idx + 1} / ${kacheln.length}`;
+  };
+  const oeffnen = i => { zeigen(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const schliessen = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+
+  kacheln.forEach((el, i) => el.addEventListener('click', () => oeffnen(i)));
+  document.getElementById('lbClose').addEventListener('click', schliessen);
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); zeigen(idx - 1); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); zeigen(idx + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) schliessen(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') schliessen();
+    if (e.key === 'ArrowLeft') zeigen(idx - 1);
+    if (e.key === 'ArrowRight') zeigen(idx + 1);
+  });
+
+  /* ——— Kontaktformular: zwei Schritte + Formspree ——— */
+  const form    = document.getElementById('contactForm');
+  const schritt1 = document.getElementById('formStep1');
+  const schritt2 = document.getElementById('formStep2');
+  const anz1    = document.getElementById('stepInd1');
+  const anz2    = document.getElementById('stepInd2');
+  const msg     = document.getElementById('formMsg');
+
+  const fehlermeldungen = { valueMissing: 'Dieses Feld ist erforderlich', typeMismatch: 'Ungültiges Format' };
+
+  function feldPruefen(feld) {
+    const label = feld.closest('label');
+    const errEl = label?.querySelector('[data-err]');
+    if (!feld.validity.valid) {
+      if (errEl) errEl.textContent = feld.validity.valueMissing ? fehlermeldungen.valueMissing
+                                   : feld.validity.typeMismatch ? fehlermeldungen.typeMismatch
+                                   : 'Bitte prüfen Sie dieses Feld';
+      feld.classList.add('border-red-500/70');
+      return false;
+    }
+    feld.classList.remove('border-red-500/70');
+    if (errEl) errEl.textContent = '';
+    return true;
+  }
+
+  const schrittPruefen = el =>
+    [...el.querySelectorAll('input[required], textarea[required]')].map(feldPruefen).every(Boolean);
+
+  form.querySelectorAll('input, textarea').forEach(feld => {
+    feld.addEventListener('blur', () => feldPruefen(feld));
+    feld.addEventListener('input', () => {
+      if (feld.classList.contains('border-red-500/70')) feldPruefen(feld);
+    });
+  });
+
+  function wechseln(von, zu, anzVon, anzZu) {
+    von.style.opacity = '0';
+    setTimeout(() => {
+      von.classList.add('hidden');
+      von.setAttribute('aria-hidden', 'true');
+      zu.classList.remove('hidden');
+      zu.removeAttribute('aria-hidden');
+      requestAnimationFrame(() => { zu.style.opacity = '1'; });
+      anzVon.className = 'text-neutral-600 transition-colors';
+      anzZu.className = 'text-accent transition-colors';
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 200);
+  }
+
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (schrittPruefen(schritt1)) wechseln(schritt1, schritt2, anz1, anz2);
+  });
+  document.getElementById('btnBack').addEventListener('click', () => wechseln(schritt2, schritt1, anz2, anz1));
+
+  const beschreibung = document.getElementById('f-message');
+  const zaehler = document.getElementById('charCount');
+  beschreibung.addEventListener('input', () => { zaehler.textContent = beschreibung.value.length; });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!schrittPruefen(schritt2)) return;
+
+    const btn = schritt2.querySelector('button[type=submit]');
+    const urspruenglich = btn.innerHTML;
+    btn.disabled = true; btn.style.opacity = '.6'; btn.innerHTML = 'Wird gesendet …';
+
+    const d = new FormData(form);
+    const payload = {
+      name:     d.get('name'),
+      company:  d.get('company')  || '—',
+      email:    d.get('email'),
+      phone:    d.get('phone')    || '—',
+      date:     d.get('date')     || '—',
+      location: d.get('location') || '—',
+      message:  d.get('message'),
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/mnjwvray', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const antwort = await res.json().catch(() => ({}));
+        throw new Error(antwort?.errors?.map(x => x.message).join(', ') || `HTTP ${res.status}`);
+      }
+      form.innerHTML = `<div class="py-12 text-center">
+        <p class="font-display text-2xl font-700 text-white">Nachricht gesendet</p>
+        <p class="mt-3 text-neutral-400">Wir melden uns bei <strong class="text-white">${payload.email}</strong><br />innerhalb von 24 Werkstunden.</p></div>`;
+    } catch (err) {
+      console.error('Formular — Versandfehler:', err?.message || err);
+      btn.disabled = false; btn.style.opacity = '1'; btn.innerHTML = urspruenglich;
+      msg.innerHTML = 'Senden fehlgeschlagen — schreiben Sie uns an <a class="text-accent underline" href="mailto:kontakt@33bots.de">kontakt@33bots.de</a>';
+      msg.className = 'mt-4 text-center text-[13px] text-red-400';
+    }
+  });
+})();
+</script>
 </body>
 </html>
