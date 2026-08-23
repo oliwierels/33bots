@@ -193,16 +193,6 @@ BRANCHEN = [
        "Im Konzernkalender findet der Roboter überall seinen Platz: vom Townhall über den Vertriebs-Kick-off bis zum Treffen mit Schlüsselkunden — immer im Ton, der dem Rang des Termins entspricht.",
        ("Lässt sich die Show an unsere Corporate Guidelines anpassen?", "Ja — wir arbeiten mit Brand Books, Compliance-Abteilungen und minutengenauen Agenden. Das Drehbuch geben Sie vor der Veranstaltung frei.")),
 
-    br("medyczny", "Medizin-Event", "für Medizin-Events", "Auf einem Medizin-Event",
-       "Ärztinnen, Apotheker und Gesundheitsmanagement",
-       "Medizinkongresse sprechen über die Zukunft der Behandlung — ein humanoider Roboter macht diese Zukunft greifbar und eröffnet Gespräche über Technologie in der Medizin besser als so mancher Vortrag.",
-       ("Passt der Roboter zur Ernsthaftigkeit einer Medizinveranstaltung?", "Ja — bei medizinischen Veranstaltungen führen wir die Show in zurückhaltendem, professionellem Ton, mit Fokus auf Technologie und ihre Anwendungen statt auf Unterhaltung.")),
-
-    br("farmaceutyczny", "Pharma-Event", "für Pharma-Events", "Auf einem Pharma-Event",
-       "Vertreterinnen und Vertreter der Pharmabranche",
-       "Wiederkehrende Pharmatagungen und -kongresse ähneln einander oft — ein humanoider Roboter hebt Ihre Veranstaltung heraus und gibt den Teilnehmenden ein Thema, das bis zur nächsten Ausgabe hält.",
-       ("Kann der Roboter die wissenschaftliche Botschaft der Veranstaltung unterstützen?", "Ja — die Inhalte, die der Roboter dank KI vermittelt, bereiten wir gemeinsam mit dem Veranstalter vor, auch auf Basis der fachlichen Unterlagen der Veranstaltung.")),
-
     br("finansowy", "Finanz-Event", "für Finanz-Events", "Auf einem Finanz-Event",
        "Bankerinnen, Investoren und Fintech-Vertreter",
        "Die Finanzbranche spricht auf jeder Konferenz über KI — der humanoide Roboter erlaubt den Gästen, dieser KI buchstäblich die Hand zu geben. Ein starker Akzent auf Bilanzgalas und Fintech-Kongressen.",
@@ -218,20 +208,10 @@ BRANCHEN = [
        "Auf Immobilienmessen und bei Projektpremieren zieht der Roboter Kunden an den Stand des Bauträgers — und macht aus der Projektpräsentation ein Ereignis, über das die Käufer sprechen.",
        ("Kann der Roboter im Vertriebsbüro eines Projekts arbeiten?", "Ja — der Roboter bewährt sich bei Eröffnungen von Vertriebsbüros und Tagen der offenen Tür, wo er Familien anzieht, die sich Wohnungen ansehen.")),
 
-    br("budowlany", "Bau-Event", "für Bau-Events", "Auf einem Bau-Event",
-       "Bauunternehmer, Hersteller und Bauingenieure",
-       "Die Baubranche schätzt Handfestes — und der Roboter liefert Handfestes: Technologie, die man sieht, hört und testen kann. Auf Baumessen sammelt der Stand mit Humanoid die größte Frequenz der Halle.",
-       ("Kann der Roboter in einer Messehalle der Baubranche arbeiten?", "Ja — typische Messehallenböden sind für den Roboter ideal. Wir brauchen lediglich einige Meter freie Fläche am Stand.")),
-
     br("przemyslowy", "Industrie-Event", "für Industrie-Events", "Auf einem Industrie-Event",
        "Ingenieure und Produktionsverantwortliche",
        "Industrie 4.0 und Robotisierung sind die Leitthemen der Branche — ein Humanoid auf dem Industrie-Event ist ihre beste Illustration und der natürliche Einstieg in Gespräche über Automatisierung in Ihrem Angebot.",
        ("Lässt sich die Show mit dem Thema Automatisierung verbinden?", "Ja — der Roboter kann die Diskussion über die Robotisierung der Produktion eröffnen, und der Operator kann über die realen Möglichkeiten heutiger Humanoide sprechen.")),
-
-    br("energetyczny", "Energie-Event", "für Energie-Events", "Auf einem Energie-Event",
-       "Vertreterinnen und Vertreter des Energiesektors",
-       "Die Energiewende ist eine Erzählung über die Zukunft — der humanoide Roboter gibt dieser Erzählung auf Kongressen, Energiemessen und Branchengalas ein Gesicht.",
-       ("Tritt der Roboter auch auf einem Branchenkongress mit vielen Partnern auf?", "Ja — wir haben Erfahrung mit Veranstaltungen mit komplexer Partnerstruktur; Branding und Rolle des Roboters stimmen wir vollständig mit dem Veranstalter ab.")),
 
     br("logistyczny", "Logistik-Event", "für Logistik-Events", "Auf einem Logistik-Event",
        "Logistik- und Supply-Chain-Verantwortliche",
@@ -243,55 +223,25 @@ BRANCHEN = [
        "Modellpremiere, Autohauseröffnung, Motorshow — der Roboter neben dem Fahrzeug ist die Kombination, die die Objektive anzieht. Der technologische Charakter des Humanoiden passt perfekt zur Botschaft moderner Mobilität.",
        ("Kann der Roboter an einer Fahrzeugpremiere teilnehmen?", "Ja — der Roboter kann das Auto enthüllen, die Kernmerkmale des Modells präsentieren und damit für Fotos posieren. Das ist eines unserer Lieblingsszenarien.")),
 
-    br("telekomunikacyjny", "Telko-Event", "für Telko-Events", "Auf einem Telko-Event",
-       "Vertreterinnen der Telko- und Technologiebranche",
-       "Die Telko-Branche verkauft Konnektivität und Zukunft — ein in Echtzeit gesteuerter Roboter ist die eindrucksvolle Demonstration beider Dinge auf Messen, Konferenzen und Events der Netzbetreiber.",
-       ("Kann der Roboter die Leistungsfähigkeit des Netzes demonstrieren?", "Die Show lässt sich erzählerisch mit dem Thema Konnektivität und niedriger Latenz verbinden — die Details des Drehbuchs erarbeiten wir mit Ihrem Marketing.")),
-
     br("handlowy", "Handels-Event", "für Handels-Events", "Auf einem Handels-Event",
        "Einkäufer, Distributoren und Handelspartner",
        "Systemkongresse, Partnertagungen und Ordermessen haben ein Ziel: Beziehungen. Der humanoide Roboter schenkt den Teilnehmenden ein gemeinsames Erlebnis, das Verkaufsgespräche besser öffnet als jedes Give-away.",
        ("Kann der Roboter die Vertriebsziele der Veranstaltung unterstützen?", "Ja — der Roboter kann in Angebotszonen einladen, Produktpremieren begleiten und Teilnehmende zu Ihrem Vertriebsteam lotsen.")),
-
-    br("gastronomiczny", "Gastro-Event", "für Gastro-Events", "Auf einem Gastro-Event",
-       "Köchinnen, Gastronomen und Foodies",
-       "Genussfestivals und Gastro-Messen leben von Sinneseindrücken — der humanoide Roboter fügt ihnen einen technologischen hinzu: Er begrüßt Gäste, kündigt Kochshows an und posiert mit den Köstlichkeiten für Fotos.",
-       ("Kann der Roboter eine Kochshow mitmoderieren?", "Ja — der Roboter kann Küchenchefs ankündigen, die Vorführungen kommentieren und das Publikum zwischen den Verkostungen einbinden.")),
-
-    br("turystyczny", "Tourismus-Event", "für Tourismus-Events", "Auf einem Tourismus-Event",
-       "die Tourismusbranche und Reisende",
-       "Auf Reisemessen lockt jeder Stand mit einem Strand — Ihrer kann mit der Begegnung mit einem Roboter locken. Der Humanoid stoppt die Besucher und verschafft Ihrem Team Zeit für das Gespräch über Ihre Reiseangebote.",
-       ("Kann der Roboter Fremdsprachen sprechen?", "Ja — neben Deutsch führt der Roboter Interaktionen auf Englisch, was auf internationalen Reisemessen ein großer Vorteil ist.")),
 
     br("sportowy", "Sport-Event", "für Sport-Events", "Auf einem Sport-Event",
        "Fans, Athletinnen und Sponsoren",
        "Spiel, Turnier, Sportgala oder Volkslauf — der humanoide Roboter heizt das Publikum an, macht das Aufwärmen mit den Fans und gibt Sponsoren eine Aktivierung, die das Stadion mit Applaus belohnt.",
        ("Kann der Roboter in der Halbzeitpause auftreten?", "Ja — eine mehrminütige Show in der Pause ist das ideale Format: dynamisch, spektakulär und bereit für die Videowand.")),
 
-    br("kulturalny", "Kultur-Event", "für Kultur-Events", "Auf einem Kultur-Event",
-       "das Publikum von Festivals und Kulturinstitutionen",
-       "Kunst trifft Technologie: Der humanoide Roboter bei einer Vernissage, einem Festival oder im Theater wird zum performativen Kommentar auf die Zeit — und für die Institution zum Publikumsmagneten.",
-       ("Kann der Roboter an einer künstlerischen Performance teilnehmen?", "Ja — wir arbeiten mit Künstlerinnen und Kuratoren zusammen; Choreografie und Rolle des Roboters entwickeln wir passend zum künstlerischen Konzept der Veranstaltung.")),
-
     br("modowy", "Fashion-Event", "für Fashion-Events", "Auf einem Fashion-Event",
        "Designerinnen, Modemedien und Showgäste",
        "Ein Roboter auf dem Laufsteg oder in der ersten Reihe ist das Bild, das durch die Modemedien geht. Der G1 kann die Show eröffnen, ein Element der Kollektion präsentieren und bei den Shootings rund um die Show auftreten.",
        ("Kann der Roboter Kleidung oder Accessoires tragen?", "In begrenztem Umfang ja — leichte Styling-Elemente sind möglich. Die Details klären wir vor der Veranstaltung mit dem Designteam.")),
 
-    br("beauty", "Beauty-Event", "für Beauty-Events", "Auf einem Beauty-Event",
-       "die Kosmetikbranche und Beauty-Influencer",
-       "Die Beauty-Branche lebt in den sozialen Medien — und nichts erzeugt so viele Reels wie ein Humanoid bei einer Kosmetikpremiere oder auf einer Beauty-Messe. Der Roboter begrüßt Gäste, präsentiert Neuheiten und posiert mit den Produkten.",
-       ("Kann der Roboter Kosmetikprodukte präsentieren?", "Ja — der Roboter kann leichte Produkte halten und zeigen, Neuheiten präsentieren und in Fotobereichen mit dem Branding der Marke mitwirken.")),
-
     br("edukacyjny", "Bildungs-Event", "für Bildungs-Events", "Auf einem Bildungs-Event",
        "Schülerinnen, Studierende und Lehrkräfte",
        "Es gibt keine bessere Lektion über die Zukunft als die Begegnung mit ihr von Angesicht zu Angesicht. Auf Wissenschaftspicknicks, Bildungsfestivals und in Schulen macht der Roboter aus den abstrakten Begriffen KI und Robotik ein Erlebnis.",
        ("Hat die Show eine Bildungsdimension?", "Ja — der Operator erklärt, wie der Roboter läuft, die Balance hält und Sprache versteht. Das Niveau der Erzählung passen wir an das Alter der Zielgruppe an.")),
-
-    br("ekologiczny", "Nachhaltigkeits-Event", "für Nachhaltigkeits-Events", "Auf einem Nachhaltigkeits-Event",
-       "Teilnehmende von Nachhaltigkeitsveranstaltungen",
-       "Klima- und ESG-Veranstaltungen sprechen über die Technologien von morgen — der humanoide Roboter zeigt sie heute. Elektrisch, leise und wiederverwendbar: eine Attraktion, die zur Nachhaltigkeitsbotschaft passt.",
-       ("Passt der Roboter zur ökologischen Botschaft der Veranstaltung?", "Ja — der G1 ist vollständig elektrisch und leise, und seine Präsenz passt gut zur Erzählung über verantwortungsvolle Zukunftstechnologien.")),
 
     br("charytatywny", "Charity-Event", "für Charity-Events", "Auf einem Charity-Event",
        "Spenderinnen und Auktionsgäste",
@@ -303,25 +253,6 @@ BRANCHEN = [
        "Demo Day, Meetup oder Startup-Konferenz: Der humanoide Roboter zieht Investoren und Medien auf Ihre Bühne — und gibt dem Networking das Thema, das jedes Gespräch eröffnet.",
        ("Kann der Roboter den Pitch unseres Startups unterstützen?", "Ja — der Roboter kann Ihren Pitch ankündigen, im Demo auftreten oder während einer Startup-Messe Frequenz an Ihren Stand ziehen.")),
 
-    br("miejski", "Stadt-Event", "für Stadt-Events", "Auf einem Stadt-Event",
-       "Bürgerinnen, Bürger und Familien",
-       "Straßenfeste, Stadtteilpicknicks und Open-Air-Veranstaltungen der Kommunen gewinnen mit dem Roboter eine Attraktion, die Menschen jeden Alters anzieht — und die Stadt als offen für Moderne zeigt.",
-       ("Übernehmen Sie auch öffentliche Aufträge?", "Ja — wir arbeiten mit Kommunen und städtischen Einrichtungen zusammen, stellen Rechnungen und richten uns nach den formalen Anforderungen der Vergabe.")),
-
-    br("outdoor", "Outdoor-Event", "für Outdoor-Events", "Auf einem Outdoor-Event",
-       "Teilnehmende von Open-Air-Veranstaltungen",
-       "Der humanoide Roboter arbeitet auch unter freiem Himmel: Picknicks, Straßenfeste und Open-Air-Zonen sind seine natürliche Umgebung, solange wir ihm ebenen Untergrund und trockenes Wetter sichern — um den Rest kümmern wir uns.",
-       ("Welche Bedingungen muss die Fläche im Freien erfüllen?", "Einen ebenen, befestigten Untergrund (Podest, Pflaster, Asphalt) und einen Schutz für den Regenfall. Wir schicken einen einfachen Rider, der alle Zweifel ausräumt.")),
-
-    br("hybrydowy", "Hybrid-Event", "für Hybrid-Events", "Auf einem Hybrid-Event",
-       "Teilnehmende im Saal und online",
-       "Ein Hybrid-Event muss zwei Publika gleichzeitig einbinden — der humanoide Roboter wirkt auf beide: Im Saal baut er die Traube, und in der Übertragung liefert er der Regie die attraktivste Einstellung der ganzen Veranstaltung.",
-       ("Macht sich der Roboter in der Online-Übertragung gut?", "Hervorragend — dynamische Einstellungen des Roboters heben die Zuschauerzahlen des Streams. Gern stimmen wir die Shows mit der Regie der Übertragung ab.")),
-
-    br("vip", "VIP-Event", "für VIP-Events", "Auf einem VIP-Event",
-       "besondere Gäste und Premium-Kunden",
-       "Eine exklusive Veranstaltung für ausgewählte Gäste verlangt eine Attraktion der höchsten Kategorie. Eine private Humanoiden-Show — mit namentlicher Begrüßung und maßgeschneiderten Interaktionen — ist ein Erlebnis, das wenigen vorbehalten bleibt.",
-       ("Gewährleisten Sie Diskretion bei geschlossenen Veranstaltungen?", "Ja — wir betreuen vertrauliche Veranstaltungen, unterzeichnen NDAs und veröffentlichen kein Material ohne Zustimmung des Veranstalters.")),
 ]
 
 # ==================================================== IMPREZY PRYWATNE
@@ -412,4 +343,4 @@ _add(EVENTS)
 _add(BRANCHEN)
 _add(PRIVATE)
 
-assert len(TEXT) == 70, f"oczekiwano 70 stron, jest {len(TEXT)}"
+assert len(TEXT) == 56, f"oczekiwano 56 stron, jest {len(TEXT)}"

@@ -1669,6 +1669,21 @@ def build_htaccess():
     fuer die Ladezeit auf klassischem Apache-Hosting.
     """
     host = DOMAIN.replace("https://", "")
+    # 14 schwache Branchen-Seiten wurden in event-attraktionen.html konsolidiert
+    # (Duplicate-Content-Reduktion, siehe de_structure.py/de_content_pages2.py) —
+    # alte URLs muessen dauerhaft (301) auf die neue Zielseite zeigen, statt 404.
+    consolidated_target = SLUG_MAP["atrakcje-na-event.html"]
+    consolidated_sources = [
+        "roboter-medizin-event.html", "roboter-pharma-event.html", "roboter-bau-event.html",
+        "roboter-energie-event.html", "roboter-telekom-event.html", "roboter-gastro-event.html",
+        "roboter-tourismus-event.html", "roboter-kultur-event.html", "roboter-beauty-event.html",
+        "roboter-nachhaltigkeits-event.html", "roboter-stadt-event.html", "roboter-outdoor-event.html",
+        "roboter-hybrid-event.html", "roboter-vip-event.html",
+    ]
+    consolidated_rules = "\n".join(
+        f"RewriteRule ^{src.replace('.', chr(92) + '.')}$ /{consolidated_target} [L,R=301]"
+        for src in consolidated_sources
+    )
     return f"""# Automatisch erzeugt von build/generate_site.py — nicht von Hand aendern.
 RewriteEngine On
 
@@ -1682,6 +1697,9 @@ RewriteRule ^(.*)$ {DOMAIN}/$1 [L,R=301]
 
 RewriteCond %{{HTTP_HOST}} ^www\\.{host.replace('.', chr(92) + '.')}$ [NC]
 RewriteRule ^(.*)$ {DOMAIN}/$1 [L,R=301]
+
+# ── Konsolidierte Branchen-Seiten → {consolidated_target} ──────────────
+{consolidated_rules}
 
 ErrorDocument 404 /404.html
 

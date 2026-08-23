@@ -521,7 +521,7 @@ ARTICLES = [
     ("Technik", "Licht und Ton",
      ["Wir stimmen uns direkt mit Ihrer Licht- und Tontechnik ab, damit der Auftritt eine echte Bühnennummer wird."]),
     ("Kunstkontext", "Wenn es um mehr als Show geht",
-     [f"Bei Kulturveranstaltungen entwickeln wir die Rolle des Roboters mit der Kuratorin — siehe {link('robot-na-event-kulturalny.html', 'Roboter für Kultur-Events')}."])],
+     [f"Bei Kulturveranstaltungen entwickeln wir die Rolle des Roboters mit der Kuratorin — siehe {link('atrakcje-na-event.html', 'Event-Attraktionen im Überblick')}."])],
    "Bühnenprojekt geplant?", "Erzählen Sie uns von der Nummer — wir prüfen, was choreografisch möglich ist."),
 
  a("blog-robot-recepcjonista-witajacy-gosci.html", "2026-07-31", "Empfang · Service",
@@ -640,7 +640,7 @@ ARTICLES = [
     ("Strom", "Was Sie bereitstellen",
      ["Eine gewöhnliche 230-V-Steckdose in der Nähe der Showfläche genügt. Ein Generator funktioniert ebenfalls."]),
     ("Formate", "Was draußen besonders gut läuft",
-     [f"Stadtfeste, Betriebsfeste und Familienveranstaltungen — siehe {link('robot-na-event-outdoor.html', 'Roboter für Outdoor-Events')}."])],
+     [f"Stadtfeste, Betriebsfeste und Familienveranstaltungen — siehe {link('atrakcje-na-event.html', 'Event-Attraktionen im Überblick')}."])],
    "Open-Air geplant?", "Beschreiben Sie uns das Gelände — wir sagen Ihnen, ob und wo es funktioniert."),
 
  a("blog-robot-na-juwenalia-festiwal.html", "2026-08-02", "Campus · Festival",

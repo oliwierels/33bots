@@ -12,6 +12,22 @@ RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.33bots\.de$ [NC]
 RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
 
+# ── Konsolidierte Branchen-Seiten → event-attraktionen.html ──────────────
+RewriteRule ^roboter-medizin-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-pharma-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-bau-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-energie-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-telekom-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-gastro-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-tourismus-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-kultur-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-beauty-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-nachhaltigkeits-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-stadt-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-outdoor-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-hybrid-event\.html$ /event-attraktionen.html [L,R=301]
+RewriteRule ^roboter-vip-event\.html$ /event-attraktionen.html [L,R=301]
+
 ErrorDocument 404 /404.html
 
 # ── Kompression ──────────────────────────────────────────────────────
