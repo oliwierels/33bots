@@ -1514,8 +1514,10 @@ def build_case_studies(write):
                        ["Messbare und beobachtete Effekte, Reichweite, Reaktionen."], cta=False),
         kontakt_h2="Termin für Ihre<br />Veranstaltung sichern.", gallery=False))
 
-    # index-redesign.html — wariant roboczy strony głównej, jak w serwisie PL
-    write(de("index-redesign.html"), simple_page(
+    # index-redesign.html — wariant roboczy strony głównej, jak w serwisie PL.
+    # Interna strona porównawcza układów — nie ma trafiać do indeksu jako
+    # osobna, prawie identyczna z homepage tresc (duplicate content).
+    _index_redesign_html = simple_page(
         de("index-redesign.html"), "Startseite (Entwurf)",
         "Startseite — Entwurfsvariante | 33bots",
         "Entwurfsvariante der Startseite von 33bots — humanoide Roboter für Events mieten.",
@@ -1526,4 +1528,8 @@ def build_case_studies(write):
                      "Ein kompletter Showtag mit zertifiziertem Operator vor Ort.",
                      ["Diese Seite spiegelt die Entwurfsvariante des polnischen Serviceangebots und dient dem "
                       "Vergleich von Layoutvarianten."]),
-        kontakt_h2="Termin für Ihre<br />Veranstaltung sichern."))
+        kontakt_h2="Termin für Ihre<br />Veranstaltung sichern.")
+    _index_redesign_html = _index_redesign_html.replace(
+        '<meta name="robots" content="index, follow" />',
+        '<meta name="robots" content="noindex, follow" />', 1)
+    write(de("index-redesign.html"), _index_redesign_html)

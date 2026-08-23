@@ -1818,7 +1818,8 @@ def main():
     # de_pages_manual.py) und steht damit nicht mehr in WRITTEN — für die
     # Sitemap zaehlt das nicht: die Startseite existiert weiterhin als Datei
     # und gehoert mit Prioritaet 1.0 hinein.
-    html_pages = sorted({f for f in WRITTEN if f.endswith(".html") and f != "404.html"} | {"index.html"})
+    html_pages = sorted({f for f in WRITTEN if f.endswith(".html")
+                          and f not in ("404.html", de("index-redesign.html"))} | {"index.html"})
     prio = {}
     for f in html_pages:
         if f == "index.html":
