@@ -33,11 +33,31 @@ def _pick2(pool, slug):
 
 
 # ── Powtarzalne FAQ ───────────────────────────────────────────────────
+# faq_price()/faq_book() liefen auf 60+ Seiten mit wortgleicher Antwort — nur
+# die Frage wechselte per Parameter. Größter Einzelbeitrag zur gemessenen
+# Satz-Überlappung zwischen Seiten. Varianten werden aus dem ohnehin
+# übergebenen Parameter x seedbasiert gewählt, damit keiner der 60+
+# Aufrufe im Code angefasst werden muss (identische Signatur).
+def _x_seed(x):
+    return sum(ord(c) for c in x)
+
+
+PRICE_ANSWER_POOL = [
+    "Ein kompletter Veranstaltungstag kostet {price} — der endgültige Preis hängt von "
+    "Veranstaltungsort und Umfang der Show ab. Schreiben Sie uns über das Formular — Sie erhalten das "
+    "Angebot innerhalb von 24 Stunden.",
+    "{price} für den kompletten Veranstaltungstag — den genauen Betrag kalkulieren wir je nach Ort "
+    "und Umfang Ihrer Veranstaltung. Über das Formular erhalten Sie ein Angebot innerhalb von 24 Stunden.",
+    "Der Startpreis liegt bei {price} pro Veranstaltungstag. Was der Einsatz konkret kostet, hängt von "
+    "Ort und Umfang der Show ab — schreiben Sie uns, und Sie erhalten binnen 24 Stunden ein individuelles "
+    "Angebot.",
+]
+
+
 def faq_price(x):
-    return (f"Was kostet ein Roboter {x}?",
-            f"Ein kompletter Veranstaltungstag kostet {PRICE_FROM} — der endgültige Preis hängt von "
-            f"Veranstaltungsort und Umfang der Show ab. Schreiben Sie uns über das Formular — Sie erhalten das "
-            f"Angebot innerhalb von 24 Stunden.")
+    price = PRICE_FROM
+    answer = _x_seed(x) % len(PRICE_ANSWER_POOL)
+    return (f"Was kostet ein Roboter {x}?", PRICE_ANSWER_POOL[answer].format(price=price))
 
 
 def faq_safe():
@@ -59,11 +79,22 @@ def faq_transport():
             "Orte; Anfahrt und Logistik halten wir im Angebot fest.")
 
 
+BOOK_ANSWER_POOL = [
+    "Am besten mindestens 3–4 Wochen vor dem Termin. In der Hochsaison (Frühjahr und Herbst) sind die "
+    "Termine schneller vergeben — fragen Sie also lieber früher an. Die Reservierung ist kostenlos und "
+    "ohne Anzahlung.",
+    "Idealerweise 3–4 Wochen im Voraus, in der Frühjahrs- und Herbstsaison eher noch früher, da die "
+    "Termine dann schnell ausgebucht sind. Die Terminreservierung selbst ist kostenlos, eine Anzahlung "
+    "brauchen Sie nicht zu leisten.",
+    "Je früher, desto besser — planen Sie 3–4 Wochen Vorlauf ein, in der Hochsaison auch mehr. Die "
+    "Reservierung kostet nichts und ist ohne Anzahlung möglich; kurzfristige Anfragen versuchen wir "
+    "trotzdem möglich zu machen.",
+]
+
+
 def faq_book(x):
-    return (f"Wie früh sollte man einen Roboter {x} buchen?",
-            "Am besten mindestens 3–4 Wochen vor dem Termin. In der Hochsaison (Frühjahr und Herbst) sind die "
-            "Termine schneller vergeben — fragen Sie also lieber früher an. Die Reservierung ist kostenlos und "
-            "ohne Anzahlung.")
+    answer = _x_seed(x) % len(BOOK_ANSWER_POOL)
+    return (f"Wie früh sollte man einen Roboter {x} buchen?", BOOK_ANSWER_POOL[answer])
 
 
 DEFAULTS = {
@@ -87,6 +118,14 @@ def mk(**kw):
 
 
 # ── Pule tekstowe ─────────────────────────────────────────────────────
+# Audit (Aug 2026): >50 Seiten (25 direkte ev()-Aufrufe + 29 br()-Branchenseiten)
+# teilten sich diese vier Pools. Bei nur 3-4 Elementen pro Pool und _pick2()s
+# kombinatorischem Spielraum (C(4,2)=6 bzw. C(3,2)=3) kollidierten viele Seiten
+# auf denselben Text — gemessen ~56 % identische Sätze zwischen Branchenseiten.
+# Google stufte >70 % der Domain als "entdeckt, nicht indexiert" ein (Search
+# Console), ein bekanntes Muster bei vielen dünnen, kaum unterscheidbaren
+# Seiten auf einer jungen Domain. Pools deutlich vergrößert (3-4 -> 8 Eintraege),
+# damit der Kollisionsraum bei über 50 Seiten nicht mehr trivial klein ist.
 DESCS = [
     "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Gästeempfang, "
     "Tanzshow, Gespräche dank KI →",
@@ -94,18 +133,38 @@ DESCS = [
     "deutschlandweit im Einsatz →",
     "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich — "
     "mit Operator vor Ort →",
+    "Humanoider Roboter {na} mieten: Der Unitree G1 sorgt für Gesprächsstoff, der lange nach der "
+    "Veranstaltung anhält — mit zertifiziertem Operator →",
+    "Unitree G1 {na}: begrüßt Gäste, tanzt, posiert für Fotos und spricht dank KI — deutschlandweit "
+    "im Einsatz, Angebot in 24 h →",
+    "Roboter {na} mieten — ein Auftritt, über den noch Wochen gesprochen wird. Mit Branding und "
+    "Operator im Startpreis →",
+    "Humanoider Roboter {na}: die Attraktion, die aus jedem Programmpunkt einen Höhepunkt macht — "
+    "mit zertifiziertem Operator vor Ort →",
+    "Roboter {na} mieten: Unitree G1 als Showact mit Choreografie, KI-Gesprächen und Fotomomenten — "
+    "deutschlandweit verfügbar →",
 ]
 
 EYEBROWS = [
     "Roboter mieten · Event-Attraktion · Deutschlandweit",
     "Humanoider Roboter · Unitree G1 · Show mit Operator",
     "Premium-Attraktion · Unitree G1 · Deutschlandweit",
+    "Humanoider Roboter mieten · Deutschlandweit im Einsatz",
+    "Unitree G1 · Showact mit Operator · Deutschlandweit",
+    "Event-Attraktion · Humanoider Roboter · Startpreis ab 2.499 €",
+    "Roboter-Show · Unitree G1 · Zertifizierter Operator",
+    "Humanoide Roboter mieten · Bester Preis am Markt",
 ]
 
 TILES_H2 = [
     "Die Attraktion, über die<br />noch Jahre gesprochen wird",
     "Warum ein Roboter<br />den Unterschied macht",
     "WOW-Effekt<br />mit Garantie",
+    "Was einen Roboter-Auftritt<br />so wirkungsvoll macht",
+    "Mehr als eine<br />Fotobox",
+    "Der Unterschied zwischen<br />Attraktion und Ereignis",
+    "Was Gäste noch Wochen später<br />erzählen",
+    "Warum sich der Aufwand<br />für Sie auszahlt",
 ]
 
 SCEN_INTROS = [
@@ -114,6 +173,12 @@ SCEN_INTROS = [
     "Der Roboter muss nicht durchgehend präsent sein — seine Auftritte planen wir für die stärksten Momente "
     "Ihrer Veranstaltung:",
     "Das Drehbuch legen wir gemeinsam vor der Veranstaltung fest. Diese Elemente funktionieren am besten:",
+    "Wie der Roboter eingesetzt wird, entscheiden Sie — diese drei Bausteine kombinieren die meisten "
+    "Veranstalter:",
+    "Ein fester Ablauf hat sich bewährt, wird aber immer an Ihre Veranstaltung angepasst:",
+    "Diese Elemente lassen sich frei kombinieren, je nachdem, welchen Moment Sie setzen möchten:",
+    "Vor der Veranstaltung legen wir gemeinsam fest, wann der Roboter welche Rolle übernimmt:",
+    "Die meisten Auftritte bestehen aus einer Mischung dieser drei Bausteine:",
 ]
 
 
@@ -132,6 +197,18 @@ def _tile_pool(Loc):
         ("Fotos", "Ein Fotobereich, der nicht leer wird",
          f"Der G1 posiert, gibt High Fives und gestikuliert — {loc} ist die Schlange für ein Foto mit dem Roboter "
          f"der am längsten wirkende Programmpunkt."),
+        ("Gesprächsstoff", "Das Thema der Kaffeepause",
+         f"{Loc} wird der Roboter zum Gesprächsthema, bevor die erste Präsentation zu Ende ist — Eisbrecher "
+         f"inklusive, ganz ohne Ihr Zutun."),
+        ("Branding", "Ihr Logo mitten im Geschehen",
+         "Logo und QR-Code auf der Brustplatte laufen mit dem Roboter durch die gesamte Veranstaltung — "
+         "sichtbar in jedem Foto, das Gäste machen."),
+        ("Interaktion", "Ein Gesprächspartner, kein Exponat",
+         "Der G1 antwortet, reagiert und improvisiert — Gäste behandeln ihn wie einen Teilnehmer, nicht wie "
+         "eine Installation, die man nur ansieht."),
+        ("Planbarkeit", "Ein fester Programmpunkt, kein Risiko",
+         "Ablauf, Timing und Sicherheitskonzept stehen vor der Veranstaltung fest. Sie wissen genau, wann der "
+         "Roboter wo im Einsatz ist."),
     ]
 
 
@@ -147,11 +224,32 @@ def _scen_pool(Loc):
         ("Tanzchoreografie",
          "Der Höhepunkt: Der Roboter tanzt eine zur Musik synchronisierte Choreografie. Genau dieser Teil "
          "erzeugt die meisten Aufnahmen und den meisten Applaus."),
+        ("Moderation und Ansagen",
+         f"Der Roboter übernimmt kurze Moderationsmomente — kündigt Programmpunkte an oder begleitet "
+         f"{loc} den Ablauf mit einem Augenzwinkern."),
+        ("Networking-Eisbrecher",
+         "In Pausen zwischen Programmpunkten sorgt der Roboter für Gesprächsstoff und bringt fremde Gäste "
+         "miteinander ins Gespräch."),
+        ("Abschlussmoment",
+         "Zum Ausklang der Veranstaltung übernimmt der Roboter noch einmal die Bühne — ein Schlussbild, das "
+         "hängen bleibt, statt dass die Veranstaltung einfach ausklingt."),
     ]
 
 
+def faq_branding():
+    return ("Kann ich mein Firmenlogo auf dem Roboter platzieren?",
+            "Ja. Logo und QR-Code kommen auf die Brustplatte des Roboters — Umfang und Umsetzung stimmen "
+            "wir vor der Veranstaltung mit Ihnen ab. Das Branding ist im Mietpreis enthalten.")
+
+
+def faq_outdoor():
+    return ("Ist der Roboter auch im Freien einsetzbar?",
+            "Ja, mit Einschränkungen bei Regen, starker Hitze oder unebenem Untergrund. Ob Ihr geplanter "
+            "Einsatzort geeignet ist, klären wir vorab gemeinsam.")
+
+
 def _extra_faq(slug):
-    return _pick([faq_safe(), faq_operator(), faq_transport()], slug)
+    return _pick([faq_safe(), faq_operator(), faq_transport(), faq_branding(), faq_outdoor()], slug)
 
 
 def ev(slug, crumb, na, Loc, sub, uniq_tile, uniq_scen, faq_uniq,
