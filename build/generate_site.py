@@ -951,6 +951,54 @@ def build_seo_page(p):
 {footer_html()}"""
 
 
+# ── Textvarianten für Stadtseiten ───────────────────────────────────────
+# 34 Stadtseiten teilten sich bisher wortgleiche Absätze (Kacheln, "einfachster
+# Weg"-Satz, Anfahrt-Absatz, Szenario-Intro) — ~35 % identische Sätze zwischen
+# je zwei Städten (gemessen). Reines Duplicate-Content-Risiko für nahezu
+# identische lokale Landingpages. Rotation nach Stadt-Slug (deterministisch,
+# gleiches Verfahren wie in de_content_helpers._pick) verteilt mehrere
+# Formulierungen, ohne 34 Städte einzeln von Hand umschreiben zu müssen.
+def _city_seed(slug):
+    return sum(ord(c) for c in slug)
+
+
+def _city_pick(pool, slug, offset=0):
+    return pool[(_city_seed(slug) + offset) % len(pool)]
+
+
+TILE1_POOL = [
+    ("Sichtbarkeit", "Menschen bleiben stehen",
+     "Der G1 zieht Aufmerksamkeit aus mehreren Dutzend Metern Entfernung an. Ihr Stand oder Ihre Veranstaltung wird zum meistbesuchten Punkt im Raum."),
+    ("Sichtbarkeit", "Der Blickfang der Veranstaltung",
+     "Kaum ist der G1 im Raum, richten sich die Blicke auf ihn. Für Standbesucher und Gäste wird er zum ersten Gesprächsthema des Tages."),
+    ("Sichtbarkeit", "Publikum, das stehen bleibt",
+     "Ein humanoider Roboter mitten im Geschehen sorgt für spontane Trauben von Neugierigen — genau der Effekt, den ein ruhiger Messestand allein nicht erzeugt."),
+]
+TILE2_POOL = [
+    ("Reichweite", "Organisches Social Media",
+     "Fotos und Clips mit dem Roboter landen noch während der Veranstaltung in den sozialen Medien. Ihre Marke erscheint in Hunderten Beiträgen — ohne Mediabudget."),
+    ("Reichweite", "Content, der sich von selbst verbreitet",
+     "Gäste filmen und fotografieren den Roboter aus eigenem Antrieb und teilen es sofort. Ihr Logo ist auf jedem dieser Beiträge zu sehen."),
+    ("Reichweite", "Reichweite ohne Werbebudget",
+     "Der Auftritt des Roboters erzeugt organischen Content: Storys, Reels und Posts der Gäste, die Ihre Marke ohne zusätzliche Kosten weitertragen."),
+]
+EINFACHSTER_WEG_POOL = [
+    "Die Miete eines humanoiden Roboters Unitree G1 in {city} ist der einfachste Weg, sich in einem dichten Veranstaltungsmarkt abzuheben. Wir liefern den G1 direkt an Ihre Location. Bedient werden {around}.",
+    "Wer sich in {city} von der üblichen Messe- und Eventkulisse abheben will, bucht den Unitree G1 als Showact. Wir bringen ihn direkt zu Ihrer Location — bedient werden {around}.",
+    "In einem Markt voller ähnlicher Standkonzepte ist der Unitree G1 in {city} ein direkter Weg zu mehr Aufmerksamkeit. Anlieferung erfolgt direkt zur Location, bedient werden {around}.",
+]
+SZENARIO_INTRO_POOL = [
+    "Wir betreuen in {city} jede Art von Veranstaltung — von Messen und Konferenzen bis zu privaten Feiern. Sehen Sie, wie sich der Roboter im konkreten Szenario schlägt:",
+    "Ob Firmenevent, Messeauftritt oder private Feier — in {city} passen wir den Auftritt des Roboters an Ihren Anlass an. Ein Überblick nach Szenario:",
+    "Vom Messestand bis zur Hochzeitsfeier: In {city} kommt der Roboter in ganz unterschiedlichen Formaten zum Einsatz. Wählen Sie Ihr Szenario:",
+]
+ANFAHRT_POOL = [
+    "Zu jeder Location in {city} kommen wir mit eigener Technik — bedient werden {around}. Der Roboter braucht vor Ort rund 2×2 m ebene Fläche und eine 230-V-Steckdose; wir bringen ihn selbst herein und sind in der Regel 30–45 Minuten vor Veranstaltungsbeginn einsatzbereit. Schreiben Sie uns, wo Ihre Veranstaltung in {city} stattfindet, und Sie erhalten innerhalb von 24 Stunden ein konkretes Angebot.",
+    "Wir reisen mit eigenem Equipment zu jeder Location in {city} an — dazu zählen {around}. Benötigt wird vor Ort eine ebene Fläche von rund 2×2 m und ein 230-V-Anschluss; Aufbau und Einrichtung übernehmen wir selbst, üblicherweise 30–45 Minuten vor Beginn. Teilen Sie uns den Ort Ihrer Veranstaltung in {city} mit — das Angebot folgt innerhalb von 24 Stunden.",
+    "Die Anreise zu Ihrer Location in {city} organisieren wir komplett selbst — das gilt für {around} ebenso. Vor Ort braucht der Roboter etwa 2×2 m freie Fläche und eine 230-V-Steckdose; Aufbau und Funktionstest dauern rund 30–45 Minuten vor Veranstaltungsbeginn. Nennen Sie uns den Veranstaltungsort in {city}, das Angebot erhalten Sie binnen 24 Stunden.",
+]
+
+
 # ── Strona miasta (35 sztuk) ──────────────────────────────────────────
 def build_city_page(pl_file):
     d = de_cities.CITIES[pl_file]
@@ -958,6 +1006,12 @@ def build_city_page(pl_file):
     url = f"{DOMAIN}/{out_file}"
     city = d["name"]
     video = VIDEOS["taniec"]
+
+    tile1 = _city_pick(TILE1_POOL, pl_file)
+    tile2 = _city_pick(TILE2_POOL, pl_file, offset=1)
+    einfachster_weg = _city_pick(EINFACHSTER_WEG_POOL, pl_file, offset=2).format(city=city, around=d["around"])
+    szenario_intro = _city_pick(SZENARIO_INTRO_POOL, pl_file, offset=3).format(city=city)
+    anfahrt_text = _city_pick(ANFAHRT_POOL, pl_file, offset=4).format(city=city, around=d["around"])
 
     faqs = list(d["faq"]) + [
         (f"Kommen Sie auch nach {city}?",
@@ -1094,15 +1148,15 @@ def build_city_page(pl_file):
     </div>
     <div class="tiles">
       <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Sichtbarkeit</span></div>
-        <h3 class="tile__title">Menschen bleiben stehen</h3>
-        <p class="tile__desc">Der G1 zieht Aufmerksamkeit aus mehreren Dutzend Metern Entfernung an. Ihr Stand oder Ihre Veranstaltung wird zum meistbesuchten Punkt im Raum.</p>
+        <div class="tile__top"><span class="tile__tag">{tile1[0]}</span></div>
+        <h3 class="tile__title">{tile1[1]}</h3>
+        <p class="tile__desc">{tile1[2]}</p>
         <a href="#kontakt" class="tile__link">Angebot anfragen →</a>
       </div>
       <div class="tile tile--light">
-        <div class="tile__top"><span class="tile__tag">Reichweite</span></div>
-        <h3 class="tile__title">Organisches Social Media</h3>
-        <p class="tile__desc">Fotos und Clips mit dem Roboter landen noch während der Veranstaltung in den sozialen Medien. Ihre Marke erscheint in Hunderten Beiträgen — ohne Mediabudget.</p>
+        <div class="tile__top"><span class="tile__tag">{tile2[0]}</span></div>
+        <h3 class="tile__title">{tile2[1]}</h3>
+        <p class="tile__desc">{tile2[2]}</p>
         <a href="#kontakt" class="tile__link">Angebot anfragen →</a>
       </div>
       <div class="tile">
@@ -1119,7 +1173,7 @@ def build_city_page(pl_file):
       <div class="onas-text">
         <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem); margin-bottom:var(--s4);">{d['section_title']}</h2>
         <p class="lead-text">{d['p1']}</p>
-        <p class="body-text">Die Miete eines humanoiden Roboters Unitree G1 in {city} ist der einfachste Weg, sich in einem dichten Veranstaltungsmarkt abzuheben. Wir liefern den G1 direkt an Ihre Location. Bedient werden {d['around']}.</p>
+        <p class="body-text">{einfachster_weg}</p>
 
         <h3 {H3}>{d['p2_header']}</h3>
         <p class="body-text">{d['p2']}</p>
@@ -1191,7 +1245,7 @@ def build_city_page(pl_file):
   <section class="section" style="padding-top:0;" id="szenarien-stadt">
     <div class="container" style="max-width:1140px; margin-inline:auto; padding-inline:var(--s4)">
       <h2 style="font-size:clamp(1rem,2vw,1.4rem); font-weight:700; margin-bottom:var(--s2); color:var(--text-1)">Roboter für Events in {city} — wählen Sie Ihr Szenario</h2>
-      <p style="color:var(--text-2); font-size:0.9rem; margin-bottom:var(--s3);">Wir betreuen in {city} jede Art von Veranstaltung — von Messen und Konferenzen bis zu privaten Feiern. Sehen Sie, wie sich der Roboter im konkreten Szenario schlägt:</p>
+      <p style="color:var(--text-2); font-size:0.9rem; margin-bottom:var(--s3);">{szenario_intro}</p>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
 {scenarios}
       </div>
@@ -1218,7 +1272,7 @@ def build_city_page(pl_file):
 {venue_items}
         </ul>
         <h3 {H3}>Anfahrt und bediente Umgebung</h3>
-        <p class="body-text">Zu jeder Location in {city} kommen wir mit eigener Technik — bedient werden {d['around']}. Der Roboter braucht vor Ort rund 2×2 m ebene Fläche und eine 230-V-Steckdose; wir bringen ihn selbst herein und sind in der Regel 30–45 Minuten vor Veranstaltungsbeginn einsatzbereit. Schreiben Sie uns, wo Ihre Veranstaltung in {city} stattfindet, und Sie erhalten innerhalb von 24 Stunden ein konkretes Angebot.</p>
+        <p class="body-text">{anfahrt_text}</p>
       </div>
     </div>
   </section>
