@@ -91,14 +91,59 @@ jobs:
           print('index.html poprawny — struktura, dane strukturalne i analityka na miejscu.')
           PY
 
+      # Sprawdza, czy serwer w ogóle odpowiada na FTP i czy umie szyfrować.
+      # Nie przerywa wdrożenia — służy wyłącznie do rozpoznania problemu.
+      - name: Rozpoznanie połączenia z serwerem
+        continue-on-error: true
+        env:
+          HOST: ${{ secrets.FTP_SERVER }}
+          PORT: ${{ vars.FTP_PORT || 21 }}
+        run: |
+          python3 - <<'PY'
+          import os, socket, ssl
+
+          host, port = os.environ['HOST'], int(os.environ['PORT'])
+          print(f'Łączę się na porcie {port}…')
+
+          try:
+              s = socket.create_connection((host, port), timeout=12)
+          except Exception as e:
+              print(f'BRAK POŁĄCZENIA: {e}')
+              print('→ Najpewniej zły adres w sekrecie FTP_SERVER.')
+              raise SystemExit(0)
+
+          s.settimeout(12)
+          powitanie = s.recv(512).decode('utf-8', 'replace').strip()
+          print(f'Serwer się przedstawił: {powitanie[:120]}')
+
+          if not powitanie.startswith('220'):
+              print('→ To nie wygląda na serwer FTP.')
+              raise SystemExit(0)
+
+          s.sendall(b'AUTH TLS\r\n')
+          odp = s.recv(512).decode('utf-8', 'replace').strip()
+          print(f'Odpowiedź na AUTH TLS: {odp[:120]}')
+
+          if odp.startswith('234'):
+              try:
+                  ssl.create_default_context().wrap_socket(s, server_hostname=host)
+                  print('WYNIK: serwer obsługuje FTPS — zostaw protokół "ftps".')
+              except Exception as e:
+                  print(f'Uzgadnianie TLS nie powiodło się: {e}')
+                  print('WYNIK: ustaw zmienną FTP_PROTOCOL na "ftp".')
+          else:
+              print('WYNIK: serwer odrzuca szyfrowanie.')
+              print('→ Ustaw zmienną repozytorium FTP_PROTOCOL na wartość "ftp".')
+          PY
+
       - name: Wyślij pliki na serwer
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
           server-dir: ${{ secrets.FTP_DIR }}
           # Nie kasuje niczego, czego nie zna — pliki wgrane ręcznie zostają.
           dangerous-clean-slate: false
