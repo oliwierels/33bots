@@ -1,0 +1,131 @@
+name: Wdrożenie na cyber_Folks
+
+# Uruchamia się po każdej zmianie na gałęzi produkcyjnej.
+# Można też odpalić ręcznie: zakładka Actions → Wdrożenie na cyber_Folks → Run workflow.
+on:
+  push:
+    branches: [claude/33bots-website-T0REs]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+concurrency:
+  group: wdrozenie-produkcja
+  cancel-in-progress: false
+
+jobs:
+  wdroz:
+    name: Zbuduj i wyślij na serwer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      - name: Przygotuj Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Zbuduj arkusz stylów Tailwind
+        run: |
+          npx --yes tailwindcss@3.4.17 \
+            -c tailwind.config.js \
+            -i tw-input.css \
+            -o assets-redesign.css \
+            --minify
+          echo "Rozmiar arkusza: $(du -h assets-redesign.css | cut -f1)"
+
+      # Numer wersji arkusza = skrót commita. Dzięki temu przeglądarka
+      # nigdy nie poda starego CSS-a z pamięci podręcznej.
+      - name: Podbij wersję arkusza w index.html
+        run: |
+          WERSJA="${GITHUB_SHA::7}"
+          # celujemy wyłącznie w atrybut href, żeby nie ruszyć komentarzy w pliku
+          sed -i -E "s|href=\"assets-redesign\.css(\?v=[^\"]*)?\"|href=\"assets-redesign.css?v=${WERSJA}\"|g" index.html
+          echo "Arkusz oznaczony wersją: ${WERSJA}"
+          grep -o 'href="assets-redesign\.css[^"]*"' index.html
+
+      - name: Sprawdź poprawność HTML i danych strukturalnych
+        run: |
+          python3 - <<'PY'
+          import json, re, sys
+          from html.parser import HTMLParser
+
+          zrodlo = open('index.html', encoding='utf-8').read()
+          bledy = []
+
+          PUSTE = {'meta','link','img','br','input','source','hr','iframe',
+                   'path','circle','rect','polyline','line','polygon','source-marker'}
+
+          class Kontrola(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.stos = []
+              def handle_starttag(self, tag, attrs):
+                  if tag in ('svg', 'iframe'): return
+                  if tag not in PUSTE: self.stos.append(tag)
+              def handle_endtag(self, tag):
+                  if tag in PUSTE or tag == 'svg': return
+                  if self.stos and self.stos[-1] == tag: self.stos.pop()
+                  elif tag in self.stos:
+                      while self.stos and self.stos[-1] != tag:
+                          bledy.append(f'niezamknięty <{self.stos.pop()}>')
+                      self.stos.pop()
+                  else:
+                      bledy.append(f'zbłąkany </{tag}>')
+
+          k = Kontrola(); k.feed(zrodlo)
+          if k.stos: bledy.append(f'niezamknięte na końcu: {k.stos}')
+
+          for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
+              try: json.loads(m.group(1))
+              except Exception as e: bledy.append(f'błędny JSON-LD: {e}')
+
+          for konieczny in ('GTM-MR7R7CJ3', 'assets-redesign.css', 'formspree.io'):
+              if konieczny not in zrodlo:
+                  bledy.append(f'brak w index.html: {konieczny}')
+
+          if bledy:
+              print('WDROŻENIE WSTRZYMANE:'); [print(' -', b) for b in bledy]; sys.exit(1)
+          print('index.html poprawny — struktura, dane strukturalne i analityka na miejscu.')
+          PY
+
+      - name: Wyślij pliki na serwer
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ secrets.FTP_DIR }}
+          # Nie kasuje niczego, czego nie zna — pliki wgrane ręcznie zostają.
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/*.py
+            **/*.md
+            tailwind.config.js
+            tw-input.css
+            package*.json
+            scripts/**
+            og/**
+            **/IMG_*.HEIC
+            **/IMG_*.DNG
+            **/IMG_*.JPG
+            **/IMG_*.PNG
+            _redirects
+            SEO-AUDIT.md
+            szablon-case-study.html
+
+      - name: Podsumowanie
+        run: |
+          echo "### Strona zaktualizowana" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Commit: \`${GITHUB_SHA::7}\`" >> $GITHUB_STEP_SUMMARY
+          echo "Arkusz stylów: \`assets-redesign.css?v=${GITHUB_SHA::7}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Sprawdź: https://33bots.pl" >> $GITHUB_STEP_SUMMARY
