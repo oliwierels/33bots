@@ -32,10 +32,21 @@ Dodaj cztery sekrety (nazwy muszą się zgadzać co do znaku):
 
 | Nazwa | Wartość |
 |---|---|
-| `FTP_SERVER` | adres z kroku 2, np. `ftp.33bots.pl` |
+| `FTP_SERVER` | `ttxywfrxaf.cyber-folks.pl` — patrz uwaga niżej |
 | `FTP_USERNAME` | login konta FTP z kroku 1 |
 | `FTP_PASSWORD` | hasło konta FTP z kroku 1 |
 | `FTP_DIR` | patrz niżej — zależy od ścieżki konta |
+
+**Uwaga o adresie serwera.** Certyfikat TLS serwera wystawiony jest na
+`*.cyber-folks.pl` — z myślnikiem. Panel pokazuje serwer jako
+`ttxywfrxaf.cfolks.pl`, bez myślnika, i pod tym adresem szyfrowane
+połączenie zostanie odrzucone (niezgodność nazwy w certyfikacie).
+Dlatego w sekrecie ma być `ttxywfrxaf.cyber-folks.pl`.
+
+Gdyby ta nazwa nie działała, można zejść do nieszyfrowanego FTP: dodaj
+zmienną repozytorium (zakładka **Variables**, nie Secrets) o nazwie
+`FTP_PROTOCOL` i wartości `ftp`. To ostateczność — hasło leci wtedy
+otwartym tekstem.
 
 **Jak ustalić `FTP_DIR`:** w panelu, w tabeli kont FTP, sprawdź kolumnę
 „Ścieżka na serwerze". Po zalogowaniu przez FTP ta ścieżka jest widziana
