@@ -124,17 +124,33 @@ jobs:
           odp = s.recv(512).decode('utf-8', 'replace').strip()
           print(f'Odpowiedź na AUTH TLS: {odp[:120]}')
 
-          if odp.startswith('234'):
-              try:
-                  ssl.create_default_context().wrap_socket(s, server_hostname=host)
-                  print('WYNIK: serwer obsługuje FTPS — zostaw protokół "ftps".')
-              except Exception as e:
-                  print(f'Uzgadnianie TLS nie powiodło się: {e}')
-                  print('WYNIK: ustaw zmienną FTP_PROTOCOL na "ftp".')
-          else:
+          if not odp.startswith('234'):
               print('WYNIK: serwer odrzuca szyfrowanie.')
               print('→ Ustaw zmienną repozytorium FTP_PROTOCOL na wartość "ftp".')
+              raise SystemExit(0)
+
+          try:
+              ssl.create_default_context().wrap_socket(s, server_hostname=host)
+              print('WYNIK: FTPS działa poprawnie — nic nie zmieniaj.')
+          except ssl.SSLCertVerificationError as e:
+              print(f'Certyfikat nie pasuje do adresu: {e.verify_message}')
+              print('NAZWY, NA KTÓRE WYSTAWIONO CERTYFIKAT — patrz krok niżej.')
+          except Exception as e:
+              print(f'Uzgadnianie TLS nie powiodło się: {e}')
+              print('WYNIK: ustaw zmienną FTP_PROTOCOL na "ftp".')
           PY
+
+      # Wypisuje, dla jakich nazw serwer ma certyfikat — to ta nazwa
+      # powinna trafić do sekretu FTP_SERVER.
+      - name: Odczytaj nazwy z certyfikatu serwera
+        continue-on-error: true
+        env:
+          HOST: ${{ secrets.FTP_SERVER }}
+          PORT: ${{ vars.FTP_PORT || 21 }}
+        run: |
+          openssl s_client -starttls ftp -connect "${HOST}:${PORT}" -showcerts </dev/null 2>/dev/null \
+            | openssl x509 -noout -subject -ext subjectAltName 2>/dev/null \
+            || echo 'Nie udało się odczytać certyfikatu.'
 
       - name: Wyślij pliki na serwer
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
