@@ -35,7 +35,20 @@ Dodaj cztery sekrety (nazwy muszą się zgadzać co do znaku):
 | `FTP_SERVER` | adres z kroku 2, np. `ftp.33bots.pl` |
 | `FTP_USERNAME` | login konta FTP z kroku 1 |
 | `FTP_PASSWORD` | hasło konta FTP z kroku 1 |
-| `FTP_DIR` | `/` jeśli konto FTP jest zamknięte w `public_html`,<br>albo `/domains/33bots.pl/public_html/` jeśli używasz konta głównego |
+| `FTP_DIR` | patrz niżej — zależy od ścieżki konta |
+
+**Jak ustalić `FTP_DIR`:** w panelu, w tabeli kont FTP, sprawdź kolumnę
+„Ścieżka na serwerze". Po zalogowaniu przez FTP ta ścieżka jest widziana
+jako katalog główny, więc do `FTP_DIR` wpisujesz to, co zostaje **po niej**:
+
+| Ścieżka konta w panelu | Wartość `FTP_DIR` |
+|---|---|
+| `/domains/33bots.pl/` | `/public_html/` |
+| `/domains/33bots.pl/public_html/` | `/` |
+| `/` (konto administratora) | `/domains/33bots.pl/public_html/` |
+
+Gdyby pierwsze wdrożenie zwróciło błąd `550`, ścieżka jest nietrafiona —
+wystarczy poprawić ten jeden sekret i uruchomić wdrożenie ponownie.
 
 Sekrety są szyfrowane. Nikt — łącznie ze mną — ich nie zobaczy, nie pojawiają
 się też w logach wdrożenia.
