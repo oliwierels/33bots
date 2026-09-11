@@ -1,0 +1,32 @@
+# Czego nie wysyłamy na serwer — używane przez rsync w workflow wdrożenia.
+# Narzędzia deweloperskie, materiały źródłowe i wszystko, czego przeglądarka
+# i tak nie potrzebuje.
+
+.git/
+.github/
+.gitignore
+.deployignore
+node_modules/
+__pycache__/
+
+# skrypty i konfiguracja budowania
+*.py
+tailwind.config.js
+tw-input.css
+package.json
+package-lock.json
+scripts/
+
+# dokumentacja projektu
+*.md
+
+# materiały źródłowe i szablony
+og/
+IMG_*.HEIC
+IMG_*.DNG
+IMG_*.JPG
+IMG_*.PNG
+szablon-case-study.html
+
+# konfiguracja innego hostingu (Apache czyta .htaccess, nie ten plik)
+_redirects

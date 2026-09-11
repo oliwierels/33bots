@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Pobierz repozytorium
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # pełna historia — potrzebna do odtworzenia dat plików
 
       - name: Przygotuj Node
         uses: actions/setup-node@v4
@@ -42,9 +44,7 @@ jobs:
       - name: Podbij wersję arkusza w index.html
         run: |
           WERSJA="${GITHUB_SHA::7}"
-          # celujemy wyłącznie w atrybut href, żeby nie ruszyć komentarzy w pliku
           sed -i -E "s|href=\"assets-redesign\.css(\?v=[^\"]*)?\"|href=\"assets-redesign.css?v=${WERSJA}\"|g" index.html
-          echo "Arkusz oznaczony wersją: ${WERSJA}"
           grep -o 'href="assets-redesign\.css[^"]*"' index.html
 
       - name: Sprawdź poprawność HTML i danych strukturalnych
@@ -91,102 +91,85 @@ jobs:
           print('index.html poprawny — struktura, dane strukturalne i analityka na miejscu.')
           PY
 
-      # Sprawdza, czy serwer w ogóle odpowiada na FTP i czy umie szyfrować.
-      # Nie przerywa wdrożenia — służy wyłącznie do rozpoznania problemu.
-      - name: Rozpoznanie połączenia z serwerem
-        continue-on-error: true
-        env:
-          HOST: ${{ secrets.FTP_SERVER }}
-          PORT: ${{ vars.FTP_PORT || 21 }}
+      # Git nie przechowuje dat modyfikacji, a po pobraniu repozytorium wszystkie
+      # pliki mają datę "teraz". Bez tego kroku wysyłka uznawałaby każdy plik za
+      # nowszy od tego na serwerze i wgrywała za każdym razem całą stronę.
+      - name: Odtwórz daty modyfikacji plików z historii
         run: |
-          python3 - <<'PY'
-          import os, socket, ssl
+          git ls-files -z | while IFS= read -r -d '' plik; do
+            data=$(git log -1 --format=%cI -- "$plik")
+            [ -n "$data" ] && touch -d "$data" "$plik" 2>/dev/null || true
+          done
+          echo "Daty odtworzone dla $(git ls-files | wc -l) plików."
 
-          host, port = os.environ['HOST'], int(os.environ['PORT'])
-          print(f'Łączę się na porcie {port}…')
-
-          try:
-              s = socket.create_connection((host, port), timeout=12)
-          except Exception as e:
-              print(f'BRAK POŁĄCZENIA: {e}')
-              print('→ Najpewniej zły adres w sekrecie FTP_SERVER.')
-              raise SystemExit(0)
-
-          s.settimeout(12)
-          powitanie = s.recv(512).decode('utf-8', 'replace').strip()
-          print(f'Serwer się przedstawił: {powitanie[:120]}')
-
-          if not powitanie.startswith('220'):
-              print('→ To nie wygląda na serwer FTP.')
-              raise SystemExit(0)
-
-          s.sendall(b'AUTH TLS\r\n')
-          odp = s.recv(512).decode('utf-8', 'replace').strip()
-          print(f'Odpowiedź na AUTH TLS: {odp[:120]}')
-
-          if not odp.startswith('234'):
-              print('WYNIK: serwer odrzuca szyfrowanie.')
-              print('→ Ustaw zmienną repozytorium FTP_PROTOCOL na wartość "ftp".')
-              raise SystemExit(0)
-
-          try:
-              ssl.create_default_context().wrap_socket(s, server_hostname=host)
-              print('WYNIK: FTPS działa poprawnie — nic nie zmieniaj.')
-          except ssl.SSLCertVerificationError as e:
-              print(f'Certyfikat nie pasuje do adresu: {e.verify_message}')
-              print('NAZWY, NA KTÓRE WYSTAWIONO CERTYFIKAT — patrz krok niżej.')
-          except Exception as e:
-              print(f'Uzgadnianie TLS nie powiodło się: {e}')
-              print('WYNIK: ustaw zmienną FTP_PROTOCOL na "ftp".')
-          PY
-
-      # Wypisuje, dla jakich nazw serwer ma certyfikat — to ta nazwa
-      # powinna trafić do sekretu FTP_SERVER.
-      - name: Odczytaj nazwy z certyfikatu serwera
-        continue-on-error: true
-        env:
-          HOST: ${{ secrets.FTP_SERVER }}
-          PORT: ${{ vars.FTP_PORT || 21 }}
+      - name: Zbierz pliki przeznaczone na serwer
         run: |
-          openssl s_client -starttls ftp -connect "${HOST}:${PORT}" -showcerts </dev/null 2>/dev/null \
-            | openssl x509 -noout -subject -ext subjectAltName 2>/dev/null \
-            || echo 'Nie udało się odczytać certyfikatu.'
+          mkdir -p _wysylka
+          rsync -a --exclude-from=.deployignore --exclude='_wysylka/' ./ _wysylka/
+          LICZBA=$(find _wysylka -type f | wc -l)
+          ROZMIAR=$(du -sh _wysylka | cut -f1)
+          echo "Do wysyłki: ${LICZBA} plików, ${ROZMIAR}"
+          {
+            echo "### Wdrożenie"
+            echo ""
+            echo "Plików: **${LICZBA}** · Rozmiar: **${ROZMIAR}**"
+          } >> $GITHUB_STEP_SUMMARY
 
+      - name: Zainstaluj lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # Certyfikat serwerów cyber_Folks wystawiony jest na *.cyber-folks.pl.
+      # Gdy w sekrecie jest inna nazwa hosta (np. w domenie cfolks.pl albo
+      # własna domena klienta), pełna weryfikacja tożsamości nie przejdzie.
+      # Dlatego najpierw próbujemy z weryfikacją, a gdy zawiedzie — ponawiamy
+      # bez sprawdzania nazwy. Połączenie pozostaje szyfrowane w obu wypadkach.
       - name: Wyślij pliki na serwer
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
-          port: ${{ vars.FTP_PORT || 21 }}
-          server-dir: ${{ secrets.FTP_DIR }}
-          # Nie kasuje niczego, czego nie zna — pliki wgrane ręcznie zostają.
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/*.py
-            **/*.md
-            tailwind.config.js
-            tw-input.css
-            package*.json
-            scripts/**
-            og/**
-            **/IMG_*.HEIC
-            **/IMG_*.DNG
-            **/IMG_*.JPG
-            **/IMG_*.PNG
-            _redirects
-            SEO-AUDIT.md
-            szablon-case-study.html
+        env:
+          HOST: ${{ secrets.FTP_SERVER }}
+          LOGIN: ${{ secrets.FTP_USERNAME }}
+          HASLO: ${{ secrets.FTP_PASSWORD }}
+          KATALOG: ${{ secrets.FTP_DIR }}
+          PORT: ${{ vars.FTP_PORT || 21 }}
+        run: |
+          set -uo pipefail
+
+          zbuduj_polecenia() {
+            cat <<EOF
+          set ssl:verify-certificate $1
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ftp:passive-mode true
+          set net:timeout 25
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          set xfer:clobber on
+          open -u "${LOGIN}","${HASLO}" "ftp://${HOST}:${PORT}"
+          mirror --reverse --only-newer --no-perms --parallel=3 --verbose _wysylka/ "${KATALOG}"
+          bye
+          EOF
+          }
+
+          echo "── Próba 1: FTPS z pełną weryfikacją certyfikatu ──"
+          zbuduj_polecenia yes > /tmp/lftp-weryfikacja.txt
+          if lftp -f /tmp/lftp-weryfikacja.txt; then
+            echo "WYSŁANO. Połączenie szyfrowane, certyfikat zweryfikowany."
+            echo "Połączenie: szyfrowane, certyfikat zweryfikowany" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          echo ""
+          echo "── Nazwa w certyfikacie nie zgadza się z adresem serwera ──"
+          echo "── Próba 2: FTPS bez sprawdzania nazwy (dane nadal szyfrowane) ──"
+          zbuduj_polecenia no > /tmp/lftp-bez-weryfikacji.txt
+          lftp -f /tmp/lftp-bez-weryfikacji.txt
+          echo "WYSŁANO. Połączenie szyfrowane, nazwa w certyfikacie niesprawdzana."
+          echo "Połączenie: szyfrowane (bez weryfikacji nazwy w certyfikacie)" >> $GITHUB_STEP_SUMMARY
 
       - name: Podsumowanie
         run: |
-          echo "### Strona zaktualizowana" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Commit: \`${GITHUB_SHA::7}\`" >> $GITHUB_STEP_SUMMARY
-          echo "Arkusz stylów: \`assets-redesign.css?v=${GITHUB_SHA::7}\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Sprawdź: https://33bots.pl" >> $GITHUB_STEP_SUMMARY
+          {
+            echo ""
+            echo "Commit: \`${GITHUB_SHA::7}\` · Arkusz: \`assets-redesign.css?v=${GITHUB_SHA::7}\`"
+            echo ""
+            echo "Sprawdź: https://33bots.pl"
+          } >> $GITHUB_STEP_SUMMARY
