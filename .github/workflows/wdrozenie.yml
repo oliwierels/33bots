@@ -1,13 +1,19 @@
 name: Wdrożenie na cyber_Folks
 
 # Uruchamia się po każdej zmianie na gałęzi produkcyjnej.
-# Można też odpalić ręcznie: zakładka Actions → Wdrożenie na cyber_Folks → Run workflow.
+# Można też odpalić ręcznie: Actions → Wdrożenie na cyber_Folks → Run workflow.
+#
+# Kierunek wdrożenia jest odwrotny niż przy FTP: to serwer sięga po zmiany.
+# GitHub jedynie puka do punktu wdrożeniowego, a resztę robi deploy.php
+# po stronie hostingu. Dzięki temu nie potrzeba połączenia FTP z zewnątrz,
+# które hosting blokuje dla adresów spoza Polski.
 on:
   push:
     branches: [claude/33bots-website-T0REs]
     paths-ignore:
       - '**.md'
       - '.gitignore'
+      - 'narzedzia-serwer/**'
   workflow_dispatch:
 
 concurrency:
@@ -16,41 +22,19 @@ concurrency:
 
 jobs:
   wdroz:
-    name: Zbuduj i wyślij na serwer
+    name: Sprawdź i wdroż
     runs-on: ubuntu-latest
 
     steps:
       - name: Pobierz repozytorium
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0        # pełna historia — potrzebna do odtworzenia dat plików
 
-      - name: Przygotuj Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Zbuduj arkusz stylów Tailwind
-        run: |
-          npx --yes tailwindcss@3.4.17 \
-            -c tailwind.config.js \
-            -i tw-input.css \
-            -o assets-redesign.css \
-            --minify
-          echo "Rozmiar arkusza: $(du -h assets-redesign.css | cut -f1)"
-
-      # Numer wersji arkusza = skrót commita. Dzięki temu przeglądarka
-      # nigdy nie poda starego CSS-a z pamięci podręcznej.
-      - name: Podbij wersję arkusza w index.html
-        run: |
-          WERSJA="${GITHUB_SHA::7}"
-          sed -i -E "s|href=\"assets-redesign\.css(\?v=[^\"]*)?\"|href=\"assets-redesign.css?v=${WERSJA}\"|g" index.html
-          grep -o 'href="assets-redesign\.css[^"]*"' index.html
-
-      - name: Sprawdź poprawność HTML i danych strukturalnych
+      # Bramka bezpieczeństwa. Gdy cokolwiek tu nie zagra, serwer nie dostanie
+      # sygnału i strona zostaje w poprzedniej, działającej wersji.
+      - name: Sprawdź stronę przed wdrożeniem
         run: |
           python3 - <<'PY'
-          import json, re, sys
+          import hashlib, json, re, sys
           from html.parser import HTMLParser
 
           zrodlo = open('index.html', encoding='utf-8').read()
@@ -76,116 +60,75 @@ jobs:
                       bledy.append(f'zbłąkany </{tag}>')
 
           k = Kontrola(); k.feed(zrodlo)
-          if k.stos: bledy.append(f'niezamknięte na końcu: {k.stos}')
+          if k.stos: bledy.append(f'niezamknięte znaczniki: {k.stos}')
 
           for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
               try: json.loads(m.group(1))
               except Exception as e: bledy.append(f'błędny JSON-LD: {e}')
 
-          for konieczny in ('GTM-MR7R7CJ3', 'assets-redesign.css', 'formspree.io'):
+          for konieczny in ('GTM-MR7R7CJ3', 'formspree.io', 'assets-redesign.css'):
               if konieczny not in zrodlo:
                   bledy.append(f'brak w index.html: {konieczny}')
 
+          # Czy arkusz oznaczony w index.html odpowiada temu, który leży w repozytorium.
+          # Wyłapuje sytuację, w której ktoś zmienił stronę i zapomniał uruchomić ./buduj.sh
+          znacznik = re.search(r'assets-redesign\.css\?v=([0-9a-f]{8})', zrodlo)
+          if not znacznik:
+              bledy.append('arkusz stylów bez numeru wersji — uruchom ./buduj.sh')
+          else:
+              suma = hashlib.md5(open('assets-redesign.css','rb').read()).hexdigest()[:8]
+              if suma != znacznik.group(1):
+                  bledy.append(
+                      f'arkusz nie zgadza się ze stroną (w index.html: {znacznik.group(1)}, '
+                      f'faktyczny: {suma}) — uruchom ./buduj.sh i zatwierdź zmiany')
+
           if bledy:
-              print('WDROŻENIE WSTRZYMANE:'); [print(' -', b) for b in bledy]; sys.exit(1)
-          print('index.html poprawny — struktura, dane strukturalne i analityka na miejscu.')
+              print('WDROŻENIE WSTRZYMANE — strona zostaje w poprzedniej wersji:')
+              for b in bledy: print('  -', b)
+              sys.exit(1)
+
+          print('Strona sprawdzona: struktura, dane strukturalne, analityka i arkusz w porządku.')
           PY
 
-      # Git nie przechowuje dat modyfikacji, a po pobraniu repozytorium wszystkie
-      # pliki mają datę "teraz". Bez tego kroku wysyłka uznawałaby każdy plik za
-      # nowszy od tego na serwerze i wgrywała za każdym razem całą stronę.
-      - name: Odtwórz daty modyfikacji plików z historii
-        run: |
-          git ls-files -z | while IFS= read -r -d '' plik; do
-            data=$(git log -1 --format=%cI -- "$plik")
-            [ -n "$data" ] && touch -d "$data" "$plik" 2>/dev/null || true
-          done
-          echo "Daty odtworzone dla $(git ls-files | wc -l) plików."
-
-      - name: Zbierz pliki przeznaczone na serwer
-        run: |
-          mkdir -p _wysylka
-          rsync -a --exclude-from=.deployignore --exclude='_wysylka/' ./ _wysylka/
-          LICZBA=$(find _wysylka -type f | wc -l)
-          ROZMIAR=$(du -sh _wysylka | cut -f1)
-          echo "Do wysyłki: ${LICZBA} plików, ${ROZMIAR}"
-          {
-            echo "### Wdrożenie"
-            echo ""
-            echo "Plików: **${LICZBA}** · Rozmiar: **${ROZMIAR}**"
-          } >> $GITHUB_STEP_SUMMARY
-
-      - name: Zainstaluj lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-
-      # Certyfikat serwerów cyber_Folks wystawiony jest na *.cyber-folks.pl.
-      # Gdy w sekrecie jest inna nazwa hosta (np. w domenie cfolks.pl albo
-      # własna domena klienta), pełna weryfikacja tożsamości nie przejdzie.
-      # Dlatego najpierw próbujemy z weryfikacją, a gdy zawiedzie — ponawiamy
-      # bez sprawdzania nazwy. Połączenie pozostaje szyfrowane w obu wypadkach.
-      - name: Wyślij pliki na serwer
+      - name: Poproś serwer o pobranie zmian
         env:
-          HOST: ${{ secrets.FTP_SERVER }}
-          LOGIN: ${{ secrets.FTP_USERNAME }}
-          HASLO: ${{ secrets.FTP_PASSWORD }}
-          KATALOG: ${{ secrets.FTP_DIR }}
-          PORT: ${{ vars.FTP_PORT || 21 }}
+          ADRES: ${{ secrets.DEPLOY_URL }}
+          TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
-          set -uo pipefail
-
-          zbuduj_polecenia() {
-            cat <<EOF
-          debug $2
-          set ssl:verify-certificate $1
-          set ssl:check-hostname $1
-          set ftp:ssl-force true
-          set ftp:ssl-protect-data true
-          set ftp:ssl-protect-list true
-          set ftp:passive-mode true
-          set ftp:prefer-epsv false
-          set net:timeout 20
-          set net:max-retries 2
-          set net:reconnect-interval-base 4
-          set xfer:clobber on
-          set mirror:parallel-transfer-count 1
-          open -u "${LOGIN}","${HASLO}" "ftp://${HOST}:${PORT}"
-          mirror --reverse --only-newer --no-perms --verbose _wysylka/ "${KATALOG}"
-          bye
-          EOF
-          }
-
-          echo "── Próba 1: FTPS z pełną weryfikacją certyfikatu ──"
-          zbuduj_polecenia yes 0 > /tmp/lftp-1.txt
-          if lftp -f /tmp/lftp-1.txt; then
-            echo "WYSŁANO. Połączenie szyfrowane, certyfikat zweryfikowany."
-            echo "Połączenie: szyfrowane, certyfikat zweryfikowany" >> $GITHUB_STEP_SUMMARY
-            exit 0
+          if [ -z "${ADRES:-}" ] || [ -z "${TOKEN:-}" ]; then
+            echo "Brak sekretu DEPLOY_URL lub DEPLOY_TOKEN — przerywam."
+            exit 1
           fi
 
+          KOD=$(curl -sS --max-time 600 --retry 2 --retry-delay 5 \
+                     -o /tmp/odpowiedz.txt -w '%{http_code}' \
+                     --data-urlencode "token=${TOKEN}" "${ADRES}") || true
+
+          echo "── Odpowiedź serwera (HTTP ${KOD}) ──"
+          cat /tmp/odpowiedz.txt
           echo ""
-          echo "── Nazwa w certyfikacie nie zgadza się z adresem serwera ──"
-          echo "── Próba 2: FTPS bez sprawdzania nazwy (dane nadal szyfrowane) ──"
-          zbuduj_polecenia no 0 > /tmp/lftp-2.txt
-          if lftp -f /tmp/lftp-2.txt; then
-            echo "WYSŁANO. Połączenie szyfrowane, nazwa w certyfikacie niesprawdzana."
-            echo "Połączenie: szyfrowane (bez weryfikacji nazwy)" >> $GITHUB_STEP_SUMMARY
-            exit 0
+
+          if [ "${KOD}" != "200" ]; then
+            echo "Wdrożenie nie powiodło się."
+            exit 1
+          fi
+          if ! grep -q 'WDROŻENIE ZAKOŃCZONE' /tmp/odpowiedz.txt; then
+            echo "Serwer odpowiedział, ale nie potwierdził wdrożenia."
+            exit 1
           fi
 
-          echo ""
-          echo "── Obie próby zawiodły. Powtarzam z zapisem dialogu z serwerem ──"
-          echo "── (hasło i adres są maskowane przez GitHub) ──"
-          zbuduj_polecenia no 3 > /tmp/lftp-3.txt
-          lftp -f /tmp/lftp-3.txt || true
-          echo ""
-          echo "Powyżej znajduje się pełna rozmowa z serwerem — wskazuje przyczynę."
-          exit 1
-
-      - name: Podsumowanie
-        run: |
           {
+            echo "### Strona zaktualizowana"
             echo ""
-            echo "Commit: \`${GITHUB_SHA::7}\` · Arkusz: \`assets-redesign.css?v=${GITHUB_SHA::7}\`"
+            echo '```'
+            grep -E 'Zaktualizowane|Bez zmian|Pominięte|Czas' /tmp/odpowiedz.txt || true
+            echo '```'
             echo ""
-            echo "Sprawdź: https://33bots.pl"
+            echo "Commit: \`${GITHUB_SHA::7}\` · https://33bots.pl"
           } >> $GITHUB_STEP_SUMMARY
+
+      - name: Sprawdź, czy strona odpowiada
+        run: |
+          KOD=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://33bots.pl/ || echo 000)
+          echo "https://33bots.pl → HTTP ${KOD}"
+          [ "${KOD}" = "200" ] || echo "UWAGA: strona nie zwróciła kodu 200 — sprawdź ręcznie."

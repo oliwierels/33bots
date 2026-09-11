@@ -30,3 +30,7 @@ szablon-case-study.html
 
 # konfiguracja innego hostingu (Apache czyta .htaccess, nie ten plik)
 _redirects
+
+# narzędzia serwerowe i skrypt budowania
+narzedzia-serwer/
+buduj.sh

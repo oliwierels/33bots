@@ -1,134 +1,132 @@
 # Automatyczne wdrożenie na cyber_Folks
 
-Po skonfigurowaniu każda zmiana zatwierdzona na gałęzi produkcyjnej
-(`claude/33bots-website-T0REs`) trafia na `33bots.pl` w ciągu ok. minuty.
-Bez wgrywania plików ręcznie, bez ZIP-ów.
+Po skonfigurowaniu każda zmiana zatwierdzona na gałęzi `claude/33bots-website-T0REs`
+trafia na `33bots.pl` w kilkanaście sekund.
 
----
+## Jak to działa
+
+```
+zmiana w repozytorium  →  GitHub sprawdza stronę  →  puka do serwera
+                                                          ↓
+                                   serwer sam pobiera paczkę z GitHuba po HTTPS
+```
+
+**Kierunek jest odwrotny niż przy FTP — to serwer sięga po zmiany.** Wybraliśmy
+tę drogę, bo hosting blokuje połączenia FTP z adresów serwerowni GitHuba
+(połączenie po prostu wygasa, co potwierdziły testy). Pobieranie po HTTPS
+z serwera na zewnątrz działa bez przeszkód i jest przy okazji bezpieczniejsze:
+hasło FTP nie opuszcza hostingu.
 
 ## Konfiguracja — jednorazowo, ok. 10 minut
 
-### Krok 1. Załóż konto FTP tylko do wdrożeń
+### Krok 1. Wgraj punkt wdrożeniowy na serwer
 
-W panelu cyber_Folks: **Konta FTP → Utwórz konto FTP**.
+Plik `deploy.php` (wysłany osobno, z wpisanym już tokenem) wgraj przez
+Managera plików do **`domains/33bots.pl/public_html`**.
 
-Zalecam osobne konto, a nie główne konto hostingu — jeśli hasło kiedykolwiek
-wycieknie, dostęp ograniczy się do katalogu strony, a nie całego serwera.
+### Krok 2. Sprawdź, czy serwer jest gotowy
 
-Ustaw katalog domowy na `public_html` domeny 33bots.pl. Zapisz login i hasło,
-bo za chwilę będą potrzebne.
+Otwórz w przeglądarce, podstawiając swój token:
 
-### Krok 2. Sprawdź adres serwera FTP
+```
+https://33bots.pl/deploy.php?token=TWOJ_TOKEN&test=1
+```
 
-W panelu, w sekcji konta FTP, znajdziesz nazwę hosta — zwykle `ftp.33bots.pl`
-albo adres serwera typu `ttxywfrxaf.cfolks.pl`. Zapisz go.
+Powinieneś zobaczyć listę potwierdzeń — wersję PHP, dostępność ZipArchive
+i cURL oraz możliwość zapisu do katalogu. Gdyby czegoś brakowało, napisz —
+dobierzemy inne rozwiązanie.
 
-### Krok 3. Dodaj dane dostępowe do GitHuba
+Bez tokenu albo z błędnym tokenem skrypt zwraca `Brak dostępu` i nic nie robi.
 
-Wejdź na `github.com/oliwierels/33bots` → **Settings** → **Secrets and variables**
-→ **Actions** → przycisk **New repository secret**.
+### Krok 3. Dodaj dwa sekrety na GitHubie
 
-Dodaj cztery sekrety (nazwy muszą się zgadzać co do znaku):
+`github.com/oliwierels/33bots` → **Settings** → **Secrets and variables**
+→ **Actions** → **New repository secret**
 
 | Nazwa | Wartość |
 |---|---|
-| `FTP_SERVER` | `ttxywfrxaf.cyber-folks.pl` — patrz uwaga niżej |
-| `FTP_USERNAME` | login konta FTP z kroku 1 |
-| `FTP_PASSWORD` | hasło konta FTP z kroku 1 |
-| `FTP_DIR` | patrz niżej — zależy od ścieżki konta |
+| `DEPLOY_URL` | `https://33bots.pl/deploy.php` |
+| `DEPLOY_TOKEN` | token wpisany w `deploy.php` |
 
-**Uwaga o adresie serwera.** Certyfikat TLS serwera wystawiony jest na
-`*.cyber-folks.pl` — z myślnikiem. Panel pokazuje serwer jako
-`ttxywfrxaf.cfolks.pl`, bez myślnika, i pod tym adresem szyfrowane
-połączenie zostanie odrzucone (niezgodność nazwy w certyfikacie).
-Dlatego w sekrecie ma być `ttxywfrxaf.cyber-folks.pl`.
+Wcześniejsze sekrety FTP (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_DIR`)
+nie są już potrzebne — możesz je usunąć.
 
-Gdyby ta nazwa nie działała, można zejść do nieszyfrowanego FTP: dodaj
-zmienną repozytorium (zakładka **Variables**, nie Secrets) o nazwie
-`FTP_PROTOCOL` i wartości `ftp`. To ostateczność — hasło leci wtedy
-otwartym tekstem.
+### Krok 4. Uruchom
 
-**Jak ustalić `FTP_DIR`:** w panelu, w tabeli kont FTP, sprawdź kolumnę
-„Ścieżka na serwerze". Po zalogowaniu przez FTP ta ścieżka jest widziana
-jako katalog główny, więc do `FTP_DIR` wpisujesz to, co zostaje **po niej**:
+**Actions** → **Wdrożenie na cyber_Folks** → **Run workflow**.
 
-| Ścieżka konta w panelu | Wartość `FTP_DIR` |
-|---|---|
-| `/domains/33bots.pl/` | `/public_html/` |
-| `/domains/33bots.pl/public_html/` | `/` |
-| `/` (konto administratora) | `/domains/33bots.pl/public_html/` |
-
-Gdyby pierwsze wdrożenie zwróciło błąd `550`, ścieżka jest nietrafiona —
-wystarczy poprawić ten jeden sekret i uruchomić wdrożenie ponownie.
-
-Sekrety są szyfrowane. Nikt — łącznie ze mną — ich nie zobaczy, nie pojawiają
-się też w logach wdrożenia.
-
-### Krok 4. Pierwsze uruchomienie
-
-Zakładka **Actions** → **Wdrożenie na cyber_Folks** → **Run workflow**.
-
-Pierwsze wdrożenie trwa dłużej, bo wysyła komplet plików. Kolejne wysyłają
-już tylko to, co się zmieniło — zwykle kilka sekund.
-
-**Przed pierwszym uruchomieniem zrób kopię `public_html`** (Manager plików →
-zaznacz wszystko → Kompresuj). Standardowa ostrożność przy pierwszym
-automatycznym wdrożeniu.
+Przed pierwszym uruchomieniem warto zrobić kopię `public_html`
+(Manager plików → zaznacz wszystko → Kompresuj).
 
 ---
 
-## Jak to działa na co dzień
+## Praca na co dzień
 
+Po zmianie w `index.html` uruchom przed zatwierdzeniem:
+
+```bash
+./buduj.sh
 ```
-zmiana w repozytorium  →  GitHub Actions  →  33bots.pl
-```
 
-Przy każdym wdrożeniu dzieje się po kolei:
+Skrypt kompiluje arkusz Tailwinda i oznacza go w `index.html` sumą kontrolną
+jego treści. Numer wersji zmienia się dokładnie wtedy, gdy zmienia się wygląd —
+dzięki temu przeglądarka nigdy nie poda starego arkusza z pamięci podręcznej.
+To właśnie ten mechanizm zapobiega sytuacji, w której nowa strona ładuje się
+ze starymi stylami i rozjeżdża.
 
-1. **Budowanie stylów** — Tailwind kompiluje `assets-redesign.css` z aktualnego
-   `index.html`. Arkusz nie może się już rozjechać z treścią strony.
-2. **Wersjonowanie** — link do arkusza dostaje numer wersji równy skrótowi
-   commita (`assets-redesign.css?v=9e60d04`). To rozwiązuje problem, przez który
-   przeglądarka podawała starego CSS-a z pamięci podręcznej i ikony puchły na
-   całą kartę.
-3. **Kontrola przed wysyłką** — sprawdzane jest, czy HTML ma domknięte znaczniki,
-   czy wszystkie bloki danych strukturalnych są poprawnym JSON-em i czy w pliku
-   nie zniknął Google Tag Manager, arkusz stylów ani formularz kontaktowy.
-   **Gdy któryś warunek nie jest spełniony, wdrożenie się zatrzymuje** i na
-   serwer nie trafia nic.
-4. **Wysyłka** — przez FTPS (połączenie szyfrowane), tylko zmienione pliki.
+Zatwierdzenie zmian na gałęzi produkcyjnej uruchamia wdrożenie samo.
 
-### Co nie trafia na serwer
+## Bramka bezpieczeństwa
 
-Narzędzia deweloperskie zostają w repozytorium: skrypty `.py`, `tailwind.config.js`,
-`tw-input.css`, katalog `og/`, surowe zdjęcia z aparatu, pliki `.md` i katalog `.git`.
+Zanim GitHub poprosi serwer o cokolwiek, sprawdza `index.html`:
 
-### Czego wdrożenie nie kasuje
+- czy znaczniki HTML są domknięte,
+- czy wszystkie bloki danych strukturalnych to poprawny JSON,
+- czy nie zniknął Google Tag Manager, arkusz stylów ani formularz kontaktowy,
+- czy arkusz oznaczony w `index.html` odpowiada temu w repozytorium
+  (wyłapuje pominięte `./buduj.sh`).
 
-Pliki wgrane przez Ciebie ręcznie, których nie ma w repozytorium, zostają
-nietknięte. Wdrożenie usuwa tylko to, co samo wcześniej wysłało, a co zniknęło
-z repozytorium.
+**Gdy którykolwiek warunek nie jest spełniony, wdrożenie się zatrzymuje**
+i strona zostaje w poprzedniej, działającej wersji.
 
----
+## Co nie trafia na serwer
 
-## Uruchomienie ręczne
+Skrypty `.py`, konfiguracja Tailwinda, `buduj.sh`, katalog `og/`, surowe
+zdjęcia z aparatu, pliki `.md`, katalog `.git` i sam `deploy.php`.
+Listę wykluczeń trzyma `.deployignore` oraz stałe na górze `deploy.php`.
 
-Zakładka **Actions** → **Wdrożenie na cyber_Folks** → **Run workflow**.
-Przydaje się, gdy chcesz wypchnąć stan repozytorium bez wprowadzania zmian.
+## Czego wdrożenie nie kasuje
+
+Pliki wgrane ręcznie, których nie ma w repozytorium, zostają nietknięte.
+Skrypt nadpisuje tylko to, co przychodzi z GitHuba, i pomija pliki o identycznej
+treści — dzięki temu typowe wdrożenie dotyka kilku plików, a nie całej strony.
 
 ## Gdy coś pójdzie nie tak
 
-Wejdź w **Actions** i otwórz nieudane uruchomienie — czerwony krok pokazuje
-przyczynę. Najczęstsze przypadki:
+Otwórz nieudane uruchomienie w zakładce **Actions** — odpowiedź serwera jest
+wypisana w całości.
 
-- **`530 Login incorrect`** — zły login lub hasło w sekretach.
-- **`550` przy wysyłce** — zła wartość `FTP_DIR`. Sprawdź, czy konto FTP jest
-  zamknięte w `public_html` (wtedy `/`), czy widzi cały serwer
-  (wtedy pełna ścieżka do katalogu domeny).
-- **Zatrzymanie na kroku kontroli** — w `index.html` jest błąd. Log wypisuje
-  dokładnie który. Na serwer nic nie poszło, strona działa dalej po staremu.
+| Objaw | Przyczyna |
+|---|---|
+| `Brak dostępu` | Token w `deploy.php` różni się od sekretu `DEPLOY_TOKEN` |
+| `Skrypt nie został skonfigurowany` | W `deploy.php` został placeholder zamiast tokenu |
+| `Brak rozszerzenia ZipArchive` | Hosting nie ma tego rozszerzenia — napisz, zmienimy metodę |
+| `Pobieranie nie powiodło się` | Serwer nie dosięgnął GitHuba — sprawdź, czy hosting nie blokuje ruchu wychodzącego |
+| Zatrzymanie na bramce | Błąd w `index.html`; log podaje który. Na serwer nic nie poszło |
 
 ## Wycofanie zmiany
 
-W repozytorium cofnij commit (`git revert`) i zatwierdź. Wdrożenie uruchomi się
-samo i przywróci poprzedni stan strony.
+Cofnij commit (`git revert`) i zatwierdź — wdrożenie uruchomi się samo
+i przywróci poprzedni stan strony.
+
+## Bezpieczeństwo
+
+`deploy.php` to punkt, który potrafi nadpisać pliki strony, więc:
+
+- token ma 43 znaki i jest losowy — nie da się go zgadnąć,
+- bez poprawnego tokenu skrypt kończy działanie na pierwszej instrukcji,
+- pobiera wyłącznie z jednego, wpisanego na stałe repozytorium i gałęzi,
+- gdybyś kiedyś zrezygnował z automatu, po prostu usuń plik z serwera.
+
+Gdy zmienisz token, zmień go w obu miejscach naraz: w `deploy.php` na serwerze
+i w sekrecie `DEPLOY_TOKEN` na GitHubie.
