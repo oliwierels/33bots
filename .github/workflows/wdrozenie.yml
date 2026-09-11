@@ -135,23 +135,28 @@ jobs:
 
           zbuduj_polecenia() {
             cat <<EOF
+          debug $2
           set ssl:verify-certificate $1
+          set ssl:check-hostname $1
           set ftp:ssl-force true
           set ftp:ssl-protect-data true
+          set ftp:ssl-protect-list true
           set ftp:passive-mode true
-          set net:timeout 25
-          set net:max-retries 3
-          set net:reconnect-interval-base 5
+          set ftp:prefer-epsv false
+          set net:timeout 20
+          set net:max-retries 2
+          set net:reconnect-interval-base 4
           set xfer:clobber on
+          set mirror:parallel-transfer-count 1
           open -u "${LOGIN}","${HASLO}" "ftp://${HOST}:${PORT}"
-          mirror --reverse --only-newer --no-perms --parallel=3 --verbose _wysylka/ "${KATALOG}"
+          mirror --reverse --only-newer --no-perms --verbose _wysylka/ "${KATALOG}"
           bye
           EOF
           }
 
           echo "── Próba 1: FTPS z pełną weryfikacją certyfikatu ──"
-          zbuduj_polecenia yes > /tmp/lftp-weryfikacja.txt
-          if lftp -f /tmp/lftp-weryfikacja.txt; then
+          zbuduj_polecenia yes 0 > /tmp/lftp-1.txt
+          if lftp -f /tmp/lftp-1.txt; then
             echo "WYSŁANO. Połączenie szyfrowane, certyfikat zweryfikowany."
             echo "Połączenie: szyfrowane, certyfikat zweryfikowany" >> $GITHUB_STEP_SUMMARY
             exit 0
@@ -160,10 +165,21 @@ jobs:
           echo ""
           echo "── Nazwa w certyfikacie nie zgadza się z adresem serwera ──"
           echo "── Próba 2: FTPS bez sprawdzania nazwy (dane nadal szyfrowane) ──"
-          zbuduj_polecenia no > /tmp/lftp-bez-weryfikacji.txt
-          lftp -f /tmp/lftp-bez-weryfikacji.txt
-          echo "WYSŁANO. Połączenie szyfrowane, nazwa w certyfikacie niesprawdzana."
-          echo "Połączenie: szyfrowane (bez weryfikacji nazwy w certyfikacie)" >> $GITHUB_STEP_SUMMARY
+          zbuduj_polecenia no 0 > /tmp/lftp-2.txt
+          if lftp -f /tmp/lftp-2.txt; then
+            echo "WYSŁANO. Połączenie szyfrowane, nazwa w certyfikacie niesprawdzana."
+            echo "Połączenie: szyfrowane (bez weryfikacji nazwy)" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          echo ""
+          echo "── Obie próby zawiodły. Powtarzam z zapisem dialogu z serwerem ──"
+          echo "── (hasło i adres są maskowane przez GitHub) ──"
+          zbuduj_polecenia no 3 > /tmp/lftp-3.txt
+          lftp -f /tmp/lftp-3.txt || true
+          echo ""
+          echo "Powyżej znajduje się pełna rozmowa z serwerem — wskazuje przyczynę."
+          exit 1
 
       - name: Podsumowanie
         run: |
