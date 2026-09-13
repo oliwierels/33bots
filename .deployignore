@@ -1,0 +1,31 @@
+# Czego nie wysyłamy na serwer. Wdrożenie robi narzedzia-serwer/deploy.php
+# (ta sama lista jest tam w stałych POMIJANE_*) — ten plik jest jej zapisem
+# do wglądu i dla ewentualnego rsync.
+
+.git/
+.github/
+.gitignore
+.deployignore
+node_modules/
+__pycache__/
+
+# generator stron (nie jest potrzebny przeglądarce)
+build/
+*.py
+
+# dokumentacja projektu
+*.md
+
+# konfiguracja budowania Tailwinda dla strony głównej
+tailwind.config.js
+tw-input.css
+package.json
+package-lock.json
+
+# konfiguracja innego hostingu (Apache czyta .htaccess, nie ten plik)
+_redirects
+
+# skrypt wdrożeniowy po stronie serwera — wgrywany ręcznie, raz
+narzedzia-serwer/
+
+# UWAGA: katalog og/ wysyłamy — każda strona wskazuje w nim swoją kartę Open Graph.

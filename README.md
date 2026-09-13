@@ -116,9 +116,11 @@ Tulln, Bad Ischl, Zell am See, Kitzbühel, Velden am Wörthersee.
 
 ### Deployment
 
-Alles im Wurzelverzeichnis **außer `build/`** wird ausgeliefert. Bei Netlify
-genügt es, den Branch zu verbinden — `_redirects` erzwingt die Weiterleitung
-von `www` und `http` auf `https://33bots.at`. Ein Build-Command wird nicht
+Alles im Wurzelverzeichnis **außer `build/`** wird ausgeliefert. Auf
+cyber_Folks läuft das automatisch (siehe unten, *Automatisches Deployment*);
+`.htaccess` erzwingt dort die Weiterleitung von `www` und `http` auf
+`https://33bots.at`. Alternativ genügt bei Netlify das Verbinden des Branches —
+dann greift `_redirects`. Ein Build-Command wird in beiden Fällen nicht
 benötigt, die Seite ist statisch.
 
 Vor dem Livegang zu prüfen:
@@ -142,6 +144,45 @@ Vor dem Livegang zu prüfen:
 GTM_ID = "GTM-XXXXXXX"
 COMPANY["gtm_services"] = "Google Analytics 4"   # tatsächlich ausgespielte Dienste
 ```
+
+## Automatisches Deployment (cyber_Folks)
+
+Wie bei der polnischen und der litauischen Seite zieht **der Server die
+Änderungen selbst** — es gibt keine FTP-Verbindung von außen. Jeder Push auf
+`claude/at-site` startet `.github/workflows/wdrozenie.yml`:
+
+1. **Prüfung** (Bremse): HTML-Struktur, JSON-LD, `lang="de-AT"`, kanonische
+   Adresse `33bots.at`, keine Verweise auf 33bots.de/.pl/.lt, keine offenen
+   Platzhalter im Impressum, existierende Dateien hinter allen Verweisen,
+   Sitemap ohne tote Einträge, IndexNow-Key vorhanden.
+2. **Abgleich mit dem Generator**: `generate_site.py` läuft erneut; weicht das
+   Repository vom Ergebnis ab (jemand hat HTML von Hand geändert), bricht das
+   Deployment ab.
+3. **Signal an den Server**: GitHub ruft `deploy.php` auf der Domain auf; das
+   Skript lädt den Branch als ZIP von GitHub und schreibt ihn ins Webroot.
+4. **Kontrolle**: Abruf von `https://33bots.at/` (nur Warnung, solange die
+   Domain noch nicht verbunden ist).
+
+Scheitert Schritt 1 oder 2, bekommt der Server kein Signal und die Seite bleibt
+in der vorherigen, funktionierenden Version.
+
+### Einrichtung (einmalig)
+
+1. `narzedzia-serwer/deploy.php` öffnen, in der Konstante `TOKEN` ein eigenes
+   Geheimnis eintragen (mindestens 16 Zeichen, z. B. `openssl rand -hex 24`).
+2. Die Datei in `public_html` der Domain 33bots.at hochladen und testen:
+   `https://33bots.at/deploy.php?token=DEIN_TOKEN&test=1`
+3. In GitHub → Settings → Secrets and variables → Actions zwei Secrets anlegen:
+   - `DEPLOY_URL_AT` = `https://33bots.at/deploy.php`
+   - `DEPLOY_TOKEN_AT` = derselbe Token wie in `deploy.php`
+   (Eigene Secrets je Markt — die polnischen `DEPLOY_URL`/`DEPLOY_TOKEN` zeigen
+   auf 33bots.pl und dürfen hier nicht verwendet werden.)
+4. Erster Lauf: Actions → *Wdrożenie na cyber_Folks (33bots.at)* → Run workflow.
+
+`deploy.php` selbst, `build/`, `.github/`, `*.py`, `*.md`, die Tailwind-Konfiguration
+und `_redirects` (Netlify) werden **nicht** ausgeliefert — die Liste steht in
+`.deployignore` und in den Konstanten `POMIJANE_*` in `deploy.php`. Der Ordner
+`og/` wird ausgeliefert: Jede Seite verweist dort auf ihre Open-Graph-Karte.
 
 ## Nach dem Deployment
 

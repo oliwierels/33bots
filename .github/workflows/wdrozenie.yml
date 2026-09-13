@@ -1,0 +1,204 @@
+name: Wdrożenie na cyber_Folks (33bots.at)
+
+# Uruchamia się po każdej zmianie na gałęzi austriackiej.
+# Można też odpalić ręcznie: Actions → Wdrożenie na cyber_Folks (33bots.at) → Run workflow.
+#
+# Kierunek wdrożenia jest odwrotny niż przy FTP: to serwer sięga po zmiany.
+# GitHub jedynie puka do punktu wdrożeniowego, a resztę robi deploy.php
+# po stronie hostingu. Dzięki temu nie potrzeba połączenia FTP z zewnątrz,
+# które hosting blokuje dla adresów spoza Polski.
+on:
+  push:
+    branches: [claude/at-site]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'narzedzia-serwer/**'
+  workflow_dispatch:
+
+concurrency:
+  group: wdrozenie-at
+  cancel-in-progress: false
+
+jobs:
+  wdroz:
+    name: Sprawdź i wdroż
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      - name: Ustaw Pythona
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Bramka bezpieczeństwa. Gdy cokolwiek tu nie zagra, serwer nie dostanie
+      # sygnału i strona zostaje w poprzedniej, działającej wersji.
+      - name: Sprawdź stronę przed wdrożeniem
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys
+          from html.parser import HTMLParser
+
+          DOMENA = 'https://33bots.at'
+          OBCE_DOMENY = ('33bots.de', '33bots.pl', '33bots.lt')
+          STRONY = sorted(p for p in os.listdir('.') if p.endswith('.html'))
+          bledy = []
+
+          PUSTE = {'meta','link','img','br','input','source','hr','iframe',
+                   'path','circle','rect','polyline','line','polygon','source-marker'}
+
+          class Kontrola(HTMLParser):
+              def __init__(self, plik):
+                  super().__init__(); self.stos = []; self.plik = plik
+              def handle_starttag(self, tag, attrs):
+                  if tag in ('svg', 'iframe'): return
+                  if tag not in PUSTE: self.stos.append(tag)
+              def handle_endtag(self, tag):
+                  if tag in PUSTE or tag == 'svg': return
+                  if self.stos and self.stos[-1] == tag: self.stos.pop()
+                  elif tag in self.stos:
+                      while self.stos and self.stos[-1] != tag:
+                          bledy.append(f'{self.plik}: niezamknięty <{self.stos.pop()}>')
+                      self.stos.pop()
+                  else:
+                      bledy.append(f'{self.plik}: zbłąkany </{tag}>')
+
+          if 'index.html' not in STRONY:
+              bledy.append('brak index.html')
+
+          for plik in STRONY:
+              zrodlo = open(plik, encoding='utf-8').read()
+
+              k = Kontrola(plik); k.feed(zrodlo)
+              if k.stos: bledy.append(f'{plik}: niezamknięte znaczniki: {k.stos}')
+
+              for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
+                  try: json.loads(m.group(1))
+                  except Exception as e: bledy.append(f'{plik}: błędny JSON-LD: {e}')
+
+              # Serwis austriacki nie może wskazywać na inne rynki.
+              for obca in OBCE_DOMENY:
+                  if obca in zrodlo:
+                      bledy.append(f'{plik}: odwołanie do obcej domeny {obca}')
+              # 404 jest stroną techniczną (noindex) — nie ma adresu kanonicznego.
+              if DOMENA not in zrodlo and plik != '404.html':
+                  bledy.append(f'{plik}: brak kanonicznego adresu {DOMENA}')
+              if 'lang="de-AT"' not in zrodlo:
+                  bledy.append(f'{plik}: brak lang="de-AT"')
+
+              # Niedokończone dane rejestrowe w Impressum/Datenschutz są w Austrii
+              # zagrożone karą administracyjną — nie wypuszczamy takiej wersji.
+              if 'BITTE AUSFÜLLEN' in zrodlo:
+                  bledy.append(f'{plik}: nieuzupełnione dane rejestrowe (marker BITTE AUSFÜLLEN)')
+
+              # Odwołania do plików, które musimy mieć w repozytorium.
+              for m in re.finditer(r'(?:src|href)="([^"#?:]+\.(?:webp|jpg|jpeg|png|svg|css|js|ico|html|mp4|xml|txt))', zrodlo):
+                  if not os.path.exists(m.group(1)):
+                      bledy.append(f'{plik}: odwołanie do nieistniejącego pliku {m.group(1)}')
+
+          for wymagany in ('impressum.html', 'datenschutz.html', 'barrierefreiheit.html',
+                           'robots.txt', 'sitemap.xml', 'feed.xml', 'llms.txt', '.htaccess'):
+              if not os.path.exists(wymagany):
+                  bledy.append(f'brak wymaganego pliku: {wymagany}')
+
+          if 'formspree.io/f/' not in open('main.js', encoding='utf-8').read():
+              bledy.append('main.js: brak adresu formularza Formspree')
+
+          # Sitemapa nie może wskazywać stron, których nie ma w repozytorium.
+          mapa = open('sitemap.xml', encoding='utf-8').read()
+          for adres in re.findall(r'<loc>https://33bots\.at/([^<]*)</loc>', mapa):
+              if adres and not os.path.exists(adres):
+                  bledy.append(f'sitemap.xml: wskazuje nieistniejącą stronę {adres}')
+
+          # Klucz IndexNow musi leżeć w katalogu głównym pod własną nazwą.
+          klucz = re.search(r'KEY="([0-9a-f]{32})"', open('build/scripts/indexnow-submit.sh', encoding='utf-8').read())
+          if not klucz:
+              bledy.append('build/scripts/indexnow-submit.sh: brak klucza IndexNow')
+          elif not os.path.exists(f'{klucz.group(1)}.txt'):
+              bledy.append(f'brak pliku klucza IndexNow {klucz.group(1)}.txt')
+
+          if bledy:
+              print('WDROŻENIE WSTRZYMANE — strona zostaje w poprzedniej wersji:')
+              for b in bledy: print('  -', b)
+              sys.exit(1)
+
+          print(f'Sprawdzone strony: {len(STRONY)}')
+          print('Struktura, dane strukturalne, warstwa prawna, sitemapa i odwołania w porządku.')
+          PY
+
+      # Strony (poza index.html) buduje generator. Jeśli ktoś poprawił HTML
+      # ręcznie, najbliższy przebieg generatora i tak to nadpisze — lepiej
+      # zatrzymać wdrożenie teraz.
+      - name: Sprawdź, czy strony zgadzają się z generatorem
+        run: |
+          cd build && python3 generate_site.py > /dev/null
+          cd ..
+          if ! git diff --quiet; then
+            echo "WDROŻENIE WSTRZYMANE — pliki w repozytorium różnią się od wyniku generatora:"
+            git diff --name-only
+            echo ""
+            echo "Uruchom: cd build && python3 generate_site.py && python3 make_og.py"
+            echo "a następnie zatwierdź zmiany."
+            exit 1
+          fi
+          echo "Strony zgadzają się z generatorem."
+
+      - name: Poproś serwer o pobranie zmian
+        env:
+          ADRES: ${{ secrets.DEPLOY_URL_AT }}
+          TOKEN: ${{ secrets.DEPLOY_TOKEN_AT }}
+        run: |
+          if [ -z "${ADRES:-}" ] || [ -z "${TOKEN:-}" ]; then
+            echo "Brak sekretu DEPLOY_URL_AT lub DEPLOY_TOKEN_AT — przerywam."
+            exit 1
+          fi
+
+          KOD=$(curl -sS --max-time 600 --retry 2 --retry-delay 5 \
+                     -o /tmp/odpowiedz.txt -w '%{http_code}' \
+                     --data-urlencode "token=${TOKEN}" "${ADRES}") || true
+
+          echo "── Odpowiedź serwera (HTTP ${KOD}) ──"
+          cat /tmp/odpowiedz.txt
+          echo ""
+
+          if [ "${KOD}" != "200" ]; then
+            echo "Wdrożenie nie powiodło się."
+            exit 1
+          fi
+          if ! grep -q 'WDROŻENIE ZAKOŃCZONE' /tmp/odpowiedz.txt; then
+            echo "Serwer odpowiedział, ale nie potwierdził wdrożenia."
+            exit 1
+          fi
+
+          {
+            echo "### Strona zaktualizowana"
+            echo ""
+            echo '```'
+            grep -E 'Zaktualizowane|Bez zmian|Pominięte|Czas' /tmp/odpowiedz.txt || true
+            echo '```'
+            echo ""
+            echo "Commit: \`${GITHUB_SHA::7}\` · https://33bots.at"
+          } >> $GITHUB_STEP_SUMMARY
+
+      # Potwierdzenie, że domena serwuje właśnie wdrożoną wersję. Dopóki
+      # domena nie jest podpięta, krok tylko ostrzega — nie wywraca wdrożenia.
+      - name: Potwierdź, że strona odpowiada
+        continue-on-error: true
+        run: |
+          KOD=$(curl -sS -o /tmp/strona.html -w '%{http_code}' --max-time 30 \
+                     -H 'Cache-Control: no-cache' https://33bots.at/ || echo 000)
+          echo "https://33bots.at → HTTP ${KOD}"
+
+          if [ "${KOD}" != "200" ]; then
+            echo "UWAGA: domena nie zwróciła kodu 200 — sprawdź, czy jest już podpięta."
+            exit 1
+          fi
+          if grep -q 'href="https://33bots.at/"' /tmp/strona.html; then
+            echo "POTWIERDZONE: strona serwuje wersję austriacką."
+            echo "Strona potwierdzona — https://33bots.at" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "UWAGA: strona odpowiada, ale nie rozpoznałem kanonicznego adresu — sprawdź bufor hostingu."
+          fi
