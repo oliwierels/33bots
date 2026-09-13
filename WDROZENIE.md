@@ -62,13 +62,13 @@ Przed pierwszym uruchomieniem warto zrobić kopię `public_html`
 
 ## Praca na co dzień
 
-Po zmianie w `index.html` uruchom przed zatwierdzeniem:
+Po zmianie w którejkolwiek stronie uruchom przed zatwierdzeniem:
 
 ```bash
 ./buduj.sh
 ```
 
-Skrypt kompiluje arkusz Tailwinda i oznacza go w `index.html` sumą kontrolną
+Skrypt kompiluje arkusz Tailwinda i oznacza go na każdej stronie sumą kontrolną
 jego treści. Numer wersji zmienia się dokładnie wtedy, gdy zmienia się wygląd —
 dzięki temu przeglądarka nigdy nie poda starego arkusza z pamięci podręcznej.
 To właśnie ten mechanizm zapobiega sytuacji, w której nowa strona ładuje się
@@ -76,15 +76,30 @@ ze starymi stylami i rozjeżdża.
 
 Zatwierdzenie zmian na gałęzi produkcyjnej uruchamia wdrożenie samo.
 
+### Dokładanie nowej podstrony
+
+Strony budowane Tailwindem to obecnie `index.html`, `wdrozenia.html`
+i `sklep.html`. Gdy dochodzi kolejna:
+
+1. Dopisz ją do `content` w `tailwind.config.js`. **Bez tego jej klasy nie trafią
+   do arkusza i strona wyświetli się bez stylów.** Bramka wdrożeniowa to wyłapie
+   i zatrzyma wdrożenie, ale lepiej pamiętać od razu.
+2. Uruchom `./buduj.sh` — resztę, czyli oznaczenie wersji arkusza, robi sam.
+3. Dopisz adres do `sitemap.xml`.
+
 ## Bramka bezpieczeństwa
 
-Zanim GitHub poprosi serwer o cokolwiek, sprawdza `index.html`:
+Zanim GitHub poprosi serwer o cokolwiek, sprawdza **każdą stronę budowaną
+Tailwindem**:
 
 - czy znaczniki HTML są domknięte,
 - czy wszystkie bloki danych strukturalnych to poprawny JSON,
-- czy nie zniknął Google Tag Manager, arkusz stylów ani formularz kontaktowy,
-- czy arkusz oznaczony w `index.html` odpowiada temu w repozytorium
-  (wyłapuje pominięte `./buduj.sh`).
+- czy nie zniknął Google Tag Manager ani formularz kontaktowy,
+- czy arkusz oznaczony na stronie odpowiada temu w repozytorium
+  (wyłapuje pominięte `./buduj.sh`),
+- czy strona nie odwołuje się do pliku, którego nie ma w repozytorium
+  (zdjęcia, arkusze, podstrony),
+- czy każda taka strona jest wymieniona w `tailwind.config.js`.
 
 **Gdy którykolwiek warunek nie jest spełniony, wdrożenie się zatrzymuje**
 i strona zostaje w poprzedniej, działającej wersji.

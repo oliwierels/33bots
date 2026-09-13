@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
      Przebudowa po zmianach w HTML:
      npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
-<link rel="stylesheet" href="assets-redesign.css?v=dcf03fde" />
+<link rel="stylesheet" href="assets-redesign.css?v=03e67be8" />
 
 <style>
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -304,12 +304,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-500">
   <div class="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:px-8">
     <a href="#" class="font-display text-lg font-700 tracking-tight text-white">33BOTS</a>
-    <nav class="hidden items-center gap-8 text-sm text-neutral-400 md:flex">
+    <nav class="hidden items-center gap-6 text-sm text-neutral-400 md:flex lg:gap-7">
       <a href="#realizacje" class="transition hover:text-white">Realizacje</a>
-      <a href="#mozliwosci" class="transition hover:text-white">Możliwości</a>
+      <a href="#mozliwosci" class="hidden transition hover:text-white lg:inline">Możliwości</a>
       <a href="#cennik" class="transition hover:text-white">Cennik</a>
-      <a href="#proces" class="transition hover:text-white">Proces</a>
-      <a href="oferta.html" class="transition hover:text-white">Oferta</a>
+      <a href="#proces" class="hidden transition hover:text-white lg:inline">Proces</a>
+      <a href="oferta.html" class="hidden transition hover:text-white lg:inline">Oferta</a>
+      <span class="h-4 w-px bg-line-mid" aria-hidden="true"></span>
+      <a href="wdrozenia.html" class="text-neutral-300 transition hover:text-accent">Wdrożenia</a>
+      <a href="sklep.html" class="text-neutral-300 transition hover:text-accent">Sklep</a>
     </nav>
     <a href="#kontakt"
        class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-[13px] font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(111,214,255,.45)]">
@@ -1177,6 +1180,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <nav class="flex flex-wrap gap-x-7 gap-y-2 text-[13px] text-neutral-400">
+        <a href="wdrozenia.html" class="transition hover:text-white">Wdrożenia</a>
+        <a href="sklep.html" class="transition hover:text-white">Sklep — zakup robota</a>
         <a href="oferta.html" class="transition hover:text-white">Oferta</a>
         <a href="oferta-targi.html" class="transition hover:text-white">Targi</a>
         <a href="oferta-konferencje.html" class="transition hover:text-white">Konferencje</a>

@@ -34,18 +34,24 @@ jobs:
       - name: Sprawdź stronę przed wdrożeniem
         run: |
           python3 - <<'PY'
-          import hashlib, json, re, sys
+          import hashlib, json, os, re, sys
           from html.parser import HTMLParser
 
-          zrodlo = open('index.html', encoding='utf-8').read()
+          # Strony budowane Tailwindem — wszystkie muszą przejść kontrolę.
+          # Lista wyznaczana jest tak samo jak w ./buduj.sh: po odwołaniu do arkusza.
+          STRONY = sorted(
+              p for p in os.listdir('.')
+              if p.endswith('.html') and 'assets-redesign.css' in open(p, encoding='utf-8').read()
+          )
+          SUMA_ARKUSZA = hashlib.md5(open('assets-redesign.css','rb').read()).hexdigest()[:8]
           bledy = []
 
           PUSTE = {'meta','link','img','br','input','source','hr','iframe',
                    'path','circle','rect','polyline','line','polygon','source-marker'}
 
           class Kontrola(HTMLParser):
-              def __init__(self):
-                  super().__init__(); self.stos = []
+              def __init__(self, plik):
+                  super().__init__(); self.stos = []; self.plik = plik
               def handle_starttag(self, tag, attrs):
                   if tag in ('svg', 'iframe'): return
                   if tag not in PUSTE: self.stos.append(tag)
@@ -54,40 +60,57 @@ jobs:
                   if self.stos and self.stos[-1] == tag: self.stos.pop()
                   elif tag in self.stos:
                       while self.stos and self.stos[-1] != tag:
-                          bledy.append(f'niezamknięty <{self.stos.pop()}>')
+                          bledy.append(f'{self.plik}: niezamknięty <{self.stos.pop()}>')
                       self.stos.pop()
                   else:
-                      bledy.append(f'zbłąkany </{tag}>')
+                      bledy.append(f'{self.plik}: zbłąkany </{tag}>')
 
-          k = Kontrola(); k.feed(zrodlo)
-          if k.stos: bledy.append(f'niezamknięte znaczniki: {k.stos}')
+          if 'index.html' not in STRONY:
+              bledy.append('index.html nie odwołuje się do arkusza stylów')
 
-          for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
-              try: json.loads(m.group(1))
-              except Exception as e: bledy.append(f'błędny JSON-LD: {e}')
+          for plik in STRONY:
+              zrodlo = open(plik, encoding='utf-8').read()
 
-          for konieczny in ('GTM-MR7R7CJ3', 'formspree.io', 'assets-redesign.css'):
-              if konieczny not in zrodlo:
-                  bledy.append(f'brak w index.html: {konieczny}')
+              k = Kontrola(plik); k.feed(zrodlo)
+              if k.stos: bledy.append(f'{plik}: niezamknięte znaczniki: {k.stos}')
 
-          # Czy arkusz oznaczony w index.html odpowiada temu, który leży w repozytorium.
-          # Wyłapuje sytuację, w której ktoś zmienił stronę i zapomniał uruchomić ./buduj.sh
-          znacznik = re.search(r'assets-redesign\.css\?v=([0-9a-f]{8})', zrodlo)
-          if not znacznik:
-              bledy.append('arkusz stylów bez numeru wersji — uruchom ./buduj.sh')
-          else:
-              suma = hashlib.md5(open('assets-redesign.css','rb').read()).hexdigest()[:8]
-              if suma != znacznik.group(1):
+              for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
+                  try: json.loads(m.group(1))
+                  except Exception as e: bledy.append(f'{plik}: błędny JSON-LD: {e}')
+
+              for konieczny in ('GTM-MR7R7CJ3', 'formspree.io'):
+                  if konieczny not in zrodlo:
+                      bledy.append(f'brak w {plik}: {konieczny}')
+
+              # Czy arkusz oznaczony na stronie odpowiada temu, który leży w repozytorium.
+              # Wyłapuje sytuację, w której ktoś zmienił stronę i zapomniał uruchomić ./buduj.sh
+              znacznik = re.search(r'assets-redesign\.css\?v=([0-9a-f]{8})', zrodlo)
+              if not znacznik:
+                  bledy.append(f'{plik}: arkusz stylów bez numeru wersji — uruchom ./buduj.sh')
+              elif znacznik.group(1) != SUMA_ARKUSZA:
                   bledy.append(
-                      f'arkusz nie zgadza się ze stroną (w index.html: {znacznik.group(1)}, '
-                      f'faktyczny: {suma}) — uruchom ./buduj.sh i zatwierdź zmiany')
+                      f'{plik}: arkusz nie zgadza się ze stroną (na stronie: {znacznik.group(1)}, '
+                      f'faktyczny: {SUMA_ARKUSZA}) — uruchom ./buduj.sh i zatwierdź zmiany')
+
+              # Odwołania do plików, które musimy mieć w repozytorium.
+              for m in re.finditer(r'(?:src|href)="([^"#?:]+\.(?:webp|jpg|jpeg|png|svg|css|js|ico|html))', zrodlo):
+                  if not os.path.exists(m.group(1)):
+                      bledy.append(f'{plik}: odwołanie do nieistniejącego pliku {m.group(1)}')
+
+          # Każda strona budowana Tailwindem musi być wymieniona w tailwind.config.js,
+          # inaczej jej klasy nie trafią do arkusza i strona wyświetli się bez stylów.
+          konfiguracja = open('tailwind.config.js', encoding='utf-8').read()
+          for plik in STRONY:
+              if plik not in konfiguracja:
+                  bledy.append(f'{plik}: brak w content w tailwind.config.js — style się nie skompilują')
 
           if bledy:
               print('WDROŻENIE WSTRZYMANE — strona zostaje w poprzedniej wersji:')
               for b in bledy: print('  -', b)
               sys.exit(1)
 
-          print('Strona sprawdzona: struktura, dane strukturalne, analityka i arkusz w porządku.')
+          print(f'Sprawdzone strony ({len(STRONY)}): {", ".join(STRONY)}')
+          print('Struktura, dane strukturalne, analityka, odwołania i arkusz w porządku.')
           PY
 
       - name: Poproś serwer o pobranie zmian
