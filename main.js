@@ -269,7 +269,7 @@ if (form) {
       btn.textContent = 'Erneut versuchen';
       btn.disabled = false;
       const errEl = step2.querySelector('.form-field__err');
-      if (errEl) { errEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt an kontakt@33bots.de'; }
+      if (errEl) { errEl.textContent = 'Etwas ist schiefgelaufen. Schreiben Sie uns direkt an kontakt@33bots.at'; }
     }
   });
 

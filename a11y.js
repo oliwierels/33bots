@@ -1,4 +1,4 @@
-/* Barrierefreiheit-Panel (BFSG).
+/* Barrierefreiheit-Panel (BaFG).
    Einstellungen werden ausschliesslich lokal im Browser gespeichert
    (localStorage) und nicht an den Server uebertragen. */
 (function () {

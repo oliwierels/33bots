@@ -5,8 +5,8 @@
 #
 # Der Key gilt nur für diese Domain und liegt als <KEY>.txt im Wurzelverzeichnis.
 # Beides muss zusammen deployt werden, sonst weist IndexNow die Meldung ab.
-KEY="a2813e79cb1d1017ecf75f8b739153a3"
-HOST="33bots.de"
+KEY="18194c63f5aaa95b830d36b384ea91c0"
+HOST="33bots.at"
 
 URLS=("$@")
 if [ ${#URLS[@]} -eq 0 ]; then

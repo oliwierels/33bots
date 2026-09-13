@@ -4,12 +4,12 @@
 Generator niemieckiego serwisu 33bots — lustro 1:1 serwisu polskiego.
 
 Serwis powstaje w katalogu ``de/`` i jest KOMPLETNYM, samodzielnym serwisem
-przeznaczonym pod osobną domenę (33bots.de) — wgrywa się jako root tej domeny,
+przeznaczonym pod osobną domenę (33bots.at) — wgrywa się jako root tej domeny,
 nie jako podkatalog 33bots.pl.
 
 Zasada działania: strukturę (graf linków wewnętrznych, dobór wideo, poradniki,
 kolejność sekcji) bierzemy wprost z generatorów polskich, a podmieniamy
-wyłącznie język treści, nazwy plików (de_slugs.py) i merytorykę rynkową
+wyłącznie język treści, nazwy plików (at_slugs.py) i merytorykę rynkową
 (miasta, waluta, kalendarz świąt).
 
 Uruchomienie:
@@ -21,54 +21,60 @@ import os
 import re
 import shutil
 
-import de_structure
-import de_content_pages
-import de_content_pages2
-import de_cities
-from de_slugs import SLUG_MAP, de
+import at_structure
+import at_content_pages
+import at_content_pages2
+import at_cities
+from at_slugs import SLUG_MAP, at
 
 # Skrypt leży w build/, a serwis budowany jest w katalogu nadrzędnym (root repo),
 # który jest jednocześnie katalogiem wdrożeniowym domeny.
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = BASE
 
-# ── Konfiguracja rynku DE ─────────────────────────────────────────────
-DOMAIN = "https://33bots.de"
-EMAIL = "kontakt@33bots.de"
-# Kontakt wyłącznie mailowy. Numer telefonu nie jest w Impressum obowiązkowy,
-# o ile dostępny jest drugi kanał szybkiej komunikacji — tu formularz kontaktowy
-# na każdej stronie (TSUE C-298/07, Deutsche Internet Versicherung).
-# Analityka wyłączona do czasu założenia własnego kontenera dla domeny .de.
-# Kontener polskiej strony celowo nie jest tu wpisany: mieszałby dane obu rynków,
-# a jego tagi nie są ujawnione w niemieckiej Datenschutzerklärung, czego wymaga
+# ── Konfiguracja rynku AT ─────────────────────────────────────────────
+DOMAIN = "https://33bots.at"
+EMAIL = "kontakt@33bots.at"
+# Kontakt wyłącznie mailowy. Numer telefonu nie jest w Impressum obowiązkowy:
+# § 5 ust. 1 pkt 3 ECG wymaga danych pozwalających na szybki kontakt
+# elektroniczny — adres e-mail plus formularz kontaktowy na każdej stronie
+# (TSUE C-298/07).
+# Analityka wyłączona do czasu założenia własnego kontenera dla domeny .at.
+# Kontenerów polskiego i niemieckiego celowo tu nie ma: mieszałyby dane rynków,
+# a ich tagi nie są ujawnione w austriackiej Datenschutzerklärung, czego wymaga
 # art. 13 ust. 1 lit. e RODO. Po wpisaniu ID wraca baner zgody i sekcje o
 # analityce w Datenschutz — bez ID strona nie ustawia żadnych cookies poza
-# niezbędnymi, więc zgoda nie jest w ogóle potrzebna.
+# niezbędnymi, więc zgoda wg § 165 ust. 3 TKG 2021 nie jest potrzebna.
 GTM_ID = ""
 ALBACROSS_ID = ""
 ANALYTICS = bool(GTM_ID or ALBACROSS_ID)
 # Bei inhaltlichen Aenderungen hochsetzen — steht als <lastmod> in der Sitemap.
-LASTMOD = "2026-08-16"
+LASTMOD = "2026-09-13"
 
 # ── Dane rejestrowe do Impressum i Datenschutz ────────────────────────
-# Wymagane przez § 5 DDG, § 18 ust. 2 MStV i art. 13 DSGVO. Puste pole zostaje
+# Wymagane przez § 5 ECG, § 25 MedienG i art. 13 RODO. Puste pole zostaje
 # na stronie oznaczone żółtym markerem — serwisu nie wolno publikować, dopóki
-# którekolwiek jest puste (niekompletne Impressum jest w Niemczech abmahnfähig).
+# którekolwiek jest puste (brak lub niekompletne Impressum to w Austrii kara
+# administracyjna do 3.000 € wg § 26 ECG i do 20.000 € wg § 27 MedienG).
 COMPANY = {
     # ── uzupełnione ──────────────────────────────────────────────────
     "street": "Plac Jana Henryka Dąbrowskiego 12",
     "postcode_city": "00-055 Warszawa",
     "country": "Polen",
-    # Polski organ nadzorczy — siedziba zmieniona w lipcu 2025 r.
+    # Administrator danych ma siedzibę w Polsce — wiodącym organem nadzorczym
+    # jest polski UODO; austriacki użytkownik może też złożyć skargę w DSB.
     "supervisory_authority": (
         "Prezes des Amts für den Schutz personenbezogener Daten "
         "(Prezes Urzędu Ochrony Danych Osobowych), ul. Moniuszki 1A, "
-        "00-014 Warszawa, Polen, uodo.gov.pl"),
-    # Organ nadzoru rynku ds. dostępności wg BFSG (16 krajów związkowych)
+        "00-014 Warszawa, Polen, uodo.gov.pl. Als betroffene Person in "
+        "Österreich können Sie sich alternativ an die Österreichische "
+        "Datenschutzbehörde, Barichgasse 40–42, 1030 Wien, dsb@dsb.gv.at, "
+        "dsb.gv.at wenden."),
+    # Organ nadzoru rynku ds. dostępności wg BaFG (od 28.06.2025)
     "market_surveillance": (
-        "Marktüberwachungsstelle der Länder für die Barrierefreiheit von "
-        "Produkten und Dienstleistungen (MLBF), Carl-Miller-Straße 6, "
-        "39112 Magdeburg, kontakt@mlbf-barrierefrei.de"),
+        "Sozialministeriumservice (Bundesamt für Soziales und Behindertenwesen), "
+        "Babenbergerstraße 5, 1010 Wien, post@sozialministeriumservice.gv.at, "
+        "sozialministeriumservice.gv.at"),
     "formspree_note": (
         "Formspree betreibt seine Dienste auf Servern von Amazon Web Services "
         "in den Vereinigten Staaten und ist nach SOC 2 Typ 2 zertifiziert. Für "
@@ -83,11 +89,14 @@ COMPANY = {
     "register": ("Eingetragen im Zentralregister für Wirtschaftstätigkeit der Republik Polen "
                  "(CEIDG, Centralna Ewidencja i Informacja o Działalności Gospodarczej) · "
                  "REGON: 544792095"),
-    # NIP zweryfikowany sumą kontrolną. Formę PL… podajemy jako USt-IdNr tylko
-    # przy rejestracji do transakcji wewnątrzunijnych (VAT-UE) — patrz README.
+    # UID w formie PL… podajemy tylko przy rejestracji do transakcji
+    # wewnątrzunijnych (VAT-UE) — patrz README.
     "vat_id": "PL5253090645 (NIP: 5253090645)",
     "content_responsible": ("Bartosz Wysocki, Plac Jana Henryka Dąbrowskiego 12, "
                             "00-055 Warszawa, Polen"),
+    # Blattlinie wg § 25 ust. 4 MedienG
+    "media_direction": ("Information über die Vermietung humanoider Roboter von 33bots für "
+                        "Veranstaltungen, Messen und Konferenzen in Österreich."),
 
     # ── do uzupełnienia przez właściciela ────────────────────────────
     "gtm_services": "",      # usługi faktycznie wyzwalane w kontenerze GTM
@@ -110,9 +119,9 @@ PRICE_MIN = "2.499 €"          # sama kwota
 PRICE_LOW = "2499"             # dane strukturalne (lowPrice)
 DOG_PRICE = "850 €"
 
-DE_TEXT = {}
-DE_TEXT.update(de_content_pages.TEXT)
-DE_TEXT.update(de_content_pages2.TEXT)
+AT_TEXT = {}
+AT_TEXT.update(at_content_pages.TEXT)
+AT_TEXT.update(at_content_pages2.TEXT)
 
 # ── Wideo (opisy po niemiecku, te same pliki) ─────────────────────────
 VIDEOS = {
@@ -216,14 +225,14 @@ def og_for(out_file):
 
 
 def city_name(pl_file):
-    return de_cities.CITIES[pl_file]["name"]
+    return at_cities.CITIES[pl_file]["name"]
 
 
 # ── Wspólne fragmenty HTML ────────────────────────────────────────────
 def gtm_head():
     """Tagi analityczne ładowane WYŁĄCZNIE po zgodzie użytkownika.
 
-    Wymóg § 25 TDDDG (dawniej TTDSG) i art. 6 DSGVO: skrypty analityczne oraz
+    Wymóg § 165 ust. 3 TKG 2021 i art. 6 DSGVO: skrypty analityczne oraz
     identyfikatory w urządzeniu użytkownika wymagają uprzedniej, aktywnej zgody.
     Dlatego brak tu bezwarunkowego wstrzyknięcia GTM i brak wariantu <noscript>
     (ten ładowałby się bez zgody). Ładowanie realizuje consent.js.
@@ -231,13 +240,13 @@ def gtm_head():
     if not ANALYTICS:
         return ("  <!-- Keine Analyse-Dienste eingebunden: Diese Seite setzt ausschließlich\n"
                 "       technisch notwendige Cookies, eine Einwilligung ist nicht erforderlich. -->")
-    return (f"""  <!-- Einwilligung (TDDDG/DSGVO): Analyse-Tags laden erst nach Zustimmung -->
+    return (f"""  <!-- Einwilligung (TKG 2021/DSGVO): Analyse-Tags laden erst nach Zustimmung -->
   <script>window.dataLayer=window.dataLayer||[];window.__gtmId={GTM_ID!r};window.__albacrossId={ALBACROSS_ID!r};</script>
   <script src="consent.js" defer></script>""")
 
 
 def gtm_body():
-    return "  <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 25 TDDDG) -->"
+    return "  <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 165 Abs. 3 TKG 2021) -->"
 
 
 def nav_html(home="index.html"):
@@ -252,15 +261,15 @@ def nav_html(home="index.html"):
         <div class="nav__dropdown">
           <button class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button">Angebot <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="nav__dropdown-menu">
-            <a href="{de('oferta-targi.html')}">Messen</a>
-            <a href="{de('oferta-konferencje.html')}">Konferenzen &amp; Galas</a>
-            <a href="{de('oferta-dni-otwarte.html')}">Tage der offenen Tür</a>
-            <a href="{de('atrakcje-na-event.html')}">Alle Attraktionen</a>
+            <a href="{at('oferta-targi.html')}">Messen</a>
+            <a href="{at('oferta-konferencje.html')}">Konferenzen &amp; Galas</a>
+            <a href="{at('oferta-dni-otwarte.html')}">Tage der offenen Tür</a>
+            <a href="{at('atrakcje-na-event.html')}">Alle Attraktionen</a>
           </div>
         </div>
         <a href="{home}#ueber-uns">Über uns</a>
         <a href="{home}#events">Events</a>
-        <a href="{de('blog.html')}">Blog</a>
+        <a href="{at('blog.html')}">Blog</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span></button>
@@ -273,13 +282,13 @@ def nav_html(home="index.html"):
 def mobile_menu(home="index.html"):
     return f"""  <div class="mobile-menu" id="mobileMenu">
     <span class="mobile-menu__label">Angebot</span>
-    <a href="{de('oferta-targi.html')}" class="mobile-menu__sub">Messen</a>
-    <a href="{de('oferta-konferencje.html')}" class="mobile-menu__sub">Konferenzen &amp; Galas</a>
-    <a href="{de('oferta-dni-otwarte.html')}" class="mobile-menu__sub">Tage der offenen Tür</a>
-    <a href="{de('atrakcje-na-event.html')}" class="mobile-menu__sub">Alle Attraktionen</a>
+    <a href="{at('oferta-targi.html')}" class="mobile-menu__sub">Messen</a>
+    <a href="{at('oferta-konferencje.html')}" class="mobile-menu__sub">Konferenzen &amp; Galas</a>
+    <a href="{at('oferta-dni-otwarte.html')}" class="mobile-menu__sub">Tage der offenen Tür</a>
+    <a href="{at('atrakcje-na-event.html')}" class="mobile-menu__sub">Alle Attraktionen</a>
     <a href="{home}#ueber-uns">Über uns</a>
     <a href="{home}#events">Events</a>
-    <a href="{de('blog.html')}">Blog</a>
+    <a href="{at('blog.html')}">Blog</a>
     <a href="#kontakt">Kontakt</a>
   </div>
 """
@@ -293,7 +302,7 @@ def crumbs(label):
             f'<span style="color:var(--text-2);">{label}</span>\n  </nav>\n')
 
 
-def contact_form(location_ph="z. B. Berlin", date_text=False):
+def contact_form(location_ph="z. B. Wien", date_text=False):
     date_field = ('<input id="f-date" type="text" name="date" placeholder="z. B. 14. Juni 2026" />'
                   if date_text else '<input id="f-date" type="date" name="date" />')
     return f"""        <form id="contactForm" class="form" novalidate>
@@ -354,7 +363,7 @@ def contact_form(location_ph="z. B. Berlin", date_text=False):
         </form>"""
 
 
-def contact_section(h2, area="Deutschlandweit im Einsatz", location_ph="z. B. Berlin", date_text=False):
+def contact_section(h2, area="Österreichweit im Einsatz", location_ph="z. B. Wien", date_text=False):
     return f"""  <section class="section" id="kontakt">
     <div class="contact-layout">
       <div class="contact-left">
@@ -388,18 +397,18 @@ def footer_html(home="index.html"):
     <div class="footer__inner">
       <div class="footer__brand">
         <span class="logo">33BOTS</span>
-        <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Humanoide Roboter mieten</a> · Deutschlandweit</p>
+        <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Humanoide Roboter mieten</a> · Österreichweit</p>
         <div class="footer__nap">
           <a href="mailto:{EMAIL}" class="footer__nap-item">{EMAIL}</a>
         </div>
       </div>
       <div class="footer__links">
-        <a href="{de('oferta.html')}">Leistungen &amp; Angebot</a>
-        <a href="{de('atrakcje-na-event.html')}">Event-Attraktionen</a>
-        <a href="{de('realizacje-wideo.html')}">Referenzen</a>
-        <a href="{de('case-study-lexai.html')}">Case Study</a>
+        <a href="{at('oferta.html')}">Leistungen &amp; Angebot</a>
+        <a href="{at('atrakcje-na-event.html')}">Event-Attraktionen</a>
+        <a href="{at('realizacje-wideo.html')}">Referenzen</a>
+        <a href="{at('case-study-lexai.html')}">Case Study</a>
         <a href="{home}#ueber-uns">Über uns</a>
-        <a href="{de('blog.html')}">Blog</a>
+        <a href="{at('blog.html')}">Blog</a>
         <a href="#kontakt">Kontakt</a>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
@@ -466,7 +475,7 @@ def consent_banner():
 
 
 def a11y_widget():
-    """Panel dostępności — wymóg BFSG (Barrierefreiheitsstärkungsgesetz)."""
+    """Panel dostępności — wymóg BaFG (Barrierefreiheitsgesetz)."""
     return """  <button type="button" class="a11y-toggle" id="a11yToggle"
           aria-expanded="false" aria-controls="a11yPanel" aria-label="Barrierefreiheit-Einstellungen öffnen">
     <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
@@ -541,7 +550,7 @@ def head_common(title, desc, keywords, out_file, og_image, og_alt, extra_style="
   <meta name="twitter:description" content="{desc}" />
 
   <meta name="theme-color" content="#000000" />
-  <link rel="alternate" hreflang="de" href="{url}" />
+  <link rel="alternate" hreflang="de-AT" href="{url}" />
   <link rel="alternate" hreflang="x-default" href="{url}" />"""
 
 
@@ -595,8 +604,8 @@ def render_scens(scens):
 def render_related(related):
     out = []
     for href, label in related:
-        de_href = de(href)
-        de_label = DE_TEXT.get(href.replace(".html", ""), {}).get("crumb", label)
+        de_href = at(href)
+        de_label = AT_TEXT.get(href.replace(".html", ""), {}).get("crumb", label)
         if href in ("wypozyczenie-robota.html",):
             de_label = "Roboter mieten"
         elif href in ("atrakcje-na-event.html",):
@@ -620,7 +629,7 @@ def render_guides(guides):
     out = []
     for href, _pl_label in guides:
         label = GUIDE_LABELS.get(href, "Leitfaden →")
-        out.append(f'        <a href="{de(href)}" style="display:flex; flex-direction:column; gap:4px; '
+        out.append(f'        <a href="{at(href)}" style="display:flex; flex-direction:column; gap:4px; '
                    f'padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); '
                    f'border-radius:10px; text-decoration:none;">\n'
                    f'          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; '
@@ -698,7 +707,7 @@ def gallery_section(limit=None, tag="Realisierungen",
                     lead=None, more_link=True):
     lead_html = f'\n      <p class="shots__lead">{lead}</p>' if lead else ""
     more = (f'\n      <div class="shots__more">\n'
-            f'        <a href="{de("realizacje-wideo.html")}" class="btn-ghost" style="display:inline-flex;">'
+            f'        <a href="{at("realizacje-wideo.html")}" class="btn-ghost" style="display:inline-flex;">'
             f'Alle Referenzen ansehen →</a>\n      </div>' if more_link else "")
     return f"""  <section class="section shots-section" id="realisierungen">
     <div class="section-header">
@@ -715,7 +724,7 @@ def gallery_section(limit=None, tag="Realisierungen",
 
 
 def render_city_chips():
-    return "\n".join(f'        <a href="{de(f)}" style="{CHIP}">{city_name(f)}</a>' for f in CHIP_CITIES)
+    return "\n".join(f'        <a href="{at(f)}" style="{CHIP}">{city_name(f)}</a>' for f in CHIP_CITIES)
 
 
 TESTIMONIALS = """  <section class="section testimonials-section">
@@ -752,8 +761,8 @@ TESTIMONIALS = """  <section class="section testimonials-section">
 
 # ── Strona SEO (98 sztuk) ─────────────────────────────────────────────
 def build_seo_page(p):
-    """p — słownik strony PL (struktura). Treść bierzemy z DE_TEXT[slug]."""
-    t = DE_TEXT[p["slug"]]
+    """p — słownik strony PL (struktura). Treść bierzemy z AT_TEXT[slug]."""
+    t = AT_TEXT[p["slug"]]
     out_file = SLUG_MAP[p["slug"] + ".html"]
     url = f"{DOMAIN}/{out_file}"
     video = VIDEOS[p.get("video", "gesty")]
@@ -767,7 +776,7 @@ def build_seo_page(p):
         "serviceType": "Vermietung humanoider Roboter für Events",
         "provider": {"@type": "Organization", "name": "33bots", "url": f"{DOMAIN}/",
                      "email": EMAIL},
-        "areaServed": {"@type": "Country", "name": "Deutschland"},
+        "areaServed": {"@type": "Country", "name": "Österreich"},
         "offers": {"@type": "AggregateOffer", "priceCurrency": "EUR",
                    "lowPrice": PRICE_LOW,
                    "availability": "https://schema.org/InStock"},
@@ -792,7 +801,7 @@ def build_seo_page(p):
         "@context": "https://schema.org", "@type": "VideoObject",
         "name": video["name"], "description": video["desc"],
         "thumbnailUrl": f"{DOMAIN}/{video['poster']}", "contentUrl": f"{DOMAIN}/{video['file']}",
-        "uploadDate": "2026-07-02", "duration": video["duration"], "inLanguage": "de",
+        "uploadDate": "2026-07-02", "duration": video["duration"], "inLanguage": "de-AT",
         "publisher": {"@type": "Organization", "name": "33bots", "url": DOMAIN,
                       "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/logo.png"}},
     }, ensure_ascii=False, indent=2)
@@ -802,13 +811,13 @@ def build_seo_page(p):
         href, _ = p["blog_link"]
         label = GUIDE_LABELS.get(href, "unserem Leitfaden").rstrip(" →")
         blog_para = (f'\n        <p class="body-text">Mehr dazu lesen Sie in unserem Artikel: '
-                     f'<a href="{de(href)}" style="color:var(--text); text-decoration:underline; '
+                     f'<a href="{at(href)}" style="color:var(--text); text-decoration:underline; '
                      f'text-underline-offset:3px;">{label}</a></p>\n')
 
     og_image = og_for(out_file)
 
     return f"""<!DOCTYPE html>
-<html lang="de">
+<html lang="de-AT">
 <head>
 {gtm_head()}
 {head_common(t['title'], t['desc'], t['keywords'], out_file, og_image, schema_name)}
@@ -909,7 +918,7 @@ def build_seo_page(p):
     <div style="max-width:1000px; margin:0 auto;">
       <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s4);">Leitfäden vor der Buchung</p>
       <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--s4);">
-{render_guides(de_structure.GUIDES[p.get('guides', 'default')])}
+{render_guides(at_structure.GUIDES[p.get('guides', 'default')])}
       </div>
     </div>
   </section>
@@ -922,7 +931,7 @@ def build_seo_page(p):
 {gallery_items(6)}
       </div>
       <div class="shots__more">
-        <a href="{de('realizacje-wideo.html')}" class="btn-ghost" style="display:inline-flex;">Alle Referenzen ansehen →</a>
+        <a href="{at('realizacje-wideo.html')}" class="btn-ghost" style="display:inline-flex;">Alle Referenzen ansehen →</a>
       </div>
     </div>
   </section>
@@ -956,7 +965,7 @@ def build_seo_page(p):
 # Weg"-Satz, Anfahrt-Absatz, Szenario-Intro) — ~35 % identische Sätze zwischen
 # je zwei Städten (gemessen). Reines Duplicate-Content-Risiko für nahezu
 # identische lokale Landingpages. Rotation nach Stadt-Slug (deterministisch,
-# gleiches Verfahren wie in de_content_helpers._pick) verteilt mehrere
+# gleiches Verfahren wie in at_content_helpers._pick) verteilt mehrere
 # Formulierungen, ohne 34 Städte einzeln von Hand umschreiben zu müssen.
 def _city_seed(slug):
     return sum(ord(c) for c in slug)
@@ -1001,7 +1010,7 @@ ANFAHRT_POOL = [
 
 # ── Strona miasta (35 sztuk) ──────────────────────────────────────────
 def build_city_page(pl_file):
-    d = de_cities.CITIES[pl_file]
+    d = at_cities.CITIES[pl_file]
     out_file = SLUG_MAP[pl_file]
     url = f"{DOMAIN}/{out_file}"
     city = d["name"]
@@ -1015,7 +1024,7 @@ def build_city_page(pl_file):
 
     faqs = list(d["faq"]) + [
         (f"Kommen Sie auch nach {city}?",
-         f"Ja — wir sind deutschlandweit im Einsatz, auch in {city}. Anfahrt und Logistik stimmen wir "
+         f"Ja — wir sind österreichweit im Einsatz, auch in {city}. Anfahrt und Logistik stimmen wir "
          f"vorab ab und halten sie im Angebot fest."),
         (f"Was kostet die Miete eines Roboters in {city}?",
          f"{PRICE_FROM} pro kompletten Veranstaltungstag. Der genaue Betrag hängt von Veranstaltungsort "
@@ -1067,16 +1076,16 @@ def build_city_page(pl_file):
         "description": f"Der humanoide Roboter Unitree G1 live: Er läuft, gestikuliert und tanzt. "
                        f"Miete für Events, Konferenzen und Messen in {city} und Umgebung.",
         "thumbnailUrl": f"{DOMAIN}/{video['poster']}", "contentUrl": f"{DOMAIN}/{video['file']}",
-        "uploadDate": "2026-07-02", "duration": video["duration"], "inLanguage": "de",
+        "uploadDate": "2026-07-02", "duration": video["duration"], "inLanguage": "de-AT",
         "publisher": {"@type": "Organization", "name": "33bots", "url": DOMAIN,
                       "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/logo.png"}},
     }, ensure_ascii=False, indent=2)
 
     other_cities = "\n".join(
-        f'        <a href="{de(f)}" style="color:var(--text); font-size:0.85rem; font-weight:600; '
+        f'        <a href="{at(f)}" style="color:var(--text); font-size:0.85rem; font-weight:600; '
         f'padding:6px 14px; background:var(--surface-2); border:1px solid var(--border-mid); '
         f'border-radius:8px; text-decoration:none;">{city_name(f)}</a>'
-        for f in de_cities.CITIES if f != pl_file)
+        for f in at_cities.CITIES if f != pl_file)
 
     venue_items = "\n".join(f"          <li><strong>{n}</strong> — {t}</li>" for n, t in d["venues"])
 
@@ -1089,12 +1098,12 @@ def build_city_page(pl_file):
         ("robot-na-targi-pracy.html", "Karrieremesse"), ("robot-do-hotelu.html", "Hotel"),
         ("robot-do-galerii-handlowej.html", "Shoppingcenter"), ("atrakcje-na-event.html", "Alle Szenarien"),
     ]
-    scenarios = "\n".join(f'        <a href="{de(h)}" style="{CHIP}">{lbl}</a>' for h, lbl in scenario_links)
+    scenarios = "\n".join(f'        <a href="{at(h)}" style="{CHIP}">{lbl}</a>' for h, lbl in scenario_links)
 
     og_image = og_for(out_file)
 
     return f"""<!DOCTYPE html>
-<html lang="de">
+<html lang="de-AT">
 <head>
 {gtm_head()}
 {head_common(title, desc, d['keywords'], out_file, og_image, f"Humanoiden Roboter mieten {city} — 33bots")}
@@ -1135,7 +1144,7 @@ def build_city_page(pl_file):
       <div class="hero__trust">
         <span class="hero__trust-item">✓ Bester Preis am Markt</span>
         <span class="hero__trust-item">✓ Zertifizierter Operator vor Ort</span>
-        <span class="hero__trust-item">✓ Deutschlandweit im Einsatz</span>
+        <span class="hero__trust-item">✓ Österreichweit im Einsatz</span>
         <span class="hero__trust-item">✓ Angebot in 24 h</span>
       </div>
     </div>
@@ -1161,7 +1170,7 @@ def build_city_page(pl_file):
       </div>
       <div class="tile">
         <div class="tile__top"><span class="tile__tag">Anfahrt</span></div>
-        <h3 class="tile__title">Deutschlandweit vor Ort</h3>
+        <h3 class="tile__title">Österreichweit vor Ort</h3>
         <p class="tile__desc">Wir bringen den Roboter zu Ihrer Location in {city}. Anfahrt und Logistik planen wir gemeinsam und halten sie im Angebot fest.</p>
         <a href="#kontakt" class="tile__link">Angebot anfragen →</a>
       </div>
@@ -1193,8 +1202,8 @@ def build_city_page(pl_file):
       <div style="padding:var(--s5) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); flex-wrap:wrap;">
         <p style="color:var(--text-2); font-size:0.9rem; margin:0;">Unsere Angebote: <strong style="color:var(--text);">Roboter für Messen</strong> und <strong style="color:var(--text);">Roboter für Konferenzen &amp; Galas</strong></p>
         <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
-          <a href="{de('oferta-targi.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Messen →</a>
-          <a href="{de('oferta-konferencje.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Konferenzen →</a>
+          <a href="{at('oferta-targi.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Messen →</a>
+          <a href="{at('oferta-konferencje.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Konferenzen →</a>
         </div>
       </div>
     </div>
@@ -1226,9 +1235,9 @@ def build_city_page(pl_file):
 {gallery_items(6)}
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:var(--s3);">
-        <a href="{de('case-study-wallstreet.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">WallStreet 30 · 2 253 Teilnehmende →</a>
-        <a href="{de('case-study-women-in-tech.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">Women in Tech Summit · ~14 000 →</a>
-        <a href="{de('case-study-lexai.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">LEX AI · TV-Beitrag →</a>
+        <a href="{at('case-study-wallstreet.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">WallStreet 30 · 2 253 Teilnehmende →</a>
+        <a href="{at('case-study-women-in-tech.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">Women in Tech Summit · ~14 000 →</a>
+        <a href="{at('case-study-lexai.html')}" style="color:var(--text); font-size:0.85rem; font-weight:600; padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">LEX AI · TV-Beitrag →</a>
       </div>
     </div>
   </section>
@@ -1372,7 +1381,7 @@ html[data-a11y-motion="off"] .shot:hover .shot__img{transform:none;}
 def build_a11y_css():
     """Style panelu dostępności, banera zgody i trybów kontrastu/rozmiaru tekstu."""
     return """/* ─────────────────────────────────────────────────────────────
-   Barrierefreiheit (BFSG) + Consent (TDDDG/DSGVO)
+   Barrierefreiheit (BaFG) + Consent (TKG 2021/DSGVO)
    Ergänzt style.css und überschreibt nur, was für die
    Bedienhilfen nötig ist.
    ───────────────────────────────────────────────────────────── */
@@ -1485,7 +1494,7 @@ html[data-a11y-motion="off"] .robot-scan{display:none !important;}
 
 def build_a11y_js():
     """Logika panelu dostępności — ustawienia zapisywane lokalnie u użytkownika."""
-    return """/* Barrierefreiheit-Panel (BFSG).
+    return """/* Barrierefreiheit-Panel (BaFG).
    Einstellungen werden ausschliesslich lokal im Browser gespeichert
    (localStorage) und nicht an den Server uebertragen. */
 (function () {
@@ -1556,7 +1565,7 @@ def build_a11y_js():
 
 def build_consent_js():
     """Zgoda na cookies w modelu opt-in — tagi ładowane dopiero po akceptacji."""
-    return """/* Cookie-Einwilligung nach § 25 TDDDG und Art. 6 DSGVO.
+    return """/* Cookie-Einwilligung nach § 165 Abs. 3 TKG 2021 und Art. 6 DSGVO.
    Analyse-Dienste (Google Tag Manager, Albacross) werden erst nach
    ausdruecklicher Einwilligung geladen. Ohne Einwilligung laeuft die
    Website vollstaendig ohne diese Dienste. */
@@ -1670,7 +1679,7 @@ def build_htaccess():
     """
     host = DOMAIN.replace("https://", "")
     # 14 schwache Branchen-Seiten wurden in event-attraktionen.html konsolidiert
-    # (Duplicate-Content-Reduktion, siehe de_structure.py/de_content_pages2.py) —
+    # (Duplicate-Content-Reduktion, siehe at_structure.py/at_content_pages2.py) —
     # alte URLs muessen dauerhaft (301) auf die neue Zielseite zeigen, statt 404.
     consolidated_target = SLUG_MAP["atrakcje-na-event.html"]
     consolidated_sources = [
@@ -1756,7 +1765,7 @@ def build_sitemap(pages):
 
 def build_404():
     return f"""<!DOCTYPE html>
-<html lang="de">
+<html lang="de-AT">
 <head>
 {gtm_head()}
   <meta charset="UTF-8" />
@@ -1778,7 +1787,7 @@ def build_404():
       <p class="hero__sub">Der Link ist veraltet oder enthält einen Tippfehler. Zurück zur Startseite — oder direkt zum Angebot.</p>
       <div class="hero__ctas">
         <a href="index.html" class="btn-primary">Zur Startseite →</a>
-        <a href="{de('wypozyczenie-robota.html')}" class="btn-ghost">Roboter mieten →</a>
+        <a href="{at('wypozyczenie-robota.html')}" class="btn-ghost">Roboter mieten →</a>
       </div>
     </div>
   </section>
@@ -1795,19 +1804,19 @@ def main():
         write("consent.js", build_consent_js())
 
     # 98 podstron SEO
-    for p in de_structure.PAGES:
+    for p in at_structure.PAGES:
         write(SLUG_MAP[p["slug"] + ".html"], build_seo_page(p))
 
     # 35 stron miast
-    for pl_file in de_cities.CITIES:
+    for pl_file in at_cities.CITIES:
         write(SLUG_MAP[pl_file], build_city_page(pl_file))
 
     # strony ręczne, blog i strona główna — moduł uzupełniający
     try:
-        import de_pages_manual
-        de_pages_manual.build(globals())
+        import at_pages_manual
+        at_pages_manual.build(globals())
     except ImportError:
-        print("UWAGA: brak de_pages_manual.py — strona główna, oferta, case studies i blog nie zostały wygenerowane")
+        print("UWAGA: brak at_pages_manual.py — strona główna, oferta, case studies i blog nie zostały wygenerowane")
 
     write("404.html", build_404())
     write("robots.txt", build_robots())
@@ -1815,11 +1824,11 @@ def main():
     write(".htaccess", build_htaccess())
 
     # index.html wird nicht mehr von build_index() geschrieben (siehe
-    # de_pages_manual.py) und steht damit nicht mehr in WRITTEN — für die
+    # at_pages_manual.py) und steht damit nicht mehr in WRITTEN — für die
     # Sitemap zaehlt das nicht: die Startseite existiert weiterhin als Datei
     # und gehoert mit Prioritaet 1.0 hinein.
     html_pages = sorted({f for f in WRITTEN if f.endswith(".html")
-                          and f not in ("404.html", de("index-redesign.html"))} | {"index.html"})
+                          and f not in ("404.html", at("index-redesign.html"))} | {"index.html"})
     prio = {}
     for f in html_pages:
         if f == "index.html":
@@ -1849,7 +1858,7 @@ def main():
         print(f"Nieuzupełnione pola ({len(empty)}) w COMPANY na górze build/generate_site.py:")
         for k in empty:
             print(f"  - {k}")
-        print("Niekompletne Impressum jest w Niemczech abmahnfähig.")
+        print("Brak lub niekompletne Impressum to w Austrii kara administracyjna (§ 26 ECG, § 27 MedienG).")
         print("!" * 72)
 
 

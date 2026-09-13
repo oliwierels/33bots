@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://33bots.de/sitemap.xml
+Sitemap: https://33bots.at/sitemap.xml

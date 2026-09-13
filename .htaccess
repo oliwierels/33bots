@@ -1,16 +1,16 @@
 # Automatisch erzeugt von build/generate_site.py — nicht von Hand aendern.
 RewriteEngine On
 
-# Kanonische Adresse: HTTPS ohne www (https://33bots.de)
+# Kanonische Adresse: HTTPS ohne www (https://33bots.at)
 # Getrennte Regeln mit X-Forwarded-Proto: hinter einem Proxy/Load Balancer
 # meldet %{HTTPS} dauerhaft "off" — kombiniert mit [OR] gibt das eine
 # Redirect-Schleife.
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
+RewriteRule ^(.*)$ https://33bots.at/$1 [L,R=301]
 
-RewriteCond %{HTTP_HOST} ^www\.33bots\.de$ [NC]
-RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.33bots\.at$ [NC]
+RewriteRule ^(.*)$ https://33bots.at/$1 [L,R=301]
 
 # ── Konsolidierte Branchen-Seiten → event-attraktionen.html ──────────────
 RewriteRule ^roboter-medizin-event\.html$ /event-attraktionen.html [L,R=301]
