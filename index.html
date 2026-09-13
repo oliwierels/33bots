@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
      Przebudowa po zmianach w HTML:
      npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
-<link rel="stylesheet" href="assets-redesign.css?v=03e67be8" />
+<link rel="stylesheet" href="assets-redesign.css?v=fb7044bf" />
 
 <style>
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -315,10 +315,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="sklep.html" class="text-neutral-300 transition hover:text-accent">Sklep</a>
     </nav>
     <a href="#kontakt"
-       class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-[13px] font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(111,214,255,.45)]">
+       class="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-[13px] font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(111,214,255,.45)] md:inline-flex">
       Darmowa wycena
       <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
     </a>
+
+    <!-- Menu na telefon. Bez niego nawigacja znika poniżej 768 px i jedyną
+         drogą do podstron jest stopka. -->
+    <button id="menuBtn" type="button" aria-expanded="false" aria-controls="menuMobile"
+            class="inline-flex items-center gap-2.5 rounded-full border border-line-mid bg-white/[.04] px-4 py-2.5 text-[12px] font-700 uppercase tracking-wider text-white backdrop-blur transition hover:border-accent/50 md:hidden">
+      <span class="flex flex-col gap-[3px]">
+        <span class="block h-[2px] w-4 bg-white"></span>
+        <span class="block h-[2px] w-4 bg-white"></span>
+        <span class="block h-[2px] w-4 bg-white"></span>
+      </span>
+      Menu
+    </button>
+  </div>
+
+  <div id="menuMobile" hidden
+       class="mx-4 mb-3 rounded-2xl border border-line-mid bg-ink/95 p-3 backdrop-blur-xl md:hidden">
+    <a href="#realizacje" class="block rounded-xl px-4 py-3 text-[15px] text-neutral-300 transition hover:bg-white/[.04] hover:text-white">Realizacje</a>
+    <a href="#mozliwosci" class="block rounded-xl px-4 py-3 text-[15px] text-neutral-300 transition hover:bg-white/[.04] hover:text-white">Co robot potrafi</a>
+    <a href="#cennik" class="block rounded-xl px-4 py-3 text-[15px] text-neutral-300 transition hover:bg-white/[.04] hover:text-white">Cennik wynajmu</a>
+    <a href="#proces" class="block rounded-xl px-4 py-3 text-[15px] text-neutral-300 transition hover:bg-white/[.04] hover:text-white">Jak to działa</a>
+    <div class="my-2 h-px bg-line-mid"></div>
+    <a href="wdrozenia.html" class="block rounded-xl px-4 py-3 text-[15px] font-600 text-white transition hover:bg-white/[.04]">Wdrożenia w firmie <span class="text-accent">→</span></a>
+    <a href="sklep.html" class="block rounded-xl px-4 py-3 text-[15px] font-600 text-white transition hover:bg-white/[.04]">Sklep — zakup robota <span class="text-accent">→</span></a>
+    <a href="oferta.html" class="block rounded-xl px-4 py-3 text-[15px] text-neutral-300 transition hover:bg-white/[.04] hover:text-white">Pełna oferta</a>
+    <a href="tel:+48531408004" class="mt-2 block rounded-xl bg-white/[.06] px-4 py-3 text-center text-[15px] font-700 text-white">+48 531 408 004</a>
   </div>
 </header>
 
@@ -435,6 +460,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="transition-transform group-hover:translate-x-1">↗</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     2b. TRZY DROGI — rozwidlenie na wynajem, wdrożenie i zakup.
+     Stoi wysoko, bo bez niego podstrony sprzedażowe są nie do znalezienia.
+     ══════════════════════════════════════════════════════ -->
+<section id="drogi" class="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+  <div class="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <h2 class="reveal font-display text-2xl font-700 leading-tight tracking-[-.02em] text-white md:text-4xl">
+      Trzy sposoby, żeby mieć robota
+    </h2>
+    <p class="reveal max-w-md text-[15px] leading-relaxed text-neutral-400" style="--d:.08s">
+      Na jeden wieczór, na stałe do firmy albo na własność. Wybierz, co pasuje —
+      resztę ustalimy w rozmowie.
+    </p>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <a href="#cennik"
+       class="reveal group flex flex-col rounded-[26px] border border-accent/40 bg-accent/[.07] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/70" style="--d:.05s">
+      <span class="w-fit rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[10px] font-700 uppercase tracking-widest text-accent">Najczęściej wybierane</span>
+      <h3 class="mt-5 font-display text-xl font-700 text-white md:text-2xl">Wynajem na event</h3>
+      <p class="mt-3 text-[14px] leading-relaxed text-neutral-300">
+        Przywozimy robota z operatorem, robimy szum i zabieramy go po wydarzeniu.
+        Ty nie zajmujesz się niczym.
+      </p>
+      <p class="mt-5 font-display text-lg font-700 text-white">5500–6500 zł / dzień</p>
+      <span class="mt-auto pt-6 inline-flex items-center gap-2 text-[13px] font-700 uppercase tracking-wider text-accent">
+        Zobacz cennik <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+      </span>
+    </a>
+
+    <a href="wdrozenia.html"
+       class="reveal group flex flex-col rounded-[26px] border border-line-mid bg-surface-2 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/50" style="--d:.12s">
+      <span class="w-fit rounded-full border border-line-hi px-3 py-1 text-[10px] font-700 uppercase tracking-widest text-neutral-400">Na stałe</span>
+      <h3 class="mt-5 font-display text-xl font-700 text-white md:text-2xl">Wdrożenie w firmie</h3>
+      <p class="mt-3 text-[14px] leading-relaxed text-neutral-400">
+        Robot zostaje u Ciebie: mówi po polsku, zna Twoją ofertę, a Twój zespół
+        umie go obsługiwać. Sprzęt, oprogramowanie i szkolenie.
+      </p>
+      <p class="mt-5 font-display text-lg font-700 text-white">Wycena po rozmowie</p>
+      <span class="mt-auto pt-6 inline-flex items-center gap-2 text-[13px] font-700 uppercase tracking-wider text-white">
+        Zobacz wdrożenia <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+      </span>
+    </a>
+
+    <a href="sklep.html"
+       class="reveal group flex flex-col rounded-[26px] border border-line-mid bg-surface-2 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-accent/50" style="--d:.19s">
+      <span class="w-fit rounded-full border border-line-hi px-3 py-1 text-[10px] font-700 uppercase tracking-widest text-neutral-400">Na własność</span>
+      <h3 class="mt-5 font-display text-xl font-700 text-white md:text-2xl">Zakup robota</h3>
+      <p class="mt-3 text-[14px] leading-relaxed text-neutral-400">
+        Sprowadzamy go dla Ciebie prosto od producenta. Odprawa celna, transport
+        i uruchomienie po naszej stronie — masz go po około miesiącu.
+      </p>
+      <p class="mt-5 font-display text-lg font-700 text-white">od 100 000 zł brutto</p>
+      <span class="mt-auto pt-6 inline-flex items-center gap-2 text-[13px] font-700 uppercase tracking-wider text-white">
+        Wejdź do sklepu <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+      </span>
+    </a>
   </div>
 </section>
 
@@ -1307,6 +1392,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }, { threshold: .6 });
   document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+  /* ——— Menu na telefon ——— */
+  const menuBtn = document.getElementById('menuBtn');
+  const menuMobile = document.getElementById('menuMobile');
+  if (menuBtn && menuMobile) {
+    const przelacz = otwarte => {
+      menuMobile.hidden = !otwarte;
+      menuBtn.setAttribute('aria-expanded', String(otwarte));
+    };
+    menuBtn.addEventListener('click', () => przelacz(menuMobile.hidden));
+    // Kliknięcie w link zamyka menu, żeby nie zasłaniało treści po przewinięciu.
+    menuMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => przelacz(false)));
+    addEventListener('keydown', e => { if (e.key === 'Escape') przelacz(false); });
+  }
 
   /* ——— Parallax + pasek postępu + nav ——— */
   const nav = document.getElementById('nav');
