@@ -127,8 +127,30 @@ jobs:
             echo "Commit: \`${GITHUB_SHA::7}\` · https://33bots.pl"
           } >> $GITHUB_STEP_SUMMARY
 
-      - name: Sprawdź, czy strona odpowiada
+      # Potwierdzenie, że strona nie tylko odpowiada, ale serwuje właśnie tę
+      # wersję, którą wdrażaliśmy. Porównujemy oznaczenie arkusza stylów —
+      # gdyby po drodze stanął jakiś bufor, zobaczymy inny numer.
+      - name: Potwierdź, że strona serwuje nową wersję
         run: |
-          KOD=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 https://33bots.pl/ || echo 000)
+          OCZEKIWANA=$(md5sum assets-redesign.css | cut -c1-8)
+          echo "Oczekiwana wersja arkusza: ${OCZEKIWANA}"
+
+          KOD=$(curl -sS -o /tmp/strona.html -w '%{http_code}' --max-time 30 \
+                     -H 'Cache-Control: no-cache' https://33bots.pl/ || echo 000)
           echo "https://33bots.pl → HTTP ${KOD}"
-          [ "${KOD}" = "200" ] || echo "UWAGA: strona nie zwróciła kodu 200 — sprawdź ręcznie."
+
+          if [ "${KOD}" != "200" ]; then
+            echo "UWAGA: strona nie zwróciła kodu 200 — sprawdź ręcznie."
+            exit 1
+          fi
+
+          NA_STRONIE=$(grep -o 'assets-redesign\.css?v=[0-9a-f]*' /tmp/strona.html | head -1 | sed 's/.*v=//')
+          echo "Wersja podana przez serwer: ${NA_STRONIE:-brak}"
+
+          if [ "${NA_STRONIE}" = "${OCZEKIWANA}" ]; then
+            echo "POTWIERDZONE: strona serwuje wdrożoną wersję."
+            echo "Strona potwierdzona — arkusz \`${OCZEKIWANA}\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "UWAGA: serwer podaje inną wersję niż wdrożona."
+            echo "Najczęstsza przyczyna to bufor po stronie hostingu — odśwież stronę za chwilę."
+          fi
