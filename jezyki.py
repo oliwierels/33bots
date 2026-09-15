@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Wersje językowe 33bots: hreflang i przełącznik w stopce.
 
-33bots prowadzi trzy witryny: 33bots.pl, 33bots.lt i 33bots.at. Żeby Google traktował je
+33bots prowadzi cztery witryny: 33bots.pl, 33bots.de, 33bots.lt i 33bots.at. Żeby Google traktował je
 jako jedną rodzinę, a nie trzy niepowiązane serwisy, każda strona musi wskazywać pozostałe
 wersje — i musi to być **wzajemne**. Jednostronną deklarację hreflang wyszukiwarki pomijają.
 
@@ -28,37 +28,46 @@ ZNACZNIK = "data-jezyki"          # po nim poznajemy, że stopka już ma przeł�
 ODPOWIEDNIKI = {
     "index.html": {
         "lt": "https://33bots.lt/",
+        "de": "https://33bots.de/",
         "de-AT": "https://33bots.at/",
     },
     "wypozyczenie-robota.html": {
         "lt": "https://33bots.lt/humanoidinio-roboto-nuoma.html",
+        "de": "https://33bots.de/humanoiden-roboter-mieten.html",
         "de-AT": "https://33bots.at/humanoider-roboter-mieten.html",
     },
     "oferta-targi.html": {
         "lt": "https://33bots.lt/robotas-parodoms.html",
+        "de": "https://33bots.de/angebot-messen.html",
         "de-AT": "https://33bots.at/messe-roboter-mieten.html",
     },
     "oferta-konferencje.html": {
         "lt": "https://33bots.lt/robotas-konferencijai.html",
+        "de": "https://33bots.de/angebot-konferenzen-galas.html",
     },
     "robot-na-event.html": {
         "lt": "https://33bots.lt/robotas-renginiui.html",
+        "de": "https://33bots.de/roboter-event.html",
     },
     "robot-na-wesele.html": {
         "lt": "https://33bots.lt/robotas-vestuvems.html",
+        "de": "https://33bots.de/roboter-hochzeit.html",
     },
     "realizacje-wideo.html": {
         "lt": "https://33bots.lt/video-realizacijos.html",
+        "de": "https://33bots.de/referenzen-videos.html",
     },
     "blog.html": {
         "lt": "https://33bots.lt/blog.html",
+        "de": "https://33bots.de/blog.html",
     },
 }
 
 # Strony, których nie ruszamy: 404 nie jest indeksowana, szablon to materiał roboczy.
 POMIJANE = {"404.html", "szablon-case-study.html"}
 
-NAZWY = {"lt": "Lietuvių — 33bots.lt", "de-AT": "Deutsch (AT) — 33bots.at"}
+NAZWY = {"lt": "Lietuvių — 33bots.lt", "de": "Deutsch — 33bots.de",
+         "de-AT": "Österreich — 33bots.at"}
 
 
 def wlasny_adres(plik):
@@ -100,8 +109,10 @@ def wiersz_stopki(plik, klasa, styl):
 
 
 def dopisz_stopke(tresc, plik):
+    # Jeśli przełącznik już jest, przepisujemy go od nowa — inaczej zmiana mapy
+    # odpowiedników zostawałaby w <head>, a w stopce zostawałby stary zestaw linków.
     if ZNACZNIK in tresc:
-        return tresc  # już jest — nic nie robimy
+        tresc = re.sub(r'\s*<p class="[^"]*" ' + ZNACZNIK + r'>.*?</p>', "", tresc, flags=re.S)
 
     # Nowy dizajn (Tailwind): linia pod hasłem w stopce.
     wzor_nowy = re.compile(
