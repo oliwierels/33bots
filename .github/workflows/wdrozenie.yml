@@ -1,0 +1,230 @@
+name: Wdrożenie na 33bots.de
+
+# Uruchamia się po każdej zmianie na gałęzi produkcyjnej niemieckiej wersji.
+#
+# Kierunek wdrożenia jest taki sam jak na 33bots.pl i 33bots.lt: to serwer sięga po zmiany.
+# GitHub sprawdza stronę i puka do punktu wdrożeniowego, a resztę robi deploy.php
+# po stronie hostingu.
+on:
+  push:
+    branches: [claude/identical-pages-germany-rg6dzh]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'narzedzia-serwer/**'
+  workflow_dispatch:
+
+concurrency:
+  group: wdrozenie-produkcja-de
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  wdroz:
+    name: Sprawdź i wdroż
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      # Bramka bezpieczeństwa. Gdy cokolwiek tu nie zagra, serwer nie dostanie
+      # sygnału i strona zostaje w poprzedniej, działającej wersji.
+      - name: Sprawdź stronę przed wdrożeniem
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys
+          from html.parser import HTMLParser
+          from urllib.parse import urlparse
+
+          DOMENA = 'https://33bots.de'
+          OBCE_DOMENY = ('https://33bots.pl', 'https://33bots.lt', 'https://33bots.at')
+
+          STRONY = sorted(p for p in os.listdir('.') if p.endswith('.html'))
+          bledy = []
+
+          PUSTE = {'meta','link','img','br','input','source','hr','iframe',
+                   'path','circle','rect','polyline','line','polygon','use','stop','col'}
+
+          class Kontrola(HTMLParser):
+              def __init__(self, plik):
+                  super().__init__(); self.stos = []; self.plik = plik
+              def handle_starttag(self, tag, attrs):
+                  if tag in ('svg', 'iframe'): return
+                  if tag not in PUSTE: self.stos.append(tag)
+              def handle_endtag(self, tag):
+                  if tag in PUSTE or tag == 'svg': return
+                  if self.stos and self.stos[-1] == tag: self.stos.pop()
+                  elif tag in self.stos:
+                      while self.stos and self.stos[-1] != tag:
+                          bledy.append(f'{self.plik}: niezamknięty <{self.stos.pop()}>')
+                      self.stos.pop()
+                  else:
+                      bledy.append(f'{self.plik}: zbłąkany </{tag}>')
+
+          if 'index.html' not in STRONY:
+              bledy.append('brak index.html — nie ma czego wdrażać')
+
+          if 'formspree.io' not in open('main.js', encoding='utf-8').read():
+              bledy.append('main.js: zniknął adres formularza kontaktowego (formspree.io)')
+
+          # Reguły serwera nie mogą wyprowadzać ruchu na inną domenę. Do września 2026
+          # leżała tu kopia polskiego .htaccess, która przekierowywała każde wejście po
+          # HTTP na https://33bots.pl — dla Google 33bots.de było wtedy przekierowaniem
+          # na obcy serwis i nie miało szans trafić do indeksu.
+          for plik in ('.htaccess', '_redirects'):
+              if not os.path.exists(plik):
+                  continue
+              # Komentarze pomijamy — opis błędu wolno w nich przytoczyć.
+              tresc = "\n".join(w for w in open(plik, encoding='utf-8').read().splitlines()
+                                if not w.lstrip().startswith('#'))
+              for obca in OBCE_DOMENY:
+                  if obca in tresc:
+                      bledy.append(f'{plik}: reguła przekierowuje na obcą domenę {obca}')
+
+          kanoniczne = {}
+
+          for plik in STRONY:
+              zrodlo = open(plik, encoding='utf-8').read()
+              # 404 nie jest indeksowana i nie ma adresu kanonicznego — sprawdzamy ją
+              # tylko pod kątem struktury.
+              bez_kanonicznego = plik == '404.html'
+
+              k = Kontrola(plik); k.feed(zrodlo)
+              if k.stos: bledy.append(f'{plik}: niezamknięte znaczniki: {k.stos}')
+
+              for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', zrodlo, re.S):
+                  try: json.loads(m.group(1))
+                  except Exception as e: bledy.append(f'{plik}: błędny JSON-LD: {e}')
+
+              # Adres kanoniczny: musi być, musi wskazywać na 33bots.de i być unikalny.
+              m = re.search(r'<link[^>]+rel="canonical"[^>]+href="([^"]+)"', zrodlo)
+              if not m:
+                  if not bez_kanonicznego:
+                      bledy.append(f'{plik}: brak adresu kanonicznego')
+              elif not m.group(1).startswith(DOMENA):
+                  bledy.append(f'{plik}: adres kanoniczny spoza {DOMENA}: {m.group(1)}')
+              else:
+                  kanoniczne.setdefault(m.group(1), []).append(plik)
+
+              # hreflang: obca wersja językowa nie może wskazywać na własną domenę,
+              # bo to samowskazanie unieważnia cały klaster językowy.
+              # „x-default" bywa celowo własny — na podstronach bez odpowiednika.
+              for lang, href in re.findall(r'hreflang="([^"]+)" href="([^"]+)"', zrodlo):
+                  if lang not in ('de', 'x-default') and href.startswith(DOMENA):
+                      bledy.append(f'{plik}: hreflang="{lang}" wskazuje na {href} zamiast na obcą wersję językową')
+
+              # Odwołania do plików, które musimy mieć w repozytorium.
+              for m in re.finditer(r'(?:src|href)="([^"#?:]+\.(?:webp|jpg|jpeg|png|svg|css|js|ico|woff2|mp4|html|xml|txt))(?:[?#][^"]*)?"', zrodlo):
+                  if not os.path.exists(m.group(1)):
+                      bledy.append(f'{plik}: odwołanie do nieistniejącego pliku {m.group(1)}')
+
+          for adres, pliki in kanoniczne.items():
+              if len(pliki) > 1:
+                  bledy.append(f'ten sam adres kanoniczny {adres} na stronach: {", ".join(pliki)}')
+
+          # Mapa strony: poprawny XML i każdy adres ma swój plik w repozytorium.
+          import xml.etree.ElementTree as ET
+          try:
+              drzewo = ET.parse('sitemap.xml')
+          except Exception as e:
+              drzewo = None
+              bledy.append(f'sitemap.xml: błędny XML: {e}')
+
+          if drzewo is not None:
+              NS = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
+              adresy = [w.text.strip() for w in drzewo.getroot().iter(NS + 'loc') if w.text]
+              if not adresy:
+                  bledy.append('sitemap.xml: brak adresów')
+              for adres in adresy:
+                  if not adres.startswith(DOMENA):
+                      bledy.append(f'sitemap.xml: adres spoza {DOMENA}: {adres}')
+                      continue
+                  sciezka = urlparse(adres).path.lstrip('/') or 'index.html'
+                  if not os.path.exists(sciezka):
+                      bledy.append(f'sitemap.xml: adres {adres} nie ma pliku {sciezka}')
+
+          if bledy:
+              print('WDROŻENIE WSTRZYMANE — strona zostaje w poprzedniej wersji:')
+              for b in bledy: print('  -', b)
+              sys.exit(1)
+
+          print(f'Sprawdzone strony: {len(STRONY)}')
+          print('Struktura, dane strukturalne, adresy kanoniczne, hreflang, reguły serwera i mapa strony w porządku.')
+          PY
+
+      - name: Poproś serwer o pobranie zmian
+        env:
+          ADRES: ${{ secrets.DEPLOY_URL_DE }}
+          TOKEN: ${{ secrets.DEPLOY_TOKEN_DE }}
+        run: |
+          if [ -z "${ADRES:-}" ] || [ -z "${TOKEN:-}" ]; then
+            echo "Brak sekretu DEPLOY_URL_DE lub DEPLOY_TOKEN_DE — przerywam."
+            exit 1
+          fi
+
+          KOD=$(curl -sS --max-time 600 --retry 2 --retry-delay 5 \
+                     -o /tmp/odpowiedz.txt -w '%{http_code}' \
+                     --data-urlencode "token=${TOKEN}" "${ADRES}") || true
+
+          echo "── Odpowiedź serwera (HTTP ${KOD}) ──"
+          if [ "${KOD}" = "200" ]; then
+            cat /tmp/odpowiedz.txt
+          else
+            head -c 600 /tmp/odpowiedz.txt
+          fi
+          echo ""
+
+          if [ "${KOD}" != "200" ]; then
+            case "${KOD}" in
+              404) echo "Pod adresem z sekretu DEPLOY_URL_DE nie ma pliku deploy.php."
+                   echo "Wgraj go do katalogu, w którym leży index.html strony 33bots.de." ;;
+              403) echo "Serwer odrzucił token: ten w deploy.php różni się od sekretu DEPLOY_TOKEN_DE." ;;
+              500) echo "deploy.php zgłosił błąd — placeholder zamiast tokenu albo brak ZipArchive." ;;
+              502) echo "Serwer nie dosięgnął GitHuba — sprawdź ruch wychodzący hostingu." ;;
+              000) echo "Brak odpowiedzi: zły adres, brak certyfikatu albo hosting nie odpowiada." ;;
+              *)   echo "Nieoczekiwany kod odpowiedzi — treść odpowiedzi jest wyżej." ;;
+            esac
+            echo ""
+            echo "Wdrożenie nie powiodło się. Strona zostaje w poprzedniej wersji."
+            exit 1
+          fi
+          if ! grep -q 'WDROŻENIE ZAKOŃCZONE' /tmp/odpowiedz.txt; then
+            echo "Serwer odpowiedział, ale nie potwierdził wdrożenia."
+            exit 1
+          fi
+
+          {
+            echo "### Strona zaktualizowana"
+            echo ""
+            echo '```'
+            grep -E 'Zaktualizowane|Bez zmian|Pominięte|Czas' /tmp/odpowiedz.txt || true
+            echo '```'
+            echo ""
+            echo "Commit: \`${GITHUB_SHA::7}\` · https://33bots.de"
+          } >> $GITHUB_STEP_SUMMARY
+
+      # Potwierdzenie, że strona nie tylko odpowiada, ale serwuje właśnie tę wersję.
+      - name: Potwierdź, że strona serwuje nową wersję
+        run: |
+          KOD=$(curl -sS -o /tmp/strona.html -w '%{http_code}' --max-time 30 \
+                     -H 'Cache-Control: no-cache' https://33bots.de/ || echo 000)
+          echo "https://33bots.de → HTTP ${KOD}"
+
+          if [ "${KOD}" != "200" ]; then
+            echo "UWAGA: strona nie zwróciła kodu 200 — sprawdź ręcznie."
+            exit 1
+          fi
+
+          W_REPO=$(md5sum index.html | cut -d' ' -f1)
+          NA_SERWERZE=$(md5sum /tmp/strona.html | cut -d' ' -f1)
+
+          if [ "${W_REPO}" = "${NA_SERWERZE}" ]; then
+            echo "POTWIERDZONE: strona serwuje wdrożoną wersję."
+            echo "Strona potwierdzona — index.html zgodny z repozytorium" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "UWAGA: serwer podaje inną treść strony głównej niż wdrożona."
+            echo "Najczęstsza przyczyna to bufor po stronie hostingu — odśwież stronę za chwilę."
+          fi
