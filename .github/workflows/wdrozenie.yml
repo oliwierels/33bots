@@ -221,6 +221,26 @@ jobs:
             exit 1
           fi
 
+          # Sam index.html nie wystarczy: wygląd całego serwisu jedzie na style.css,
+          # a ten plik potrafi zostać na serwerze stary — czy to przez bufor hostingu,
+          # czy przez listę pomijanych plików w deploy.php. Sprawdzamy oba.
+          KOD_CSS=$(curl -sS -o /tmp/arkusz.css -w '%{http_code}' --max-time 30 \
+                         -H 'Cache-Control: no-cache' https://33bots.de/style.css || echo 000)
+          if [ "${KOD_CSS}" = "200" ] && [ "$(md5sum /tmp/arkusz.css | cut -d' ' -f1)" = "$(md5sum style.css | cut -d' ' -f1)" ]; then
+            echo "Arkusz stylów: zgodny z repozytorium."
+          else
+            echo "UWAGA: style.css na serwerze (HTTP ${KOD_CSS}) różni się od tego w repozytorium."
+            echo "  w repozytorium: $(md5sum style.css | cut -d' ' -f1) ($(wc -c < style.css) B)"
+            echo "  na serwerze:    $(md5sum /tmp/arkusz.css | cut -d' ' -f1) ($(wc -c < /tmp/arkusz.css) B)"
+            echo "  Strony wskazują na arkusz, którego serwer nie ma — wygląd zostanie stary."
+          fi
+
+          # Kroje pisma bywają nowymi plikami w nowym katalogu — najłatwiej je zgubić.
+          for PLIK in fonts/space-grotesk-latin.woff2 fonts/space-grotesk-latin-ext.woff2; do
+            K=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "https://33bots.de/${PLIK}" || echo 000)
+            echo "${PLIK} → HTTP ${K}"
+          done
+
           W_REPO=$(md5sum index.html | cut -d' ' -f1)
           NA_SERWERZE=$(md5sum /tmp/strona.html | cut -d' ' -f1)
 
