@@ -2193,3 +2193,238 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
   .pricing-promo { padding: var(--s3); }
   .pricing-promo .btn-primary { width: 100%; justify-content: center; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SKÓRA REDESIGNU — warstwa dopisana 09/2026
+   ───────────────────────────────────────────────────────────────────────────
+   Redesign z 01.08.2026 objął wyłącznie stronę główną (plus sklep i wdrożenia).
+   Pozostałe podstrony zostały na wcześniejszym wyglądzie: płaska czerń, brak
+   głębi tła, nieproporcjonalnie duże nagłówki, prostokątne przyciski.
+
+   Ta warstwa nadpisuje wygląd, nie ruszając struktury stron — te same klasy,
+   ten sam HTML. Dzięki temu jedna zmiana w arkuszu obejmuje wszystkie podstrony
+   naraz i można ją wycofać usunięciem tego bloku.
+
+   Źródło wartości: tailwind.config.js i arkusz redesignu strony głównej.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Space Grotesk na nagłówkach — ta sama krojówka, co na stronie głównej.
+   Hostowany lokalnie: żadnych połączeń z serwerami Google przy wejściu. */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('fonts/space-grotesk-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('fonts/space-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --ink: #050505;
+  --glow: rgba(111, 214, 255, .45);
+  --radius-card: 20px;
+  --radius-pill: 999px;
+}
+
+/* ── Tło: głębia zamiast płaskiej czerni ─────────────────────────────────
+   Strona główna ma pod treścią dwie poświaty i siatkę. Tutaj to samo, tylko
+   przypięte do <body>, żeby objęło każdą podstronę bez dokładania znaczników. */
+body {
+  background: var(--ink);
+  position: relative;
+}
+/* UWAGA: body::before jest już zajęte przez ziarno tła (opacity .028, z-index 9999).
+   Nadpisanie go gasi poświaty do 2,8% i kasuje ziarno — dlatego całe tło siedzi
+   w body::after: najpierw siatka, pod nią trzy poświaty. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 55% at 18% 0%,   rgba(111, 214, 255, .20), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 88% 12%,  rgba(157, 123, 255, .15), transparent 64%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(111, 214, 255, .09), transparent 72%);
+  background-size: 64px 64px, 64px 64px, auto, auto, auto;
+  -webkit-mask-image: radial-gradient(ellipse 100% 85% at 50% 18%, #000 45%, rgba(0,0,0,.6) 75%, transparent 100%);
+          mask-image: radial-gradient(ellipse 100% 85% at 50% 18%, #000 45%, rgba(0,0,0,.6) 75%, transparent 100%);
+}
+
+/* Treść ponad tłem. */
+.nav, .hero, .section, .footer, .sticky-cta, .cookie-banner, main, .crumbs {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Typografia nagłówków ────────────────────────────────────────────────── */
+.hero__title, .section-title, .tile__title, .statement__quote, .price-card__name,
+.price-card__amount, .stat-item__val, .logo, .faq-q, .video-teaser__title,
+.transport-callout__claim, .onas-head h2, .testimonial__quote,
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* Nagłówek podstrony był liczony do 6,5 rem przy 8vw — na laptopie zjadał cały
+   ekran i spychał treść poniżej zagięcia. Strona główna trzyma się 4,2 rem. */
+.hero__title {
+  font-size: clamp(2.1rem, 4.6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.04;
+}
+.section-title {
+  font-size: clamp(1.7rem, 3.4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.06;
+}
+.tile__title { font-size: 1.45rem; font-weight: 700; line-height: 1.12; }
+
+/* ── Nadtytuł jako pigułka, tak jak w hero strony głównej ─────────────────── */
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px 7px 13px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-pill);
+  background: rgba(17, 17, 19, .6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-2);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* ── Przyciski: pigułki z poświatą ───────────────────────────────────────── */
+.btn-primary, .btn-cta, .btn-submit, .btn-ghost, .btn-cta--ghost, .btn-back,
+.cookie-banner__btn, .tile__link {
+  border-radius: var(--radius-pill);
+}
+.btn-primary, .btn-cta, .btn-submit {
+  transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out),
+              background .3s var(--ease-in-out);
+}
+.btn-primary:hover, .btn-cta:hover, .btn-submit:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 28px var(--glow);
+}
+.btn-ghost, .btn-cta--ghost {
+  border: 1px solid var(--border-hi);
+  background: rgba(17, 17, 19, .5);
+  transition: border-color .3s var(--ease-in-out), background .3s var(--ease-in-out);
+}
+.btn-ghost:hover, .btn-cta--ghost:hover {
+  border-color: var(--accent);
+  background: rgba(111, 214, 255, .08);
+}
+
+/* ── Pasek nawigacji: szkło ──────────────────────────────────────────────── */
+.nav {
+  background: rgba(5, 5, 5, .55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--border);
+}
+
+/* ── Kafle i karty: zaokrąglenia, obrys, uniesienie przy najechaniu ──────── */
+.tiles, .testimonials {
+  gap: 1px;
+  background: var(--border);
+}
+.tile, .testimonial {
+  border: 0;
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, rgba(23,23,26,.9), rgba(11,11,12,.9));
+  box-shadow: inset 0 0 0 1px var(--border-mid);
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.tile:hover, .testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 0 0 1px var(--border-hi), 0 18px 46px rgba(0, 0, 0, .55);
+}
+.price-card {
+  border-radius: var(--radius-card);
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out),
+              border-color .4s var(--ease-in-out);
+}
+.price-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hi);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .55);
+}
+.price-card--main {
+  border-color: rgba(111, 214, 255, .35);
+  box-shadow: 0 0 44px rgba(111, 214, 255, .10);
+}
+
+/* ── FAQ: wiersze jako karty, nie kreski ─────────────────────────────────── */
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 10px;
+  padding-inline: 20px;
+  background: rgba(17, 17, 19, .45);
+  transition: border-color .3s var(--ease-in-out), background .3s var(--ease-in-out);
+}
+.faq-item:hover { border-color: var(--border-hi); background: rgba(23, 23, 26, .6); }
+
+/* ── Hero podstrony ─────────────────────────────────────────────────────────
+   Sztywne min-height:100vh miało sens przy hero z robotem po prawej. Na
+   podstronach ta kolumna bywa pusta i zostawał ekran pustki nad treścią. */
+.hero:not(.hero--home) {
+  min-height: 0;
+  padding-top: clamp(116px, 15vh, 168px);
+  padding-bottom: clamp(48px, 7vh, 96px);
+}
+/* .hero__content dokłada własne 96 px od góry — na podstronie to razem z
+   odstępem na pasek nawigacji dawało ćwierć ekranu pustki nad nagłówkiem. */
+.hero:not(.hero--home) .hero__content { padding-top: 0; }
+
+/* ── Okruszki ────────────────────────────────────────────────────────────── */
+.crumbs { font-size: .78rem; letter-spacing: .01em; }
+
+/* ── Sekcje: rytm strony głównej ─────────────────────────────────────────── */
+.section { padding-block: clamp(64px, 9vw, 128px); }
+
+/* ── Detale ──────────────────────────────────────────────────────────────── */
+::selection { background: var(--accent); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+/* ── Telefon ─────────────────────────────────────────────────────────────
+   Siatka 64 px na ekranie szerokim na 390 px robi się natrętna, a odstęp nad
+   nagłówkiem zjada pierwszy ekran. */
+@media (max-width: 768px) {
+  body::after { background-size: 40px 40px, 40px 40px, auto, auto, auto; opacity: .7; }
+  .hero:not(.hero--home) {
+    padding-top: clamp(92px, 12vh, 120px);
+    padding-bottom: clamp(36px, 5vh, 64px);
+  }
+  .section { padding-block: clamp(52px, 11vw, 80px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile, .testimonial, .price-card, .btn-primary, .btn-cta, .btn-submit { transition: none; }
+  .tile:hover, .testimonial:hover, .price-card:hover,
+  .btn-primary:hover, .btn-cta:hover, .btn-submit:hover { transform: none; }
+  html { scroll-behavior: auto; }
+}
