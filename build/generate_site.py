@@ -18,6 +18,7 @@ Uruchomienie:
 
 import json
 import os
+import sys
 import re
 import shutil
 
@@ -636,6 +637,19 @@ def render_faq(faqs):
     return "\n".join(out)
 
 
+def _galerie_quelle(slug):
+    """srcset für ein Galeriebild: kleine Variante fürs Handy, Original für breite Schirme.
+
+    Ohne das lädt ein Handy die volle Datei (150–270 KB) in eine ~380 px breite Kachel.
+    Die Varianten legt bildvarianten.py an; fehlt eine, bleibt es beim Original.
+    """
+    variante = f"{slug}-400.webp"
+    if os.path.exists(os.path.join(OUT, variante)) or os.path.exists(variante):
+        return (f'srcset="{variante} 400w, {slug}.webp 1200w" '
+                f'sizes="(max-width: 760px) 400px, 760px"')
+    return f'srcset="{slug}.webp"'
+
+
 def gallery_items(limit=None):
     items = GALLERY[:limit] if limit else GALLERY
     out = []
@@ -643,7 +657,7 @@ def gallery_items(limit=None):
         cls = f"shot shot--{mod}" if mod else "shot"
         out.append(f"""        <figure class="{cls}">
           <picture>
-            <source srcset="{slug}.webp" type="image/webp" />
+            <source {_galerie_quelle(slug)} type="image/webp" />
             <img src="{slug}.jpg" alt="{alt}" loading="lazy" decoding="async" class="shot__img" />
           </picture>
           <figcaption class="shot__cap">{cap}</figcaption>
@@ -926,7 +940,12 @@ def build_city_page(pl_file):
          f"Branding und Versicherung. Ab zwei Tagen erhalten Sie 15 % Rabatt auf jeden Tag."),
     ]
 
+    # Bei langen Städtenamen sprengt der Zusatz die Zeile: Google schneidet Titel über
+    # etwa 65 Zeichen ab, und abgeschnitten wird immer das Ende. Deshalb fällt der
+    # Zusatz genau dann weg, wenn er nicht mehr passt — kurze Namen behalten ihn.
     title = f"Humanoiden Roboter mieten {city} — Roboter für Events | 33bots"
+    if len(title) > 65:
+        title = f"Humanoiden Roboter mieten {city} | 33bots"
     desc = (f"Humanoiden Roboter Unitree G1 in {city} mieten — Messen, Konferenzen, Galas. Anfahrt und "
             f"zertifizierter Operator inklusive. Angebot in 24 h →")
 
@@ -1604,6 +1623,14 @@ def build_404():
 def main():
     os.makedirs(OUT, exist_ok=True)
     check_assets()
+
+    # Bildvarianten zuerst: gallery_items() prüft, ob sie existieren.
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    try:
+        import bildvarianten
+        bildvarianten.main()
+    except ImportError:
+        print("UWAGA: brak bildvarianten.py — galeria pójdzie w pełnym rozmiarze")
     write("a11y.css", build_a11y_css())
     write("gallery.css", build_gallery_css())
     write("a11y.js", build_a11y_js())
@@ -1641,6 +1668,16 @@ def main():
         else:
             prio[f] = "0.9"
     write("sitemap.xml", build_sitemap([(f, prio[f]) for f in html_pages]))
+
+    # Wersje językowe dopisywane są po wygenerowaniu stron — inaczej każda przebudowa
+    # kasowałaby hreflang i przełącznik w stopce, bo generator nadpisuje pliki w całości.
+    # (Tak właśnie zniknęły przy pierwszym teście po ich dodaniu.)
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    try:
+        import sprachen
+        sprachen.main()
+    except ImportError:
+        print("UWAGA: brak sprachen.py — strony wyjdą bez hreflang i przełącznika języków")
 
     html_count = len([f for f in WRITTEN if f.endswith(".html")])
     print(f"Wygenerowano {len(WRITTEN)} plików w {OUT}/ (w tym {html_count} stron HTML)")

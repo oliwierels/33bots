@@ -88,13 +88,16 @@ def mk(**kw):
 
 
 # ── Pule tekstowe ─────────────────────────────────────────────────────
+# Die Beschreibungen bleiben unter 160 Zeichen: Google schneidet längere im
+# Suchergebnis ab, und abgeschnitten wird immer das Ende — also genau die
+# Handlungsaufforderung. Bei langen Ortsnamen greift zusätzlich die Kürzung in mk().
 DESCS = [
-    "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Gästeempfang, Tanzshow, "
-    "Gespräche dank KI. Anfahrt und Operator inklusive →",
-    "Humanoiden Roboter {na} mieten. Der Unitree G1 begrüßt Gäste, tanzt und spricht dank KI. Deutschlandweit, "
-    "Anfahrt und Operator im Preis →",
-    "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich. Unitree G1 mit "
-    "zertifiziertem Operator, Anfahrt inklusive →",
+    "Roboter {na} — die Attraktion, die Ihre Gäste nicht vergessen. Unitree G1: Empfang, "
+    "Tanzshow, Gespräche dank KI. Operator inklusive →",
+    "Humanoiden Roboter {na} mieten. Der Unitree G1 begrüßt Gäste, tanzt und spricht dank KI. "
+    "Deutschlandweit, Operator im Preis →",
+    "Humanoider Roboter {na}: Tanzchoreografie, Interaktion mit den Gästen und Fotobereich. "
+    "Unitree G1 mit zertifiziertem Operator →",
 ]
 
 EYEBROWS = [
@@ -161,8 +164,12 @@ def ev(slug, crumb, na, Loc, sub, uniq_tile, uniq_scen, faq_uniq,
     loc = Loc[0].lower() + Loc[1:]
     d = mk(
         slug=slug, crumb=crumb,
-        title=f"Roboter {na} — humanoiden Roboter mieten | 33bots",
-        desc=_pick(DESCS, slug).format(na=na),
+        # Zusatz nur, solange der Titel unter ~65 Zeichen bleibt — Google schneidet
+        # längere ab, und abgeschnitten wird das Ende.
+        title=(f"Roboter {na} — humanoiden Roboter mieten | 33bots"
+               if len(f"Roboter {na} — humanoiden Roboter mieten | 33bots") <= 65
+               else f"Roboter {na} mieten | 33bots"),
+        desc=_desc(DESCS, slug, na),
         keywords=(f"roboter {na}, roboter mieten {na}, attraktion {na}, humanoider roboter {na}, "
                   f"Unitree G1 {na}"),
         eyebrow=_pick(EYEBROWS, slug),
@@ -204,6 +211,25 @@ def br(suffix, nom, na, Loc, aud, uniq, faq, guides="default", video=None, blog=
               video=video, guides=guides, blog=blog)
 
 
+def _desc(pool, slug, na, limit=160):
+    """Wählt eine Beschreibung, die nach dem Einsetzen noch unter das Limit passt.
+
+    Die Vorlagen selbst sind kurz genug, aber lange Einsetzungen wie
+    „für den Junggesellinnenabschied" sprengen sie. Google schneidet über ~160 Zeichen
+    ab — und abgeschnitten wird das Ende, also die Handlungsaufforderung. Deshalb
+    nehmen wir die erste Variante, die passt; passt keine, kürzen wir am letzten Satz.
+    """
+    gewaehlt = _pick(pool, slug).format(na=na)
+    if len(gewaehlt) <= limit:
+        return gewaehlt
+    for vorlage in pool:
+        kandidat = vorlage.format(na=na)
+        if len(kandidat) <= limit:
+            return kandidat
+    gekuerzt = gewaehlt[:limit].rsplit(".", 1)[0]
+    return (gekuerzt + " →") if gekuerzt else gewaehlt[:limit]
+
+
 PRIV_DESCS = [
     "Roboter {na} — die Überraschung, über die die ganze Familie spricht. Der Unitree G1 tanzt, gratuliert und "
     "posiert für Fotos. Operator inklusive →",
@@ -236,8 +262,10 @@ def priv(slug, crumb, na, Loc, sub, uniq_scen, faq_uniq, guides_override=None):
     loc = Loc[0].lower() + Loc[1:]
     d = mk(
         slug=slug, crumb=crumb,
-        title=f"{crumb} — humanoiden Roboter mieten | 33bots",
-        desc=_pick(PRIV_DESCS, slug).format(na=na),
+        title=(f"{crumb} — humanoiden Roboter mieten | 33bots"
+               if len(f"{crumb} — humanoiden Roboter mieten | 33bots") <= 65
+               else f"{crumb} — Roboter mieten | 33bots"),
+        desc=_desc(PRIV_DESCS, slug, na),
         keywords=(f"roboter {na}, roboter mieten {na}, attraktion {na}, humanoider roboter {na}, "
                   f"überraschung {na}"),
         eyebrow=_pick(EYEBROWS, slug),

@@ -10,6 +10,11 @@ RewriteCond %{HTTP_HOST} ^www\.33bots\.de$ [NC,OR]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
 
+# Die Startseite hat genau eine Adresse: / , nicht /index.html. Sonst sieht ein Crawler
+# zwei Seiten mit identischem Titel und Google wählt selbst, welche er zeigt.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://33bots.de/ [L,R=301]
+
 ErrorDocument 404 /404.html
 
 # Der Zustandsbericht des Deployments gehört niemandem außer uns.
@@ -35,6 +40,17 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  # HSTS: nach dem ersten Besuch erzwingt der Browser selbst HTTPS.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  # Kein Einbetten der Seite in fremde Frames (Clickjacking).
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Browser-APIs abschalten, die die Seite nicht braucht.
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+  # CSP nennt genau die Hosts, von denen die Seite wirklich etwas lädt. Die Analytik
+  # ist hier abgeschaltet (GTM_ID leer), Schriften liegen lokal — deshalb ist die
+  # Liste kürzer als auf 33bots.pl. 'unsafe-inline' bleibt: Skripte und Styles stehen
+  # in den Seiten selbst.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://formspree.io; frame-src https://www.googletagmanager.com; media-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; frame-ancestors 'self'"
 </IfModule>
