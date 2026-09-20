@@ -14,3 +14,35 @@ Redirect 301 /robot-wynajem-jaworzno.html         /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-sosnowiec.html        /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-tychy.html            /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
+
+# ── Kanoniczny adres strony głównej ────────────────────────────────────────────
+# /index.html i / to ta sama treść pod dwoma adresami. Crawler widzi wtedy dwie
+# strony z identycznym tytułem, a Google sam wybiera, którą pokazać.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://33bots.pl/ [L,R=301]
+
+# ── Nagłówki bezpieczeństwa ────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # HSTS: po pierwszej wizycie przeglądarka sama wymusza HTTPS i nie pozwala
+  # obniżyć połączenia. Bez preload — to decyzja jednokierunkowa, trudna do cofnięcia.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Zakaz zgadywania typu pliku — blokuje atak polegający na podsunięciu skryptu
+  # jako obrazka.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Zakaz osadzania strony w cudzej ramce (podszywanie się, clickjacking).
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Do obcych serwisów wysyłamy samą domenę, nie pełny adres podstrony.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Wyłączamy API przeglądarki, z których strona nie korzysta.
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
+  # CSP wymienia dokładnie te hosty, z których strona faktycznie korzysta:
+  # GTM i Albacross (analityka), Formspree (formularz), Google Fonts, TVP (wideo).
+  # 'unsafe-inline' jest konieczny, bo skrypty i style są osadzone w stronie —
+  # usunięcie go wymagałoby przebudowy szablonów, a nie samej konfiguracji serwera.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com; frame-src https://www.googletagmanager.com https://gdansk.tvp.pl https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; frame-ancestors 'self'"
+</IfModule>
