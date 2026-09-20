@@ -113,6 +113,9 @@ jobs:
           print('Struktura, dane strukturalne, analityka, odwołania i arkusz w porządku.')
           PY
 
+      - name: Audyt SEO (31 kryteriów)
+        run: python3 audyt.py . 33bots.pl
+
       - name: Poproś serwer o pobranie zmian
         env:
           ADRES: ${{ secrets.DEPLOY_URL }}
