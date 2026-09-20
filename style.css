@@ -2410,6 +2410,16 @@ h1, h2, h3 {
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
+/* ── Kadr z robotem: wtopienie krawędzi w tło ────────────────────────────
+   Zdjęcie ma niemal czarne tło kadru, więc na stronie widać prostokąt.
+   Strona główna rozwiązuje to trybem „screen" i miękką maską — czerń kadru
+   znika bez śladu ramki. Tu to samo dla kadrów na podstronach. */
+.hero__robot-img {
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
+          mask-image: radial-gradient(ellipse 68% 76% at 50% 50%, #000 38%, rgba(0,0,0,.55) 72%, transparent 92%);
+}
+
 /* ── Telefon ─────────────────────────────────────────────────────────────
    Siatka 64 px na ekranie szerokim na 390 px robi się natrętna, a odstęp nad
    nagłówkiem zjada pierwszy ekran. */
