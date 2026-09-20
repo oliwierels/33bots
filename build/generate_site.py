@@ -548,7 +548,7 @@ def head_common(title, desc, keywords, out_file, og_image, og_alt, extra_style="
 def head_assets(extra_style=""):
     return f"""  <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=1" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <link rel="stylesheet" href="a11y.css?v=1" />
   <link rel="stylesheet" href="gallery.css?v=1" />
   <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
