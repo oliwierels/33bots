@@ -78,9 +78,16 @@ jobs:
                   try: json.loads(m.group(1))
                   except Exception as e: bledy.append(f'{plik}: błędny JSON-LD: {e}')
 
-              for konieczny in ('GTM-MR7R7CJ3', 'formspree.io'):
-                  if konieczny not in zrodlo:
-                      bledy.append(f'brak w {plik}: {konieczny}')
+              # Analityka musi być wszędzie.
+              if 'GTM-MR7R7CJ3' not in zrodlo:
+                  bledy.append(f'brak w {plik}: GTM-MR7R7CJ3')
+
+              # Formularz nie jest obowiązkowy — regulamin i polityka prywatności
+              # go nie mają. Ale jeśli strona go ma, musi wysyłać tam, gdzie trzeba:
+              # to ten warunek wyłapałby powrót awarii, przez którą zapytania
+              # przestały docierać na skrzynkę.
+              if '<form' in zrodlo and 'formspree.io' not in zrodlo:
+                  bledy.append(f'{plik}: formularz nie wysyła na formspree.io')
 
               # Czy arkusz oznaczony na stronie odpowiada temu, który leży w repozytorium.
               # Wyłapuje sytuację, w której ktoś zmienił stronę i zapomniał uruchomić ./buduj.sh
