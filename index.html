@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
      Przebudowa po zmianach w HTML:
      npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
-<link rel="stylesheet" href="assets-redesign.css?v=09dc27bd" />
+<link rel="stylesheet" href="assets-redesign.css?v=89447e89" />
 
 <style>
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -254,58 +254,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "Ile dokładnie kosztuje wynajem?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Od 5500 zł za cały dzień realizacji — ostateczna kwota zależy wyłącznie od lokalizacji eventu. Robota wynajmiesz też na krótszy pokaz, np. kilka godzin podczas przerwy konferencyjnej — wtedy wyceniamy indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach 2-dniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport, operator, branding i ubezpieczenie."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Czy robot mówi i rozmawia z gośćmi?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tak. Robot mówi po polsku naturalną syntezą mowy — wita gości, odpowiada na pytania i zapowiada punkty programu. Przed wydarzeniem ustalamy jego charakter oraz wgrywamy wiedzę o Twojej firmie: ofertę, nazwy produktów, najczęstsze pytania klientów i agendę eventu. Konfiguracja jest wliczona w cenę wynajmu."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Czy muszę wpłacać zaliczkę?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Nie. Rezerwacja terminu jest bezpłatna i bez zaliczki. Fakturę wystawiamy dopiero po zakończonym wydarzeniu, a w razie potrzeby ustalimy dłuższy termin płatności."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Czy muszę umieć sterować robotem?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Nie. Przez cały event obecny jest nasz certyfikowany operator — odpowiada za konfigurację, obsługę i bezpieczeństwo pokazu."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Czy robot jest bezpieczny dla gości?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tak. LiDAR i wizja komputerowa pozwalają omijać ludzi i przeszkody w czasie rzeczywistym, nad pokazem czuwa operator, a realizacja objęta jest ubezpieczeniem OC."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Dojeżdżacie do mojego miasta?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tak — do każdego miasta w Polsce, bez dopłat i bez limitu kilometrów. Od Szczecina po Rzeszów, od Gdańska po Karpacz."
-   }
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ile dokładnie kosztuje wynajem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pełny dzień od 5 500 zł netto. Ostateczna kwota zależy od lokalizacji wydarzenia i długości trwania. Robota wynajmiesz też na krótszy pokaz, np. kilka godzin podczas przerwy konferencyjnej — wtedy wyceniamy indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach dwudniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport, operator, strój i branding oraz ubezpieczenie OC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ceny są netto czy brutto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wszystkie kwoty podajemy netto. Do faktury doliczamy VAT według obowiązującej stawki."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak robot pracuje cały dzień, skoro bateria starcza na krócej?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i wymienia je w trakcie wydarzenia, więc pokaz nie zatrzymuje się na ładowanie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ile miejsca potrzebuje robot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wystarczy kilka metrów kwadratowych. Robot pracuje na stoisku, na scenie i w przejściu między gośćmi — nie wymaga osobnej strefy ani zaplecza technicznego."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy robot mówi i rozmawia z gośćmi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. Robot mówi po polsku naturalną syntezą mowy — wita gości, odpowiada na pytania i zapowiada punkty programu. Przed wydarzeniem ustalamy jego charakter oraz wgrywamy wiedzę o Twojej firmie: ofertę, nazwy produktów, najczęstsze pytania klientów i agendę eventu. Konfiguracja jest wliczona w cenę wynajmu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy muszę wpłacać zaliczkę?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. Rezerwacja terminu jest bezpłatna i bez zaliczki. Fakturę wystawiamy dopiero po zakończonym wydarzeniu, a w razie potrzeby ustalimy dłuższy termin płatności."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy muszę umieć sterować robotem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. Przez cały event obecny jest nasz certyfikowany operator — odpowiada za konfigurację, obsługę i bezpieczeństwo pokazu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy robot jest bezpieczny dla gości?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak. LiDAR i wizja komputerowa pozwalają omijać ludzi i przeszkody w czasie rzeczywistym, nad pokazem czuwa operator, a realizacja objęta jest ubezpieczeniem OC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dojeżdżacie do mojego miasta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tak, do każdego miasta w Polsce. Transport jest wliczony w podaną cenę — sama lokalizacja wpływa natomiast na wysokość wyceny."
+      }
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -314,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HowTo","name":"Jak wynająć robota humanoidalnego — 5 kroków bez zaliczki","step":[
 {"@type":"HowToStep","position":1,"name":"Szybki kontakt","text":"Zostawiasz kontakt w formularzu — zajmuje to dwie minuty."},
-{"@type":"HowToStep","position":2,"name":"Telefon i błyskawiczna wycena","text":"Oddzwaniamy, poznajemy event i podajemy konkretną kwotę, zwykle tego samego dnia."},
+{"@type":"HowToStep","position":2,"name":"Telefon i wycena","text":"Oddzwaniamy, poznajemy event i podajemy konkretną kwotę. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia."},
 {"@type":"HowToStep","position":3,"name":"Prosta umowa","text":"Bezpłatna rezerwacja terminu, zero zaliczki, w razie potrzeby dłuższy termin płatności."},
 {"@type":"HowToStep","position":4,"name":"Realizacja","text":"Przyjeżdżamy, konfigurujemy i prowadzimy pokaz. Ty zajmujesz się gośćmi."},
 {"@type":"HowToStep","position":5,"name":"Faktura po evencie","text":"Płatność następuje dopiero po zakończonym wydarzeniu."}]}
@@ -346,7 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "alternateName": "33bots — wynajem robotów humanoidalnych",
     "url": "https://33bots.pl/",
     "inLanguage": "pl-PL",
-    "description": "Wynajem robotów humanoidalnych Unitree G1 na eventy, targi i konferencje w całej Polsce. Darmowy transport, certyfikowany operator w cenie.",
+    "description": "Wynajem robotów humanoidalnych Unitree G1 na eventy, targi i konferencje w całej Polsce. Transport i certyfikowany operator w cenie.",
     "publisher": {
       "@type": "Organization",
       "name": "33bots",
@@ -384,7 +408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
     <a href="#kontakt"
        class="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-[13px] font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(111,214,255,.45)] md:inline-flex">
-      Darmowa wycena
+      Sprawdź termin
       <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
     </a>
 
@@ -437,54 +461,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Kolumna tekstowa -->
     <div>
-      <p class="reveal mb-6 inline-flex items-center gap-2.5 rounded-full border border-line-mid bg-white/[.03] px-4 py-2 text-[11px] font-600 uppercase tracking-[.18em] text-neutral-400 backdrop-blur" style="--d:.05s">
-        <span class="relative flex h-1.5 w-1.5">
-          <span class="absolute inline-flex h-full w-full rounded-full bg-accent animate-pulse-ring"></span>
-          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent"></span>
-        </span>
-        Wynajem robotów humanoidalnych · cała Polska
-      </p>
-
-      <h1 class="reveal font-display font-700 tracking-[-.03em] text-white" style="--d:.12s">
-        <span class="block text-[1.15rem] font-600 leading-tight text-neutral-300 sm:text-2xl xl:text-[1.7rem]">Wynajem robotów humanoidalnych</span>
-        <span class="mt-2 block text-[2.2rem] leading-[1.02] sm:text-[2.9rem] xl:text-[3.15rem]">na wydarzenia, które<br />
-          <span class="bg-gradient-to-r from-white via-accent to-accent-deep bg-clip-text text-transparent">zapadają w pamięć.</span>
-        </span>
+      <!-- Fraza SEO zostaje w H1, ale jako cicha etykieta nad hasłem. -->
+      <h1 class="reveal text-[11px] font-600 uppercase tracking-[.18em] text-neutral-400" style="--d:.05s">
+        Wynajem robota humanoidalnego na wydarzenia
       </h1>
 
-      <p class="reveal mt-5 max-w-lg leading-relaxed text-neutral-400 md:text-lg" style="--d:.2s">
-        Humanoid Unitree G1 na Twoich targach, konferencji albo gali.
-        Cały dzień pokazu — <span class="text-white">transport, operator i branding w cenie</span>.
+      <p class="reveal mt-5 font-display text-[2.6rem] font-400 leading-[.98] tracking-[-.04em] text-white sm:text-[3.4rem] xl:text-[4.2rem]" style="--d:.12s">
+        Najczęściej fotografowany gość Twojego wydarzenia.
       </p>
 
-      <!-- Kotwica cenowa -->
-      <div class="reveal mt-6 flex items-end gap-4 border-l-2 border-accent/60 pl-5" style="--d:.26s">
-        <div>
-          <p class="font-display text-4xl font-700 leading-none text-white">od 5 500 zł</p>
-          <p class="mt-1.5 text-xs font-600 uppercase tracking-[.14em] text-neutral-500">za cały dzień · zero dopłat</p>
-        </div>
-      </div>
+      <p class="reveal mt-7 max-w-xl text-[17px] leading-relaxed text-neutral-400 md:text-[19px]" style="--d:.2s">
+        Robot humanoidalny z&nbsp;polskim głosem, charakterem i&nbsp;scenariuszem pod Twoją galę,
+        konferencję lub stoisko. Operator, transport i&nbsp;strój w&nbsp;cenie.
+        <span class="text-neutral-200">Płacisz po wydarzeniu.</span>
+      </p>
 
-      <!-- CTA -->
-      <div class="reveal mt-7 flex flex-col gap-3 sm:flex-row" style="--d:.32s">
-        <a href="#kontakt"
-           class="cta-shine group relative inline-flex items-center justify-center gap-3 rounded-2xl px-9 py-5 font-display text-base font-700 uppercase tracking-wider text-ink shadow-[0_0_40px_rgba(111,214,255,.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(111,214,255,.5)]">
-          Odbierz darmową wycenę
-          <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+      <div class="reveal mt-9 flex flex-wrap items-center gap-x-8 gap-y-4" style="--d:.28s">
+        <a href="#kontakt" data-cta="hero"
+           class="group inline-flex h-[52px] items-center gap-3 bg-text px-7 text-[15px] font-500 text-ink transition-colors hover:bg-white">
+          Sprawdź dostępność terminu
+          <span class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
         </a>
-        <a href="#cennik"
-           class="inline-flex items-center justify-center gap-2 rounded-2xl border border-line-hi px-9 py-5 font-display text-base font-600 uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-white/[.03] hover:shadow-[0_0_30px_rgba(111,214,255,.18)]">
-          Zobacz cennik ↓
+        <a href="#realizacje"
+           class="text-[15px] text-neutral-300 underline decoration-line-hi underline-offset-[6px] transition hover:text-white hover:decoration-accent">
+          Zobacz realizacje
         </a>
       </div>
 
-      <!-- Mikro-dowody -->
-      <ul class="reveal mt-6 flex flex-wrap gap-x-6 gap-y-2.5 text-[13px] text-neutral-400" style="--d:.38s">
-        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Zero zaliczki</li>
-        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Faktura po evencie</li>
-        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Darmowy transport</li>
-        <li class="flex items-center gap-2"><span class="text-accent">✓</span> Wycena w 24 h</li>
-      </ul>
+      <!-- Linia dowodu: każda pozycja prowadzi do materiału, w którym widać robota. -->
+      <p class="reveal mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-500 uppercase tracking-[.12em] text-neutral-500" style="--d:.36s">
+        <span class="text-neutral-400">Widziani w</span>
+        <a href="https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151"
+           target="_blank" rel="noopener" title="Robot w 0:35–1:00 i 2:00–2:10"
+           class="underline decoration-line-hi underline-offset-4 transition hover:text-white hover:decoration-accent">Pytanie na śniadanie TVP2</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.tiktok.com/@teleexpress.tvp/video/7654958168786619680"
+           target="_blank" rel="noopener"
+           class="underline decoration-line-hi underline-offset-4 transition hover:text-white hover:decoration-accent">Teleexpress TVP</a>
+        <span aria-hidden="true">·</span>
+        <a href="case-study-women-in-tech.html"
+           class="underline decoration-line-hi underline-offset-4 transition hover:text-white hover:decoration-accent">Women in Tech Summit</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://naszemiasto.pl/wielki-final-eco-studio-electro-system-z-okazji-sprzatania-swiata/ar/c1p2-29359081"
+           target="_blank" rel="noopener"
+           class="underline decoration-line-hi underline-offset-4 transition hover:text-white hover:decoration-accent">Eko Partner 2026</a>
+      </p>
     </div>
 
     <!-- Robot z parallaxem -->
@@ -500,35 +521,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- Wskaźnik scrolla -->
-  <a href="#zaufanie" class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-neutral-600 transition hover:text-accent md:flex">
-    <span class="text-[10px] uppercase tracking-[.25em]">Przewiń</span>
-    <span class="animate-bob text-lg">↓</span>
-  </a>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     2. PAS ZAUFANIA — jedna linia, zero zbędnego miejsca
-     ══════════════════════════════════════════════════════ -->
-<section id="zaufanie" class="border-y border-line bg-surface/60 py-8">
-  <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-      <p class="reveal text-[11px] font-600 uppercase tracking-[.18em] text-neutral-600">Zaufali nam</p>
-      <div class="reveal flex flex-wrap items-center justify-center gap-x-9 gap-y-3 font-display text-lg font-600 text-neutral-400" style="--d:.08s">
-        <a href="case-study-women-in-tech.html" class="transition hover:text-white">Fundacja Perspektywy</a>
-        <a href="case-study-eco-studio-electro-system.html" class="transition hover:text-white">ELECTRO-SYSTEM</a>
-        <span class="text-neutral-500">DSV</span>
-        <span class="text-neutral-500">Cashify</span>
-        <a href="case-study-lexai.html" class="transition hover:text-white">LEX AI</a>
-      </div>
-      <a href="https://gdansk.tvp.pl/93950197/pan-mecenas-robot" target="_blank" rel="noopener noreferrer"
-         class="reveal group inline-flex items-center gap-2 rounded-full border border-line-mid px-4 py-2 text-[12px] text-neutral-400 transition hover:border-accent/50 hover:text-white" style="--d:.16s">
-        <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-        Widziani w TVP
-        <span class="transition-transform group-hover:translate-x-1">↗</span>
-      </a>
-    </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
@@ -543,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h2>
     </div>
     <p class="reveal max-w-sm text-neutral-400" style="--d:.16s">
-      Przeciągnij pas albo najedź na kadr — zatrzyma się, a nagranie ruszy. Kliknij, żeby otworzyć realizację.<br class="hidden md:block" /><span class="text-neutral-500">Same prawdziwe realizacje. Bez stocków, bez renderów.</span>
+      Gale, konferencje, targi i plener. Kliknij kadr, żeby zobaczyć realizację.
     </p>
   </div>
 
@@ -924,7 +916,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="reveal max-w-sm text-[15px] leading-relaxed text-neutral-400" style="--d:.16s">
         Robot pracował na scenie, na stoisku, w showroomie i w plenerze —
         w Polsce, <span class="text-neutral-300">na Litwie, w Niemczech, Czechach i Rumunii</span>.
-        Najedź na nazwę, żeby zobaczyć realizację.
       </p>
     </div>
   </div>
@@ -932,14 +923,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="logos reveal" style="--d:.24s">
       <div class="logos-track">
         <!-- ORYGINAŁ -->
-        <a href="case-study-grupa-rekord-mspo.html" class="logo-chip"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">REMONDIS Electrorecycling</span><span class="logo-chip__opis">POLECO 2026, MTP Poznań</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">DELKOM 2000</span><span class="logo-chip__opis">POLFISH 2026, Gdańsk</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Matys Development</span><span class="logo-chip__opis">Targi nieruchomości, Szczecin</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Blue Energy</span><span class="logo-chip__opis">Szczyt Cyberbezpieczeństwa, Krynica</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Seba Tech Group</span><span class="logo-chip__opis">targi przemysłowe</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">ZTM · m.st. Warszawa</span><span class="logo-chip__opis">Dni Transportu Publicznego</span></div>
-        <a href="case-study-eco-studio-electro-system.html" class="logo-chip"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Gmina Jednorożec</span><span class="logo-chip__opis">Parada Jednorożców</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Uzdrowisko Ciechocinek</span><span class="logo-chip__opis">Piknik pod Kujawskim Niebem</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">VELUX</span><span class="logo-chip__opis">event firmowy, Namysłów</span></div>
@@ -951,14 +942,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="logo-chip"><span class="logo-chip__nazwa">JustSpeak</span><span class="logo-chip__opis">event szkoły językowej</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Gonia Auto</span><span class="logo-chip__opis">salon samochodowy</span></div>
         <!-- KOPIA — bezszwowa pętla -->
-        <a href="case-study-grupa-rekord-mspo.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">REMONDIS Electrorecycling</span><span class="logo-chip__opis">POLECO 2026, MTP Poznań</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">DELKOM 2000</span><span class="logo-chip__opis">POLFISH 2026, Gdańsk</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Matys Development</span><span class="logo-chip__opis">Targi nieruchomości, Szczecin</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Blue Energy</span><span class="logo-chip__opis">Szczyt Cyberbezpieczeństwa, Krynica</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Seba Tech Group</span><span class="logo-chip__opis">targi przemysłowe</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ZTM · m.st. Warszawa</span><span class="logo-chip__opis">Dni Transportu Publicznego</span></div>
-        <a href="case-study-eco-studio-electro-system.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Gmina Jednorożec</span><span class="logo-chip__opis">Parada Jednorożców</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Uzdrowisko Ciechocinek</span><span class="logo-chip__opis">Piknik pod Kujawskim Niebem</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">VELUX</span><span class="logo-chip__opis">event firmowy, Namysłów</span></div>
@@ -979,9 +970,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="logo-chip"><span class="logo-chip__nazwa">BETMAR</span><span class="logo-chip__opis">Targi Gardenia</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Westernacher</span><span class="logo-chip__opis">AI NOW 2026, Sopot</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Polish Zone</span><span class="logo-chip__opis">Impact SEE, Bukareszt</span></div>
-        <a href="case-study-centrum-nauki-kopernik.html" class="logo-chip"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Urząd Marszałkowski Woj. Lubuskiego</span><span class="logo-chip__opis">Lubuski Festiwal Innowacji</span></div>
-        <a href="case-study-ogrod-przelewice.html" class="logo-chip"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">GOK Kobylin</span><span class="logo-chip__opis">otwarcie ośrodka kultury</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Play · Grupa P4</span><span class="logo-chip__opis">Play Into the Future</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Adamed</span><span class="logo-chip__opis">Festiwal Wartości, Serock</span></div>
@@ -991,16 +982,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="logo-chip"><span class="logo-chip__nazwa">Dary Posejdona</span><span class="logo-chip__opis">Warszawa</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Szkoła Kosmos</span><span class="logo-chip__opis">rozpoczęcie roku w Majalandzie</span></div>
         <div class="logo-chip"><span class="logo-chip__nazwa">Drezdeńska Noc Zamków</span><span class="logo-chip__opis">Drezno, Niemcy</span></div>
-        <a href="robot-wynajem-mikolajki.html" class="logo-chip"><span class="logo-chip__nazwa">Loża Przedsiębiorców</span><span class="logo-chip__opis">spotkanie w Mikołajkach</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Loża Przedsiębiorców</span><span class="logo-chip__opis">spotkanie w Mikołajkach</span></div>
         <!-- KOPIA — bezszwowa pętla -->
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">KDT Europe</span><span class="logo-chip__opis">DREMA 2026, MTP Poznań</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Dream-Med</span><span class="logo-chip__opis">Warsaw Medical Expo 2026</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">BETMAR</span><span class="logo-chip__opis">Targi Gardenia</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Westernacher</span><span class="logo-chip__opis">AI NOW 2026, Sopot</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Polish Zone</span><span class="logo-chip__opis">Impact SEE, Bukareszt</span></div>
-        <a href="case-study-centrum-nauki-kopernik.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Urząd Marszałkowski Woj. Lubuskiego</span><span class="logo-chip__opis">Lubuski Festiwal Innowacji</span></div>
-        <a href="case-study-ogrod-przelewice.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">GOK Kobylin</span><span class="logo-chip__opis">otwarcie ośrodka kultury</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Play · Grupa P4</span><span class="logo-chip__opis">Play Into the Future</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Adamed</span><span class="logo-chip__opis">Festiwal Wartości, Serock</span></div>
@@ -1010,7 +1001,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Dary Posejdona</span><span class="logo-chip__opis">Warszawa</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Szkoła Kosmos</span><span class="logo-chip__opis">rozpoczęcie roku w Majalandzie</span></div>
         <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Drezdeńska Noc Zamków</span><span class="logo-chip__opis">Drezno, Niemcy</span></div>
-        <a href="robot-wynajem-mikolajki.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Loża Przedsiębiorców</span><span class="logo-chip__opis">spotkanie w Mikołajkach</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Loża Przedsiębiorców</span><span class="logo-chip__opis">spotkanie w Mikołajkach</span></div>
       </div>
     </div>
 </section>
@@ -1179,100 +1170,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════
      4. CENNIK — kompaktowa karta + upsell + rabat
      ══════════════════════════════════════════════════════ -->
-<section id="cennik" class="relative overflow-hidden border-y border-line py-24 md:py-32">
-  <div class="pointer-events-none absolute left-1/2 top-0 -z-10 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]"></div>
-
+<section id="cennik" class="border-y border-line py-24 md:py-32">
   <div class="mx-auto max-w-6xl px-5 md:px-8">
-    <div class="mb-12 text-center">
-      <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Cennik</p>
-      <h2 class="reveal font-display text-4xl font-700 leading-[1.02] tracking-[-.025em] text-white md:text-6xl" style="--d:.08s">
-        Najlepsze ceny w Polsce
+    <div class="mb-14 max-w-2xl">
+      <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Formaty</p>
+      <h2 class="reveal font-display text-4xl font-400 leading-[1.02] tracking-[-.03em] text-white md:text-6xl" style="--d:.08s">
+        Formaty i&nbsp;cena
       </h2>
-      <p class="reveal mx-auto mt-5 max-w-xl text-neutral-400" style="--d:.16s">
-        Realnie taniej za tę jakość po prostu się nie da. Wynajmiesz robota na kilka godzin, cały dzień albo na całe targi —
-        <span class="text-white">a to, co usłyszysz w wycenie, zobaczysz na fakturze</span>.
-      </p>
     </div>
 
-    <!-- Wybór długości realizacji -->
-    <div class="mb-5 grid gap-3 sm:grid-cols-3">
-      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-line-hi" style="--d:.02s">
-        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Krócej niż dzień</p>
-        <p class="mt-2 font-display text-xl font-700 text-white">Kilka godzin</p>
-        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Efektowne wejście, powitanie gości albo kulminacyjny moment wieczoru. <span class="text-neutral-300">Wycena indywidualna — zawsze taniej niż pełny dzień.</span></p>
-      </div>
-      <div class="reveal rounded-2xl border border-accent/50 bg-accent/[.07] p-5 shadow-[0_0_30px_rgba(111,214,255,.12)] transition duration-500 hover:-translate-y-1" style="--d:.08s">
-        <p class="text-[10px] font-600 uppercase tracking-widest text-accent">Najczęściej wybierane</p>
-        <p class="mt-2 font-display text-xl font-700 text-white">Cały dzień</p>
-        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-300">Pełna obsługa od montażu po finał. <span class="font-600 text-white">od 5 500 zł</span></p>
-      </div>
-      <div class="reveal rounded-2xl border border-line-mid bg-surface/70 p-5 transition duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.14s">
-        <p class="text-[10px] font-600 uppercase tracking-widest text-neutral-500">Dwa dni i więcej</p>
-        <p class="mt-2 font-display text-xl font-700 text-white">Wielodniowo <span class="text-accent">−15%</span></p>
-        <p class="mt-1.5 text-[13px] leading-relaxed text-neutral-400">Targi, festiwale, roadshow. <span class="text-neutral-300">Rabat naliczamy na każdy dzień realizacji.</span></p>
-      </div>
-    </div>
-
-    <div class="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
-
-      <!-- Karta główna -->
-      <article class="reveal group relative overflow-hidden rounded-[28px] border border-accent/40 bg-surface-2 p-8 shadow-[0_0_70px_rgba(111,214,255,.12)] transition-all duration-500 hover:border-accent/70 hover:shadow-[0_0_90px_rgba(111,214,255,.22)] md:p-10" style="--d:.05s">
-        <div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-accent/15 blur-3xl transition-transform duration-700 group-hover:scale-150"></div>
-
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <span class="rounded-full bg-accent px-4 py-1.5 text-[11px] font-700 uppercase tracking-widest text-ink">Wszystko w cenie</span>
-          <span class="text-[12px] font-600 uppercase tracking-widest text-neutral-500">Unitree G1 · cały dzień</span>
-        </div>
-
-        <div class="mt-8 flex flex-wrap items-end gap-x-4 gap-y-1">
-          <span class="font-display text-xl font-600 text-neutral-500">od</span>
-          <span class="font-display text-6xl font-700 leading-none tracking-[-.03em] text-white md:text-7xl">5 500</span>
-          <span class="font-display text-3xl font-600 text-neutral-400">zł</span>
-        </div>
-        <p class="mt-3 text-sm text-neutral-400">
-          Za cały dzień realizacji. Ostateczna cena zależy wyłącznie od lokalizacji eventu.
+    <!-- Trzy formaty jako lista na liniach włosowych — bez kart i bez powtarzania tej samej ceny. -->
+    <div class="reveal border-t border-line" style="--d:.16s">
+      <div class="grid gap-3 border-b border-line py-7 md:grid-cols-[7rem_1fr_15rem] md:items-baseline md:gap-8">
+        <p class="text-[11px] font-500 uppercase tracking-[.12em] text-neutral-500">01 — Wejście</p>
+        <p class="text-[17px] leading-relaxed text-neutral-300">
+          Kilka godzin w programie wydarzenia — otwarcie, blok na scenie, godziny szczytu na stoisku.
         </p>
-
-        <ul class="mt-8 grid gap-3 sm:grid-cols-2">
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Robot przez cały dzień</li>
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Certyfikowany operator</li>
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Transport w całej Polsce</li>
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Branding: logo i kod QR</li>
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Choreografie i interakcje</li>
-          <li class="flex items-start gap-2.5 text-[14px] text-neutral-200"><span class="mt-0.5 text-accent">✓</span> Ubezpieczenie OC</li>
-        </ul>
-
-        <p class="mt-7 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-3.5 text-center text-sm text-white">
-          Cena zawiera absolutnie wszystko. <strong class="font-700 text-accent">ZERO dopłat.</strong>
+        <p class="font-display text-[22px] font-300 leading-tight text-white">
+          Wycena indywidualna<span class="mt-1 block text-[13px] text-neutral-500">zawsze taniej niż pełny dzień</span>
         </p>
+      </div>
 
-        <a href="#kontakt"
-           class="cta-shine group/btn mt-7 flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)]">
-          Odbierz darmową wycenę
-          <span class="transition-transform duration-300 group-hover/btn:translate-x-1.5">→</span>
-        </a>
-      </article>
+      <div class="grid gap-3 border-b border-line py-7 md:grid-cols-[7rem_1fr_15rem] md:items-baseline md:gap-8">
+        <p class="text-[11px] font-500 uppercase tracking-[.12em] text-neutral-500">02 — Pełny dzień</p>
+        <p class="text-[17px] leading-relaxed text-neutral-300">
+          Robot do dyspozycji przez cały dzień wydarzenia, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.
+        </p>
+        <p class="font-display text-[34px] font-300 leading-none tracking-[-.02em] text-white md:text-[44px]">
+          od 5 500 zł<span class="mt-2 block text-[13px] font-500 tracking-normal text-neutral-500">netto</span>
+        </p>
+      </div>
 
-      <!-- Kolumna boczna -->
-      <div class="flex flex-col gap-4">
-        <!-- Rabat -->
-        <article class="reveal group relative flex-1 overflow-hidden rounded-[28px] border border-dashed border-accent/40 bg-gradient-to-br from-accent/[.08] to-transparent p-7 transition-all duration-500 hover:-translate-y-1 hover:border-accent/70" style="--d:.18s">
-          <span class="text-[10px] font-600 uppercase tracking-widest text-accent">Rabat długoterminowy</span>
-          <p class="mt-4 font-display text-5xl font-700 leading-none text-white">−15%</p>
-          <p class="mt-3 text-[13px] leading-relaxed text-neutral-300">
-            na <strong class="text-white">każdy dzień</strong> przy realizacjach dwudniowych i dłuższych. Targi, festiwale, roadshow.
-          </p>
-        </article>
+      <div class="grid gap-3 border-b border-line py-7 md:grid-cols-[7rem_1fr_15rem] md:items-baseline md:gap-8">
+        <p class="text-[11px] font-500 uppercase tracking-[.12em] text-neutral-500">03 — Targi</p>
+        <p class="text-[17px] leading-relaxed text-neutral-300">
+          Dwa dni i&nbsp;więcej — targi, festiwale, roadshow.
+        </p>
+        <p class="font-display text-[22px] font-300 leading-tight text-white">
+          −15%<span class="mt-1 block text-[13px] text-neutral-500">za każdy dzień</span>
+        </p>
       </div>
     </div>
+
+    <p class="reveal mt-8 max-w-2xl text-[16px] leading-relaxed text-neutral-400" style="--d:.24s">
+      W cenie: operator, transport, strój i&nbsp;branding (logo, kod QR), ubezpieczenie OC.
+      <span class="text-neutral-200">Płacisz po wydarzeniu.</span>
+      Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.
+    </p>
+
+    <a href="#kontakt" data-cta="formaty"
+       class="reveal group mt-10 inline-flex h-[52px] items-center gap-3 bg-text px-7 text-[15px] font-500 text-ink transition-colors hover:bg-white" style="--d:.3s">
+      Sprawdź dostępność terminu
+      <span class="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+    </a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     4b. WYJŚCIE DO SPRZEDAŻY — jeden pasek, jeden przycisk.
-     Strona główna sprzedaje wynajem; zakup ma własną podstronę
-     i stąd prowadzi do niej tylko to przejście.
-     ══════════════════════════════════════════════════════ -->
 <section class="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-16">
   <a href="sklep.html"
      class="reveal group flex flex-col gap-6 rounded-[24px] border border-line-mid bg-surface-2 p-7 transition-all duration-500 hover:border-accent/50 md:flex-row md:items-center md:justify-between md:gap-10 md:p-9">
@@ -1317,8 +1270,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </li>
       <li class="reveal pl-16 md:pl-0" style="--d:.13s">
         <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-line-mid bg-surface-2 font-display text-sm font-700 text-neutral-400 md:relative md:mb-6">02</span>
-        <h3 class="font-display text-base font-700 text-white">Telefon i wycena</h3>
-        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Oddzwaniamy i podajemy konkretną kwotę — zwykle tego samego dnia.</p>
+        <h3 class="font-display text-base font-700 text-white">Telefon i termin</h3>
+        <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Oddzwaniamy i podajemy konkretną kwotę. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.</p>
       </li>
       <li class="reveal pl-16 md:pl-0" style="--d:.21s">
         <span class="absolute left-0 flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-accent font-display text-sm font-700 text-ink shadow-[0_0_28px_rgba(111,214,255,.45)] md:relative md:mb-6">03</span>
@@ -1337,22 +1290,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </li>
     </ol>
   </div>
-
-  <!-- Opinie: kompaktowy pas -->
-  <div class="mt-20 grid gap-4 md:grid-cols-3">
-    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.05s">
-      <p class="text-[14px] leading-relaxed text-neutral-300">„Efekt przerósł nasze najśmielsze oczekiwania. Zainteresowanie było ogromne przez cały czas trwania wydarzenia.”</p>
-      <footer class="mt-4 text-[12px] text-neutral-500">Karolina M. · marketing, branża IT</footer>
-    </blockquote>
-    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.12s">
-      <p class="text-[14px] leading-relaxed text-neutral-300">„Jedna z najlepszych decyzji organizacyjnych. Reakcje uczestników to dla nas najlepsza recenzja.”</p>
-      <footer class="mt-4 text-[12px] text-neutral-500">Piotr Z. · gala firmowa</footer>
-    </blockquote>
-    <blockquote class="reveal rounded-2xl border border-line bg-surface/60 p-6 transition-colors duration-500 hover:border-line-hi" style="--d:.19s">
-      <p class="text-[14px] leading-relaxed text-neutral-300">„Niesamowite zasięgi w social mediach. Tego rodzaju zainteresowania nie da się po prostu kupić.”</p>
-      <footer class="mt-4 text-[12px] text-neutral-500">Magdalena T. · targi technologiczne</footer>
-    </blockquote>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
@@ -1363,46 +1300,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="reveal mb-10 text-center font-display text-3xl font-700 tracking-[-.02em] text-white md:text-4xl">Zanim zapytasz</h2>
     <div class="divide-y divide-line border-y border-line">
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Ile dokładnie kosztuje wynajem?">
           <span class="font-600 text-white">Ile dokładnie kosztuje wynajem?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Od 5500 zł za cały dzień realizacji — ostateczna kwota zależy wyłącznie od lokalizacji eventu. Robota wynajmiesz też na krótszy pokaz, np. kilka godzin podczas przerwy konferencyjnej — wtedy wyceniamy indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach 2-dniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport, operator, branding i ubezpieczenie.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Pełny dzień od 5 500 zł netto. Ostateczna kwota zależy od lokalizacji wydarzenia i długości trwania. Robota wynajmiesz też na krótszy pokaz, np. kilka godzin podczas przerwy konferencyjnej — wtedy wyceniamy indywidualnie i zawsze taniej niż pełny dzień. Przy realizacjach dwudniowych i dłuższych obowiązuje 15% zniżki na każdy dzień. W cenie transport, operator, strój i branding oraz ubezpieczenie OC.</p></div>
       </div>
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Ceny są netto czy brutto?">
+          <span class="font-600 text-white">Ceny są netto czy brutto?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Wszystkie kwoty podajemy netto. Do faktury doliczamy VAT według obowiązującej stawki.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Jak robot pracuje cały dzień, skoro bateria starcza na krócej?">
+          <span class="font-600 text-white">Jak robot pracuje cały dzień, skoro bateria starcza na krócej?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i wymienia je w trakcie wydarzenia, więc pokaz nie zatrzymuje się na ładowanie.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Ile miejsca potrzebuje robot?">
+          <span class="font-600 text-white">Ile miejsca potrzebuje robot?</span>
+          <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
+        </button>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Wystarczy kilka metrów kwadratowych. Robot pracuje na stoisku, na scenie i w przejściu między gośćmi — nie wymaga osobnej strefy ani zaplecza technicznego.</p></div>
+      </div>
+      <div class="faq-item" open-state="0">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Czy robot mówi i rozmawia z gośćmi?">
           <span class="font-600 text-white">Czy robot mówi i rozmawia z gośćmi?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Tak. Robot mówi po polsku naturalną syntezą mowy — wita gości, odpowiada na pytania i zapowiada punkty programu. Przed wydarzeniem ustalamy jego charakter oraz wgrywamy wiedzę o Twojej firmie: ofertę, nazwy produktów, najczęstsze pytania klientów i agendę eventu. Konfiguracja jest wliczona w cenę wynajmu.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Tak. Robot mówi po polsku naturalną syntezą mowy — wita gości, odpowiada na pytania i zapowiada punkty programu. Przed wydarzeniem ustalamy jego charakter oraz wgrywamy wiedzę o Twojej firmie: ofertę, nazwy produktów, najczęstsze pytania klientów i agendę eventu. Konfiguracja jest wliczona w cenę wynajmu.</p></div>
       </div>
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Czy muszę wpłacać zaliczkę?">
           <span class="font-600 text-white">Czy muszę wpłacać zaliczkę?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Nie. Rezerwacja terminu jest bezpłatna i bez zaliczki. Fakturę wystawiamy dopiero po zakończonym wydarzeniu, a w razie potrzeby ustalimy dłuższy termin płatności.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Nie. Rezerwacja terminu jest bezpłatna i bez zaliczki. Fakturę wystawiamy dopiero po zakończonym wydarzeniu, a w razie potrzeby ustalimy dłuższy termin płatności.</p></div>
       </div>
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Czy muszę umieć sterować robotem?">
           <span class="font-600 text-white">Czy muszę umieć sterować robotem?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Nie. Przez cały event obecny jest nasz certyfikowany operator — odpowiada za konfigurację, obsługę i bezpieczeństwo pokazu.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Nie. Przez cały event obecny jest nasz certyfikowany operator — odpowiada za konfigurację, obsługę i bezpieczeństwo pokazu.</p></div>
       </div>
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Czy robot jest bezpieczny dla gości?">
           <span class="font-600 text-white">Czy robot jest bezpieczny dla gości?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Tak. LiDAR i wizja komputerowa pozwalają omijać ludzi i przeszkody w czasie rzeczywistym, nad pokazem czuwa operator, a realizacja objęta jest ubezpieczeniem OC.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Tak. LiDAR i wizja komputerowa pozwalają omijać ludzi i przeszkody w czasie rzeczywistym, nad pokazem czuwa operator, a realizacja objęta jest ubezpieczeniem OC.</p></div>
       </div>
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent" data-faq="Dojeżdżacie do mojego miasta?">
           <span class="font-600 text-white">Dojeżdżacie do mojego miasta?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
-        <div class="faq-panel"><p class="pb-5 text-[14px] leading-relaxed text-neutral-400">Tak — do każdego miasta w Polsce, bez dopłat i bez limitu kilometrów. Od Szczecina po Rzeszów, od Gdańska po Karpacz.</p></div>
+        <div class="faq-panel"><p class="pb-5 text-[15px] leading-relaxed text-neutral-400">Tak, do każdego miasta w Polsce. Transport jest wliczony w podaną cenę — sama lokalizacja wpływa natomiast na wysokość wyceny.</p></div>
       </div>
     </div>
   </div>
@@ -1426,22 +1384,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Zostaw kontakt — oddzwonimy i podamy konkretną kwotę. Bez zobowiązań, bez zaliczki.
       </p>
 
-      <div class="reveal mt-8 flex flex-col gap-3" style="--d:.16s">
-        <a href="tel:+48531408004" class="group flex items-center gap-4 text-2xl font-600 text-white transition hover:text-accent md:text-3xl">
-          <span class="flex h-11 w-11 items-center justify-center rounded-full border border-line-mid text-base transition group-hover:border-accent">☎</span>
-          +48 531 408 004
-        </a>
-        <a href="mailto:kontakt@33bots.pl" class="group flex items-center gap-4 text-lg text-neutral-400 transition hover:text-white">
-          <span class="flex h-11 w-11 items-center justify-center rounded-full border border-line-mid text-base transition group-hover:border-accent">✉</span>
-          kontakt@33bots.pl
-        </a>
+      <!-- Telefon podpisany konkretną osobą — w usługach premium relacja sprzedaje mocniej niż marka. -->
+      <div class="reveal mt-10 border-t border-line" style="--d:.16s">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-line py-5">
+          <div>
+            <p class="font-display text-[19px] font-500 text-white">Oliwier Latek</p>
+            <p class="mt-0.5 text-[12px] font-500 uppercase tracking-[.12em] text-neutral-500">Odbiera osobiście</p>
+          </div>
+          <a href="tel:+48531408004" data-tel="kontakt"
+             class="font-display text-[26px] font-300 tracking-[-.02em] text-white transition hover:text-accent">+48 531 408 004</a>
+        </div>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-line py-5">
+          <div>
+            <p class="font-display text-[19px] font-500 text-white">Bartosz Wysocki</p>
+            <p class="mt-0.5 text-[12px] font-500 uppercase tracking-[.12em] text-neutral-500">Odbiera osobiście</p>
+          </div>
+          <a href="tel:+48601499947" data-tel="kontakt"
+             class="font-display text-[26px] font-300 tracking-[-.02em] text-white transition hover:text-accent">+48 601 499 947</a>
+        </div>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 py-5">
+          <p class="text-[12px] font-500 uppercase tracking-[.12em] text-neutral-500">E-mail</p>
+          <a href="mailto:kontakt@33bots.pl" data-mail="kontakt"
+             class="text-[17px] text-neutral-300 underline decoration-line-hi underline-offset-[6px] transition hover:text-white hover:decoration-accent">kontakt@33bots.pl</a>
+        </div>
       </div>
 
-      <ul class="reveal mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-neutral-500" style="--d:.24s">
-        <li>✓ Odpowiedź w 24 h</li>
-        <li>✓ Zero zaliczki</li>
-        <li>✓ Cała Polska</li>
-      </ul>
+      <p class="reveal mt-6 text-[13px] leading-relaxed text-neutral-500" style="--d:.24s">
+        Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.
+        Rezerwacja bez zaliczki, cała Polska.
+      </p>
     </div>
 
     <!-- Formularz -->
@@ -1507,13 +1478,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
           <button type="button" id="btnBack" class="rounded-2xl border border-line-hi px-6 py-5 font-display text-sm font-600 uppercase tracking-wider text-neutral-400 transition hover:border-accent/50 hover:text-white sm:w-auto">← Wróć</button>
           <button type="submit" class="cta-shine group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 font-display text-base font-700 uppercase tracking-wider text-ink transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(111,214,255,.45)] flex-1">
-            Wyślij i odbierz darmową wycenę
+            Sprawdź dostępność terminu
             <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
           </button>
         </div>
       </div>
 
-      <p id="formMsg" class="mt-4 text-center text-[13px] text-neutral-500">Odpowiadamy w ciągu 24 godzin roboczych.</p>
+      <p id="formMsg" class="mt-4 text-center text-[13px] text-neutral-500">Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.</p>
     </form>
   </div>
 </section>
@@ -1597,12 +1568,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- ══════════ STICKY CTA (mobile) ══════════ -->
-<div class="fixed inset-x-0 bottom-0 z-50 border-t border-line-mid bg-ink/95 p-3 backdrop-blur md:hidden">
-  <a href="#kontakt" class="cta-shine flex items-center justify-center gap-2 rounded-xl px-6 py-4 font-display text-sm font-700 uppercase tracking-wider text-ink">
-    Darmowa wycena →
+<div id="pasekMobilny" class="fixed inset-x-0 bottom-0 z-50 translate-y-full border-t border-line bg-ink/95 p-3 backdrop-blur transition-transform duration-500 md:hidden">
+  <a href="#kontakt" data-cta="sticky" class="flex h-[52px] items-center justify-center gap-2 bg-text px-6 text-[15px] font-500 text-ink">
+    Sprawdź termin <span aria-hidden="true">→</span>
   </a>
 </div>
-<div class="h-20 md:hidden"></div>
+<div class="h-[76px] md:hidden"></div>
 
 <!-- Baner cookie -->
 <div class="cookies" id="cookies" aria-live="polite">
@@ -1753,6 +1724,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     localStorage.setItem('33bots-cookies', '1');
     ciasteczka.classList.remove('show');
   });
+
+  /* ——— Pasek mobilny: pokazuje się dopiero po minięciu hero ——— */
+  const pasek = document.getElementById('pasekMobilny');
+  const hero = document.querySelector('header + section, main > section');
+  if (pasek && hero) {
+    const obserwator = new IntersectionObserver(([w]) => {
+      pasek.classList.toggle('translate-y-full', w.isIntersecting);
+    }, { rootMargin: '-80px 0px 0px 0px' });
+    obserwator.observe(hero);
+  }
 
   /* ——— Pasy: dotknięcie zatrzymuje przewijanie (mobile nie ma hovera) ——— */
   document.querySelectorAll('.strip').forEach(pas => {
@@ -2083,7 +2064,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       form.innerHTML = `<div class="py-12 text-center">
         <p class="font-display text-2xl font-700 text-white">Wiadomość wysłana</p>
-        <p class="mt-3 text-neutral-400">Odezwiemy się na <strong class="text-white">${payload.email}</strong><br />w ciągu 24 godzin roboczych.</p></div>`;
+        <p class="mt-3 text-neutral-400">Odezwiemy się na <strong class="text-white">${payload.email}</strong><br />w ciągu 24 godzin roboczych, zwykle tego samego dnia.</p></div>`;
     } catch (err) {
       console.error('Formularz — błąd wysyłki:', err?.message || err);
       btn.disabled = false; btn.style.opacity = '1'; btn.innerHTML = pierwotny;
