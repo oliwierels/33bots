@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
 
 <!-- Arkusz budowany przez ./buduj.sh — numer wersji to suma kontrolna treści -->
-<link rel="stylesheet" href="assets-redesign.css?v=b98b8b5b" />
+<link rel="stylesheet" href="assets-redesign.css?v=ecec55be" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","name":"Wdrożenie robota humanoidalnego w firmie","serviceType":"Sprzedaż i wdrożenie robota humanoidalnego","provider":{"@type":"Organization","name":"33bots","url":"https://33bots.pl","telephone":"+48531408004","email":"kontakt@33bots.pl"},"areaServed":{"@type":"Country","name":"Poland"},"description":"Sprzedaż robota humanoidalnego wraz z oprogramowaniem do mowy, konfiguracją wiedzy o firmie klienta, szkoleniem zespołu i wsparciem po uruchomieniu.","url":"https://33bots.pl/wdrozenia.html"}
@@ -92,12 +92,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .cookies { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 80;
              display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
-             max-width: 640px; margin: 0 auto; padding: 1rem 1.25rem;
+             max-width: 640px; margin: 0 auto; padding: 24px;
              background: rgba(17,17,19,.94); backdrop-filter: blur(16px);
              -webkit-backdrop-filter: blur(16px); border: 1px solid #2a2a30;
              border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,.6);
              transform: translateY(140%); transition: transform .6s cubic-bezier(.16,1,.3,1); }
   .cookies.show { transform: none; }
+  @media (min-width: 768px) { .cookies { padding: 32px; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
@@ -181,17 +182,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
 
     <div class="reveal mt-9 flex flex-col gap-3 sm:flex-row" style="--d:.26s">
-      <a href="#kontakt" class="cta-shine group inline-flex items-center justify-center gap-3 rounded-2xl px-9 py-5 font-display text-base font-700 uppercase tracking-wider text-ink shadow-[0_0_40px_rgba(111,214,255,.25)] transition-all duration-300 hover:-translate-y-1">
+      <a href="#kontakt" class="cta-shine group inline-flex items-center justify-center gap-3 rounded-2xl px-5 py-4 font-display text-sm font-700 uppercase tracking-normal sm:px-9 sm:text-base sm:tracking-wider text-ink shadow-[0_0_40px_rgba(111,214,255,.25)] transition-all duration-300 hover:-translate-y-1">
         Porozmawiajmy o wdrożeniu
         <span class="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
       </a>
-      <a href="sklep.html" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-line-hi px-9 py-5 font-display text-base font-600 uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-white/[.03]">
+      <a href="sklep.html" class="inline-flex items-center justify-center gap-2 rounded-2xl border border-line-hi px-9 py-4 font-display text-base font-600 uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-white/[.03]">
         Zobacz sklep
       </a>
     </div>
 
     <ul class="reveal mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-[13px] text-neutral-400" style="--d:.32s">
-      <li class="flex items-center gap-2"><span class="text-accent">✓</span> Mówi po polsku</li>
+      <li class="flex items-center gap-2"><span class="text-accent">✓</span> Mówi po polsku i w każdym innym języku</li>
       <li class="flex items-center gap-2"><span class="text-accent">✓</span> Zna Twoją ofertę</li>
       <li class="flex items-center gap-2"><span class="text-accent">✓</span> Szkolenie w cenie</li>
       <li class="flex items-center gap-2"><span class="text-accent">✓</span> Wsparcie po starcie</li>
@@ -229,7 +230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             Dostarczamy robota pod wskazany adres i uruchamiamy go na miejscu.
             Sprawdzamy przestrzeń, zasilanie i sieć, po czym przekazujemy sprzęt gotowy do pracy.
           </p>
-          <p class="mt-5 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+          <p class="mt-5 border-l-2 border-accent/60 pl-6 md:pl-8 text-[14px] leading-relaxed text-neutral-300">
             <span class="font-600 text-white">Bez niespodzianek:</span> transport i całą logistykę
             bierzemy na siebie. Ty podajesz adres i termin.
           </p>
@@ -245,11 +246,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </span>
         <h3 class="mt-5 font-display text-2xl font-700 text-white">Oprogramowanie do mowy</h3>
         <p class="mt-3 text-[15px] leading-relaxed text-neutral-400">
-          Robot mówi po polsku naturalną mową i odpowiada na pytania. Wgrywamy mu wiedzę o Twojej
+          Robot mówi po polsku i w każdym innym języku, naturalną mową, i odpowiada na pytania. Wgrywamy mu wiedzę o Twojej
           firmie — ofertę, nazwy produktów, najczęstsze pytania klientów — oraz ustalamy charakter,
           w jakim ma się odzywać.
         </p>
-        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-6 md:pl-8 text-[14px] leading-relaxed text-neutral-300">
           <span class="font-600 text-white">To jest sedno wdrożenia:</span> robot bez wiedzy o Twojej
           firmie jest ozdobą. Z nią zaczyna realnie obsługiwać ludzi.
         </p>
@@ -266,7 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Uczymy Waszych ludzi obsługi: uruchamiania, prowadzenia pokazu, ładowania, zmiany
           scenariuszy i zasad bezpieczeństwa w tłumie. Zostawiamy instrukcję napisaną po ludzku.
         </p>
-        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-6 md:pl-8 text-[14px] leading-relaxed text-neutral-300">
           <span class="font-600 text-white">Po szkoleniu radzicie sobie sami</span> — nie musicie
           nas wzywać za każdym razem, gdy robot ma wyjść do ludzi.
         </p>
@@ -284,7 +285,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Zostajemy w kontakcie po uruchomieniu: pomagamy przy pytaniach, aktualizujemy bazę wiedzy,
           gdy zmienia się oferta, i doradzamy przy nowych scenariuszach.
         </p>
-        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-4 text-[14px] leading-relaxed text-neutral-300">
+        <p class="mt-auto pt-5 border-l-2 border-accent/60 pl-6 md:pl-8 text-[14px] leading-relaxed text-neutral-300">
           <span class="font-600 text-white">Zakres i czas wsparcia</span> ustalamy przy wycenie —
           zależą od tego, jak intensywnie robot ma pracować.
         </p>
@@ -305,27 +306,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <ol class="grid gap-4 md:grid-cols-5">
-      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6" style="--d:.05s">
+      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8" style="--d:.05s">
         <span class="font-display text-2xl font-700 tabular-nums text-neutral-600">01</span>
         <h3 class="mt-4 font-display text-base font-700 leading-snug text-white md:min-h-[3rem] xl:min-h-0">Rozmowa</h3>
         <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Ustalamy, do czego robot ma służyć i gdzie będzie pracował.</p>
       </li>
-      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6" style="--d:.12s">
+      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8" style="--d:.12s">
         <span class="font-display text-2xl font-700 tabular-nums text-neutral-600">02</span>
         <h3 class="mt-4 font-display text-base font-700 leading-snug text-white md:min-h-[3rem] xl:min-h-0">Wycena i umowa</h3>
         <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Konkretna kwota z rozpisanym zakresem. Bez pozycji „do ustalenia”.</p>
       </li>
-      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6" style="--d:.19s">
+      <li class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8" style="--d:.19s">
         <span class="font-display text-2xl font-700 tabular-nums text-neutral-600">03</span>
         <h3 class="mt-4 font-display text-base font-700 leading-snug text-white md:min-h-[3rem] xl:min-h-0">Przygotowanie robota</h3>
         <p class="mt-2 text-[13px] leading-relaxed text-neutral-400">Kompletujemy sprzęt w ustalonej wersji i szykujemy go pod Was. Zwykle około miesiąca.</p>
       </li>
-      <li class="reveal rounded-[24px] border border-accent/40 bg-accent/[.07] p-6" style="--d:.26s">
+      <li class="reveal rounded-[24px] border border-accent/40 bg-accent/[.07] p-6 md:p-8" style="--d:.26s">
         <span class="font-display text-2xl font-700 tabular-nums text-accent">04</span>
         <h3 class="mt-4 font-display text-base font-700 leading-snug text-white md:min-h-[3rem] xl:min-h-0">Konfiguracja</h3>
         <p class="mt-2 text-[13px] leading-relaxed text-neutral-300">Mowa, wiedza o firmie, charakter i scenariusze pod Wasze zastosowanie.</p>
       </li>
-      <li class="reveal rounded-[24px] border border-accent/40 bg-accent/[.07] p-6" style="--d:.33s">
+      <li class="reveal rounded-[24px] border border-accent/40 bg-accent/[.07] p-6 md:p-8" style="--d:.33s">
         <span class="font-display text-2xl font-700 tabular-nums text-accent">05</span>
         <h3 class="mt-4 font-display text-base font-700 leading-snug text-white md:min-h-[3rem] xl:min-h-0">Szkolenie i start</h3>
         <p class="mt-2 text-[13px] leading-relaxed text-neutral-300">Uczymy zespół, uruchamiamy robota i zostajemy w kontakcie.</p>
@@ -345,27 +346,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.05s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.05s">
         <h3 class="font-display text-lg font-700 text-white">Recepcja i lobby</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Wita gości, kieruje do właściwej osoby, skraca oczekiwanie.</p>
       </div>
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.1s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.1s">
         <h3 class="font-display text-lg font-700 text-white">Showroom i salon</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Opowiada o produktach, zatrzymuje przechodniów, zbiera uwagę.</p>
       </div>
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.15s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.15s">
         <h3 class="font-display text-lg font-700 text-white">Galeria handlowa</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Stały punkt, do którego ludzie wracają — i przyprowadzają znajomych.</p>
       </div>
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.2s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.2s">
         <h3 class="font-display text-lg font-700 text-white">Muzeum i centrum nauki</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Oprowadza, tłumaczy eksponaty, rozmawia z grupami szkolnymi.</p>
       </div>
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.25s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.25s">
         <h3 class="font-display text-lg font-700 text-white">Uczelnia i szkoła</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Narzędzie dydaktyczne i wizytówka kierunku podczas dni otwartych.</p>
       </div>
-      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.3s">
+      <div class="reveal rounded-[24px] border border-line-mid bg-surface/70 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40" style="--d:.3s">
         <h3 class="font-display text-lg font-700 text-white">Agencja eventowa</h3>
         <p class="mt-2 text-[14px] leading-relaxed text-neutral-400">Własny robot w ofercie zamiast podnajmowania go przy każdym zleceniu.</p>
       </div>
@@ -406,7 +407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="divide-y divide-line border-y border-line">
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Czym wdrożenie różni się od wynajmu?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
@@ -414,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Ile trwa całe wdrożenie?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
@@ -422,7 +423,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Skąd robot wie, co odpowiadać?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
@@ -430,7 +431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Kto może obsługiwać robota po szkoleniu?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
@@ -438,7 +439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Co z gwarancją i serwisem?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>
@@ -446,7 +447,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="faq-item" open-state="0">
-        <button class="faq-btn flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent">
+        <button class="faq-btn flex w-full items-center justify-between gap-4 py-6 md:py-8 text-left transition hover:text-accent">
           <span class="font-600 text-white">Ile to kosztuje?</span>
           <span class="faq-sign shrink-0 text-xl text-neutral-500 transition-transform duration-300">+</span>
         </button>

@@ -1,13 +1,14 @@
 // Zestawienie naruszeń odstępów pogrupowane po elemencie — pomocnicze przy poprawkach.
 //   node qa/raport-odstepow.mjs /strona.html [/inna.html ...]
 import { chromium } from '@playwright/test';
-import { naruszeniaOdstepow, przewinCala } from './odstepy.mjs';
+import { naruszeniaOdstepow, przewinCala, fontyZRepo } from './odstepy.mjs';
 
 const strony = process.argv.slice(2);
 const b = await chromium.launch();
 for (const adres of strony) {
   for (const [w, h, min] of [[375, 812, 24], [1440, 900, 32]]) {
     const p = await b.newPage({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
+    await fontyZRepo(p, 'http://127.0.0.1:8080');
     await p.goto('http://127.0.0.1:8080' + adres);
     await p.evaluate(() => document.fonts.ready);
     await przewinCala(p);

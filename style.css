@@ -1305,7 +1305,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   flex-direction: column;
   gap: 3px;
   border-top: 1px solid var(--border);
-  padding-top: var(--s2);
+  padding-top: var(--inset);
 }
 .testimonial__name {
   font-size: 0.8rem;

@@ -361,3 +361,16 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
     await ctx.close();
   });
 });
+
+test('treść: branding zamiast stroju, robot mówi w każdym języku', async ({ page }) => {
+  await page.goto(ADRES);
+  const tekst = await page.locator('body').textContent();
+  expect(tekst).not.toMatch(/\bstr[óo]j(u|em|e)?\b|garderob/i);
+  const lead = page.locator('.hero .lead');
+  await expect(lead).toContainText('Mówi po polsku i w każdym innym języku');
+  await expect(lead).toContainText('branding w cenie');
+  await expect(page.locator('#wystep')).toContainText('na Litwie, w Niemczech, Czechach i Rumunii');
+  await expect(page.locator('#faq-5')).toContainText('w każdym innym języku');
+  const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(' '));
+  expect(ld).not.toMatch(/\bstr[óo]j/i);
+});

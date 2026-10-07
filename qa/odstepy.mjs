@@ -134,3 +134,20 @@ export async function przewinCala(page) {
     await new Promise((r) => setTimeout(r, 400));
   });
 }
+
+// Podstrony na Tailwindzie biorą fonty z Google Fonts, który w środowisku
+// testowym bywa zablokowany — wtedy przeglądarka podstawia szerszy font
+// zastępczy i przyciski łamią się inaczej niż na produkcji. Podajemy te same
+// kroje z katalogu fonts/, żeby pomiar odpowiadał temu, co widzi gość.
+export async function fontyZRepo(page, baza = 'http://localhost:8080') {
+  const twarz = (rodzina, plik, waga, zakres = '') =>
+    `@font-face{font-family:"${rodzina}";src:url(${baza}/fonts/${plik}) format("woff2");font-weight:${waga};font-display:block${zakres ? ';unicode-range:' + zakres : ''}}`;
+  const ext = 'U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF';
+  const css = [
+    twarz('Space Grotesk', 'space-grotesk-latin-wght-normal.woff2', '300 700'),
+    twarz('Space Grotesk', 'space-grotesk-latin-ext-wght-normal.woff2', '300 700', ext),
+    twarz('Plus Jakarta Sans', 'plus-jakarta-sans-latin-wght-normal.woff2', '200 800'),
+    twarz('Plus Jakarta Sans', 'plus-jakarta-sans-latin-ext-wght-normal.woff2', '200 800', ext),
+  ].join('\n');
+  await page.route(/fonts\.googleapis\.com\/css/, (r) => r.fulfill({ contentType: 'text/css', body: css }));
+}
