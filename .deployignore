@@ -34,3 +34,6 @@ _redirects
 # narzędzia serwerowe i skrypt budowania
 narzedzia-serwer/
 buduj.sh
+
+# surowe zdjęcia i nagrania czekające na obróbkę
+do-obrobki/

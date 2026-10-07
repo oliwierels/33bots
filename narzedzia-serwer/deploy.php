@@ -30,7 +30,7 @@ const KATALOG   = __DIR__;          // gdzie lądują pliki strony
 const LIMIT_MB  = 200;              // bezpiecznik na rozmiar pobrania
 
 /** Czego nie nadpisujemy na serwerze — narzędzia i materiały źródłowe. */
-const POMIJANE_KATALOGI = ['.git', '.github', 'node_modules', '__pycache__', 'og', 'scripts', 'narzedzia-serwer'];
+const POMIJANE_KATALOGI = ['.git', '.github', 'node_modules', '__pycache__', 'og', 'scripts', 'narzedzia-serwer', 'do-obrobki'];
 const POMIJANE_PLIKI    = ['.gitignore', '.deployignore', '_redirects', 'szablon-case-study.html', 'deploy.php'];
 const POMIJANE_KONCOWKI = ['.py', '.md', '.HEIC', '.DNG'];
 const POMIJANE_NAZWY    = ['tailwind.config.js', 'tw-input.css', 'package.json', 'package-lock.json', 'buduj.sh'];
