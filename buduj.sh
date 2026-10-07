@@ -34,3 +34,19 @@ for STRONA in ${STRONY}; do
   sed -i -E "s|href=\"assets-redesign\.css(\?v=[^\"]*)?\"|href=\"assets-redesign.css?v=${WERSJA}\"|g" "${STRONA}"
   echo "  ${STRONA} → $(grep -o 'href="assets-redesign\.css[^"]*"' "${STRONA}" | head -1)"
 done
+
+# css/site.css — nowy system wizualny. Tak samo jak arkusz Tailwinda dostaje
+# w adresie sumę kontrolną treści, żeby przeglądarka nie podała starej wersji.
+WERSJA_SITE=$(md5sum css/site.css | cut -c1-8)
+for STRONA in $(grep -rl 'css/site\.css' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|href=\"css/site\.css(\?v=[^\"]*)?\"|href=\"css/site.css?v=${WERSJA_SITE}\"|g" "${STRONA}"
+  echo "  ${STRONA} → css/site.css?v=${WERSJA_SITE}"
+done
+
+# main.js — skrypt starych podstron. Wersja w adresie z tego samego powodu:
+# stara kopia z pamięci przeglądarki nie pasowałaby do nowego HTML.
+WERSJA_JS=$(md5sum main.js | cut -c1-8)
+for STRONA in $(grep -rl 'src="main\.js' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|src=\"main\.js(\?v=[^\"]*)?\"|src=\"main.js?v=${WERSJA_JS}\"|g" "${STRONA}"
+done
+echo "  main.js?v=${WERSJA_JS} na $(grep -rl 'src="main\.js' --include='*.html' . | wc -l) stronach"

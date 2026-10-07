@@ -8,35 +8,25 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjwvray';
 // ── SCROLL TO TOP ON LOAD ─────────────────────────────────────
 window.addEventListener('pageshow', () => window.scrollTo(0, 0));
 
-// ── CURSOR GLOW ───────────────────────────────────────────────
-const cursorGlow = document.getElementById('cursorGlow');
-if (cursorGlow && !window.matchMedia('(pointer: coarse)').matches) {
-  document.addEventListener('mousemove', (e) => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top  = e.clientY + 'px';
-    cursorGlow.classList.add('visible');
-  }, { passive: true });
-  document.addEventListener('mouseleave', () => cursorGlow.classList.remove('visible'));
-}
-
-// ── SCROLL PROGRESS ──────────────────────────────────────────
-const progressBar = document.getElementById('scrollProgress');
-
 // ── NAV SCROLL ───────────────────────────────────────────────
 const nav = document.getElementById('nav');
 
 // ── HAMBURGER ────────────────────────────────────────────────
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  const open = mobileMenu.classList.toggle('open');
-  hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-label', open ? 'Zamknij menu' : 'Menu');
-});
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mobileMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-}));
+// Strona 404 nie ma menu mobilnego — bez tego warunku skrypt przerywał się tutaj
+// i nie ruszało nic poniżej, z banerem cookies włącznie.
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-label', open ? 'Zamknij menu' : 'Menu');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  }));
+}
 
 // ── STAT COUNTERS ─────────────────────────────────────────────
 const easeOutQuad = t => 1 - (1 - t) * (1 - t);
@@ -98,15 +88,12 @@ document.querySelectorAll('.faq-item').forEach(item => {
 // ── COMBINED SCROLL HANDLER (RAF-throttled) ───────────────────
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
-const scrollTotal = () => document.documentElement.scrollHeight - window.innerHeight;
 let rafPending = false;
 
 function handleScroll() {
   const y = window.scrollY;
-  const total = scrollTotal();
 
-  progressBar.style.width = total > 0 ? `${(y / total) * 100}%` : '0%';
-  nav.classList.toggle('scrolled', y > 16);
+  if (nav) nav.classList.toggle('scrolled', y > 16);
 
   let current = '';
   sections.forEach(s => { if (y >= s.offsetTop - 100) current = s.id; });
@@ -121,40 +108,19 @@ window.addEventListener('scroll', () => {
 
 handleScroll();
 
-// ── ROBOT PARALLAX + GLITCH ───────────────────────────────────
-const robotWrap = document.getElementById('robotWrap');
-const heroSection = document.querySelector('.hero');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-if (robotWrap && heroSection && !reducedMotion) {
-  heroSection.addEventListener('mousemove', (e) => {
-    const r = heroSection.getBoundingClientRect();
-    const dx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
-    const dy = ((e.clientY - r.top)  / r.height - 0.5) * 2;
-    robotWrap.style.transform = `perspective(900px) rotateY(${dx * 7}deg) rotateX(${-dy * 4}deg)`;
-  }, { passive: true });
-  heroSection.addEventListener('mouseleave', () => {
-    robotWrap.style.transform = '';
-  });
-
-  // periodic glitch
-  function triggerGlitch() {
-    robotWrap.classList.add('is-glitching');
-    setTimeout(() => robotWrap.classList.remove('is-glitching'), 380);
-    setTimeout(triggerGlitch, 5000 + Math.random() * 7000);
-  }
-  setTimeout(triggerGlitch, 2500);
-}
-
 // ── COOKIE BANNER ─────────────────────────────────────────────
+// Logika banera bez zmian; warunek chroni tylko strony, na których banera nie ma (404).
 const cookieBanner = document.getElementById('cookieBanner');
-if (!localStorage.getItem('33bots-cookies')) {
-  setTimeout(() => cookieBanner.classList.add('visible'), 1200);
+const cookieAccept = document.getElementById('cookieAccept');
+if (cookieBanner && cookieAccept) {
+  if (!localStorage.getItem('33bots-cookies')) {
+    setTimeout(() => cookieBanner.classList.add('visible'), 1200);
+  }
+  cookieAccept.addEventListener('click', () => {
+    localStorage.setItem('33bots-cookies', '1');
+    cookieBanner.classList.remove('visible');
+  });
 }
-document.getElementById('cookieAccept').addEventListener('click', () => {
-  localStorage.setItem('33bots-cookies', '1');
-  cookieBanner.classList.remove('visible');
-});
 
 // ═════════════════════════════════════════════════════════════
 // CONTACT FORM — multi-step + Formspree

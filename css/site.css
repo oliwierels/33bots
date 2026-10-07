@@ -1,0 +1,112 @@
+/* ══════════════════════════════════════════════════════════════
+   33bots — system wizualny
+   Ładowany po starych arkuszach. Nowe sekcje używają wyłącznie
+   klas z tego pliku, więc stare reguły ich nie dotykają.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ——— Fonty lokalne (OFL-1.1), wersje zmienne ———
+   Nazwy rodzin bez dopisku „Variable”, którego używają pakiety
+   @fontsource-variable — inaczej font-family nie trafiłby w @font-face. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ——— Tokeny ——— */
+:root {
+  --ink: #050505; --surface: #111111; --text: #f0f0f0; --text-2: #888888;
+  --line: #1f1f1f; --line-strong: #2c2c2c; --accent: #6fd6ff;
+  --container: 1440px; --margin: 20px; --gutter: 16px; --nav-h: 72px;
+  /* Najmniejszy odstęp tekstu od krawędzi kontenera z ramką lub tłem. */
+  --inset: 24px;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+@media (min-width: 640px)  { :root { --margin: 32px; } }
+@media (min-width: 1024px) { :root { --margin: 64px; --gutter: 24px; --inset: 32px; } }
+
+html, body { background: var(--ink); }
+body { color: var(--text); font: 400 17px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+/* ——— Typografia ——— */
+.label { margin: 0; font: 500 12px/1.4 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.display { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: clamp(2.75rem, 6vw, 6.5rem); line-height: .95; letter-spacing: -.04em; color: var(--text); text-wrap: balance; }
+.lead { margin: 0; font-size: clamp(1.1875rem, 1.3vw, 1.375rem); line-height: 1.5; color: var(--text-2); max-width: 34ch; }
+.lead strong { font-weight: 500; color: var(--text); }
+
+/* ——— Przyciski i linki ——— */
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 28px;
+  background: var(--text); color: var(--ink); font: 500 15px/1 var(--font-body); letter-spacing: .01em;
+  text-decoration: none; border: 0; border-radius: 0; box-shadow: none; transition: background-color .2s; cursor: pointer; }
+.btn:hover { background: #ffffff; }
+.btn span { transition: transform .2s; }
+.btn:hover span { transform: translateX(4px); }
+.btn--sm { height: 40px; padding: 0 20px; font-size: 14px; }
+.btn:focus-visible, .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.link { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 6px; text-decoration-color: var(--line-strong); transition: text-decoration-color .2s; }
+.link:hover { text-decoration-color: var(--text); }
+
+/* ——— Hero: tekst w siatce, zdjęcie do prawej krawędzi ekranu ———
+   margin-top: nawigacja jest przyklejona (position: fixed), więc bez tego
+   hero zaczynałby się pod nią. */
+.hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter);
+  min-height: calc(100svh - var(--nav-h)); margin-top: var(--nav-h);
+  padding-left: max(var(--margin), calc((100% - var(--container)) / 2 + var(--margin))); padding-right: 0; }
+.hero__text { grid-column: 1 / span 6; align-self: center; display: flex; flex-direction: column; gap: 32px; padding-block: 64px; padding-right: var(--gutter); }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 16px; }
+.hero__media { grid-column: 7 / -1; margin: 0; }
+.hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+/* ——— Pasek „Widziani w” ———
+   Linia włosowa u góry, więc tekst trzyma od niej --inset (24 / 32 px). */
+.proof { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter);
+  max-width: var(--container); margin: 0 auto; padding: var(--inset) var(--margin); border-top: 1px solid var(--line); align-items: baseline; }
+.proof__label { grid-column: 1 / span 2; }
+.proof__list { grid-column: 3 / -1; display: flex; flex-wrap: wrap; gap: 8px 40px; margin: 0; padding: 0; list-style: none; font: 400 14px/1.4 var(--font-body); }
+.proof__list a { color: var(--text-2); text-decoration: none; transition: color .2s; }
+.proof__list a:hover { color: var(--text); }
+.proof__list a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.proof__note { margin-left: 6px; font-size: 12px; color: var(--text-2); }
+
+/* ——— Baner cookies: tylko wygląd; treść i logika bez zmian ——— */
+.cookies { position: fixed; left: var(--margin); bottom: var(--margin); z-index: 80;
+  display: none; flex-wrap: wrap; align-items: center; gap: 16px 24px;
+  width: min(420px, calc(100vw - 2 * var(--margin))); padding: var(--inset);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 0; box-shadow: none; }
+.cookies.show { display: flex; }
+.cookies__text { flex: 1 1 220px; margin: 0; font: 400 13px/1.6 var(--font-body); color: var(--text-2); }
+/* Na telefonie nad paskiem „Sprawdź termin”, który ma 76 px wysokości. */
+@media (max-width: 767px) { .cookies { bottom: calc(76px + 12px); } }
+
+/* ——— Mobile ——— */
+@media (max-width: 1023px) {
+  .hero { padding-inline: var(--margin); min-height: 0; }
+  .hero__text { grid-column: 1 / -1; padding-right: 0; padding-block: 48px; gap: 24px; }
+  .hero__media { grid-column: 1 / -1; margin-inline: calc(-1 * var(--margin)); aspect-ratio: 4 / 5; }
+  .btn { width: 100%; justify-content: space-between; }
+  .cookies .btn { width: auto; }
+  .proof__label, .proof__list { grid-column: 1 / -1; }
+  .proof__list { flex-direction: column; gap: 12px; margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
