@@ -147,6 +147,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .article-body ul { margin: var(--s3) 0 var(--s4) var(--s4); }
     .article-body ul li { color: var(--text-2); line-height: 1.8; margin-bottom: 6px; list-style: disc; }
     .article-num { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--border-mid); border-radius: 4px; padding: 3px 8px; margin-bottom: var(--s2); }
+    .cs-galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); margin: var(--s5) 0 var(--s4); }
+    .cs-galeria figure { margin: 0; }
+    .cs-galeria img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; display: block; background: var(--surface); }
+    .cs-zrodlo { font-size: 0.78rem; color: var(--text-3); margin-bottom: var(--s5); }
+    .cs-galeria figcaption { font-size: 0.78rem; color: var(--text-3); margin-top: 8px; line-height: 1.5; }
+    .cs-galeria--szeroka { grid-column: 1 / -1; }
+    @media (max-width: 640px) { .cs-galeria { grid-template-columns: 1fr; } }
     .cs-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--s4); margin: var(--s6) 0; }
     .cs-stat { background: var(--surface-2); border: 1px solid var(--border-mid); border-radius: 12px; padding: var(--s5); text-align: center; }
     .cs-stat__val { display: block; font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
@@ -258,6 +265,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2>Dlaczego to działa</h2>
       <p>Dziennikarz przyjeżdżający na galę szkolną ma do dyspozycji te same ujęcia co rok wcześniej: scena, mikrofon, dyplomy. Robot humanoidalny daje mu obraz, którego nie ma skąd wziąć — i to on zwykle trafia do materiału oraz do tytułu.</p>
       <p>Dla organizatora oznacza to wymierną różnicę w zasięgu przy tym samym budżecie na wydarzenie. Dla sponsora — ekspozycję marki w materiałach, za które nikt nie płacił jak za reklamę.</p>
+
+      <h2>Zdjęcia z finału</h2>
+      <div class="cs-galeria">
+        <figure class="cs-galeria--szeroka">
+          <picture>
+            <source srcset="realizacja-eco-studio-eko-partner-400.webp 400w, realizacja-eco-studio-eko-partner.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-eko-partner.jpg" alt="Wręczenie tytułu Eko Partnera 2026 na scenie finału Eco Studio, na ekranie logo 33bots" width="1200" height="800" loading="lazy" />
+          </picture>
+          <figcaption>Dyplom Eko Partnera dla 33bots, wręczony na scenie finału.</figcaption>
+        </figure>
+        <figure class="">
+          <picture>
+            <source srcset="realizacja-eco-studio-scena-400.webp 400w, realizacja-eco-studio-scena.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-scena.jpg" alt="Robot humanoidalny sam na scenie finału Eco Studio w czerwonym świetle reflektorów" width="720" height="1080" loading="lazy" />
+          </picture>
+          <figcaption>Robot na scenie, Terminal Kultury Gocław.</figcaption>
+        </figure>
+        <figure class="">
+          <picture>
+            <source srcset="realizacja-eco-studio-wywiad-400.webp 400w, realizacja-eco-studio-wywiad.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-wywiad.jpg" alt="Dziennikarka przeprowadza wywiad z robotem humanoidalnym przy ściance sponsorów Eco Studio" width="720" height="1080" loading="lazy" />
+          </picture>
+          <figcaption>Wywiad przy ściance sponsorów.</figcaption>
+        </figure>
+        <figure class="cs-galeria--szeroka">
+          <picture>
+            <source srcset="realizacja-eco-studio-final-grupa-400.webp 400w, realizacja-eco-studio-final-grupa.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-final-grupa.jpg" alt="Finaliści 7. sezonu Eco Studio ELECTRO-SYSTEM na scenie razem z robotem humanoidalnym" width="1200" height="800" loading="lazy" />
+          </picture>
+          <figcaption>Finaliści 7. sezonu na scenie.</figcaption>
+        </figure>
+        <figure class="">
+          <picture>
+            <source srcset="realizacja-eco-studio-uczniowie-400.webp 400w, realizacja-eco-studio-uczniowie.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-uczniowie.jpg" alt="Uczniowie i robot humanoidalny z rękami w górze podczas finału Eco Studio" width="1200" height="800" loading="lazy" />
+          </picture>
+          <figcaption>Uczniowie i robot podczas gali.</figcaption>
+        </figure>
+        <figure class="">
+          <picture>
+            <source srcset="realizacja-eco-studio-prowadzacy-400.webp 400w, realizacja-eco-studio-prowadzacy.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" type="image/webp" />
+            <img src="realizacja-eco-studio-prowadzacy.jpg" alt="Prowadzący finał Eco Studio na scenie obok robota humanoidalnego" width="1200" height="800" loading="lazy" />
+          </picture>
+          <figcaption>Robot w programie, obok prowadzących.</figcaption>
+        </figure>
+      </div>
+      <p class="cs-zrodlo">Wielki Finał 7. sezonu Eco Studio ELECTRO-SYSTEM, Terminal Kultury Gocław, Warszawa, 15.09.2026.</p>
 
       <h2>Relacja wideo z finału</h2>
       <p>Poniższy materiał przygotował organizator wydarzenia i udostępnił go do publikacji. Zachęcamy do obserwowania <a href="https://www.instagram.com/ecostudioelectrosystem/" target="_blank" rel="noopener noreferrer">@ecostudioelectrosystem</a> oraz <a href="https://www.instagram.com/electrosystemorganizacjaodzysku/" target="_blank" rel="noopener noreferrer">@electrosystemorganizacjaodzysku</a>.</p>
