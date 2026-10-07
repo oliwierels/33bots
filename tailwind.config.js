@@ -10,8 +10,8 @@ module.exports = {
         violet: '#9d7bff',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Clash Display"', '"Space Grotesk"', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', '"Space Grotesk"', 'system-ui', 'sans-serif'],
       },
       fontWeight: { 400: '400', 500: '500', 600: '600', 700: '700' },
       animation: {

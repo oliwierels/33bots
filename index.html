@@ -41,13 +41,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>history.scrollRestoration = 'manual';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@600,700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
 <link rel="preload" as="image" href="robot-g1-960.webp" type="image/webp" fetchpriority="high" />
 
 <!-- Tailwind skompilowany statycznie (30 KB) — bez CDN, bez JS w runtime.
      Przebudowa po zmianach w HTML:
      npx tailwindcss -c tailwind.config.js -i tw-input.css -o assets-redesign.css --minify -->
-<link rel="stylesheet" href="assets-redesign.css?v=8f8b3128" />
+<link rel="stylesheet" href="assets-redesign.css?v=5c4ea45f" />
 
 <style>
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -80,21 +82,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .strip.paused .strip-track { animation-play-state: paused; }
   @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .strip-item { position: relative; flex: 0 0 auto; width: 260px; height: 340px; border-radius: 20px;
-                overflow: hidden; border: 1px solid #2a2a30; background: #111113; }
+                overflow: hidden; border: 1px solid #2a2a30; background: #111113;
+                transition: transform .5s cubic-bezier(.16,1,.3,1), border-color .4s ease, box-shadow .5s ease; }
   .strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
                opacity: .9; transition: transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease; }
-  .strip-item:hover .strip-img { transform: scale(1.07); opacity: 1; }
+  .strip-item:hover, .strip-item:focus-visible { transform: scale(1.02); border-color: #3c3c46;
+                                                 box-shadow: 0 18px 50px rgba(0,0,0,.5); outline: none; }
+  .strip-item:focus-visible { border-color: #6fd6ff; }
+  .strip-item:hover .strip-img, .strip-item:focus-visible .strip-img { transform: scale(1.06); opacity: 1; }
   .strip-item::after { content: ''; position: absolute; inset: 0;
                        background: linear-gradient(to top, rgba(5,5,5,.9), transparent 55%); }
   .strip-cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2;
-               font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff; }
+               font-size: 12px; font-weight: 600; letter-spacing: .04em; color: #fff;
+               opacity: 0; transform: translateY(8px);
+               transition: opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1); }
+  .strip-tag { display: block; font-size: 10px; font-weight: 600; letter-spacing: .14em;
+               text-transform: uppercase; color: #6fd6ff; margin-bottom: 3px; }
+  .strip-item:hover .strip-cap, .strip-item:focus-visible .strip-cap { opacity: 1; transform: none; }
   .strip-item--wide   { width: 380px; }
   .strip-item--narrow { width: 190px; }
   .strip-item[data-full] { cursor: zoom-in; }
+  .strip-item[data-cs]   { cursor: pointer; }
+  /* Przeciąganie pasa myszą — kursor i brak zaznaczania tekstu w trakcie. */
+  .strip { cursor: grab; }
+  .strip.ciagniecie { cursor: grabbing; user-select: none; }
+  .strip.ciagniecie .strip-item { pointer-events: none; }
   @media (max-width: 640px) {
     .strip-item { width: 180px; height: 240px; }
     .strip-item--wide { width: 260px; }
     .strip-item--narrow { width: 140px; }
+  }
+  /* Bez hovera (dotyk) podpis jest widoczny od razu — inaczej nie da się go wywołać. */
+  @media (hover: none) { .strip-cap { opacity: 1; transform: none; } }
+
+  /* ——— Pasy z nazwami klientów ——— */
+  .logos { overflow: hidden;
+           -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+                   mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+  .logos-track { display: flex; gap: .6rem; width: max-content; animation: slide 68s linear infinite; }
+  .logos-track--rev { animation-direction: reverse; animation-duration: 94s; }
+  .logos:hover .logos-track, .logos.paused .logos-track { animation-play-state: paused; }
+  .logo-chip { flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center;
+               height: 78px; padding: 0 1.5rem; border-radius: 16px;
+               border: 1px solid #1d1d23; background: #0c0c0e; opacity: .45;
+               transition: opacity .4s ease, border-color .4s ease, transform .5s cubic-bezier(.16,1,.3,1),
+                           box-shadow .5s ease; }
+  .logo-chip__nazwa { font-family: "Clash Display", "Space Grotesk", system-ui, sans-serif;
+                      font-size: 17px; font-weight: 600; letter-spacing: -.01em;
+                      white-space: nowrap; color: #fff; }
+  /* Opis trzyma własną wysokość od początku, żeby pojawienie się go nie szarpało pasem. */
+  .logo-chip__opis { height: 15px; margin-top: 2px; font-size: 11.5px; letter-spacing: .02em;
+                     white-space: nowrap; color: #8b8b94; opacity: 0; transform: translateY(4px);
+                     transition: opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1); }
+  .logo-chip:hover { opacity: 1; border-color: #6fd6ff; transform: scale(1.04);
+                     box-shadow: 0 0 30px rgba(111,214,255,.16); }
+  .logo-chip:hover .logo-chip__opis { opacity: 1; transform: none; }
+  a.logo-chip:hover .logo-chip__nazwa { color: #6fd6ff; }
+  @media (hover: none) { .logo-chip { opacity: .75; } .logo-chip__opis { opacity: 1; transform: none; } }
+
+  /* ——— Szuflada z case study ——— */
+  .szuflada-tlo { position: fixed; inset: 0; z-index: 95; background: rgba(5,5,5,.72);
+                  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+                  opacity: 0; pointer-events: none; transition: opacity .4s ease; }
+  .szuflada-tlo.open { opacity: 1; pointer-events: auto; }
+  .szuflada { position: fixed; top: 0; right: 0; bottom: 0; z-index: 96; width: min(440px, 100vw);
+              display: flex; flex-direction: column; gap: 1.5rem; overflow-y: auto;
+              padding: 2.5rem 2rem; background: #0c0c0e; border-left: 1px solid #23232a;
+              box-shadow: -40px 0 120px rgba(0,0,0,.6);
+              transform: translateX(100%); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+  .szuflada.open { transform: none; }
+  .szuflada-liczby { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .75rem; }
+  .szuflada-liczba { padding: .9rem 1rem; border: 1px solid #1d1d23; border-radius: 14px; background: #111113; }
+  @media (max-width: 640px) {
+    .szuflada { top: auto; left: 0; width: 100%; max-height: 86vh; border-left: 0;
+                border-top: 1px solid #23232a; border-radius: 22px 22px 0 0;
+                transform: translateY(100%); }
   }
 
   /* ——— Baner cookie ——— */
@@ -128,7 +190,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               display: grid; place-items: center; transition: all .25s ease; }
   .lb-close:hover { border-color: #6fd6ff; transform: rotate(90deg); }
   @media (max-width: 640px) { .lb-btn { width: 44px; height: 44px; } }
-  @media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } .strip { overflow-x: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    .strip-track, .logos-track { animation: none; }
+    .strip, .logos { overflow-x: auto; }
+    .szuflada { transition: none; }
+  }
 
   /* ——— Ziarno: premium film grain ——— */
   .grain::after {
@@ -477,13 +543,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h2>
     </div>
     <p class="reveal max-w-sm text-neutral-400" style="--d:.16s">
-      Najedź na kadr — pas się zatrzyma, a nagranie ruszy. Kliknij, żeby powiększyć.<br class="hidden md:block" /><span class="text-neutral-500">14 zdjęć z prawdziwych realizacji. Bez stocków, bez renderów.</span>
+      Przeciągnij pas albo najedź na kadr — zatrzyma się, a nagranie ruszy. Kliknij, żeby otworzyć realizację.<br class="hidden md:block" /><span class="text-neutral-500">Same prawdziwe realizacje. Bez stocków, bez renderów.</span>
     </p>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════
        GALERIA REALIZACJI — dwa pasy w przeciwnych kierunkach.
-       Najechanie zatrzymuje pas, kliknięcie otwiera zdjęcie na pełnym ekranie.
+       Najechanie lub przeciągnięcie zatrzymuje pas. Kliknięcie kafelka oznaczonego
+       data-cs wysuwa panel realizacji, pozostałe otwierają zdjęcie na pełnym ekranie.
        Szerokości kafelków celowo przeplatane (wąski / zwykły / szeroki),
        żeby rytm przewijania nie był monotonny.
 
@@ -498,10 +565,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
         <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
-      <figure class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
+      <figure class="strip-item strip-item--wide" data-cs="women-in-tech" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
         <picture><source srcset="realizacja-women-in-tech-tlum-400.webp 400w, realizacja-women-in-tech-tlum.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">Women in Tech</span>Wszyscy wyciągają telefony</figcaption>
       </figure>
       <figure class="strip-item ">
         <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
@@ -509,10 +576,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <source-marker data-src="video/robot-taniec.mp4"></source-marker>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
-      <figure class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
+      <figure class="strip-item strip-item--wide" data-cs="lexai" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
         <picture><source srcset="realizacja-lexai-starowka-400.webp 400w, realizacja-lexai-starowka.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Ulica przystaje</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">LEX AI</span>Ulica przystaje</figcaption>
       </figure>
       <figure class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
         <picture><source srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -534,10 +601,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="realizacja-gala-czerwony-dywan.jpg" alt="Robot humanoidalny w cekinowym smokingu na czerwonym dywanie gali" loading="lazy" class="strip-img" /></picture>
         <figcaption class="strip-cap">Czerwony dywan</figcaption>
       </figure>
-      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="women-in-tech" data-full="realizacja-women-in-tech-tlum.jpg" data-alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami">
         <picture><source srcset="realizacja-women-in-tech-tlum-400.webp 400w, realizacja-women-in-tech-tlum.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Wszyscy wyciągają telefony</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">Women in Tech</span>Wszyscy wyciągają telefony</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item ">
         <video class="strip-img" poster="video/robot-taniec-poster.jpg" muted loop playsinline preload="none"
@@ -545,10 +612,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <source-marker data-src="video/robot-taniec.mp4"></source-marker>
         <figcaption class="strip-cap">Taniec · najedź</figcaption>
       </figure>
-      <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="lexai" data-full="realizacja-lexai-starowka.jpg" data-alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia">
         <picture><source srcset="realizacja-lexai-starowka-400.webp 400w, realizacja-lexai-starowka.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-lexai-starowka.jpg" alt="Robot humanoidalny w koszulce LEX AI na starówce, przechodnie robią zdjęcia" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Ulica przystaje</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">LEX AI</span>Ulica przystaje</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-gala-detal.jpg" data-alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu">
         <picture><source srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -569,10 +636,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="strip reveal -mx-5 md:-mx-8 mt-4" style="--d:.12s">
     <div class="strip-track strip-track--rev py-1">
       <!-- ORYGINAŁ -->
-      <figure class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
+      <figure class="strip-item " data-cs="women-in-tech" data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
         <picture><source srcset="realizacja-women-in-tech-wybieg-400.webp 400w, realizacja-women-in-tech-wybieg.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">Women in Tech</span>Women in Tech Summit</figcaption>
       </figure>
       <figure class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
         <picture><source srcset="realizacja-gala-zdjecia-gosci-400.webp 400w, realizacja-gala-zdjecia-gosci.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -590,10 +657,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <source-marker data-src="video/robot-branding.mp4"></source-marker>
         <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
-      <figure class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
+      <figure class="strip-item " data-cs="lexai" data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
         <picture><source srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Marketing w mieście</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">LEX AI</span>Marketing w mieście</figcaption>
       </figure>
       <figure class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
         <picture><source srcset="realizacja-gala-palac-400.webp 400w, realizacja-gala-palac.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -611,10 +678,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figcaption class="strip-cap">Wśród gości</figcaption>
       </figure>
       <!-- KOPIA — bezszwowa pętla -->
-      <figure aria-hidden="true" class="strip-item " data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
+      <figure aria-hidden="true" class="strip-item " data-cs="women-in-tech" data-full="realizacja-women-in-tech-wybieg.jpg" data-alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością">
         <picture><source srcset="realizacja-women-in-tech-wybieg-400.webp 400w, realizacja-women-in-tech-wybieg.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-women-in-tech-wybieg.jpg" alt="Robot humanoidalny na różowym wybiegu Women in Tech Summit przed publicznością" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Women in Tech Summit</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">Women in Tech</span>Women in Tech Summit</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item strip-item--wide" data-full="realizacja-gala-zdjecia-gosci.jpg" data-alt="Goście gali fotografujący robota humanoidalnego przy ściance sponsorskiej">
         <picture><source srcset="realizacja-gala-zdjecia-gosci-400.webp 400w, realizacja-gala-zdjecia-gosci.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -632,10 +699,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <source-marker data-src="video/robot-branding.mp4"></source-marker>
         <figcaption class="strip-cap">Logo i kod QR · 0 zł</figcaption>
       </figure>
-      <figure aria-hidden="true" class="strip-item " data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
+      <figure aria-hidden="true" class="strip-item " data-cs="lexai" data-full="realizacja-lexai-ulica.jpg" data-alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni">
         <picture><source srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" loading="lazy" class="strip-img" /></picture>
-        <figcaption class="strip-cap">Marketing w mieście</figcaption>
+        <figcaption class="strip-cap"><span class="strip-tag">LEX AI</span>Marketing w mieście</figcaption>
       </figure>
       <figure aria-hidden="true" class="strip-item " data-full="realizacja-gala-palac.jpg" data-alt="Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej">
         <picture><source srcset="realizacja-gala-palac-400.webp 400w, realizacja-gala-palac.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
@@ -651,6 +718,188 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <picture><source srcset="realizacja-gala-wsrod-gosci-400.webp 400w, realizacja-gala-wsrod-gosci.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
         <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród rozbawionych gości gali z kieliszkami" loading="lazy" class="strip-img" /></picture>
         <figcaption class="strip-cap">Wśród gości</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="strip reveal -mx-5 md:-mx-8 mt-4" style="--d:.19s">
+    <div class="strip-track py-1">
+      <!-- ORYGINAŁ -->
+      <figure class="strip-item " data-cs="grupa-rekord" data-full="realizacja-grupa-rekord-mspo.jpg" data-alt="Robot humanoidalny w barwach Grupy Rekord na stoisku targów MSPO w Kielcach">
+        <picture><source srcset="realizacja-grupa-rekord-mspo-400.webp 400w, realizacja-grupa-rekord-mspo.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-grupa-rekord-mspo.jpg" alt="Robot humanoidalny w barwach Grupy Rekord na stoisku targów MSPO w Kielcach" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Grupa Rekord</span>MSPO Kielce</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="tet-trung-thu" data-full="realizacja-tet-trung-thu.jpg" data-alt="Robot humanoidalny w stroju galowym podczas festiwalu Tết Trung Thu">
+        <picture><source srcset="realizacja-tet-trung-thu-400.webp 400w, realizacja-tet-trung-thu.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-tet-trung-thu.jpg" alt="Robot humanoidalny w stroju galowym podczas festiwalu Tết Trung Thu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Tết Trung Thu</span>Tết Trung Thu</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="szkola-kosmos" data-full="realizacja-szkola-kosmos-majaland.jpg" data-alt="Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku w Majalandzie">
+        <picture><source srcset="realizacja-szkola-kosmos-majaland-400.webp 400w, realizacja-szkola-kosmos-majaland.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-szkola-kosmos-majaland.jpg" alt="Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku w Majalandzie" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Szkoła Kosmos</span>Rozpoczęcie roku</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-cs="kopernik" data-full="realizacja-kopernik-noc.jpg" data-alt="Robot humanoidalny na wystawie Centrum Nauki Kopernik podczas wieczoru dla dorosłych">
+        <picture><source srcset="realizacja-kopernik-noc-400.webp 400w, realizacja-kopernik-noc.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-kopernik-noc.jpg" alt="Robot humanoidalny na wystawie Centrum Nauki Kopernik podczas wieczoru dla dorosłych" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Centrum Nauki Kopernik</span>Centrum Nauki Kopernik</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="matys" data-full="realizacja-matys-silver-garden.jpg" data-alt="Robot humanoidalny z materiałami inwestycji Silver Garden na targach nieruchomości">
+        <picture><source srcset="realizacja-matys-silver-garden-400.webp 400w, realizacja-matys-silver-garden.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-matys-silver-garden.jpg" alt="Robot humanoidalny z materiałami inwestycji Silver Garden na targach nieruchomości" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Matys Development</span>Targi nieruchomości</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="przelewice" data-full="realizacja-przelewice-noc-bajek.jpg" data-alt="Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek w Przelewicach">
+        <picture><source srcset="realizacja-przelewice-noc-bajek-400.webp 400w, realizacja-przelewice-noc-bajek.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-przelewice-noc-bajek.jpg" alt="Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek w Przelewicach" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Ogród w Przelewicach</span>Noc Bajek</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="yeah-gym" data-full="realizacja-yeah-gym-koszulka.jpg" data-alt="Robot humanoidalny w koszulce klubu YEAH GYM we Wrocławiu">
+        <picture><source srcset="realizacja-yeah-gym-koszulka-400.webp 400w, realizacja-yeah-gym-koszulka.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-koszulka.jpg" alt="Robot humanoidalny w koszulce klubu YEAH GYM we Wrocławiu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>YEAH GYM</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="jednorozec" data-full="realizacja-jednorozec-parada.jpg" data-alt="Robot humanoidalny w koszulce gminy Jednorożec wśród uczestników Parady Jednorożców">
+        <picture><source srcset="realizacja-jednorozec-parada-400.webp 400w, realizacja-jednorozec-parada.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-jednorozec-parada.jpg" alt="Robot humanoidalny w koszulce gminy Jednorożec wśród uczestników Parady Jednorożców" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Gmina Jednorożec</span>Parada Jednorożców</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-full="realizacja-wesele-konfetti.jpg" data-alt="Robot humanoidalny w kłębach dymu na weselnym parkiecie">
+        <picture><source srcset="realizacja-wesele-konfetti-400.webp 400w, realizacja-wesele-konfetti.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-wesele-konfetti.jpg" alt="Robot humanoidalny w kłębach dymu na weselnym parkiecie" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wesele</figcaption>
+      </figure>
+      <!-- KOPIA — bezszwowa pętla -->
+      <figure aria-hidden="true" class="strip-item " data-cs="grupa-rekord" data-full="realizacja-grupa-rekord-mspo.jpg" data-alt="Robot humanoidalny w barwach Grupy Rekord na stoisku targów MSPO w Kielcach">
+        <picture><source srcset="realizacja-grupa-rekord-mspo-400.webp 400w, realizacja-grupa-rekord-mspo.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-grupa-rekord-mspo.jpg" alt="Robot humanoidalny w barwach Grupy Rekord na stoisku targów MSPO w Kielcach" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Grupa Rekord</span>MSPO Kielce</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="tet-trung-thu" data-full="realizacja-tet-trung-thu.jpg" data-alt="Robot humanoidalny w stroju galowym podczas festiwalu Tết Trung Thu">
+        <picture><source srcset="realizacja-tet-trung-thu-400.webp 400w, realizacja-tet-trung-thu.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-tet-trung-thu.jpg" alt="Robot humanoidalny w stroju galowym podczas festiwalu Tết Trung Thu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Tết Trung Thu</span>Tết Trung Thu</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="szkola-kosmos" data-full="realizacja-szkola-kosmos-majaland.jpg" data-alt="Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku w Majalandzie">
+        <picture><source srcset="realizacja-szkola-kosmos-majaland-400.webp 400w, realizacja-szkola-kosmos-majaland.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-szkola-kosmos-majaland.jpg" alt="Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku w Majalandzie" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Szkoła Kosmos</span>Rozpoczęcie roku</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="kopernik" data-full="realizacja-kopernik-noc.jpg" data-alt="Robot humanoidalny na wystawie Centrum Nauki Kopernik podczas wieczoru dla dorosłych">
+        <picture><source srcset="realizacja-kopernik-noc-400.webp 400w, realizacja-kopernik-noc.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-kopernik-noc.jpg" alt="Robot humanoidalny na wystawie Centrum Nauki Kopernik podczas wieczoru dla dorosłych" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Centrum Nauki Kopernik</span>Centrum Nauki Kopernik</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="matys" data-full="realizacja-matys-silver-garden.jpg" data-alt="Robot humanoidalny z materiałami inwestycji Silver Garden na targach nieruchomości">
+        <picture><source srcset="realizacja-matys-silver-garden-400.webp 400w, realizacja-matys-silver-garden.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-matys-silver-garden.jpg" alt="Robot humanoidalny z materiałami inwestycji Silver Garden na targach nieruchomości" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Matys Development</span>Targi nieruchomości</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="przelewice" data-full="realizacja-przelewice-noc-bajek.jpg" data-alt="Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek w Przelewicach">
+        <picture><source srcset="realizacja-przelewice-noc-bajek-400.webp 400w, realizacja-przelewice-noc-bajek.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-przelewice-noc-bajek.jpg" alt="Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek w Przelewicach" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Ogród w Przelewicach</span>Noc Bajek</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="yeah-gym" data-full="realizacja-yeah-gym-koszulka.jpg" data-alt="Robot humanoidalny w koszulce klubu YEAH GYM we Wrocławiu">
+        <picture><source srcset="realizacja-yeah-gym-koszulka-400.webp 400w, realizacja-yeah-gym-koszulka.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-koszulka.jpg" alt="Robot humanoidalny w koszulce klubu YEAH GYM we Wrocławiu" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>YEAH GYM</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="jednorozec" data-full="realizacja-jednorozec-parada.jpg" data-alt="Robot humanoidalny w koszulce gminy Jednorożec wśród uczestników Parady Jednorożców">
+        <picture><source srcset="realizacja-jednorozec-parada-400.webp 400w, realizacja-jednorozec-parada.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-jednorozec-parada.jpg" alt="Robot humanoidalny w koszulce gminy Jednorożec wśród uczestników Parady Jednorożców" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Gmina Jednorożec</span>Parada Jednorożców</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-full="realizacja-wesele-konfetti.jpg" data-alt="Robot humanoidalny w kłębach dymu na weselnym parkiecie">
+        <picture><source srcset="realizacja-wesele-konfetti-400.webp 400w, realizacja-wesele-konfetti.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-wesele-konfetti.jpg" alt="Robot humanoidalny w kłębach dymu na weselnym parkiecie" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap">Wesele</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="strip reveal -mx-5 md:-mx-8 mt-4" style="--d:.26s">
+    <div class="strip-track strip-track--rev py-1">
+      <!-- ORYGINAŁ -->
+      <figure class="strip-item " data-cs="dream-med" data-full="realizacja-dream-med-expo.jpg" data-alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo">
+        <picture><source srcset="realizacja-dream-med-expo-400.webp 400w, realizacja-dream-med-expo.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-dream-med-expo.jpg" alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Dream-Med</span>Warsaw Medical Expo</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="przelewice" data-full="realizacja-przelewice-arkady.jpg" data-alt="Robot humanoidalny w Ogrodzie Dendrologicznym w Przelewicach po zmroku">
+        <picture><source srcset="realizacja-przelewice-arkady-400.webp 400w, realizacja-przelewice-arkady.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-przelewice-arkady.jpg" alt="Robot humanoidalny w Ogrodzie Dendrologicznym w Przelewicach po zmroku" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Ogród w Przelewicach</span>Ogród w Przelewicach</figcaption>
+      </figure>
+      <figure class="strip-item " data-cs="yeah-gym" data-full="realizacja-yeah-gym-trening.jpg" data-alt="Robot humanoidalny obok trenerki w klubie fitness">
+        <picture><source srcset="realizacja-yeah-gym-trening-400.webp 400w, realizacja-yeah-gym-trening.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-trening.jpg" alt="Robot humanoidalny obok trenerki w klubie fitness" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>Klub fitness</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-cs="tet-trung-thu" data-full="realizacja-tet-trung-thu-tlum.jpg" data-alt="Goście Święta Środka Jesieni wokół robota humanoidalnego">
+        <picture><source srcset="realizacja-tet-trung-thu-tlum-400.webp 400w, realizacja-tet-trung-thu-tlum.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-tet-trung-thu-tlum.jpg" alt="Goście Święta Środka Jesieni wokół robota humanoidalnego" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Tết Trung Thu</span>Święto Środka Jesieni</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-cs="matys" data-full="realizacja-matys-stoisko.jpg" data-alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera">
+        <picture><source srcset="realizacja-matys-stoisko-400.webp 400w, realizacja-matys-stoisko.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-matys-stoisko.jpg" alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Matys Development</span>Silver Garden</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-cs="szkola-kosmos" data-full="realizacja-szkola-kosmos-scena.jpg" data-alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami">
+        <picture><source srcset="realizacja-szkola-kosmos-scena-400.webp 400w, realizacja-szkola-kosmos-scena.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-szkola-kosmos-scena.jpg" alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Szkoła Kosmos</span>Szkoła Kosmos</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--narrow" data-cs="jednorozec" data-full="realizacja-jednorozec-zachod.jpg" data-alt="Robot humanoidalny na plenerowej paradzie o zachodzie słońca">
+        <picture><source srcset="realizacja-jednorozec-zachod-400.webp 400w, realizacja-jednorozec-zachod.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-jednorozec-zachod.jpg" alt="Robot humanoidalny na plenerowej paradzie o zachodzie słońca" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Gmina Jednorożec</span>Plener do zmroku</figcaption>
+      </figure>
+      <figure class="strip-item strip-item--wide" data-cs="yeah-gym" data-full="realizacja-yeah-gym-silownia.jpg" data-alt="Robot humanoidalny w strefie treningowej klubu YEAH GYM">
+        <picture><source srcset="realizacja-yeah-gym-silownia-400.webp 400w, realizacja-yeah-gym-silownia.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-silownia.jpg" alt="Robot humanoidalny w strefie treningowej klubu YEAH GYM" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>Strefa treningowa</figcaption>
+      </figure>
+      <!-- KOPIA — bezszwowa pętla -->
+      <figure aria-hidden="true" class="strip-item " data-cs="dream-med" data-full="realizacja-dream-med-expo.jpg" data-alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo">
+        <picture><source srcset="realizacja-dream-med-expo-400.webp 400w, realizacja-dream-med-expo.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-dream-med-expo.jpg" alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Dream-Med</span>Warsaw Medical Expo</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="przelewice" data-full="realizacja-przelewice-arkady.jpg" data-alt="Robot humanoidalny w Ogrodzie Dendrologicznym w Przelewicach po zmroku">
+        <picture><source srcset="realizacja-przelewice-arkady-400.webp 400w, realizacja-przelewice-arkady.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-przelewice-arkady.jpg" alt="Robot humanoidalny w Ogrodzie Dendrologicznym w Przelewicach po zmroku" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Ogród w Przelewicach</span>Ogród w Przelewicach</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item " data-cs="yeah-gym" data-full="realizacja-yeah-gym-trening.jpg" data-alt="Robot humanoidalny obok trenerki w klubie fitness">
+        <picture><source srcset="realizacja-yeah-gym-trening-400.webp 400w, realizacja-yeah-gym-trening.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-trening.jpg" alt="Robot humanoidalny obok trenerki w klubie fitness" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>Klub fitness</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="tet-trung-thu" data-full="realizacja-tet-trung-thu-tlum.jpg" data-alt="Goście Święta Środka Jesieni wokół robota humanoidalnego">
+        <picture><source srcset="realizacja-tet-trung-thu-tlum-400.webp 400w, realizacja-tet-trung-thu-tlum.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-tet-trung-thu-tlum.jpg" alt="Goście Święta Środka Jesieni wokół robota humanoidalnego" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Tết Trung Thu</span>Święto Środka Jesieni</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="matys" data-full="realizacja-matys-stoisko.jpg" data-alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera">
+        <picture><source srcset="realizacja-matys-stoisko-400.webp 400w, realizacja-matys-stoisko.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-matys-stoisko.jpg" alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Matys Development</span>Silver Garden</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-cs="szkola-kosmos" data-full="realizacja-szkola-kosmos-scena.jpg" data-alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami">
+        <picture><source srcset="realizacja-szkola-kosmos-scena-400.webp 400w, realizacja-szkola-kosmos-scena.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-szkola-kosmos-scena.jpg" alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Szkoła Kosmos</span>Szkoła Kosmos</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--narrow" data-cs="jednorozec" data-full="realizacja-jednorozec-zachod.jpg" data-alt="Robot humanoidalny na plenerowej paradzie o zachodzie słońca">
+        <picture><source srcset="realizacja-jednorozec-zachod-400.webp 400w, realizacja-jednorozec-zachod.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-jednorozec-zachod.jpg" alt="Robot humanoidalny na plenerowej paradzie o zachodzie słońca" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">Gmina Jednorożec</span>Plener do zmroku</figcaption>
+      </figure>
+      <figure aria-hidden="true" class="strip-item strip-item--wide" data-cs="yeah-gym" data-full="realizacja-yeah-gym-silownia.jpg" data-alt="Robot humanoidalny w strefie treningowej klubu YEAH GYM">
+        <picture><source srcset="realizacja-yeah-gym-silownia-400.webp 400w, realizacja-yeah-gym-silownia.webp 1200w" sizes="(max-width: 760px) 400px, 760px" type="image/webp" />
+        <img src="realizacja-yeah-gym-silownia.jpg" alt="Robot humanoidalny w strefie treningowej klubu YEAH GYM" loading="lazy" class="strip-img" /></picture>
+        <figcaption class="strip-cap"><span class="strip-tag">YEAH GYM</span>Strefa treningowa</figcaption>
       </figure>
     </div>
   </div>
@@ -679,6 +928,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="transition-transform group-hover:translate-x-1">→</span>
     </a>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     3b. DLA KOGO PRACOWALIŚMY — siatka klientów.
+     Lista obejmuje firmy i instytucje. Realizacji prywatnych
+     (wesela, urodziny) celowo tu nie ma — to dane osobowe.
+     ══════════════════════════════════════════════════════ -->
+<section id="klienci" class="border-t border-line py-24 md:py-28">
+  <div class="mx-auto mb-12 max-w-7xl px-5 md:px-8">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="reveal mb-4 text-[11px] font-600 uppercase tracking-[.18em] text-accent">Dla kogo pracowaliśmy</p>
+        <h2 class="reveal font-display text-3xl font-700 leading-[1.05] tracking-[-.025em] text-white md:text-5xl" style="--d:.08s">
+          Od hali targowej<br />po salę muzealną
+        </h2>
+      </div>
+      <p class="reveal max-w-sm text-[15px] leading-relaxed text-neutral-400" style="--d:.16s">
+        Robot pracował na scenie, na stoisku, w showroomie i w plenerze —
+        <span class="text-neutral-300">także w Bukareszcie i Brnie</span>.
+        Najedź na nazwę, żeby zobaczyć realizację.
+      </p>
+    </div>
+  </div>
+
+    <div class="logos reveal" style="--d:.24s">
+      <div class="logos-track">
+        <!-- ORYGINAŁ -->
+        <a href="case-study-grupa-rekord-mspo.html" class="logo-chip"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">REMONDIS Electrorecycling</span><span class="logo-chip__opis">POLECO 2026, MTP Poznań</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">DELKOM 2000</span><span class="logo-chip__opis">POLFISH 2026, Gdańsk</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Matys Development</span><span class="logo-chip__opis">Targi nieruchomości, Szczecin</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Blue Energy</span><span class="logo-chip__opis">Szczyt Cyberbezpieczeństwa, Krynica</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Seba Tech Group</span><span class="logo-chip__opis">targi przemysłowe</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">ZTM · m.st. Warszawa</span><span class="logo-chip__opis">Dni Transportu Publicznego</span></div>
+        <a href="case-study-eco-studio-electro-system.html" class="logo-chip"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Gmina Jednorożec</span><span class="logo-chip__opis">Parada Jednorożców</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Uzdrowisko Ciechocinek</span><span class="logo-chip__opis">Piknik pod Kujawskim Niebem</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">VELUX</span><span class="logo-chip__opis">event firmowy, Namysłów</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">DSV GBS</span><span class="logo-chip__opis">Go-Live Event</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">VBASS</span><span class="logo-chip__opis">automatyka budynkowa</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">ELITE Groomer &amp; SPA</span><span class="logo-chip__opis">otwarcie salonu, Lesznowola</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Studio Diament</span><span class="logo-chip__opis">Krynica-Zdrój</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Poznańska Akademia Medyczna</span><span class="logo-chip__opis">dni otwarte i wizyty w klasach</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">JustSpeak</span><span class="logo-chip__opis">event szkoły językowej</span></div>
+        <!-- KOPIA — bezszwowa pętla -->
+        <a href="case-study-grupa-rekord-mspo.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Grupa Rekord</span><span class="logo-chip__opis">MSPO 2026, Targi Kielce</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">REMONDIS Electrorecycling</span><span class="logo-chip__opis">POLECO 2026, MTP Poznań</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">DELKOM 2000</span><span class="logo-chip__opis">POLFISH 2026, Gdańsk</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Matys Development</span><span class="logo-chip__opis">Targi nieruchomości, Szczecin</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Blue Energy</span><span class="logo-chip__opis">Szczyt Cyberbezpieczeństwa, Krynica</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Seba Tech Group</span><span class="logo-chip__opis">targi przemysłowe</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ZTM · m.st. Warszawa</span><span class="logo-chip__opis">Dni Transportu Publicznego</span></div>
+        <a href="case-study-eco-studio-electro-system.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ELECTRO-SYSTEM</span><span class="logo-chip__opis">Wielki Finał Eco Studio</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Gmina Jednorożec</span><span class="logo-chip__opis">Parada Jednorożców</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Uzdrowisko Ciechocinek</span><span class="logo-chip__opis">Piknik pod Kujawskim Niebem</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">VELUX</span><span class="logo-chip__opis">event firmowy, Namysłów</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">DSV GBS</span><span class="logo-chip__opis">Go-Live Event</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">VBASS</span><span class="logo-chip__opis">automatyka budynkowa</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">ELITE Groomer &amp; SPA</span><span class="logo-chip__opis">otwarcie salonu, Lesznowola</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Studio Diament</span><span class="logo-chip__opis">Krynica-Zdrój</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Poznańska Akademia Medyczna</span><span class="logo-chip__opis">dni otwarte i wizyty w klasach</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">JustSpeak</span><span class="logo-chip__opis">event szkoły językowej</span></div>
+      </div>
+    </div>
+    <div class="logos reveal" style="--d:.3s">
+      <div class="logos-track logos-track--rev">
+        <!-- ORYGINAŁ -->
+        <div class="logo-chip"><span class="logo-chip__nazwa">KDT Europe</span><span class="logo-chip__opis">DREMA 2026, MTP Poznań</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Dream-Med</span><span class="logo-chip__opis">Warsaw Medical Expo 2026</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">BETMAR</span><span class="logo-chip__opis">Targi Gardenia</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Westernacher</span><span class="logo-chip__opis">AI NOW 2026, Sopot</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Polish Zone</span><span class="logo-chip__opis">Impact SEE, Bukareszt</span></div>
+        <a href="case-study-centrum-nauki-kopernik.html" class="logo-chip"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Urząd Marszałkowski Woj. Lubuskiego</span><span class="logo-chip__opis">Lubuski Festiwal Innowacji</span></div>
+        <a href="case-study-ogrod-przelewice.html" class="logo-chip"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></a>
+        <div class="logo-chip"><span class="logo-chip__nazwa">GOK Kobylin</span><span class="logo-chip__opis">otwarcie ośrodka kultury</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Play · Grupa P4</span><span class="logo-chip__opis">Play Into the Future</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Adamed</span><span class="logo-chip__opis">Festiwal Wartości, Serock</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Meblostyl</span><span class="logo-chip__opis">dni otwarte w czterech salonach</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">YEAH GYM</span><span class="logo-chip__opis">klub fitness, Wrocław</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Studio Figura</span><span class="logo-chip__opis">Gorlice i Nowy Sącz</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Dary Posejdona</span><span class="logo-chip__opis">Warszawa</span></div>
+        <div class="logo-chip"><span class="logo-chip__nazwa">Szkoła Kosmos</span><span class="logo-chip__opis">rozpoczęcie roku w Majalandzie</span></div>
+        <!-- KOPIA — bezszwowa pętla -->
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">KDT Europe</span><span class="logo-chip__opis">DREMA 2026, MTP Poznań</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Dream-Med</span><span class="logo-chip__opis">Warsaw Medical Expo 2026</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">BETMAR</span><span class="logo-chip__opis">Targi Gardenia</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Westernacher</span><span class="logo-chip__opis">AI NOW 2026, Sopot</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Polish Zone</span><span class="logo-chip__opis">Impact SEE, Bukareszt</span></div>
+        <a href="case-study-centrum-nauki-kopernik.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Centrum Nauki Kopernik</span><span class="logo-chip__opis">wieczór „O czym śnią roboty”</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Urząd Marszałkowski Woj. Lubuskiego</span><span class="logo-chip__opis">Lubuski Festiwal Innowacji</span></div>
+        <a href="case-study-ogrod-przelewice.html" class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Ogród Dendrologiczny w Przelewicach</span><span class="logo-chip__opis">Noc Bajek Pokolenia</span></a>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">GOK Kobylin</span><span class="logo-chip__opis">otwarcie ośrodka kultury</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Play · Grupa P4</span><span class="logo-chip__opis">Play Into the Future</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Adamed</span><span class="logo-chip__opis">Festiwal Wartości, Serock</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Meblostyl</span><span class="logo-chip__opis">dni otwarte w czterech salonach</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">YEAH GYM</span><span class="logo-chip__opis">klub fitness, Wrocław</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Studio Figura</span><span class="logo-chip__opis">Gorlice i Nowy Sącz</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Dary Posejdona</span><span class="logo-chip__opis">Warszawa</span></div>
+        <div class="logo-chip" aria-hidden="true" tabindex="-1"><span class="logo-chip__nazwa">Szkoła Kosmos</span><span class="logo-chip__opis">rozpoczęcie roku w Majalandzie</span></div>
+      </div>
+    </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
@@ -1290,6 +1641,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="lb-cap" id="lbCap"></p>
 </div>
 
+<div class="szuflada-tlo" id="szufladaTlo"></div>
+<aside class="szuflada" id="szuflada" role="dialog" aria-modal="true" aria-labelledby="szufladaTytul" aria-hidden="true">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <p class="text-[11px] font-600 uppercase tracking-[.18em] text-accent" id="szufladaTag"></p>
+      <h3 class="mt-2 font-display text-2xl font-700 leading-tight tracking-[-.02em] text-white" id="szufladaTytul"></h3>
+    </div>
+    <button class="shrink-0 rounded-full border border-line-mid p-2 text-neutral-400 transition hover:border-accent hover:text-white" id="szufladaZamknij" aria-label="Zamknij panel">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" /></svg>
+    </button>
+  </div>
+  <div class="szuflada-liczby" id="szufladaLiczby"></div>
+  <div>
+    <p class="mb-2 text-[11px] font-600 uppercase tracking-[.18em] text-neutral-500">Rola robota</p>
+    <p class="text-[15px] leading-relaxed text-neutral-300" id="szufladaRola"></p>
+  </div>
+  <div>
+    <p class="mb-2 text-[11px] font-600 uppercase tracking-[.18em] text-neutral-500">Efekt</p>
+    <p class="text-[15px] leading-relaxed text-neutral-300" id="szufladaEfekt"></p>
+  </div>
+  <a class="mt-auto inline-flex items-center gap-2 text-[14px] font-600 text-accent transition hover:gap-3" id="szufladaLink" href="#">Pełne case study <span aria-hidden="true">→</span></a>
+</aside>
+
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1420,7 +1794,184 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const otworz = i => { pokaz(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; };
   const zamknij = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
 
-  kadry.forEach((el, i) => el.addEventListener('click', () => otworz(i)));
+  /* ——— Szuflada realizacji ———
+     Liczby podajemy tylko tam, gdzie je znamy z ustaleń z organizatorem.
+     Reszta realizacji dostaje sam opis — bez wymyślonych wskaźników. */
+  const REALIZACJE = {
+    'grupa-rekord': {
+      klient: 'Grupa Rekord · MSPO, Targi Kielce',
+      tytul: 'Ambasador grupy spółek na salonie przemysłu obronnego',
+      liczby: [['8–9 września', 'dwa dni targów'], ['3Z-05', 'stoisko w Hali RFS'], ['B2B', 'publiczność branżowa']],
+      rola: 'Przedstawiał po kolei wszystkie spółki grupy i zapraszał przechodzących korytarzem na stoiskowy pokaz medycyny pola walki.',
+      efekt: 'Na targach obronnych nikt nie przychodzi po atrakcje. Robot zatrzymywał właściwą osobę na tyle długo, żeby handlowiec zdążył zacząć rozmowę.',
+      link: 'case-study-grupa-rekord-mspo.html'
+    },
+    'kopernik': {
+      klient: 'Centrum Nauki Kopernik · Warszawa',
+      tytul: 'Wieczór dla dorosłych „O czym śnią roboty”',
+      liczby: [['17 września', 'wieczór tylko dla dorosłych'], ['19:00–22:00', 'trzy godziny pracy'], ['Fontanna powietrzna', 'stanowisko robota']],
+      rola: 'Stał przy jednym z najbardziej obleganych eksponatów, rozmawiał ze zwiedzającymi i pozował do zdjęć.',
+      efekt: 'Dorosła publiczność pyta o technologię, nie o to, czy robot się przewróci. Przygotowaliśmy go pod ten rodzaj rozmowy.',
+      link: 'case-study-centrum-nauki-kopernik.html'
+    },
+    'przelewice': {
+      klient: 'Ogród Dendrologiczny w Przelewicach',
+      tytul: 'Noc Bajek w zabytkowym parku',
+      liczby: [['12 września', 'Noc Bajek Pokolenia'], ['od 19:00', 'teatr od 21:00'], ['Mauzoleum', 'stanowisko po zmroku']],
+      rola: 'Pracował po zmroku przy Mauzoleum rodziny von Prillwitz, w świetle reflektorów ustawionych na arkadach.',
+      efekt: 'Podświetlona obudowa dała kadry nie do uzyskania w dzień — i to one krążyły potem po mediach odwiedzających.',
+      link: 'case-study-ogrod-przelewice.html'
+    },
+    'lexai': {
+      klient: 'LEX AI · Długi Targ, Gdańsk',
+      tytul: 'Robot w roli przedstawiciela kancelarii',
+      liczby: [['TVP Gdańsk', 'reportaż „Pan Mecenas Robot”'], ['Teleexpress', 'materiał ogólnopolski']],
+      rola: 'Chodził po starówce w barwach klienta i zaczepiał przechodniów — marketing uliczny zamiast stoiska.',
+      efekt: 'Realizacja trafiła do reportażu TVP Gdańsk i do Teleexpressu, bez kupowania czasu antenowego.',
+      link: 'case-study-lexai.html'
+    },
+    'women-in-tech': {
+      klient: 'Women in Tech Summit · Warszawa',
+      tytul: 'Największa konferencja technologiczna dla kobiet w Europie',
+      liczby: [['~14 000', 'uczestniczek'], ['Scena i wybieg', 'dwa stanowiska']],
+      rola: 'Wystąpił na wybiegu i pracował wśród uczestniczek przez cały dzień konferencji.',
+      efekt: 'Na evencie, gdzie technologia jest tematem, a nie dodatkiem, robot był punktem zbornym dla zdjęć i rozmów.',
+      link: 'case-study-women-in-tech.html'
+    },
+    'dream-med':     { klient: 'Dream-Med · Warsaw Medical Expo', tytul: 'Stoisko na targach medycznych',
+                       rola: 'Pracował na stoisku wystawcy przez czas trwania targów.',
+                       efekt: 'Na targach branżowych robot zatrzymuje ruch w alejce — reszta należy do zespołu stoiska.' },
+    'matys':         { klient: 'Matys Development · Szczecin', tytul: 'Targi nieruchomości i osiedle Silver Garden',
+                       rola: 'Witał odwiedzających na stoisku dewelopera i na terenie inwestycji.',
+                       efekt: 'Deweloper konkuruje na targach z kilkunastoma podobnymi stoiskami. Robot daje powód, żeby podejść akurat do tego.' },
+    'szkola-kosmos': { klient: 'Szkoła Kosmos · Majaland', tytul: 'Rozpoczęcie roku szkolnego',
+                       rola: 'Wystąpił na scenie podczas inauguracji roku i spotkał się z uczniami.',
+                       efekt: 'Rozpoczęcie roku zapamiętane z konkretnego powodu, a nie z przemówienia.' },
+    'yeah-gym':      { klient: 'YEAH GYM · Wrocław', tytul: 'Klub fitness',
+                       rola: 'Pracował na sali treningowej w barwach klubu.',
+                       efekt: 'Materiał na social media klubu, nagrany w jego własnym wnętrzu.' },
+    'jednorozec':    { klient: 'Gmina Jednorożec', tytul: 'Parada Jednorożców',
+                       rola: 'Szedł w paradzie i pracował w plenerze do zachodu słońca.',
+                       efekt: 'Impreza gminna, na której atrakcja musi działać w ruchu i bez sceny.' },
+    'tet-trung-thu': { klient: 'Święto Środka Jesieni · Tết Trung Thu', tytul: 'Festyn społeczności wietnamskiej w Warszawie',
+                       rola: 'Pracował wśród publiczności festynu rodzinnego.',
+                       efekt: 'Robot działa bez języka — na wydarzeniu wielojęzycznym to przewaga, nie przeszkoda.' }
+  };
+
+  const szuflada  = document.getElementById('szuflada');
+  const szufTlo   = document.getElementById('szufladaTlo');
+  const szufLink  = document.getElementById('szufladaLink');
+  let wracajDo = null;
+
+  const otworzSzuflade = (klucz, zrodlo) => {
+    const d = REALIZACJE[klucz];
+    if (!d) return false;
+    wracajDo = zrodlo || null;
+    document.getElementById('szufladaTag').textContent   = d.klient;
+    document.getElementById('szufladaTytul').textContent = d.tytul;
+    document.getElementById('szufladaRola').textContent  = d.rola;
+    document.getElementById('szufladaEfekt').textContent = d.efekt;
+    document.getElementById('szufladaLiczby').innerHTML = (d.liczby || []).map(([a, b]) =>
+      `<div class="szuflada-liczba"><p class="font-display text-[17px] font-700 leading-tight text-white">${a}</p>` +
+      `<p class="mt-1 text-[12px] leading-snug text-neutral-500">${b}</p></div>`).join('');
+    szufLink.href = d.link || '#';
+    // Atrybut hidden nie wystarczy: klasa inline-flex ma pierwszeństwo przed regułą przeglądarki.
+    szufLink.style.display = d.link ? '' : 'none';
+    szuflada.classList.add('open');
+    szufTlo.classList.add('open');
+    szuflada.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('szufladaZamknij').focus();
+    return true;
+  };
+  const zamknijSzuflade = () => {
+    szuflada.classList.remove('open');
+    szufTlo.classList.remove('open');
+    szuflada.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (wracajDo) { wracajDo.focus(); wracajDo = null; }
+  };
+  document.getElementById('szufladaZamknij').addEventListener('click', zamknijSzuflade);
+  szufTlo.addEventListener('click', zamknijSzuflade);
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && szuflada.classList.contains('open')) zamknijSzuflade();
+  });
+
+  /* Kafelek realizacji otwiera panel, pozostałe — powiększenie zdjęcia. */
+  kadry.forEach((el, i) => {
+    el.tabIndex = 0;
+    const akcja = () => { if (!otworzSzuflade(el.dataset.cs, el)) otworz(i); };
+    el.addEventListener('click', akcja);
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); akcja(); }
+    });
+  });
+
+  /* ——— Pasy: przeciąganie myszą zatrzymuje i przewija ———
+     Animacja jedzie od 0 do -50% szerokości toru. Żeby dało się ją chwycić,
+     na czas przeciągania odczytujemy bieżące przesunięcie z macierzy, gasimy
+     animację, a po puszczeniu wznawiamy ją ujemnym opóźnieniem — dokładnie
+     w tym miejscu, w którym tor został zostawiony. */
+  document.querySelectorAll('.strip').forEach(pas => {
+    const tor = pas.querySelector('.strip-track');
+    if (!tor || reduce) return;
+    const PROG = 6;                           // poniżej tylu pikseli to jeszcze kliknięcie
+    let uzbrojony = false, ciagnie = false, startX = 0, startPrzes = 0, polowa = 0, ruch = 0;
+
+    const przesuniecie = () => new DOMMatrixReadOnly(getComputedStyle(tor).transform).m41;
+    const czasTrwania  = () => parseFloat(getComputedStyle(tor).animationDuration) || 52;
+
+    pas.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') return;      // dotyk ma własną, natywną obsługę
+      uzbrojony = true; ciagnie = false; ruch = 0;
+      startX = e.clientX;
+    });
+
+    pas.addEventListener('pointermove', e => {
+      if (!uzbrojony) return;
+      const delta = e.clientX - startX;
+      ruch = Math.max(ruch, Math.abs(delta));
+      // Dopóki nie przekroczymy progu, to jeszcze nie przeciąganie tylko kliknięcie.
+      // Przechwytujemy wskaźnik dopiero tutaj: przechwycony od razu w pointerdown
+      // przekierowałby zdarzenie click na pas i kafelek nigdy by się nie otworzył.
+      if (!ciagnie) {
+        if (Math.abs(delta) <= PROG) return;
+        ciagnie = true;
+        polowa = tor.scrollWidth / 2;
+        startX = e.clientX;
+        startPrzes = przesuniecie();
+        tor.style.animation = 'none';
+        tor.style.transform = `translateX(${startPrzes}px)`;
+        pas.classList.add('ciagniecie');
+        pas.setPointerCapture(e.pointerId);
+        return;
+      }
+      let x = startPrzes + (e.clientX - startX);
+      // Zawijamy w obrębie jednej połowy, żeby pętla nie urwała się przy końcu.
+      while (x > 0) x -= polowa;
+      while (x < -polowa) x += polowa;
+      tor.style.transform = `translateX(${x}px)`;
+    });
+
+    const koniec = e => {
+      uzbrojony = false;
+      if (!ciagnie) return;
+      ciagnie = false;
+      pas.classList.remove('ciagniecie');
+      if (e.pointerId !== undefined && pas.hasPointerCapture(e.pointerId)) pas.releasePointerCapture(e.pointerId);
+      const postep = Math.min(Math.max(-przesuniecie() / polowa, 0), 1);
+      tor.style.transform = '';
+      tor.style.animation = '';
+      const czas = czasTrwania();
+      // Pas odwrócony jedzie w drugą stronę, więc i postęp liczy się odwrotnie.
+      const odwrocony = tor.classList.contains('strip-track--rev');
+      tor.style.animationDelay = `${-(odwrocony ? 1 - postep : postep) * czas}s`;
+    };
+    pas.addEventListener('pointerup', koniec);
+    pas.addEventListener('pointercancel', koniec);
+    // Kliknięcie po przeciągnięciu nie powinno otwierać kafelka.
+    pas.addEventListener('click', e => { if (ruch > PROG) { e.stopPropagation(); ruch = 0; } }, true);
+  });
   document.getElementById('lbClose').addEventListener('click', zamknij);
   document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); pokaz(idx - 1); });
   document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); pokaz(idx + 1); });

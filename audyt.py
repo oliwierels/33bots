@@ -82,7 +82,10 @@ for plik in STRONY:
     def rozmiar(sciezka):
         return os.path.getsize(sciezka) if os.path.exists(sciezka) else 0
 
-    waga = 0
+    # Ten sam adres liczymy raz: przeglądarka pobiera go jednym żądaniem, a
+    # kolejne odwołania bierze z pamięci. Dotyczy to zwłaszcza pasów galerii,
+    # gdzie kopia kafelków istnieje tylko po to, żeby pętla była bezszwowa.
+    pobierane = set()
     reszta = zrodlo
     for obraz in re.finditer(r"<picture>.*?</picture>", zrodlo, re.S):
         reszta = reszta.replace(obraz.group(0), "")
@@ -92,14 +95,16 @@ for plik in STRONY:
                 sciezka = kawalek.strip().split(" ")[0].split("?")[0]
                 if re.search(r"\.(jpg|jpeg|png|webp|gif|avif)$", sciezka, re.I) and not sciezka.startswith("http"):
                     warianty.add(sciezka)
-        rozmiary = [rozmiar(w) for w in warianty if rozmiar(w)]
-        waga += min(rozmiary) if rozmiary else 0
+        istniejace = [w for w in warianty if rozmiar(w)]
+        if istniejace:
+            pobierane.add(min(istniejace, key=rozmiar))
 
     for m2 in re.finditer(r'(?:src|srcset)="([^"]+)"', reszta):
         for kawalek in m2.group(1).split(","):
             sciezka = kawalek.strip().split(" ")[0].split("?")[0]
             if re.search(r"\.(jpg|jpeg|png|webp|gif|avif)$", sciezka, re.I) and not sciezka.startswith("http"):
-                waga += rozmiar(sciezka)
+                pobierane.add(sciezka)
+    waga = sum(rozmiar(s) for s in pobierane)
     if waga > 1_500_000:
         wyniki["ciezkie_grafiki"].append(f"{plik} ({waga/1_048_576:.1f} MB)")
 

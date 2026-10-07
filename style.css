@@ -48,7 +48,7 @@ body::before {
 }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   font-optical-sizing: auto;
   background: var(--black);
@@ -2272,7 +2272,7 @@ body::after {
 .price-card__amount, .stat-item__val, .logo, .faq-q, .video-teaser__title,
 .transport-callout__claim, .onas-head h2, .testimonial__quote,
 h1, h2, h3 {
-  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-family: 'Clash Display', 'Space Grotesk', system-ui, sans-serif;
   letter-spacing: -0.03em;
 }
 
