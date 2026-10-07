@@ -20,7 +20,7 @@ async function otworz(page, vp, opcje = {}) {
 
 for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { width: 375, height: 812 }]) {
   test.describe(`strona główna @${vp.width}`, () => {
-    test.use({ reducedMotion: 'reduce' });
+    test.use({ contextOptions: { reducedMotion: 'reduce' } });
 
     test('kolejność sekcji, numeracja i aliasy kotwic', async ({ page }) => {
       await otworz(page, vp);
@@ -85,7 +85,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
 
     test('każde zdjęcie raz w DOM, także przy otwartej szufladzie', async ({ page }) => {
       await otworz(page, vp);
-      const zdjecia = async () => page.evaluate(() => [...document.images].map((i) => i.getAttribute('src')));
+      const zdjecia = async () => page.evaluate(() => [...document.images].filter((i) => !i.closest('[aria-hidden="true"]')).map((i) => i.getAttribute('src')));
       const przed = await zdjecia();
       expect(przed.length).toBe(new Set(przed).size);
       for (const klucz of ['yeah-gym', 'matys', 'eco-studio', 'drezno']) {
@@ -114,7 +114,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
       expect(tekst).not.toMatch(/\bDOF\b|M\/S|132\s?CM|✓|☎|✉|↗|darmow|za darmo|Najlepsze ceny|ZERO|10×|Karolina M|Clash Display|trojmiasto/i);
     });
 
-    test('FAQ: 9 pytań, zgodne z danymi strukturalnymi, akordeon działa', async ({ page }) => {
+    test('FAQ: 10 pytań, zgodne z danymi strukturalnymi, akordeon działa', async ({ page }) => {
       await otworz(page, vp);
       const widoczne = await page.locator('.faq__q').allInnerTexts();
       const ld = await page.evaluate(() => {
@@ -125,6 +125,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
         return [];
       });
       expect(widoczne.map((t) => t.trim())).toEqual(ld);
+      expect(widoczne.length).toBe(10);
       const q = page.locator('.faq__q').nth(2);
       await q.click();
       await expect(q).toHaveAttribute('aria-expanded', 'true');
@@ -136,7 +137,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
 }
 
 test.describe('nawigacja', () => {
-  test.use({ reducedMotion: 'reduce' });
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
 
   test('desktop: 72 px, linki ze specyfikacji, tło i linia po przewinięciu', async ({ page }) => {
     await otworz(page, { width: 1440, height: 900 });
@@ -178,7 +179,7 @@ test.describe('nawigacja', () => {
 });
 
 test.describe('szuflada realizacji', () => {
-  test.use({ reducedMotion: 'reduce' });
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
   test('otwiera się z danymi, trzyma fokus, Esc zamyka i oddaje fokus', async ({ page }) => {
     await otworz(page, { width: 1440, height: 900 });
     const kafel = page.locator('.realizacja[data-cs="grupa-rekord"]');
@@ -199,7 +200,7 @@ test.describe('szuflada realizacji', () => {
 });
 
 test.describe('formularz rezerwacji', () => {
-  test.use({ reducedMotion: 'reduce' });
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
   test('krok 1 → krok 2, walidacja, nowe pola w zgłoszeniu (request przechwycony)', async ({ page }) => {
     let wyslane = null;
     await page.route('https://formspree.io/**', async (r) => {
@@ -283,7 +284,8 @@ const REALIZACJA = [
   [/szkola-kosmos/, 'szkola-kosmos'], [/yeah-gym/, 'yeah-gym'], [/jednorozec/, 'jednorozec'], [/tet-trung-thu/, 'tet-trung-thu'],
 ];
 const doRealizacji = (src) => (REALIZACJA.find(([r]) => r.test(src)) || [null, src])[1];
-const unikalne = (page) => page.evaluate(() => { const s = [...document.images].map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
+// Kopie kafli w pasach (aria-hidden) istnieją tylko po to, żeby pętla była bez szwu — nie liczą się jako powtórzenie.
+const unikalne = (page) => page.evaluate(() => { const s = [...document.images].filter((i) => !i.closest('[aria-hidden="true"]')).map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
 
 test.describe('hero — rotacja zdjęć z realizacji', () => {
   test('co 6 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
@@ -373,4 +375,109 @@ test('treść: branding zamiast stroju, robot mówi w każdym języku', async ({
   await expect(page.locator('#faq-5')).toContainText('w każdym innym języku');
   const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(' '));
   expect(ld).not.toMatch(/\bstr[óo]j/i);
+});
+
+// ——— Pasy bez końca: realizacje i klienci ———
+const przesuniecia = (page) => page.evaluate(() => [...document.querySelectorAll('.pas')].map((pas) => {
+  const t = pas.querySelector('.pas__tor'); const a = pas.getBoundingClientRect(), r = t.getBoundingClientRect();
+  return { x: new DOMMatrix(getComputedStyle(t).transform).m41, pokrywa: r.left <= a.left + 1 && r.right >= a.right - 1 };
+}));
+
+test.describe('pasy realizacji i klientów', () => {
+  for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
+    test(`ruch bez końca, kopie poza dostępnością, pauza @${vp.width}`, async ({ browser }) => {
+      const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: vp });
+      const page = await ctx.newPage();
+      await page.goto(ADRES); await page.waitForLoadState('load');
+      const zdjecia = page.locator('.pasy[data-grupa="zdjecia"]');
+      await zdjecia.scrollIntoViewIfNeeded();
+      await page.mouse.move(2, 2);
+
+      // każdy rząd jedzie i przez cały czas pokrywa szerokość ekranu — nie widać końca
+      const a = await przesuniecia(page);
+      await page.waitForTimeout(1200);
+      const b = await przesuniecia(page);
+      for (const i of [0, 1, 2]) {
+        expect(Math.abs(b[i].x - a[i].x), `rząd ${i + 1} stoi`).toBeGreaterThan(10);
+        expect(a[i].pokrywa && b[i].pokrywa, `rząd ${i + 1} ma koniec`).toBe(true);
+      }
+      // kierunki na przemian
+      expect(Math.sign(b[0].x - a[0].x)).not.toBe(Math.sign(b[1].x - a[1].x) || 0);
+
+      // kopie: ukryte przed czytnikiem, poza kolejnością Tab; oryginały bez powtórzeń
+      const kopie = await page.evaluate(() => {
+        const k = [...document.querySelectorAll('.pas__tor > [data-kopia]')];
+        return { ile: k.length, ukryte: k.every((li) => li.getAttribute('aria-hidden') === 'true'),
+          tab: k.flatMap((li) => [...li.querySelectorAll('button, a')]).every((x) => x.tabIndex === -1) };
+      });
+      expect(kopie.ile).toBeGreaterThan(0);
+      expect(kopie.ukryte && kopie.tab).toBe(true);
+      expect(await unikalne(page)).toBe(true);
+
+      // przycisk zatrzymuje całą grupę
+      const pauza = page.locator('.pasy__pauza[data-pasy="zdjecia"]');
+      await expect(pauza).toBeVisible();
+      await pauza.click();
+      await expect(pauza).toHaveAttribute('aria-pressed', 'true');
+      await expect(pauza).toHaveText('Wznów ruch');
+      await page.mouse.move(2, 2); await page.locator('body').evaluate(() => document.activeElement.blur());
+      await page.waitForTimeout(1500);
+      const c = await przesuniecia(page); await page.waitForTimeout(800); const d = await przesuniecia(page);
+      for (const i of [0, 1, 2]) expect(d[i].x, `rząd ${i + 1} po pauzie`).toBe(c[i].x);
+      await pauza.click();
+      await expect(pauza).toHaveText('Zatrzymaj ruch');
+      await ctx.close();
+    });
+  }
+
+  test('najechanie wyhamowuje rząd, przeciąganie przesuwa bez otwierania szuflady, klik otwiera', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(ADRES); await page.waitForLoadState('load');
+    const pas = page.locator('.pas').nth(1);
+    await pas.scrollIntoViewIfNeeded();
+    const box = await pas.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + 100);
+    await page.waitForTimeout(1500);
+    const e = await przesuniecia(page); await page.waitForTimeout(700); const f = await przesuniecia(page);
+    expect(f[1].x, 'rząd pod kursorem stoi').toBe(e[1].x);
+    expect(f[0].x, 'inne rzędy jadą dalej').not.toBe(e[0].x);
+
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2 - 300, box.y + 100, { steps: 12 });
+    await page.mouse.up();
+    const g = await przesuniecia(page);
+    expect(Math.abs(g[1].x - f[1].x)).toBeGreaterThan(200);
+    await page.waitForTimeout(200);
+    await expect(page.locator('#szuflada')).toBeHidden();
+
+    await page.waitForTimeout(1500);
+    await page.mouse.click(box.x + box.width / 2, box.y + 100);
+    await expect(page.locator('#szuflada')).toBeVisible();
+    await ctx.close();
+  });
+
+  test('układ: w rzędzie żadne dwa sąsiednie kadry (także na styku pętli) nie są z tej samej realizacji', async ({ page }) => {
+    await page.goto(ADRES);
+    const rzedy = await page.evaluate(() => [...document.querySelectorAll('.pasy[data-grupa="zdjecia"] .pas')]
+      .map((pas) => [...pas.querySelectorAll('.pas__tor > li:not([data-kopia]) [data-cs]')].map((b) => b.dataset.cs)));
+    expect(rzedy.length).toBeGreaterThanOrEqual(3);
+    for (const r of rzedy) r.forEach((cs, i) => expect(cs, r.join(' ')).not.toBe(r[(i + 1) % r.length]));
+    const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
+    expect(nazwy.length).toBe(39);
+    expect(new Set(nazwy).size).toBe(39);
+  });
+
+  test('ograniczony ruch: nic nie jedzie, bez kopii, nazwy jako zwykła lista', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(ADRES); await page.waitForLoadState('load');
+    await page.locator('.pasy').first().scrollIntoViewIfNeeded();
+    expect(await page.locator('[data-kopia]').count()).toBe(0);
+    await expect(page.locator('.pasy__pauza').first()).toBeHidden();
+    const a = await przesuniecia(page); await page.waitForTimeout(800); const b = await przesuniecia(page);
+    expect(b.map((x) => x.x)).toEqual(a.map((x) => x.x));
+    expect(await page.locator('.pasy--ruch').count()).toBe(0);
+    await ctx.close();
+  });
 });

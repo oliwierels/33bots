@@ -17,7 +17,7 @@ const EKRANY = [
   { width: 1440, height: 900, minimum: 32 },
 ];
 
-test.use({ reducedMotion: 'reduce' });
+test.use({ contextOptions: { reducedMotion: 'reduce' } });
 
 for (const adres of STRONY) {
   for (const ekran of EKRANY) {

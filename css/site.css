@@ -191,9 +191,6 @@ figure { margin: 0; }
 .nasali { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 48px; }
 .nasali__duzy { grid-column: 1 / span 7; }
 .nasali__pion { grid-column: 9 / -1; display: grid; gap: 48px; align-content: start; }
-.realizacje__tytul { margin: 128px 0 32px; }
-.realizacje { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 48px var(--gutter); }
 .realizacja { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; }
 .realizacja picture, .realizacja img { display: block; width: 100%; }
 .realizacja img { aspect-ratio: 4 / 5; height: auto; object-fit: cover; background: var(--surface); }
@@ -202,19 +199,47 @@ figure { margin: 0; }
 .realizacja:hover .realizacja__klient, .realizacja:focus-visible .realizacja__klient { text-decoration: underline; text-underline-offset: 4px; }
 .realizacja:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .realizacje__wiecej { margin-top: 48px; }
-.klienci { margin-top: 128px; padding-top: var(--inset); border-top: 1px solid var(--line); display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 24px; }
-.klienci > .label { grid-column: 1 / span 3; }
-.klienci__lista { grid-column: 4 / -1; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 32px;
-  font: 400 15px/1.5 var(--font-body); color: var(--text-2); }
-.klienci__kraje { grid-column: 4 / -1; }
+.klienci { margin-top: 128px; padding-top: var(--inset); border-top: 1px solid var(--line); }
+.klienci__kraje { margin-top: 32px; max-width: 64ch; }
+
+/* ——— Pasy bez końca: realizacje i klienci ———
+   Bez JS i przy ograniczonym ruchu pas to zwykły rząd przewijany palcem
+   (nazwy klientów zawijają się w listę). Gdy ruch jest dozwolony, skrypt
+   dokleja kopie rzędu (aria-hidden, poza kolejnością Tab) i przesuwa tor
+   w nieskończoność; najechanie, fokus i przycisk zatrzymują ruch. */
+:root { --kafel: 168px; }
+@media (min-width: 768px)  { :root { --kafel: 208px; } }
+@media (min-width: 1024px) { :root { --kafel: 248px; } }
+.pasy__glowa { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 32px; margin: 128px 0 32px; }
+.klienci .pasy__glowa { margin: 0; }
+.pasy__pauza { padding: 0; border: 0; background: none; color: var(--text-2); cursor: pointer;
+  font: 400 13px/1.5 var(--font-body); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 6px; text-decoration-color: var(--line-strong); transition: color .2s; }
+.pasy__pauza:hover { color: var(--text); }
+.pasy__pauza:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.pasy { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+.pas { overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; overscroll-behavior-x: contain;
+  padding-inline: max(var(--margin), calc((100% - var(--container)) / 2 + var(--margin))); scroll-padding-inline: var(--margin); }
+.pas::-webkit-scrollbar { display: none; }
+.pas__tor { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--gutter); width: max-content; }
+.pas__tor > li { flex: 0 0 auto; width: var(--kafel); scroll-snap-align: start; }
+.pasy--nazwy { row-gap: 12px; margin-top: 32px; }
+.pas--nazwy .pas__tor { gap: clamp(40px, 5vw, 80px); }
+.pas--nazwy .pas__tor > li { width: auto; white-space: nowrap; font: 300 clamp(22px, 2.6vw, 36px)/1.3 var(--font-display);
+  letter-spacing: -.01em; color: var(--text-2); }
+.pasy--nazwy:not(.pasy--ruch) .pas { overflow: visible; }
+.pasy--nazwy:not(.pasy--ruch) .pas__tor { width: auto; max-width: calc(var(--container) - 2 * var(--margin)); flex-wrap: wrap; gap: 8px 40px; }
+.pasy--nazwy:not(.pasy--ruch) .pas__tor > li { flex-shrink: 1; max-width: 100%; white-space: normal; font-size: clamp(18px, 2vw, 24px); }
+.pasy--ruch .pas { overflow: hidden; overflow: clip; padding-inline: 0; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.pasy--ruch .pas.pas--ciagniety { cursor: grabbing; }
+.pasy--ruch .pas__tor { will-change: transform; }
+.pasy--ruch .realizacja img { -webkit-user-drag: none; }
 @media (max-width: 1023px) {
   .nasali__duzy, .nasali__pion { grid-column: 1 / -1; }
   .nasali__pion { grid-template-columns: 1fr 1fr; gap: var(--gutter); }
-  .realizacje { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px var(--gutter); }
-  .realizacje__tytul { margin-top: 96px; }
+  .pasy__glowa { margin-top: 96px; }
   .klienci { margin-top: 96px; }
-  .klienci > .label, .klienci__lista, .klienci__kraje { grid-column: 1 / -1; }
+  .pasy { row-gap: 24px; }
 }
 
 /* ——— 05 Jak projektujemy występ ——— */
