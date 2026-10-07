@@ -15,6 +15,12 @@ Redirect 301 /robot-wynajem-sosnowiec.html        /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-tychy.html            /robot-wynajem-katowice.html
 Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
 
+# ── Wycofana strona zbiorcza oferty ───────────────────────────────────────────
+# /oferta.html była cienkim rozdzielaczem do podstron ofertowych i została
+# usunięta z serwisu. Adres jest zaindeksowany i ma odnośniki z zewnątrz,
+# więc zamiast 404 kieruje tam, gdzie prowadziła większość jej kafelków.
+Redirect 301 /oferta.html                         /wypozyczenie-robota.html
+
 # ── Kanoniczny adres strony głównej ────────────────────────────────────────────
 # /index.html i / to ta sama treść pod dwoma adresami. Crawler widzi wtedy dwie
 # strony z identycznym tytułem, a Google sam wybiera, którą pokazać.
