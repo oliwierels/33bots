@@ -274,3 +274,90 @@ test.describe('ruch', () => {
     await ctx.close();
   });
 });
+
+// Plik zdjęcia → realizacja (do sprawdzenia limitu trzech zdjęć na realizację).
+const REALIZACJA = [
+  [/gala-|nocny-pokaz/, 'drezno'], [/eco-studio/, 'eco-studio'], [/women-in-tech/, 'women-in-tech'], [/lexai/, 'lexai'],
+  [/grupa-rekord/, 'grupa-rekord'], [/kopernik/, 'kopernik'], [/przelewice/, 'przelewice'], [/robot-w-deszczu/, 'gonia-auto'],
+  [/event-nad-woda|spotkanie-biznesowe/, 'loza'], [/wesele/, 'wesele'], [/dream-med/, 'dream-med'], [/matys/, 'matys'],
+  [/szkola-kosmos/, 'szkola-kosmos'], [/yeah-gym/, 'yeah-gym'], [/jednorozec/, 'jednorozec'], [/tet-trung-thu/, 'tet-trung-thu'],
+];
+const doRealizacji = (src) => (REALIZACJA.find(([r]) => r.test(src)) || [null, src])[1];
+const unikalne = (page) => page.evaluate(() => { const s = [...document.images].map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
+
+test.describe('hero — rotacja zdjęć z realizacji', () => {
+  test('co 6 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.clock.install();
+    await page.goto(ADRES);
+    await page.waitForLoadState('load');
+    const img = page.locator('.hero img');
+    await expect(img).toHaveCount(1);
+    await expect(img).toHaveAttribute('src', /gala-wsrod-gosci/);
+    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+    const dalej = async () => { await page.clock.runFor(6000); await page.waitForTimeout(250); await page.clock.runFor(500); await page.waitForTimeout(100); };
+
+    const wysokosc = () => page.locator('.hero').evaluate((e) => e.getBoundingClientRect().height);
+    const h0 = await wysokosc();
+    await dalej();
+    await expect(img).toHaveAttribute('src', /eco-studio-wywiad/);
+    expect(await wysokosc(), 'zmiana kadru nie zmienia wysokości hero').toBe(h0);
+    await expect(page.locator('#heroLicznik')).toHaveText('02 / 06');
+    await expect(page.locator('#heroOpis')).toHaveText('Finał Eco Studio ELECTRO-SYSTEM · Warszawa');
+    expect(await unikalne(page)).toBe(true);
+    for (let n = 3; n <= 6; n++) {
+      await dalej();
+      await expect(page.locator('#heroLicznik')).toHaveText(`0${n} / 06`);
+      expect(await unikalne(page), `slajd ${n}`).toBe(true);
+    }
+    await dalej();
+    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+
+    // pauza: przycisk zatrzymuje, „Wznów” rusza dalej
+    await page.locator('#heroPauza').click();
+    await expect(page.locator('#heroPauza')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#heroPauza')).toHaveText('Wznów');
+    await page.mouse.move(5, 5);
+    await page.evaluate(() => document.activeElement.blur());
+    await page.clock.runFor(30000); await page.waitForTimeout(200);
+    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+    await page.locator('#heroPauza').click();
+    await page.mouse.move(5, 5);
+    await page.evaluate(() => document.activeElement.blur());
+    await dalej();
+    await expect(page.locator('#heroLicznik')).toHaveText('02 / 06');
+    await ctx.close();
+  });
+
+  test('ograniczony ruch: nic nie zmienia się samo; najwyżej 3 zdjęcia na realizację', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.clock.install();
+    await page.goto(ADRES);
+    await page.waitForLoadState('load');
+    await page.clock.runFor(30000);
+    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+    await expect(page.locator('#heroPauza')).toHaveText('Następne zdjęcie');
+
+    // wszystkie zdjęcia, jakie strona pokazuje: stałe, slajdy hero i szuflady
+    const pliki = new Set(await page.evaluate(() => [...document.images].map((i) => i.getAttribute('src'))));
+    for (let n = 2; n <= 6; n++) {
+      await page.locator('#heroPauza').click();
+      await page.waitForTimeout(150); await page.clock.runFor(50); await page.waitForTimeout(50);
+      await expect(page.locator('#heroLicznik')).toHaveText(`0${n} / 06`);
+      pliki.add(await page.locator('.hero img').getAttribute('src'));
+    }
+    for (const klucz of await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-cs]')].map((b) => b.dataset.cs))])) {
+      await page.locator(`[data-cs="${klucz}"]`).first().click();
+      for (const s of await page.locator('#szufladaZdjecia img').evaluateAll((im) => im.map((i) => i.getAttribute('src')))) pliki.add(s);
+      expect(await unikalne(page), `szuflada ${klucz}`).toBe(true);
+      await page.keyboard.press('Escape');
+    }
+    const naRealizacje = {};
+    for (const p of pliki) if (/realizacja-/.test(p)) (naRealizacje[doRealizacji(p)] ??= new Set()).add(p);
+    const ponadLimit = Object.entries(naRealizacje).filter(([, s]) => s.size > 3).map(([k, s]) => `${k}: ${[...s].join(', ')}`);
+    expect(ponadLimit).toEqual([]);
+    await ctx.close();
+  });
+});

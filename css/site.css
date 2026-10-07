@@ -80,6 +80,25 @@ body { color: var(--text); font: 400 17px/1.6 var(--font-body); -webkit-font-smo
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 16px; }
 .hero__media { grid-column: 7 / -1; margin: 0; }
 .hero__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+/* Rotacja: jedno zdjęcie przygasa i wraca z nowym kadrem. Podpis to pełne pole
+   w kolorze tła — czytelne na każdym zdjęciu, bez gradientu i cienia.
+   Zdjęcie leży absolutnie, więc ramę wyznacza wysokość hero (desktop) lub
+   aspect-ratio (mobile), a nie proporcje pliku: zmiana kadru nie przesuwa
+   układu, a podpis zawsze kończy się na dolnej krawędzi pierwszego ekranu. */
+.hero__media { position: relative; }
+.hero__media img { position: absolute; inset: 0; transition: opacity .4s cubic-bezier(.2, 0, 0, 1); }
+.hero__media img.znika { opacity: 0; }
+/* Stała szerokość i dwa rzędy (licznik + pauza, potem podpis), żeby płytka
+   nie zmieniała rozmiaru przy każdej zmianie kadru. */
+.hero__podpis { position: absolute; left: 0; bottom: 0; display: grid; grid-template-columns: 1fr auto;
+  align-items: baseline; gap: 8px 24px; width: min(100%, 480px); padding: var(--inset); background: var(--ink); }
+.hero__opis { grid-column: 1 / -1; grid-row: 2; font: 400 14px/1.5 var(--font-body); color: var(--text-2); }
+.hero__opis b { font-weight: 500; color: var(--text); }
+.hero__pauza { grid-column: 2; grid-row: 1; padding: 0; border: 0; background: none; color: var(--text-2); cursor: pointer;
+  font: 400 13px/1.5 var(--font-body); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 6px; text-decoration-color: var(--line-strong); transition: color .2s; }
+.hero__pauza:hover { color: var(--text); }
+.hero__pauza:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 /* ——— Pasek „Widziani w” ———
    Linia włosowa u góry, więc tekst trzyma od niej --inset (24 / 32 px). */

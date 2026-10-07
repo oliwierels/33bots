@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="assets-redesign.css?v=b98b8b5b" />
 
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="css/site.css?v=f8a327ca" />
+<link rel="stylesheet" href="css/site.css?v=639c3060" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -235,8 +235,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="link" href="realizacje-wideo.html">Zobacz realizacje</a>
     </div>
   </div>
-  <figure class="hero__media">
+  <figure class="hero__media" id="heroMedia">
     <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" fetchpriority="high" decoding="async" width="900" height="1200">
+    <figcaption class="hero__podpis">
+      <span class="label" id="heroLicznik">01 / 06</span>
+      <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
+      <button class="hero__pauza" id="heroPauza" type="button" aria-pressed="false" hidden>Pauza</button>
+    </figcaption>
   </figure>
 </section>
 
@@ -740,6 +745,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ——— Hero: rotacja zdjęć z realizacji ———
+     Jeden <img>: przygaszenie, podmiana źródła, rozjaśnienie. Co 6 s, od załadowania
+     strony; pauza przyciskiem, najechaniem i fokusem (WCAG 2.2.2). Przy ograniczonym
+     ruchu nic nie zmienia się samo — przycisk przełącza zdjęcia ręcznie. */
+  const SLAJDY = [
+    { src: 'realizacja-gala-wsrod-gosci.jpg', alt: 'Robot humanoidalny wśród gości gali', klient: 'Drezdeńska Noc Zamków', gdzie: 'Drezno' },
+    { src: 'realizacja-eco-studio-wywiad.jpg', alt: 'Dziennikarka nagrywa wywiad z robotem humanoidalnym przy ściance sponsorów Eco Studio', klient: 'Finał Eco Studio ELECTRO-SYSTEM', gdzie: 'Warszawa' },
+    { src: 'realizacja-przelewice-arkady.jpg', alt: 'Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek', klient: 'Ogród Dendrologiczny w Przelewicach', gdzie: 'Noc Bajek' },
+    { src: 'realizacja-yeah-gym-koszulka.jpg', alt: 'Robot humanoidalny w koszulce klubu YEAH GYM macha na powitanie', klient: 'YEAH GYM', gdzie: 'Wrocław' },
+    { src: 'realizacja-matys-silver-garden.jpg', alt: 'Robot humanoidalny przy ściance inwestycji Silver Garden na stoisku Matys Development', klient: 'Matys Development', gdzie: 'Szczecin' },
+    { src: 'realizacja-szkola-kosmos-majaland.jpg', alt: 'Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku', klient: 'Szkoła Kosmos', gdzie: 'Majaland' },
+  ];
+  const heroMedia = document.getElementById('heroMedia');
+  const heroImg = heroMedia.querySelector('img');
+  const heroLicznik = document.getElementById('heroLicznik');
+  const heroOpis = document.getElementById('heroOpis');
+  const heroPauza = document.getElementById('heroPauza');
+  const nr = (n) => String(n).padStart(2, '0');
+  let slajd = 0, zatrzymane = false, wstrzymane = false, zegar = null;
+
+  const pokazSlajd = async (n) => {
+    const s = SLAJDY[n];
+    const wstepnie = new Image();
+    wstepnie.src = s.src;
+    try { await wstepnie.decode(); } catch (e) { /* pokaż mimo to */ }
+    heroImg.classList.add('znika');
+    await new Promise((r) => setTimeout(r, reduce ? 0 : 400));
+    heroImg.removeAttribute('fetchpriority');
+    heroImg.src = s.src; heroImg.alt = s.alt;
+    heroImg.removeAttribute('width'); heroImg.removeAttribute('height');
+    heroLicznik.textContent = `${nr(n + 1)} / ${nr(SLAJDY.length)}`;
+    heroOpis.replaceChildren(Object.assign(document.createElement('b'), { textContent: s.klient }), ` · ${s.gdzie}`);
+    heroImg.classList.remove('znika');
+    slajd = n;
+  };
+  const nastepny = () => pokazSlajd((slajd + 1) % SLAJDY.length);
+  const planuj = () => {
+    clearTimeout(zegar);
+    if (reduce || zatrzymane || wstrzymane || document.hidden) return;
+    zegar = setTimeout(async () => { await nastepny(); planuj(); }, 6000);
+  };
+  heroPauza.hidden = false;
+  if (reduce) {
+    heroPauza.textContent = 'Następne zdjęcie';
+    heroPauza.removeAttribute('aria-pressed');
+    heroPauza.addEventListener('click', nastepny);
+  } else {
+    heroPauza.addEventListener('click', () => {
+      zatrzymane = !zatrzymane;
+      heroPauza.setAttribute('aria-pressed', String(zatrzymane));
+      heroPauza.textContent = zatrzymane ? 'Wznów' : 'Pauza';
+      planuj();
+    });
+    const wstrzymaj = (tak) => { wstrzymane = tak; planuj(); };
+    heroMedia.addEventListener('mouseenter', () => wstrzymaj(true));
+    heroMedia.addEventListener('mouseleave', () => wstrzymaj(false));
+    heroMedia.addEventListener('focusin', () => wstrzymaj(true));
+    heroMedia.addEventListener('focusout', () => wstrzymaj(false));
+    document.addEventListener('visibilitychange', planuj);
+    if (document.readyState === 'complete') planuj(); else addEventListener('load', planuj);
+  }
+
   /* ——— Nawigacja: tło i linia włosowa po przewinięciu ——— */
   const nav = document.getElementById('nav');
   const tloNav = () => nav.classList.toggle('nav--tlo', scrollY > 8 || !panel.hidden);
@@ -802,14 +869,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ],
       "opis": "Robot był jedną z atrakcji finału, obok koncertów i części oficjalnej. Pracował na scenie z prowadzącymi i finalistami oraz przy ściance sponsorów, gdzie nagrano z nim wywiad.",
       "link": "case-study-eco-studio-electro-system.html",
-      "zdjecia": [
-        {
-          "plik": "realizacja-eco-studio-wywiad",
-          "alt": "Wywiad z robotem humanoidalnym przy ściance sponsorów Eco Studio",
-          "w": 720,
-          "h": 1080
-        }
-      ]
+      "zdjecia": []
     },
     "women-in-tech": {
       "klient": "Women in Tech Summit",
@@ -894,14 +954,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ],
       "opis": "Robot pracował po zmroku przy Mauzoleum rodziny von Prillwitz, w świetle reflektorów ustawionych na arkadach.",
       "link": "case-study-ogrod-przelewice.html",
-      "zdjecia": [
-        {
-          "plik": "realizacja-przelewice-arkady",
-          "alt": "Robot humanoidalny w Ogrodzie Dendrologicznym w Przelewicach",
-          "w": 810,
-          "h": 1080
-        }
-      ]
+      "zdjecia": []
     },
     "drezno": {
       "klient": "Drezdeńska Noc Zamków",
@@ -948,14 +1001,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "liczby": [],
       "opis": "Robot na stoisku Matys Development podczas targów nieruchomości w Szczecinie, z materiałami inwestycji Silver Garden.",
       "link": null,
-      "zdjecia": [
-        {
-          "plik": "realizacja-matys-silver-garden",
-          "alt": "Robot humanoidalny z materiałami inwestycji Silver Garden",
-          "w": 810,
-          "h": 1080
-        }
-      ]
+      "zdjecia": []
     },
     "szkola-kosmos": {
       "klient": "Szkoła Kosmos",
@@ -963,14 +1009,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "liczby": [],
       "opis": "Robot w fartuchu Szkoły Kosmos na rozpoczęciu roku szkolnego w Majalandzie.",
       "link": null,
-      "zdjecia": [
-        {
-          "plik": "realizacja-szkola-kosmos-majaland",
-          "alt": "Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku",
-          "w": 810,
-          "h": 1080
-        }
-      ]
+      "zdjecia": []
     },
     "yeah-gym": {
       "klient": "YEAH GYM",
@@ -979,12 +1018,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "opis": "Robot w koszulce klubu YEAH GYM na sali treningowej we Wrocławiu.",
       "link": null,
       "zdjecia": [
-        {
-          "plik": "realizacja-yeah-gym-koszulka",
-          "alt": "Robot humanoidalny w koszulce klubu YEAH GYM",
-          "w": 810,
-          "h": 1080
-        },
         {
           "plik": "realizacja-yeah-gym-trening",
           "alt": "Robot humanoidalny obok trenerki w klubie fitness",
