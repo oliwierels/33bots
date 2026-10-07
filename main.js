@@ -73,6 +73,10 @@ document.querySelectorAll('.tile, .use-item, .process-step, .stat-item, .testimo
 document.querySelectorAll('.faq-item').forEach(item => {
   const btn = item.querySelector('.faq-q');
   const panel = item.querySelector('.faq-a');
+  // Na stronach case study .faq-item to statyczny blok pytanie–odpowiedź,
+  // bez przycisku i panelu. Bez tego warunku skrypt przerywał się w tym
+  // miejscu, a wszystko poniżej — z obsługą formularza włącznie — nie ruszało.
+  if (!btn || !panel) return;
   panel.removeAttribute('hidden');
   const naturalH = panel.scrollHeight + 'px';
   panel.style.maxHeight = '0px';
@@ -185,8 +189,8 @@ function validateStep(stepEl) {
     .map(validateField).every(Boolean);
 }
 
-// live clearing on input
-form.querySelectorAll('input, textarea').forEach(field => {
+// live clearing on input — strony bez formularza kontaktowego pomijają całą tę sekcję
+if (form) form.querySelectorAll('input, textarea').forEach(field => {
   field.addEventListener('blur', () => validateField(field));
   field.addEventListener('input', () => {
     if (field.closest('.form-field')?.classList.contains('has-error')) validateField(field);
@@ -209,12 +213,12 @@ function goToStep(from, to, fromInd, toInd) {
   }, 200);
 }
 
-btnNext.addEventListener('click', () => {
+if (btnNext) btnNext.addEventListener('click', () => {
   if (!validateStep(step1)) return;
   goToStep(step1, step2, ind1, ind2);
 });
 
-btnBack.addEventListener('click', () => {
+if (btnBack) btnBack.addEventListener('click', () => {
   goToStep(step2, step1, ind2, ind1);
 });
 
@@ -222,14 +226,14 @@ btnBack.addEventListener('click', () => {
 const textarea  = document.getElementById('f-message');
 const charCount = document.getElementById('charCount');
 const MAX_CHARS = 600;
-textarea.addEventListener('input', () => {
+if (textarea && charCount) textarea.addEventListener('input', () => {
   const len = textarea.value.length;
   charCount.textContent = len;
   charCount.closest('.char-counter').classList.toggle('near-limit', len > MAX_CHARS * 0.85);
 });
 
 // ── Submit → Formspree ────────────────────────────────────────
-form.addEventListener('submit', async (e) => {
+if (form) form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!validateStep(step2)) return;
 
