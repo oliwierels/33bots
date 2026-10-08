@@ -7,6 +7,8 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: '.',
   testMatch: /.*\.spec\.mjs$/,
+  // Strony DE i AT mają własną konfigurację (playwright.zagranica.config.mjs).
+  testIgnore: /zagranica\.spec\.mjs$/,
   timeout: 90_000,
   workers: 2,
   reporter: [['list']],

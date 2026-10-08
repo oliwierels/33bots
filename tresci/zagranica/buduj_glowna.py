@@ -650,13 +650,15 @@ class Strona:
 
   /* ——— Panel dostępności: przełączenie „Animationen” w trakcie wizyty ———
      Naciska te same przyciski pauzy, które ma użytkownik — zdjęcia w hero i pasy
-     stają, a po ponownym włączeniu ruszają tylko te, które zatrzymał panel. */
+     stają, a po ponownym włączeniu ruszają tylko te, które zatrzymał panel.
+     Kliknięcie bez bąbelkowania: panel nie bierze go za kliknięcie obok i zostaje otwarty. */
+  const nacisnij = (b) => b.dispatchEvent(new MouseEvent('click'));
   new MutationObserver(() => {
     const wylacz = document.documentElement.getAttribute('data-a11y-motion') === 'off';
     document.querySelectorAll('#heroPauza[aria-pressed], .pasy__pauza:not([hidden])').forEach((b) => {
       const wcisniety = b.getAttribute('aria-pressed') === 'true';
-      if (wylacz && !wcisniety) { b.dataset.panel = ''; b.click(); }
-      else if (!wylacz && wcisniety && 'panel' in b.dataset) { delete b.dataset.panel; b.click(); }
+      if (wylacz && !wcisniety) { b.dataset.panel = ''; nacisnij(b); }
+      else if (!wylacz && wcisniety && 'panel' in b.dataset) { delete b.dataset.panel; nacisnij(b); }
     });
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-a11y-motion'] });
 })();
