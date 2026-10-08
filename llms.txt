@@ -1,12 +1,14 @@
 # 33bots — Wynajem robotów humanoidalnych na eventy (Polska)
 
-> 33bots to polska firma wynajmująca roboty humanoidalne Unitree G1 na eventy, targi, konferencje, gale, dni otwarte, imprezy firmowe i wesela — w całej Polsce. W cenie zawsze: certyfikowany operator, darmowy transport bez limitu kilometrów oraz bezpłatny branding robota (logo i kod QR klienta). Wycena w 24 godziny. Kontakt: kontakt@33bots.pl, +48 531 408 004.
+> 33bots to polska firma wynajmująca roboty humanoidalne Unitree G1 na eventy, targi, konferencje, gale, dni otwarte, imprezy firmowe i wesela — w całej Polsce. Pełny dzień od 5 500 zł netto; ostateczna kwota zależy od lokalizacji i długości trwania. W cenie: certyfikowany operator, transport, branding robota (logo i kod QR klienta) i ubezpieczenie OC. Rezerwacja bez zaliczki, faktura po wydarzeniu. Odpowiedź z wyceną w ciągu 24 godzin roboczych. Kontakt: kontakt@33bots.pl, +48 531 408 004.
 
-Robot Unitree G1: wzrost 132 cm, waga 35 kg, 23 stopnie swobody, prędkość do 2 m/s. Chodzi na dwóch nogach, gestykuluje, wita gości, pozuje do zdjęć, tańczy i mówi (synteza mowy z możliwością własnego scenariusza). Potrzebuje ok. 2×2 m przestrzeni i dostępu do prądu.
+Robot Unitree G1: wzrost 132 cm, waga 35 kg, 23 stopnie swobody, prędkość do 2 m/s. Chodzi na dwóch nogach, gestykuluje, wita gości, pozuje do zdjęć, tańczy i rozmawia — po polsku i w każdym innym języku. Charakter, scenariusz i wiedzę o firmie klienta ustalamy przed wydarzeniem. Potrzebuje kilku metrów kwadratowych; pracuje na wymiennych bateriach, które operator wymienia w trakcie.
+
+Doświadczenie: kilkadziesiąt wydarzeń w Polsce, na Litwie, w Niemczech, Czechach i Rumunii — od gali w drezdeńskim pałacu (Drezdeńska Noc Zamków), przez targi MSPO w Kielcach, Women in Tech Summit (EXPO XXI) i wieczór w Centrum Nauki Kopernik, po pikniki, parady gminne i wesela.
 
 Realizacja dla klienta LEX AI na Długim Targu w Gdańsku trafiła do Teleexpressu TVP oraz reportażu TVP Gdańsk „Pan Mecenas Robot".
 
-Zaufali nam m.in.: Fundacja Perspektywy (Women in Tech Summit — największa konferencja women-in-tech w Europie), DSV (globalny operator logistyczny), Cashify oraz LEX AI.
+Zaufali nam m.in.: Fundacja Perspektywy (Women in Tech Summit — największa konferencja women-in-tech w Europie), DSV (globalny operator logistyczny), Cashify oraz LEX AI, a także VELUX, Play, Adamed, REMONDIS Electrorecycling, Westernacher, KDT Europe, Grupa Rekord, Centrum Nauki Kopernik, ELECTRO-SYSTEM i Stowarzyszenie Inwestorów Indywidualnych.
 
 Kanał RSS bloga: https://33bots.pl/feed.xml
 
@@ -27,11 +29,23 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Case study LEX AI — od Długiego Targu do TVP](https://33bots.pl/case-study-lexai.html): pokaz w Gdańsku, media ogólnopolskie
 - [Case study WallStreet 30](https://33bots.pl/case-study-wallstreet.html): robot na największej konferencji inwestorskiej w Polsce (Karpacz, 2253 uczestników)
 - [Case study Women in Tech Summit](https://33bots.pl/case-study-women-in-tech.html): robot na największej konferencji women-in-tech w Europie (Warszawa, ~14 000 uczestniczek)
+- [Case study Grupa Rekord na targach MSPO](https://33bots.pl/case-study-grupa-rekord-mspo.html): robot jako ambasador grupy spółek na targach obronnych w Kielcach
+- [Case study finał Eco Studio ELECTRO-SYSTEM](https://33bots.pl/case-study-eco-studio-electro-system.html): robot na scenie finału, tytuł Eko Partner 2026, relacja TVP2
+- [Case study Centrum Nauki Kopernik](https://33bots.pl/case-study-centrum-nauki-kopernik.html): wieczór dla dorosłych „O czym śnią roboty”
+- [Case study Ogród Dendrologiczny w Przelewicach](https://33bots.pl/case-study-ogrod-przelewice.html): Noc Bajek po zmroku
 - [Realizacje wideo](https://33bots.pl/realizacje-wideo.html): nagrania robota z eventów
+
+## Poradnik dla organizatorów
+
+- [Atrakcje eventowe — robot humanoidalny i 9 innych opcji](https://33bots.pl/blog-atrakcje-eventowe.html): porównanie fotobudki, iluzjonisty, VR, kasyna, DJ-a i robota; kiedy robot wygrywa, a kiedy wybrać coś innego
+- [Robot humanoidalny na event korporacyjny — przewodnik dla firm](https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html): brief, scenariusz, branding, BHP, umowa i płatność
+- [Robot na wydarzenie międzynarodowe](https://33bots.pl/blog-robot-na-event-miedzynarodowy.html): robot mówi w języku gości; przygotowanie i wyjazd za granicę
+- [Robot na festyn, dni gminy i piknik rodzinny](https://33bots.pl/blog-robot-na-festyn-i-dni-gminy.html): program, plener, formalności dla gmin i instytucji
+- [9 lekcji z kilkudziesięciu eventów z robotem humanoidalnym](https://33bots.pl/blog-lekcje-z-eventow-z-robotem.html): rola, miejsce, publiczność, kadry, branding, plener, media, operator, czas
 
 ## Najczęstsze pytania
 
-- [Ile kosztuje wynajem robota? Ceny i pakiety](https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html): wycena indywidualna, pakiety Impuls / Standard / Multi-Day, transport i operator zawsze w cenie
+- [Ile kosztuje wynajem robota? Ceny i pakiety](https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html): formaty Wejście (kilka godzin, taniej niż pełny dzień), Pełny dzień (od 5 500 zł netto) i Targi (−15% za każdy dzień); operator, transport, branding i OC w cenie
 - [Jak wynająć robota — przewodnik krok po kroku](https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html)
 - [Jak wynająć robota — checklist w 7 punktach](https://33bots.pl/blog-jak-wynajac-robota-checklist.html)
 - [Jak wybrać firmę do wynajmu robota humanoidalnego — porównanie ofert](https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html): co musi być w cenie (transport, operator, branding, OC), jak sprawdzić referencje

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://33bots.pl/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <video:video>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -400,7 +400,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog-atrakcje-eventowe.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -488,7 +488,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1311,6 +1311,30 @@
   <url>
     <loc>https://33bots.pl/case-study-ogrod-przelewice.html</loc>
     <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-event-miedzynarodowy.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-robot-na-festyn-i-dni-gminy.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/blog-lekcje-z-eventow-z-robotem.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
