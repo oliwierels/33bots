@@ -38,3 +38,6 @@ buduj.sh
 # surowe zdjęcia i nagrania czekające na obróbkę
 do-obrobki/
 qa/
+
+# źródła artykułów poradnika (strony powstają z nich w katalogu głównym)
+tresci/

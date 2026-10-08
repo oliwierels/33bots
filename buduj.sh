@@ -18,6 +18,12 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Artykuły poradnika: tresci/artykuly/*.html → strony w katalogu głównym.
+if [ -f tresci/buduj_artykuly.py ]; then
+  echo "Składam artykuły poradnika…"
+  python3 tresci/buduj_artykuly.py
+fi
+
 echo "Kompiluję arkusz stylów…"
 npx --yes tailwindcss@3.4.17 \
   -c tailwind.config.js \
@@ -50,3 +56,10 @@ for STRONA in $(grep -rl 'src="main\.js' --include='*.html' . | sed 's|^\./||' |
   sed -i -E "s|src=\"main\.js(\?v=[^\"]*)?\"|src=\"main.js?v=${WERSJA_JS}\"|g" "${STRONA}"
 done
 echo "  main.js?v=${WERSJA_JS} na $(grep -rl 'src="main\.js' --include='*.html' . | wc -l) stronach"
+
+# js/strona.js — wspólny skrypt podstron w nowym systemie (artykuły).
+WERSJA_STRONA=$(md5sum js/strona.js | cut -c1-8)
+for STRONA in $(grep -rl 'src="js/strona\.js' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|src=\"js/strona\.js(\?v=[^\"]*)?\"|src=\"js/strona.js?v=${WERSJA_STRONA}\"|g" "${STRONA}"
+done
+echo "  js/strona.js?v=${WERSJA_STRONA} na $(grep -rl 'src="js/strona\.js' --include='*.html' . | wc -l) stronach"
