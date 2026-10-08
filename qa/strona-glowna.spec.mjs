@@ -288,33 +288,58 @@ const doRealizacji = (src) => (REALIZACJA.find(([r]) => r.test(src)) || [null, s
 const unikalne = (page) => page.evaluate(() => { const s = [...document.images].filter((i) => !i.closest('[aria-hidden="true"]')).map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
 
 test.describe('hero — rotacja zdjęć z realizacji', () => {
-  test('co 6 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
+  test('co 3 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
     const page = await ctx.newPage();
     await page.clock.install();
     await page.goto(ADRES);
     await page.waitForLoadState('load');
     const img = page.locator('.hero img');
+    const licznik = page.locator('#heroLicznik');
     await expect(img).toHaveCount(1);
     await expect(img).toHaveAttribute('src', /gala-wsrod-gosci/);
-    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
-    const dalej = async () => { await page.clock.runFor(6000); await page.waitForTimeout(250); await page.clock.runFor(500); await page.waitForTimeout(100); };
+    await expect(licznik).toHaveText('01 / 06');
 
+    // Każda zmiana licznika zapisana z czasem strony — z tego mierzymy, jak długo stoi kadr.
+    await page.evaluate(() => {
+      const el = document.getElementById('heroLicznik');
+      window.__zmiany = [[Date.now(), el.textContent.trim()]];
+      new MutationObserver(() => window.__zmiany.push([Date.now(), el.textContent.trim()]))
+        .observe(el, { childList: true, characterData: true, subtree: true });
+    });
+    // Zegar strony po install() płynie też sam, więc przesuwamy go małymi krokami,
+    // aż licznik pokaże oczekiwany kadr — bez ryzyka przeskoczenia kadru.
+    const dojdzDo = async (tekst) => {
+      for (let i = 0; i < 40 && (await licznik.textContent()).trim() !== tekst; i++) {
+        await page.clock.runFor(200); await page.waitForTimeout(20);
+      }
+      await expect(licznik).toHaveText(tekst);
+    };
+
+    // po 2 s kadr jeszcze stoi
+    await page.clock.runFor(2000); await page.waitForTimeout(50);
+    await expect(licznik).toHaveText('01 / 06');
     const wysokosc = () => page.locator('.hero').evaluate((e) => e.getBoundingClientRect().height);
     const h0 = await wysokosc();
-    await dalej();
+    await dojdzDo('02 / 06');
     await expect(img).toHaveAttribute('src', /eco-studio-wywiad/);
     expect(await wysokosc(), 'zmiana kadru nie zmienia wysokości hero').toBe(h0);
-    await expect(page.locator('#heroLicznik')).toHaveText('02 / 06');
     await expect(page.locator('#heroOpis')).toHaveText('Finał Eco Studio ELECTRO-SYSTEM · Warszawa');
     expect(await unikalne(page)).toBe(true);
     for (let n = 3; n <= 6; n++) {
-      await dalej();
-      await expect(page.locator('#heroLicznik')).toHaveText(`0${n} / 06`);
+      await dojdzDo(`0${n} / 06`);
       expect(await unikalne(page), `slajd ${n}`).toBe(true);
     }
-    await dalej();
-    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+    await dojdzDo('01 / 06');
+
+    // kolejność bez przeskoków, a każdy kadr stoi ok. 3 s (plus 0,4 s przygaszenia)
+    const zmiany = await page.evaluate(() => window.__zmiany);
+    expect(zmiany.map(([, t]) => t)).toEqual(['01 / 06', '02 / 06', '03 / 06', '04 / 06', '05 / 06', '06 / 06', '01 / 06']);
+    const odstepy = zmiany.slice(2).map(([t], i) => t - zmiany[i + 1][0]);
+    for (const d of odstepy) {
+      expect(d, `odstęp między kadrami ${d} ms`).toBeGreaterThanOrEqual(3000);
+      expect(d, `odstęp między kadrami ${d} ms`).toBeLessThan(4200);
+    }
 
     // pauza: przycisk zatrzymuje, „Wznów” rusza dalej
     await page.locator('#heroPauza').click();
@@ -323,12 +348,11 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
     await page.mouse.move(5, 5);
     await page.evaluate(() => document.activeElement.blur());
     await page.clock.runFor(30000); await page.waitForTimeout(200);
-    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
+    await expect(licznik).toHaveText('01 / 06');
     await page.locator('#heroPauza').click();
     await page.mouse.move(5, 5);
     await page.evaluate(() => document.activeElement.blur());
-    await dalej();
-    await expect(page.locator('#heroLicznik')).toHaveText('02 / 06');
+    await dojdzDo('02 / 06');
     await ctx.close();
   });
 

@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="assets-redesign.css?v=ecec55be" />
 
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="css/site.css?v=f9fec39e" />
+<link rel="stylesheet" href="css/site.css?v=ec7d31cf" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -826,7 +826,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ——— Hero: rotacja zdjęć z realizacji ———
-     Jeden element img: przygaszenie, podmiana źródła, rozjaśnienie. Co 6 s, od załadowania
+     Jeden element img: przygaszenie, podmiana źródła, rozjaśnienie. Co 3 s, od załadowania
      strony; pauza przyciskiem, najechaniem i fokusem (WCAG 2.2.2). Przy ograniczonym
      ruchu nic nie zmienia się samo — przycisk przełącza zdjęcia ręcznie. */
   const SLAJDY = [
@@ -864,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const planuj = () => {
     clearTimeout(zegar);
     if (reduce || zatrzymane || wstrzymane || document.hidden) return;
-    zegar = setTimeout(async () => { await nastepny(); planuj(); }, 6000);
+    zegar = setTimeout(async () => { await nastepny(); planuj(); }, 3000);
   };
   heroPauza.hidden = false;
   if (reduce) {
