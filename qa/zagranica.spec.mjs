@@ -547,3 +547,44 @@ test.describe('33bots.de — panel dostępności', () => {
     });
   }
 });
+
+// ——— Podstrony: te same porządki co podstrony .pl (tresci/zagranica/podstrony.py) ———
+// 33bots.de: przekrój szablonów (miasto, oferta, poradnik, case study, strony prawne);
+// 33bots.at: wszystkie podstrony.
+const PODSTRONY = [
+  [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/leistungen.html',
+    '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-women-in-tech.html', '/blog.html',
+    '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-abiball.html',
+    '/humanoider-roboter-event.html', '/event-attraktionen.html', '/impressum.html', '/404.html']],
+  [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/unitree-g1-mieten.html', '/kontakt.html',
+    '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
+    ...['wien', 'graz', 'linz', 'salzburg', 'innsbruck', 'klagenfurt', 'villach', 'wels', 'st-poelten', 'dornbirn', 'eisenstadt']
+      .map((m) => `/roboter-mieten-${m}.html`)]],
+];
+for (const [m, strony] of PODSTRONY) {
+  for (const strona of strony) {
+    for (const [vp, minimum] of [[TELEFON, 24], [DESKTOP, 32]]) {
+      test(`33bots.${m.kod}${strona} @${vp.width}: odstępy ≥ ${minimum} px, bez przewijania w bok, kroje lokalne, bez błędów`, async ({ browser }) => {
+        const ctx = await browser.newContext({ viewport: vp, reducedMotion: 'reduce' });
+        const page = await ctx.newPage();
+        const bledy = [];
+        const obce = [];
+        page.on('pageerror', (e) => bledy.push(e.message));
+        page.on('request', (r) => { if (/fonts\.(googleapis|gstatic)\.com/.test(r.url())) obce.push(r.url()); });
+        await zablokujZewnetrzne(page);
+        await page.goto(m.adres.replace(/\/$/, '') + strona);
+        await page.evaluate(() => document.fonts.ready);
+        await przewinCala(page);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        const naruszenia = await naruszeniaOdstepow(page, minimum);
+        expect(naruszenia, JSON.stringify(naruszenia, null, 1)).toEqual([]);
+        const fonty = await page.evaluate(() => [...new Set([...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family))]);
+        expect(fonty).toEqual(expect.arrayContaining(['Space Grotesk', 'Plus Jakarta Sans']));
+        expect(obce, 'Google Fonts').toEqual([]);
+        expect(await page.locator('#cursorGlow, #scrollProgress').count()).toBe(0);
+        expect(bledy).toEqual([]);
+        await ctx.close();
+      });
+    }
+  }
+}

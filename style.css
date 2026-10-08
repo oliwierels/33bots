@@ -827,7 +827,9 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   align-items: center;
   gap: var(--s8);
 }
-.footer__links { display: flex; gap: var(--s4); }
+/* Linki zawijają się do kolejnego wiersza — inaczej przy węższym ekranie (1024 px)
+   i dłuższych etykietach (33bots.de) wypychały media społecznościowe poza ekran. */
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); }
 .footer__links a {
   font-size: 0.68rem;
   font-weight: 500;
