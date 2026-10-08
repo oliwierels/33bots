@@ -74,7 +74,9 @@ def zdjecie(plik, alt, sizes, ladowanie='lazy', priorytet=False):
 
 
 def bez_tagow(s):
-    return html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', s))).strip()
+    """Czysty tekst do danych strukturalnych: bez znaczników i twardych spacji."""
+    t = html.unescape(re.sub(r'<[^>]+>', ' ', s)).replace('\xa0', ' ')
+    return re.sub(r'\s+', ' ', t).strip()
 
 
 def atrybuty(s):
