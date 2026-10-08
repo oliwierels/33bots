@@ -490,6 +490,8 @@ fieldset.pole > legend { margin-bottom: 8px; }
 .prose a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--line-strong); }
 .prose a:hover { text-decoration-color: var(--text); }
 .prose a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* Przycisk w treści zostaje przyciskiem — reguła linków wyżej nie zmienia mu koloru. */
+.prose .btn { color: var(--ink); text-decoration: none; }
 .prose figure { margin: 48px 0 0; }
 .prose figure img { width: 100%; background: var(--surface); }
 .foto-para { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
@@ -522,6 +524,10 @@ fieldset.pole > legend { margin-bottom: 8px; }
   .art__tresc { padding-top: 64px; }
   .prose h2 { margin-top: 64px; }
   .prose p, .prose li { font-size: 17px; }
+}
+@media (max-width: 767px) {
+  /* Blok rezerwacji na całą szerokość ekranu — przycisk mieści się w jednej linii. */
+  .art__cta { margin-inline: calc(-1 * var(--margin)); }
 }
 
 /* ——— Mobile ——— */
