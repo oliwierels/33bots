@@ -35,8 +35,8 @@
     panel.hidden = !state;
     toggle.setAttribute('aria-expanded', String(state));
     toggle.setAttribute('aria-label', state
-      ? 'Barrierefreiheit-Einstellungen schliessen'
-      : 'Barrierefreiheit-Einstellungen oeffnen');
+      ? 'Einstellungen zur Barrierefreiheit schließen'
+      : 'Einstellungen zur Barrierefreiheit öffnen');
     if (state) { var f = panel.querySelector('.a11y-opt'); if (f) f.focus(); }
   }
 
