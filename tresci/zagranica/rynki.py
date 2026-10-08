@@ -111,7 +111,7 @@ REALIZACJE_DE = {
 FAQ_BATERIE = ('Wie arbeitet der Roboter den ganzen Tag, wenn ein Akku kürzer hält?',
                'Der Roboter arbeitet mit Wechselakkus. Der Operator hat einen Satz Ersatzakkus dabei und tauscht sie während der Veranstaltung — die Show unterbricht nicht zum Laden.')
 FAQ_MOWA = ('Spricht der Roboter mit den Gästen?',
-            'Ja. Der Roboter spricht Deutsch und jede andere Sprache, mit natürlicher Sprachsynthese — er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Vor der Veranstaltung legen wir seinen Charakter fest und spielen ihm Wissen über Ihr Unternehmen auf: Angebot, Produktnamen, häufige Kundenfragen und die Agenda. Die Konfiguration ist im Mietpreis enthalten.')
+            'Ja. Der Roboter spricht Deutsch und jede andere Sprache, mit natürlicher Sprachsynthese — er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Vor der Veranstaltung legen wir seinen Charakter fest und spielen ihm Wissen über Ihr Unternehmen ein: Angebot, Produktnamen, häufige Kundenfragen und die Agenda. Die Konfiguration ist im Mietpreis enthalten.')
 FAQ_ZALICZKA = ('Muss ich eine Anzahlung leisten?',
                 'Nein. Die Reservierung erfolgt ohne Anzahlung. Die Rechnung stellen wir erst nach der Veranstaltung, bei Bedarf mit längerem Zahlungsziel.')
 FAQ_OPERATOR = ('Muss ich den Roboter selbst bedienen können?',
@@ -146,8 +146,8 @@ WSPOLNE_DE = {
     'wystep_meta': '05 / 11 · Auftritt', 'wystep_h2': 'Wie wir den Auftritt planen',
     'wystep_body': 'Dasselbe Robotermodell kann als Dekoration in der Ecke stehen oder eine Gala moderieren. Den Unterschied macht die Vorbereitung: Charakter, Gespräch und Reaktionen auf das Publikum, die wir auf Dutzenden Veranstaltungen verfeinert haben — von Firmenkonferenzen bis zu Picknicks.',
     'wiersze': [
-        ('Charakter', 'Wir legen fest, wie sich der Roboter verhält: eleganter Moderator, locker und humorvoll oder sachlicher Experte. Am meisten beeindruckt meist der Moment, in dem er auf etwas eingeht, das gerade im Saal passiert.'),
-        ('Stimme und Wissen', f'Er spricht Deutsch und jede andere Sprache — natürlich, ohne künstlichen Roboterklang. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Wir spielen ihm Wissen über die Veranstaltung auf: wer auftritt, was auf dem Programm steht und aus welchem Anlass Sie zusammenkommen.'),
+        ('Charakter', 'Wir legen fest, wie sich der Roboter verhält: eleganter Moderator, locker und humorvoll oder sachlicher Experte. Den größten Eindruck macht meist der Moment, in dem er auf etwas eingeht, das gerade im Saal passiert.'),
+        ('Stimme und Wissen', f'Er spricht Deutsch und jede andere Sprache — natürlich, ohne künstlichen Roboterklang. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Wir spielen ihm Wissen über die Veranstaltung ein: wer auftritt, was auf dem Programm steht und aus welchem Anlass Sie zusammenkommen.'),
         ('Drehbuch', 'Begrüßung der Gäste, Ankündigung der Redner, Countdown bis Mitternacht, Preisverleihung. Er beherrscht mehrere Choreografien — von ruhig bis dynamisch. Ein Roboter, der Teil des Programms ist, statt nur im Saal zu stehen.'),
         ('Branding', 'Logo und QR-Code auf der Brust und ein Auftritt, der zum Charakter der Veranstaltung passt — vom Firmen-T-Shirt bis zum Paillettensmoking mit Krone. Das Branding ist im Preis enthalten.'),
         ('Fotos und Videos', 'Der Roboter ist der Gast, den alle mit dem Handy filmen. Wir planen Momente für gute Bilder — Begrüßung an der Fotowand, Auftritt auf der Bühne, Tanz — und das Branding sorgt dafür, dass Ihre Marke in jedem Video zu sehen ist.'),
