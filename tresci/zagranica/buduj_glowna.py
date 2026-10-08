@@ -726,7 +726,8 @@ class Strona:
         ]
         czesci += [self.dodatki(), '', self.skrypt()]
         if r['panel_dostepnosci']:
-            czesci.append('<script src="a11y.js" defer></script>')
+            wersja_a11y = hashlib.md5((self.cel / 'a11y.js').read_bytes()).hexdigest()[:8]
+            czesci.append(f'<script src="a11y.js?v={wersja_a11y}" defer></script>')
         if r['analityka']:
             czesci.append(wycinek('<!-- Albacross -->', '<script async src="https://serve.albacross.com/track.js"></script>'))
         czesci += ['</body>', '</html>', '']
