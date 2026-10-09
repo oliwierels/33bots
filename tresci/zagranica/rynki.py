@@ -13,6 +13,8 @@ zatrzyma generator — tak ma być.
 """
 
 KRAJE_DE = 'in Polen, Litauen, Deutschland, Tschechien und Rumänien'
+# „über 40 Veranstaltungen” — z CRM: 43 wygrane z pierwszym dniem realizacji do 9.10.2026
+# (bez zaplanowanych i bez tych bez daty); na .pl „ponad 40 wydarzeń”.
 
 # Zdjęcia do rotacji w hero: plik, alt, klient, miejsce.
 SLAJDY_DE = [
@@ -121,7 +123,7 @@ FAQ_BEZPIECZENSTWO = ('Ist der Roboter für die Gäste sicher?',
 FAQ_BRANDING = ('Kann ich mein Logo auf dem Roboter platzieren?',
                 'Ja. Ihr Logo und ein QR-Code kommen auf die Brust des Roboters, der ganze Auftritt passt zum Charakter der Veranstaltung. Das Branding ist im Preis enthalten.')
 FAQ_ZAGRANICA = ('Sind Sie auch international im Einsatz?',
-                 f'Ja. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Der Roboter spricht jede Sprache — auf einer internationalen Veranstaltung begrüßt er die Gäste in ihrer Sprache und beantwortet ihre Fragen.')
+                 f'Ja. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Der Roboter spricht jede Sprache und wechselt während einer Veranstaltung zwischen den Sprachen — so begrüßt er die Gäste in ihrer Sprache und beantwortet ihre Fragen.')
 
 WSPOLNE_DE = {
     'skip': 'Zum Hauptinhalt springen',
@@ -135,7 +137,7 @@ WSPOLNE_DE = {
     'slajdy': SLAJDY_DE,
     'proof_label': 'Bekannt aus',
     'realizacje_meta': '04 / 11 · Im Einsatz', 'realizacje_h2': 'Im Einsatz',
-    'realizacje_body': 'Vom Ball in einem Dresdner Palais und der Messe MSPO bis zur Gemeindeparade und zur Hochzeit — Dutzende Veranstaltungen in fünf Ländern. Klicken Sie auf ein Bild, um zu sehen, was der Roboter gemacht hat.',
+    'realizacje_body': 'Vom Ball in einem Dresdner Palais und der Messe MSPO bis zur Gemeindeparade und zur Hochzeit — über 40 Veranstaltungen in fünf Ländern. Klicken Sie auf ein Bild, um zu sehen, was der Roboter gemacht hat.',
     'zobacz_realizacje': 'Einsatz ansehen',
     'wyroznione': WYROZNIONE_DE,
     'wiecej': 'Weitere Einsätze', 'zatrzymaj_ruch': 'Bewegung anhalten', 'wznow_ruch': 'Bewegung fortsetzen',
@@ -144,10 +146,10 @@ WSPOLNE_DE = {
     'klienci_label': 'Für wen wir gearbeitet haben',
     'klienci_kraje': f'Konzerne und öffentliche Einrichtungen, Wissenschaftszentren, Gemeinden, Clubs und private Feiern — {KRAJE_DE}.',
     'wystep_meta': '05 / 11 · Auftritt', 'wystep_h2': 'Wie wir den Auftritt planen',
-    'wystep_body': 'Dasselbe Robotermodell kann als Dekoration in der Ecke stehen oder eine Gala moderieren. Den Unterschied macht die Vorbereitung: Charakter, Gespräch und Reaktionen auf das Publikum, die wir auf Dutzenden Veranstaltungen verfeinert haben — von Firmenkonferenzen bis zu Picknicks.',
+    'wystep_body': 'Dasselbe Robotermodell kann als Dekoration in der Ecke stehen oder eine Gala moderieren. Den Unterschied macht die Vorbereitung: Charakter, Gespräch und Reaktionen auf das Publikum, die wir auf über 40 Veranstaltungen verfeinert haben — von Firmenkonferenzen bis zu Picknicks.',
     'wiersze': [
         ('Charakter', 'Wir legen fest, wie sich der Roboter verhält: eleganter Moderator, locker und humorvoll oder sachlicher Experte. Den größten Eindruck macht meist der Moment, in dem er auf etwas eingeht, das gerade im Saal passiert.'),
-        ('Stimme und Wissen', f'Er spricht Deutsch und jede andere Sprache — natürlich, ohne künstlichen Roboterklang. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Wir spielen ihm Wissen über die Veranstaltung ein: wer auftritt, was auf dem Programm steht und aus welchem Anlass Sie zusammenkommen.'),
+        ('Stimme und Wissen', f'Er spricht Deutsch und jede andere Sprache — natürlich, ohne künstlichen Roboterklang — und wechselt während einer Veranstaltung zwischen den Sprachen. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Wir spielen ihm Wissen über die Veranstaltung ein: wer auftritt, was auf dem Programm steht und aus welchem Anlass Sie zusammenkommen.'),
         ('Drehbuch', 'Begrüßung der Gäste, Ankündigung der Redner, Countdown bis Mitternacht, Preisverleihung. Er beherrscht mehrere Choreografien — von ruhig bis dynamisch. Ein Roboter, der Teil des Programms ist, statt nur im Saal zu stehen.'),
         ('Branding', 'Logo und QR-Code auf der Brust und ein Auftritt, der zum Charakter der Veranstaltung passt — vom Firmen-T-Shirt bis zum Paillettensmoking mit Krone. Das Branding ist im Preis enthalten.'),
         ('Fotos und Videos', 'Der Roboter ist der Gast, den alle mit dem Handy filmen. Wir planen Momente für gute Bilder — Begrüßung an der Fotowand, Auftritt auf der Bühne, Tanz — und das Branding sorgt dafür, dass Ihre Marke in jedem Video zu sehen ist.'),

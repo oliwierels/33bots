@@ -397,6 +397,8 @@ test('treść: branding zamiast stroju, robot mówi w każdym języku', async ({
   await expect(lead).toContainText('branding w cenie');
   await expect(page.locator('#wystep')).toContainText('na Litwie, w Niemczech, Czechach i Rumunii');
   await expect(page.locator('#faq-5')).toContainText('w każdym innym języku');
+  await expect(page.locator('#realizacje')).toContainText('ponad 40 wydarzeń w pięciu krajach');
+  await expect(page.locator('#wystep')).toContainText('przełącza się między językami');
   const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(' '));
   expect(ld).not.toMatch(/\bstr[óo]j/i);
 });
@@ -488,8 +490,9 @@ test.describe('pasy realizacji i klientów', () => {
     expect(rzedy.length).toBeGreaterThanOrEqual(3);
     for (const r of rzedy) r.forEach((cs, i) => expect(cs, r.join(' ')).not.toBe(r[(i + 1) % r.length]));
     const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
-    expect(nazwy.length).toBe(39);
-    expect(new Set(nazwy).size).toBe(39);
+    expect(nazwy.length).toBe(40);
+    expect(new Set(nazwy).size).toBe(40);
+    expect(nazwy).toContain('Cashify');
   });
 
   test('ograniczony ruch: nic nie jedzie, bez kopii, nazwy jako zwykła lista', async ({ browser }) => {

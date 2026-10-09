@@ -148,6 +148,8 @@ for (const m of RYNKI) {
       await expect(lead).toContainText('Er spricht Deutsch und jede andere Sprache');
       await expect(lead).toContainText('Branding im Preis');
       await expect(page.locator('#auftritt')).toContainText('Litauen, Deutschland, Tschechien und Rumänien');
+      await expect(page.locator('#auftritt')).toContainText('wechselt während einer Veranstaltung zwischen den Sprachen');
+      await expect(page.locator('#referenzen')).toContainText('über 40 Veranstaltungen in fünf Ländern');
       expect(await tresc(page, '.faq')).toContain('Der Roboter spricht Deutsch und jede andere Sprache');
       expect(await tresc(page)).not.toMatch(/Kostüm|Outfit|Garderobe|kostenlos|gratis/i);
       await ctx.close();
@@ -432,10 +434,11 @@ for (const m of RYNKI) {
       await pauza.click();
       await expect(pauza).toHaveText('Bewegung fortsetzen');
       await expect(pauza).toHaveAttribute('aria-pressed', 'true');
-      // Nazwy klientów: 39 bez powtórzeń, utarte nazwy po niemiecku.
+      // Nazwy klientów: 40 bez powtórzeń (jak na .pl), utarte nazwy po niemiecku.
       const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
-      expect(nazwy.length).toBe(39);
-      expect(new Set(nazwy).size).toBe(39);
+      expect(nazwy.length).toBe(40);
+      expect(new Set(nazwy).size).toBe(40);
+      expect(nazwy).toContain('Cashify');
       expect(nazwy).toEqual(expect.arrayContaining(['Dresdner Schlössernacht', 'Gemeinde Jednorożec', 'Perspektywy Foundation · Women in Tech Summit']));
       await ctx.close();
     });
