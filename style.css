@@ -1,3 +1,29 @@
+/* Fonty lokalne: Space Grotesk i Plus Jakarta Sans (OFL-1.1), wersje zmienne. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/space-grotesk-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2") format("woff2-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* ===== TOKENS ===== */
 :root {
   --black:       #000000;
@@ -16,6 +42,7 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* 8px grid */
+  --inset: 24px;            /* min. odstęp tekstu od ramki lub krawędzi tła */
   --s1: 8px;
   --s2: 16px;
   --s3: 24px;
@@ -36,19 +63,9 @@ img { display: block; max-width: 100%; }
 button { cursor: pointer; }
 
 /* ===== GRAIN OVERLAY ===== */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   font-optical-sizing: auto;
   background: var(--black);
@@ -253,18 +270,6 @@ body {
 }
 
 /* Radial ambient glow */
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 65%);
-  top: 50%;
-  right: -120px;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
 
 .hero__content { padding: var(--s10) 0; }
 
@@ -370,15 +375,7 @@ body {
   align-items: center;
   padding: var(--s8) 0;
 }
-.hero__spotlight {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 55% 65% at 50% 42%,
-    rgba(255,255,255,0.05) 0%,
-    rgba(255,255,255,0.015) 40%,
-    transparent 70%);
-  pointer-events: none;
-}
+
 .hero__robot-wrap {
   transform-style: preserve-3d;
   transition: transform 0.15s var(--ease-out);
@@ -387,7 +384,7 @@ body {
   width: 100%;
   position: relative;
   z-index: 1;
-  animation: float 6s ease-in-out infinite, glow-breathe 4s ease-in-out infinite;
+  
 }
 .hero__robot svg { width: 100%; height: auto; display: block; }
 
@@ -399,68 +396,8 @@ body {
   overflow: hidden;
   z-index: 2;
 }
-.robot-scan::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.55);
-  box-shadow: 0 0 12px 4px rgba(255,255,255,0.25);
-  animation: scan-line 3s linear infinite;
-  z-index: 3;
-}
-.robot-scan::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(255,255,255,0.07) 50%,
-    transparent 100%);
-  animation: scan-line 3s linear infinite;
-}
-@keyframes scan-line {
-  0%   { top: -120px; }
-  100% { top: 100%; }
-}
-
-.eye { animation: eye-pulse 4s ease-in-out infinite; }
-@keyframes eye-pulse {
-  0%, 35%, 65%, 86%, 100% { opacity: 0.9; }
-  50% { opacity: 1; filter: brightness(2.5); }
-  90% { opacity: 0.02; }
-  92% { opacity: 0.9; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px)   rotate(0deg); }
-  30%       { transform: translateY(-14px) rotate(0.5deg); }
-  65%       { transform: translateY(-20px) rotate(-0.4deg); }
-}
-@keyframes glow-breathe {
-  0%, 100% {
-    filter:
-      drop-shadow(0 40px 60px rgba(0,0,0,0.95))
-      drop-shadow(0 0 16px rgba(0,120,255,0.08));
-  }
-  50% {
-    filter:
-      drop-shadow(0 40px 60px rgba(0,0,0,0.95))
-      drop-shadow(0 0 60px rgba(0,150,255,0.22))
-      drop-shadow(0 0 120px rgba(0,100,255,0.08));
-  }
-}
 
 /* glitch burst */
-.hero__robot-wrap.is-glitching .hero__robot {
-  animation: float 6s ease-in-out infinite, glow-breathe 4s ease-in-out infinite, glitch-burst 0.35s steps(3) forwards;
-}
-@keyframes glitch-burst {
-  0%   { transform: translateX(-6px) skewX(-2deg); clip-path: inset(15% 0 70% 0); }
-  33%  { transform: translateX(5px)  skewX(1deg);  clip-path: inset(55% 0 20% 0); }
-  66%  { transform: translateX(-3px) skewX(-1deg); clip-path: inset(30% 0 50% 0); }
-  100% { transform: translateX(0);                 clip-path: none; }
-}
 
 .hero__tag {
   position: absolute;
@@ -479,7 +416,6 @@ body {
 .hero__tag--1 { top: 28%; left: 0; }
 .hero__tag--2 { top: 52%; right: 0; }
 .hero__tag--3 { bottom: 28%; left: 8%; }
-
 
 /* ===== LAYOUT ===== */
 .section {
@@ -594,7 +530,6 @@ body {
 /* Blog tiles — 2 columns */
 .tiles--blog { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 700px) { .tiles--blog { grid-template-columns: 1fr; } }
-
 
 /* Package tiles */
 .tile__pkg-name {
@@ -770,7 +705,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--s2) 0;
+  padding: var(--inset) 0;
   border-bottom: 1px solid var(--border);
   transition: border-color 0.2s;
 }
@@ -892,7 +827,9 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   align-items: center;
   gap: var(--s8);
 }
-.footer__links { display: flex; gap: var(--s4); }
+/* Linki zawijają się do kolejnego wiersza — inaczej przy węższym ekranie (1024 px)
+   i dłuższych etykietach (33bots.de) wypychały media społecznościowe poza ekran. */
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); }
 .footer__links a {
   font-size: 0.68rem;
   font-weight: 500;
@@ -963,24 +900,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   border-bottom: 1px solid var(--border-mid);
   overflow: hidden;
 }
-.transport-callout::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
-}
-.transport-callout__glow {
-  position: absolute;
-  width: 720px;
-  height: 420px;
-  left: -180px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
-  pointer-events: none;
-}
+
 .transport-callout__left {
   position: relative;
   padding: var(--s8) var(--s6);
@@ -1012,10 +932,10 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 }
 .transport-callout__claim em {
   font-style: normal;
-  background: linear-gradient(100deg, var(--text) 10%, var(--accent) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  
+  
+  
+  
   color: var(--accent);
 }
 .transport-callout__note {
@@ -1064,18 +984,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   overflow: hidden;
 }
 /* ambient radial behind text */
-.statement::before {
-  content: '';
-  position: absolute;
-  width: 800px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
+
 .statement__inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -1176,7 +1085,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 }
 .footer__socials {
   display: flex;
-  gap: var(--s3);
+  flex-wrap: wrap;   /* 320 px: „LinkedIn” nie wychodzi poza ekran */
+  gap: var(--s2) var(--s3);
 }
 .footer__social {
   font-size: 0.72rem;
@@ -1192,7 +1102,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   display: flex;
   align-items: center;
   gap: var(--s2);
-  padding-bottom: var(--s3);
+  padding-bottom: var(--inset);
   border-bottom: 1px solid var(--border);
   margin-bottom: var(--s3);
 }
@@ -1289,7 +1199,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
-  padding: var(--s2) var(--s4);
+  padding: var(--inset) var(--s4);
   transform: translateY(100%);
   transition: transform 0.4s var(--ease-out);
 }
@@ -1331,16 +1241,6 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 .hamburger.open span:last-child  { transform: translateY(-7.5px) rotate(-45deg); }
 
 /* ===== SCROLL PROGRESS ===== */
-.scroll-progress {
-  position: fixed;
-  top: 0; left: 0;
-  height: 1px;
-  width: 0%;
-  background: var(--border-hi);
-  z-index: 200;
-  transition: width 0.08s linear;
-  pointer-events: none;
-}
 
 /* ===== MARQUEE ===== */
 .marquee {
@@ -1353,7 +1253,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   display: flex;
   gap: var(--s4);
   width: max-content;
-  animation: marquee-scroll 28s linear infinite;
+  
 }
 .marquee__item {
   font-size: 0.62rem;
@@ -1369,14 +1269,11 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   color: var(--border-hi);
   flex-shrink: 0;
 }
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation-play-state: paused; }
   .hero__robot { animation: none; }
-  .robot-scan::after { animation: none; }
+  
   .eye { animation: none; }
 }
 
@@ -1411,7 +1308,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   flex-direction: column;
   gap: 3px;
   border-top: 1px solid var(--border);
-  padding-top: var(--s2);
+  padding-top: var(--inset);
 }
 .testimonial__name {
   font-size: 0.8rem;
@@ -1441,7 +1338,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
-  padding: var(--s3) 0;
+  padding: var(--inset) 0;
   background: none;
   border: none;
   color: var(--text);
@@ -1457,10 +1354,11 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 .faq-q__icon {
   font-size: 1.2rem;
   font-weight: 300;
-  color: var(--text-3);
+  color: var(--text-2);
   flex-shrink: 0;
   transition: transform 0.3s var(--ease-out), color 0.2s var(--ease-in-out);
-  line-height: 1;
+  /* normal, nie 1: przy 1 pole glifu wystawało poza linię i znak podchodził pod ramkę */
+  line-height: normal;
 }
 .faq-item.open .faq-q__icon {
   transform: rotate(45deg);
@@ -1476,10 +1374,9 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
   font-size: 0.875rem;
   color: var(--text-2);
   line-height: 1.8;
-  padding-bottom: var(--s3);
+  padding-bottom: var(--inset);
   max-width: 640px;
 }
-
 
 /* ===== VIDEO TEASER ===== */
 .video-teaser {
@@ -1535,20 +1432,6 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 }
 
 /* ===== CURSOR GLOW ===== */
-.cursor-glow {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 35%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.4s var(--ease-in-out);
-  opacity: 0;
-  mix-blend-mode: normal;
-}
-.cursor-glow.visible { opacity: 1; }
 
 /* ===== FADE UP ===== */
 .fade-up {
@@ -1564,7 +1447,7 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
     grid-template-columns: 1fr;
     padding-top: var(--s8);
   }
-  .hero::before { display: none; }
+  
   .hero__visual { display: none; }
   .hero__content { padding: var(--s8) 0 var(--s5); }
   .tiles { grid-template-columns: 1fr; }
@@ -1814,42 +1697,24 @@ html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-hi); }
 
 /* — Pasek postępu czytania: sygnaturowy gradient — */
-.scroll-progress {
-  height: 2px;
-  background: linear-gradient(90deg, var(--white), var(--accent));
-  box-shadow: 0 0 12px var(--accent-soft);
-}
 
 /* — Hero: gradientowe wyróżnienie (jak poświata wizjera) — */
 .hero__title em {
-  background: linear-gradient(100deg, var(--text) 20%, var(--accent) 85%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  
+  
+  
+  
   color: var(--accent); /* fallback */
 }
 .hero__eyebrow { position: relative; }
 
 /* — Przyciski: cyjanowy oddech na hover — */
-.btn-primary:hover {
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.06),
-    0 8px 28px rgba(0,0,0,0.55),
-    0 0 32px var(--accent-soft);
-}
 .btn-ghost { transition: color .2s var(--ease-in-out), border-color .2s var(--ease-in-out), box-shadow .3s var(--ease-out), transform .2s var(--ease-out); }
-.btn-ghost:hover { border-color: var(--accent-dim); box-shadow: 0 0 20px var(--accent-soft); transform: translateY(-1px); }
+.btn-ghost:hover { border-color: var(--accent-dim);  transform: translateY(-1px); }
 
 /* — Kafelki: delikatny lift + linia akcentu — */
 .tile { position: relative; }
-.tile::after {
-  content: '';
-  position: absolute;
-  left: 0; bottom: -1px;
-  width: 0%; height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  transition: width .45s var(--ease-out);
-}
+
 .tile:hover::after { width: 100%; }
 .tile:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
 .tile__link { transition: color .2s, letter-spacing .25s var(--ease-out); }
@@ -1864,11 +1729,10 @@ html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
   background: var(--accent);
   margin-right: 8px;
   vertical-align: 1px;
-  box-shadow: 0 0 8px var(--accent-dim);
+  
 }
 
 /* — Statystyki: poświata liczb — */
-.stat-item__val { text-shadow: 0 0 24px var(--accent-soft); }
 
 /* — Marquee: miękkie krawędzie — */
 .marquee {
@@ -1880,8 +1744,6 @@ html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
 .faq-q:hover { color: var(--text); }
 .faq-q:hover .faq-q__icon { color: var(--accent); transform: scale(1.15); }
 .faq-q__icon { transition: transform .25s var(--ease-out), color .2s; }
-.faq-item { transition: border-color .25s var(--ease-in-out); }
-.faq-item:hover { border-color: var(--border-hi); }
 
 /* — Testimoniale: cudzysłów + hover — */
 .testimonial { position: relative; transition: border-color .25s, transform .3s var(--ease-out), box-shadow .3s var(--ease-out); }
@@ -1902,7 +1764,8 @@ html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
 .form-field input:focus,
 .form-field textarea:focus {
   border-color: var(--accent-dim) !important;
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
 }
 
 /* — Breadcrumbs (nadpisanie inline) — */
@@ -1911,7 +1774,7 @@ html { scrollbar-color: var(--border-hi) var(--black); scrollbar-width: thin; }
 
 /* — Wideo i embedy: ramka premium — */
 video, .video-card { transition: box-shadow .3s var(--ease-out), border-color .3s; }
-video:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 28px var(--accent-soft); border-color: var(--border-hi) !important; }
+video:hover {  border-color: var(--border-hi) !important; }
 .video-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5); border-color: var(--border-hi); }
 
 /* — Galeria robota: subtelny zoom — */
@@ -1926,10 +1789,8 @@ video:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 28px var(--accent-sof
 /* — Nav: podkreślenie z akcentem — */
 .nav__links a::after { background: var(--accent); }
 .logo { transition: opacity .2s, text-shadow .3s var(--ease-out); }
-.logo:hover { text-shadow: 0 0 18px var(--accent-dim); }
 
 /* — Cursor glow: cyjanowy odcień — */
-.cursor-glow { background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%) !important; }
 
 /* — Karty-linki (inline-styled boxy dostają hover przez atrybut) — */
 a[style*="border-radius:10px"]:hover,
@@ -1972,16 +1833,16 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--black);
-  background: linear-gradient(100deg, var(--white) 0%, var(--accent) 100%);
+  background: var(--white);
   padding: 20px var(--s6);
-  box-shadow: 0 0 32px var(--accent-soft);
+  
   transition: transform 0.2s var(--ease-out),
               box-shadow 0.3s var(--ease-out),
               opacity 0.2s var(--ease-in-out);
 }
 .btn-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 24px var(--accent-dim), 0 12px 40px var(--accent-soft);
+  
 }
 .btn-cta:active { transform: translateY(0); }
 
@@ -2004,7 +1865,7 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
 }
 .btn-cta--ghost:hover {
   border-color: var(--accent-dim);
-  box-shadow: 0 0 20px var(--accent-soft);
+  
   transform: translateY(-2px);
 }
 
@@ -2047,7 +1908,7 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
 .price-card--main {
   background: var(--surface-2);
   border-color: var(--accent-dim);
-  box-shadow: 0 0 60px var(--accent-soft);
+  
 }
 .price-card__badge {
   align-self: flex-start;
@@ -2090,7 +1951,7 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--text);
-  text-shadow: 0 0 32px var(--accent-soft);
+  
 }
 .price-card__period {
   font-size: 0.75rem;
@@ -2128,7 +1989,7 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
 .price-card__zero {
   font-size: 0.9rem;
   color: var(--text);
-  background: var(--accent-soft);
+  
   border: 1px solid var(--accent-dim);
   border-radius: 12px;
   padding: var(--s2) var(--s3);
@@ -2210,26 +2071,9 @@ a[style*="border-radius"] { transition: border-color .25s, transform .25s var(--
 
 /* Space Grotesk na nagłówkach — ta sama krojówka, co na stronie głównej.
    Hostowany lokalnie: żadnych połączeń z serwerami Google przy wejściu. */
-@font-face {
-  font-family: 'Space Grotesk';
-  font-style: normal;
-  font-weight: 500 700;
-  font-display: swap;
-  src: url('fonts/space-grotesk-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Space Grotesk';
-  font-style: normal;
-  font-weight: 500 700;
-  font-display: swap;
-  src: url('fonts/space-grotesk-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 :root {
   --ink: #050505;
-  --glow: rgba(111, 214, 255, .45);
   --radius-card: 20px;
   --radius-pill: 999px;
 }
@@ -2244,22 +2088,6 @@ body {
 /* UWAGA: body::before jest już zajęte przez ziarno tła (opacity .028, z-index 9999).
    Nadpisanie go gasi poświaty do 2,8% i kasuje ziarno — dlatego całe tło siedzi
    w body::after: najpierw siatka, pod nią trzy poświaty. */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 55% at 18% 0%,   rgba(111, 214, 255, .20), transparent 62%),
-    radial-gradient(ellipse 60% 50% at 88% 12%,  rgba(157, 123, 255, .15), transparent 64%),
-    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(111, 214, 255, .09), transparent 72%);
-  background-size: 64px 64px, 64px 64px, auto, auto, auto;
-  -webkit-mask-image: radial-gradient(ellipse 100% 85% at 50% 18%, #000 45%, rgba(0,0,0,.6) 75%, transparent 100%);
-          mask-image: radial-gradient(ellipse 100% 85% at 50% 18%, #000 45%, rgba(0,0,0,.6) 75%, transparent 100%);
-}
 
 /* Treść ponad tłem. */
 .nav, .hero, .section, .footer, .sticky-cta, .cookie-banner, main, .crumbs {
@@ -2272,7 +2100,7 @@ body::after {
 .price-card__amount, .stat-item__val, .logo, .faq-q, .video-teaser__title,
 .transport-callout__claim, .onas-head h2, .testimonial__quote,
 h1, h2, h3 {
-  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
   letter-spacing: -0.03em;
 }
 
@@ -2311,7 +2139,7 @@ h1, h2, h3 {
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+  
 }
 
 /* ── Przyciski: pigułki z poświatą ───────────────────────────────────────── */
@@ -2325,7 +2153,7 @@ h1, h2, h3 {
 }
 .btn-primary:hover, .btn-cta:hover, .btn-submit:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 28px var(--glow);
+  
 }
 .btn-ghost, .btn-cta--ghost {
   border: 1px solid var(--border-hi);
@@ -2353,7 +2181,7 @@ h1, h2, h3 {
 .tile, .testimonial {
   border: 0;
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, rgba(23,23,26,.9), rgba(11,11,12,.9));
+  background: #111111;
   box-shadow: inset 0 0 0 1px var(--border-mid);
   transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
 }
@@ -2373,19 +2201,9 @@ h1, h2, h3 {
 }
 .price-card--main {
   border-color: rgba(111, 214, 255, .35);
-  box-shadow: 0 0 44px rgba(111, 214, 255, .10);
+  
 }
 
-/* ── FAQ: wiersze jako karty, nie kreski ─────────────────────────────────── */
-.faq-item {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  margin-bottom: 10px;
-  padding-inline: 20px;
-  background: rgba(17, 17, 19, .45);
-  transition: border-color .3s var(--ease-in-out), background .3s var(--ease-in-out);
-}
-.faq-item:hover { border-color: var(--border-hi); background: rgba(23, 23, 26, .6); }
 
 /* ── Hero podstrony ─────────────────────────────────────────────────────────
    Sztywne min-height:100vh miało sens przy hero z robotem po prawej. Na
@@ -2424,7 +2242,7 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
    Siatka 64 px na ekranie szerokim na 390 px robi się natrętna, a odstęp nad
    nagłówkiem zjada pierwszy ekran. */
 @media (max-width: 768px) {
-  body::after { background-size: 40px 40px, 40px 40px, auto, auto, auto; opacity: .7; }
+  
   .hero:not(.hero--home) {
     padding-top: clamp(92px, 12vh, 120px);
     padding-bottom: clamp(36px, 5vh, 64px);
@@ -2438,3 +2256,5 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   .btn-primary:hover, .btn-cta:hover, .btn-submit:hover { transform: none; }
   html { scroll-behavior: auto; }
 }
+
+@media (min-width: 1024px) { :root { --inset: 32px; } }

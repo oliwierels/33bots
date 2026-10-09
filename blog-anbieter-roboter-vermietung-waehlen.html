@@ -94,12 +94,11 @@
 
   <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=3" />
-  <link rel="stylesheet" href="a11y.css?v=1" />
-  <link rel="stylesheet" href="gallery.css?v=1" />
-  <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
-       consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
-  <link rel="stylesheet" href="fonts/inter.css" />
+  <link rel="stylesheet" href="style.css?v=485797ee" />
+  <link rel="stylesheet" href="a11y.css?v=f60c99be" />
+  <link rel="stylesheet" href="gallery.css?v=b703520f" />
+  <!-- Schriften (Space Grotesk, Plus Jakarta Sans) lokal über style.css —
+       keine Verbindungen zu Dritten. -->
   <style>
     .hero { grid-template-columns: 1fr; min-height: 70vh; }
     .hero__content { max-width: none; padding: var(--s12) 0 var(--s8); }
@@ -110,8 +109,6 @@
   <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 25 TDDDG) -->
 
   <a href="#hauptinhalt" class="skip-link">Zum Hauptinhalt springen</a>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -220,7 +217,7 @@
       <div style="padding:var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:16px; text-align:center;">
         <h2 style="font-size:1.3rem; font-weight:700; color:var(--text); margin:0 0 var(--s2);">Fragen an uns?</h2>
         <p style="color:var(--text-2); font-size:0.95rem; line-height:1.7; margin:0 0 var(--s4);">Wir beantworten alle fünf Punkte gerne schriftlich, bevor Sie sich entscheiden.</p>
-        <a href="#kontakt" class="btn-cta" style="display:inline-flex;">Kostenloses Angebot anfordern →</a>
+        <a href="#kontakt" class="btn-cta" style="display:inline-flex; padding:clamp(16px, calc(40px - 2vw), 24px) var(--s4); line-height:1.4;">Kostenloses Angebot anfordern →</a>
       </div>
     </div>
   </section>
@@ -408,7 +405,7 @@
     <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
   </div>
 
-  <script src="main.js"></script>
-  <script src="a11y.js" defer></script>
+  <script src="main.js?v=03f9bb23"></script>
+  <script src="a11y.js?v=cce707c6" defer></script>
 </body>
 </html>

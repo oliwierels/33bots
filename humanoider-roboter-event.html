@@ -89,7 +89,7 @@
       "name": "Welcher humanoide Roboter tritt bei der Veranstaltung auf?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wir arbeiten mit dem Unitree G1 — dem modernsten kommerziell verfügbaren Humanoiden. Er ist rund 130 cm groß, hat 23+ Freiheitsgrade und spricht dank KI-Integration Deutsch."
+        "text": "Wir arbeiten mit dem Unitree G1 — dem modernsten kommerziell verfügbaren Humanoiden. Er ist rund 130 cm groß, hat 23+ Freiheitsgrade und spricht dank KI-Integration Deutsch und jede andere Sprache."
       }
     },
     {
@@ -145,12 +145,11 @@
 
   <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=3" />
-  <link rel="stylesheet" href="a11y.css?v=1" />
-  <link rel="stylesheet" href="gallery.css?v=1" />
-  <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
-       consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
-  <link rel="stylesheet" href="fonts/inter.css" />
+  <link rel="stylesheet" href="style.css?v=485797ee" />
+  <link rel="stylesheet" href="a11y.css?v=f60c99be" />
+  <link rel="stylesheet" href="gallery.css?v=b703520f" />
+  <!-- Schriften (Space Grotesk, Plus Jakarta Sans) lokal über style.css —
+       keine Verbindungen zu Dritten. -->
   <style>
     .hero { grid-template-columns: 1fr; min-height: 70vh; }
     .hero__content { max-width: none; padding: var(--s12) 0 var(--s8); }
@@ -161,8 +160,6 @@
   <!-- Kein GTM-noscript: würde ohne Einwilligung laden (§ 25 TDDDG) -->
 
   <a href="#hauptinhalt" class="skip-link">Zum Hauptinhalt springen</a>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -235,7 +232,7 @@
       </div>
       <div class="tile">
         <div class="tile__top"><span class="tile__tag">KI</span></div>
-        <h3 class="tile__title">Er spricht Deutsch</h3>
+        <h3 class="tile__title">Er spricht Deutsch und jede andere Sprache</h3>
         <p class="tile__desc">Fragen Sie ihn irgendetwas — der Roboter antwortet mit Stimme, macht Witze und führt ein Gespräch. Die Kombination aus physischer Präsenz und KI ist ein Erlebnis einer völlig anderen Kategorie.</p>
         <a href="#kontakt" class="tile__link">Termin anfragen →</a>
       </div>
@@ -410,7 +407,7 @@
           <span>Welcher humanoide Roboter tritt bei der Veranstaltung auf?</span>
           <span class="faq-q__icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" hidden><p>Wir arbeiten mit dem Unitree G1 — dem modernsten kommerziell verfügbaren Humanoiden. Er ist rund 130 cm groß, hat 23+ Freiheitsgrade und spricht dank KI-Integration Deutsch.</p></div>
+        <div class="faq-a" hidden><p>Wir arbeiten mit dem Unitree G1 — dem modernsten kommerziell verfügbaren Humanoiden. Er ist rund 130 cm groß, hat 23+ Freiheitsgrade und spricht dank KI-Integration Deutsch und jede andere Sprache.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">
@@ -617,7 +614,7 @@
     <a href="#kontakt" class="btn-primary">Termin anfragen →</a>
   </div>
 
-  <script src="main.js"></script>
-  <script src="a11y.js" defer></script>
+  <script src="main.js?v=03f9bb23"></script>
+  <script src="a11y.js?v=cce707c6" defer></script>
 </body>
 </html>
