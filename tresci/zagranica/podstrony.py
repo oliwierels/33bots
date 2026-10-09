@@ -95,6 +95,25 @@ ODSTEPY_DE = [
     ('white-space:nowrap;">Roboter für den Junggesellinnenabschied →', '">Roboter für den Junggesellinnenabschied →'),
 ]
 
+# Długie niemieckie słowa w tekście strony (nie w tytule, opisach, adresach ani danych
+# strukturalnych) dostają miękkie dzielenie — inaczej „Junggesellinnenabschied” w nagłówku
+# rozpychał hero na telefonie poza ekran.
+DZIELENIE_DE = {'Junggesellinnenabschied': 'Junggesellinnen&shy;abschied'}
+
+
+def miekkie_dzielenie(tekst):
+    """Podmienia słowa tylko w tekście widocznym w <body>: poza znacznikami, skryptami i stylami."""
+    i = tekst.find('<body')
+    if i < 0:
+        return tekst
+    glowa, cialo = tekst[:i], tekst[i:]
+    czesci = re.split(r'(<script\b.*?</script>|<style\b.*?</style>|<[^>]+>)', cialo, flags=re.S)
+    for n in range(0, len(czesci), 2):          # parzyste = tekst między znacznikami
+        for slowo, podzielone in DZIELENIE_DE.items():
+            czesci[n] = czesci[n].replace(slowo, podzielone)
+    return glowa + ''.join(czesci)
+
+
 KOMENTARZ_INTER = """  <!-- Keine Verbindungen zu Dritten vor der Einwilligung: Analyse-Tags sind
        consent-gated, die Schrift Inter wird lokal ausgeliefert. -->
   <link rel="stylesheet" href="fonts/inter.css" />
@@ -120,6 +139,7 @@ def podstrony_de(cel):
         s = s.replace(KOMENTARZ_INTER, KOMENTARZ_FONTY)
         for stare, nowe in JEZYK_DE + ODSTEPY_DE:
             s = s.replace(stare, nowe)
+        s = miekkie_dzielenie(s)
         s = re.sub(r'(href|src)="(style\.css|main\.js|a11y\.css|a11y\.js|gallery\.css)(\?v=[^"]*)?"',
                    lambda m: f'{m.group(1)}="{m.group(2)}?v={wersje[m.group(2)]}"', s)
         assert 'cursorGlow' not in s and 'fonts/inter.css' not in s, f'{strona.name}: zostały efekty albo Inter'

@@ -1085,7 +1085,8 @@ a.contact-detail:hover .contact-detail__val { color: var(--text-2); }
 }
 .footer__socials {
   display: flex;
-  gap: var(--s3);
+  flex-wrap: wrap;   /* 320 px: „LinkedIn” nie wychodzi poza ekran */
+  gap: var(--s2) var(--s3);
 }
 .footer__social {
   font-size: 0.72rem;
