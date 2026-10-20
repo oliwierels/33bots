@@ -51,6 +51,12 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Jak wybrać firmę do wynajmu robota humanoidalnego — porównanie ofert](https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html): co musi być w cenie (transport, operator, branding, OC), jak sprawdzić referencje
 - [Unitree G1 — specyfikacja i możliwości](https://33bots.pl/blog-unitree-g1-robot.html)
 
+## Zakup i wdrożenie robota
+
+- [Sklep — Unitree G1 i G1 EDU na własność](https://33bots.pl/sklep.html): Unitree G1 od 100 000 zł brutto za sam robot, G1 EDU wyceniany indywidualnie; dostawa, uruchomienie, około 30 dni realizacji
+- [Wdrożenia dla firm](https://33bots.pl/wdrozenia.html): robot na stałe z oprogramowaniem do mowy, bazą wiedzy o firmie, szkoleniem zespołu i wsparciem po starcie
+- [Wdrożenie robota humanoidalnego w firmie: etapy, koszty, pilotaż](https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html): kiedy humanoid ma sens w firmie, wynajem vs zakup vs wdrożenie, etapy, pilotaż przez wynajem, baza wiedzy, szkolenie, bezpieczeństwo i AI Act, koszty, typowe błędy
+
 ## Zasięg
 
 Cała Polska, m.in.: [Warszawa](https://33bots.pl/robot-wynajem-warszawa.html), [Kraków](https://33bots.pl/robot-wynajem-krakow.html), [Wrocław](https://33bots.pl/robot-wynajem-wroclaw.html), [Poznań](https://33bots.pl/robot-wynajem-poznan.html), [Gdańsk](https://33bots.pl/robot-wynajem-gdansk.html), [Katowice](https://33bots.pl/robot-wynajem-katowice.html), [Łódź](https://33bots.pl/robot-wynajem-lodz.html) i 40+ innych miast.

@@ -6,7 +6,14 @@
     <atom:link href="https://33bots.pl/feed.xml" rel="self" type="application/rss+xml" />
     <description>Wynajem robotów humanoidalnych Unitree G1 na eventy, targi i konferencje. Porady, ceny, porównania i case studies.</description>
     <language>pl</language>
-    <lastBuildDate>Thu, 08 Oct 2026 08:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 08:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Wdrożenie robota humanoidalnego w firmie: etapy, koszty, pilotaż</title>
+      <link>https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html</link>
+      <guid isPermaLink="true">https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html</guid>
+      <pubDate>Tue, 20 Oct 2026 08:00:00 +0000</pubDate>
+      <description>Jak wdrożyć robota humanoidalnego w firmie: pilotaż przez wynajem od 5 500 zł netto, zakup od 100 000 zł brutto, baza wiedzy, szkolenie i start po miesiącu.</description>
+    </item>
     <item>
       <title>Robot humanoidalny na event korporacyjny — przewodnik dla firm</title>
       <link>https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html</link>
