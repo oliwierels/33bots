@@ -1,7 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe sprawdzenie, co naprawdę serwują domeny 33bots — z sieci GitHuba,
-# bo sesja Claude nie ma dostępu do internetu. Niczego nie wdraża i nie zmienia.
+# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Niczego nie wdraża i nie zmienia. Zapytania pomiarowe (Google, Albacross) oraz wysyłka
+# formularza są przechwytywane w przeglądarce testowej i nie wychodzą do sieci.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -15,80 +16,147 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: DNS, certyfikat, odpowiedź serwera
+      - name: Kontener GTM-MR7R7CJ3 — tagi i wyzwalacze
         run: |
-          set +e
-          for d in 33bots.at www.33bots.at 33bots.de 33bots.pl 33bots.lt; do
-            echo "================ $d"
-            echo "A:    $(dig +short A $d | tr '\n' ' ')"
-            echo "AAAA: $(dig +short AAAA $d | tr '\n' ' ')"
-            echo "NS:   $(dig +short NS ${d#www.} | tr '\n' ' ')"
-            curl -sS -o /tmp/strona.html -D /tmp/naglowki.txt \
-                 -w "HTTP %{http_code} · %{time_total}s · %{size_download} B · IP %{remote_ip}\n" \
-                 --max-time 30 "https://$d/"
-            grep -iE '^(HTTP|server|location|last-modified)' /tmp/naglowki.txt | cut -c1-200
-            echo "CSP (nagłówek): $(grep -i '^content-security-policy' /tmp/naglowki.txt | cut -c1-400)"
-            echo "CSP (meta): $(grep -o '<meta http-equiv=\"Content-Security-Policy\"[^>]*' /tmp/strona.html | cut -c1-120)"
-            echo "tytuł: $(grep -o '<title>[^<]*' /tmp/strona.html | head -1)"
-            echo "md5 strony: $(md5sum /tmp/strona.html | cut -c1-32)"
-            echo | timeout 15 openssl s_client -servername "$d" -connect "$d:443" 2>/dev/null \
-              | openssl x509 -noout -dates -issuer 2>/dev/null
-          done
-          echo "================ whois 33bots.at"
-          sudo apt-get -qq install -y whois > /dev/null 2>&1
-          whois 33bots.at | grep -iE 'domain|changed|nserver|status|expir|registrar|remarks' | head -20
+          cat > gtm.mjs <<'JS'
+          import vm from 'node:vm';
+          const src = await (await fetch('https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3')).text();
+          console.log('gtm.js:', src.length, 'B');
+          const i = src.indexOf('var data = ');
+          if (i < 0) { console.log('brak danych kontenera'); process.exit(0); }
+          let k = i + 11, glebokosc = 0, wTekscie = false, cudzyslow = '', ucieczka = false;
+          for (; k < src.length; k++) {
+            const c = src[k];
+            if (wTekscie) { if (ucieczka) ucieczka = false; else if (c === '\\') ucieczka = true; else if (c === cudzyslow) wTekscie = false; continue; }
+            if (c === '"' || c === "'") { wTekscie = true; cudzyslow = c; continue; }
+            if (c === '{') glebokosc++;
+            else if (c === '}' && --glebokosc === 0) { k++; break; }
+          }
+          const tekst = src.slice(i + 11, k);
+          let dane; try { dane = JSON.parse(tekst); } catch { dane = vm.runInNewContext('(' + tekst + ')'); }
+          const r = dane.resource || {};
+          console.log('wersja kontenera:', r.version);
+          const opis = (o) => Object.fromEntries(Object.entries(o)
+            .filter(([k, v]) => k === 'function' || k === 'tag_id' || (k.startsWith('vtp_') && v !== null && typeof v !== 'object') || (k.startsWith('vtp_') && Array.isArray(v)))
+            .map(([k, v]) => [k, JSON.stringify(v).slice(0, 140)]));
+          console.log('\nMAKRA'); (r.macros || []).forEach((m, n) => console.log(n, JSON.stringify(opis(m))));
+          console.log('\nTAGI'); (r.tags || []).forEach((t, n) => console.log(n, JSON.stringify(opis(t))));
+          console.log('\nWARUNKI'); (r.predicates || []).forEach((p, n) => console.log(n, JSON.stringify(p).slice(0, 220)));
+          console.log('\nREGUŁY'); (r.rules || []).forEach((x, n) => console.log(n, JSON.stringify(x)));
+          console.log('\nIDENTYFIKATORY:', [...new Set(src.match(/\b(AW-\d+|G-[A-Z0-9]{6,}|GT-[A-Z0-9]+|DC-\d+)\b/g) || [])].join(' '));
+          JS
+          node gtm.mjs
 
-      - name: Przeglądarka — błędy JS, ruch w hero i pasach, zrzuty
+      - name: Oficjalna lista hostów Google dla CSP
+        run: |
+          curl -sL --max-time 30 'https://developers.google.com/tag-platform/security/guides/csp?hl=en' -o csp.html
+          python3 - <<'PY'
+          import html, re
+          src = open('csp.html', encoding='utf-8', errors='replace').read()
+          for m in re.finditer(r'<(h2|h3)[^>]*>(.*?)</\1>|<pre[^>]*>(.*?)</pre>', src, re.S):
+              if m.group(1):
+                  print('\n## ' + html.unescape(re.sub('<[^>]+>', '', m.group(2))).strip())
+              else:
+                  print(html.unescape(re.sub('<[^>]+>', '', m.group(3))).strip()[:900])
+          PY
+
+      - name: Przeglądarka — CSP obecna i nowa, symulowana wysyłka formularza
         run: |
           npm i --no-save --silent playwright@1.56.1
           npx playwright install --with-deps chromium > /dev/null 2>&1
           cat > test.mjs <<'JS'
           import { chromium } from 'playwright';
-          const b = await chromium.launch();
-          for (const [adres, nazwa] of [['https://33bots.at/', 'at'], ['https://33bots.pl/', 'pl']]) {
-            for (const vp of [{ width: 1440, height: 900 }]) {
-              const p = await b.newPage({ viewport: vp });
-              const bledy = [], zasoby = [];
-              p.on('pageerror', (e) => bledy.push(e.message));
-              p.on('console', (m) => { if (m.type() === 'error') bledy.push('console: ' + m.text()); });
-              p.on('response', (r) => { if (r.status() >= 400) zasoby.push(`${r.status()} ${r.url()}`); });
-              p.on('requestfailed', (r) => zasoby.push(`FAIL ${r.failure()?.errorText} ${r.url()}`));
-              const pomiar = {};
-              p.on('request', (r) => { const h = new URL(r.url()).host; if (/google|doubleclick|albacross|facebook|clarity|hotjar/.test(h)) pomiar[h] = (pomiar[h] || 0) + 1; });
-              try {
-                const odp = await p.goto(adres, { waitUntil: 'load', timeout: 45000 });
-                console.log(`\n== ${adres} @${vp.width}: HTTP ${odp?.status()} · tytuł: ${await p.title()}`);
-                console.log('h1:', (await p.locator('h1').first().textContent().catch(() => 'brak'))?.trim());
-                const l1 = await p.locator('#heroLicznik').textContent().catch(() => 'brak');
-                await p.waitForTimeout(7000);
-                const l2 = await p.locator('#heroLicznik').textContent().catch(() => 'brak');
-                console.log(`hero: ${l1} → ${l2} po 7 s`);
-                await p.locator('.pasy').first().scrollIntoViewIfNeeded().catch(() => {});
-                await p.mouse.move(1, 1);
-                const x = () => p.evaluate(() => { const t = document.querySelector('.pas__tor'); return t ? new DOMMatrix(getComputedStyle(t).transform).m41 : null; });
-                const x1 = await x(); await p.waitForTimeout(1500); const x2 = await x();
-                console.log(`pas realizacji: przesunięcie ${x1} → ${x2}`);
-                console.log('baner cookie:', await p.locator('#cookies').isVisible().catch(() => 'brak'));
-                console.log('błędy JS (poza CSP):', JSON.stringify(bledy.filter((b) => !/Content Security Policy|violates/.test(b)).slice(0, 5)));
-                const zablokowane = {};
-                for (const z of zasoby) { const m = z.match(/^FAIL (\S+) (\S+)/); if (m) { const h = new URL(m[2]).host + ' (' + m[1] + ')'; zablokowane[h] = (zablokowane[h] || 0) + 1; } }
-                console.log('zapytania pomiarowe (host: liczba):', JSON.stringify(pomiar));
-                console.log('zablokowane / nieudane (host: liczba):', JSON.stringify(zablokowane));
-                await p.evaluate(() => scrollTo(0, 0));
-                await p.waitForTimeout(500);
-                await p.screenshot({ path: `${nazwa}-${vp.width}.png` });
-              } catch (e) { console.log(`\n== ${adres} @${vp.width}: BŁĄD ${e.message}`); }
-              await p.close();
+          const wspolne = (tld, formularz) => [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net https://serve.albacross.com https://*.albacross.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            `img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://www.google.${tld} https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com`,
+            "font-src 'self' data: https://fonts.gstatic.com",
+            `connect-src 'self' ${formularz} https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.${tld} https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.albacross.com https://serve.albacross.com`,
+            "frame-src https://www.googletagmanager.com https://*.doubleclick.net https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl",
+            "media-src 'self'", `form-action 'self' ${formularz}`, "base-uri 'self'",
+          ].join('; ');
+          const NOWA = {
+            'https://33bots.at/': wspolne('at', 'https://formsubmit.co'),
+            'https://33bots.pl/': wspolne('pl', 'https://formspree.io'),
+          };
+          const POMIAR = /google|doubleclick|albacross/;
+
+          async function przebieg(adres, wariant) {
+            const b = await chromium.launch();
+            const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, serviceWorkers: 'block' });
+            const p = await ctx.newPage();
+            const host = new URL(adres).host;
+            const dziennik = [];
+            const zapisz = (t) => dziennik.push(t);
+            await p.addInitScript(() => {
+              window.__naruszenia = [];
+              document.addEventListener('securitypolicyviolation', (e) => {
+                let u = e.blockedURI; try { const x = new URL(u); u = x.host + x.pathname.slice(0, 36); } catch {}
+                window.__naruszenia.push(`${e.effectiveDirective} ← ${u}`);
+              });
+            });
+            await ctx.route('**/*', async (route) => {
+              const req = route.request();
+              const u = new URL(req.url());
+              const typ = req.resourceType();
+              let ramka = null; try { ramka = req.frame(); } catch {}
+              if (u.host === host) {
+                if (wariant === 'nowa' && req.isNavigationRequest() && ramka === p.mainFrame()) {
+                  const odp = await route.fetch();
+                  const h = { ...odp.headers() };
+                  for (const n of ['content-encoding', 'content-length', 'transfer-encoding']) delete h[n];
+                  h['content-security-policy'] = NOWA[adres] + "; frame-ancestors 'self'";
+                  const body = (await odp.text()).replace(/(<meta http-equiv="Content-Security-Policy" content=")[^"]*(")/, `$1${NOWA[adres]}$2`);
+                  return route.fulfill({ status: odp.status(), headers: h, body });
+                }
+                return route.continue();
+              }
+              if (/^fonts\.(googleapis|gstatic)\.com$/.test(u.host)) return route.continue();
+              if (/^(formsubmit\.co|formspree\.io)$/.test(u.host)) {
+                zapisz(`FORMULARZ ${req.method()} ${u.host}${u.pathname} → odpowiedź podstawiona lokalnie, nic nie wysłane`);
+                return route.fulfill({ status: 200, contentType: 'application/json',
+                  headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*' },
+                  body: u.host === 'formsubmit.co' ? '{"success":"true","message":"ok"}' : '{"ok":true}' });
+              }
+              if (typ === 'script' && (u.host === 'www.googletagmanager.com' || u.host === 'serve.albacross.com')) {
+                zapisz(`wczytany skrypt ${u.host}${u.pathname}${u.searchParams.get('id') ? '?id=' + u.searchParams.get('id') : ''}`);
+                return route.continue();
+              }
+              if (POMIAR.test(u.host)) zapisz(`przepuszczony przez CSP (zatrzymany, nie wysłany): ${typ} ${u.host}${u.pathname.slice(0, 40)}${ramka === p.mainFrame() ? '' : ' [z ramki]'}`);
+              return route.abort('blockedbyclient');
+            });
+            p.on('requestfailed', (r) => { if (r.failure()?.errorText === 'csp') { const u = new URL(r.url()); zapisz(`ZABLOKOWANY przez CSP: ${r.resourceType()} ${u.host}${u.pathname.slice(0, 40)}`); } });
+            p.on('pageerror', (e) => zapisz(`błąd JS: ${e.message.slice(0, 160)}`));
+
+            console.log(`\n================ ${adres} · CSP ${wariant}`);
+            await p.goto(adres, { waitUntil: 'load', timeout: 45000 });
+            await p.waitForTimeout(6000);
+            const stan = await p.evaluate(() => ({ gtag: typeof window.gtag, kontenery: Object.keys(window.google_tag_manager || {}).filter((k) => /^(GTM|AW|G|GT|DC)-/.test(k)), zdarzenia: (window.dataLayer || []).map((e) => e && e.event).filter(Boolean) }));
+            console.log('tytuł:', await p.title());
+            console.log('window.gtag:', stan.gtag, '· aktywne tagi Google:', stan.kontenery.join(' ') || 'brak', '· dataLayer:', stan.zdarzenia.join(' '));
+            console.log('-- po wejściu na stronę:'); dziennik.splice(0).forEach((t) => console.log('  ' + t));
+            console.log('  naruszenia CSP:', JSON.stringify(await p.evaluate(() => window.__naruszenia.splice(0))));
+
+            // Symulowana wysyłka: formularz wypełniony w przeglądarce testowej, zapytanie do FormSubmit/Formspree
+            // przechwycone i obsłużone lokalnie — nic nie trafia do skrzynki ani do Google.
+            await p.evaluate(() => { document.querySelector('#pole-typ label.chip').click(); document.getElementById('dalej').click(); });
+            await p.fill('#pole-name', 'Diagnoza Test');
+            await p.fill('#pole-email', 'diagnoza@example.com');
+            await p.evaluate(() => document.getElementById('wyslij').click());
+            await p.waitForTimeout(6000);
+            console.log('-- po symulowanej wysyłce formularza:');
+            console.log('  komunikat:', ((await p.locator('.form-sukces').textContent().catch(() => '')) || 'BRAK komunikatu o sukcesie').trim().slice(0, 90));
+            console.log('  dataLayer po wysyłce:', JSON.stringify(await p.evaluate(() => (window.dataLayer || []).map((e) => e && e.event).filter(Boolean))));
+            dziennik.splice(0).forEach((t) => console.log('  ' + t));
+            console.log('  naruszenia CSP:', JSON.stringify(await p.evaluate(() => window.__naruszenia.splice(0))));
+            await b.close();
+          }
+
+          for (const adres of ['https://33bots.at/', 'https://33bots.pl/']) {
+            for (const wariant of ['obecna', 'nowa']) {
+              try { await przebieg(adres, wariant); } catch (e) { console.log(`BŁĄD ${adres} ${wariant}: ${e.message}`); }
             }
           }
-          await b.close();
           JS
           node test.mjs
-
-      - name: Zrzuty ekranu
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: zrzuty
-          path: '*.png'
-          retention-days: 3
