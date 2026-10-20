@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: struktura artykułu konkurencji
-# (nagłówki, długość sekcji, meta, schema) — bez kopiowania treści do logu.
+# Niczego nie wdraża i nie zmienia. Tym razem: czy nowy artykuł jest na 33bots.pl
+# i czy razem z nim nie poszło nic innego (nagłówek CSP bez zmian).
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -14,60 +14,25 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Struktura artykułu konkurencji
+      - name: Artykuł na żywej stronie
         run: |
-          npm i --no-save --silent playwright@1.56.1
-          npx playwright install --with-deps chromium > /dev/null 2>&1
-          cat > analiza.mjs <<'JS'
-          import { chromium } from 'playwright';
-          const ADRESY = [
-            'https://merarobotics.com/blog/wdrozenie-robota-humanoidalnego-w-firmie',
-            'https://merarobotics.com/blog',
-          ];
-          const b = await chromium.launch();
-          for (const adres of ADRESY) {
-            const p = await b.newPage({ viewport: { width: 1440, height: 900 }, locale: 'pl-PL' });
-            try {
-              const odp = await p.goto(adres, { waitUntil: 'networkidle', timeout: 60000 });
-              console.log(`\n================ ${adres} → HTTP ${odp?.status()} · ${p.url()}`);
-              const w = await p.evaluate(() => {
-                const meta = (s) => document.querySelector(s)?.getAttribute('content') ?? null;
-                const ld = [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => {
-                  try { const j = JSON.parse(s.textContent); const a = Array.isArray(j) ? j : (j['@graph'] || [j]); return a.map((x) => [x['@type'], x.datePublished, x.dateModified, x.author?.name || x.author?.[0]?.name].filter(Boolean).join(' · ')); } catch { return ['(niepoprawny JSON-LD)']; }
-                });
-                const korzen = document.querySelector('article') || document.querySelector('main') || document.body;
-                const slowa = (t) => (t.match(/[\p{L}\p{N}]+/gu) || []).length;
-                const naglowki = [];
-                const chodz = document.createTreeWalker(korzen, NodeFilter.SHOW_ELEMENT);
-                let biezacy = null;
-                const teksty = [];
-                for (let n = chodz.currentNode; n; n = chodz.nextNode()) {
-                  if (/^H[1-4]$/.test(n.tagName)) { biezacy = { poziom: n.tagName, tekst: n.textContent.trim().replace(/\s+/g, ' ').slice(0, 140), slowa: 0 }; naglowki.push(biezacy); }
-                  else if (/^(P|LI|TD|TH|BLOCKQUOTE|FIGCAPTION|DT|DD)$/.test(n.tagName) && biezacy) { biezacy.slowa += slowa(n.textContent); }
-                }
-                const linki = [...korzen.querySelectorAll('a[href]')].map((a) => { try { return new URL(a.href, location.href); } catch { return null; } }).filter(Boolean);
-                const wew = linki.filter((u) => u.host === location.host).length;
-                const zew = [...new Set(linki.filter((u) => u.host !== location.host).map((u) => u.host))];
-                return {
-                  tytul: document.title, opis: meta('meta[name="description"]'), lang: document.documentElement.lang,
-                  canonical: document.querySelector('link[rel="canonical"]')?.href ?? null, robots: meta('meta[name="robots"]'),
-                  ogImage: !!meta('meta[property="og:image"]'), opublikowano: meta('meta[property="article:published_time"]'),
-                  ld, slowaRazem: slowa(korzen.innerText), naglowki,
-                  obrazy: korzen.querySelectorAll('img').length, tabele: korzen.querySelectorAll('table').length,
-                  listy: korzen.querySelectorAll('ul,ol').length, linkiWew: wew, domenyZew: zew,
-                  hreflang: [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) => l.hreflang),
-                  wpisyBloga: location.pathname.replace(/\/$/, '') === '/blog' ? [...document.querySelectorAll('a[href*="/blog/"]')].map((a) => a.getAttribute('href')).filter((h, i, t) => t.indexOf(h) === i).slice(0, 60) : [],
-                };
-              });
-              console.log(JSON.stringify({ ...w, naglowki: undefined, wpisyBloga: undefined }, null, 1));
-              console.log('NAGŁÓWKI (poziom · słowa w sekcji · tekst):');
-              for (const n of w.naglowki) console.log(`  ${n.poziom} · ${String(n.slowa).padStart(4)} · ${n.tekst}`);
-              if (w.wpisyBloga.length) { console.log('WPISY NA BLOGU:'); w.wpisyBloga.forEach((h) => console.log('  ' + h)); }
-            } catch (e) { console.log(`\n================ ${adres}: BŁĄD ${e.message}`); }
-            await p.close();
-          }
-          await b.close();
-          JS
-          node analiza.mjs
+          set +e
+          A=https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html
+          curl -sS -o a.html -D a.txt -w "artykuł → HTTP %{http_code} · %{size_download} B\n" -H 'Cache-Control: no-cache' "$A"
+          echo "tytuł: $(grep -o '<title>[^<]*' a.html)"
+          echo "canonical: $(grep -o '<link rel="canonical" href="[^"]*"' a.html)"
+          echo "h1: $(grep -o '<h1 class="art__h1">[^<]*' a.html)"
+          echo "dane strukturalne: $(grep -o '"@type": "[A-Za-z]*"' a.html | sort | uniq -c | tr '\n' ' ')"
+          echo "GTM: $(grep -c 'GTM-MR7R7CJ3' a.html)"
+          for z in $(grep -o '<img src="[^"]*"' a.html | sed 's/<img src="//; s/"$//'); do printf '  obraz %s → ' "$z"; curl -s -o /dev/null -w '%{http_code}\n' "https://33bots.pl/$z"; done
+          echo "--- powiązania"
+          echo "blog.html: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/blog.html | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
+          echo "wdrozenia.html: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/wdrozenia.html | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
+          echo "sitemap.xml: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/sitemap.xml | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
+          echo "feed.xml: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/feed.xml | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
+          echo "llms.txt: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/llms.txt | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
+          echo "--- nagłówek CSP 33bots.pl (ma być bez zmian, bez analytics.google.com)"
+          curl -s -o /dev/null -D h.txt https://33bots.pl/
+          echo "analytics.google.com w CSP: $(grep -i '^content-security-policy' h.txt | grep -c 'analytics.google.com')"
