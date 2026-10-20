@@ -18,6 +18,7 @@ const STRONY = [
   '/blog-robot-na-event-korporacyjny-przewodnik.html',
   '/blog-robot-na-event-miedzynarodowy.html',
   '/blog-robot-na-festyn-i-dni-gminy.html',
+  '/blog-wdrozenie-robota-humanoidalnego-w-firmie.html',
   // stare podstrony z dopisaną kartą poradnika
   '/blog.html',
   '/blog-atrakcja-na-event-firmowy.html',
