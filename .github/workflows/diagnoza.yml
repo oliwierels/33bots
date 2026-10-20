@@ -16,7 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Pominięte — kontener GTM sprawdzony w poprzednim przebiegu
+        if: false
+        run: echo
+
       - name: Kontener GTM-MR7R7CJ3 — tagi i wyzwalacze
+        if: false
         run: |
           cat > gtm.mjs <<'JS'
           import vm from 'node:vm';
@@ -48,6 +53,7 @@ jobs:
           node gtm.mjs
 
       - name: Oficjalna lista hostów Google dla CSP
+        if: false
         run: |
           curl -sL --max-time 30 'https://developers.google.com/tag-platform/security/guides/csp?hl=en' -o csp.html
           python3 - <<'PY'
@@ -66,19 +72,10 @@ jobs:
           npx playwright install --with-deps chromium > /dev/null 2>&1
           cat > test.mjs <<'JS'
           import { chromium } from 'playwright';
-          const wspolne = (tld, formularz) => [
-            "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net https://serve.albacross.com https://*.albacross.com",
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-            `img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://www.google.${tld} https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com`,
-            "font-src 'self' data: https://fonts.gstatic.com",
-            `connect-src 'self' ${formularz} https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.${tld} https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.albacross.com https://serve.albacross.com`,
-            "frame-src https://www.googletagmanager.com https://*.doubleclick.net https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl",
-            "media-src 'self'", `form-action 'self' ${formularz}`, "base-uri 'self'",
-          ].join('; ');
+          // Polityki skopiowane 1:1 z plików przygotowanych do wdrożenia (.htaccess .at i .pl, meta .at).
           const NOWA = {
-            'https://33bots.at/': wspolne('at', 'https://formsubmit.co'),
-            'https://33bots.pl/': wspolne('pl', 'https://formspree.io'),
+            'https://33bots.at/': { naglowek: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; frame-ancestors 'self'", meta: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'" },
+            'https://33bots.pl/': { naglowek: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://gdansk.tvp.pl https://www.youtube.com https://www.youtube-nocookie.com https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; frame-ancestors 'self'" },
           };
           const POMIAR = /google|doubleclick|albacross/;
 
@@ -106,8 +103,8 @@ jobs:
                   const odp = await route.fetch();
                   const h = { ...odp.headers() };
                   for (const n of ['content-encoding', 'content-length', 'transfer-encoding']) delete h[n];
-                  h['content-security-policy'] = NOWA[adres] + "; frame-ancestors 'self'";
-                  const body = (await odp.text()).replace(/(<meta http-equiv="Content-Security-Policy" content=")[^"]*(")/, `$1${NOWA[adres]}$2`);
+                  h['content-security-policy'] = NOWA[adres].naglowek;
+                  const body = (await odp.text()).replace(/(<meta http-equiv="Content-Security-Policy" content=")[^"]*(")/, `$1${NOWA[adres].meta ?? ''}$2`);
                   return route.fulfill({ status: odp.status(), headers: h, body });
                 }
                 return route.continue();
@@ -154,7 +151,7 @@ jobs:
           }
 
           for (const adres of ['https://33bots.at/', 'https://33bots.pl/']) {
-            for (const wariant of ['obecna', 'nowa']) {
+            for (const wariant of ['nowa']) {
               try { await przebieg(adres, wariant); } catch (e) { console.log(`BŁĄD ${adres} ${wariant}: ${e.message}`); }
             }
           }
