@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Zapytania pomiarowe (Google, Albacross) oraz wysyłka
-# formularza są przechwytywane w przeglądarce testowej i nie wychodzą do sieci.
+# Niczego nie wdraża i nie zmienia. Tym razem: struktura artykułu konkurencji
+# (nagłówki, długość sekcji, meta, schema) — bez kopiowania treści do logu.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -16,144 +16,58 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Pominięte — kontener GTM sprawdzony w poprzednim przebiegu
-        if: false
-        run: echo
-
-      - name: Kontener GTM-MR7R7CJ3 — tagi i wyzwalacze
-        if: false
-        run: |
-          cat > gtm.mjs <<'JS'
-          import vm from 'node:vm';
-          const src = await (await fetch('https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3')).text();
-          console.log('gtm.js:', src.length, 'B');
-          const i = src.indexOf('var data = ');
-          if (i < 0) { console.log('brak danych kontenera'); process.exit(0); }
-          let k = i + 11, glebokosc = 0, wTekscie = false, cudzyslow = '', ucieczka = false;
-          for (; k < src.length; k++) {
-            const c = src[k];
-            if (wTekscie) { if (ucieczka) ucieczka = false; else if (c === '\\') ucieczka = true; else if (c === cudzyslow) wTekscie = false; continue; }
-            if (c === '"' || c === "'") { wTekscie = true; cudzyslow = c; continue; }
-            if (c === '{') glebokosc++;
-            else if (c === '}' && --glebokosc === 0) { k++; break; }
-          }
-          const tekst = src.slice(i + 11, k);
-          let dane; try { dane = JSON.parse(tekst); } catch { dane = vm.runInNewContext('(' + tekst + ')'); }
-          const r = dane.resource || {};
-          console.log('wersja kontenera:', r.version);
-          const opis = (o) => Object.fromEntries(Object.entries(o)
-            .filter(([k, v]) => k === 'function' || k === 'tag_id' || (k.startsWith('vtp_') && v !== null && typeof v !== 'object') || (k.startsWith('vtp_') && Array.isArray(v)))
-            .map(([k, v]) => [k, JSON.stringify(v).slice(0, 140)]));
-          console.log('\nMAKRA'); (r.macros || []).forEach((m, n) => console.log(n, JSON.stringify(opis(m))));
-          console.log('\nTAGI'); (r.tags || []).forEach((t, n) => console.log(n, JSON.stringify(opis(t))));
-          console.log('\nWARUNKI'); (r.predicates || []).forEach((p, n) => console.log(n, JSON.stringify(p).slice(0, 220)));
-          console.log('\nREGUŁY'); (r.rules || []).forEach((x, n) => console.log(n, JSON.stringify(x)));
-          console.log('\nIDENTYFIKATORY:', [...new Set(src.match(/\b(AW-\d+|G-[A-Z0-9]{6,}|GT-[A-Z0-9]+|DC-\d+)\b/g) || [])].join(' '));
-          JS
-          node gtm.mjs
-
-      - name: Oficjalna lista hostów Google dla CSP
-        if: false
-        run: |
-          curl -sL --max-time 30 'https://developers.google.com/tag-platform/security/guides/csp?hl=en' -o csp.html
-          python3 - <<'PY'
-          import html, re
-          src = open('csp.html', encoding='utf-8', errors='replace').read()
-          for m in re.finditer(r'<(h2|h3)[^>]*>(.*?)</\1>|<pre[^>]*>(.*?)</pre>', src, re.S):
-              if m.group(1):
-                  print('\n## ' + html.unescape(re.sub('<[^>]+>', '', m.group(2))).strip())
-              else:
-                  print(html.unescape(re.sub('<[^>]+>', '', m.group(3))).strip()[:900])
-          PY
-
-      - name: Przeglądarka — CSP obecna i nowa, symulowana wysyłka formularza
+      - name: Struktura artykułu konkurencji
         run: |
           npm i --no-save --silent playwright@1.56.1
           npx playwright install --with-deps chromium > /dev/null 2>&1
-          cat > test.mjs <<'JS'
+          cat > analiza.mjs <<'JS'
           import { chromium } from 'playwright';
-          // Polityki skopiowane 1:1 z plików przygotowanych do wdrożenia (.htaccess .at i .pl, meta .at).
-          const NOWA = {
-            'https://33bots.at/': { naglowek: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; frame-ancestors 'self'", meta: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://www.youtube.com https://www.youtube-nocookie.com https://gdansk.tvp.pl https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'" },
-            'https://33bots.pl/': { naglowek: "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://serve.albacross.com https://*.albacross.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://*.albacross.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://*.albacross.com https://serve.albacross.com https://www.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://www.google.pl https://www.google.at https://www.google.de https://*.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com; frame-src https://www.googletagmanager.com https://gdansk.tvp.pl https://www.youtube.com https://www.youtube-nocookie.com https://*.doubleclick.net; media-src 'self'; form-action 'self' https://formspree.io; base-uri 'self'; frame-ancestors 'self'" },
-          };
-          const POMIAR = /google|doubleclick|albacross/;
-
-          async function przebieg(adres, wariant) {
-            const b = await chromium.launch();
-            const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, serviceWorkers: 'block' });
-            const p = await ctx.newPage();
-            const host = new URL(adres).host;
-            const dziennik = [];
-            const zapisz = (t) => dziennik.push(t);
-            await p.addInitScript(() => {
-              window.__naruszenia = [];
-              document.addEventListener('securitypolicyviolation', (e) => {
-                let u = e.blockedURI; try { const x = new URL(u); u = x.host + x.pathname.slice(0, 36); } catch {}
-                window.__naruszenia.push(`${e.effectiveDirective} ← ${u}`);
-              });
-            });
-            await ctx.route('**/*', async (route) => {
-              const req = route.request();
-              const u = new URL(req.url());
-              const typ = req.resourceType();
-              let ramka = null; try { ramka = req.frame(); } catch {}
-              if (u.host === host) {
-                if (wariant === 'nowa' && req.isNavigationRequest() && ramka === p.mainFrame()) {
-                  const odp = await route.fetch();
-                  const h = { ...odp.headers() };
-                  for (const n of ['content-encoding', 'content-length', 'transfer-encoding']) delete h[n];
-                  h['content-security-policy'] = NOWA[adres].naglowek;
-                  const body = (await odp.text()).replace(/(<meta http-equiv="Content-Security-Policy" content=")[^"]*(")/, `$1${NOWA[adres].meta ?? ''}$2`);
-                  return route.fulfill({ status: odp.status(), headers: h, body });
+          const ADRESY = [
+            'https://merarobotics.com/blog/wdrozenie-robota-humanoidalnego-w-firmie',
+            'https://merarobotics.com/blog',
+          ];
+          const b = await chromium.launch();
+          for (const adres of ADRESY) {
+            const p = await b.newPage({ viewport: { width: 1440, height: 900 }, locale: 'pl-PL' });
+            try {
+              const odp = await p.goto(adres, { waitUntil: 'networkidle', timeout: 60000 });
+              console.log(`\n================ ${adres} → HTTP ${odp?.status()} · ${p.url()}`);
+              const w = await p.evaluate(() => {
+                const meta = (s) => document.querySelector(s)?.getAttribute('content') ?? null;
+                const ld = [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap((s) => {
+                  try { const j = JSON.parse(s.textContent); const a = Array.isArray(j) ? j : (j['@graph'] || [j]); return a.map((x) => [x['@type'], x.datePublished, x.dateModified, x.author?.name || x.author?.[0]?.name].filter(Boolean).join(' · ')); } catch { return ['(niepoprawny JSON-LD)']; }
+                });
+                const korzen = document.querySelector('article') || document.querySelector('main') || document.body;
+                const slowa = (t) => (t.match(/[\p{L}\p{N}]+/gu) || []).length;
+                const naglowki = [];
+                const chodz = document.createTreeWalker(korzen, NodeFilter.SHOW_ELEMENT);
+                let biezacy = null;
+                const teksty = [];
+                for (let n = chodz.currentNode; n; n = chodz.nextNode()) {
+                  if (/^H[1-4]$/.test(n.tagName)) { biezacy = { poziom: n.tagName, tekst: n.textContent.trim().replace(/\s+/g, ' ').slice(0, 140), slowa: 0 }; naglowki.push(biezacy); }
+                  else if (/^(P|LI|TD|TH|BLOCKQUOTE|FIGCAPTION|DT|DD)$/.test(n.tagName) && biezacy) { biezacy.slowa += slowa(n.textContent); }
                 }
-                return route.continue();
-              }
-              if (/^fonts\.(googleapis|gstatic)\.com$/.test(u.host)) return route.continue();
-              if (/^(formsubmit\.co|formspree\.io)$/.test(u.host)) {
-                zapisz(`FORMULARZ ${req.method()} ${u.host}${u.pathname} → odpowiedź podstawiona lokalnie, nic nie wysłane`);
-                return route.fulfill({ status: 200, contentType: 'application/json',
-                  headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*' },
-                  body: u.host === 'formsubmit.co' ? '{"success":"true","message":"ok"}' : '{"ok":true}' });
-              }
-              if (typ === 'script' && (u.host === 'www.googletagmanager.com' || u.host === 'serve.albacross.com')) {
-                zapisz(`wczytany skrypt ${u.host}${u.pathname}${u.searchParams.get('id') ? '?id=' + u.searchParams.get('id') : ''}`);
-                return route.continue();
-              }
-              if (POMIAR.test(u.host)) zapisz(`przepuszczony przez CSP (zatrzymany, nie wysłany): ${typ} ${u.host}${u.pathname.slice(0, 40)}${ramka === p.mainFrame() ? '' : ' [z ramki]'}`);
-              return route.abort('blockedbyclient');
-            });
-            p.on('requestfailed', (r) => { if (r.failure()?.errorText === 'csp') { const u = new URL(r.url()); zapisz(`ZABLOKOWANY przez CSP: ${r.resourceType()} ${u.host}${u.pathname.slice(0, 40)}`); } });
-            p.on('pageerror', (e) => zapisz(`błąd JS: ${e.message.slice(0, 160)}`));
-
-            console.log(`\n================ ${adres} · CSP ${wariant}`);
-            await p.goto(adres, { waitUntil: 'load', timeout: 45000 });
-            await p.waitForTimeout(6000);
-            const stan = await p.evaluate(() => ({ gtag: typeof window.gtag, kontenery: Object.keys(window.google_tag_manager || {}).filter((k) => /^(GTM|AW|G|GT|DC)-/.test(k)), zdarzenia: (window.dataLayer || []).map((e) => e && e.event).filter(Boolean) }));
-            console.log('tytuł:', await p.title());
-            console.log('window.gtag:', stan.gtag, '· aktywne tagi Google:', stan.kontenery.join(' ') || 'brak', '· dataLayer:', stan.zdarzenia.join(' '));
-            console.log('-- po wejściu na stronę:'); dziennik.splice(0).forEach((t) => console.log('  ' + t));
-            console.log('  naruszenia CSP:', JSON.stringify(await p.evaluate(() => window.__naruszenia.splice(0))));
-
-            // Symulowana wysyłka: formularz wypełniony w przeglądarce testowej, zapytanie do FormSubmit/Formspree
-            // przechwycone i obsłużone lokalnie — nic nie trafia do skrzynki ani do Google.
-            await p.evaluate(() => { document.querySelector('#pole-typ label.chip').click(); document.getElementById('dalej').click(); });
-            await p.fill('#pole-name', 'Diagnoza Test');
-            await p.fill('#pole-email', 'diagnoza@example.com');
-            await p.evaluate(() => document.getElementById('wyslij').click());
-            await p.waitForTimeout(6000);
-            console.log('-- po symulowanej wysyłce formularza:');
-            console.log('  komunikat:', ((await p.locator('.form-sukces').textContent().catch(() => '')) || 'BRAK komunikatu o sukcesie').trim().slice(0, 90));
-            console.log('  dataLayer po wysyłce:', JSON.stringify(await p.evaluate(() => (window.dataLayer || []).map((e) => e && e.event).filter(Boolean))));
-            dziennik.splice(0).forEach((t) => console.log('  ' + t));
-            console.log('  naruszenia CSP:', JSON.stringify(await p.evaluate(() => window.__naruszenia.splice(0))));
-            await b.close();
+                const linki = [...korzen.querySelectorAll('a[href]')].map((a) => { try { return new URL(a.href, location.href); } catch { return null; } }).filter(Boolean);
+                const wew = linki.filter((u) => u.host === location.host).length;
+                const zew = [...new Set(linki.filter((u) => u.host !== location.host).map((u) => u.host))];
+                return {
+                  tytul: document.title, opis: meta('meta[name="description"]'), lang: document.documentElement.lang,
+                  canonical: document.querySelector('link[rel="canonical"]')?.href ?? null, robots: meta('meta[name="robots"]'),
+                  ogImage: !!meta('meta[property="og:image"]'), opublikowano: meta('meta[property="article:published_time"]'),
+                  ld, slowaRazem: slowa(korzen.innerText), naglowki,
+                  obrazy: korzen.querySelectorAll('img').length, tabele: korzen.querySelectorAll('table').length,
+                  listy: korzen.querySelectorAll('ul,ol').length, linkiWew: wew, domenyZew: zew,
+                  hreflang: [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) => l.hreflang),
+                  wpisyBloga: location.pathname.replace(/\/$/, '') === '/blog' ? [...document.querySelectorAll('a[href*="/blog/"]')].map((a) => a.getAttribute('href')).filter((h, i, t) => t.indexOf(h) === i).slice(0, 60) : [],
+                };
+              });
+              console.log(JSON.stringify({ ...w, naglowki: undefined, wpisyBloga: undefined }, null, 1));
+              console.log('NAGŁÓWKI (poziom · słowa w sekcji · tekst):');
+              for (const n of w.naglowki) console.log(`  ${n.poziom} · ${String(n.slowa).padStart(4)} · ${n.tekst}`);
+              if (w.wpisyBloga.length) { console.log('WPISY NA BLOGU:'); w.wpisyBloga.forEach((h) => console.log('  ' + h)); }
+            } catch (e) { console.log(`\n================ ${adres}: BŁĄD ${e.message}`); }
+            await p.close();
           }
-
-          for (const adres of ['https://33bots.at/', 'https://33bots.pl/']) {
-            for (const wariant of ['nowa']) {
-              try { await przebieg(adres, wariant); } catch (e) { console.log(`BŁĄD ${adres} ${wariant}: ${e.message}`); }
-            }
-          }
+          await b.close();
           JS
-          node test.mjs
+          node analiza.mjs
