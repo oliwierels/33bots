@@ -1,0 +1,87 @@
+name: Diagnoza domen 33bots (jednorazowa)
+
+# Jednorazowe sprawdzenie, co naprawdę serwują domeny 33bots — z sieci GitHuba,
+# bo sesja Claude nie ma dostępu do internetu. Niczego nie wdraża i nie zmienia.
+# Gałąź diagnoza-domen do usunięcia po teście.
+on:
+  push:
+    branches: [diagnoza-domen]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnoza:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: DNS, certyfikat, odpowiedź serwera
+        run: |
+          set +e
+          for d in 33bots.at www.33bots.at 33bots.de 33bots.pl 33bots.lt; do
+            echo "================ $d"
+            echo "A:    $(dig +short A $d | tr '\n' ' ')"
+            echo "AAAA: $(dig +short AAAA $d | tr '\n' ' ')"
+            echo "NS:   $(dig +short NS ${d#www.} | tr '\n' ' ')"
+            curl -sS -o /tmp/strona.html -D /tmp/naglowki.txt \
+                 -w "HTTP %{http_code} · %{time_total}s · %{size_download} B · IP %{remote_ip}\n" \
+                 --max-time 30 "https://$d/"
+            grep -iE '^(HTTP|server|location|content-type|cache-control|x-litespeed|last-modified|etag)' /tmp/naglowki.txt | cut -c1-200
+            echo "tytuł: $(grep -o '<title>[^<]*' /tmp/strona.html | head -1)"
+            echo "md5 strony: $(md5sum /tmp/strona.html | cut -c1-32)"
+            echo | timeout 15 openssl s_client -servername "$d" -connect "$d:443" 2>/dev/null \
+              | openssl x509 -noout -dates -issuer 2>/dev/null
+          done
+          echo "================ whois 33bots.at"
+          sudo apt-get -qq install -y whois > /dev/null 2>&1
+          whois 33bots.at | grep -iE 'domain|changed|nserver|status|expir|registrar|remarks' | head -20
+
+      - name: Przeglądarka — błędy JS, ruch w hero i pasach, zrzuty
+        run: |
+          npm i --no-save --silent playwright@1.56.1
+          npx playwright install --with-deps chromium > /dev/null 2>&1
+          cat > test.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const b = await chromium.launch();
+          for (const [adres, nazwa] of [['https://33bots.at/', 'at'], ['https://33bots.de/', 'de']]) {
+            for (const vp of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+              const p = await b.newPage({ viewport: vp });
+              const bledy = [], zasoby = [];
+              p.on('pageerror', (e) => bledy.push(e.message));
+              p.on('console', (m) => { if (m.type() === 'error') bledy.push('console: ' + m.text()); });
+              p.on('response', (r) => { if (r.status() >= 400) zasoby.push(`${r.status()} ${r.url()}`); });
+              p.on('requestfailed', (r) => zasoby.push(`FAIL ${r.failure()?.errorText} ${r.url()}`));
+              try {
+                const odp = await p.goto(adres, { waitUntil: 'load', timeout: 45000 });
+                console.log(`\n== ${adres} @${vp.width}: HTTP ${odp?.status()} · tytuł: ${await p.title()}`);
+                console.log('h1:', (await p.locator('h1').first().textContent().catch(() => 'brak'))?.trim());
+                const l1 = await p.locator('#heroLicznik').textContent().catch(() => 'brak');
+                await p.waitForTimeout(7000);
+                const l2 = await p.locator('#heroLicznik').textContent().catch(() => 'brak');
+                console.log(`hero: ${l1} → ${l2} po 7 s`);
+                await p.locator('.pasy').first().scrollIntoViewIfNeeded().catch(() => {});
+                await p.mouse.move(1, 1);
+                const x = () => p.evaluate(() => { const t = document.querySelector('.pas__tor'); return t ? new DOMMatrix(getComputedStyle(t).transform).m41 : null; });
+                const x1 = await x(); await p.waitForTimeout(1500); const x2 = await x();
+                console.log(`pas realizacji: przesunięcie ${x1} → ${x2}`);
+                console.log('baner cookie:', await p.locator('#cookies').isVisible().catch(() => 'brak'));
+                console.log('błędy JS:', bledy.length ? JSON.stringify(bledy.slice(0, 5)) : 'brak');
+                console.log('nieudane zasoby:', zasoby.length ? JSON.stringify(zasoby.slice(0, 8)) : 'brak');
+                await p.evaluate(() => scrollTo(0, 0));
+                await p.waitForTimeout(500);
+                await p.screenshot({ path: `${nazwa}-${vp.width}.png` });
+              } catch (e) { console.log(`\n== ${adres} @${vp.width}: BŁĄD ${e.message}`); }
+              await p.close();
+            }
+          }
+          await b.close();
+          JS
+          node test.mjs
+
+      - name: Zrzuty ekranu
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zrzuty
+          path: '*.png'
+          retention-days: 3
