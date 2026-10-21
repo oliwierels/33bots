@@ -22,12 +22,14 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
   test.describe(`strona główna @${vp.width}`, () => {
     test.use({ contextOptions: { reducedMotion: 'reduce' } });
 
-    test('kolejność sekcji, numeracja i aliasy kotwic', async ({ page }) => {
+    test('kolejność sekcji, bez numeracji i etykiet nad nagłówkami, aliasy kotwic', async ({ page }) => {
       await otworz(page, vp);
       const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.className));
       expect(kolejnosc).toEqual(['hero', 'proof', ...['realizacje', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt']]);
-      const numery = await page.evaluate(() => [...document.querySelectorAll('.sec .sec__meta')].map((m) => m.textContent.trim().slice(0, 7)));
-      expect(numery).toEqual(['04 / 11', '05 / 11', '06 / 11', '07 / 11', '08 / 11', '09 / 11', '10 / 11']);
+      // Sekcje bez „04 / 11 · Etykieta” nad nagłówkiem i bez numerów 01–05 przy składnikach występu
+      // (skille impeccable i taste-skill: etykieta nad nagłówkiem i numeracja indeksowa to wzorce do usunięcia).
+      expect(await page.locator('.sec__meta, .wiersz__nr').count()).toBe(0);
+      expect(await page.evaluate(() => [...document.querySelectorAll('main .label')].filter((l) => /^\d\d\s*\/\s*\d\d\s*·/.test(l.textContent.trim())).length)).toBe(0);
       expect(await page.evaluate(() => document.querySelector('footer.stopka').parentElement.tagName)).toBe('BODY');
       for (const id of ['eventy', 'uslugi', 'cennik', 'mozliwosci', 'klienci', 'kontakt', 'top']) {
         expect(await page.locator(`#${id}`).count(), `#${id}`).toBe(1);
@@ -80,7 +82,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
         .filter((s) => getComputedStyle(s).backgroundColor === 'rgb(240, 240, 240)').map((s) => s.id));
       expect(jasne).toEqual(['case-study']);
       await expect(page.locator('#case-study .h2')).toHaveCSS('color', 'rgb(5, 5, 5)');
-      await expect(page.locator('#case-study .sec__meta')).toHaveCSS('color', 'rgb(92, 92, 92)');
+      await expect(page.locator('#case-study .cs__opis dt').first()).toHaveCSS('color', 'rgb(92, 92, 92)');
     });
 
     test('każde zdjęcie raz w DOM, także przy otwartej szufladzie', async ({ page }) => {
@@ -260,7 +262,7 @@ test.describe('ruch', () => {
     await ctx.close();
   });
 
-  test('bez ograniczenia ruchu: sekcja wchodzi raz, 12 px i 700 ms', async ({ browser }) => {
+  test('bez ograniczenia ruchu: sekcja wchodzi raz, 12 px i 450 ms', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
     const page = await ctx.newPage();
     await page.goto(ADRES);
@@ -269,9 +271,11 @@ test.describe('ruch', () => {
       const s = getComputedStyle(e);
       return { opacity: s.opacity, transform: s.transform, czas: s.transitionDuration };
     });
-    expect(przed).toEqual({ opacity: '0', transform: 'matrix(1, 0, 0, 1, 0, 12)', czas: '0.7s, 0.7s' });
+    // Chowanie natychmiastowe (bez przejścia), wejście 450 ms.
+    expect(przed).toEqual({ opacity: '0', transform: 'matrix(1, 0, 0, 1, 0, 12)', czas: '0s' });
     await page.locator('#formaty').scrollIntoViewIfNeeded();
     await expect.poll(() => page.evaluate(() => document.querySelector('#formaty .wejscie').classList.contains('widoczne'))).toBe(true);
+    expect(await page.evaluate(() => getComputedStyle(document.querySelector('#formaty .wejscie')).transitionDuration)).toBe('0.45s, 0.45s');
     await ctx.close();
   });
 });
@@ -288,7 +292,7 @@ const doRealizacji = (src) => (REALIZACJA.find(([r]) => r.test(src)) || [null, s
 const unikalne = (page) => page.evaluate(() => { const s = [...document.images].filter((i) => !i.closest('[aria-hidden="true"]')).map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
 
 test.describe('hero — rotacja zdjęć z realizacji', () => {
-  test('co 3 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
+  test('co 5 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
     const page = await ctx.newPage();
     await page.clock.install();
@@ -297,7 +301,7 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
     const img = page.locator('.hero img');
     const licznik = page.locator('#heroLicznik');
     await expect(img).toHaveCount(1);
-    await expect(img).toHaveAttribute('src', /gala-wsrod-gosci/);
+    await expect(img).toHaveAttribute('src', /gala-zdjecia-gosci/);
     await expect(licznik).toHaveText('01 / 06');
 
     // Każda zmiana licznika zapisana z czasem strony — z tego mierzymy, jak długo stoi kadr.
@@ -310,14 +314,14 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
     // Zegar strony po install() płynie też sam, więc przesuwamy go małymi krokami,
     // aż licznik pokaże oczekiwany kadr — bez ryzyka przeskoczenia kadru.
     const dojdzDo = async (tekst) => {
-      for (let i = 0; i < 40 && (await licznik.textContent()).trim() !== tekst; i++) {
+      for (let i = 0; i < 60 && (await licznik.textContent()).trim() !== tekst; i++) {
         await page.clock.runFor(200); await page.waitForTimeout(20);
       }
       await expect(licznik).toHaveText(tekst);
     };
 
-    // po 2 s kadr jeszcze stoi
-    await page.clock.runFor(2000); await page.waitForTimeout(50);
+    // po 4 s kadr jeszcze stoi
+    await page.clock.runFor(4000); await page.waitForTimeout(50);
     await expect(licznik).toHaveText('01 / 06');
     const wysokosc = () => page.locator('.hero').evaluate((e) => e.getBoundingClientRect().height);
     const h0 = await wysokosc();
@@ -332,13 +336,13 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
     }
     await dojdzDo('01 / 06');
 
-    // kolejność bez przeskoków, a każdy kadr stoi ok. 3 s (plus 0,4 s przygaszenia)
+    // kolejność bez przeskoków, a każdy kadr stoi ok. 5 s (plus 0,4 s przygaszenia)
     const zmiany = await page.evaluate(() => window.__zmiany);
     expect(zmiany.map(([, t]) => t)).toEqual(['01 / 06', '02 / 06', '03 / 06', '04 / 06', '05 / 06', '06 / 06', '01 / 06']);
     const odstepy = zmiany.slice(2).map(([t], i) => t - zmiany[i + 1][0]);
     for (const d of odstepy) {
-      expect(d, `odstęp między kadrami ${d} ms`).toBeGreaterThanOrEqual(3000);
-      expect(d, `odstęp między kadrami ${d} ms`).toBeLessThan(4200);
+      expect(d, `odstęp między kadrami ${d} ms`).toBeGreaterThanOrEqual(5000);
+      expect(d, `odstęp między kadrami ${d} ms`).toBeLessThan(6200);
     }
 
     // pauza: przycisk zatrzymuje, „Wznów” rusza dalej
@@ -489,7 +493,9 @@ test.describe('pasy realizacji i klientów', () => {
       .map((pas) => [...pas.querySelectorAll('.pas__tor > li:not([data-kopia]) [data-cs]')].map((b) => b.dataset.cs)));
     expect(rzedy.length).toBeGreaterThanOrEqual(3);
     for (const r of rzedy) r.forEach((cs, i) => expect(cs, r.join(' ')).not.toBe(r[(i + 1) % r.length]));
-    const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
+    // Nazwy klientów to dowód do przeczytania — stoją jako lista, bez ruchu i bez kopii.
+    expect(await page.locator('.pasy--nazwy[data-grupa], .pasy--nazwy [data-kopia], .pasy__pauza[data-pasy="nazwy"]').count()).toBe(0);
+    const nazwy = await page.locator('.pasy--nazwy .pas__tor > li').allInnerTexts();
     expect(nazwy.length).toBe(40);
     expect(new Set(nazwy).size).toBe(40);
     expect(nazwy).toContain('Cashify');

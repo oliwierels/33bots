@@ -17,7 +17,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     await expect(btn).toHaveCSS('border-radius', '0px');
 
     // 3. właściwe zdjęcie, brak renderu i chipów
-    await expect(page.locator('.hero img')).toHaveAttribute('src', /realizacja-gala-wsrod-gosci/);
+    await expect(page.locator('.hero img')).toHaveAttribute('src', /realizacja-gala-zdjecia-gosci/);
     expect(await page.locator('img[src*="robot-g1"]').count()).toBe(0);
     const bodyText = await page.locator('body').innerText();
     expect(bodyText).not.toMatch(/\bDOF\b|M\/S|132\s?CM|✓|darmow|Najlepsze ceny|10×/i);

@@ -46,8 +46,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
 <link rel="stylesheet" href="assets-redesign.css?v=ecec55be" />
 
-<script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="css/site.css?v=e78d5794" />
+<script>document.documentElement.classList.add('js');
+/* Bezpiecznik wejść sekcji: jeśli skrypt strony nie podłączy się w 3 s, pokaż całą treść. */
+setTimeout(function () { var h = document.documentElement; if (!h.classList.contains('wejscie-ok')) h.classList.add('wejscie-awaria'); }, 3000);</script>
+<link rel="stylesheet" href="css/site.css?v=ceb8116b" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -235,7 +237,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      Nowy markup, wyłącznie klasy z css/site.css — stare reguły go nie dotykają. -->
 <section class="hero" aria-labelledby="hero-label">
   <div class="hero__text">
-    <h1 id="hero-label" class="label">Wynajem robota humanoidalnego na wydarzenia</h1>
+    <h1 id="hero-label" class="hero__h1">Wynajem robota humanoidalnego na wydarzenia</h1>
     <p class="display">Najczęściej fotografowany gość Twojego wydarzenia.</p>
     <p class="lead">Robot humanoidalny z&nbsp;charakterem i&nbsp;scenariuszem pod Twoją galę, konferencję lub stoisko. Mówi po polsku i&nbsp;w&nbsp;każdym innym języku. Operator, transport i&nbsp;branding w&nbsp;cenie. <strong>Płacisz po wydarzeniu.</strong></p>
     <div class="hero__actions">
@@ -244,7 +246,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <figure class="hero__media" id="heroMedia">
-    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" fetchpriority="high" decoding="async" width="900" height="1200">
+    <img src="realizacja-gala-zdjecia-gosci.webp" alt="Goście gali robią zdjęcia z robotem humanoidalnym w cekinowym smokingu" fetchpriority="high" decoding="async" width="900" height="1200">
     <figcaption class="hero__podpis">
       <span class="label" id="heroLicznik">01 / 06</span>
       <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
@@ -268,7 +270,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="kotwica" id="eventy"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">04 / 11 · Na sali</p>
       <h2 id="realizacje-h" class="h2">Na sali</h2>
       <p class="body">Od balu w&nbsp;drezdeńskim pałacu i&nbsp;targów MSPO po gminną paradę i&nbsp;wesele — ponad 40 wydarzeń w&nbsp;pięciu krajach. Kliknij kadr, żeby zobaczyć, co robił robot.</p>
     </div>
@@ -337,12 +338,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="klienci" id="klienci">
       <div class="pasy__glowa">
         <p class="label">Dla kogo pracowaliśmy</p>
-        <button class="pasy__pauza" type="button" aria-pressed="false" data-pasy="nazwy" hidden>Zatrzymaj ruch</button>
       </div>
     </div>
   </div>
 
-  <div class="pasy pasy--nazwy wejscie" data-grupa="nazwy">
+  <div class="pasy pasy--nazwy wejscie">
     <div class="pas pas--nazwy" data-predkosc="34" data-kierunek="1">
       <ul class="pas__tor">
         <li>REMONDIS Electrorecycling</li>
@@ -407,38 +407,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="kotwica" id="uslugi"></span><span class="kotwica" id="mozliwosci"></span>
   <div class="wrap grid12">
     <div class="wystep__glowa wejscie">
-      <p class="label sec__meta">05 / 11 · Występ</p>
       <h2 id="wystep-h" class="h2">Jak projektujemy występ</h2>
       <p class="body">Ten sam model robota może stać w&nbsp;kącie jako dekoracja albo prowadzić galę. Różnicę robi przygotowanie: charakter, rozmowa i&nbsp;reakcje na salę, które dopracowaliśmy na ponad 40 wydarzeniach — od korporacyjnych konferencji po pikniki.</p>
     </div>
-    <ol class="wiersze wejscie">
+    <ul class="wiersze wejscie">
       <li class="wiersz">
-        <span class="label wiersz__nr">01</span>
         <div><h3 class="h3">Charakter</h3>
           <p class="body">Ustalamy, jak robot ma się zachowywać: elegancki konferansjer, luźny i&nbsp;żartobliwy albo rzeczowy ekspert. Największe wrażenie robi zwykle moment, w&nbsp;którym nawiązuje do czegoś, co dzieje się akurat na sali.</p></div>
       </li>
       <li class="wiersz">
-        <span class="label wiersz__nr">02</span>
         <div><h3 class="h3">Głos i&nbsp;wiedza</h3>
           <p class="body">Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnie, bez sztucznego, robotycznego brzmienia, a&nbsp;w&nbsp;trakcie jednego wydarzenia przełącza się między językami. Pracowaliśmy na wydarzeniach w&nbsp;Polsce, na Litwie, w&nbsp;Niemczech, Czechach i&nbsp;Rumunii. Wita gości, odpowiada na pytania i&nbsp;zapowiada punkty programu. Wgrywamy wiedzę o&nbsp;wydarzeniu: kto występuje, co jest w&nbsp;programie i&nbsp;z&nbsp;jakiej okazji się spotykacie.</p></div>
       </li>
       <li class="wiersz">
-        <span class="label wiersz__nr">03</span>
         <div><h3 class="h3">Scenariusz</h3>
           <p class="body">Powitanie gości, zapowiedź prelegenta, odliczanie do północy, wręczenie nagrody. Ma kilka układów choreograficznych — od spokojnych po dynamiczne. Robot wpisany w&nbsp;program, a&nbsp;nie tylko obecny na sali.</p></div>
       </li>
       <li class="wiersz">
-        <span class="label wiersz__nr">04</span>
         <div><h3 class="h3">Branding</h3>
           <p class="body">Logo i&nbsp;kod QR na klatce piersiowej, a&nbsp;cała oprawa dobrana do charakteru wydarzenia — od firmowej koszulki po cekinowy smoking i&nbsp;koronę. Branding jest w&nbsp;cenie.</p>
           <figure class="wiersz__foto"><picture><source type="image/webp" srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 900w" sizes="240px" /><img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" width="900" height="1200" loading="lazy" decoding="async" /></picture><figcaption class="podpis">Drezdeńska Noc Zamków</figcaption></figure></div>
       </li>
       <li class="wiersz">
-        <span class="label wiersz__nr">05</span>
         <div><h3 class="h3">Zdjęcia i&nbsp;nagrania</h3>
           <p class="body">Robot to gość, którego wszyscy nagrywają telefonami. Planujemy momenty pod kadry — powitanie przy ściance, wejście na scenę, taniec — a&nbsp;branding sprawia, że w&nbsp;każdym nagraniu widać Twoją markę.</p></div>
       </li>
-    </ol>
+    </ul>
   </div>
 </section>
 
@@ -446,7 +440,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="case-study" class="sec sec--jasna" aria-labelledby="cs-h">
   <div class="wrap grid12">
     <div class="cs__tekst wejscie">
-      <p class="label sec__meta">06 / 11 · Case study</p>
       <h2 id="cs-h" class="h2">Wielki Finał Eco Studio ELECTRO-SYSTEM</h2>
       <dl class="cs__opis">
         <div><dt class="label">Wydarzenie</dt>
@@ -479,7 +472,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="kotwica" id="cennik"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">07 / 11 · Formaty</p>
       <h2 id="formaty-h" class="h2">Formaty i&nbsp;cena</h2>
       <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
     </div>
@@ -487,7 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li class="format">
         <h3 class="h3">Wejście</h3>
         <p class="body">Kilka godzin w&nbsp;programie wydarzenia — otwarcie, blok na scenie, godziny szczytu na stoisku.</p>
-        <p class="num">Wycena indywidualna</p>
+        <p class="num num--slowa">Wycena indywidualna</p>
         <p class="label format__cena-opis">zawsze taniej niż pełny dzień</p>
       </li>
       <li class="format">
@@ -514,7 +506,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="proces" class="sec" aria-labelledby="proces-h">
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">08 / 11 · Proces</p>
       <h2 id="proces-h" class="h2">Od rozmowy do faktury</h2>
     </div>
     <ol class="kroki wejscie">
@@ -551,7 +542,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="faq" class="sec" aria-labelledby="faq-h">
   <div class="wrap grid12">
     <div class="faq__glowa wejscie">
-      <p class="label sec__meta">09 / 11 · FAQ</p>
       <h2 id="faq-h" class="h2">Zanim zapytasz</h2>
     </div>
     <div class="faq wejscie">
@@ -605,7 +595,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
   <div class="wrap grid12">
     <div class="rez__lewa wejscie">
-      <p class="label sec__meta">10 / 11 · Rezerwacja</p>
       <h2 id="kontakt-h" class="h2">Sprawdź, czy Twój termin jest wolny.</h2>
       <ul class="osoby">
         <li class="osoba"><div><p class="osoba__imie">Oliwier Latek</p><p class="label">Odbiera osobiście</p></div>
@@ -634,12 +623,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label class="chip"><input type="radio" name="event_type" value="Plener" required /><span>Plener</span></label>
             <label class="chip"><input type="radio" name="event_type" value="Inne" required /><span>Inne</span></label>
           </div>
-          <p class="pole__blad" id="blad-typ" hidden>Wybierz typ wydarzenia.</p>
+          <p class="pole__blad" id="blad-typ" role="alert" hidden>Wybierz typ wydarzenia.</p>
         </fieldset>
         <div class="dwa">
           <div class="pole">
             <label for="pole-data">Data</label>
-            <input type="date" id="pole-data" name="date" />
+            <input type="date" id="pole-data" name="date" class="puste" />
             <div class="chipy"><label class="chip"><input type="checkbox" id="data-nieustalona" /><span>Termin jeszcze nieustalony</span></label></div>
           </div>
           <div class="pole">
@@ -665,13 +654,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="dwa">
           <div class="pole" id="pole-imie">
             <label for="pole-name">Imię i&nbsp;nazwisko *</label>
-            <input type="text" id="pole-name" name="name" required autocomplete="name" />
-            <p class="pole__blad" hidden>Podaj imię i&nbsp;nazwisko.</p>
+            <input type="text" id="pole-name" name="name" required autocomplete="name" aria-describedby="blad-imie" />
+            <p class="pole__blad" id="blad-imie" hidden>Podaj imię i&nbsp;nazwisko.</p>
           </div>
           <div class="pole" id="pole-mail">
             <label for="pole-email">E-mail *</label>
-            <input type="email" id="pole-email" name="email" required autocomplete="email" />
-            <p class="pole__blad" hidden>Podaj poprawny adres e-mail.</p>
+            <input type="email" id="pole-email" name="email" required autocomplete="email" aria-describedby="blad-mail" />
+            <p class="pole__blad" id="blad-mail" hidden>Podaj poprawny adres e-mail.</p>
           </div>
           <div class="pole">
             <label for="pole-company">Firma</label>
@@ -716,6 +705,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><a href="realizacje-wideo.html">Realizacje</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="wypozyczenie-robota.html">Wypożyczenie robota</a></li>
+      <li><a href="robot-dla-agencji-eventowych.html">Dla agencji eventowych</a></li>
     </ul>
     <ul class="stopka__kol" aria-label="Zastosowania">
       <li><a href="robot-na-gale.html">Gale i&nbsp;jubileusze</a></li>
@@ -789,9 +779,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- ══════════ Pasek mobilny: pojawia się po minięciu hero ══════════ -->
-<div class="pasek" id="pasekMobilny">
+<aside class="pasek" id="pasekMobilny" aria-label="Szybka rezerwacja">
   <a class="btn" href="#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
-</div>
+</aside>
 <div class="pasek-odstep"></div>
 
 <!-- Baner cookie -->
@@ -808,7 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Lightbox galerii -->
 
 <div class="szuflada-tlo" id="szufladaTlo" hidden></div>
-<aside class="szuflada" id="szuflada" role="dialog" aria-modal="true" aria-labelledby="szufladaTytul" hidden>
+<div class="szuflada" id="szuflada" role="dialog" aria-modal="true" aria-labelledby="szufladaTytul" hidden>
   <div class="szuflada__glowa">
     <div>
       <p class="label" id="szufladaPodpis"></p>
@@ -820,23 +810,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="body" id="szufladaOpis"></p>
   <div class="szuflada__zdjecia" id="szufladaZdjecia"></div>
   <p><a class="link" id="szufladaLink" href="#">Pełne case study <span aria-hidden="true">→</span></a></p>
-</aside>
+</div>
 
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ——— Hero: rotacja zdjęć z realizacji ———
-     Jeden element img: przygaszenie, podmiana źródła, rozjaśnienie. Co 3 s, od załadowania
-     strony; pauza przyciskiem, najechaniem i fokusem (WCAG 2.2.2). Przy ograniczonym
-     ruchu nic nie zmienia się samo — przycisk przełącza zdjęcia ręcznie. */
+     Jeden element img: przygaszenie, podmiana źródła, rozjaśnienie. Co 5 s, od załadowania
+     strony; pauza przyciskiem, najechaniem i fokusem (WCAG 2.2.2), a także gdy hero
+     zniknie z ekranu — wtedy nie pobieramy kolejnych zdjęć. Przy ograniczonym ruchu
+     nic nie zmienia się samo — przycisk przełącza zdjęcia ręcznie.
+     Pierwszy kadr pokazuje hasło dosłownie: goście fotografują robota.
+     Każdy kadr hero występuje na stronie tylko raz (nie powtarza zdjęć z pasów).
+     Pliki WebP — o ok. 1/3 lżejsze od JPG przy tej samej jakości. */
   const SLAJDY = [
-    { src: 'realizacja-gala-wsrod-gosci.jpg', alt: 'Robot humanoidalny wśród gości gali', klient: 'Drezdeńska Noc Zamków', gdzie: 'Drezno' },
-    { src: 'realizacja-eco-studio-wywiad.jpg', alt: 'Dziennikarka nagrywa wywiad z robotem humanoidalnym przy ściance sponsorów Eco Studio', klient: 'Finał Eco Studio ELECTRO-SYSTEM', gdzie: 'Warszawa' },
-    { src: 'realizacja-przelewice-arkady.jpg', alt: 'Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek', klient: 'Ogród Dendrologiczny w Przelewicach', gdzie: 'Noc Bajek' },
-    { src: 'realizacja-yeah-gym-koszulka.jpg', alt: 'Robot humanoidalny w koszulce klubu YEAH GYM macha na powitanie', klient: 'YEAH GYM', gdzie: 'Wrocław' },
-    { src: 'realizacja-matys-silver-garden.jpg', alt: 'Robot humanoidalny przy ściance inwestycji Silver Garden na stoisku Matys Development', klient: 'Matys Development', gdzie: 'Szczecin' },
-    { src: 'realizacja-szkola-kosmos-majaland.jpg', alt: 'Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku', klient: 'Szkoła Kosmos', gdzie: 'Majaland' },
+    { src: 'realizacja-gala-zdjecia-gosci.webp', alt: 'Goście gali robią zdjęcia z robotem humanoidalnym w cekinowym smokingu', klient: 'Drezdeńska Noc Zamków', gdzie: 'Drezno' },
+    { src: 'realizacja-eco-studio-wywiad.webp', alt: 'Dziennikarka nagrywa wywiad z robotem humanoidalnym przy ściance sponsorów Eco Studio', klient: 'Finał Eco Studio ELECTRO-SYSTEM', gdzie: 'Warszawa' },
+    { src: 'realizacja-przelewice-arkady.webp', alt: 'Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek', klient: 'Ogród Dendrologiczny w Przelewicach', gdzie: 'Noc Bajek' },
+    { src: 'realizacja-yeah-gym-koszulka.webp', alt: 'Robot humanoidalny w koszulce klubu YEAH GYM macha na powitanie', klient: 'YEAH GYM', gdzie: 'Wrocław' },
+    { src: 'realizacja-matys-silver-garden.webp', alt: 'Robot humanoidalny przy ściance inwestycji Silver Garden na stoisku Matys Development', klient: 'Matys Development', gdzie: 'Szczecin' },
+    { src: 'realizacja-szkola-kosmos-majaland.webp', alt: 'Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku', klient: 'Szkoła Kosmos', gdzie: 'Majaland' },
   ];
   const heroMedia = document.getElementById('heroMedia');
   const heroImg = heroMedia.querySelector('img');
@@ -844,7 +838,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const heroOpis = document.getElementById('heroOpis');
   const heroPauza = document.getElementById('heroPauza');
   const nr = (n) => String(n).padStart(2, '0');
-  let slajd = 0, zatrzymane = false, wstrzymane = false, zegar = null;
+  let slajd = 0, zatrzymane = false, wstrzymane = false, pozaEkranem = false, zegar = null;
 
   const pokazSlajd = async (n) => {
     const s = SLAJDY[n];
@@ -864,8 +858,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const nastepny = () => pokazSlajd((slajd + 1) % SLAJDY.length);
   const planuj = () => {
     clearTimeout(zegar);
-    if (reduce || zatrzymane || wstrzymane || document.hidden) return;
-    zegar = setTimeout(async () => { await nastepny(); planuj(); }, 3000);
+    if (reduce || zatrzymane || wstrzymane || pozaEkranem || document.hidden) return;
+    zegar = setTimeout(async () => { await nastepny(); planuj(); }, 5000);
   };
   heroPauza.hidden = false;
   if (reduce) {
@@ -885,6 +879,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     heroMedia.addEventListener('focusin', () => wstrzymaj(true));
     heroMedia.addEventListener('focusout', () => wstrzymaj(false));
     document.addEventListener('visibilitychange', planuj);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([w]) => { pozaEkranem = !w.isIntersecting; planuj(); }).observe(heroMedia);
+    }
     if (document.readyState === 'complete') planuj(); else addEventListener('load', planuj);
   }
 
@@ -908,29 +905,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   addEventListener('scroll', tloNav, { passive: true });
   tloNav();
 
-  /* ——— Wejście sekcji: raz, 12 px, 700 ms ——— */
+  /* ——— Wejście sekcji: raz, 12 px, 450 ms ———
+     Klasa wejscie-ok mówi bezpiecznikowi w <head>, że skrypt działa.
+     Kliknięcie linku do sekcji od razu ją odsłania, żeby po przewinięciu
+     nie trafiać na pusty ekran. */
   const wejscia = document.querySelectorAll('.wejscie');
   if (reduce || !('IntersectionObserver' in window)) {
     wejscia.forEach((el) => el.classList.add('widoczne'));
+    document.documentElement.classList.add('wejscie-ok');
   } else {
     const io = new IntersectionObserver((wpisy) => wpisy.forEach((w) => {
       if (w.isIntersecting) { w.target.classList.add('widoczne'); io.unobserve(w.target); }
     }), { rootMargin: '0px 0px -8% 0px' });
     wejscia.forEach((el) => io.observe(el));
+    document.documentElement.classList.add('wejscie-ok');
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || a.hash.length < 2) return;
+      const cel = document.getElementById(a.hash.slice(1));
+      const sekcja = cel && (cel.closest('section') || cel);
+      if (sekcja) sekcja.querySelectorAll('.wejscie').forEach((w) => w.classList.add('widoczne'));
+    });
   }
 
-  /* ——— Pasek mobilny: dopiero po minięciu hero ——— */
+  /* ——— Pasek mobilny: po minięciu hero, ale nie nad formularzem ———
+     W sekcji rezerwacji pasek prowadziłby tam, gdzie już jesteśmy, i zasłaniał „Dalej”. */
   const pasek = document.getElementById('pasekMobilny');
   const hero = document.querySelector('.hero');
-  if (pasek && hero) {
-    new IntersectionObserver(([w]) => pasek.classList.toggle('pasek--widoczny', !w.isIntersecting),
+  const kontakt = document.getElementById('kontakt');
+  if (pasek && hero && 'IntersectionObserver' in window) {
+    let poHero = false, wKontakcie = false;
+    const odswiezPasek = () => pasek.classList.toggle('pasek--widoczny', poHero && !wKontakcie);
+    new IntersectionObserver(([w]) => { poHero = !w.isIntersecting; odswiezPasek(); },
       { rootMargin: '-80px 0px 0px 0px' }).observe(hero);
+    if (kontakt) new IntersectionObserver(([w]) => { wKontakcie = w.isIntersecting; odswiezPasek(); }).observe(kontakt);
   }
+  // iOS Safari pokazuje stan :active (wgniecenie przycisku) tylko przy aktywnym nasłuchu dotyku.
+  document.addEventListener('touchstart', () => {}, { passive: true });
 
   /* ——— Szuflada realizacji ———
      Dodatkowe zdjęcia wstawiane dopiero przy otwarciu i usuwane przy zamknięciu,
      więc każdy kadr jest w DOM najwyżej raz. */
-  /* ——— Pasy bez końca: realizacje i klienci ———
+  /* ——— Pasy bez końca: zdjęcia realizacji ———
+     (Nazwy klientów stoją w miejscu jako zwykła lista — to dowód, który trzeba
+     przeczytać, a nie tło.)
      Przy ograniczonym ruchu pasy zostają zwykłymi rzędami przewijanymi ręcznie.
      W przeciwnym razie za oryginałem doklejane są kopie rzędu (aria-hidden,
      poza kolejnością Tab), a tor przesuwa się co klatkę i zawija o szerokość
@@ -958,6 +976,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       zawin(r); rysuj(r);
     };
 
+    /* Pętla klatek chodzi tylko wtedy, gdy któryś widoczny rząd się rusza;
+       poza ekranem, po zatrzymaniu albo wyhamowaniu pod kursorem zasypia,
+       a budz() uruchamia ją z powrotem. */
+    let ostatnia = 0, rafId = 0;
+    const klatka = (t) => {
+      const dt = Math.min(0.05, ostatnia ? (t - ostatnia) / 1000 : 0);
+      ostatnia = t;
+      let ruch = false;
+      for (const r of rzedy) {
+        if (!r.grupa.widoczna) continue;
+        if (r.ciag) { ruch = true; continue; }   // pod palcem albo kursorem rząd stoi
+        const cel = r.grupa.zatrzymana || r.najechany || r.fokus ? 0 : r.predkosc;
+        r.v += (cel - r.v) * (1 - Math.exp(-dt * (cel === 0 ? 6 : 2.5)));
+        if (cel === 0 && Math.abs(r.v) < 0.05) r.v = 0;
+        if (cel !== 0 || r.v !== 0) ruch = true;
+        if (r.v === 0) continue;
+        r.x += r.v * dt; zawin(r); rysuj(r);
+      }
+      rafId = ruch ? requestAnimationFrame(klatka) : 0;
+    };
+    const budz = () => { if (!rafId) { ostatnia = 0; rafId = requestAnimationFrame(klatka); } };
+
     grupyPasow.forEach((el) => {
       el.classList.add('pasy--ruch');
       const grupa = { zatrzymana: false, widoczna: true };
@@ -968,9 +1008,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           grupa.zatrzymana = !grupa.zatrzymana;
           przycisk.setAttribute('aria-pressed', String(grupa.zatrzymana));
           przycisk.textContent = grupa.zatrzymana ? 'Wznów ruch' : 'Zatrzymaj ruch';
+          budz();
         });
       }
-      new IntersectionObserver(([w]) => { grupa.widoczna = w.isIntersecting; }, { rootMargin: '200px 0px' }).observe(el);
+      new IntersectionObserver(([w]) => { grupa.widoczna = w.isIntersecting; if (w.isIntersecting) budz(); }, { rootMargin: '200px 0px' }).observe(el);
 
       el.querySelectorAll('.pas').forEach((pas) => {
         const tor = pas.querySelector('.pas__tor');
@@ -981,7 +1022,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         zbuduj(r);
 
         pas.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') r.najechany = true; });
-        pas.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') r.najechany = false; });
+        pas.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { r.najechany = false; budz(); } });
         pas.addEventListener('focusin', (e) => {
           r.fokus = true;
           const li = e.target.closest('li');
@@ -991,12 +1032,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           else if (b.right > a.right - r.margines) r.x -= b.right - (a.right - r.margines);
           r.v = 0; zawin(r); rysuj(r);
         });
-        pas.addEventListener('focusout', (e) => { if (!pas.contains(e.relatedTarget)) r.fokus = false; });
+        pas.addEventListener('focusout', (e) => { if (!pas.contains(e.relatedTarget)) { r.fokus = false; budz(); } });
 
         // Przeciąganie: dopiero po 6 px, żeby zwykłe kliknięcie otwierało szufladę.
+        // Dotknięcie rozpędzonego rzędu tylko go łapie — nie otwiera kafla, który akurat
+        // podjechał pod palec. Drugi palec jest ignorowany.
         pas.addEventListener('pointerdown', (e) => {
-          if (e.button !== 0) return;
-          r.ciag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, start: r.x, aktywne: false, t: performance.now(), ostX: e.clientX, vx: 0 };
+          if (e.button !== 0 || r.ciag) return;
+          const lapie = Math.abs(r.v) > Math.abs(r.predkosc) * 1.5;
+          r.v = 0;
+          r.ciag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, start: r.x, aktywne: false, lapie, t: performance.now(), ostX: e.clientX, vx: 0 };
         });
         pas.addEventListener('pointermove', (e) => {
           const c = r.ciag;
@@ -1014,12 +1059,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const puszczony = (e) => {
           const c = r.ciag;
           if (!c || c.id !== e.pointerId) return;
+          // Palec zatrzymany przed puszczeniem: bez rzutu (prędkość z ostatniego ruchu jest już nieaktualna).
+          if (performance.now() - c.t > 60) c.vx = 0;
           if (c.aktywne) {
             r.v = Math.max(-1600, Math.min(1600, c.vx));
-            r.blokujKlik = true; setTimeout(() => { r.blokujKlik = false; }, 0);
             pas.classList.remove('pas--ciagniety');
           }
+          if (c.aktywne || c.lapie) { r.blokujKlik = true; setTimeout(() => { r.blokujKlik = false; }, 0); }
           r.ciag = null;
+          budz();
         };
         pas.addEventListener('pointerup', puszczony);
         pas.addEventListener('pointercancel', puszczony);
@@ -1027,24 +1075,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     });
 
-    let ostatnia = 0;
-    const klatka = (t) => {
-      const dt = Math.min(0.05, ostatnia ? (t - ostatnia) / 1000 : 0);
-      ostatnia = t;
-      for (const r of rzedy) {
-        if (!r.grupa.widoczna || r.ciag?.aktywne) continue;
-        const cel = r.grupa.zatrzymana || r.najechany || r.fokus ? 0 : r.predkosc;
-        r.v += (cel - r.v) * (1 - Math.exp(-dt * (cel === 0 ? 6 : 2.5)));
-        if (cel === 0 && Math.abs(r.v) < 0.05) r.v = 0;
-        if (r.v === 0) continue;
-        r.x += r.v * dt; zawin(r); rysuj(r);
-      }
-      requestAnimationFrame(klatka);
-    };
-    requestAnimationFrame(klatka);
+    budz();
 
-    let czekaj = 0;
-    addEventListener('resize', () => { clearTimeout(czekaj); czekaj = setTimeout(() => rzedy.forEach(zbuduj), 150); });
+    // Przebudowa tylko przy zmianie szerokości — chowający się pasek adresu
+    // w telefonie zmienia samą wysokość i nie powinien przerywać przewijania.
+    let czekaj = 0, szer = innerWidth;
+    addEventListener('resize', () => {
+      if (innerWidth === szer) return;
+      szer = innerWidth; clearTimeout(czekaj); czekaj = setTimeout(() => rzedy.forEach(zbuduj), 150);
+    });
     addEventListener('load', () => rzedy.forEach(zbuduj));
   }
 
@@ -1240,7 +1279,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const tlo = document.getElementById('szufladaTlo');
   const el = (id) => document.getElementById(id);
   const zamknij = el('szufladaZamknij');
-  let powrot = null;
+  let powrot = null, zamykanie = 0;
+  // Gdy szuflada jest otwarta, reszta strony jest nieaktywna (inert) — czytnik
+  // ekranu i Tab nie wychodzą poza okno.
+  const tloStrony = [document.getElementById('nav'), document.querySelector('main'),
+    document.querySelector('.stopka'), document.getElementById('pasekMobilny')].filter(Boolean);
 
   const otworz = (klucz, zrodlo) => {
     const d = REALIZACJE[klucz];
@@ -1272,16 +1315,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const link = el('szufladaLink');
     link.parentElement.hidden = !d.link;
     if (d.link) link.href = d.link;
+    clearTimeout(zamykanie);
+    szuflada.classList.remove('zamyka'); tlo.classList.remove('zamyka');
     tlo.hidden = false; szuflada.hidden = false;
+    tloStrony.forEach((x) => { x.inert = true; });
     document.body.style.overflow = 'hidden';
     zamknij.focus();
   };
+  // Zamykanie: szuflada wyjeżdża (240 ms), dopiero potem dostaje hidden.
   const zamknijSzuflade = () => {
-    if (szuflada.hidden) return;
-    szuflada.hidden = true; tlo.hidden = true;
-    el('szufladaZdjecia').replaceChildren();
+    if (szuflada.hidden || szuflada.classList.contains('zamyka')) return;
+    szuflada.classList.add('zamyka'); tlo.classList.add('zamyka');
+    tloStrony.forEach((x) => { x.inert = false; });
     document.body.style.overflow = '';
     if (powrot) powrot.focus();
+    zamykanie = setTimeout(() => {
+      szuflada.hidden = true; tlo.hidden = true;
+      szuflada.classList.remove('zamyka'); tlo.classList.remove('zamyka');
+      el('szufladaZdjecia').replaceChildren();
+    }, reduce ? 0 : 240);
   };
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-cs]');
@@ -1290,7 +1342,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   zamknij.addEventListener('click', zamknijSzuflade);
   tlo.addEventListener('click', zamknijSzuflade);
   addEventListener('keydown', (e) => {
-    if (szuflada.hidden) return;
+    if (szuflada.hidden || szuflada.classList.contains('zamyka')) return;
     if (e.key === 'Escape') { zamknijSzuflade(); return; }
     if (e.key !== 'Tab') return;
     // Fokus zostaje w szufladzie, dopóki jest otwarta.
@@ -1307,13 +1359,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById(q.getAttribute('aria-controls')).hidden = otwarte;
   }));
 
-  /* ——— Baner cookie (logika bez zmian) ——— */
+  /* ——— Baner cookie (logika bez zmian) ———
+     Dostęp do localStorage w try/catch: przy zablokowanych ciasteczkach (Safari,
+     Firefox) przeglądarka rzuca wyjątek, który wcześniej zatrzymywał cały skrypt
+     — razem z formularzem rezerwacji poniżej. */
   const ciasteczka = document.getElementById('cookies');
-  if (!localStorage.getItem('33bots-cookies')) {
+  let zgoda = null;
+  try { zgoda = localStorage.getItem('33bots-cookies'); } catch (e) { /* brak dostępu — pokaż baner */ }
+  if (!zgoda) {
     setTimeout(() => ciasteczka.classList.add('show'), 1400);
   }
   document.getElementById('cookiesOk').addEventListener('click', () => {
-    localStorage.setItem('33bots-cookies', '1');
+    try { localStorage.setItem('33bots-cookies', '1'); } catch (e) { /* zapamiętanie się nie uda, baner i tak znika */ }
     ciasteczka.classList.remove('show');
   });
 
@@ -1327,7 +1384,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     (n === 2 ? el('pole-name') : form.querySelector('input[name=event_type]')).focus();
   };
   const dataPole = el('pole-data'), nieustalona = el('data-nieustalona');
-  nieustalona.addEventListener('change', () => { dataPole.disabled = nieustalona.checked; if (nieustalona.checked) dataPole.value = ''; });
+  // Nie da się wybrać daty z przeszłości; puste pole wygląda jak podpowiedź.
+  const dzis = new Date();
+  dataPole.min = `${dzis.getFullYear()}-${String(dzis.getMonth() + 1).padStart(2, '0')}-${String(dzis.getDate()).padStart(2, '0')}`;
+  const pustaData = () => dataPole.classList.toggle('puste', !dataPole.value);
+  dataPole.addEventListener('input', pustaData); dataPole.addEventListener('change', pustaData);
+  nieustalona.addEventListener('change', () => { dataPole.disabled = nieustalona.checked; if (nieustalona.checked) dataPole.value = ''; pustaData(); });
 
   const poleTyp = el('pole-typ'), bladTyp = el('blad-typ');
   form.querySelectorAll('input[name=event_type]').forEach((r) => r.addEventListener('change', () => {
@@ -1358,6 +1420,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    // Enter w polu kroku 1 (np. „Miasto”) przechodzi dalej zamiast wysyłać formularz
+    // i sprawdzać ukryte jeszcze pola kroku 2.
+    if (krok2.hidden) { el('dalej').click(); return; }
     const okImie = sprawdz(imie, imie.value.trim().length > 1);
     const okMail = sprawdz(mail, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim()));
     if (!okImie || !okMail) { (okImie ? mail : imie).focus(); return; }
@@ -1396,6 +1461,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.');
       sukces.append(t, p);
       form.replaceChildren(sukces);
+      // Formularz kurczy się o kilkaset pikseli — potwierdzenie wraca na środek ekranu
+      // (na telefonie inaczej zostawało nad krawędzią) i dostaje fokus dla czytników.
+      sukces.tabIndex = -1;
+      sukces.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+      sukces.focus({ preventScroll: true });
     } catch (err) {
       blad.textContent = 'Nie udało się wysłać. Zadzwoń: +48 531 408 004 albo napisz na kontakt@33bots.pl.';
       blad.hidden = false;
