@@ -39,5 +39,8 @@ buduj.sh
 do-obrobki/
 qa/
 
+# skille Claude'a do pracy nad wyglądem strony — narzędzie, nie treść strony
+.claude/
+
 # źródła artykułów poradnika (strony powstają z nich w katalogu głównym)
 tresci/

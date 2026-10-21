@@ -27,6 +27,11 @@ Redirect 301 /oferta.html                         /wypozyczenie-robota.html
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://33bots.pl/ [L,R=301]
 
+# ── Katalogi robocze, które nie są częścią strony ──────────────────────────────
+# Skille Claude'a (.claude) i testy wyglądu (qa) leżą w repozytorium, ale
+# odwiedzający nie mają tam czego szukać. Gdyby trafiły na serwer, zwracamy 404.
+RedirectMatch 404 ^/(\.claude|qa)(/|$)
+
 # ── Nagłówki bezpieczeństwa ────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   # HSTS: po pierwszej wizycie przeglądarka sama wymusza HTTPS i nie pozwala
