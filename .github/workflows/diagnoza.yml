@@ -1,9 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: konsolidacja 33bots.de na żywo (106 przekierowań 301, 84 strony z mapy),
-# 33bots.at bez linków do Robotollern, klucze IndexNow — i zgłoszenie adresów do IndexNow
-# (Bing, Yandex, Seznam). Niczego poza tym nie zmienia.
+# Tym razem: druga fala .de na żywo (84 strony w nowym układzie, bez usuniętych twierdzeń),
+# przekierowanie szablonu case study, .at z „24 Werkstunden” — i zgłoszenie zmienionych
+# stron do IndexNow (Bing, Yandex, Seznam). Niczego poza tym nie zmienia.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -17,37 +17,40 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Pobierz mapę przekierowań z repozytorium .de
-        run: |
-          curl -sL --max-time 30 "https://raw.githubusercontent.com/oliwierels/33bots/claude/identical-pages-germany-rg6dzh/.htaccess" -o ht.txt
-          grep -o -E 'RewriteRule \^[^ ]+ https://33bots\.de/[^ ]* \[L,R=301\]' ht.txt | grep -v index | sed -E 's/RewriteRule \^(.*)\$ (https[^ ]*) .*/\1 \2/; s/\\//g' > mapa.txt
-          echo "reguł w .htaccess: $(wc -l < mapa.txt)"
-
-      - name: 33bots.de — przekierowania i strony z mapy
+      - name: 33bots.de — strony z mapy w nowym układzie
         run: |
           set +e
-          zle=0; ok=0
-          while read -r stary cel; do
-            odp=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' "https://33bots.de/$stary")
-            kod=${odp%% *}; dokad=${odp#* }
-            kod_celu=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code}' "$cel")
-            if [ "$kod" = "301" ] && [ "$dokad" = "$cel" ] && [ "$kod_celu" = "200" ]; then ok=$((ok+1)); else zle=$((zle+1)); echo "ŹLE: $stary → $kod $dokad (cel $kod_celu)"; fi
-          done < mapa.txt
-          echo "przekierowania: $ok poprawnych, $zle błędnych"
           curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > de.txt
-          echo "mapa .de: $(wc -l < de.txt) adresów"
-          while read -r u; do k=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code}' "$u"); [ "$k" = "200" ] || echo "mapa .de: $k $u"; done < de.txt
-          echo "tytuł .de: $(curl -s --max-time 30 https://33bots.de/ | grep -o '<title>[^<]*')"
+          echo "mapa .de: $(wc -l < de.txt) adresów, lastmod: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<lastmod>[^<]*' | sort | uniq -c | tr '\n' ' ')"
+          zle=0; stare=0; n=0
+          while read -r u; do
+            n=$((n+1))
+            kod=$(curl -s -o strona.html -w '%{http_code}' --max-time 20 "$u")
+            [ "$kod" = "200" ] || { echo "KOD $kod: $u"; zle=$((zle+1)); continue; }
+            [ "$u" = "https://33bots.de/" ] && continue
+            grep -q 'Erzeugt von tresci/zagranica/buduj_podstrony.py' strona.html || { echo "STARY UKŁAD: $u"; stare=$((stare+1)); }
+            for wz in 'zertifiziert' 'kostenlos' 'Karolina M.' 'Unsere Münchner Einsätze' 'Wir arbeiten auf Fachmessen' 'Bewährte Locations'; do
+              grep -q "$wz" strona.html && echo "„$wz” na $u"
+            done
+          done < de.txt
+          echo "sprawdzone: $n, błędne kody: $zle, w starym układzie: $stare"
+          echo "vorlage-case-study: $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' https://33bots.de/vorlage-case-study.html)"
+          echo "nieistniejąca strona: $(curl -s -o 404.html -w '%{http_code}' --max-time 20 https://33bots.de/gibt-es-nicht.html), nowy układ: $(grep -c 'buduj_podstrony.py' 404.html)"
+          echo "przykładowe przekierowanie z konsolidacji: $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' https://33bots.de/roboter-mieten-bonn.html)"
+          curl -s --max-time 20 -D naglowki.txt -o /dev/null https://33bots.de/referenzen-videos.html
+          grep -i '^content-security-policy' naglowki.txt | cut -c1-120
 
-      - name: 33bots.at — Robotollern, klucz IndexNow
+      - name: 33bots.at — czas odpowiedzi i układ
         run: |
           set +e
           curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > at.txt
-          n=0; for u in $(cat at.txt); do c=$(curl -s --max-time 20 "$u" | grep -c -i robotollern); [ "$c" = "0" ] || { echo "Robotollern na $u: $c"; n=$((n+1)); }; done
-          echo ".at: stron z Robotollern: $n z $(wc -l < at.txt)"
-          echo "klucz .at: $(curl -s --max-time 20 https://33bots.at/d26cc6827bff8b3fdaebd366644a7aec.txt)"
-          echo "klucz .de: $(curl -s --max-time 20 https://33bots.de/a2813e79cb1d1017ecf75f8b739153a3.txt)"
-          echo "klucz .pl: $(curl -s --max-time 20 https://33bots.pl/9209ab0a2e014f2c808446b0b4b4271a.txt)"
+          n=0; stare=0
+          for u in $(cat at.txt); do
+            curl -s --max-time 20 "$u" -o s.html; n=$((n+1))
+            grep -q '24 Stunden' s.html && echo "„24 Stunden” na $u"
+            [ "$u" = "https://33bots.at/" ] || grep -q 'buduj_podstrony.py' s.html || { echo "STARY UKŁAD: $u"; stare=$((stare+1)); }
+          done
+          echo ".at: sprawdzone $n, w starym układzie: $stare"
 
       - name: Zgłoszenie do IndexNow
         run: |
@@ -61,9 +64,6 @@ jobs:
           EOF
             echo "$host: $(python3 -c "import json; print(len(json.load(open('body.json'))['urlList']))") adresów → $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data @body.json)"
           }
-          # .de: strony z mapy i przekierowane adresy (żeby wyszukiwarka szybciej zobaczyła 301).
-          cp de.txt de-zgloszenie.txt; awk '{print "https://33bots.de/" $1}' mapa.txt >> de-zgloszenie.txt
+          cp de.txt de-zgloszenie.txt; echo "https://33bots.de/vorlage-case-study.html" >> de-zgloszenie.txt
           zglos 33bots.de a2813e79cb1d1017ecf75f8b739153a3 de-zgloszenie.txt
           zglos 33bots.at d26cc6827bff8b3fdaebd366644a7aec at.txt
-          echo "https://33bots.pl/robot-na-event.html" > pl.txt
-          zglos 33bots.pl 9209ab0a2e014f2c808446b0b4b4271a pl.txt
