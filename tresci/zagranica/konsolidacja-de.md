@@ -89,3 +89,34 @@ Dziesięć krótkich wpisów (po ok. 250 słów) przekierowanych 301 na strony, 
 Przyjazd i demontaż na stronie wynajmu według .pl (ok. 1,5 h przed pierwszym pokazem, demontaż
 ok. 30 min) — stary wpis podawał inne liczby. feed.xml powstaje teraz w generatorze z wpisów
 w źródłach (data z BlogPosting).
+
+## Wpisy bloga jako rozdziały stron tematycznych (2026-10-23, część druga)
+
+Kolejne 25 krótkich wpisów weszło do stron tematycznych jako rozdziały (tytuł wpisu jako
+nagłówek, jego akapity bez zmian, przed galerią „Aus echten Einsätzen”); adresy wpisów: 301 na
+stronę z ich treścią, linki prowadzą do konkretnego rozdziału (`strona.html#rozdział`).
+
+| Strona | Wchłonięte wpisy |
+|---|---|
+| angebot-messen | roboter-am-messestand, roi-roboter-messestand, roboter-messe-vs-konferenz |
+| ki-roboter-veranstaltung | ki-roboter-spricht-deutsch |
+| roboter-eventmoderation | kann-roboter-event-moderieren |
+| roboter-gaesteempfang | roboter-als-empfang, roboter-statt-hostess |
+| roboter-show | roboter-und-kuenstler-auf-der-buehne |
+| roboter-produktlaunch | roboter-produktlaunch |
+| roboter-eroeffnung | roboter-store-eroeffnung |
+| roboter-employer-branding | roboter-karrieremesse |
+| roboter-hochzeit | roboter-auf-der-hochzeit |
+| roboter-privatfeier | roboter-kinderveranstaltung |
+| roboter-hochschule | roboter-campusfest |
+| roboter-stadtfest | roboter-outdoor-event |
+| roboter-firmenfeier | roboter-betriebsfest, technologische-attraktionen-firmenfeier |
+| roboter-firmenevents | attraktion-firmenevent, roboter-auf-dem-event |
+| angebot-konferenzen-galas | attraktion-firmengala |
+| event-attraktionen | event-attraktionen-ranking, kreative-einsatzideen-roboter |
+| blog-robotik-im-marketing | roboter-als-markenbotschafter, roboter-branding-event, roboter-viral-marketing |
+
+Na blogu zostaje pięć poradników (marketing, bezpieczeństwo, uzasadnienie dla zarządu,
+psychologia, trendy); blog.html prowadzi też do wiedzy na stronach tematycznych.
+Formularz rezerwacji (ten sam kod, adres Formspree i pola co na stronie głównej) jest teraz także
+na głównych stronach ofertowych i na stronach 14 miast.
