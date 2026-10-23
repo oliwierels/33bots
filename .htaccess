@@ -125,6 +125,8 @@ RewriteRule ^roboter\-tourismus\-event\.html$ https://33bots.de/roboter-firmenev
 RewriteRule ^roboter\-valentinstag\.html$ https://33bots.de/roboter-privatfeier.html [L,R=301]
 RewriteRule ^roboter\-vip\-event\.html$ https://33bots.de/angebot-konferenzen-galas.html [L,R=301]
 RewriteRule ^roboter\-zeremonie\.html$ https://33bots.de/angebot-konferenzen-galas.html [L,R=301]
+# Interna Vorlage für Case Studies (2026-10-23 entfernt) → Referenzen.
+RewriteRule ^vorlage\-case\-study\.html$ https://33bots.de/referenzen-videos.html [L,R=301]
 
 ErrorDocument 404 /404.html
 
