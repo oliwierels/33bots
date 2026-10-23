@@ -10,7 +10,7 @@ import { naruszeniaOdstepow, przewinCala } from './odstepy.mjs';
 const RYNKI = [
   {
     kod: 'de', adres: 'http://127.0.0.1:8081/', lang: 'de',
-    tytul: 'Humanoide Roboter für Events mieten — deutschlandweit | 33bots',
+    tytul: 'Roboter mieten: humanoider Roboter für Events & Messen | 33bots',
     kanoniczny: 'https://33bots.de/', h1: /humanoide roboter für events mieten/i,
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'realisierungen', 'events', 'video', 'ueber-uns', 'auftritt',
       'leistungen', 'einsatzbereiche', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt'],
@@ -556,10 +556,10 @@ test.describe('33bots.de — panel dostępności', () => {
 // 33bots.de: przekrój szablonów (miasto, oferta, poradnik, case study, strony prawne);
 // 33bots.at: wszystkie podstrony.
 const PODSTRONY = [
-  [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/leistungen.html',
+  [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/roboter-firmenevents.html',
     '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-women-in-tech.html', '/blog.html',
-    '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-abiball.html',
-    '/humanoider-roboter-event.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
+    '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-privatfeier.html',
+    '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
   [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
     '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
     ...['wien', 'graz', 'linz', 'salzburg', 'innsbruck', 'klagenfurt', 'villach', 'wels', 'st-poelten', 'dornbirn', 'eisenstadt']
