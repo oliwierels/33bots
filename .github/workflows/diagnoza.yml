@@ -1,9 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: 33bots.at po wdrożeniu z 23.10 wieczorem —
-# podstrony .at po przeniesieniu do nowego układu: status, placeholdery, CSP, pomiar, formularz, filmy.
-# Formularze NIE są wysyłane: każde żądanie do formspree.io / formsubmit.co jest przerywane.
+# Niczego nie wdraża i nie zmienia. Tym razem: strony konkurencji w DE/AT na frazy
+# „Roboter mieten”, „humanoider Roboter mieten” — tytuły, nagłówki, objętość treści,
+# dane strukturalne, oceny, wielkość serwisu — obok 33bots.de i 33bots.at.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -17,69 +17,70 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Podstrony .at po przeniesieniu
+      - name: Strony konkurencji i nasze
         run: |
           set +e
-          curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > /tmp/adresy.txt
-          echo "mapa .at: $(wc -l < /tmp/adresy.txt) adresów"
-          for u in $(cat /tmp/adresy.txt) https://33bots.at/danke.html https://33bots.at/404.html; do
-            curl -sS -o /tmp/s.html -D /tmp/h.txt --max-time 30 "$u"
-            echo "$(head -1 /tmp/h.txt | tr -d '\r' | cut -d' ' -f2) · generator: $(grep -c buduj_podstrony /tmp/s.html) · placeholdery: $(grep -c -E 'ergänzen|\[PLZ\]' /tmp/s.html) · kostenlos: $(grep -c -i kostenlos /tmp/s.html) · css: $(grep -o 'css/site.css?v=[0-9a-f]*' /tmp/s.html | head -1) · $u"
-          done
-          echo "Impressum: $(curl -s --max-time 30 https://33bots.at/impressum.html | grep -o -E '33Bots Bartosz Wysocki|PL5253090645|544792095' | sort -u | tr '\n' ' ')"
-          echo "Nieistniejący adres: $(curl -s -o /tmp/n.html -w '%{http_code}' --max-time 30 https://33bots.at/gibt-es-nicht.html) · $(grep -o '<h1[^>]*>[^<]*' /tmp/n.html)"
-          echo "js/strona.js: $(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://33bots.at/js/strona.js)"
-
-      - name: Chrome — CSP, pomiar, formularze, filmy
-        run: |
-          set +e
-          mkdir -p /tmp/k && cd /tmp/k && npm init -y >/dev/null && npm i -s playwright-core@1.48.2 >/dev/null 2>&1
-          cat > k.mjs <<'EOF'
-          import { chromium } from 'playwright-core';
-          const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
-          const strony = [
-            'https://33bots.at/kontakt.html', 'https://33bots.at/roboter-mieten-wien.html', 'https://33bots.at/messe-roboter-mieten.html',
-            'https://33bots.at/impressum.html', 'https://33bots.at/datenschutz.html', 'https://33bots.at/404.html',
-          ];
-          for (const url of strony) {
-            const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, locale: 'de-DE' });
-            const page = await ctx.newPage();
-            const csp = [], bledy = [], pomiar = {}, nieudane = [];
-            await page.route(/formspree\.io|formsubmit\.co/, (r) => r.abort());
-            page.on('console', (m) => { const t = m.text(); if (/Content Security Policy|Refused to/.test(t)) csp.push(t.slice(0, 220)); });
-            page.on('pageerror', (e) => bledy.push(e.message.slice(0, 200)));
-            page.on('request', (r) => {
-              const h = new URL(r.url()).hostname;
-              if (/google-analytics|analytics\.google|googletagmanager|googleadservices|doubleclick|albacross|^www\.google\./.test(h)) pomiar[h] = (pomiar[h] || 0) + 1;
-            });
-            page.on('requestfailed', (r) => { if (!/formspree|formsubmit/.test(r.url())) nieudane.push(`${r.failure()?.errorText} ${r.url().slice(0, 90)}`); });
-            let odp;
-            try { odp = await page.goto(url, { waitUntil: 'load', timeout: 45000 }); } catch (e) { console.log(`\n=== ${url} → BŁĄD ${e.message}`); await ctx.close(); continue; }
-            await page.waitForTimeout(3000);
-            await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } });
-            await page.waitForTimeout(2500);
-            const info = await page.evaluate(() => ({
-              generator: document.documentElement.outerHTML.includes('buduj_podstrony.py'),
-              form: ([...document.scripts].map((s) => s.textContent).join('').match(/fetch\(["'](https:\/\/[^"']+)["']/) || [])[1] || null,
-              wideo: [...document.querySelectorAll('video')].map((v) => v.querySelector('source')?.getAttribute('src') || v.getAttribute('src') || 'BRAK ŹRÓDŁA'),
-              menu: !!document.getElementById('navPrzycisk'),
-            }));
-            let film = '-';
-            if (info.wideo.length) film = await page.evaluate(async () => {
-              const v = document.querySelector('video'); v.muted = true;
-              return Promise.race([v.play().then(() => `odtwarza (${v.videoWidth}×${v.videoHeight})`), new Promise((r) => setTimeout(() => r('nie rusza w 10 s'), 10000))]).catch((e) => 'błąd ' + e.name);
-            });
-            const naglowek = odp.headers()['content-security-policy'] || '';
-            console.log(`\n=== ${url} → HTTP ${odp.status()}`);
-            console.log(`  CSP w nagłówku: ${naglowek ? (naglowek.includes('googleadservices') ? 'nowa (pomiar przepuszczony)' : 'STARA') : 'brak'}`);
-            console.log(`  naruszenia CSP: ${csp.length}${csp.length ? '\n    ' + [...new Set(csp)].slice(0, 6).join('\n    ') : ''}`);
-            console.log(`  błędy JS: ${bledy.length ? bledy.join(' | ') : 0}`);
-            console.log(`  pomiar (żądania): ${Object.entries(pomiar).map(([h, n]) => `${h}×${n}`).join(', ') || 'brak'}`);
-            console.log(`  formularz → ${info.form} · nowy układ: ${info.generator} · menu: ${info.menu}`);
-            console.log(`  wideo: ${info.wideo.join(', ') || '-'} · ${film}`);
-            if (nieudane.length) console.log(`  nieudane żądania: ${[...new Set(nieudane)].slice(0, 6).join(' | ')}`);
-            await ctx.close();
-          }
-          await b.close();
+          cat > a.py <<'EOF'
+          import html, json, re, subprocess, sys
+          from urllib.parse import urljoin, urlparse
+          UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36'
+          def pobierz(u):
+              r = subprocess.run(['curl', '-sSL', '-A', UA, '--max-time', '30', '-w', '\n%{http_code}', u], capture_output=True)
+              t = r.stdout.decode('utf-8', 'replace')
+              t, _, kod = t.rpartition('\n')
+              return kod, t
+          def tekst(s):
+              s = re.sub(r'<(script|style|svg|noscript)[^>]*>.*?</\1>', ' ', s, flags=re.S | re.I)
+              return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', s))).strip()
+          STRONY = sys.argv[1:]
+          for u in STRONY:
+              kod, t = pobierz(u)
+              g = lambda r: (re.search(r, t, re.S | re.I) or [None, ''])[1]
+              host = urlparse(u).netloc
+              linki = set(urljoin(u, h) for h in re.findall(r'href="([^"#]+)"', t))
+              wew = sorted(l for l in linki if urlparse(l).netloc in (host, '') and not re.search(r'\.(css|js|png|jpg|webp|svg|ico|xml|pdf)(\?|$)', l))
+              typy = []
+              for m in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', t, re.S | re.I):
+                  try:
+                      d = json.loads(m)
+                      for x in (d if isinstance(d, list) else d.get('@graph', [d])):
+                          typy.append(x.get('@type') if isinstance(x, dict) else '?')
+                  except Exception:
+                      typy.append('BŁĄD')
+              print(f'\n=== {u} → {kod} · {len(t)//1024} KB')
+              print('  title:', html.unescape(g(r'<title[^>]*>(.*?)</title>')).strip()[:120])
+              print('  description:', html.unescape(g(r'<meta\s+name="description"\s+content="([^"]*)"')).strip()[:200])
+              print('  H1:', ' | '.join(tekst(h)[:80] for h in re.findall(r'<h1[^>]*>(.*?)</h1>', t, re.S | re.I)))
+              print('  H2:', ' | '.join(tekst(h)[:60] for h in re.findall(r'<h2[^>]*>(.*?)</h2>', t, re.S | re.I))[:900])
+              print('  słów treści:', len(tekst(t).split()), '· linków wewnętrznych:', len(wew), '· JSON-LD:', typy)
+              print('  oceny/recenzje:', len(re.findall(r'aggregateRating|ratingValue|Bewertung|Rezension|Google-Bewertung|Trustpilot|ProvenExpert', t, re.I)),
+                    '· ceny:', ', '.join(sorted(set(re.findall(r'(?:ab\s*)?\d{1,2}\.\d{3}\s?(?:€|EUR|Euro)', t)))[:8]))
+              print('  podstrony (próbka):', ' '.join(urlparse(l).path for l in wew[:40]))
           EOF
-          node k.mjs
+          python3 a.py \
+            https://www.roboticrental.de/ https://www.roboticrental.de/humanoide-roboter \
+            https://www.rental-robot.de/ https://robotollern.de/ https://www.uxsystems.de/roboter-mieten/ \
+            https://www.servus-medientechnik.de/robotik-telepraesenz-mieten.html https://www.bipedal.de/Vermietung \
+            https://www.roboter-mieten.at/ https://wianco.com/humanoide-roboter/ https://www.roboter-verleih.at/ \
+            https://humanoid-portal.de/blog/humanoide-roboter-mieten-raas/ \
+            https://33bots.de/ https://33bots.at/
+
+      - name: Wielkość serwisów (mapy stron) i robots.txt
+        run: |
+          set +e
+          for d in www.roboticrental.de www.rental-robot.de robotollern.de www.uxsystems.de www.roboter-mieten.at wianco.com humanoid-portal.de 33bots.de 33bots.at; do
+            M=$(curl -sL -A 'Mozilla/5.0' --max-time 30 "https://$d/sitemap.xml")
+            N=$(echo "$M" | grep -c '<loc>')
+            S=$(echo "$M" | grep -c '<sitemap>')
+            echo "$d: sitemap.xml → $N adresów, $S podmap · robots: $(curl -sL -A 'Mozilla/5.0' --max-time 20 https://$d/robots.txt | grep -i -E '^(sitemap|disallow)' | head -3 | tr '\n' ' ')"
+          done
+
+      - name: Porównywarka humanoid-portal.de — czy jest 33bots, jak się zgłosić
+        run: |
+          set +e
+          curl -sL -A 'Mozilla/5.0' --max-time 30 https://humanoid-portal.de/blog/humanoide-roboter-mieten-raas/ -o p.html
+          echo "33bots na stronie: $(grep -c -i 33bots p.html)"
+          grep -o -i -E '[^<>]{0,80}(kontakt|eintragen|aufnehmen|listing|anbieter melden|mail)[^<>]{0,80}' p.html | sort -u | head -15
+          grep -o -E 'href="[^"]*(kontakt|contact|impressum|eintragen|anbieter)[^"]*"' p.html | sort -u | head -10
+          echo "--- anbieter wymienieni:"
+          grep -o -i -E '(roboticrental|rental-robot|robotollern|uxsystems|servus-medientechnik|bipedal|wianco|ecosphere|robotise|33bots|roboter-mieten\.at)[a-z.\-/]*' p.html | sort | uniq -c | sort -rn | head -20
