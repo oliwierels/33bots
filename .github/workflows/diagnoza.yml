@@ -1,8 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: czy 33bots.de i 33bots.at są dostępne
-# dla robotów wyszukiwarek (nagłówki, robots.txt, mapy strony) i co z nich widać w indeksie.
+# Niczego nie wdraża i nie zmienia. Tym razem: wdrożenie z 23.10 (.at, .de, .pl) na żywo —
+# nagłówki CSP, formularze, nowe strony, filmy i pomiar w prawdziwym Chrome.
+# Formularze NIE są wysyłane: każde żądanie do formspree.io / formsubmit.co jest przerywane.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -16,45 +17,75 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Dostępność dla robotów wyszukiwarek
+      - name: Nagłówki i pliki
         run: |
           set +e
-          GBOT='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
-          for d in 33bots.de 33bots.at 33bots.pl; do
-            echo "================ $d"
-            for ua in "$GBOT" "Mozilla/5.0 (X11; Linux x86_64) Chrome/141.0 Safari/537.36"; do
-              curl -sS -o /tmp/s.html -D /tmp/h.txt -A "$ua" -w "HTTP %{http_code} · %{size_download} B" --max-time 30 "https://$d/"
-              echo " · UA: ${ua:0:40} · x-robots-tag: $(grep -i '^x-robots-tag' /tmp/h.txt | cut -d' ' -f2- | tr -d '\r') · meta robots: $(grep -o '<meta name="robots"[^>]*' /tmp/s.html | head -1)"
-            done
-            echo "robots.txt: $(curl -s --max-time 20 https://$d/robots.txt | tr '\n' '|' | cut -c1-200)"
-            curl -s --max-time 30 "https://$d/sitemap.xml" -o /tmp/map.xml
-            grep -o '<loc>[^<]*' /tmp/map.xml | sed 's/<loc>//' > /tmp/adresy.txt
-            echo "mapa strony: $(wc -l < /tmp/adresy.txt) adresów"
-            : > /tmp/statusy.txt
-            while read -r u; do
-              printf '%s %s\n' "$(curl -s -o /dev/null -I -A "$GBOT" --max-time 20 -w '%{http_code}' "$u")" "$u" >> /tmp/statusy.txt
-            done < /tmp/adresy.txt
-            echo "statusy (Googlebot): $(cut -d' ' -f1 /tmp/statusy.txt | sort | uniq -c | tr '\n' ' ')"
-            grep -v '^200 ' /tmp/statusy.txt | head -10
-            X=$(head -40 /tmp/adresy.txt | while read -r u; do curl -s -o /dev/null -D - -A "$GBOT" --max-time 20 "$u" | grep -i '^x-robots-tag'; done | sort | uniq -c)
-            echo "x-robots-tag na pierwszych 40 adresach: ${X:-brak}"
+          for u in https://33bots.at/ https://33bots.at/kontakt.html https://33bots.at/roboter-weihnachtsfeier.html \
+                   https://33bots.de/ https://33bots.de/roboter-weihnachtsfeier.html https://33bots.pl/; do
+            curl -sS -o /tmp/s.html -D /tmp/h.txt --max-time 30 "$u"
+            CSP=$(grep -i '^content-security-policy' /tmp/h.txt | tr -d '\r')
+            echo "$u → $(head -1 /tmp/h.txt | tr -d '\r') · CSP z pomiarem: $(echo "$CSP" | grep -c googleadservices) · formspree w CSP: $(echo "$CSP" | grep -c 'formspree.io') · formsubmit w CSP: $(echo "$CSP" | grep -c formsubmit) · fetch: $(grep -oE "fetch\(['\"][^'\"]+" /tmp/s.html | head -1 | cut -c8-) · generator podstron: $(grep -c buduj_podstrony /tmp/s.html)"
           done
+          for u in https://33bots.at/js/strona.js https://33bots.de/js/strona.js https://33bots.de/index-redesign.html \
+                   https://33bots.at/video/robot-taniec.mp4 https://33bots.de/video/robot-powitanie.mp4; do
+            echo "$u → $(curl -sS -o /dev/null -I --max-time 30 -w '%{http_code} %{content_type} %{redirect_url}' "$u")"
+          done
+          echo "Film na podstronach .at: $(curl -s --max-time 30 https://33bots.at/messe-roboter-mieten.html | grep -c '<source src="video/robot-taniec.mp4"') źródło(a), source-marker: $(curl -s --max-time 30 https://33bots.at/messe-roboter-mieten.html | grep -c source-marker)"
+          echo "Mapa .de: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -c '<loc>') adresów · Weihnachtsfeier: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -c weihnachtsfeier)"
+          echo "Mapa .at: $(curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -c '<loc>') adresów · Weihnachtsfeier: $(curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -c weihnachtsfeier)"
 
-      - name: Ślady w indeksie wyszukiwarek
+      - name: Chrome — CSP, pomiar, formularze, filmy
         run: |
           set +e
-          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36'
-          for d in 33bots.de 33bots.at 33bots.pl; do
-            echo "================ site:$d"
-            curl -s -A "$UA" --max-time 30 "https://www.bing.com/search?q=site%3A$d&count=50&setlang=de&cc=de" -o bing.html
-            echo "Bing: $(grep -oE "https?://(www\.)?$d[^\"'<> &]*" bing.html | sed 's/[.,]$//' | sort -u | wc -l) adresów z $d na 1. stronie wyników · rozmiar odpowiedzi $(wc -c < bing.html) B"
-            grep -oE "https?://(www\.)?$d[^\"'<> &]*" bing.html | sort -u | head -8 | sed 's/^/   /'
-            curl -s -A "$UA" --max-time 30 "https://html.duckduckgo.com/html/?q=site%3A$d&kl=de-de" -o ddg.html
-            echo "DuckDuckGo: $(grep -oE "$d[^\"'<> &]*" ddg.html | sort -u | wc -l) unikalnych odnośników · rozmiar $(wc -c < ddg.html) B"
-            curl -s -A "$UA" --max-time 30 -o g.html -w "Google: HTTP %{http_code} · %{size_download} B" "https://www.google.com/search?q=site%3A$d&hl=de&num=50"
-            echo " · wyników z $d: $(grep -oE "https?://(www\.)?$d[^\"'<> &]*" g.html | sort -u | wc -l) · zgoda/captcha: $(grep -c -iE 'consent|captcha|unusual traffic' g.html)"
-          done
-          echo "================ fraza: Roboter mieten Messe (Bing, DE)"
-          curl -s -A "$UA" --max-time 30 "https://www.bing.com/search?q=humanoider+Roboter+mieten&count=30&setlang=de&cc=de" -o b2.html
-          grep -oE 'href="https?://[^"/]+' b2.html | sed 's/href="//' | grep -vE 'bing|microsoft|msn|live\.com|go\.microsoft' | sort | uniq -c | sort -rn | head -15
-          echo "33bots w wynikach: $(grep -c '33bots' b2.html)"
+          mkdir -p /tmp/k && cd /tmp/k && npm init -y >/dev/null && npm i -s playwright-core@1.48.2 >/dev/null 2>&1
+          cat > k.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
+          const strony = [
+            'https://33bots.at/', 'https://33bots.at/kontakt.html', 'https://33bots.at/roboter-weihnachtsfeier.html',
+            'https://33bots.at/messe-roboter-mieten.html', 'https://33bots.at/roboter-mieten-wien.html',
+            'https://33bots.de/', 'https://33bots.de/roboter-weihnachtsfeier.html',
+            'https://33bots.pl/', 'https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html',
+          ];
+          for (const url of strony) {
+            const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, locale: 'de-DE' });
+            const page = await ctx.newPage();
+            const csp = [], bledy = [], pomiar = {}, nieudane = [];
+            await page.route(/formspree\.io|formsubmit\.co/, (r) => r.abort());
+            page.on('console', (m) => { const t = m.text(); if (/Content Security Policy|Refused to/.test(t)) csp.push(t.slice(0, 220)); });
+            page.on('pageerror', (e) => bledy.push(e.message.slice(0, 200)));
+            page.on('request', (r) => {
+              const h = new URL(r.url()).hostname;
+              if (/google-analytics|analytics\.google|googletagmanager|googleadservices|doubleclick|albacross|^www\.google\./.test(h)) pomiar[h] = (pomiar[h] || 0) + 1;
+            });
+            page.on('requestfailed', (r) => { if (!/formspree|formsubmit/.test(r.url())) nieudane.push(`${r.failure()?.errorText} ${r.url().slice(0, 90)}`); });
+            let odp;
+            try { odp = await page.goto(url, { waitUntil: 'load', timeout: 45000 }); } catch (e) { console.log(`\n=== ${url} → BŁĄD ${e.message}`); await ctx.close(); continue; }
+            await page.waitForTimeout(3000);
+            await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } });
+            await page.waitForTimeout(2500);
+            const info = await page.evaluate(() => ({
+              generator: document.documentElement.outerHTML.includes('buduj_podstrony.py'),
+              form: ([...document.scripts].map((s) => s.textContent).join('').match(/fetch\(["'](https:\/\/[^"']+)["']/) || [])[1] || null,
+              wideo: [...document.querySelectorAll('video')].map((v) => v.querySelector('source')?.getAttribute('src') || v.getAttribute('src') || 'BRAK ŹRÓDŁA'),
+              menu: !!document.getElementById('navPrzycisk'),
+            }));
+            let film = '-';
+            if (info.wideo.length) film = await page.evaluate(async () => {
+              const v = document.querySelector('video'); v.muted = true;
+              return Promise.race([v.play().then(() => `odtwarza (${v.videoWidth}×${v.videoHeight})`), new Promise((r) => setTimeout(() => r('nie rusza w 10 s'), 10000))]).catch((e) => 'błąd ' + e.name);
+            });
+            const naglowek = odp.headers()['content-security-policy'] || '';
+            console.log(`\n=== ${url} → HTTP ${odp.status()}`);
+            console.log(`  CSP w nagłówku: ${naglowek ? (naglowek.includes('googleadservices') ? 'nowa (pomiar przepuszczony)' : 'STARA') : 'brak'}`);
+            console.log(`  naruszenia CSP: ${csp.length}${csp.length ? '\n    ' + [...new Set(csp)].slice(0, 6).join('\n    ') : ''}`);
+            console.log(`  błędy JS: ${bledy.length ? bledy.join(' | ') : 0}`);
+            console.log(`  pomiar (żądania): ${Object.entries(pomiar).map(([h, n]) => `${h}×${n}`).join(', ') || 'brak'}`);
+            console.log(`  formularz → ${info.form} · nowy układ: ${info.generator} · menu: ${info.menu}`);
+            console.log(`  wideo: ${info.wideo.join(', ') || '-'} · ${film}`);
+            if (nieudane.length) console.log(`  nieudane żądania: ${[...new Set(nieudane)].slice(0, 6).join(' | ')}`);
+            await ctx.close();
+          }
+          await b.close();
+          EOF
+          node k.mjs
