@@ -165,6 +165,8 @@ def klasy_at(tekst):
             for a, b in (('px-9', 'px-5'), ('py-5', 'py-4'), ('text-base', 'text-sm'), ('tracking-wider', 'tracking-normal')):
                 k = podmien(a, b)
             k += ['sm:px-9', 'sm:text-base', 'sm:tracking-wider']
+        elif {'cta-shine', 'py-4.5'} <= z:                                          # główny przycisk w hero:
+            k = podmien('py-4.5', 'py-4')                                            # py-4.5 nie istnieje w Tailwindzie
         elif {'border-line-hi', 'rounded-2xl'} <= z and z & {'py-4.5', 'py-5'}:     # przycisk z ramką
             k = podmien('py-4.5', 'py-4')
             k = podmien('py-5', 'py-4')
@@ -185,6 +187,28 @@ def klasy_at(tekst):
     return re.sub(r'class="([^"]*)"', popraw, tekst)
 
 
+# Menu i przycisk „Kostenloses Angebot“ w nagłówku podstron prowadziły do kotwic strony głównej
+# (#referenzen, #preise, #kontakt…), których na podstronie nie ma — kliknięcie nic nie robiło.
+KOTWICE_GLOWNEJ_AT = ('referenzen', 'vertrauen', 'auftritt', 'moeglichkeiten', 'case-study', 'preise', 'ablauf', 'faq')
+
+
+def kotwice_at(tekst):
+    ids = set(re.findall(r'\bid="([^"]+)"', tekst))
+
+    def popraw(m):
+        k = m.group(1)
+        if k in ids:
+            return m.group(0)
+        if k in KOTWICE_GLOWNEJ_AT:
+            return f'href="index.html#{k}"'
+        if k == 'kontakt':
+            return 'href="#contactForm"' if 'contactForm' in ids else 'href="kontakt.html"'
+        return m.group(0)
+    tekst = re.sub(r'href="#([^"]+)"', popraw, tekst)
+    return tekst.replace('<a href="#" class="font-display text-lg font-700 tracking-tight text-white">33BOTS</a>',
+                         '<a href="index.html" class="font-display text-lg font-700 tracking-tight text-white">33BOTS</a>')
+
+
 BANER_STARE = 'max-width: 640px; margin: 0 auto; padding: 1rem 1.25rem;'
 BANER_NOWE = 'max-width: 640px; margin: 0 auto; padding: 24px;'
 BANER_DESKTOP = '  @media (min-width: 768px) { .cookies { padding: 32px; } }\n'
@@ -201,7 +225,7 @@ def podstrony_at(cel):
         if strona.name == 'index.html':
             continue
         t = stary = strona.read_text(encoding='utf-8')
-        t = klasy_at(t).replace(BANER_STARE, BANER_NOWE)
+        t = kotwice_at(klasy_at(t).replace(BANER_STARE, BANER_NOWE))
         # Cena w ramce: przy line-height 36 px glif 30 px wystaje 2 px ponad wiersz (jak „od 100 000 zł” na .pl).
         t = t.replace('<p class="font-display text-3xl font-700 text-white">', '<p class="font-display text-3xl font-700 leading-normal text-white">')
         if '.cookies { padding: 32px; }' not in t and '  .cookies.show { transform: none; }\n' in t:

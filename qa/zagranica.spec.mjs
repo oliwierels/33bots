@@ -33,7 +33,7 @@ const RYNKI = [
     ceny: ['Individuelles Angebot', 'ab 2.300 €', 'netto', '−15 %'],
     kontakt: ['+48 531 408 004', 'kontakt@33bots.at'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Angebot'],
-    formularz: 'https://formsubmit.co/ajax/kontakt@33bots.at', dodatkowe: { _subject: 'Neue Anfrage über 33bots.at' },
+    formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.at.',
     miejsce: 'Wien, Messe Wien',
     linkLexai: null,
@@ -187,7 +187,7 @@ for (const m of RYNKI) {
         expect(html).toMatch(/<noscript><iframe src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-MR7R7CJ3"/);
         await expect(page.locator('script[src="https://serve.albacross.com/track.js"]')).toHaveCount(1);
         const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
-        expect(csp).toContain('https://formsubmit.co');
+        expect(csp).toContain('https://formspree.io');
         // Baner cookie: treść bez zmian, pojawia się sam, znika po kliknięciu i nie wraca.
         const baner = page.locator('#cookies');
         await expect(baner.locator('.cookies__text')).toHaveText('Wir verwenden Cookies zu Analysezwecken.');
@@ -558,8 +558,8 @@ const PODSTRONY = [
   [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/leistungen.html',
     '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-women-in-tech.html', '/blog.html',
     '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-abiball.html',
-    '/humanoider-roboter-event.html', '/event-attraktionen.html', '/impressum.html', '/404.html']],
-  [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/unitree-g1-mieten.html', '/kontakt.html',
+    '/humanoider-roboter-event.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
+  [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
     '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
     ...['wien', 'graz', 'linz', 'salzburg', 'innsbruck', 'klagenfurt', 'villach', 'wels', 'st-poelten', 'dornbirn', 'eisenstadt']
       .map((m) => `/roboter-mieten-${m}.html`)]],
