@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: czy nowy artykuł jest na 33bots.pl
-# i czy razem z nim nie poszło nic innego (nagłówek CSP bez zmian).
+# Niczego nie wdraża i nie zmienia. Tym razem: czy 33bots.de i 33bots.at są dostępne
+# dla robotów wyszukiwarek (nagłówki, robots.txt, mapy strony) i co z nich widać w indeksie.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -14,29 +14,47 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Artykuł na żywej stronie
+      - name: Dostępność dla robotów wyszukiwarek
         run: |
           set +e
-          A=https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html
-          curl -sS -o a.html -D a.txt -w "artykuł → HTTP %{http_code} · %{size_download} B\n" -H 'Cache-Control: no-cache' "$A"
-          echo "ostatnia zmiana pliku na serwerze: $(grep -i '^last-modified' a.txt | cut -d' ' -f2-)"
-          curl -sS -o /dev/null -w "zwykłe wejście (bez no-cache) → HTTP %{http_code} · %{size_download} B\n" "$A"
-          curl -sS -o /dev/null -L -w "przez www → HTTP %{http_code} · koniec: %{url_effective}\n" "https://www.33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html"
-          echo "fragment treści: $(grep -o 'Prosty rachunek:[^<]\{0,80\}' a.html | head -1)"
-          echo "tytuł: $(grep -o '<title>[^<]*' a.html)"
-          echo "canonical: $(grep -o '<link rel="canonical" href="[^"]*"' a.html)"
-          echo "h1: $(grep -o '<h1 class="art__h1">[^<]*' a.html)"
-          echo "dane strukturalne: $(grep -o '"@type": "[A-Za-z]*"' a.html | sort | uniq -c | tr '\n' ' ')"
-          echo "GTM: $(grep -c 'GTM-MR7R7CJ3' a.html)"
-          for z in $(grep -o '<img src="[^"]*"' a.html | sed 's/<img src="//; s/"$//'); do printf '  obraz %s → ' "$z"; curl -s -o /dev/null -w '%{http_code}\n' "https://33bots.pl/$z"; done
-          echo "--- powiązania"
-          echo "blog.html: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/blog.html | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
-          echo "wdrozenia.html: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/wdrozenia.html | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
-          echo "sitemap.xml: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/sitemap.xml | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
-          echo "feed.xml: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/feed.xml | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
-          echo "llms.txt: $(curl -s -H 'Cache-Control: no-cache' https://33bots.pl/llms.txt | grep -c 'blog-wdrozenie-robota-humanoidalnego-w-firmie')"
-          echo "--- nagłówek CSP 33bots.pl (ma być bez zmian, bez analytics.google.com)"
-          curl -s -o /dev/null -D h.txt https://33bots.pl/
-          echo "analytics.google.com w CSP: $(grep -i '^content-security-policy' h.txt | grep -c 'analytics.google.com')"
+          GBOT='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+          for d in 33bots.de 33bots.at 33bots.pl; do
+            echo "================ $d"
+            for ua in "$GBOT" "Mozilla/5.0 (X11; Linux x86_64) Chrome/141.0 Safari/537.36"; do
+              curl -sS -o /tmp/s.html -D /tmp/h.txt -A "$ua" -w "HTTP %{http_code} · %{size_download} B" --max-time 30 "https://$d/"
+              echo " · UA: ${ua:0:40} · x-robots-tag: $(grep -i '^x-robots-tag' /tmp/h.txt | cut -d' ' -f2- | tr -d '\r') · meta robots: $(grep -o '<meta name="robots"[^>]*' /tmp/s.html | head -1)"
+            done
+            echo "robots.txt: $(curl -s --max-time 20 https://$d/robots.txt | tr '\n' '|' | cut -c1-200)"
+            curl -s --max-time 30 "https://$d/sitemap.xml" -o /tmp/map.xml
+            grep -o '<loc>[^<]*' /tmp/map.xml | sed 's/<loc>//' > /tmp/adresy.txt
+            echo "mapa strony: $(wc -l < /tmp/adresy.txt) adresów"
+            : > /tmp/statusy.txt
+            while read -r u; do
+              printf '%s %s\n' "$(curl -s -o /dev/null -I -A "$GBOT" --max-time 20 -w '%{http_code}' "$u")" "$u" >> /tmp/statusy.txt
+            done < /tmp/adresy.txt
+            echo "statusy (Googlebot): $(cut -d' ' -f1 /tmp/statusy.txt | sort | uniq -c | tr '\n' ' ')"
+            grep -v '^200 ' /tmp/statusy.txt | head -10
+            X=$(head -40 /tmp/adresy.txt | while read -r u; do curl -s -o /dev/null -D - -A "$GBOT" --max-time 20 "$u" | grep -i '^x-robots-tag'; done | sort | uniq -c)
+            echo "x-robots-tag na pierwszych 40 adresach: ${X:-brak}"
+          done
+
+      - name: Ślady w indeksie wyszukiwarek
+        run: |
+          set +e
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36'
+          for d in 33bots.de 33bots.at 33bots.pl; do
+            echo "================ site:$d"
+            curl -s -A "$UA" --max-time 30 "https://www.bing.com/search?q=site%3A$d&count=50&setlang=de&cc=de" -o bing.html
+            echo "Bing: $(grep -oE "https?://(www\.)?$d[^\"'<> &]*" bing.html | sed 's/[.,]$//' | sort -u | wc -l) adresów z $d na 1. stronie wyników · rozmiar odpowiedzi $(wc -c < bing.html) B"
+            grep -oE "https?://(www\.)?$d[^\"'<> &]*" bing.html | sort -u | head -8 | sed 's/^/   /'
+            curl -s -A "$UA" --max-time 30 "https://html.duckduckgo.com/html/?q=site%3A$d&kl=de-de" -o ddg.html
+            echo "DuckDuckGo: $(grep -oE "$d[^\"'<> &]*" ddg.html | sort -u | wc -l) unikalnych odnośników · rozmiar $(wc -c < ddg.html) B"
+            curl -s -A "$UA" --max-time 30 -o g.html -w "Google: HTTP %{http_code} · %{size_download} B" "https://www.google.com/search?q=site%3A$d&hl=de&num=50"
+            echo " · wyników z $d: $(grep -oE "https?://(www\.)?$d[^\"'<> &]*" g.html | sort -u | wc -l) · zgoda/captcha: $(grep -c -iE 'consent|captcha|unusual traffic' g.html)"
+          done
+          echo "================ fraza: Roboter mieten Messe (Bing, DE)"
+          curl -s -A "$UA" --max-time 30 "https://www.bing.com/search?q=humanoider+Roboter+mieten&count=30&setlang=de&cc=de" -o b2.html
+          grep -oE 'href="https?://[^"/]+' b2.html | sed 's/href="//' | grep -vE 'bing|microsoft|msn|live\.com|go\.microsoft' | sort | uniq -c | sort -rn | head -15
+          echo "33bots w wynikach: $(grep -c '33bots' b2.html)"
