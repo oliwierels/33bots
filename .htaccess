@@ -14,6 +14,8 @@ RewriteRule ^(.*)$ https://33bots.de/$1 [L,R=301]
 # zwei Seiten mit identischem Titel und Google wählt selbst, welche er zeigt.
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://33bots.de/ [L,R=301]
+# Entwurf der Startseite war öffentlich und indexierbar — dauerhaft auf die Startseite.
+RewriteRule ^index-redesign\.html$ https://33bots.de/ [L,R=301]
 
 ErrorDocument 404 /404.html
 

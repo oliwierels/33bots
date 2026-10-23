@@ -17,7 +17,7 @@ KATALOG, DOMENA = sys.argv[1], sys.argv[2]
 os.chdir(KATALOG)
 BAZA = f"https://{DOMENA}"
 
-POMIJANE = {"404.html", "szablon-case-study.html", "index-redesign.html", "danke.html"}
+POMIJANE = {"404.html", "szablon-case-study.html", "vorlage-case-study.html", "danke.html"}
 STRONY = sorted(p for p in glob.glob("*.html") if p not in POMIJANE)
 
 wyniki = defaultdict(list)
