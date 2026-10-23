@@ -1,9 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: druga fala .de na żywo (84 strony w nowym układzie, bez usuniętych twierdzeń),
-# przekierowanie szablonu case study, .at z „24 Werkstunden” — i zgłoszenie zmienionych
-# stron do IndexNow (Bing, Yandex, Seznam). Niczego poza tym nie zmienia.
+# Tym razem: nowe strony .de (Unitree G1, Preise, case studies) i przekierowania wpisów bloga
+# na żywo, RSS, oraz dlaczego IndexNow odrzuca klucz .de (403). Niczego poza tym nie zmienia.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -17,53 +16,39 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: 33bots.de — strony z mapy w nowym układzie
+      - name: 33bots.de — mapa, nowe strony, przekierowania wpisów
         run: |
           set +e
           curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > de.txt
-          echo "mapa .de: $(wc -l < de.txt) adresów, lastmod: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<lastmod>[^<]*' | sort | uniq -c | tr '\n' ' ')"
-          zle=0; stare=0; n=0
-          while read -r u; do
-            n=$((n+1))
-            kod=$(curl -s -o strona.html -w '%{http_code}' --max-time 20 "$u")
-            [ "$kod" = "200" ] || { echo "KOD $kod: $u"; zle=$((zle+1)); continue; }
-            [ "$u" = "https://33bots.de/" ] && continue
-            grep -q 'Erzeugt von tresci/zagranica/buduj_podstrony.py' strona.html || { echo "STARY UKŁAD: $u"; stare=$((stare+1)); }
-            for wz in 'zertifiziert' 'kostenlos' 'Karolina M.' 'Unsere Münchner Einsätze' 'Wir arbeiten auf Fachmessen' 'Bewährte Locations'; do
-              grep -q "$wz" strona.html && echo "„$wz” na $u"
-            done
-          done < de.txt
-          echo "sprawdzone: $n, błędne kody: $zle, w starym układzie: $stare"
-          echo "vorlage-case-study: $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' https://33bots.de/vorlage-case-study.html)"
-          echo "nieistniejąca strona: $(curl -s -o 404.html -w '%{http_code}' --max-time 20 https://33bots.de/gibt-es-nicht.html), nowy układ: $(grep -c 'buduj_podstrony.py' 404.html)"
-          echo "przykładowe przekierowanie z konsolidacji: $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' https://33bots.de/roboter-mieten-bonn.html)"
-          curl -s --max-time 20 -D naglowki.txt -o /dev/null https://33bots.de/referenzen-videos.html
-          grep -i '^content-security-policy' naglowki.txt | cut -c1-120
-
-      - name: 33bots.at — czas odpowiedzi i układ
-        run: |
-          set +e
-          curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > at.txt
-          n=0; stare=0
-          for u in $(cat at.txt); do
-            curl -s --max-time 20 "$u" -o s.html; n=$((n+1))
-            grep -q '24 Stunden' s.html && echo "„24 Stunden” na $u"
-            [ "$u" = "https://33bots.at/" ] || grep -q 'buduj_podstrony.py' s.html || { echo "STARY UKŁAD: $u"; stare=$((stare+1)); }
+          echo "mapa .de: $(wc -l < de.txt) adresów"
+          zle=0; while read -r u; do k=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$u"); [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }; done < de.txt
+          echo "błędne kody w mapie: $zle"
+          for s in unitree-g1-mieten roboter-mieten-preise case-study-eco-studio-electro-system case-study-grupa-rekord-mspo case-study-centrum-nauki-kopernik case-study-ogrod-przelewice; do
+            curl -s --max-time 20 "https://33bots.de/$s.html" -o s.html
+            echo "$s: $(grep -o '<title>[^<]*' s.html | head -1) | nowy układ: $(grep -c 'buduj_podstrony.py' s.html)"
           done
-          echo ".at: sprawdzone $n, w starym układzie: $stare"
+          for s in blog-unitree-g1-roboter blog-was-kostet-roboter-mieten blog-roboter-mieten-leitfaden blog-logistik-am-eventtag; do
+            echo "$s → $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' "https://33bots.de/$s.html")"
+          done
+          echo "RSS: $(curl -s --max-time 20 https://33bots.de/feed.xml | grep -c '<item>') wpisów"
+          echo "stopka z Preise i Unitree: $(curl -s --max-time 20 https://33bots.de/ | grep -c -E 'roboter-mieten-preise.html|unitree-g1-mieten.html')"
 
-      - name: Zgłoszenie do IndexNow
+      - name: IndexNow — dlaczego 403 dla 33bots.de
         run: |
           set +e
-          zglos() { host=$1; key=$2; plik=$3
-            python3 - "$host" "$key" "$plik" > body.json <<'EOF'
-          import json, sys
-          host, key, plik = sys.argv[1:4]
-          urls = [l.strip() for l in open(plik) if l.strip()]
-          print(json.dumps({'host': host, 'key': key, 'keyLocation': f'https://{host}/{key}.txt', 'urlList': urls}))
-          EOF
-            echo "$host: $(python3 -c "import json; print(len(json.load(open('body.json'))['urlList']))") adresów → $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data @body.json)"
-          }
-          cp de.txt de-zgloszenie.txt; echo "https://33bots.de/vorlage-case-study.html" >> de-zgloszenie.txt
-          zglos 33bots.de a2813e79cb1d1017ecf75f8b739153a3 de-zgloszenie.txt
-          zglos 33bots.at d26cc6827bff8b3fdaebd366644a7aec at.txt
+          K=a2813e79cb1d1017ecf75f8b739153a3
+          echo "--- plik klucza zwykłym curl:"
+          curl -s -D - --max-time 20 "https://33bots.de/$K.txt" | head -20
+          echo "--- plik klucza z UA Bingbota:"
+          curl -s -o /dev/null -w '%{http_code} %{content_type} %{redirect_url}\n' -A 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)' --max-time 20 "https://33bots.de/$K.txt"
+          echo "--- przez www i http:"
+          curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' --max-time 20 "https://www.33bots.de/$K.txt"
+          curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' --max-time 20 "http://33bots.de/$K.txt"
+          echo "--- GET api.indexnow.org (jeden adres):"
+          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://api.indexnow.org/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
+          echo "--- GET bing.com/indexnow (jeden adres):"
+          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://www.bing.com/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
+          echo "--- GET yandex (jeden adres):"
+          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://yandex.com/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
+          echo "--- dla porównania .at (GET bing):"
+          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://www.bing.com/indexnow?url=https://33bots.at/&key=d26cc6827bff8b3fdaebd366644a7aec"
