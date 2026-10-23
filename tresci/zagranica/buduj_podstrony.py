@@ -73,7 +73,8 @@ DZIELENIE = {
     'Unternehmensdaten': 'Unternehmens&shy;daten', 'Tanzchoreografie': 'Tanz&shy;choreografie',
     'Verantwortlicher': 'Verantwort&shy;licher', 'Geschäftsführung': 'Geschäfts&shy;führung',
     'Barrierefreiheit': 'Barriere&shy;freiheit', 'Tagesnachrichten': 'Tages&shy;nachrichten',
-    'Niederösterreich': 'Nieder&shy;österreich',
+    'Niederösterreich': 'Nieder&shy;österreich', 'Unternehmensgruppe': 'Unternehmens&shy;gruppe',
+    'Wissenschaftszentrum': 'Wissenschafts&shy;zentrum', 'Gefechtsfeldmedizin': 'Gefechtsfeld&shy;medizin',
 }
 
 
@@ -403,12 +404,48 @@ class Rynek:
         return adres
 
 
+def kanal_rss(rynek, zrodla):
+    """feed.xml z wpisów bloga (dane BlogPosting w źródłach), od najnowszego; bez wpisów — bez kanału."""
+    from datetime import datetime
+    from email.utils import format_datetime
+    wpisy = []
+    for zrodlo in zrodla:
+        d = json.loads(re.match(r'\s*<!--\s*(\{.*?\})\s*-->', zrodlo.read_text(encoding='utf-8'), re.S).group(1))
+        bp = next((x for x in d.get('ld', []) if x.get('@type') == 'BlogPosting'), None)
+        if bp:
+            wpisy.append((bp['datePublished'], zrodlo.stem + '.html', bez_tagow(d['h1']), d['opis']))
+    if not wpisy:
+        return
+    baza = rynek.k['baza']
+    elementy = '\n'.join(f'''    <item>
+      <title>{html.escape(t, quote=False)}</title>
+      <link>{baza}/{a}</link>
+      <guid>{baza}/{a}</guid>
+      <description>{html.escape(o, quote=False)}</description>
+      <pubDate>{format_datetime(datetime.fromisoformat(dt))}</pubDate>
+    </item>''' for dt, a, t, o in sorted(wpisy, reverse=True))
+    (rynek.cel / 'feed.xml').write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>33bots — Blog</title>
+    <link>{baza}/blog.html</link>
+    <description>Wissen über humanoide Roboter auf Veranstaltungen, Messen und Konferenzen.</description>
+    <language>de-DE</language>
+{elementy}
+  </channel>
+</rss>
+''', encoding='utf-8')
+    print(f'  feed.xml: {len(wpisy)} wpisów')
+
+
 def main():
     if len(sys.argv) != 3 or sys.argv[1] not in RYNKI:
         raise SystemExit(f'Użycie: python3 {sys.argv[0]} {"|".join(RYNKI)} <katalog repozytorium rynku>')
     r = Rynek(sys.argv[1], sys.argv[2])
-    for zrodlo in sorted((ZRODLA / sys.argv[1]).glob('*.html')):
+    zrodla = sorted((ZRODLA / sys.argv[1]).glob('*.html'))
+    for zrodlo in zrodla:
         print(f'  {r.zbuduj(zrodlo)}')
+    kanal_rss(r, zrodla)
 
 
 if __name__ == '__main__':

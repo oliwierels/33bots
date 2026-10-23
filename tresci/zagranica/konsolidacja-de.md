@@ -66,3 +66,26 @@ Case studies LEX AI, WallStreet 30 i Women in Tech Summit napisane od nowa na po
 polskich wersji (stare niemieckie opisywały np. „Legal-Tech-Veranstaltung mit Keynote”, a był to
 pokaz na Długim Targu w Gdańsku). Wewnętrzny szablon `vorlage-case-study.html` usunięty (301 na
 Referenzen).
+
+## Nowe strony i wpisy bloga wchłonięte przez mocne strony (2026-10-23)
+
+Nowe strony pod frazy, na które konkurencja ma osobne podstrony:
+
+- `unitree-g1-mieten.html` — dane techniczne, możliwości i ograniczenia robota, kupno czy wynajem,
+  cena, przebieg wynajmu (hreflang z `33bots.at/unitree-g1-mieten.html`);
+- `roboter-mieten-preise.html` — ceny, co jest w cenie, przykłady wyliczeń (rabat 15% od dwóch
+  dni), porównywanie ofert, kupno czy wynajem;
+- cztery case studies przetłumaczone z .pl: Eco Studio ELECTRO-SYSTEM, Grupa Rekord na MSPO,
+  Centrum Nauki Kopernik, Noc Bajek w Przelewicach.
+
+Dziesięć krótkich wpisów (po ok. 250 słów) przekierowanych 301 na strony, które mają teraz ich treść:
+
+| Wpis | Cel |
+|---|---|
+| blog-unitree-g1-roboter, blog-was-kann-ein-humanoider-roboter, blog-humanoider-vs-mobiler-roboter, blog-roboter-fuer-event-auswaehlen | unitree-g1-mieten |
+| blog-was-kostet-roboter-mieten, blog-was-kostet-humanoider-roboter, blog-anbieter-roboter-vermietung-waehlen, blog-roboter-mieten-checkliste | roboter-mieten-preise |
+| blog-roboter-mieten-leitfaden, blog-logistik-am-eventtag | humanoiden-roboter-mieten |
+
+Przyjazd i demontaż na stronie wynajmu według .pl (ok. 1,5 h przed pierwszym pokazem, demontaż
+ok. 30 min) — stary wpis podawał inne liczby. feed.xml powstaje teraz w generatorze z wpisów
+w źródłach (data z BlogPosting).

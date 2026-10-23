@@ -558,7 +558,8 @@ test.describe('33bots.de — panel dostępności', () => {
 const PODSTRONY = [
   [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/roboter-firmenevents.html',
     '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-wallstreet.html', '/case-study-women-in-tech.html', '/blog.html',
-    '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-privatfeier.html',
+    '/blog-attraktion-firmenevent.html', '/roboter-mieten-preise.html', '/unitree-g1-mieten.html', '/case-study-eco-studio-electro-system.html',
+    '/case-study-grupa-rekord-mspo.html', '/roboter-privatfeier.html',
     '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
   [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
     '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
