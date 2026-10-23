@@ -557,7 +557,7 @@ test.describe('33bots.de — panel dostępności', () => {
 // 33bots.at: wszystkie podstrony.
 const PODSTRONY = [
   [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/roboter-firmenevents.html',
-    '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-women-in-tech.html', '/blog.html',
+    '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-wallstreet.html', '/case-study-women-in-tech.html', '/blog.html',
     '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-privatfeier.html',
     '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
   [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
@@ -629,7 +629,7 @@ for (const { m, strona, d } of NOWY_UKLAD) {
       expect(twarde(await page.locator('h1').innerText())).toBe(bezZnacznikow(d.h1));
       const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => JSON.parse(s.textContent)));
       const typy = [...(d.usluga ? ['Service'] : []), 'BreadcrumbList', ...(d.ld || []).map((x) => x['@type']),
-        ...(d.pytania ? ['FAQPage'] : []), ...(d.wideo?.ld ? ['VideoObject'] : [])];
+        ...(d.pytania ? ['FAQPage'] : []), ...[d.wideo, ...(d.filmy || [])].filter((f) => f?.ld).map(() => 'VideoObject')];
       expect(ld.map((x) => x['@type'])).toEqual(typy);
       const faq = ld.find((x) => x['@type'] === 'FAQPage');
       expect(await page.locator('.faq__q').evaluateAll((q) => q.map((e) => e.dataset.faq))).toEqual(faq ? faq.mainEntity.map((q) => q.name) : []);

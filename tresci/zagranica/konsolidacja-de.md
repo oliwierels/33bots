@@ -44,3 +44,25 @@ Cofnięcie: usunąć regułę z `.htaccess` i przywrócić plik z historii git (
 | `/roboter-mieten-hannover.html` | `roboter-mieten-braunschweig` |
 | `/roboter-mieten-muenchen.html` | `roboter-mieten-augsburg` |
 | `/roboter-weihnachtsfeier.html` | `roboter-nikolaus` |
+
+## Druga fala (2026-10-23): wszystkie podstrony .de w nowym układzie
+
+Wszystkie 84 podstrony 33bots.de mają źródła w `tresci/zagranica/podstrony/de/` i powstają
+z `buduj_podstrony.py` — w tym samym układzie co strona główna i 33bots.pl. Adresy, tytuły,
+canonical, hreflang, obrazy og i dane strukturalne zostały jak były.
+
+Przy przenoszeniu usunęliśmy twierdzenia, których nie da się potwierdzić:
+
+- realizacje w miastach, w których robota nie było („Unsere Münchner Einsätze…”, „Wir arbeiten
+  auf Fachmessen in der ÖVB-Arena…”) — zostały „passende Anlässe” i typowe obiekty w mieście;
+  jedyna prawdziwa realizacja w Niemczech to Dresdner Schlössernacht (opis z danych .pl);
+- „bewährte Locations”, „zertifizierter Operator”, „kostenlos”, „Hunderte Beiträge”,
+  superlatywy („der stärkste…”, „das meistfotografierte…”);
+- trzy te same opinie klientów (Karolina M., Piotr Z., Magdalena T.), powielone na ponad
+  100 stronach .pl — do potwierdzenia przez właściciela, zanim wrócą na którąkolwiek stronę;
+- czas odpowiedzi: wszędzie „24 Werkstunden”, jak na stronie głównej.
+
+Case studies LEX AI, WallStreet 30 i Women in Tech Summit napisane od nowa na podstawie
+polskich wersji (stare niemieckie opisywały np. „Legal-Tech-Veranstaltung mit Keynote”, a był to
+pokaz na Długim Targu w Gdańsku). Wewnętrzny szablon `vorlage-case-study.html` usunięty (301 na
+Referenzen).

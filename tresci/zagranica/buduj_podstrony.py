@@ -11,6 +11,9 @@ Skróty w treści (jak w artykułach .pl):
   <foto plik="realizacja-x" alt="…" podpis="…"/>              zdjęcie na szerokość tekstu
   <para podpis="…"><kadr plik="…" alt="…"/><kadr …/></para>   dwa zdjęcia obok siebie
   <wideo/>                                                     film z danych „wideo” w nagłówku
+  <wideo plik="video/x"/>                                      jeden z kilku filmów z danych „filmy”
+
+Opcjonalnie w danych: „rodzic” [adres, nazwa] — strona nadrzędna w okruszkach (np. Blog).
 
 Adres, tytuł, opis, hreflang, obraz og i dane strukturalne usługi przechodzą z dotychczasowej
 wersji strony bez zmian — zmienia się wygląd, nie to, co widzi wyszukiwarka.
@@ -48,9 +51,36 @@ TEKSTY = {
     'start': 'Startseite', 'okruchy': 'Brotkrumen', 'skip': 'Zum Hauptinhalt springen',
     'spis': 'Auf dieser Seite', 'faq': 'Häufige Fragen', 'czytaj': 'Weiterlesen',
     'cta_tytul': 'Prüfen Sie, ob Ihr Termin frei ist',
-    'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Stunden.',
+    'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Werkstunden.',
     'cta_przycisk': 'Verfügbarkeit prüfen', 'pasek': 'Termin prüfen',
 }
+
+
+# Długie złożenia w nagłówkach dzielimy miękko (&shy;), żeby na telefonach 320 px nie wychodziły
+# poza ekran; słowa z łącznikiem łamią się same. Podział według członów złożenia.
+DZIELENIE = {
+    'Verbraucherstreitbeilegung': 'Verbraucher&shy;streit&shy;beilegung', 'Haftpflichtversicherung': 'Haftpflicht&shy;versicherung',
+    'Durchsetzungsverfahren': 'Durchsetzungs&shy;verfahren', 'Hochschulveranstaltung': 'Hochschul&shy;veranstaltung',
+    'Unternehmensgegenstand': 'Unternehmens&shy;gegenstand', 'Kinderveranstaltungen': 'Kinder&shy;veranstaltungen',
+    'Datenschutzerklärung': 'Datenschutz&shy;erklärung', 'Attraktionslieferant': 'Attraktions&shy;lieferant',
+    'Kulturveranstaltung': 'Kultur&shy;veranstaltung', 'Eröffnungszeremonie': 'Eröffnungs&shy;zeremonie',
+    'Interaktionsbereich': 'Interaktions&shy;bereich', 'Technologiestandort': 'Technologie&shy;standort',
+    'Weihnachtsplaylist': 'Weihnachts&shy;playlist', 'Agenturkonditionen': 'Agentur&shy;konditionen',
+    'Reichweitenmessung': 'Reichweiten&shy;messung', 'Veranstaltungstag': 'Veranstaltungs&shy;tag',
+    'Energiewirtschaft': 'Energie&shy;wirtschaft', 'Produktionsbudget': 'Produktions&shy;budget',
+    'Konferenzprogramm': 'Konferenz&shy;programm', 'Sicherheitsfragen': 'Sicherheits&shy;fragen',
+    'Markenbotschafter': 'Marken&shy;botschafter', 'Forschungsbranche': 'Forschungs&shy;branche',
+    'Unternehmensdaten': 'Unternehmens&shy;daten', 'Tanzchoreografie': 'Tanz&shy;choreografie',
+    'Verantwortlicher': 'Verantwort&shy;licher', 'Geschäftsführung': 'Geschäfts&shy;führung',
+    'Barrierefreiheit': 'Barriere&shy;freiheit', 'Tagesnachrichten': 'Tages&shy;nachrichten',
+    'Niederösterreich': 'Nieder&shy;österreich',
+}
+
+
+def podziel(t):
+    for slowo, z_podzialem in DZIELENIE.items():
+        t = re.sub(rf'\b{slowo}\b', z_podzialem, t)
+    return t
 
 
 def wycinek(tekst, od, do):
@@ -166,15 +196,20 @@ class Rynek:
             return f'<figure><div class="foto-para">{"".join(kadry)}</div>{pp}</figure>'
         tresc = re.sub(r'<para([^>]*)>(.*?)</para>', para, tresc, flags=re.S)
 
+        def film(f):
+            return (f'<figure><video controls muted playsinline preload="none" poster="{f["plik"]}-poster.jpg" '
+                    f'width="{f["szer"]}" height="{f["wys"]}" aria-label="{html.escape(f["etykieta"])}">'
+                    f'<source src="{f["plik"]}.mp4" type="video/mp4" /></video>'
+                    f'<figcaption class="podpis">{f["podpis"]}</figcaption></figure>')
+        # Jeden film z „wideo” (<wideo/>) albo kilka z „filmy” (<wideo plik="video/…"/>).
         w = d.get('wideo')
         if w:
-            tresc = tresc.replace('<wideo/>', (
-                f'<figure><video controls muted playsinline preload="none" poster="{w["plik"]}-poster.jpg" '
-                f'width="{w["szer"]}" height="{w["wys"]}" aria-label="{html.escape(w["etykieta"])}">'
-                f'<source src="{w["plik"]}.mp4" type="video/mp4" /></video>'
-                f'<figcaption class="podpis">{w["podpis"]}</figcaption></figure>'))
+            tresc = tresc.replace('<wideo/>', film(w))
+        filmy = {f['plik']: f for f in d.get('filmy', [])}
+        tresc = re.sub(r'<wideo plik="([^"]+)"\s*/>', lambda m: film(filmy[m.group(1)]), tresc)
         assert '<wideo' not in tresc, f'{zrodlo}: <wideo/> bez danych „wideo” w nagłówku'
 
+        tresc = re.sub(r'(<h[23]\b[^>]*>)(.*?)(</h[23]>)', lambda m: m.group(1) + podziel(m.group(2)) + m.group(3), tresc)
         naglowki = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', tresc)
         pytania = d.get('pytania', [])
         spis = '\n'.join(f'          <li><a href="#{i}">{t}</a></li>' for i, t in naglowki)
@@ -204,20 +239,26 @@ class Rynek:
             usluga.setdefault('description', d['opis'])
             usluga.setdefault('url', url)
             ld.append(usluga)
+        # Okruszki: Startseite › (strona nadrzędna, np. Blog) › strona.
+        okruszki = [(TEKSTY['start'], f'{baza}/')]
+        if d.get('rodzic'):
+            okruszki.append((d['rodzic'][1], f'{baza}/{d["rodzic"][0]}'))
+        okruszki.append((d['okruch'], url))
         ld.append({'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
-            {'@type': 'ListItem', 'position': 1, 'name': TEKSTY['start'], 'item': f'{baza}/'},
-            {'@type': 'ListItem', 'position': 2, 'name': d['okruch'], 'item': url}]})
+            {'@type': 'ListItem', 'position': n, 'name': nazwa, 'item': adres_ok}
+            for n, (nazwa, adres_ok) in enumerate(okruszki, 1)]})
         ld += [{'@context': 'https://schema.org', **x} for x in d.get('ld', [])]
         if pytania:
             ld.append({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
                 {'@type': 'Question', 'name': bez_tagow(q), 'acceptedAnswer': {'@type': 'Answer', 'text': bez_tagow(a)}}
                 for q, a in pytania]})
-        if w and w.get('ld'):
-            ld.append({'@context': 'https://schema.org', '@type': 'VideoObject', **w['ld'],
-                       'thumbnailUrl': f'{baza}/{w["plik"]}-poster.jpg', 'contentUrl': f'{baza}/{w["plik"]}.mp4',
-                       'inLanguage': k['lang'],
-                       'publisher': {'@type': 'Organization', 'name': '33bots', 'url': baza,
-                                     'logo': {'@type': 'ImageObject', 'url': f'{baza}/logo.png'}}})
+        for f in ([w] if w else []) + list(filmy.values()):
+            if f.get('ld'):
+                ld.append({'@context': 'https://schema.org', '@type': 'VideoObject', **f['ld'],
+                           'thumbnailUrl': f'{baza}/{f["plik"]}-poster.jpg', 'contentUrl': f'{baza}/{f["plik"]}.mp4',
+                           'inLanguage': k['lang'],
+                           'publisher': {'@type': 'Organization', 'name': '33bots', 'url': baza,
+                                         'logo': {'@type': 'ImageObject', 'url': f'{baza}/logo.png'}}})
         ld_html = '\n'.join(f'<script type="application/ld+json">\n{json.dumps(x, ensure_ascii=False, indent=2)}\n</script>' for x in ld)
         hreflang = '\n'.join(f'<link rel="alternate" hreflang="{j}" href="{h}" />' for j, h in d['hreflang'])
         meta = f'\n        <p class="art__meta">{d["meta"]}</p>' if d.get('meta') else ''
@@ -239,6 +280,9 @@ class Rynek:
                           + (f'\n{self.a11y_js}' if k['dostepnosc'] else '') + (f'\n{self.albacross}' if k['analityka'] else ''))
 
         # Części nagłówka i treści, których strona może nie mieć (strony prawne, 404, kontakt).
+        posredni = ''
+        if d.get('rodzic'):
+            posredni = f'\n        <li><a href="{d["rodzic"][0]}">{d["rodzic"][1]}</a></li><li aria-hidden="true">/</li>'
         akcje = ''
         if d.get('akcje'):
             linki = '\n'.join(f'          <a class="{kl}" href="{h}">{t}</a>' for h, t, kl in d['akcje'])
@@ -262,7 +306,7 @@ class Rynek:
         cta_html = '' if d.get('cta') is False else f'''
 
         <aside class="art__cta" aria-labelledby="cta-h">
-          <h2 class="h2" id="cta-h">{d.get('cta_tytul', TEKSTY['cta_tytul'])}</h2>
+          <h2 class="h2" id="cta-h">{podziel(d.get('cta_tytul', TEKSTY['cta_tytul']))}</h2>
           <p class="body">{d.get('cta_tekst', TEKSTY['cta_tekst'])}</p>
           <div class="art__cta-akcje">
             <a class="btn" href="{do_formularza}" data-cta="seite">{TEKSTY['cta_przycisk']} <span aria-hidden="true">→</span></a>
@@ -332,12 +376,12 @@ class Rynek:
   <article>
     <header class="art__glowa">
       <ol class="okruchy" aria-label="{TEKSTY['okruchy']}">
-        <li><a href="index.html">{TEKSTY['start']}</a></li><li aria-hidden="true">/</li>
+        <li><a href="index.html">{TEKSTY['start']}</a></li><li aria-hidden="true">/</li>{posredni}
         <li aria-current="page">{d['okruch']}</li>
       </ol>
       <div class="art__tekst">
         <p class="label">{d['kategoria']}</p>
-        <h1 class="art__h1">{d['h1']}</h1>
+        <h1 class="art__h1">{podziel(d['h1'])}</h1>
         <p class="art__lead">{d['lead']}</p>{meta}{akcje}
       </div>{foto_glowy}
     </header>{tresc_html}
