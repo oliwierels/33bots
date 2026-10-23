@@ -21,6 +21,10 @@ jobs:
           set +e
           A=https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html
           curl -sS -o a.html -D a.txt -w "artykuł → HTTP %{http_code} · %{size_download} B\n" -H 'Cache-Control: no-cache' "$A"
+          echo "ostatnia zmiana pliku na serwerze: $(grep -i '^last-modified' a.txt | cut -d' ' -f2-)"
+          curl -sS -o /dev/null -w "zwykłe wejście (bez no-cache) → HTTP %{http_code} · %{size_download} B\n" "$A"
+          curl -sS -o /dev/null -L -w "przez www → HTTP %{http_code} · koniec: %{url_effective}\n" "https://www.33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html"
+          echo "fragment treści: $(grep -o 'Prosty rachunek:[^<]\{0,80\}' a.html | head -1)"
           echo "tytuł: $(grep -o '<title>[^<]*' a.html)"
           echo "canonical: $(grep -o '<link rel="canonical" href="[^"]*"' a.html)"
           echo "h1: $(grep -o '<h1 class="art__h1">[^<]*' a.html)"
