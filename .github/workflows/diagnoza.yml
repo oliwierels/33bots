@@ -1,9 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: strony konkurencji w DE/AT na frazy
-# „Roboter mieten”, „humanoider Roboter mieten” — tytuły, nagłówki, objętość treści,
-# dane strukturalne, oceny, wielkość serwisu — obok 33bots.de i 33bots.at.
+# Tym razem: konsolidacja 33bots.de na żywo (106 przekierowań 301, 84 strony z mapy),
+# 33bots.at bez linków do Robotollern, klucze IndexNow — i zgłoszenie adresów do IndexNow
+# (Bing, Yandex, Seznam). Niczego poza tym nie zmienia.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -15,72 +15,55 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Strony konkurencji i nasze
+      - name: Pobierz mapę przekierowań z repozytorium .de
+        run: |
+          curl -sL --max-time 30 "https://raw.githubusercontent.com/oliwierels/33bots/claude/identical-pages-germany-rg6dzh/.htaccess" -o ht.txt
+          grep -o -E 'RewriteRule \^[^ ]+ https://33bots\.de/[^ ]* \[L,R=301\]' ht.txt | grep -v index | sed -E 's/RewriteRule \^(.*)\$ (https[^ ]*) .*/\1 \2/; s/\\//g' > mapa.txt
+          echo "reguł w .htaccess: $(wc -l < mapa.txt)"
+
+      - name: 33bots.de — przekierowania i strony z mapy
         run: |
           set +e
-          cat > a.py <<'EOF'
-          import html, json, re, subprocess, sys
-          from urllib.parse import urljoin, urlparse
-          UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36'
-          def pobierz(u):
-              r = subprocess.run(['curl', '-sSL', '-A', UA, '--max-time', '30', '-w', '\n%{http_code}', u], capture_output=True)
-              t = r.stdout.decode('utf-8', 'replace')
-              t, _, kod = t.rpartition('\n')
-              return kod, t
-          def tekst(s):
-              s = re.sub(r'<(script|style|svg|noscript)[^>]*>.*?</\1>', ' ', s, flags=re.S | re.I)
-              return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', s))).strip()
-          STRONY = sys.argv[1:]
-          for u in STRONY:
-              kod, t = pobierz(u)
-              g = lambda r: (re.search(r, t, re.S | re.I) or [None, ''])[1]
-              host = urlparse(u).netloc
-              linki = set(urljoin(u, h) for h in re.findall(r'href="([^"#]+)"', t))
-              wew = sorted(l for l in linki if urlparse(l).netloc in (host, '') and not re.search(r'\.(css|js|png|jpg|webp|svg|ico|xml|pdf)(\?|$)', l))
-              typy = []
-              for m in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', t, re.S | re.I):
-                  try:
-                      d = json.loads(m)
-                      for x in (d if isinstance(d, list) else d.get('@graph', [d])):
-                          typy.append(x.get('@type') if isinstance(x, dict) else '?')
-                  except Exception:
-                      typy.append('BŁĄD')
-              print(f'\n=== {u} → {kod} · {len(t)//1024} KB')
-              print('  title:', html.unescape(g(r'<title[^>]*>(.*?)</title>')).strip()[:120])
-              print('  description:', html.unescape(g(r'<meta\s+name="description"\s+content="([^"]*)"')).strip()[:200])
-              print('  H1:', ' | '.join(tekst(h)[:80] for h in re.findall(r'<h1[^>]*>(.*?)</h1>', t, re.S | re.I)))
-              print('  H2:', ' | '.join(tekst(h)[:60] for h in re.findall(r'<h2[^>]*>(.*?)</h2>', t, re.S | re.I))[:900])
-              print('  słów treści:', len(tekst(t).split()), '· linków wewnętrznych:', len(wew), '· JSON-LD:', typy)
-              print('  oceny/recenzje:', len(re.findall(r'aggregateRating|ratingValue|Bewertung|Rezension|Google-Bewertung|Trustpilot|ProvenExpert', t, re.I)),
-                    '· ceny:', ', '.join(sorted(set(re.findall(r'(?:ab\s*)?\d{1,2}\.\d{3}\s?(?:€|EUR|Euro)', t)))[:8]))
-              print('  podstrony (próbka):', ' '.join(urlparse(l).path for l in wew[:40]))
+          zle=0; ok=0
+          while read -r stary cel; do
+            odp=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' "https://33bots.de/$stary")
+            kod=${odp%% *}; dokad=${odp#* }
+            kod_celu=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code}' "$cel")
+            if [ "$kod" = "301" ] && [ "$dokad" = "$cel" ] && [ "$kod_celu" = "200" ]; then ok=$((ok+1)); else zle=$((zle+1)); echo "ŹLE: $stary → $kod $dokad (cel $kod_celu)"; fi
+          done < mapa.txt
+          echo "przekierowania: $ok poprawnych, $zle błędnych"
+          curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > de.txt
+          echo "mapa .de: $(wc -l < de.txt) adresów"
+          while read -r u; do k=$(curl -s -o /dev/null -I --max-time 20 -w '%{http_code}' "$u"); [ "$k" = "200" ] || echo "mapa .de: $k $u"; done < de.txt
+          echo "tytuł .de: $(curl -s --max-time 30 https://33bots.de/ | grep -o '<title>[^<]*')"
+
+      - name: 33bots.at — Robotollern, klucz IndexNow
+        run: |
+          set +e
+          curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > at.txt
+          n=0; for u in $(cat at.txt); do c=$(curl -s --max-time 20 "$u" | grep -c -i robotollern); [ "$c" = "0" ] || { echo "Robotollern na $u: $c"; n=$((n+1)); }; done
+          echo ".at: stron z Robotollern: $n z $(wc -l < at.txt)"
+          echo "klucz .at: $(curl -s --max-time 20 https://33bots.at/d26cc6827bff8b3fdaebd366644a7aec.txt)"
+          echo "klucz .de: $(curl -s --max-time 20 https://33bots.de/a2813e79cb1d1017ecf75f8b739153a3.txt)"
+          echo "klucz .pl: $(curl -s --max-time 20 https://33bots.pl/9209ab0a2e014f2c808446b0b4b4271a.txt)"
+
+      - name: Zgłoszenie do IndexNow
+        run: |
+          set +e
+          zglos() { host=$1; key=$2; plik=$3
+            python3 - "$host" "$key" "$plik" > body.json <<'EOF'
+          import json, sys
+          host, key, plik = sys.argv[1:4]
+          urls = [l.strip() for l in open(plik) if l.strip()]
+          print(json.dumps({'host': host, 'key': key, 'keyLocation': f'https://{host}/{key}.txt', 'urlList': urls}))
           EOF
-          python3 a.py \
-            https://www.roboticrental.de/ https://www.roboticrental.de/humanoide-roboter \
-            https://www.rental-robot.de/ https://robotollern.de/ https://www.uxsystems.de/roboter-mieten/ \
-            https://www.servus-medientechnik.de/robotik-telepraesenz-mieten.html https://www.bipedal.de/Vermietung \
-            https://www.roboter-mieten.at/ https://wianco.com/humanoide-roboter/ https://www.roboter-verleih.at/ \
-            https://humanoid-portal.de/blog/humanoide-roboter-mieten-raas/ \
-            https://33bots.de/ https://33bots.at/
-
-      - name: Wielkość serwisów (mapy stron) i robots.txt
-        run: |
-          set +e
-          for d in www.roboticrental.de www.rental-robot.de robotollern.de www.uxsystems.de www.roboter-mieten.at wianco.com humanoid-portal.de 33bots.de 33bots.at; do
-            M=$(curl -sL -A 'Mozilla/5.0' --max-time 30 "https://$d/sitemap.xml")
-            N=$(echo "$M" | grep -c '<loc>')
-            S=$(echo "$M" | grep -c '<sitemap>')
-            echo "$d: sitemap.xml → $N adresów, $S podmap · robots: $(curl -sL -A 'Mozilla/5.0' --max-time 20 https://$d/robots.txt | grep -i -E '^(sitemap|disallow)' | head -3 | tr '\n' ' ')"
-          done
-
-      - name: Porównywarka humanoid-portal.de — czy jest 33bots, jak się zgłosić
-        run: |
-          set +e
-          curl -sL -A 'Mozilla/5.0' --max-time 30 https://humanoid-portal.de/blog/humanoide-roboter-mieten-raas/ -o p.html
-          echo "33bots na stronie: $(grep -c -i 33bots p.html)"
-          grep -o -i -E '[^<>]{0,80}(kontakt|eintragen|aufnehmen|listing|anbieter melden|mail)[^<>]{0,80}' p.html | sort -u | head -15
-          grep -o -E 'href="[^"]*(kontakt|contact|impressum|eintragen|anbieter)[^"]*"' p.html | sort -u | head -10
-          echo "--- anbieter wymienieni:"
-          grep -o -i -E '(roboticrental|rental-robot|robotollern|uxsystems|servus-medientechnik|bipedal|wianco|ecosphere|robotise|33bots|roboter-mieten\.at)[a-z.\-/]*' p.html | sort | uniq -c | sort -rn | head -20
+            echo "$host: $(python3 -c "import json; print(len(json.load(open('body.json'))['urlList']))") adresów → $(curl -s -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data @body.json)"
+          }
+          # .de: strony z mapy i przekierowane adresy (żeby wyszukiwarka szybciej zobaczyła 301).
+          cp de.txt de-zgloszenie.txt; awk '{print "https://33bots.de/" $1}' mapa.txt >> de-zgloszenie.txt
+          zglos 33bots.de a2813e79cb1d1017ecf75f8b739153a3 de-zgloszenie.txt
+          zglos 33bots.at d26cc6827bff8b3fdaebd366644a7aec at.txt
+          echo "https://33bots.pl/robot-na-event.html" > pl.txt
+          zglos 33bots.pl 9209ab0a2e014f2c808446b0b4b4271a pl.txt
