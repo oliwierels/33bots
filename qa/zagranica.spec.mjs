@@ -591,3 +591,86 @@ for (const [m, strony] of PODSTRONY) {
     }
   }
 }
+
+// ——— Podstrony w nowym układzie (tresci/zagranica/buduj_podstrony.py) ———
+// Wygląd i zachowanie jak strona główna rynku i artykuły .pl; adres, tytuł, canonical,
+// hreflang i dane strukturalne jak w dotychczasowej wersji strony.
+const NOWY_UKLAD = [
+  [RYNKI[0], '/roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier mieten | 33bots', ['Service', 'BreadcrumbList', 'FAQPage', 'VideoObject']],
+  [RYNKI[1], '/roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier mieten | Österreich – 33bots', ['Service', 'BreadcrumbList', 'FAQPage']],
+];
+for (const [m, strona, tytul, ldTypy] of NOWY_UKLAD) {
+  test.describe(`33bots.${m.kod}${strona} — nowy układ`, () => {
+    const otworz = async (browser, vp = DESKTOP) => {
+      const ctx = await browser.newContext({ viewport: vp, reducedMotion: 'reduce' });
+      const page = await ctx.newPage();
+      const bledy = [];
+      page.on('pageerror', (e) => bledy.push(e.message));
+      await zablokujZewnetrzne(page);
+      await page.goto(m.adres.replace(/\/$/, '') + strona);
+      await page.evaluate(() => document.fonts.ready);
+      return { ctx, page, bledy };
+    };
+
+    test('SEO jak dotąd: tytuł, canonical, hreflang, jeden H1, dane strukturalne, FAQ zgodne z FAQPage', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      await expect(page).toHaveTitle(tytul);
+      await expect(page.locator('html')).toHaveAttribute('lang', m.lang);
+      await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', `https://33bots.${m.kod}${strona}`);
+      const hreflang = await page.locator('link[rel=alternate][hreflang]').evaluateAll((l) => l.map((e) => e.hreflang).sort());
+      expect(hreflang).toEqual(['de', 'de-AT', 'x-default']);
+      await expect(page.locator('h1')).toHaveCount(1);
+      await expect(page.locator('h1')).toContainText('Roboter für die Weihnachtsfeier');
+      const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => JSON.parse(s.textContent)));
+      expect(ld.map((d) => d['@type'])).toEqual(ldTypy);
+      const faq = ld.find((d) => d['@type'] === 'FAQPage').mainEntity.map((q) => q.name);
+      expect(await page.locator('.faq__q').evaluateAll((q) => q.map((e) => e.dataset.faq))).toEqual(faq);
+      await ctx.close();
+    });
+
+    test('menu i stopka jak na stronie głównej; kotwice strony głównej prowadzą na nią', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      const linki = (sel) => page.locator(sel).evaluate((el) => [...el.querySelectorAll('a')].map((a) => [a.textContent.trim(), a.getAttribute('href')]));
+      const tu = { nav: await linki('#nav'), stopka: await linki('footer.stopka') };
+      for (const [, h] of [...tu.nav, ...tu.stopka]) expect(h, 'kotwica bez celu na podstronie').not.toMatch(/^#/);
+      await page.goto(m.adres);
+      const naGlownej = (l) => l.map(([t, h]) => [t, h === '#top' ? 'index.html' : h.replace(/^#/, 'index.html#')]);
+      expect(tu.nav).toEqual(naGlownej(await linki('#nav')));
+      expect(tu.stopka).toEqual(naGlownej(await linki('footer.stopka')));
+      await ctx.close();
+    });
+
+    test('po niemiecku, bez „kostenlos” i „Kostüm”; menu, FAQ i pasek działają', async ({ browser }) => {
+      const { ctx, page, bledy } = await otworz(browser, TELEFON);
+      const POLSKIE = /\b(Sprawdź|Zobacz|realizacj|wydarze|Zamknij|Najczęstsze|Czytaj|Okruszki|Strona główna|Robot humanoidalny|Drezdeńska)\w*/i;
+      const t = await tresc(page);
+      expect(t.match(POLSKIE)).toBeNull();
+      expect(t).not.toMatch(/Kostüm|Outfit|Garderobe|kostenlos|gratis/i);
+      const p = page.locator('#navPrzycisk');
+      await expect(p).toHaveText('Menü');
+      await p.click();
+      await expect(p).toHaveText('Schließen');
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#navPanel')).toBeHidden();
+      // Pasek mobilny dopiero po minięciu nagłówka strony.
+      await expect(page.locator('#pasekMobilny')).not.toHaveClass(/pasek--widoczny/);
+      await page.evaluate(() => scrollTo(0, document.querySelector('.art__tresc').offsetTop + 400));
+      await expect(page.locator('#pasekMobilny')).toHaveClass(/pasek--widoczny/);
+      const q = page.locator('.faq__q').first();
+      await q.click();
+      await expect(q).toHaveAttribute('aria-expanded', 'true');
+      await expect(page.locator('#faq-1')).toBeVisible();
+      expect(bledy).toEqual([]);
+      await ctx.close();
+    });
+
+    test('axe: WCAG 2.1 A/AA bez naruszeń', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      await przewinCala(page);
+      const wynik = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+      const naruszenia = wynik.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(' | ')}`);
+      expect(naruszenia).toEqual([]);
+      await ctx.close();
+    });
+  });
+}

@@ -34,6 +34,8 @@ import sys
 from pathlib import Path
 
 PL = Path(__file__).resolve().parent.parent.parent
+# Podstrony w nowym układzie (css/site.css) powstają z buduj_podstrony.py — tych ten skrypt nie rusza.
+ZNACZNIK = 'Erzeugt von tresci/zagranica/buduj_podstrony.py'
 
 
 def md5(plik):
@@ -134,6 +136,8 @@ def podstrony_de(cel):
         if strona.name == 'index.html':
             continue      # strona główna z buduj_glowna.py
         s = stary = strona.read_text(encoding='utf-8')
+        if ZNACZNIK in s:
+            continue      # podstrona w nowym układzie z buduj_podstrony.py
         for efekt in EFEKTY:
             s = s.replace(efekt, '')
         s = s.replace(KOMENTARZ_INTER, KOMENTARZ_FONTY)
@@ -209,6 +213,13 @@ def kotwice_at(tekst):
                          '<a href="index.html" class="font-display text-lg font-700 tracking-tight text-white">33BOTS</a>')
 
 
+def wideo_at(tekst):
+    """Film „So sieht der Auftritt live aus” nie miał źródła: znacznik <source-marker> stał za </video>
+    i żaden skrypt go nie podmieniał, więc odtwarzacz czekał na plik w nieskończoność."""
+    return re.sub(r'></video>\s*<source-marker data-src="([^"]+)"></source-marker>',
+                  r'><source src="\1" type="video/mp4" /></video>', tekst)
+
+
 BANER_STARE = 'max-width: 640px; margin: 0 auto; padding: 1rem 1.25rem;'
 BANER_NOWE = 'max-width: 640px; margin: 0 auto; padding: 24px;'
 BANER_DESKTOP = '  @media (min-width: 768px) { .cookies { padding: 32px; } }\n'
@@ -225,7 +236,9 @@ def podstrony_at(cel):
         if strona.name == 'index.html':
             continue
         t = stary = strona.read_text(encoding='utf-8')
-        t = kotwice_at(klasy_at(t).replace(BANER_STARE, BANER_NOWE))
+        if ZNACZNIK in t:
+            continue
+        t = wideo_at(kotwice_at(klasy_at(t).replace(BANER_STARE, BANER_NOWE)))
         # Cena w ramce: przy line-height 36 px glif 30 px wystaje 2 px ponad wiersz (jak „od 100 000 zł” na .pl).
         t = t.replace('<p class="font-display text-3xl font-700 text-white">', '<p class="font-display text-3xl font-700 leading-normal text-white">')
         if '.cookies { padding: 32px; }' not in t and '  .cookies.show { transform: none; }\n' in t:
@@ -248,6 +261,8 @@ def podstrony_at(cel):
         if strona.name == 'index.html':
             continue
         s = stary = strona.read_text(encoding='utf-8')
+        if ZNACZNIK in s:
+            continue
         s = google.sub(f'<link rel="stylesheet" href="css/fonty.css?v={wersje["css/fonty.css"]}" />\n', s)
         s = re.sub(r'href="css/fonty\.css(\?v=[^"]*)?"', f'href="css/fonty.css?v={wersje["css/fonty.css"]}"', s)
         s = re.sub(r'href="assets-redesign\.css(\?v=[^"]*)?"', f'href="assets-redesign.css?v={wersje["assets-redesign.css"]}"', s)
