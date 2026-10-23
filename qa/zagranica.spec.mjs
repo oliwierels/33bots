@@ -4,6 +4,7 @@
 // ani do FormSubmit. Zapytania do innych serwerów (GTM, Albacross) są blokowane.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readdirSync, readFileSync } from 'node:fs';
 import { naruszeniaOdstepow, przewinCala } from './odstepy.mjs';
 
 const RYNKI = [
@@ -593,38 +594,45 @@ for (const [m, strony] of PODSTRONY) {
 }
 
 // ——— Podstrony w nowym układzie (tresci/zagranica/buduj_podstrony.py) ———
-// Wygląd i zachowanie jak strona główna rynku i artykuły .pl; adres, tytuł, canonical,
-// hreflang i dane strukturalne jak w dotychczasowej wersji strony.
-const NOWY_UKLAD = [
-  [RYNKI[0], '/roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier mieten | 33bots', ['Service', 'BreadcrumbList', 'FAQPage', 'VideoObject']],
-  [RYNKI[1], '/roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier mieten | Österreich – 33bots', ['Service', 'BreadcrumbList', 'FAQPage']],
-];
-for (const [m, strona, tytul, ldTypy] of NOWY_UKLAD) {
+// Każda strona z generatora, sprawdzana według swojego źródła: wygląd i zachowanie jak strona
+// główna rynku, adres, tytuł, canonical, hreflang i dane strukturalne jak w danych strony.
+const ZRODLA = new URL('../tresci/zagranica/podstrony/', import.meta.url);
+const bezZnacznikow = (t) => t.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&shy;/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const NOWY_UKLAD = RYNKI.flatMap((m) => readdirSync(new URL(`${m.kod}/`, ZRODLA)).filter((f) => f.endsWith('.html')).sort().map((f) => {
+  const surowe = readFileSync(new URL(`${m.kod}/${f}`, ZRODLA), 'utf8');
+  return { m, strona: `/${f}`, d: JSON.parse(surowe.match(/<!--\s*(\{[\s\S]*?\})\s*-->/)[1]) };
+}));
+for (const { m, strona, d } of NOWY_UKLAD) {
   test.describe(`33bots.${m.kod}${strona} — nowy układ`, () => {
-    const otworz = async (browser, vp = DESKTOP) => {
+    const otworz = async (browser, vp = DESKTOP, przed) => {
       const ctx = await browser.newContext({ viewport: vp, reducedMotion: 'reduce' });
       const page = await ctx.newPage();
       const bledy = [];
       page.on('pageerror', (e) => bledy.push(e.message));
       await zablokujZewnetrzne(page);
+      if (przed) await przed(page);
       await page.goto(m.adres.replace(/\/$/, '') + strona);
       await page.evaluate(() => document.fonts.ready);
       return { ctx, page, bledy };
     };
 
-    test('SEO jak dotąd: tytuł, canonical, hreflang, jeden H1, dane strukturalne, FAQ zgodne z FAQPage', async ({ browser }) => {
+    test('SEO jak w danych strony: tytuł, canonical, hreflang, jeden H1, dane strukturalne, FAQ zgodne z FAQPage', async ({ browser }) => {
       const { ctx, page } = await otworz(browser);
-      await expect(page).toHaveTitle(tytul);
+      await expect(page).toHaveTitle(d.tytul);
       await expect(page.locator('html')).toHaveAttribute('lang', m.lang);
+      await expect(page.locator('meta[name=description]')).toHaveAttribute('content', d.opis);
+      await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', d.robots || 'index, follow, max-image-preview:large');
       await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', `https://33bots.${m.kod}${strona}`);
-      const hreflang = await page.locator('link[rel=alternate][hreflang]').evaluateAll((l) => l.map((e) => e.hreflang).sort());
-      expect(hreflang).toEqual(['de', 'de-AT', 'x-default']);
+      const hreflang = await page.locator('link[rel=alternate][hreflang]').evaluateAll((l) => l.map((e) => [e.hreflang, e.href]));
+      expect(hreflang).toEqual(d.hreflang);
       await expect(page.locator('h1')).toHaveCount(1);
-      await expect(page.locator('h1')).toContainText('Roboter für die Weihnachtsfeier');
+      expect(twarde(await page.locator('h1').innerText())).toBe(bezZnacznikow(d.h1));
       const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => JSON.parse(s.textContent)));
-      expect(ld.map((d) => d['@type'])).toEqual(ldTypy);
-      const faq = ld.find((d) => d['@type'] === 'FAQPage').mainEntity.map((q) => q.name);
-      expect(await page.locator('.faq__q').evaluateAll((q) => q.map((e) => e.dataset.faq))).toEqual(faq);
+      const typy = [...(d.usluga ? ['Service'] : []), 'BreadcrumbList', ...(d.ld || []).map((x) => x['@type']),
+        ...(d.pytania ? ['FAQPage'] : []), ...(d.wideo?.ld ? ['VideoObject'] : [])];
+      expect(ld.map((x) => x['@type'])).toEqual(typy);
+      const faq = ld.find((x) => x['@type'] === 'FAQPage');
+      expect(await page.locator('.faq__q').evaluateAll((q) => q.map((e) => e.dataset.faq))).toEqual(faq ? faq.mainEntity.map((q) => q.name) : []);
       await ctx.close();
     });
 
@@ -632,7 +640,6 @@ for (const [m, strona, tytul, ldTypy] of NOWY_UKLAD) {
       const { ctx, page } = await otworz(browser);
       const linki = (sel) => page.locator(sel).evaluate((el) => [...el.querySelectorAll('a')].map((a) => [a.textContent.trim(), a.getAttribute('href')]));
       const tu = { nav: await linki('#nav'), stopka: await linki('footer.stopka') };
-      for (const [, h] of [...tu.nav, ...tu.stopka]) expect(h, 'kotwica bez celu na podstronie').not.toMatch(/^#/);
       await page.goto(m.adres);
       const naGlownej = (l) => l.map(([t, h]) => [t, h === '#top' ? 'index.html' : h.replace(/^#/, 'index.html#')]);
       expect(tu.nav).toEqual(naGlownej(await linki('#nav')));
@@ -640,26 +647,29 @@ for (const [m, strona, tytul, ldTypy] of NOWY_UKLAD) {
       await ctx.close();
     });
 
-    test('po niemiecku, bez „kostenlos” i „Kostüm”; menu, FAQ i pasek działają', async ({ browser }) => {
+    test('po niemiecku, bez „kostenlos” i „Kostüm”; menu, pasek i FAQ działają, bez błędów', async ({ browser }) => {
       const { ctx, page, bledy } = await otworz(browser, TELEFON);
       const POLSKIE = /\b(Sprawdź|Zobacz|realizacj|wydarze|Zamknij|Najczęstsze|Czytaj|Okruszki|Strona główna|Robot humanoidalny|Drezdeńska)\w*/i;
       const t = await tresc(page);
       expect(t.match(POLSKIE)).toBeNull();
-      expect(t).not.toMatch(/Kostüm|Outfit|Garderobe|kostenlos|gratis/i);
+      expect(t).not.toMatch(/Kostüm|Outfit|Garderobe|kostenlos|gratis|\[[^\]]*ergänzen[^\]]*\]/i);
       const p = page.locator('#navPrzycisk');
       await expect(p).toHaveText('Menü');
       await p.click();
       await expect(p).toHaveText('Schließen');
       await page.keyboard.press('Escape');
       await expect(page.locator('#navPanel')).toBeHidden();
-      // Pasek mobilny dopiero po minięciu nagłówka strony.
-      await expect(page.locator('#pasekMobilny')).not.toHaveClass(/pasek--widoczny/);
-      await page.evaluate(() => scrollTo(0, document.querySelector('.art__tresc').offsetTop + 400));
-      await expect(page.locator('#pasekMobilny')).toHaveClass(/pasek--widoczny/);
-      const q = page.locator('.faq__q').first();
-      await q.click();
-      await expect(q).toHaveAttribute('aria-expanded', 'true');
-      await expect(page.locator('#faq-1')).toBeVisible();
+      if (await page.locator('.art__tresc').count()) {
+        await expect(page.locator('#pasekMobilny')).not.toHaveClass(/pasek--widoczny/);
+        await page.evaluate(() => scrollTo(0, document.querySelector('.art__tresc').offsetTop + 400));
+        await expect(page.locator('#pasekMobilny')).toHaveClass(/pasek--widoczny/);
+      }
+      if (d.pytania) {
+        const q = page.locator('.faq__q').first();
+        await q.click();
+        await expect(q).toHaveAttribute('aria-expanded', 'true');
+        await expect(page.locator('#faq-1')).toBeVisible();
+      }
       expect(bledy).toEqual([]);
       await ctx.close();
     });
@@ -672,5 +682,27 @@ for (const [m, strona, tytul, ldTypy] of NOWY_UKLAD) {
       expect(naruszenia).toEqual([]);
       await ctx.close();
     });
+
+    if (d.formularz) {
+      test('formularz ze strony głównej: dwa kroki, zgłoszenie do Formspree (request przechwycony)', async ({ browser }) => {
+        let wyslane = null;
+        const { ctx, page, bledy } = await otworz(browser, DESKTOP, (p) => p.route(m.formularz, async (r) => {
+          wyslane = r.request().postDataJSON();
+          await r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
+        }));
+        await expect(page.locator('#formularz')).toBeVisible();
+        await page.locator('label.chip:has-text("Messe")').click();
+        await page.locator('#dalej').click();
+        await expect(page.locator('#krok2')).toBeVisible();
+        await page.fill('#pole-name', 'Max Test');
+        await page.fill('#pole-email', 'max@test.at');
+        await page.locator('#wyslij').click();
+        await expect(page.locator('.form-sukces')).toContainText('Ihre Anfrage ist bei uns angekommen.');
+        expect(wyslane).toMatchObject({ name: 'Max Test', email: 'max@test.at', event_type: 'Messe', ...m.dodatkowe });
+        await expect(page.locator('#pasekMobilny a')).toHaveAttribute('href', '#kontakt');
+        expect(bledy).toEqual([]);
+        await ctx.close();
+      });
+    }
   });
 }

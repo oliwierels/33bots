@@ -109,6 +109,13 @@ class Rynek:
         if self.k['dostepnosc']:
             self.a11y_prefs = re.search(r"<script>try\{var p=JSON\.parse\(localStorage\.getItem\('a11y-prefs'\).*?</script>", glowna).group(0)
             self.a11y_js = re.search(r'<script src="a11y\.js\?v=[0-9a-f]+" defer></script>', glowna).group(0)
+        # Formularz rezerwacji ze strony głównej: ten sam kod, adres Formspree i pola — dla strony kontaktowej.
+        # Bez numeru sekcji z głównej i bez klasy „wejscie” (ukrywa element do animacji, której tu nie ma).
+        sekcja = wycinek(glowna, '<section id="kontakt"', '</section>')
+        self.formularz = re.sub(r'(<p class="label sec__meta">)\d+ / \d+ · ', r'\1', sekcja).replace(' wejscie"', '"')
+        assert 'wejscie' not in self.formularz
+        js = wycinek(glowna, '/* ——— Formularz:', '\n})();')[:-len('\n})();')]
+        self.formularz_js = f'<script>\n(() => {{\n  const el = (id) => document.getElementById(id);\n  {js}\n}})();\n</script>'
         self.skrypt = self.kopiuj_skrypt()
 
     def kopiuj_skrypt(self):
@@ -187,15 +194,20 @@ class Rynek:
         </section>'''
         czytaj = '\n'.join(f'            <li><a href="{h}">{t}</a></li>' for h, t in d.get('czytaj', []))
         kontakty = '\n'.join(f'            <a class="link" href="{h}" {atr}="seite">{t}</a>' for h, t, atr in k['kontakt'])
-        fg = d['foto']
+        # Strona z formularzem prowadzi do własnego formularza, pozostałe do formularza na stronie głównej.
+        do_formularza = '#kontakt' if d.get('formularz') else 'index.html#kontakt'
 
-        # Usługa: pola z nagłówka źródła (jak na dotychczasowej stronie), opis i adres z tej strony.
-        ld = [
-            {'@context': 'https://schema.org', '@type': 'Service', **d['usluga'], 'description': d['opis'], 'url': url},
-            {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
-                {'@type': 'ListItem', 'position': 1, 'name': TEKSTY['start'], 'item': f'{baza}/'},
-                {'@type': 'ListItem', 'position': 2, 'name': d['okruch'], 'item': url}]},
-        ]
+        # Usługa: pola z nagłówka źródła (jak na dotychczasowej stronie); bez własnego opisu — opis strony.
+        ld = []
+        if d.get('usluga'):
+            usluga = {'@context': 'https://schema.org', '@type': 'Service', **d['usluga']}
+            usluga.setdefault('description', d['opis'])
+            usluga.setdefault('url', url)
+            ld.append(usluga)
+        ld.append({'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': TEKSTY['start'], 'item': f'{baza}/'},
+            {'@type': 'ListItem', 'position': 2, 'name': d['okruch'], 'item': url}]})
+        ld += [{'@context': 'https://schema.org', **x} for x in d.get('ld', [])]
         if pytania:
             ld.append({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
                 {'@type': 'Question', 'name': bez_tagow(q), 'acceptedAnswer': {'@type': 'Answer', 'text': bez_tagow(a)}}
@@ -223,7 +235,62 @@ class Rynek:
         a11y_prefs = f'{self.a11y_prefs}\n' if k['dostepnosc'] else ''
         cialo_analityka = f'{self.gtm_body}\n' if k['analityka'] else '<!-- Kein GTM: ohne Analyse-Dienste ist keine Einwilligung nötig (§ 25 TDDDG). -->\n'
         ciasteczka = f'\n{self.ciasteczka}\n' if k['analityka'] else ''
-        skrypty_koniec = (f'\n{self.a11y_js}' if k['dostepnosc'] else '') + (f'\n{self.albacross}' if k['analityka'] else '')
+        skrypty_koniec = ((f'\n{self.formularz_js}' if d.get('formularz') else '')
+                          + (f'\n{self.a11y_js}' if k['dostepnosc'] else '') + (f'\n{self.albacross}' if k['analityka'] else ''))
+
+        # Części nagłówka i treści, których strona może nie mieć (strony prawne, 404, kontakt).
+        akcje = ''
+        if d.get('akcje'):
+            linki = '\n'.join(f'          <a class="{kl}" href="{h}">{t}</a>' for h, t, kl in d['akcje'])
+            akcje = f'\n        <div class="art__cta-akcje">\n{linki}\n        </div>'
+        foto_glowy = ''
+        if d.get('foto'):
+            fg = d['foto']
+            foto_glowy = f'''
+      <figure class="art__foto">
+        {self.zdjecie(fg['plik'], fg['alt'], '(max-width: 1023px) 100vw, 400px', ladowanie='eager', priorytet=True)}
+        <figcaption class="podpis">{fg['podpis']}</figcaption>
+      </figure>'''
+        spis_html = f'''
+      <nav class="spis" aria-labelledby="spis-h">
+        <p class="label" id="spis-h">{TEKSTY['spis']}</p>
+        <ol>
+{spis}
+        </ol>
+      </nav>
+''' if naglowki else ''
+        cta_html = '' if d.get('cta') is False else f'''
+
+        <aside class="art__cta" aria-labelledby="cta-h">
+          <h2 class="h2" id="cta-h">{d.get('cta_tytul', TEKSTY['cta_tytul'])}</h2>
+          <p class="body">{d.get('cta_tekst', TEKSTY['cta_tekst'])}</p>
+          <div class="art__cta-akcje">
+            <a class="btn" href="{do_formularza}" data-cta="seite">{TEKSTY['cta_przycisk']} <span aria-hidden="true">→</span></a>
+{kontakty}
+          </div>
+        </aside>'''
+        czytaj_html = f'''
+
+        <nav class="czytaj" aria-labelledby="czytaj-h">
+          <p class="label" id="czytaj-h">{TEKSTY['czytaj']}</p>
+          <ul>
+{czytaj}
+          </ul>
+        </nav>''' if czytaj else ''
+        tresc_html = f'''
+
+    <div class="art__tresc">{spis_html}
+      <div class="prose">
+{tresc}
+{faq_html}{cta_html}{czytaj_html}
+      </div>
+    </div>''' if (tresc or faq_html or cta_html or czytaj_html) else ''
+        formularz = ''
+        if d.get('formularz'):
+            formularz = self.formularz
+            if d.get('formularz_tytul'):
+                formularz = re.sub(r'(<h2 id="kontakt-h" class="h2">)[^<]*(</h2>)', rf'\g<1>{d["formularz_tytul"]}\g<2>', formularz, count=1)
+            formularz = f'\n\n{formularz}'
 
         strona = f'''<!DOCTYPE html>
 <html lang="{k['lang']}">
@@ -271,50 +338,16 @@ class Rynek:
       <div class="art__tekst">
         <p class="label">{d['kategoria']}</p>
         <h1 class="art__h1">{d['h1']}</h1>
-        <p class="art__lead">{d['lead']}</p>{meta}
-      </div>
-      <figure class="art__foto">
-        {self.zdjecie(fg['plik'], fg['alt'], '(max-width: 1023px) 100vw, 400px', ladowanie='eager', priorytet=True)}
-        <figcaption class="podpis">{fg['podpis']}</figcaption>
-      </figure>
-    </header>
-
-    <div class="art__tresc">
-      <nav class="spis" aria-labelledby="spis-h">
-        <p class="label" id="spis-h">{TEKSTY['spis']}</p>
-        <ol>
-{spis}
-        </ol>
-      </nav>
-
-      <div class="prose">
-{tresc}
-{faq_html}
-
-        <aside class="art__cta" aria-labelledby="cta-h">
-          <h2 class="h2" id="cta-h">{d.get('cta_tytul', TEKSTY['cta_tytul'])}</h2>
-          <p class="body">{d.get('cta_tekst', TEKSTY['cta_tekst'])}</p>
-          <div class="art__cta-akcje">
-            <a class="btn" href="index.html#kontakt" data-cta="seite">{TEKSTY['cta_przycisk']} <span aria-hidden="true">→</span></a>
-{kontakty}
-          </div>
-        </aside>
-
-        <nav class="czytaj" aria-labelledby="czytaj-h">
-          <p class="label" id="czytaj-h">{TEKSTY['czytaj']}</p>
-          <ul>
-{czytaj}
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </article>
+        <p class="art__lead">{d['lead']}</p>{meta}{akcje}
+      </div>{foto_glowy}
+    </header>{tresc_html}
+  </article>{formularz}
 </main>
 
 {self.stopka}
 
 <div class="pasek" id="pasekMobilny">
-  <a class="btn" href="index.html#kontakt" data-cta="sticky">{TEKSTY['pasek']} <span aria-hidden="true">→</span></a>
+  <a class="btn" href="{do_formularza}" data-cta="sticky">{TEKSTY['pasek']} <span aria-hidden="true">→</span></a>
 </div>
 <div class="pasek-odstep"></div>
 {ciasteczka}
