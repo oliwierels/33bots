@@ -127,6 +127,17 @@ RewriteRule ^roboter\-vip\-event\.html$ https://33bots.de/angebot-konferenzen-ga
 RewriteRule ^roboter\-zeremonie\.html$ https://33bots.de/angebot-konferenzen-galas.html [L,R=301]
 # Interna Vorlage für Case Studies (2026-10-23 entfernt) → Referenzen.
 RewriteRule ^vorlage\-case\-study\.html$ https://33bots.de/referenzen-videos.html [L,R=301]
+# Blog → mocne strony (2026-10-23): treść wpisów jest teraz na stronach docelowych.
+RewriteRule ^blog\-unitree\-g1\-roboter\.html$ https://33bots.de/unitree-g1-mieten.html [L,R=301]
+RewriteRule ^blog\-was\-kann\-ein\-humanoider\-roboter\.html$ https://33bots.de/unitree-g1-mieten.html [L,R=301]
+RewriteRule ^blog\-humanoider\-vs\-mobiler\-roboter\.html$ https://33bots.de/unitree-g1-mieten.html [L,R=301]
+RewriteRule ^blog\-roboter\-fuer\-event\-auswaehlen\.html$ https://33bots.de/unitree-g1-mieten.html [L,R=301]
+RewriteRule ^blog\-was\-kostet\-roboter\-mieten\.html$ https://33bots.de/roboter-mieten-preise.html [L,R=301]
+RewriteRule ^blog\-was\-kostet\-humanoider\-roboter\.html$ https://33bots.de/roboter-mieten-preise.html [L,R=301]
+RewriteRule ^blog\-anbieter\-roboter\-vermietung\-waehlen\.html$ https://33bots.de/roboter-mieten-preise.html [L,R=301]
+RewriteRule ^blog\-roboter\-mieten\-checkliste\.html$ https://33bots.de/roboter-mieten-preise.html [L,R=301]
+RewriteRule ^blog\-roboter\-mieten\-leitfaden\.html$ https://33bots.de/humanoiden-roboter-mieten.html [L,R=301]
+RewriteRule ^blog\-logistik\-am\-eventtag\.html$ https://33bots.de/humanoiden-roboter-mieten.html [L,R=301]
 
 ErrorDocument 404 /404.html
 

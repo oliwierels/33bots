@@ -1,20 +1,25 @@
 # 33bots — humanoide Roboter für Events mieten
 
-33bots vermietet humanoide Roboter Unitree G1 für Veranstaltungen, Messen, Konferenzen und
-Firmenfeiern in ganz Deutschland.
+33bots vermietet den humanoiden Roboter Unitree G1 für Veranstaltungen, Messen, Konferenzen und
+Firmenfeiern in ganz Deutschland — immer mit Operator, Drehbuch und Branding. Über 40
+Veranstaltungen in Polen, Litauen, Deutschland, Tschechien und Rumänien.
 
-- Preis: ab 2.500 € pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang
-- Immer inklusive: Anfahrt deutschlandweit, zertifizierter Operator, Branding (Logo und QR-Code),
+- Preis: ab 2.500 € pro Veranstaltungstag, abhängig von Veranstaltungsort und Umfang der Show
+- Immer inklusive: Anfahrt deutschlandweit, Operator, Branding (Logo und QR-Code),
   Haftpflichtversicherung
 - Optional: Roboterhund für 850 € pro Veranstaltungstag
 - Ab zwei Veranstaltungstagen 15 % Rabatt auf jeden Tag
-- Terminreservierung kostenlos, keine Anzahlung, Rechnung erst nach der Veranstaltung
+- Reservierung ohne Anzahlung, Rechnung erst nach der Veranstaltung
+- Antwort innerhalb von 24 Werkstunden, meist noch am selben Tag
 - Kontakt: kontakt@33bots.de
 
 ## Wichtige Seiten
 - Startseite: https://33bots.de/
-- Roboter mieten: https://33bots.de/humanoiden-roboter-mieten.html
+- Humanoiden Roboter mieten: https://33bots.de/humanoiden-roboter-mieten.html
+- Unitree G1 mieten (technische Daten, Grenzen): https://33bots.de/unitree-g1-mieten.html
+- Preise und Kosten: https://33bots.de/roboter-mieten-preise.html
 - Messen: https://33bots.de/angebot-messen.html
 - Konferenzen und Galas: https://33bots.de/angebot-konferenzen-galas.html
 - Tage der offenen Tür: https://33bots.de/angebot-tag-der-offenen-tuer.html
+- Referenzen und Case Studies: https://33bots.de/referenzen-videos.html
 - Blog: https://33bots.de/blog.html
