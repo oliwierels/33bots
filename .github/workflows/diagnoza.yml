@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Niczego nie wdraża i nie zmienia. Tym razem: wdrożenie z 23.10 (.at, .de, .pl) na żywo —
-# nagłówki CSP, formularze, nowe strony, filmy i pomiar w prawdziwym Chrome.
+# Niczego nie wdraża i nie zmienia. Tym razem: 33bots.at po wdrożeniu z 23.10 wieczorem —
+# podstrony .at po przeniesieniu do nowego układu: status, placeholdery, CSP, pomiar, formularz, filmy.
 # Formularze NIE są wysyłane: każde żądanie do formspree.io / formsubmit.co jest przerywane.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
@@ -17,22 +17,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Nagłówki i pliki
+      - name: Podstrony .at po przeniesieniu
         run: |
           set +e
-          for u in https://33bots.at/ https://33bots.at/kontakt.html https://33bots.at/roboter-weihnachtsfeier.html \
-                   https://33bots.de/ https://33bots.de/roboter-weihnachtsfeier.html https://33bots.pl/; do
+          curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > /tmp/adresy.txt
+          echo "mapa .at: $(wc -l < /tmp/adresy.txt) adresów"
+          for u in $(cat /tmp/adresy.txt) https://33bots.at/danke.html https://33bots.at/404.html; do
             curl -sS -o /tmp/s.html -D /tmp/h.txt --max-time 30 "$u"
-            CSP=$(grep -i '^content-security-policy' /tmp/h.txt | tr -d '\r')
-            echo "$u → $(head -1 /tmp/h.txt | tr -d '\r') · CSP z pomiarem: $(echo "$CSP" | grep -c googleadservices) · formspree w CSP: $(echo "$CSP" | grep -c 'formspree.io') · formsubmit w CSP: $(echo "$CSP" | grep -c formsubmit) · fetch: $(grep -oE "fetch\(['\"][^'\"]+" /tmp/s.html | head -1 | cut -c8-) · generator podstron: $(grep -c buduj_podstrony /tmp/s.html)"
+            echo "$(head -1 /tmp/h.txt | tr -d '\r' | cut -d' ' -f2) · generator: $(grep -c buduj_podstrony /tmp/s.html) · placeholdery: $(grep -c -E 'ergänzen|\[PLZ\]' /tmp/s.html) · kostenlos: $(grep -c -i kostenlos /tmp/s.html) · css: $(grep -o 'css/site.css?v=[0-9a-f]*' /tmp/s.html | head -1) · $u"
           done
-          for u in https://33bots.at/js/strona.js https://33bots.de/js/strona.js https://33bots.de/index-redesign.html \
-                   https://33bots.at/video/robot-taniec.mp4 https://33bots.de/video/robot-powitanie.mp4; do
-            echo "$u → $(curl -sS -o /dev/null -I --max-time 30 -w '%{http_code} %{content_type} %{redirect_url}' "$u")"
-          done
-          echo "Film na podstronach .at: $(curl -s --max-time 30 https://33bots.at/messe-roboter-mieten.html | grep -c '<source src="video/robot-taniec.mp4"') źródło(a), source-marker: $(curl -s --max-time 30 https://33bots.at/messe-roboter-mieten.html | grep -c source-marker)"
-          echo "Mapa .de: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -c '<loc>') adresów · Weihnachtsfeier: $(curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -c weihnachtsfeier)"
-          echo "Mapa .at: $(curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -c '<loc>') adresów · Weihnachtsfeier: $(curl -s --max-time 30 https://33bots.at/sitemap.xml | grep -c weihnachtsfeier)"
+          echo "Impressum: $(curl -s --max-time 30 https://33bots.at/impressum.html | grep -o -E '33Bots Bartosz Wysocki|PL5253090645|544792095' | sort -u | tr '\n' ' ')"
+          echo "Nieistniejący adres: $(curl -s -o /tmp/n.html -w '%{http_code}' --max-time 30 https://33bots.at/gibt-es-nicht.html) · $(grep -o '<h1[^>]*>[^<]*' /tmp/n.html)"
+          echo "js/strona.js: $(curl -s -o /dev/null -w '%{http_code}' --max-time 30 https://33bots.at/js/strona.js)"
 
       - name: Chrome — CSP, pomiar, formularze, filmy
         run: |
@@ -42,10 +38,8 @@ jobs:
           import { chromium } from 'playwright-core';
           const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
           const strony = [
-            'https://33bots.at/', 'https://33bots.at/kontakt.html', 'https://33bots.at/roboter-weihnachtsfeier.html',
-            'https://33bots.at/messe-roboter-mieten.html', 'https://33bots.at/roboter-mieten-wien.html',
-            'https://33bots.de/', 'https://33bots.de/roboter-weihnachtsfeier.html',
-            'https://33bots.pl/', 'https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html',
+            'https://33bots.at/kontakt.html', 'https://33bots.at/roboter-mieten-wien.html', 'https://33bots.at/messe-roboter-mieten.html',
+            'https://33bots.at/impressum.html', 'https://33bots.at/datenschutz.html', 'https://33bots.at/404.html',
           ];
           for (const url of strony) {
             const ctx = await b.newContext({ viewport: { width: 1366, height: 900 }, locale: 'de-DE' });
