@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: nowe strony .de (Unitree G1, Preise, case studies) i przekierowania wpisów bloga
-# na żywo, RSS, oraz dlaczego IndexNow odrzuca klucz .de (403). Niczego poza tym nie zmienia.
+# Tym razem: 25 wpisów bloga .de wchłoniętych przez strony tematyczne — mapa strony,
+# przekierowania 301 na właściwe strony, formularze, RSS — i ponowne zgłoszenie IndexNow.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -16,39 +16,77 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: 33bots.de — mapa, nowe strony, przekierowania wpisów
+      - name: 33bots.de — mapa strony, formularze, RSS, spis bloga
         run: |
           set +e
           curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > de.txt
-          echo "mapa .de: $(wc -l < de.txt) adresów"
-          zle=0; while read -r u; do k=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$u"); [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }; done < de.txt
+          echo "mapa .de: $(wc -l < de.txt) adresów (oczekiwane 55)"
+          zle=0; formy=0
+          while read -r u; do
+            k=$(curl -s -o s.html -w '%{http_code}' --max-time 20 "$u")
+            [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }
+            grep -q 'formspree.io/f/mnjwvray' s.html && formy=$((formy+1))
+            grep -q -E 'href="blog-(roboter-am-messestand|roi-roboter-messestand|roboter-viral-marketing|attraktion-firmenevent)\.html"' s.html && echo "LINK DO USUNIĘTEGO WPISU: $u"
+          done < de.txt
           echo "błędne kody w mapie: $zle"
-          for s in unitree-g1-mieten roboter-mieten-preise case-study-eco-studio-electro-system case-study-grupa-rekord-mspo case-study-centrum-nauki-kopernik case-study-ogrod-przelewice; do
-            curl -s --max-time 20 "https://33bots.de/$s.html" -o s.html
-            echo "$s: $(grep -o '<title>[^<]*' s.html | head -1) | nowy układ: $(grep -c 'buduj_podstrony.py' s.html)"
-          done
-          for s in blog-unitree-g1-roboter blog-was-kostet-roboter-mieten blog-roboter-mieten-leitfaden blog-logistik-am-eventtag; do
-            echo "$s → $(curl -s -o /dev/null -I --max-time 20 -w '%{http_code} %{redirect_url}' "https://33bots.de/$s.html")"
-          done
-          echo "RSS: $(curl -s --max-time 20 https://33bots.de/feed.xml | grep -c '<item>') wpisów"
-          echo "stopka z Preise i Unitree: $(curl -s --max-time 20 https://33bots.de/ | grep -c -E 'roboter-mieten-preise.html|unitree-g1-mieten.html')"
+          echo "strony z formularzem: $formy (oczekiwane 23)"
+          echo "RSS: $(curl -s --max-time 20 https://33bots.de/feed.xml | grep -c '<item>') wpisów (oczekiwane 5)"
+          echo "spis bloga, linki do poradników: $(curl -s --max-time 20 https://33bots.de/blog.html | grep -o -E 'href="blog-[a-z\-]+\.html"' | sort -u | wc -l) (oczekiwane 5)"
+          curl -s --max-time 20 https://33bots.de/angebot-messen.html -o m.html
+          echo "angebot-messen, rozdziały z wpisów: $(grep -c -E '<h2 id="[^"]+"' m.html) nagłówków h2, nowy układ: $(grep -c 'buduj_podstrony.py' m.html)"
 
-      - name: IndexNow — dlaczego 403 dla 33bots.de
+      - name: 33bots.de — 25 przekierowań wpisów na strony tematyczne
+        run: |
+          set +e
+          cat > mapa.txt <<'MAPA'
+          blog-roboter-am-messestand.html angebot-messen.html
+          blog-roi-roboter-messestand.html angebot-messen.html
+          blog-roboter-messe-vs-konferenz.html angebot-messen.html
+          blog-ki-roboter-spricht-deutsch.html ki-roboter-veranstaltung.html
+          blog-kann-roboter-event-moderieren.html roboter-eventmoderation.html
+          blog-roboter-als-empfang.html roboter-gaesteempfang.html
+          blog-roboter-statt-hostess.html roboter-gaesteempfang.html
+          blog-roboter-und-kuenstler-auf-der-buehne.html roboter-show.html
+          blog-roboter-produktlaunch.html roboter-produktlaunch.html
+          blog-roboter-store-eroeffnung.html roboter-eroeffnung.html
+          blog-roboter-karrieremesse.html roboter-employer-branding.html
+          blog-roboter-auf-der-hochzeit.html roboter-hochzeit.html
+          blog-roboter-kinderveranstaltung.html roboter-privatfeier.html
+          blog-roboter-campusfest.html roboter-hochschule.html
+          blog-roboter-outdoor-event.html roboter-stadtfest.html
+          blog-roboter-betriebsfest.html roboter-firmenfeier.html
+          blog-technologische-attraktionen-firmenfeier.html roboter-firmenfeier.html
+          blog-attraktion-firmenevent.html roboter-firmenevents.html
+          blog-roboter-auf-dem-event.html roboter-firmenevents.html
+          blog-attraktion-firmengala.html angebot-konferenzen-galas.html
+          blog-event-attraktionen-ranking.html event-attraktionen.html
+          blog-kreative-einsatzideen-roboter.html event-attraktionen.html
+          blog-roboter-als-markenbotschafter.html blog-robotik-im-marketing.html
+          blog-roboter-branding-event.html blog-robotik-im-marketing.html
+          blog-roboter-viral-marketing.html blog-robotik-im-marketing.html
+          MAPA
+          sed -i 's/^ *//' mapa.txt
+          dobre=0
+          while read -r w c; do
+            wynik=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "https://33bots.de/$w")
+            if [ "$wynik" = "301 https://33bots.de/$c" ]; then dobre=$((dobre+1)); else echo "ŹLE: $w → $wynik (oczekiwane 301 → $c)"; fi
+          done < mapa.txt
+          echo "przekierowania zgodne: $dobre z $(wc -l < mapa.txt)"
+          echo "--- wcześniejsza fala (próbka):"
+          for w in blog-unitree-g1-roboter blog-was-kostet-roboter-mieten; do
+            echo "$w → $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "https://33bots.de/$w.html")"
+          done
+
+      - name: IndexNow — zgłoszenie mapy i przekierowanych adresów
         run: |
           set +e
           K=a2813e79cb1d1017ecf75f8b739153a3
-          echo "--- plik klucza zwykłym curl:"
-          curl -s -D - --max-time 20 "https://33bots.de/$K.txt" | head -20
-          echo "--- plik klucza z UA Bingbota:"
-          curl -s -o /dev/null -w '%{http_code} %{content_type} %{redirect_url}\n' -A 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)' --max-time 20 "https://33bots.de/$K.txt"
-          echo "--- przez www i http:"
-          curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' --max-time 20 "https://www.33bots.de/$K.txt"
-          curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' --max-time 20 "http://33bots.de/$K.txt"
-          echo "--- GET api.indexnow.org (jeden adres):"
-          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://api.indexnow.org/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
-          echo "--- GET bing.com/indexnow (jeden adres):"
-          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://www.bing.com/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
-          echo "--- GET yandex (jeden adres):"
-          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://yandex.com/indexnow?url=https://33bots.de/unitree-g1-mieten.html&key=$K"
-          echo "--- dla porównania .at (GET bing):"
-          curl -s -w '\nkod %{http_code}\n' --max-time 20 "https://www.bing.com/indexnow?url=https://33bots.at/&key=d26cc6827bff8b3fdaebd366644a7aec"
+          echo "plik klucza: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://33bots.de/$K.txt")"
+          { cat de.txt; while read -r w c; do echo "https://33bots.de/$w"; done < mapa.txt; } > zgl.txt
+          jq -n --arg k "$K" --slurpfile u <(jq -R . zgl.txt) \
+            '{host: "33bots.de", key: $k, keyLocation: ("https://33bots.de/" + $k + ".txt"), urlList: $u}' > dane.json
+          echo "adresów w zgłoszeniu: $(jq '.urlList | length' dane.json)"
+          for e in https://api.indexnow.org/indexnow https://www.bing.com/indexnow; do
+            k=$(curl -s -o odp.txt -w '%{http_code}' --max-time 30 -H 'Content-Type: application/json; charset=utf-8' --data @dane.json "$e")
+            echo "$e → $k $(head -c 300 odp.txt)"
+          done
