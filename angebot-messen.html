@@ -33,7 +33,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
 <script>document.documentElement.classList.add('js');</script>
 <script>try{var p=JSON.parse(localStorage.getItem('a11y-prefs')||'{}');['font','theme','contrast','motion'].forEach(function(k){if(p[k])document.documentElement.setAttribute('data-a11y-'+k,p[k]);});}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css?v=0c8ce682" />
+<link rel="stylesheet" href="css/site.css?v=1344c299" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -557,6 +557,7 @@
     (n === 2 ? el('pole-name') : form.querySelector('input[name=event_type]')).focus();
   };
   const dataPole = el('pole-data'), nieustalona = el('data-nieustalona');
+  dataPole.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   nieustalona.addEventListener('change', () => { dataPole.disabled = nieustalona.checked; if (nieustalona.checked) dataPole.value = ''; });
 
   const poleTyp = el('pole-typ'), bladTyp = el('blad-typ');
@@ -617,6 +618,7 @@
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (window.dataLayer) window.dataLayer.push({ event: 'generate_lead', form_id: 'formularz', event_type: payload.event_type });
       const sukces = document.createElement('div');
       sukces.className = 'form-sukces';
       sukces.setAttribute('role', 'status');
