@@ -114,7 +114,7 @@ class Strona:
     </nav>
     <div class="nav__akcje">
       <a class="nav__tel" href="{kh}" {katr}="nav">{kt}</a>{self.panel_dostepnosci() if r['panel_dostepnosci'] else ''}
-      <a class="link nav__cta" href="#kontakt" data-cta="nav">{r['cta_krotki']}</a>
+      <a class="link nav__cta link--akcja" href="#kontakt" data-cta="nav">{r['cta_krotki']}</a>
       <button class="nav__przycisk" id="navPrzycisk" type="button" aria-expanded="false" aria-controls="navPanel">{r['menu']}</button>
     </div>
   </div>
@@ -124,7 +124,7 @@ class Strona:
       <li><a href="{dh}">{dt}</a></li>
     </ul>
     <a class="nav__tel" href="{kh}" {katr}="menu">{kt}</a>
-    <a class="btn" href="#kontakt" data-cta="nav">{r['cta']}{STRZALKA}</a>
+    <a class="btn btn--akcja" href="#kontakt" data-cta="nav">{r['cta']}{STRZALKA}</a>
   </div>
 </header>'''
 
@@ -140,8 +140,15 @@ class Strona:
     <h1 id="hero-label" class="label">{r['h1']}</h1>
     <p class="display">{r['display']}</p>
     <p class="lead">{r['lead']}</p>
-    <div class="hero__actions">
-      <a class="btn" href="#kontakt" data-cta="hero">{r['cta']}{STRZALKA}</a>
+    <div class="hero__actions hero__actions--termin">
+      <div class="termin">
+        <label class="label" for="heroData">{r['hero_data_pytanie']}</label>
+        <div class="termin__rzad">
+          <input class="termin__data" type="date" id="heroData" />
+          <a class="btn btn--akcja" href="#kontakt" data-cta="hero">{r['cta']}{STRZALKA}</a>
+        </div>
+        <p class="termin__obietnica">{r['hero_obietnica']}</p>
+      </div>
       <a class="link" href="{lh}">{lt}</a>
     </div>
   </div>
@@ -349,7 +356,7 @@ class Strona:
 {karty}
     </ul>
     <p class="body formaty__wcenie">{r['formaty_wcenie']}</p>
-    <p class="formaty__cta"><a class="btn" href="#kontakt" data-cta="formaty">{r['cta']}{STRZALKA}</a></p>
+    <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">{r['cta']}{STRZALKA}</a></p>
   </div>
 </section>'''
 
@@ -410,14 +417,10 @@ class Strona:
      Formular: Schritt 1 — Veranstaltung (Klick), Schritt 2 — Kontakt. Feldnamen wie bisher
      (name, company, email, phone, date, location, message) plus event_type und guests. -->
 <section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
-  <div class="wrap grid12">
-    <div class="rez__lewa wejscie">
+  <div class="wrap grid12 rez">
+    <div class="rez__glowa wejscie">
       <p class="label sec__meta">{r['kontakt_meta']}</p>
       <h2 id="kontakt-h" class="h2">{r['kontakt_h2']}</h2>
-      <ul class="osoby">
-{chr(10).join(osoby)}
-      </ul>
-      <p class="body-sm">{r['kontakt_tekst']}</p>
     </div>
 
     <form class="rez__form wejscie" id="formularz" novalidate>
@@ -452,7 +455,7 @@ class Strona:
           </div>
         </fieldset>
         <div class="form-akcje">
-          <button class="btn" type="button" id="dalej">{f['dalej']}{STRZALKA}</button>
+          <button class="btn btn--akcja" type="button" id="dalej">{f['dalej']}{STRZALKA}</button>
         </div>
       </div>
 
@@ -484,11 +487,18 @@ class Strona:
         </div>
         <div class="form-akcje">
           <button class="wstecz" type="button" id="wstecz">{f['wstecz']}</button>
-          <button class="btn" type="submit" id="wyslij">{r['cta']}{STRZALKA}</button>
+          <button class="btn btn--akcja" type="submit" id="wyslij">{r['cta']}{STRZALKA}</button>
         </div>
         <p class="pole__blad" id="blad-wysylki" role="alert" hidden></p>
       </div>
     </form>
+
+    <div class="rez__kontakty wejscie">
+      <ul class="osoby">
+{chr(10).join(osoby)}
+      </ul>
+      <p class="body-sm">{r['kontakt_tekst']}</p>
+    </div>
   </div>
 </section>'''
 
@@ -581,7 +591,7 @@ class Strona:
 '''
         return f'''<!-- ══════════ Pasek mobilny: pojawia się po minięciu hero ══════════ -->
 <div class="pasek" id="pasekMobilny">
-  <a class="btn" href="#kontakt" data-cta="sticky">{r['pasek']}{STRZALKA}</a>
+  <a class="btn btn--akcja" href="#kontakt" data-cta="sticky">{r['pasek']}{STRZALKA}</a>
 </div>
 <div class="pasek-odstep"></div>
 {cookies}

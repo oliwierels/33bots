@@ -142,7 +142,10 @@ WSPOLNE_DE = {
     'logo_aria': '33bots — Startseite',
     'nav_aria': 'Hauptnavigation',
     'menu': 'Menü', 'menu_zamknij': 'Schließen',
-    'cta': 'Verfügbarkeit prüfen', 'cta_krotki': 'Termin prüfen',
+    'cta': 'Termin und Preis prüfen', 'cta_krotki': 'Termin prüfen',
+    # Hero: pole daty obok przycisku i obietnica pod nim (jak na .pl).
+    'hero_data_pytanie': 'Wann findet Ihre Veranstaltung statt?',
+    'hero_obietnica': '<strong>Ohne Anzahlung, Sie zahlen nach der Veranstaltung.</strong> Antwort meist noch am selben Tag.',
     # Miękkie dzielenie: długie niemieckie słowo nie wyjdzie poza kolumnę.
     'display': 'Der meist&shy;fotografierte Gast Ihrer Veranstaltung.',
     'pauza': 'Pause', 'wznow': 'Weiter', 'nastepne': 'Nächstes Foto',
@@ -226,7 +229,7 @@ DE = {**WSPOLNE_DE,
     'analityka': False,          # strona celowo bez narzędzi analitycznych (§ 25 TDDDG)
     'panel_dostepnosci': True,   # BFSG
     'h1': 'Humanoide Roboter für Events mieten',
-    'lead': 'Ein humanoider Roboter mit Charakter und Drehbuch für Ihre Gala, Konferenz oder Ihren Messestand. Er spricht Deutsch und jede andere Sprache. Operator, Anfahrt und Branding im Preis. <strong>Sie zahlen nach der Veranstaltung.</strong>',
+    'lead': 'Ein humanoider Roboter mit Charakter und Drehbuch für Ihre Gala, Konferenz oder Ihren Messestand. Er spricht Deutsch und jede andere Sprache. Operator, Anfahrt und Branding im Preis.',
     'hero_link': ('referenzen-videos.html', 'Referenzen ansehen'),
     'proof': [
         ('https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151', 'TVP2-Frühstücksfernsehen', '0:35–1:00'),
@@ -312,7 +315,7 @@ AT = {**WSPOLNE_DE,
     'analityka': True,           # GTM i Albacross jak dotąd, z banerem cookie
     'panel_dostepnosci': False,
     'h1': 'Humanoide Roboter mieten für Events in Österreich',
-    'lead': 'Ein humanoider Roboter mit Charakter und Drehbuch für Ihre Gala, Konferenz oder Ihren Messestand. Er spricht Deutsch und jede andere Sprache. Operator, Transport und Branding im Preis. <strong>Sie zahlen nach der Veranstaltung.</strong>',
+    'lead': 'Ein humanoider Roboter mit Charakter und Drehbuch für Ihre Gala, Konferenz oder Ihren Messestand. Er spricht Deutsch und jede andere Sprache. Operator, Transport und Branding im Preis.',
     'hero_link': ('#referenzen', 'Referenzen ansehen'),
     'proof': [
         ('https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151', 'TVP2-Frühstücksfernsehen', '0:35–1:00'),
@@ -503,10 +506,12 @@ LT = {
     'logo_aria': '33bots — pradžia',
     'nav_aria': 'Pagrindinė navigacija',
     'menu': 'Meniu', 'menu_zamknij': 'Uždaryti',
-    'cta': 'Patikrinti, ar data laisva', 'cta_krotki': 'Patikrinti datą',
+    'cta': 'Patikrinti datą ir kainą', 'cta_krotki': 'Patikrinti datą',
+    'hero_data_pytanie': 'Kada vyks jūsų renginys?',
+    'hero_obietnica': '<strong>Be avanso, mokate po renginio.</strong> Atsakome dažniausiai tą pačią dieną.',
     'h1': 'Humanoidinių robotų nuoma renginiams Lietuvoje',
     'display': 'Dažniausiai fotografuo&shy;jamas jūsų renginio svečias.',
-    'lead': 'Humanoidinis robotas su charakteriu ir scenarijumi jūsų gala vakarui, konferencijai ar parodos stendui. Kalba lietuviškai ir bet kuria kita kalba. Operatorius, atvykimas ir ženklinimas — kainoje. <strong>Mokate po renginio.</strong>',
+    'lead': 'Humanoidinis robotas su charakteriu ir scenarijumi jūsų gala vakarui, konferencijai ar parodos stendui. Kalba lietuviškai ir bet kuria kita kalba. Operatorius, atvykimas ir ženklinimas — kainoje.',
     'hero_link': ('video-realizacijos.html', 'Žiūrėti realizacijas'),
     'pauza': 'Pauzė', 'wznow': 'Tęsti', 'nastepne': 'Kita nuotrauka',
     'slajdy': SLAJDY_LT,

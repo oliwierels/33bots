@@ -53,7 +53,7 @@ for (const plik of ARTYKULY) {
 
     // przycisk w bloku rezerwacji: ciemny tekst na jasnym tle
     await expect(page.locator('.art__cta .btn')).toHaveCSS('color', 'rgb(5, 5, 5)');
-    await expect(page.locator('.art__cta .btn')).toHaveCSS('background-color', 'rgb(240, 240, 240)');
+    await expect(page.locator('.art__cta .btn')).toHaveCSS('background-color', 'rgb(111, 214, 255)');
 
     // zdjęcia mają opisy i się wczytują
     await page.evaluate(async () => { for (const i of document.images) { i.loading = 'eager'; } await Promise.all([...document.images].map((i) => i.decode().catch(() => {}))); });

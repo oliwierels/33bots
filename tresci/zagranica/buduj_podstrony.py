@@ -59,7 +59,7 @@ TEKSTY_DE = {
     'spis': 'Auf dieser Seite', 'faq': 'Häufige Fragen', 'czytaj': 'Weiterlesen',
     'cta_tytul': 'Prüfen Sie, ob Ihr Termin frei ist',
     'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Werkstunden.',
-    'cta_przycisk': 'Verfügbarkeit prüfen', 'pasek': 'Termin prüfen',
+    'cta_przycisk': 'Termin und Preis prüfen', 'pasek': 'Termin prüfen',
     'menu': ("'Schließen' : 'Menü'"),
     'rss_opis': 'Eventratgeber: Ideen, Attraktionen und Kosten für Firmenfeier, Hochzeit und Event — und Wissen über humanoide Roboter.', 'rss_jezyk': 'de-DE',
     'rss_tytul': '33bots — Eventratgeber',
@@ -69,7 +69,7 @@ TEKSTY_LT = {
     'spis': 'Šiame puslapyje', 'faq': 'Dažniausi klausimai', 'czytaj': 'Skaitykite toliau',
     'cta_tytul': 'Patikrinkite, ar jūsų data laisva',
     'cta_tekst': 'Keliais sakiniais aprašykite savo renginį. Pasiūlymą atsiųsime per 24 darbo valandas.',
-    'cta_przycisk': 'Patikrinti datą', 'pasek': 'Patikrinti datą',
+    'cta_przycisk': 'Patikrinti datą ir kainą', 'pasek': 'Patikrinti datą',
     'menu': ("'Uždaryti' : 'Meniu'"),
     'rss_opis': 'Renginių gidas: pramogos, vedėjai, idėjos ir humanoidinis robotas renginyje.', 'rss_jezyk': 'lt-LT',
 }
@@ -340,7 +340,7 @@ class Rynek:
           <h2 class="h2" id="cta-h">{podziel(d.get('cta_tytul', TEKSTY['cta_tytul']))}</h2>
           <p class="body">{d.get('cta_tekst', TEKSTY['cta_tekst'])}</p>
           <div class="art__cta-akcje">
-            <a class="btn" href="{do_formularza}" data-cta="seite">{TEKSTY['cta_przycisk']} <span aria-hidden="true">→</span></a>
+            <a class="btn btn--akcja" href="{do_formularza}" data-cta="seite">{TEKSTY['cta_przycisk']} <span aria-hidden="true">→</span></a>
 {kontakty}
           </div>
         </aside>'''
@@ -422,7 +422,7 @@ class Rynek:
 {self.stopka}
 
 <div class="pasek" id="pasekMobilny">
-  <a class="btn" href="{do_formularza}" data-cta="sticky">{TEKSTY['pasek']} <span aria-hidden="true">→</span></a>
+  <a class="btn btn--akcja" href="{do_formularza}" data-cta="sticky">{TEKSTY['pasek']} <span aria-hidden="true">→</span></a>
 </div>
 <div class="pasek-odstep"></div>
 {ciasteczka}
