@@ -1,8 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.pl po wyróżnieniu drogi do rezerwacji (cyjanowe CTA, karta formularza).
-# Gałąź diagnoza-domen do usunięcia po teście.
+# Jednorazowe badanie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Tym razem: pozycje 33bots.pl/.de/.at/.lt w Google, Bing i DuckDuckGo dla kluczowych fraz
+# oraz indeksacja nowych stron — punkt odniesienia przed dalszą pracą nad SEO.
+# Tylko odczyt. Gałąź diagnoza-domen do usunięcia po badaniu.
 on:
   push:
     branches: [diagnoza-domen]
@@ -14,21 +15,8 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      LC_ALL: C.UTF-8
+    timeout-minutes: 40
     steps:
-      - name: 33bots.pl — napisy CTA i arkusz
-        run: |
-          set +e
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/ -o pl.html
-          echo "kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/)"
-          for t in 'class="btn btn--akcja" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę' 'btn--akcja" href="#kontakt" data-cta="formaty"' \
-            'class="btn btn--akcja" type="submit" id="wyslij"' 'class="btn btn--akcja" type="button" id="dalej"' 'link nav__cta link--akcja' \
-            'btn--akcja" href="#kontakt" data-cta="sticky"' 'termin--gotowe' 'pointermove' 'generate_lead' 'css/site.css?v=317afc0d'; do
-            echo "$(grep -c -F "$t" pl.html) × $t"
-          done
-          echo "„Sprawdź dostępność terminu” na stronie głównej (oczekiwane 0): $(grep -c 'Sprawdź dostępność terminu' pl.html)"
-          curl -s --max-time 20 'https://33bots.pl/css/site.css?v=317afc0d' -o s.css
-          echo "arkusz: md5 $(md5sum s.css | cut -c1-8) (oczekiwane 317afc0d), .btn--akcja: $(grep -c 'btn--akcja' s.css), karta: $(grep -c 'rez .rez__form' s.css)"
-          echo "artykuł: $(curl -s --max-time 20 https://33bots.pl/blog-atrakcje-eventowe.html | grep -o 'css/site.css?v=[0-9a-f]*' | head -1)"
+      - uses: actions/checkout@v4
+      - name: Pozycje w Google, Bing i DuckDuckGo
+        run: python3 -u badania/pozycje.py
