@@ -55,7 +55,7 @@ const RYNKI = [
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['ab 2.500 €', 'pro Veranstaltungstag', '850 €', '−15 %'],
     kontakt: ['kontakt@33bots.de'],
-    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Blog'],
+    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Ratgeber'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Schreiben Sie uns an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',

@@ -61,7 +61,8 @@ TEKSTY_DE = {
     'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Werkstunden.',
     'cta_przycisk': 'Verfügbarkeit prüfen', 'pasek': 'Termin prüfen',
     'menu': ("'Schließen' : 'Menü'"),
-    'rss_opis': 'Wissen über humanoide Roboter auf Veranstaltungen, Messen und Konferenzen.', 'rss_jezyk': 'de-DE',
+    'rss_opis': 'Eventratgeber: Ideen, Attraktionen und Kosten für Firmenfeier, Hochzeit und Event — und Wissen über humanoide Roboter.', 'rss_jezyk': 'de-DE',
+    'rss_tytul': '33bots — Eventratgeber',
 }
 TEKSTY_LT = {
     'start': 'Pradžia', 'okruchy': 'Naršymo kelias', 'skip': 'Pereiti prie turinio',
@@ -95,6 +96,12 @@ DZIELENIE = {
     'Barrierefreiheit': 'Barriere&shy;freiheit', 'Tagesnachrichten': 'Tages&shy;nachrichten',
     'Niederösterreich': 'Nieder&shy;österreich', 'Unternehmensgruppe': 'Unternehmens&shy;gruppe',
     'Wissenschaftszentrum': 'Wissenschafts&shy;zentrum', 'Gefechtsfeldmedizin': 'Gefechtsfeld&shy;medizin',
+    # Eventratgeber (.de): długie słowa w nagłówkach poradników.
+    'Betriebsveranstaltung': 'Betriebs&shy;veranstaltung', 'Junggesellenabschied': 'Junggesellen&shy;abschied',
+    'Teilnehmermanagement': 'Teilnehmer&shy;management', 'Überraschungsparty': 'Überraschungs&shy;party',
+    'Moderationsformate': 'Moderations&shy;formate', 'Eröffnungsaktionen': 'Eröffnungs&shy;aktionen',
+    'Überraschungsgast': 'Überraschungs&shy;gast', 'Geburtstagsfeier': 'Geburtstags&shy;feier',
+    'Kindergeburtstag': 'Kinder&shy;geburtstag',
 }
 
 
@@ -132,7 +139,7 @@ def wymiary(plik):
 
 
 def bez_tagow(s):
-    t = html.unescape(re.sub(r'<[^>]+>', ' ', s)).replace('\xa0', ' ')
+    t = html.unescape(re.sub(r'<[^>]+>', ' ', s)).replace('\xa0', ' ').replace('\xad', '')
     return re.sub(r'\s+', ' ', t).strip()
 
 
@@ -450,7 +457,7 @@ def kanal_rss(rynek, zrodla):
     (rynek.cel / 'feed.xml').write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>33bots — Blog</title>
+    <title>{rynek.k['teksty'].get('rss_tytul', '33bots — Blog')}</title>
     <link>{baza}/blog.html</link>
     <description>{rynek.k['teksty']['rss_opis']}</description>
     <language>{rynek.k['teksty']['rss_jezyk']}</language>
