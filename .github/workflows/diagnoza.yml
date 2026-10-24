@@ -1,7 +1,7 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.pl po zmianie napisu CTA na „Sprawdź termin i cenę”.
+# Tym razem: 33bots.pl po wyróżnieniu drogi do rezerwacji (cyjanowe CTA, karta formularza).
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -23,12 +23,12 @@ jobs:
           set +e
           curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/ -o pl.html
           echo "kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/)"
-          for t in 'data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę' 'data-cta="formaty">Sprawdź termin i dokładną cenę' \
-            'id="wyslij">Sprawdź termin i cenę' 'data-cta="nav">Sprawdź termin i cenę' 'nav__cta" href="#kontakt" data-cta="nav">Sprawdź termin<' \
-            'data-cta="sticky">Sprawdź termin' 'id="heroData"' 'generate_lead' 'css/site.css?v=d7bf1447'; do
+          for t in 'class="btn btn--akcja" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę' 'btn--akcja" href="#kontakt" data-cta="formaty"' \
+            'class="btn btn--akcja" type="submit" id="wyslij"' 'class="btn btn--akcja" type="button" id="dalej"' 'link nav__cta link--akcja' \
+            'btn--akcja" href="#kontakt" data-cta="sticky"' 'termin--gotowe' 'pointermove' 'generate_lead' 'css/site.css?v=317afc0d'; do
             echo "$(grep -c -F "$t" pl.html) × $t"
           done
           echo "„Sprawdź dostępność terminu” na stronie głównej (oczekiwane 0): $(grep -c 'Sprawdź dostępność terminu' pl.html)"
-          curl -s --max-time 20 'https://33bots.pl/css/site.css?v=d7bf1447' -o s.css
-          echo "arkusz: md5 $(md5sum s.css | cut -c1-8) (oczekiwane d7bf1447), minmax w .termin: $(grep -c 'grid-template-columns: minmax(0, 1fr); gap: 12px' s.css)"
+          curl -s --max-time 20 'https://33bots.pl/css/site.css?v=317afc0d' -o s.css
+          echo "arkusz: md5 $(md5sum s.css | cut -c1-8) (oczekiwane 317afc0d), .btn--akcja: $(grep -c 'btn--akcja' s.css), karta: $(grep -c 'rez .rez__form' s.css)"
           echo "artykuł: $(curl -s --max-time 20 https://33bots.pl/blog-atrakcje-eventowe.html | grep -o 'css/site.css?v=[0-9a-f]*' | head -1)"
