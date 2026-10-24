@@ -1,9 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.pl po wdrożeniu nowego CTA w hero (data wydarzenia + „Sprawdź termin”),
-# baner cookie, pasek z telefonem, zdarzenia generate_lead i cta_click; arkusz i artykuły.
-# Gałąź diagnoza-domen do usunięcia po teście.
+# Tym razem: 33bots.de, 33bots.at i 33bots.lt po przebudowie z generatora — nowy arkusz
+# (baner cookie nie zasłania CTA), pasek mobilny chowany przy rezerwacji, zdarzenia
+# generate_lead i cta_click; każdy adres z mapy strony. Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
@@ -15,25 +15,36 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
       LC_ALL: C.UTF-8
     steps:
-      - name: 33bots.pl — strona główna po zmianie CTA
+      - name: Strony główne i arkusz
         run: |
           set +e
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/ -o pl.html
-          echo "kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/)"
-          for t in 'id="heroData"' 'Kiedy jest Twoje wydarzenie?' 'data-cta="hero">Sprawdź termin' 'Bez zaliczki, płacisz po wydarzeniu.' \
-            'class="pasek__tel" href="tel:+48531408004"' 'class="rez__kontakty' 'generate_lead' 'cta_click' \
-            'GTM-MR7R7CJ3' 'formspree.io/f/mnjwvray' 'css/site.css?v=315bb713'; do
-            echo "$(grep -c -F "$t" pl.html) × $t"
+          for d in 33bots.de 33bots.at 33bots.lt; do
+            curl -s --max-time 30 -H 'Cache-Control: no-cache' "https://$d/" -o g.html
+            v=$(grep -o 'css/site.css?v=[0-9a-f]*' g.html | head -1 | sed 's/.*v=//')
+            curl -s --max-time 20 "https://$d/css/site.css?v=$v" -o s.css
+            echo "$d: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$d/"), arkusz $v (oczekiwane 1344c299), md5 $(md5sum s.css | cut -c1-8)," \
+              "generate_lead $(grep -c 'generate_lead' g.html), cta_click $(grep -c 'cta_click' g.html)," \
+              "pasek przy rezerwacji $(grep -c 'obserwator.observe(rezerwacja)' g.html), baner cookie $(grep -c 'id="cookies"' g.html)," \
+              "scroll-padding w arkuszu $(grep -c 'scroll-padding-bottom' s.css)"
           done
-          echo "stary przycisk w hero (oczekiwane 0): $(grep -c 'data-cta="hero">Sprawdź dostępność terminu' pl.html)"
-          curl -s --max-time 20 'https://33bots.pl/css/site.css?v=315bb713' -o site.css
-          echo "css/site.css: md5 $(md5sum site.css | cut -c1-8) (oczekiwane 315bb713), .termin__rzad $(grep -c 'termin__rzad' site.css), scroll-padding $(grep -c 'scroll-padding-bottom' site.css)"
-          for a in blog-atrakcje-eventowe blog-ile-kosztuje-wynajem-robota blog-wdrozenie-robota-humanoidalnego-w-firmie; do
-            echo "$a: $(curl -s --max-time 20 "https://33bots.pl/$a.html" | grep -o 'css/site.css?v=[0-9a-f]*' | head -1)"
+
+      - name: Każdy adres z map stron
+        run: |
+          set +e
+          for d in 33bots.de 33bots.at 33bots.lt; do
+            curl -s --max-time 30 "https://$d/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' > m.txt
+            zle=0; arkusz=0
+            while read -r u; do
+              k=$(curl -s -o s.html -w '%{http_code}' --max-time 20 "$u")
+              [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }
+              grep -q 'css/site.css?v=1344c299' s.html && arkusz=$((arkusz+1))
+            done < m.txt
+            echo "$d: adresów $(wc -l < m.txt), błędnych kodów $zle, z nowym arkuszem $arkusz"
           done
-          curl -s -I --max-time 20 https://33bots.pl/ > h.txt
-          echo "CSP: $(grep -ic '^content-security-policy' h.txt) nagłówek(i)"
+          for u in https://33bots.de/angebot-konferenzen-galas.html https://33bots.at/kontakt.html https://33bots.lt/humanoidinio-roboto-nuoma.html; do
+            echo "$u: generate_lead $(curl -s --max-time 20 "$u" | grep -c 'generate_lead')"
+          done
