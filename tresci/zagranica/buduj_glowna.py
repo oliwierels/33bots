@@ -91,6 +91,11 @@ class Strona:
     def kotwice(self, sekcja):
         return ''.join(f'<span class="kotwica" id="{k}"></span>' for k in self.r['kotwice'].get(sekcja, []))
 
+    def kotwice_wiersz(self, sekcja):
+        """Dawne kotwice w osobnym wierszu — tylko gdy rynek jakieś ma (bez pustej linii na .de/.at)."""
+        k = self.kotwice(sekcja)
+        return f'\n  {k}' if k else ''
+
     # ——— sekcje ———
     def nawigacja(self):
         r = self.r
@@ -268,7 +273,7 @@ class Strona:
         wiersze = []
         for i, (tytul, tekst) in enumerate(r['wiersze'], 1):
             foto = ''
-            if tytul == 'Branding':
+            if tytul == r.get('wiersz_z_foto', 'Branding'):
                 foto = (f'\n          <figure class="wiersz__foto">{self.zdjecie("realizacja-gala-detal", r["wystep_foto_alt"], "240px")}'
                         f'<figcaption class="podpis">{r["wystep_foto_podpis"]}</figcaption></figure>')
             wiersze.append(f'''      <li class="wiersz">
@@ -332,7 +337,7 @@ class Strona:
         <p class="label format__cena-opis">{cena_opis}</p>
       </li>''' for nazwa, opis, cena, cena_opis in r['formaty'])
         return f'''<!-- ══════════ 07 FORMATE UND PREISE ══════════ -->
-<section id="preise" class="sec" aria-labelledby="preise-h">
+<section id="preise" class="sec" aria-labelledby="preise-h">{self.kotwice_wiersz('preise')}
   <div class="wrap">
     <div class="sec__glowa wejscie">
       <p class="label sec__meta">{r['formaty_meta']}</p>
@@ -356,7 +361,7 @@ class Strona:
         <p class="body">{tekst}</p>
       </li>''' for i, (tytul, czas, tekst) in enumerate(r['kroki'], 1))
         return f'''<!-- ══════════ 08 ABLAUF ══════════ -->
-<section id="ablauf" class="sec" aria-labelledby="ablauf-h">
+<section id="ablauf" class="sec" aria-labelledby="ablauf-h">{self.kotwice_wiersz('ablauf')}
   <div class="wrap">
     <div class="sec__glowa wejscie">
       <p class="label sec__meta">{r['proces_meta']}</p>
@@ -512,7 +517,8 @@ class Strona:
 {chr(10).join(f'        <a href="{h}">{t}</a>' for h, t in linki)}
       </div>
     </div>'''
-        miasta = '\n'.join(f'        <a href="roboter-mieten-{k}.html">{n}</a>' for k, n in r['miasta'])
+        prefiks = r.get('miasta_prefiks', 'roboter-mieten-')
+        miasta = '\n'.join(f'        <a href="{prefiks}{k}.html">{n}</a>' for k, n in r['miasta'])
         return f'''<!-- ══════════ 11 FUSSZEILE ══════════ -->
 <footer class="stopka">
   <div class="wrap grid12">
@@ -634,9 +640,10 @@ class Strona:
             zamien("      guests:     d.get('guests')     || '—',\n    };",
                    f"      guests:     d.get('guests')     || '—',\n      {klucz}: {js(wartosc)},\n    }};")
         if fo['gtag']:
+            etykieta = fo.get('gtag_etykieta', 'Kontaktformular')
             zamien("      const sukces = document.createElement('div');",
                    "      if (typeof gtag === 'function') {\n"
-                   "        gtag('event', 'form_submit', { event_category: 'contact', event_label: 'Kontaktformular' });\n"
+                   f"        gtag('event', 'form_submit', {{ event_category: 'contact', event_label: '{etykieta}' }});\n"
                    "      }\n"
                    "      const sukces = document.createElement('div');")
         if not r['cookies']:
@@ -666,7 +673,9 @@ class Strona:
         # Poza danymi (nazwy własne) i komentarzami w skrypcie nie może zostać polski tekst.
         kod = re.sub(r'const (SLAJDY|REALIZACJE) = .*?\n  [\]}];', '', s, flags=re.S)
         kod = re.sub(r'/\*.*?\*/|//[^\n]*', '', kod, flags=re.S)
-        polskie = re.findall(r'[^\n]*[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][^\n]*', kod)
+        # Litewski też ma ą i ę — na .lt szukamy wyłącznie liter, których nie ma w litewskim.
+        litery = 'ćłńóśźżĆŁŃÓŚŹŻ' if r['lang'] == 'lt' else 'ąćęłńóśźżĄĆĘŁŃÓŚŹŻ'
+        polskie = re.findall(rf'[^\n]*[{litery}][^\n]*', kod)
         assert not polskie, f'w skrypcie zostały polskie teksty: {polskie[:3]}'
         return s
 

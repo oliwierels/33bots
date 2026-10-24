@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Podstrony 33bots.de i 33bots.at w nowym systemie wizualnym — tym samym co strona główna
+"""Podstrony 33bots.de, 33bots.at i 33bots.lt w nowym systemie wizualnym — tym samym co strona główna
 rynku i artykuły poradnika na 33bots.pl (css/site.css).
 
 Każdy plik tresci/zagranica/podstrony/<rynek>/<adres>.html zaczyna się komentarzem z danymi
@@ -19,7 +19,7 @@ Adres, tytuł, opis, hreflang, obraz og i dane strukturalne usługi przechodzą 
 wersji strony bez zmian — zmienia się wygląd, nie to, co widzi wyszukiwarka.
 
 Użycie (z katalogu głównego 33bots):
-    python3 tresci/zagranica/buduj_podstrony.py de|at <katalog repozytorium rynku>
+    python3 tresci/zagranica/buduj_podstrony.py de|at|lt <katalog repozytorium rynku>
 """
 import hashlib
 import html
@@ -46,14 +46,32 @@ RYNKI = {
         'kontakt': [('tel:+48531408004', '+48 531 408 004', 'data-tel'),
                     ('mailto:kontakt@33bots.at', 'kontakt@33bots.at', 'data-mail')],
     },
+    'lt': {
+        'baza': 'https://33bots.lt', 'lang': 'lt', 'og_locale': 'lt_LT', 'kraj': 'Lietuva',
+        'analityka': True, 'dostepnosc': False,
+        'kontakt': [('mailto:kontakt@33bots.lt', 'kontakt@33bots.lt', 'data-mail')],
+    },
 }
-TEKSTY = {
+TEKSTY_DE = {
     'start': 'Startseite', 'okruchy': 'Brotkrumen', 'skip': 'Zum Hauptinhalt springen',
     'spis': 'Auf dieser Seite', 'faq': 'Häufige Fragen', 'czytaj': 'Weiterlesen',
     'cta_tytul': 'Prüfen Sie, ob Ihr Termin frei ist',
     'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Werkstunden.',
     'cta_przycisk': 'Verfügbarkeit prüfen', 'pasek': 'Termin prüfen',
+    'menu': ("'Schließen' : 'Menü'"),
+    'rss_opis': 'Wissen über humanoide Roboter auf Veranstaltungen, Messen und Konferenzen.', 'rss_jezyk': 'de-DE',
 }
+TEKSTY_LT = {
+    'start': 'Pradžia', 'okruchy': 'Naršymo kelias', 'skip': 'Pereiti prie turinio',
+    'spis': 'Šiame puslapyje', 'faq': 'Dažniausi klausimai', 'czytaj': 'Skaitykite toliau',
+    'cta_tytul': 'Patikrinkite, ar jūsų data laisva',
+    'cta_tekst': 'Keliais sakiniais aprašykite savo renginį. Pasiūlymą atsiųsime per 24 darbo valandas.',
+    'cta_przycisk': 'Patikrinti datą', 'pasek': 'Patikrinti datą',
+    'menu': ("'Uždaryti' : 'Meniu'"),
+    'rss_opis': 'Renginių gidas: pramogos, vedėjai, idėjos ir humanoidinis robotas renginyje.', 'rss_jezyk': 'lt-LT',
+}
+RYNKI['de']['teksty'] = RYNKI['at']['teksty'] = TEKSTY_DE
+RYNKI['lt']['teksty'] = TEKSTY_LT
 
 
 # Długie złożenia w nagłówkach dzielimy miękko (&shy;), żeby na telefonach 320 px nie wychodziły
@@ -150,9 +168,9 @@ class Rynek:
         self.skrypt = self.kopiuj_skrypt()
 
     def kopiuj_skrypt(self):
-        """js/strona.js z .pl — te same zachowania, przycisk menu po niemiecku."""
+        """js/strona.js z .pl — te same zachowania, przycisk menu w języku rynku."""
         s = (PL / 'js/strona.js').read_text(encoding='utf-8')
-        for stare, nowe in (("'Zamknij' : 'Menu'", "'Schließen' : 'Menü'"),):
+        for stare, nowe in (("'Zamknij' : 'Menu'", self.k['teksty']['menu']),):
             assert s.count(stare) == 1, stare
             s = s.replace(stare, nowe)
         (self.cel / 'js').mkdir(exist_ok=True)
@@ -180,6 +198,7 @@ class Rynek:
         d = json.loads(m.group(1))
         tresc = surowe[m.end():].strip()
         k, baza = self.k, self.k['baza']
+        TEKSTY = k['teksty']
         adres = zrodlo.stem + '.html'
         url = f'{baza}/{adres}'
 
@@ -429,8 +448,8 @@ def kanal_rss(rynek, zrodla):
   <channel>
     <title>33bots — Blog</title>
     <link>{baza}/blog.html</link>
-    <description>Wissen über humanoide Roboter auf Veranstaltungen, Messen und Konferenzen.</description>
-    <language>de-DE</language>
+    <description>{rynek.k['teksty']['rss_opis']}</description>
+    <language>{rynek.k['teksty']['rss_jezyk']}</language>
 {elementy}
   </channel>
 </rss>
