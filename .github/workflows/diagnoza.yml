@@ -1,29 +1,103 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe badanie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: podpowiedzi Google i Binga dla Litwy (atrakcje na eventy, wesela, wodzireje,
-# fotobudki). Wyniki trafiają z powrotem na tę gałąź (badania/wyniki/). Niczego poza tym nie zmienia.
-# Gałąź diagnoza-domen do usunięcia po badaniu.
+# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Tym razem: 33bots.lt w nowym układzie — każdy adres z mapy strony, 301 scalonych stron,
+# formularz, GTM, nagłówki, zakazane słowa; IndexNow dla przekierowanych adresów;
+# próbki .de i .at po lokalizacji nazw. Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
     paths-ignore: ['badania/wyniki/**']
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - name: Podpowiedzi wyszukiwarek — Litwa
-        run: python3 badania/podpowiedzi.py
-      - name: Zapis wyników na gałęzi
+      - name: 33bots.lt — każdy adres z mapy strony
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add badania/wyniki
-          git commit -q -m "Wyniki badania: podpowiedzi wyszukiwarek LT" && git push -q origin HEAD:diagnoza-domen
-          echo "unikalnych podpowiedzi: $(wc -l < badania/wyniki/podpowiedzi.txt)"
+          set +e
+          curl -s --max-time 30 https://33bots.lt/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > lt.txt
+          echo "mapa .lt: $(wc -l < lt.txt) adresów (oczekiwane 65)"
+          zle=0; formy=0; gtm=0; nowe=0; kanon=0
+          while read -r u; do
+            k=$(curl -s -o s.html -w '%{http_code}' --max-time 20 "$u")
+            [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }
+            grep -q 'formspree.io/f/mnjwvray' s.html && formy=$((formy+1))
+            grep -q 'GTM-MR7R7CJ3' s.html && gtm=$((gtm+1)) || echo "BEZ GTM: $u"
+            grep -q 'css/site.css' s.html && nowe=$((nowe+1))
+            grep -q "<link rel=\"canonical\" href=\"$u\"" s.html && kanon=$((kanon+1)) || echo "INNY CANONICAL: $u"
+            grep -o -i '.\{40\}nemokam.\{20\}' s.html | head -1 | sed "s|^|ZAKAZANE SŁOWO $u: |"
+            grep -o -E '[ćłńóśźżĆŁŃÓŚŹŻ]' s.html | head -1 | sed "s|^|POLSKA LITERA $u: |"
+            grep -q -E 'href="(atrakcijos-renginiams|modernios-pramogos|blog-renginio-pramogos-idejos|blog-robotas-ar-kitos-pramogos|blog-kaledinio-renginio-planavimas)\.html"' s.html && echo "LINK DO SCALONEJ STRONY: $u"
+          done < lt.txt
+          echo "błędne kody: $zle"
+          echo "z formularzem Formspree: $formy"
+          echo "z GTM-MR7R7CJ3: $gtm"
+          echo "w nowym układzie (css/site.css): $nowe (oczekiwane 63 — sklep i diegimas w starym)"
+          echo "canonical zgodny z adresem: $kanon"
+
+      - name: 33bots.lt — przekierowania, pliki, nagłówki
+        run: |
+          set +e
+          cat > mapa.txt <<'MAPA'
+          atrakcijos-renginiams.html pramogos-renginiams.html
+          modernios-pramogos.html pramogos-renginiams.html
+          blog-renginio-pramogos-idejos.html pramogos-renginiams.html
+          blog-robotas-ar-kitos-pramogos.html pramogos-renginiams.html
+          blog-kaledinio-renginio-planavimas.html kaledinio-vakarelio-idejos.html
+          robotu-nuoma-birzai.html robotu-nuoma-panevezys.html
+          robotu-nuoma-visaginas.html robotu-nuoma-utena.html
+          MAPA
+          sed -i 's/^ *//' mapa.txt
+          dobre=0
+          while read -r w c; do
+            wynik=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 "https://33bots.lt/$w")
+            if [ "$wynik" = "301 https://33bots.lt/$c" ]; then dobre=$((dobre+1)); else echo "ŹLE: $w → $wynik (oczekiwane 301 → $c)"; fi
+          done < mapa.txt
+          echo "przekierowania zgodne: $dobre z $(wc -l < mapa.txt)"
+          echo "www → $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 https://www.33bots.lt/kainos.html)"
+          echo "http → $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 http://33bots.lt/kainos.html)"
+          echo "/index.html → $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' --max-time 20 https://33bots.lt/index.html)"
+          k=$(curl -s -o b.html -w '%{http_code}' --max-time 20 https://33bots.lt/nie-ma-takiej-strony.html)
+          echo "404: kod $k, treść 404.html: $(grep -c 'Šio puslapio nėra' b.html)"
+          echo "robots.txt: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.lt/robots.txt)"
+          echo "llms.txt: $(curl -s --max-time 20 https://33bots.lt/llms.txt | head -1) | 23 laisvės laipsniai: $(curl -s --max-time 20 https://33bots.lt/llms.txt | grep -c '23 laisvės')"
+          echo "feed.xml: $(curl -s --max-time 20 https://33bots.lt/feed.xml | grep -c '<item>') wpisów (oczekiwane 18)"
+          echo "blog.html, linki do gidów: $(curl -s --max-time 20 https://33bots.lt/blog.html | grep -o -E 'href="(fotobudeles-nuoma|pramogos-renginiams|renginiu-vedejas|pramogos-vestuvems|vestuviu-vedejas|kaledinio-vakarelio-idejos|komandos-formavimo-idejos)\.html"' | sort -u | wc -l) (oczekiwane 7)"
+          echo "klucz IndexNow: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.lt/da66134087cc25b2d1bc36011f30f615.txt)"
+          curl -s -I --max-time 20 https://33bots.lt/ > h.txt
+          echo "CSP z analytics.google.com: $(grep -i '^content-security-policy' h.txt | grep -c 'analytics.google.com')"
+          echo "CSP z googleadservices.com: $(grep -i '^content-security-policy' h.txt | grep -c 'googleadservices.com')"
+          echo "frame-ancestors: $(grep -i '^content-security-policy' h.txt | grep -c 'frame-ancestors')"
+          echo "HSTS: $(grep -ic '^strict-transport-security' h.txt)"
+          echo "strona główna — formularz: $(curl -s --max-time 20 https://33bots.lt/ | grep -c 'formspree.io/f/mnjwvray')"
+
+      - name: IndexNow — przekierowane adresy .lt
+        run: |
+          set +e
+          K=da66134087cc25b2d1bc36011f30f615
+          printf '%s\n' https://33bots.lt/atrakcijos-renginiams.html https://33bots.lt/modernios-pramogos.html \
+            https://33bots.lt/blog-renginio-pramogos-idejos.html https://33bots.lt/blog-robotas-ar-kitos-pramogos.html \
+            https://33bots.lt/blog-kaledinio-renginio-planavimas.html https://33bots.lt/ https://33bots.lt/sitemap.xml > zgl.txt
+          jq -n --arg k "$K" --slurpfile u <(jq -R . zgl.txt) \
+            '{host: "33bots.lt", key: $k, keyLocation: ("https://33bots.lt/" + $k + ".txt"), urlList: $u}' > dane.json
+          echo "adresów w zgłoszeniu: $(jq '.urlList | length' dane.json)"
+          for e in https://api.indexnow.org/indexnow https://www.bing.com/indexnow; do
+            k=$(curl -s -o odp.txt -w '%{http_code}' --max-time 30 -H 'Content-Type: application/json; charset=utf-8' --data @dane.json "$e")
+            echo "$e → $k $(head -c 300 odp.txt)"
+          done
+
+      - name: 33bots.de i 33bots.at — próbki po lokalizacji nazw
+        run: |
+          set +e
+          curl -s --max-time 20 https://33bots.de/ -o de.html
+          echo ".de: Unternehmerloge $(grep -c 'Unternehmerloge' de.html), Loża $(grep -c 'Loża' de.html), Grupa Rekord $(grep -c 'Grupa Rekord' de.html)"
+          echo ".de moderation → lt: $(curl -s --max-time 20 https://33bots.de/roboter-eventmoderation.html | grep -c 'hreflang=\"lt\" href=\"https://33bots.lt/robotas-vedejas.html\"')"
+          echo ".lt vedejas → de: $(curl -s --max-time 20 https://33bots.lt/robotas-vedejas.html | grep -c 'hreflang=\"de\" href=\"https://33bots.de/roboter-eventmoderation.html\"')"
+          curl -s --max-time 20 https://33bots.at/ -o at.html
+          echo ".at: kostenlos $(grep -ci 'kostenlos' at.html), Unternehmerloge $(grep -c 'Unternehmerloge' at.html)"
+          echo ".de kopernikus: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.de/case-study-centrum-nauki-kopernik.html)"
