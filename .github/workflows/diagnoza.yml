@@ -1,9 +1,9 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.de po wdrożeniu Eventratgeber (35 poradników) — każdy adres z mapy strony,
-# canonical, menu „Ratgeber”, zakazane słowa i polskie litery w kodzie, dane strukturalne
-# poradników, RSS, llms.txt i spis; zgłoszenie IndexNow. Gałąź diagnoza-domen do usunięcia po teście.
+# Tym razem: co mierzy kontener GTM-MR7R7CJ3 na 33bots.pl (wyzwalacze kliknięć, formularza,
+# konwersje), żeby nowe CTA w hero nie zepsuło pomiaru. Tylko odczyt publicznego pliku gtm.js.
+# Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
@@ -15,72 +15,55 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     env:
       LC_ALL: C.UTF-8
     steps:
-      - name: 33bots.de — każdy adres z mapy strony
+      - name: GTM-MR7R7CJ3 — tagi, wyzwalacze, zmienne
         run: |
           set +e
-          curl -s --max-time 30 https://33bots.de/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > de.txt
-          echo "mapa .de: $(wc -l < de.txt) adresów (oczekiwane 89)"
-          zle=0; formy=0; kanon=0; menu=0; nowe=0
-          while read -r u; do
-            k=$(curl -s -o s.html -w '%{http_code}' --max-time 20 "$u")
-            [ "$k" = "200" ] || { echo "KOD $k: $u"; zle=$((zle+1)); }
-            grep -q 'formspree.io/f/mnjwvray' s.html && formy=$((formy+1))
-            grep -q 'css/site.css' s.html && nowe=$((nowe+1))
-            grep -q '>Ratgeber</a>' s.html && menu=$((menu+1)) || echo "BEZ MENU RATGEBER: $u"
-            grep -q "<link rel=\"canonical\" href=\"$u\"" s.html && kanon=$((kanon+1)) || echo "INNY CANONICAL: $u"
-            grep -o -i -E '.{0,40}(Kostüm|Outfit|Garderobe|kostenlos|gratis).{0,20}' s.html | head -1 | sed "s|^|ZAKAZANE SŁOWO $u: |"
-            grep -q -E '[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]' s.html && echo "POLSKIE LITERY: $u"
-          done < de.txt
-          echo "błędne kody: $zle"
-          echo "z formularzem Formspree: $formy (oczekiwane 23)"
-          echo "w nowym układzie (css/site.css): $nowe (oczekiwane 89)"
-          echo "z menu „Ratgeber”: $menu (oczekiwane 89)"
-          echo "canonical zgodny z adresem: $kanon (oczekiwane 89)"
-          echo "(polskie litery dopuszczalne tylko w impressum.html i datenschutz.html — adres i nazwy urzędów)"
-
-      - name: 33bots.de — poradniki, spis, pliki
-        run: |
-          set +e
-          ok=0
-          for p in event-attraktionen showact-buchen attraktionen-mieten fotobox-mieten casino-abend zauberer-buchen \
-            feuershow-buchen moderator-buchen food-truck-mieten stadtfest-organisieren weihnachtsfeier-ideen \
-            weihnachtsfeier-spiele betriebsveranstaltung-steuer firmenfeier-ideen teambuilding-ideen sommerfest-ideen \
-            firmenjubilaeum-ideen kick-off-veranstaltung event-planen konferenz-organisieren messestand-ideen \
-            eroeffnung-ideen hochzeit-unterhaltung hochzeitsspiele hochzeit-ablaufplan hochzeit-kosten dj-hochzeit \
-            hochzeitsband freie-trauung jga-ideen polterabend geburtstag-feiern-ideen kindergeburtstag-ideen \
-            abiball-planen humanoiden-roboter-kaufen; do
-            k=$(curl -s -o p.html -w '%{http_code}' --max-time 20 "https://33bots.de/$p.html")
-            n=$(grep -c '"BlogPosting"' p.html); f=$(grep -c '"FAQPage"' p.html); b=$(grep -c '"BreadcrumbList"' p.html)
-            h=$(grep -c '<h1' p.html)
-            if [ "$k" = "200" ] && [ "$n" -ge 1 ] && [ "$f" -ge 1 ] && [ "$b" -ge 1 ] && [ "$h" = "1" ]; then ok=$((ok+1)); else
-              echo "PROBLEM $p: kod $k, BlogPosting $n, FAQPage $f, BreadcrumbList $b, h1 $h"; fi
-          done
-          echo "poradniki z kodem 200, BlogPosting, FAQPage, okruszkami i jednym h1: $ok (oczekiwane 35)"
-          curl -s --max-time 20 https://33bots.de/weihnachtsfeier-ideen.html -o w.html
-          echo "weihnachtsfeier-ideen: $(grep -o '<title>[^<]*' w.html) | $(grep -o '<meta name="description" content="[^"]*' w.html | cut -c1-80)…"
-          curl -s --max-time 20 https://33bots.de/blog.html -o b.html
-          echo "blog.html: $(grep -o '<title>[^<]*' b.html) | linki w treści: $(sed -n '/<main/,/<\/main>/p' b.html | grep -o -E 'href="[a-z0-9-]+\.html"' | sort -u | wc -l) (oczekiwane ≥ 59)"
-          echo "feed.xml: $(curl -s --max-time 20 https://33bots.de/feed.xml | grep -c '<item>') wpisów (oczekiwane 40)"
-          curl -s --max-time 20 https://33bots.de/llms.txt -o llms.txt
-          echo "llms.txt: sekcja Eventratgeber $(grep -c '^## Eventratgeber' llms.txt), adresów .de $(grep -c -E '^- .+: https://33bots.de/' llms.txt) (oczekiwane 1 i 44)"
-          echo "robots.txt: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.de/robots.txt), mapa w robots: $(curl -s --max-time 20 https://33bots.de/robots.txt | grep -c 'sitemap.xml')"
-          echo "404: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.de/nie-ma-takiej-strony.html)"
-          curl -s --max-time 20 https://33bots.de/ -o g.html
-          echo "strona główna: menu Ratgeber $(grep -c '>Ratgeber</a>' g.html), stopka Eventratgeber $(grep -c 'Eventratgeber' g.html), formularz $(grep -c 'formspree.io/f/mnjwvray' g.html)"
-
-      - name: IndexNow — zgłoszenie mapy strony .de
-        run: |
-          set +e
-          K=a2813e79cb1d1017ecf75f8b739153a3
-          echo "plik klucza: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://33bots.de/$K.txt")"
-          jq -n --arg k "$K" --slurpfile u <(jq -R . de.txt) \
-            '{host: "33bots.de", key: $k, keyLocation: ("https://33bots.de/" + $k + ".txt"), urlList: $u}' > dane.json
-          echo "adresów w zgłoszeniu: $(jq '.urlList | length' dane.json)"
-          for e in https://api.indexnow.org/indexnow https://www.bing.com/indexnow; do
-            k=$(curl -s -o odp.txt -w '%{http_code}' --max-time 30 -H 'Content-Type: application/json; charset=utf-8' --data @dane.json "$e")
-            echo "$e → $k $(head -c 300 odp.txt)"
-          done
+          curl -s --max-time 30 'https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3' -o gtm.js
+          echo "rozmiar gtm.js: $(wc -c < gtm.js) B"
+          # Dane kontenera to obiekt „resource” na początku pliku: makra, tagi, reguły, predykaty.
+          python3 - <<'PY'
+          import json, re
+          s = open('gtm.js', encoding='utf-8', errors='replace').read()
+          i = s.find('"resource":')
+          if i < 0:
+              print('brak sekcji resource'); raise SystemExit
+          # Wycinamy obiekt resource, licząc nawiasy.
+          j = s.index('{', i); g = 0; k = j
+          w_napisie = False; esc = False
+          while True:
+              c = s[k]
+              if w_napisie:
+                  if esc: esc = False
+                  elif c == '\\': esc = True
+                  elif c == '"': w_napisie = False
+              else:
+                  if c == '"': w_napisie = True
+                  elif c == '{': g += 1
+                  elif c == '}':
+                      g -= 1
+                      if g == 0: break
+              k += 1
+          r = json.loads(s[j:k + 1])
+          print('wersja kontenera:', r.get('version'))
+          makra = r.get('macros', [])
+          print(f'\n== makra ({len(makra)})')
+          for n, m in enumerate(makra):
+              print(n, json.dumps({k: v for k, v in m.items() if k in ('function', 'vtp_name', 'vtp_dataLayerVersion', 'vtp_component', 'vtp_key', 'vtp_varType', 'vtp_attributeName', 'vtp_trackingId', 'vtp_measurementIdOverride')}, ensure_ascii=False)[:240])
+          print(f'\n== tagi ({len(r.get("tags", []))})')
+          for n, t in enumerate(r.get('tags', [])):
+              wybrane = {k: v for k, v in t.items() if k in ('function', 'vtp_eventName', 'vtp_conversionId', 'vtp_conversionLabel', 'vtp_tagId', 'vtp_measurementId', 'vtp_measurementIdOverride', 'vtp_html', 'tag_id', 'vtp_eventCategory', 'vtp_eventAction', 'vtp_eventLabel')}
+              print(n, json.dumps(wybrane, ensure_ascii=False)[:400])
+          print(f'\n== predykaty ({len(r.get("predicates", []))})')
+          for n, p in enumerate(r.get('predicates', [])):
+              print(n, json.dumps(p, ensure_ascii=False)[:300])
+          print(f'\n== reguły ({len(r.get("rules", []))})')
+          for n, x in enumerate(r.get('rules', [])):
+              print(n, json.dumps(x, ensure_ascii=False)[:300])
+          PY
+          echo
+          echo "== napisy z kontenera, które mogą dotyczyć CTA i formularza"
+          grep -o -E '.{0,80}(data-cta|kontakt|wyslij|form-sukces|Sprawdź|formularz|formspree|tel:|gtm\.click|gtm\.linkClick|gtm\.formSubmit|gtm\.elementVisibility|AW-[0-9]+|G-[A-Z0-9]{6,}).{0,80}' gtm.js | sort -u | head -60
