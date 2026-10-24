@@ -178,6 +178,78 @@ test.describe('nawigacja', () => {
   });
 });
 
+// CTA w hero: data wydarzenia → formularz rezerwacji; baner cookie nie zasłania przycisku; pomiar w GTM.
+test.describe('CTA w hero i rezerwacja', () => {
+  test.use({ contextOptions: { reducedMotion: 'reduce' } });
+  const dzis = (page) => page.evaluate(() => new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10));
+
+  test('data z hero trafia do formularza, kalendarz od dziś, fokus na pierwszym pytaniu', async ({ page }) => {
+    await otworz(page, { width: 375, height: 812 });
+    await expect(page.locator('label[for="heroData"]')).toHaveText('Kiedy jest Twoje wydarzenie?');
+    await expect(page.locator('#heroData')).toHaveAttribute('min', await dzis(page));
+    await expect(page.locator('#pole-data')).toHaveAttribute('min', await dzis(page));
+    await expect(page.locator('.hero .termin__obietnica')).toHaveText('Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy zwykle tego samego dnia.');
+    // „Termin jeszcze nieustalony” zaznaczony wcześniej — data z hero go odznacza
+    await page.locator('label.chip:has-text("Termin jeszcze nieustalony")').click();
+    await expect(page.locator('#pole-data')).toBeDisabled();
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await page.fill('#heroData', '2026-12-12');
+    await page.locator('#heroData').press('Enter');
+    await expect(page.locator('#pole-data')).toHaveValue('2026-12-12');
+    await expect(page.locator('#pole-data')).toBeEnabled();
+    await expect(page.locator('#data-nieustalona')).not.toBeChecked();
+    await expect(page.locator('#formularz input[name=event_type]').first()).toBeFocused();
+    // na telefonie formularz stoi zaraz pod nagłówkiem rezerwacji, telefony pod nim
+    const gora = await page.evaluate(() => ['#kontakt-h', '#formularz', '.rez__kontakty'].map((s) => document.querySelector(s).getBoundingClientRect().top));
+    expect(gora[0]).toBeLessThan(gora[1]);
+    expect(gora[1]).toBeLessThan(gora[2]);
+    await expect(page.locator('#pole-typ')).toBeInViewport();
+  });
+
+  for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 667 }]) {
+    test(`baner cookie nie zasłania przycisku w hero @${vp.width}×${vp.height}`, async ({ page }) => {
+      await page.clock.install();
+      await otworz(page, vp);
+      await page.clock.runFor(1500);
+      await expect(page.locator('#cookies')).toBeVisible();
+      const przycisk = await page.locator('.hero [data-cta="hero"]').boundingBox();
+      const baner = await page.locator('#cookies').boundingBox();
+      const naklada = !(przycisk.x + przycisk.width <= baner.x || baner.x + baner.width <= przycisk.x
+        || przycisk.y + przycisk.height <= baner.y || baner.y + baner.height <= przycisk.y);
+      expect(naklada, 'baner zasłania „Sprawdź termin”').toBe(false);
+      expect(przycisk.y + przycisk.height, 'przycisk na pierwszym ekranie').toBeLessThanOrEqual(vp.height);
+    });
+  }
+
+  test('pasek mobilny: telefon obok przycisku, pasek znika przy rezerwacji', async ({ page }) => {
+    await otworz(page, { width: 375, height: 812 });
+    await expect(page.locator('.pasek__tel')).toHaveAttribute('href', 'tel:+48531408004');
+    const widoczny = () => page.evaluate(() => document.getElementById('pasekMobilny').classList.contains('pasek--widoczny'));
+    await page.evaluate(() => scrollTo({ top: 2500, behavior: 'instant' }));
+    await expect.poll(widoczny).toBe(true);
+    await page.evaluate(() => document.getElementById('formularz').scrollIntoView({ behavior: 'instant' }));
+    await expect.poll(widoczny).toBe(false);
+  });
+
+  test('pomiar: cta_click i generate_lead w dataLayer (request do Formspree przechwycony)', async ({ page }) => {
+    await page.route('https://formspree.io/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
+    await otworz(page, { width: 1440, height: 900 });
+    await page.fill('#heroData', '2026-12-12');
+    await page.locator('.hero [data-cta="hero"]').click();
+    await page.locator('label.chip:has-text("Gala")').click();
+    await page.locator('#dalej').click();
+    await page.fill('#pole-name', 'Jan Testowy');
+    await page.fill('#pole-email', 'jan@test.pl');
+    await page.locator('#wyslij').click();
+    await expect(page.locator('.form-sukces')).toBeVisible();
+    const zdarzenia = await page.evaluate(() => window.dataLayer.filter((z) => ['cta_click', 'generate_lead'].includes(z.event)));
+    expect(zdarzenia).toEqual([
+      { event: 'cta_click', cta_place: 'hero', cta_date: 'yes' },
+      { event: 'generate_lead', form_id: 'formularz', event_type: 'Gala' },
+    ]);
+  });
+});
+
 test.describe('szuflada realizacji', () => {
   test.use({ contextOptions: { reducedMotion: 'reduce' } });
   test('otwiera się z danymi, trzyma fokus, Esc zamyka i oddaje fokus', async ({ page }) => {

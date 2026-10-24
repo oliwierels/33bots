@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="assets-redesign.css?v=ecec55be" />
 
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="css/site.css?v=e78d5794" />
+<link rel="stylesheet" href="css/site.css?v=315bb713" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -237,9 +237,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero__text">
     <h1 id="hero-label" class="label">Wynajem robota humanoidalnego na wydarzenia</h1>
     <p class="display">Najczęściej fotografowany gość Twojego wydarzenia.</p>
-    <p class="lead">Robot humanoidalny z&nbsp;charakterem i&nbsp;scenariuszem pod Twoją galę, konferencję lub stoisko. Mówi po polsku i&nbsp;w&nbsp;każdym innym języku. Operator, transport i&nbsp;branding w&nbsp;cenie. <strong>Płacisz po wydarzeniu.</strong></p>
-    <div class="hero__actions">
-      <a class="btn" href="#kontakt" data-cta="hero">Sprawdź dostępność terminu <span aria-hidden="true">→</span></a>
+    <p class="lead">Robot humanoidalny z&nbsp;charakterem i&nbsp;scenariuszem pod Twoją galę, konferencję lub stoisko. Mówi po polsku i&nbsp;w&nbsp;każdym innym języku. Operator, transport i&nbsp;branding w&nbsp;cenie.</p>
+    <!-- Formularz zaczyna się już tutaj: wybrana data przechodzi do pola „Data” w rezerwacji. -->
+    <div class="hero__actions hero__actions--termin">
+      <div class="termin">
+        <label class="label" for="heroData">Kiedy jest Twoje wydarzenie?</label>
+        <div class="termin__rzad">
+          <input class="termin__data" type="date" id="heroData" />
+          <a class="btn" href="#kontakt" data-cta="hero">Sprawdź termin <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="termin__obietnica"><strong>Bez zaliczki, płacisz po wydarzeniu.</strong> Odpowiadamy zwykle tego samego dnia.</p>
+      </div>
       <a class="link" href="realizacje-wideo.html">Zobacz realizacje</a>
     </div>
   </div>
@@ -601,21 +609,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ 10 REZERWACJA TERMINU ══════════
      Formularz: krok 1 — wydarzenie (klik), krok 2 — kontakt. Nazwy pól jak dotąd
-     (name, company, email, phone, date, location, message) plus event_type i guests. -->
+     (name, company, email, phone, date, location, message) plus event_type i guests.
+     Kolejność w kodzie: nagłówek, formularz, telefony — na telefonie formularz jest
+     zaraz pod nagłówkiem; na desktopie telefony wracają do lewej kolumny. -->
 <section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
-  <div class="wrap grid12">
-    <div class="rez__lewa wejscie">
+  <div class="wrap grid12 rez">
+    <div class="rez__glowa wejscie">
       <p class="label sec__meta">10 / 11 · Rezerwacja</p>
       <h2 id="kontakt-h" class="h2">Sprawdź, czy Twój termin jest wolny.</h2>
-      <ul class="osoby">
-        <li class="osoba"><div><p class="osoba__imie">Oliwier Latek</p><p class="label">Odbiera osobiście</p></div>
-          <a class="osoba__tel" href="tel:+48531408004" data-tel="kontakt">+48 531 408 004</a></li>
-        <li class="osoba"><div><p class="osoba__imie">Bartosz Wysocki</p><p class="label">Odbiera osobiście</p></div>
-          <a class="osoba__tel" href="tel:+48601499947" data-tel="kontakt">+48 601 499 947</a></li>
-        <li class="osoba"><p class="label">E-mail</p>
-          <a class="link osoba__mail" href="mailto:kontakt@33bots.pl" data-mail="kontakt">kontakt@33bots.pl</a></li>
-      </ul>
-      <p class="body-sm">Odpowiadamy w&nbsp;ciągu 24 godzin roboczych, zwykle tego samego dnia. Rezerwacja bez zaliczki, cała Polska.</p>
     </div>
 
     <form class="rez__form wejscie" id="formularz" novalidate>
@@ -694,6 +695,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="pole__blad" id="blad-wysylki" role="alert" hidden></p>
       </div>
     </form>
+
+    <div class="rez__kontakty wejscie">
+      <ul class="osoby">
+        <li class="osoba"><div><p class="osoba__imie">Oliwier Latek</p><p class="label">Odbiera osobiście</p></div>
+          <a class="osoba__tel" href="tel:+48531408004" data-tel="kontakt">+48 531 408 004</a></li>
+        <li class="osoba"><div><p class="osoba__imie">Bartosz Wysocki</p><p class="label">Odbiera osobiście</p></div>
+          <a class="osoba__tel" href="tel:+48601499947" data-tel="kontakt">+48 601 499 947</a></li>
+        <li class="osoba"><p class="label">E-mail</p>
+          <a class="link osoba__mail" href="mailto:kontakt@33bots.pl" data-mail="kontakt">kontakt@33bots.pl</a></li>
+      </ul>
+      <p class="body-sm">Odpowiadamy w&nbsp;ciągu 24 godzin roboczych, zwykle tego samego dnia. Rezerwacja bez zaliczki, cała Polska.</p>
+    </div>
   </div>
 </section>
 
@@ -788,9 +801,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 
-<!-- ══════════ Pasek mobilny: pojawia się po minięciu hero ══════════ -->
+<!-- ══════════ Pasek mobilny: pojawia się po minięciu hero, znika przy rezerwacji ══════════ -->
 <div class="pasek" id="pasekMobilny">
   <a class="btn" href="#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
+  <a class="pasek__tel" href="tel:+48531408004" data-tel="pasek">Zadzwoń</a>
 </div>
 <div class="pasek-odstep"></div>
 
@@ -888,6 +902,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (document.readyState === 'complete') planuj(); else addEventListener('load', planuj);
   }
 
+  /* ——— Hero: data wydarzenia przechodzi do formularza rezerwacji ———
+     Pole w hero niczego nie wysyła. Przycisk to zwykły link do rezerwacji (działa też bez JS),
+     a wybrana data trafia do pola „Data” w formularzu. Kalendarz zaczyna się od dziś. */
+  const heroData = document.getElementById('heroData');
+  const heroCta = document.querySelector('.hero [data-cta="hero"]');
+  if (heroData && heroCta) {
+    heroData.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    // Myszką kalendarz otwiera się po kliknięciu w całe pole, nie tylko w ikonę.
+    if (matchMedia('(pointer: fine)').matches) {
+      heroData.addEventListener('click', () => { try { heroData.showPicker(); } catch (e) { /* zwykłe pole */ } });
+    }
+    heroData.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); heroCta.click(); } });
+    heroCta.addEventListener('click', () => {
+      const pole = document.getElementById('pole-data');
+      const nieustalona = document.getElementById('data-nieustalona');
+      if (heroData.value && pole) {
+        pole.value = heroData.value;
+        if (nieustalona && nieustalona.checked) { nieustalona.checked = false; pole.disabled = false; }
+      }
+      // Po przewinięciu klawiatura zaczyna od pierwszego pytania formularza.
+      const typ = document.querySelector('#formularz input[name=event_type]');
+      if (typ) setTimeout(() => typ.focus({ preventScroll: true }), reduce ? 0 : 700);
+    });
+  }
+
   /* ——— Nawigacja: tło i linia włosowa po przewinięciu ——— */
   const nav = document.getElementById('nav');
   const tloNav = () => nav.classList.toggle('nav--tlo', scrollY > 8 || !panel.hidden);
@@ -919,13 +958,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     wejscia.forEach((el) => io.observe(el));
   }
 
-  /* ——— Pasek mobilny: dopiero po minięciu hero ——— */
+  /* ——— Pasek mobilny: po minięciu hero, ale nie przy rezerwacji ———
+     Przy formularzu pasek prowadziłby tam, gdzie użytkownik już jest, i zasłaniał „Dalej”. */
   const pasek = document.getElementById('pasekMobilny');
   const hero = document.querySelector('.hero');
+  const rezerwacja = document.getElementById('kontakt');
   if (pasek && hero) {
-    new IntersectionObserver(([w]) => pasek.classList.toggle('pasek--widoczny', !w.isIntersecting),
-      { rootMargin: '-80px 0px 0px 0px' }).observe(hero);
+    const naEkranie = new Map();
+    const obserwator = new IntersectionObserver((wpisy) => {
+      wpisy.forEach((w) => naEkranie.set(w.target, w.isIntersecting));
+      pasek.classList.toggle('pasek--widoczny', ![...naEkranie.values()].some(Boolean));
+    }, { rootMargin: '-80px 0px 0px 0px' });
+    obserwator.observe(hero);
+    if (rezerwacja) obserwator.observe(rezerwacja);
   }
+
+  /* ——— Pomiar: kliknięcia w „Sprawdź termin” jako zdarzenie cta_click w GTM ——— */
+  document.addEventListener('click', (e) => {
+    const cta = e.target.closest('[data-cta]');
+    if (!cta || !window.dataLayer) return;
+    const zdarzenie = { event: 'cta_click', cta_place: cta.dataset.cta };
+    if (cta === heroCta) zdarzenie.cta_date = heroData && heroData.value ? 'yes' : 'no';
+    window.dataLayer.push(zdarzenie);
+  });
 
   /* ——— Szuflada realizacji ———
      Dodatkowe zdjęcia wstawiane dopiero przy otwarciu i usuwane przy zamknięciu,
@@ -1327,6 +1382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     (n === 2 ? el('pole-name') : form.querySelector('input[name=event_type]')).focus();
   };
   const dataPole = el('pole-data'), nieustalona = el('data-nieustalona');
+  dataPole.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   nieustalona.addEventListener('change', () => { dataPole.disabled = nieustalona.checked; if (nieustalona.checked) dataPole.value = ''; });
 
   const poleTyp = el('pole-typ'), bladTyp = el('blad-typ');
@@ -1387,6 +1443,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // Pomiar: wysłane zgłoszenie jako zdarzenie generate_lead w GTM (tag konwersji dodaje się w GTM).
+      if (window.dataLayer) window.dataLayer.push({ event: 'generate_lead', form_id: 'formularz', event_type: payload.event_type });
       const sukces = document.createElement('div');
       sukces.className = 'form-sukces';
       sukces.setAttribute('role', 'status');
