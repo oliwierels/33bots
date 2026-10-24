@@ -1,22 +1,29 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe badanie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: pozycje 33bots.pl/.de/.at/.lt w Google, Bing i DuckDuckGo dla kluczowych fraz
-# oraz indeksacja nowych stron — punkt odniesienia przed dalszą pracą nad SEO.
-# Tylko odczyt. Gałąź diagnoza-domen do usunięcia po badaniu.
+# Tym razem: podpowiedzi Google i Binga dla Polski (atrakcje na eventy, imprezy firmowe,
+# wesela, urodziny, wynajem atrakcji). Wyniki wracają na tę gałąź (badania/wyniki/).
+# Niczego poza tym nie zmienia. Gałąź diagnoza-domen do usunięcia po badaniu.
 on:
   push:
     branches: [diagnoza-domen]
     paths-ignore: ['badania/wyniki/**']
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - name: Pozycje w Google, Bing i DuckDuckGo
-        run: python3 -u badania/pozycje.py
+      - name: Podpowiedzi wyszukiwarek — Polska
+        run: python3 badania/podpowiedzi_pl.py
+      - name: Zapis wyników na gałęzi
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add badania/wyniki
+          git commit -q -m "Wyniki badania: podpowiedzi wyszukiwarek PL" && git push -q origin HEAD:diagnoza-domen
+          echo "unikalnych podpowiedzi: $(wc -l < badania/wyniki/podpowiedzi_pl.txt)"
