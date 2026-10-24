@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: co mierzy kontener GTM-MR7R7CJ3 na 33bots.pl (wyzwalacze kliknięć, formularza,
-# konwersje), żeby nowe CTA w hero nie zepsuło pomiaru. Tylko odczyt publicznego pliku gtm.js.
+# Tym razem: 33bots.pl po wdrożeniu nowego CTA w hero (data wydarzenia + „Sprawdź termin”),
+# baner cookie, pasek z telefonem, zdarzenia generate_lead i cta_click; arkusz i artykuły.
 # Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
@@ -19,51 +19,21 @@ jobs:
     env:
       LC_ALL: C.UTF-8
     steps:
-      - name: GTM-MR7R7CJ3 — tagi, wyzwalacze, zmienne
+      - name: 33bots.pl — strona główna po zmianie CTA
         run: |
           set +e
-          curl -s --max-time 30 'https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3' -o gtm.js
-          echo "rozmiar gtm.js: $(wc -c < gtm.js) B"
-          # Dane kontenera to obiekt „resource” na początku pliku: makra, tagi, reguły, predykaty.
-          python3 - <<'PY'
-          import json, re
-          s = open('gtm.js', encoding='utf-8', errors='replace').read()
-          i = s.find('"resource":')
-          if i < 0:
-              print('brak sekcji resource'); raise SystemExit
-          # Wycinamy obiekt resource, licząc nawiasy.
-          j = s.index('{', i); g = 0; k = j
-          w_napisie = False; esc = False
-          while True:
-              c = s[k]
-              if w_napisie:
-                  if esc: esc = False
-                  elif c == '\\': esc = True
-                  elif c == '"': w_napisie = False
-              else:
-                  if c == '"': w_napisie = True
-                  elif c == '{': g += 1
-                  elif c == '}':
-                      g -= 1
-                      if g == 0: break
-              k += 1
-          r = json.loads(s[j:k + 1])
-          print('wersja kontenera:', r.get('version'))
-          makra = r.get('macros', [])
-          print(f'\n== makra ({len(makra)})')
-          for n, m in enumerate(makra):
-              print(n, json.dumps({k: v for k, v in m.items() if k in ('function', 'vtp_name', 'vtp_dataLayerVersion', 'vtp_component', 'vtp_key', 'vtp_varType', 'vtp_attributeName', 'vtp_trackingId', 'vtp_measurementIdOverride')}, ensure_ascii=False)[:240])
-          print(f'\n== tagi ({len(r.get("tags", []))})')
-          for n, t in enumerate(r.get('tags', [])):
-              wybrane = {k: v for k, v in t.items() if k in ('function', 'vtp_eventName', 'vtp_conversionId', 'vtp_conversionLabel', 'vtp_tagId', 'vtp_measurementId', 'vtp_measurementIdOverride', 'vtp_html', 'tag_id', 'vtp_eventCategory', 'vtp_eventAction', 'vtp_eventLabel')}
-              print(n, json.dumps(wybrane, ensure_ascii=False)[:400])
-          print(f'\n== predykaty ({len(r.get("predicates", []))})')
-          for n, p in enumerate(r.get('predicates', [])):
-              print(n, json.dumps(p, ensure_ascii=False)[:300])
-          print(f'\n== reguły ({len(r.get("rules", []))})')
-          for n, x in enumerate(r.get('rules', [])):
-              print(n, json.dumps(x, ensure_ascii=False)[:300])
-          PY
-          echo
-          echo "== napisy z kontenera, które mogą dotyczyć CTA i formularza"
-          grep -o -E '.{0,80}(data-cta|kontakt|wyslij|form-sukces|Sprawdź|formularz|formspree|tel:|gtm\.click|gtm\.linkClick|gtm\.formSubmit|gtm\.elementVisibility|AW-[0-9]+|G-[A-Z0-9]{6,}).{0,80}' gtm.js | sort -u | head -60
+          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/ -o pl.html
+          echo "kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/)"
+          for t in 'id="heroData"' 'Kiedy jest Twoje wydarzenie?' 'data-cta="hero">Sprawdź termin' 'Bez zaliczki, płacisz po wydarzeniu.' \
+            'class="pasek__tel" href="tel:+48531408004"' 'class="rez__kontakty' 'generate_lead' 'cta_click' \
+            'GTM-MR7R7CJ3' 'formspree.io/f/mnjwvray' 'css/site.css?v=315bb713'; do
+            echo "$(grep -c -F "$t" pl.html) × $t"
+          done
+          echo "stary przycisk w hero (oczekiwane 0): $(grep -c 'data-cta="hero">Sprawdź dostępność terminu' pl.html)"
+          curl -s --max-time 20 'https://33bots.pl/css/site.css?v=315bb713' -o site.css
+          echo "css/site.css: md5 $(md5sum site.css | cut -c1-8) (oczekiwane 315bb713), .termin__rzad $(grep -c 'termin__rzad' site.css), scroll-padding $(grep -c 'scroll-padding-bottom' site.css)"
+          for a in blog-atrakcje-eventowe blog-ile-kosztuje-wynajem-robota blog-wdrozenie-robota-humanoidalnego-w-firmie; do
+            echo "$a: $(curl -s --max-time 20 "https://33bots.pl/$a.html" | grep -o 'css/site.css?v=[0-9a-f]*' | head -1)"
+          done
+          curl -s -I --max-time 20 https://33bots.pl/ > h.txt
+          echo "CSP: $(grep -ic '^content-security-policy' h.txt) nagłówek(i)"
