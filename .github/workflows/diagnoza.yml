@@ -1,29 +1,53 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe badanie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: podpowiedzi Google i Binga dla Polski (atrakcje na eventy, imprezy firmowe,
-# wesela, urodziny, wynajem atrakcji). Wyniki wracają na tę gałąź (badania/wyniki/).
-# Niczego poza tym nie zmienia. Gałąź diagnoza-domen do usunięcia po badaniu.
+# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Tym razem: cztery domeny po wdrożeniu drogi do rezerwacji w kolorze sygnału (cyjanowe CTA,
+# hero z datą, karta formularza) — strony główne, artykuły .pl, próbki podstron; kompresja
+# i nagłówki cache arkusza (Lighthouse lokalnie ich nie widzi). Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
     paths-ignore: ['badania/wyniki/**']
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 15
+    env:
+      LC_ALL: C.UTF-8
     steps:
-      - uses: actions/checkout@v4
-      - name: Podpowiedzi wyszukiwarek — Polska
-        run: python3 badania/podpowiedzi_pl.py
-      - name: Zapis wyników na gałęzi
+      - name: Strony główne — hero z datą, przyciski akcji, karta formularza
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add badania/wyniki
-          git commit -q -m "Wyniki badania: podpowiedzi wyszukiwarek PL" && git push -q origin HEAD:diagnoza-domen
-          echo "unikalnych podpowiedzi: $(wc -l < badania/wyniki/podpowiedzi_pl.txt)"
+          set +e
+          for d in 33bots.pl 33bots.de 33bots.at 33bots.lt; do
+            curl -s --max-time 30 -H 'Cache-Control: no-cache' "https://$d/" -o g.html
+            v=$(grep -o 'css/site.css?v=[0-9a-f]*' g.html | head -1 | sed 's/.*v=//')
+            echo "$d: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$d/"), arkusz $v," \
+              "heroData $(grep -c 'id="heroData"' g.html), btn--akcja $(grep -o 'btn--akcja' g.html | wc -l), link--akcja $(grep -c 'link--akcja' g.html)," \
+              "karta rez $(grep -c 'class="wrap grid12 rez"' g.html), rez__kontakty $(grep -c 'rez__kontakty' g.html), termin--gotowe $(grep -c 'termin--gotowe' g.html)"
+          done
+          echo "oczekiwane arkusze: .pl f76abb77, .de/.at/.lt aafa00f5"
+          for p in regulamin polityka-prywatnosci; do echo "33bots.pl/$p: NIP 5253090645 $(curl -s --max-time 20 https://33bots.pl/$p.html | grep -c 5253090645), stary zapis $(curl -s --max-time 20 https://33bots.pl/$p.html | grep -c 5253090635)"; done
+
+      - name: Artykuły .pl i próbki podstron zagranicznych
+        run: |
+          set +e
+          for p in blog-atrakcje-eventowe blog-ile-kosztuje-wynajem-robota blog-wdrozenie-robota-humanoidalnego-w-firmie; do
+            curl -s --max-time 20 "https://33bots.pl/$p.html" -o a.html
+            echo "33bots.pl/$p: $(grep -o 'css/site.css?v=[0-9a-f]*' a.html | head -1), strona.js $(grep -o 'js/strona.js?v=[0-9a-f]*' a.html | head -1 | sed 's/.*v=//'), btn--akcja $(grep -o 'btn--akcja' a.html | wc -l), „Sprawdź termin i cenę” $(grep -c 'Sprawdź termin i cenę' a.html)"
+          done
+          for u in https://33bots.de/weihnachtsfeier-ideen.html https://33bots.de/angebot-konferenzen-galas.html https://33bots.at/kontakt.html https://33bots.lt/renginio-idejos.html https://33bots.lt/humanoidinio-roboto-nuoma.html; do
+            curl -s --max-time 20 "$u" -o s.html
+            echo "$u: $(grep -o 'css/site.css?v=[0-9a-f]*' s.html | head -1 | sed 's/.*v=//'), btn--akcja $(grep -o 'btn--akcja' s.html | wc -l), karta rez $(grep -c 'class="wrap grid12 rez"' s.html)"
+          done
+
+      - name: Kompresja i cache arkusza (sygnały szybkości)
+        run: |
+          set +e
+          for u in https://33bots.pl/css/site.css?v=f76abb77 https://33bots.de/css/site.css?v=aafa00f5 https://33bots.lt/css/site.css?v=aafa00f5 https://33bots.pl/ https://33bots.de/; do
+            curl -s -I --max-time 20 -H 'Accept-Encoding: gzip, br' "$u" > h.txt
+            echo "$u → $(head -1 h.txt | tr -d '\r') | encoding: $(grep -i '^content-encoding' h.txt | tr -d '\r' | cut -d' ' -f2-) | cache: $(grep -i '^cache-control' h.txt | tr -d '\r' | cut -d' ' -f2-) | expires: $(grep -ic '^expires' h.txt)"
+          done
