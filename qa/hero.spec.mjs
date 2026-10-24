@@ -10,9 +10,10 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     expect(await page.evaluate(() => document.fonts.check('300 64px "Space Grotesk"'))).toBe(true);
     expect(await page.evaluate(() => document.fonts.check('400 17px "Plus Jakarta Sans"'))).toBe(true);
 
-    // 2. przycisk widoczny: jasne tło, ciemny tekst
+    // 2. przycisk w kolorze sygnału (cyjan), ciemny tekst, bez zaokrągleń — jedyny kolor na pierwszym ekranie
     const btn = page.locator('.hero .btn');
-    await expect(btn).toHaveCSS('background-color', 'rgb(240, 240, 240)');
+    await expect(btn).toHaveClass(/btn--akcja/);
+    await expect(btn).toHaveCSS('background-color', 'rgb(111, 214, 255)');
     await expect(btn).toHaveCSS('color', 'rgb(5, 5, 5)');
     await expect(btn).toHaveCSS('border-radius', '0px');
 
@@ -22,14 +23,15 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     const bodyText = await page.locator('body').innerText();
     expect(bodyText).not.toMatch(/\bDOF\b|M\/S|132\s?CM|✓|darmow|Najlepsze ceny|10×/i);
 
-    // 4. zero efektów w hero i pasku dowodu
+    // 4. zero efektów w hero i pasku dowodu — poza poświatą przycisku rezerwacji (.btn--akcja)
     const offenders = await page.evaluate(() => {
       const bad = [];
       for (const el of document.querySelectorAll('.hero, .hero *, .proof, .proof *')) {
+        const droga = el.closest('.btn--akcja');
         for (const pseudo of [null, '::before', '::after']) {
           const s = getComputedStyle(el, pseudo);
           if (pseudo && s.content !== 'none' && s.content !== 'normal') bad.push([el.className, pseudo, 'content']);
-          if (s.boxShadow !== 'none') bad.push([el.className, pseudo, 'box-shadow']);
+          if (s.boxShadow !== 'none' && !(droga && !pseudo)) bad.push([el.className, pseudo, 'box-shadow']);
           if (s.textShadow !== 'none') bad.push([el.className, pseudo, 'text-shadow']);
           if (s.backgroundImage !== 'none') bad.push([el.className, pseudo, 'background-image']);
           if (s.filter !== 'none') bad.push([el.className, pseudo, 'filter']);
