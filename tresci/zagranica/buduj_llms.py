@@ -31,7 +31,7 @@ FAKTY = {
             'Kalbų versijos: lietuvių (https://33bots.lt), lenkų (https://33bots.pl), vokiečių (https://33bots.de), '
             'austriška (https://33bots.at)',
         ],
-        'naglowki': {'artykuly': 'Straipsniai apie robotą renginyje', 'miasta': 'Miestai', 'inne': 'Kiti puslapiai',
+        'naglowki': {'artykuly': 'Kiti renginių gido puslapiai', 'miasta': 'Miestai', 'inne': 'Kiti puslapiai',
                      'faq': 'Dažni klausimai', 'fakty': 'Pagrindiniai faktai'},
     },
 }
@@ -67,7 +67,13 @@ for tytul, linki in r['stopka_kolumny'] + ([r['stopka_poradnik']] if r.get('stop
     if pliki:
         grupy.append((tytul, pliki))
 wszystkie = sorted(p.name for p in repo.glob('*.html'))
-artykuly = [p for p in wszystkie if p.startswith('blog-') and p not in wypisane]
+# Pozostałe gidy i artykuły w kolejności spisu bloga (blog.html), potem reszta wpisów blog-*.
+spis = (repo / 'blog.html').read_text(encoding='utf-8') if (repo / 'blog.html').exists() else ''
+spis = spis[spis.find('<main'):spis.find('</main>')]
+artykuly = []
+for p in re.findall(r'<a href="([a-z0-9-]+\.html)"', spis) + [p for p in wszystkie if p.startswith('blog-')]:
+    if p not in wypisane and p not in artykuly and (repo / p).exists():
+        artykuly.append(p)
 wypisane.update(artykuly)
 miasta = [f'{r.get("miasta_prefiks", "roboter-mieten-")}{k}.html' for k, _ in r['miasta']]
 miasta = [p for p in miasta if (repo / p).exists() and p not in wypisane]

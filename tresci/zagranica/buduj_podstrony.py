@@ -29,6 +29,8 @@ import struct
 import sys
 from pathlib import Path
 
+import bez_komentarzy
+
 PL = Path(__file__).resolve().parents[2]
 ZRODLA = Path(__file__).resolve().parent / 'podstrony'
 # Po tym znaczniku podstrony.py rozpoznaje strony z tego generatora i ich nie przerabia.
@@ -163,7 +165,8 @@ class Rynek:
         sekcja = wycinek(glowna, '<section id="kontakt"', '</section>')
         self.formularz = re.sub(r'(<p class="label sec__meta">)\d+ / \d+ · ', r'\1', sekcja).replace(' wejscie"', '"')
         assert 'wejscie' not in self.formularz
-        js = wycinek(glowna, '/* ——— Formularz:', '\n})();')[:-len('\n})();')]
+        # Początek kodu formularza (komentarz nad nim znika ze stron zagranicznych razem z innymi polskimi).
+        js = wycinek(glowna, "const form = document.getElementById('formularz');", '\n})();')[:-len('\n})();')]
         self.formularz_js = f'<script>\n(() => {{\n  const el = (id) => document.getElementById(id);\n  {js}\n}})();\n</script>'
         self.skrypt = self.kopiuj_skrypt()
 
@@ -173,6 +176,7 @@ class Rynek:
         for stare, nowe in (("'Zamknij' : 'Menu'", self.k['teksty']['menu']),):
             assert s.count(stare) == 1, stare
             s = s.replace(stare, nowe)
+        s = bez_komentarzy.js(s)
         (self.cel / 'js').mkdir(exist_ok=True)
         cel = self.cel / 'js/strona.js'
         if not cel.exists() or cel.read_text(encoding='utf-8') != s:
@@ -419,7 +423,7 @@ class Rynek:
 </body>
 </html>
 '''
-        (self.cel / adres).write_text(strona, encoding='utf-8')
+        (self.cel / adres).write_text(bez_komentarzy.strona(strona), encoding='utf-8')
         return adres
 
 

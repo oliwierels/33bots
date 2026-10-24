@@ -29,6 +29,7 @@ TU = Path(__file__).resolve().parent
 PL = TU.parent.parent
 sys.path.insert(0, str(TU))
 from rynki import RYNKI  # noqa: E402
+import bez_komentarzy  # noqa: E402
 
 INDEX_PL = (PL / 'index.html').read_text(encoding='utf-8')
 FONTY = ['space-grotesk-latin-wght-normal.woff2', 'space-grotesk-latin-ext-wght-normal.woff2',
@@ -750,8 +751,16 @@ class Strona:
             return 1
         return 0
 
+    def kopiuj_css(self, zrodlo, cel):
+        tresc = bez_komentarzy.css(zrodlo.read_text(encoding='utf-8'))
+        cel.parent.mkdir(parents=True, exist_ok=True)
+        if not cel.exists() or cel.read_text(encoding='utf-8') != tresc:
+            cel.write_text(tresc, encoding='utf-8')
+            return 1
+        return 0
+
     def buduj(self):
-        nowe = self.kopiuj(PL / 'css/site.css', self.cel / 'css/site.css')
+        nowe = self.kopiuj_css(PL / 'css/site.css', self.cel / 'css/site.css')
         for plik in FONTY:
             nowe += self.kopiuj(PL / 'fonts' / plik, self.cel / 'fonts' / plik)
         wersja = hashlib.md5((self.cel / 'css/site.css').read_bytes()).hexdigest()[:8]
@@ -759,7 +768,7 @@ class Strona:
         for plik in sorted(self.zdjecia):
             for wariant in (f'{plik}.jpg', f'{plik}.webp', f'{plik}-400.webp'):
                 nowe += self.kopiuj(PL / wariant, self.cel / wariant)
-        (self.cel / 'index.html').write_text(strona, encoding='utf-8')
+        (self.cel / 'index.html').write_text(bez_komentarzy.strona(strona), encoding='utf-8')
         return nowe
 
 
