@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="assets-redesign.css?v=ecec55be" />
 
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="css/site.css?v=d7bf1447" />
+<link rel="stylesheet" href="css/site.css?v=317afc0d" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -212,7 +212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </nav>
     <div class="nav__akcje">
       <a class="nav__tel" href="tel:+48531408004" data-tel="nav">+48 531 408 004</a>
-      <a class="link nav__cta" href="#kontakt" data-cta="nav">Sprawdź termin</a>
+      <a class="link nav__cta link--akcja" href="#kontakt" data-cta="nav">Sprawdź termin</a>
       <button class="nav__przycisk" id="navPrzycisk" type="button" aria-expanded="false" aria-controls="navPanel">Menu</button>
     </div>
   </div>
@@ -225,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><a href="wdrozenia.html">Zakup i wdrożenia</a></li>
     </ul>
     <a class="nav__tel" href="tel:+48531408004" data-tel="menu">+48 531 408 004</a>
-    <a class="btn" href="#kontakt" data-cta="nav">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
+    <a class="btn btn--akcja" href="#kontakt" data-cta="nav">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
   </div>
 </header>
 
@@ -244,7 +244,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label class="label" for="heroData">Kiedy jest Twoje wydarzenie?</label>
         <div class="termin__rzad">
           <input class="termin__data" type="date" id="heroData" />
-          <a class="btn" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę <span aria-hidden="true">→</span></a>
+          <a class="btn btn--akcja" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę <span aria-hidden="true">→</span></a>
         </div>
         <p class="termin__obietnica"><strong>Bez zaliczki, płacisz po wydarzeniu.</strong> Odpowiadamy zwykle tego samego dnia.</p>
       </div>
@@ -512,7 +512,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </li>
     </ul>
     <p class="body formaty__wcenie">W&nbsp;cenie: operator, transport, branding (logo, kod QR), ubezpieczenie OC. <strong>Płacisz po wydarzeniu.</strong> Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
-    <p class="formaty__cta"><a class="btn" href="#kontakt" data-cta="formaty">Sprawdź termin i dokładną cenę <span aria-hidden="true">→</span></a></p>
+    <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">Sprawdź termin i dokładną cenę <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
@@ -658,7 +658,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </fieldset>
         <div class="form-akcje">
-          <button class="btn" type="button" id="dalej">Dalej <span aria-hidden="true">→</span></button>
+          <button class="btn btn--akcja" type="button" id="dalej">Dalej <span aria-hidden="true">→</span></button>
         </div>
       </div>
 
@@ -690,7 +690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="form-akcje">
           <button class="wstecz" type="button" id="wstecz">Wstecz</button>
-          <button class="btn" type="submit" id="wyslij">Sprawdź termin i cenę <span aria-hidden="true">→</span></button>
+          <button class="btn btn--akcja" type="submit" id="wyslij">Sprawdź termin i cenę <span aria-hidden="true">→</span></button>
         </div>
         <p class="pole__blad" id="blad-wysylki" role="alert" hidden></p>
       </div>
@@ -803,7 +803,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ Pasek mobilny: pojawia się po minięciu hero, znika przy rezerwacji ══════════ -->
 <div class="pasek" id="pasekMobilny">
-  <a class="btn" href="#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
+  <a class="btn btn--akcja" href="#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
   <a class="pasek__tel" href="tel:+48531408004" data-tel="pasek">Zadzwoń</a>
 </div>
 <div class="pasek-odstep"></div>
@@ -914,6 +914,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       heroData.addEventListener('click', () => { try { heroData.showPicker(); } catch (e) { /* zwykłe pole */ } });
     }
     heroData.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); heroCta.click(); } });
+    // Po wyborze daty przycisk świeci mocniej (.termin--gotowe) — następny krok jest oczywisty.
+    const gotowe = () => heroData.closest('.termin').classList.toggle('termin--gotowe', !!heroData.value);
+    heroData.addEventListener('input', gotowe);
+    heroData.addEventListener('change', gotowe);
     heroCta.addEventListener('click', () => {
       const pole = document.getElementById('pole-data');
       const nieustalona = document.getElementById('data-nieustalona');
@@ -971,6 +975,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { rootMargin: '-80px 0px 0px 0px' });
     obserwator.observe(hero);
     if (rezerwacja) obserwator.observe(rezerwacja);
+  }
+
+  /* ——— Formularz rezerwacji: niebieska poświata idzie za kursorem ———
+     Tylko myszką i bez ograniczenia ruchu; poza tym poświata stoi w prawym górnym rogu karty. */
+  const karta = document.querySelector('.rez .rez__form');
+  if (karta && !reduce && matchMedia('(pointer: fine)').matches) {
+    karta.addEventListener('pointermove', (e) => {
+      const r = karta.getBoundingClientRect();
+      karta.style.setProperty('--sx', `${Math.round(e.clientX - r.left)}px`);
+      karta.style.setProperty('--sy', `${Math.round(e.clientY - r.top)}px`);
+    });
+    karta.addEventListener('pointerleave', () => { karta.style.removeProperty('--sx'); karta.style.removeProperty('--sy'); });
   }
 
   /* ——— Pomiar: kliknięcia w „Sprawdź termin” jako zdarzenie cta_click w GTM ——— */

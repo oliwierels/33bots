@@ -35,18 +35,21 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
       expect(await page.locator('h1').innerText()).toMatch(/wynajem robota humanoidalnego/i);
     });
 
-    test('zero efektów: cienie, gradienty, filtry, animacje, zaokrąglenia', async ({ page }) => {
+    // Wyjątek jest jeden: droga do rezerwacji. Poświata przycisków .btn--akcja i niebieska
+    // poświata karty formularza — reszta strony bez cieni i gradientów.
+    test('zero efektów: cienie, gradienty, filtry, animacje, zaokrąglenia — poza drogą do rezerwacji', async ({ page }) => {
       await otworz(page, vp, { przewin: true });
       const zle = await page.evaluate(() => {
         const bad = [];
         for (const el of document.querySelectorAll('.nav, .nav *, .sec, .sec *, .stopka, .stopka *, .pasek, .pasek *, .cookies, .cookies *')) {
+          const przycisk = el.matches('.btn--akcja'), karta = el.matches('.rez .rez__form');
           for (const pseudo of [null, '::before', '::after']) {
             const s = getComputedStyle(el, pseudo);
             const nazwa = `${el.tagName.toLowerCase()}.${(el.getAttribute('class') || '').split(' ')[0]}${pseudo || ''}`;
             if (pseudo && s.content !== 'none' && s.content !== 'normal') bad.push([nazwa, 'content']);
-            if (s.boxShadow !== 'none') bad.push([nazwa, 'box-shadow']);
+            if (s.boxShadow !== 'none' && !(przycisk && !pseudo)) bad.push([nazwa, 'box-shadow']);
             if (s.textShadow !== 'none') bad.push([nazwa, 'text-shadow']);
-            if (s.backgroundImage !== 'none') bad.push([nazwa, 'background-image']);
+            if (s.backgroundImage !== 'none' && !(karta && !pseudo)) bad.push([nazwa, 'background-image']);
             if (s.filter !== 'none' || (s.backdropFilter && s.backdropFilter !== 'none')) bad.push([nazwa, 'filter']);
             if (s.animationName !== 'none') bad.push([nazwa, 'animation']);
             if (parseFloat(s.borderTopLeftRadius) > 0) bad.push([nazwa, 'radius']);
@@ -57,11 +60,14 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
       expect(zle).toEqual([]);
     });
 
-    test('cyjan tylko jako sygnał: w spoczynku nigdzie', async ({ page }) => {
+    test('cyjan tylko na drodze do rezerwacji: przyciski akcji, „Sprawdź termin” w menu, formularz', async ({ page }) => {
       await otworz(page, vp, { przewin: true });
+      await expect(page.locator('.hero .btn')).toHaveCSS('background-color', CYJAN);
+      await expect(page.locator('.rez .rez__form')).toHaveCSS('border-top-color', CYJAN);
       const zle = await page.evaluate((C) => {
         const bad = [];
         for (const el of document.querySelectorAll('body *')) {
+          if (el.closest('.btn--akcja, .link--akcja, .rez .rez__form')) continue;
           const s = getComputedStyle(el);
           for (const w of ['color', 'backgroundColor', 'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor', 'textDecorationColor']) {
             if (s[w] === C && !(w.startsWith('border') && parseFloat(s[w.replace('Color', 'Width')]) === 0)) {
@@ -103,7 +109,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
       const fonty = await page.evaluate(() => [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family));
       expect(fonty).toEqual(expect.arrayContaining(['Space Grotesk', 'Plus Jakarta Sans']));
       for (const sel of ['#formaty .btn']) {
-        await expect(page.locator(sel)).toHaveCSS('background-color', 'rgb(240, 240, 240)');
+        await expect(page.locator(sel)).toHaveCSS('background-color', CYJAN);
         await expect(page.locator(sel)).toHaveCSS('color', 'rgb(5, 5, 5)');
       }
       const wystaje = await page.evaluate(() => [...document.querySelectorAll('.h2, .display, .num')]
@@ -204,6 +210,28 @@ test.describe('CTA w hero i rezerwacja', () => {
     expect(gora[0]).toBeLessThan(gora[1]);
     expect(gora[1]).toBeLessThan(gora[2]);
     await expect(page.locator('#pole-typ')).toBeInViewport();
+  });
+
+  test('reakcje: po wyborze daty przycisk świeci mocniej, poświata karty formularza idzie za kursorem', async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(ADRES);
+    const termin = page.locator('.hero .termin');
+    await expect(termin).not.toHaveClass(/termin--gotowe/);
+    const przed = await page.locator('.hero .btn--akcja').evaluate((e) => getComputedStyle(e).boxShadow);
+    await page.fill('#heroData', '2026-12-12');
+    await expect(termin).toHaveClass(/termin--gotowe/);
+    await expect.poll(() => page.locator('.hero .btn--akcja').evaluate((e) => getComputedStyle(e).boxShadow)).not.toBe(przed);
+    await page.fill('#heroData', '');
+    await expect(termin).not.toHaveClass(/termin--gotowe/);
+    const karta = page.locator('.rez .rez__form');
+    await karta.scrollIntoViewIfNeeded();
+    const r = await karta.boundingBox();
+    await page.mouse.move(r.x + 120, r.y + 200);
+    await expect.poll(() => karta.evaluate((e) => [e.style.getPropertyValue('--sx'), e.style.getPropertyValue('--sy')])).toEqual(['120px', '200px']);
+    await page.mouse.move(5, 5);
+    await expect.poll(() => karta.evaluate((e) => e.style.getPropertyValue('--sx'))).toBe('');
+    await ctx.close();
   });
 
   for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 667 }]) {

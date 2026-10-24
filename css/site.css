@@ -86,6 +86,24 @@ body { color: var(--text); font: 400 1.0625rem/1.6 var(--font-body); -webkit-fon
   text-underline-offset: 6px; text-decoration-color: var(--line-strong); transition: text-decoration-color .2s; }
 .link:hover { text-decoration-color: var(--text); }
 
+/* ══════════ Droga do rezerwacji: jedyne miejsce z kolorem i światłem ══════════
+   Cała strona zostaje czarno-biała i płaska. Cyjan — kolor sygnału — i poświata należą
+   wyłącznie do akcji „Sprawdź termin i cenę” i do formularza rezerwacji, więc oko trafia
+   tam od razu. Kształt bez zmian: prostokąt bez zaokrągleń. */
+.btn--akcja { background: var(--accent); color: var(--ink);
+  box-shadow: 0 0 0 1px rgba(111, 214, 255, .55), 0 12px 40px -12px rgba(111, 214, 255, .7);
+  transition: background-color .2s, box-shadow .3s, transform .2s; }
+.btn--akcja:hover { background: #a6e7ff;
+  box-shadow: 0 0 0 1px rgba(111, 214, 255, .85), 0 18px 56px -12px rgba(111, 214, 255, .95); transform: translateY(-1px); }
+.btn--akcja:active { transform: none; }
+.btn--akcja:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+/* Data wybrana w hero: przycisk świeci mocniej — następny krok jest oczywisty. */
+.termin--gotowe .btn--akcja { box-shadow: 0 0 0 1px rgba(111, 214, 255, .95), 0 0 0 6px rgba(111, 214, 255, .16),
+  0 18px 60px -10px rgba(111, 214, 255, 1); }
+.nav .link--akcja { color: var(--accent); text-decoration-color: rgba(111, 214, 255, .45); }
+.nav .link--akcja:hover { text-decoration-color: var(--accent); }
+.nav .link--akcja:focus-visible { outline-color: var(--text); }
+
 /* ——— Hero: tekst w siatce, zdjęcie do prawej krawędzi ekranu ———
    margin-top: nawigacja jest przyklejona (position: fixed), więc bez tego
    hero zaczynałby się pod nią. */
@@ -415,6 +433,14 @@ fieldset.pole > legend { margin-bottom: 8px; }
 .rez__glowa { grid-column: 1 / span 5; grid-row: 1; display: grid; gap: 32px; align-content: start; }
 .rez__kontakty { grid-column: 1 / span 5; grid-row: 2; display: grid; gap: 32px; align-content: start; margin-top: 32px; }
 .rez .rez__form { grid-column: 7 / -1; grid-row: 1 / span 2; }
+/* Karta formularza: jedyny blok strony z ramką w kolorze sygnału i niebieską poświatą.
+   Poświata stoi w prawym górnym rogu, a myszką idzie za kursorem (--sx, --sy z JS). */
+.rez .rez__form { align-self: start; padding: 48px; background-color: #090c0f;
+  background-image: radial-gradient(560px circle at var(--sx, 100%) var(--sy, 0%), rgba(111, 214, 255, .14), transparent 62%);
+  border: 1px solid rgba(111, 214, 255, .3); border-top: 2px solid var(--accent); transition: border-color .3s; }
+.rez .rez__form:hover, .rez .rez__form:focus-within { border-color: rgba(111, 214, 255, .55); border-top-color: var(--accent); }
+.rez .kroki-form .label[aria-current="step"] { color: var(--accent); }
+.rez .chip input:checked + span { border-color: var(--accent); color: var(--text); }
 @media (max-width: 1023px) {
   .rez__lewa, .rez__form { grid-column: 1 / -1; }
   .rez__form { margin-top: 64px; }
@@ -424,6 +450,7 @@ fieldset.pole > legend { margin-bottom: 8px; }
   .rez .rez__form { margin-top: 48px; }
   .rez__kontakty { margin-top: 64px; }
 }
+@media (max-width: 767px) { .rez .rez__form { padding: 24px; } }
 
 /* ——— 11 Stopka ——— */
 .stopka { padding-block: 64px 96px; border-top: 1px solid var(--line); font: 400 0.8125rem/1.7 var(--font-body); color: var(--text-2); }
