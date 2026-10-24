@@ -228,7 +228,7 @@ def zbuduj(plik_zrodla):
           <h2 class="h2" id="cta-h">{d.get('cta_tytul', 'Sprawdź, czy Twój termin jest wolny')}</h2>
           <p class="body">{d.get('cta_tekst', 'Opisz wydarzenie w kilku zdaniach. Oddzwaniamy w ciągu 24 godzin roboczych, zwykle tego samego dnia, z konkretną kwotą i propozycją scenariusza.')}</p>
           <div class="art__cta-akcje">
-            <a class="btn" href="index.html#kontakt" data-cta="artykul">Sprawdź dostępność terminu <span aria-hidden="true">→</span></a>
+            <a class="btn btn--akcja" href="index.html#kontakt" data-cta="artykul">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
             <a class="link" href="tel:+48531408004" data-tel="artykul">+48 531 408 004</a>
             <a class="link" href="tel:+48601499947" data-tel="artykul">+48 601 499 947</a>
           </div>
@@ -248,7 +248,7 @@ def zbuduj(plik_zrodla):
 {STOPKA}
 
 <div class="pasek" id="pasekMobilny">
-  <a class="btn" href="index.html#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
+  <a class="btn btn--akcja" href="index.html#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
 </div>
 <div class="pasek-odstep"></div>
 
