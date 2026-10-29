@@ -8,6 +8,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MR7R7CJ3');</script>
 <!-- End Google Tag Manager -->
+<!-- Google Ads: tag konwersji AW-18167851767 (tylko strony z formularzem; telefon i e-mail liczy GTM) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18167851767"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18167851767');</script>
+<!-- End Google Ads -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sklep — kup robota humanoidalnego Unitree G1 lub G1 EDU | 33bots</title>
@@ -682,8 +686,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const odp = await res.json().catch(() => ({}));
         throw new Error(odp?.errors?.map(x => x.message).join(', ') || `HTTP ${res.status}`);
       }
-      if (typeof gtag === 'function') {
-        gtag('event', 'form_submit', { event_category: 'sklep', event_label: payload.produkt });
+      if (window.dataLayer) window.dataLayer.push({ event: 'generate_lead', form_id: 'sklep' });
+      if (typeof gtag === 'function' && document.documentElement.lang === 'pl') {
+        gtag('event', 'conversion', { send_to: 'AW-18167851767/BdKnCOr2uqQdEPfVjddD' });
       }
       form.innerHTML = `<div class="py-12 text-center">
         <p class="font-display text-2xl font-700 text-white">Zapytanie wysłane</p>

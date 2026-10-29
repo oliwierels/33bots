@@ -657,6 +657,10 @@ class Strona:
                    f"        gtag('event', 'form_submit', {{ event_category: 'contact', event_label: '{etykieta}' }});\n"
                    "      }\n"
                    "      const sukces = document.createElement('div');")
+        # Konwersja Google Ads formularza .pl (etykieta polskiej agencji) — strony zagraniczne nie mają tagu AW.
+        zamien("      // Google Ads: konwersja formularza (etykieta od agencji) — tylko .pl, tag AW jest w <head> tej strony.\n"
+               "      if (typeof gtag === 'function' && document.documentElement.lang === 'pl') {\n"
+               "        gtag('event', 'conversion', { send_to: 'AW-18167851767/BdKnCOr2uqQdEPfVjddD' });\n      }\n", '')
         if not r['cookies']:
             zamien(wycinek('  /* ——— Baner cookie (logika bez zmian) ——— */', '  });\n\n', s), '')
         if r['panel_dostepnosci']:
