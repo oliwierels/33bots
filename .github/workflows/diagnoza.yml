@@ -1,9 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe badanie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: ceny atrakcji eventowych w Polsce ze stron publicznych (przewodniki cenowe,
-# artykuły) — zdania z kwotami w zł do poradników .pl. Tylko odczyt, wynik w logu.
-# Gałąź diagnoza-domen do usunięcia po badaniu.
+# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Tym razem: 33bots.pl po wdrożeniu tagu Google Ads i konwersji formularza (strony z formularzem),
+# GTM i CSP bez zmian. Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
@@ -15,8 +14,21 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
+    env:
+      LC_ALL: C.UTF-8
     steps:
-      - uses: actions/checkout@v4
-      - name: Ceny atrakcji — Polska
-        run: python3 -u badania/ceny_pl.py
+      - name: 33bots.pl — tag Google Ads i konwersja formularza
+        run: |
+          set +e
+          for p in index sklep wdrozenia; do
+            u="https://33bots.pl/$p.html"; [ "$p" = index ] && u="https://33bots.pl/"
+            curl -s --max-time 30 -H 'Cache-Control: no-cache' "$u" -o s.html
+            echo "$u: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$u"), gtag AW $(grep -c 'gtag/js?id=AW-18167851767' s.html), config AW $(grep -c "gtag('config','AW-18167851767')" s.html), etykieta formularza $(grep -c 'AW-18167851767/BdKnCOr2uqQdEPfVjddD' s.html), generate_lead $(grep -c generate_lead s.html), GTM $(grep -c 'GTM-MR7R7CJ3' s.html), formspree $(grep -c 'formspree.io/f/mnjwvray' s.html)"
+          done
+          echo "strony bez formularza nie mają tagu AW (próbka):"
+          for p in blog-atrakcje-eventowe robot-na-targi regulamin; do echo "  $p: AW $(curl -s --max-time 20 https://33bots.pl/$p.html | grep -c 'AW-18167851767')"; done
+          curl -s -I --max-time 20 https://33bots.pl/ > h.txt
+          csp=$(grep -i '^content-security-policy' h.txt | tr -d '\r')
+          for d in www.googletagmanager.com www.googleadservices.com googleads.g.doubleclick.net '\*.doubleclick.net' www.google.com; do echo "CSP zawiera $d: $(echo "$csp" | grep -c "$d")"; done
+          echo "gtag.js dostępny: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 'https://www.googletagmanager.com/gtag/js?id=AW-18167851767')"
