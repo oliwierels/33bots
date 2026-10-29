@@ -275,6 +275,10 @@ test.describe('CTA w hero i rezerwacja', () => {
       { event: 'cta_click', cta_place: 'hero', cta_date: 'yes' },
       { event: 'generate_lead', form_id: 'formularz', event_type: 'Gala' },
     ]);
+    // Google Ads: tag AW na stronie i konwersja formularza po udanej wysyłce (gtag zapisuje argumenty w dataLayer).
+    await expect(page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=AW-18167851767"]')).toHaveCount(1);
+    const konwersje = await page.evaluate(() => [...window.dataLayer].filter((a) => a && a[0] === 'event' && a[1] === 'conversion').map((a) => a[2].send_to));
+    expect(konwersje).toEqual(['AW-18167851767/BdKnCOr2uqQdEPfVjddD']);
   });
 });
 
