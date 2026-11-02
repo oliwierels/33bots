@@ -172,7 +172,7 @@ def zbuduj(plik_zrodla):
 <meta property="og:url" content="{url}" />
 <meta property="og:title" content="{html.escape(d['tytul'])}" />
 <meta property="og:description" content="{html.escape(d['opis'])}" />
-<meta property="og:image" content="{BAZA}/og-image.jpg" />
+<meta property="og:image" content="{BAZA}/{d.get('og', 'og-image.jpg')}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="pl_PL" />

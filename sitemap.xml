@@ -61,12 +61,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://33bots.pl/blog-atrakcja-na-event-firmowy.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -360,7 +354,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -488,7 +482,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -644,7 +638,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -656,7 +650,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/atrakcje-na-event.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -860,7 +854,7 @@
   </url>
   <url>
     <loc>https://33bots.pl/robot-na-impreze-firmowa.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1341,6 +1335,60 @@
   <url>
     <loc>https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html</loc>
     <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/atrakcje-na-impreze-firmowa.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/wynajem-atrakcji-na-imprezy.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/pomysly-na-impreze-firmowa.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/wigilia-firmowa-pomysly.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/integracja-firmowa-pomysly.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/pokazy-na-event.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/atrakcje-na-wesele.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/zabawy-weselne.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://33bots.pl/ile-kosztuje-wesele.html</loc>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

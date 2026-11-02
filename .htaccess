@@ -21,6 +21,11 @@ Redirect 301 /robot-wynajem-zabrze.html           /robot-wynajem-katowice.html
 # więc zamiast 404 kieruje tam, gdzie prowadziła większość jej kafelków.
 Redirect 301 /oferta.html                         /wypozyczenie-robota.html
 
+# ── Cienki wpis bloga scalony z poradnikiem ───────────────────────────────────
+# „Atrakcja na event firmowy — robot vs inne opcje” (618 słów) wszedł jako
+# rozdział do poradnika „Atrakcje na imprezę firmową”.
+Redirect 301 /blog-atrakcja-na-event-firmowy.html /atrakcje-na-impreze-firmowa.html
+
 # ── Kanoniczny adres strony głównej ────────────────────────────────────────────
 # /index.html i / to ta sama treść pod dwoma adresami. Crawler widzi wtedy dwie
 # strony z identycznym tytułem, a Google sam wybiera, którą pokazać.
