@@ -1,7 +1,6 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe sprawdzenie z sieci GitHuba: czy ramka ConsentBoard pozwala się osadzić na 33bots.pl
-# (nagłówki X-Frame-Options / frame-ancestors) i co zawiera. Gałąź diagnoza-domen do usunięcia po teście.
+# Jednorazowe sprawdzenie z sieci GitHuba: polityka prywatności 33bots.pl po poprawce tła ramki ConsentBoard.
 on:
   push:
     branches: [diagnoza-domen]
@@ -15,11 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Nagłówki ramki ConsentBoard
+      - name: Polityka prywatności na żywo
         run: |
           set +e
-          u='https://consentboard.com/cmp-cookies.php?id=e6931d15cd160334&embed=1'
-          curl -s -D h.txt -o b.html --max-time 20 -H 'Referer: https://33bots.pl/polityka-prywatnosci.html' -H 'Sec-Fetch-Dest: iframe' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: cross-site' "$u"
-          echo "--- nagłówki:"; grep -i -E '^(HTTP|x-frame-options|content-security-policy|content-type|set-cookie)' h.txt | cut -c1-300
-          echo "--- treść (pierwsze 1200 znaków bez HTML):"; sed 's/<[^>]*>/ /g' b.html | tr -s ' \n' ' ' | cut -c1-1200
-          echo; echo "--- czy w treści jest 33bots: $(grep -c -i 33bots b.html)"
+          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/polityka-prywatnosci.html -o p.html
+          echo "ramka z białym tłem: $(grep -c 'min-height:1600px;background:#ffffff' p.html), iframe ConsentBoard: $(grep -c 'cmp-cookies.php?id=e6931d15cd160334' p.html), kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/polityka-prywatnosci.html)"
