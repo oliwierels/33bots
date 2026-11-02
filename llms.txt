@@ -22,7 +22,7 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Robot na dni otwarte i showroomy](https://33bots.pl/oferta-dni-otwarte.html): pokazy technologii
 - [Robot na event i imprezę firmową](https://33bots.pl/robot-na-impreze.html): imprezy firmowe, integracje
 - [Robot na wesele](https://33bots.pl/robot-na-wesele.html): atrakcja weselna
-- [Atrakcje na event — katalog wszystkich scenariuszy](https://33bots.pl/atrakcje-na-event.html): pełny katalog podstron — role robota (konferansjer, prelegent, tancerz, recepcjonista), miejsca (hotele, galerie handlowe, uczelnie), typy wydarzeń (targi, gale, konferencje, pikniki), eventy branżowe (IT, medyczne, finansowe i inne) oraz imprezy prywatne (urodziny, sylwester, komunie)
+- [Atrakcje na event — 40 pomysłów na imprezę firmową, galę i piknik](https://33bots.pl/atrakcje-na-event.html): przewodnik po atrakcjach eventowych z cenami z publicznych cenników 2026, trzema gotowymi programami i miejscem robota wśród innych opcji
 
 ## Dowody i realizacje
 
@@ -34,6 +34,18 @@ Kanał RSS bloga: https://33bots.pl/feed.xml
 - [Case study Centrum Nauki Kopernik](https://33bots.pl/case-study-centrum-nauki-kopernik.html): wieczór dla dorosłych „O czym śnią roboty”
 - [Case study Ogród Dendrologiczny w Przelewicach](https://33bots.pl/case-study-ogrod-przelewice.html): Noc Bajek po zmroku
 - [Realizacje wideo](https://33bots.pl/realizacje-wideo.html): nagrania robota z eventów
+
+## Przewodnik eventowy (atrakcje, pomysły, ceny — robot jako jedna z opcji)
+
+- [Atrakcje na imprezę firmową — 25 pomysłów i ceny 2026](https://33bots.pl/atrakcje-na-impreze-firmowa.html): sala i plener, budżet na 50, 100 i 200 osób, błędy organizatorów
+- [Pomysły na imprezę firmową — 30 scenariuszy od 20 do 500 osób](https://33bots.pl/pomysly-na-impreze-firmowa.html): motywy przewodnie, harmonogram wieczoru, checklista
+- [Wigilia firmowa — pomysły, atrakcje, menu, organizacja](https://33bots.pl/wigilia-firmowa-pomysly.html): co to jest, kiedy, menu z cenami, zabawy, wersja online, podatki
+- [Integracja firmowa — co to jest, 30 pomysłów, koszty i VAT](https://33bots.pl/integracja-firmowa-pomysly.html): warsztaty, teren, gry, wyjazdy, agenda, przychód pracownika
+- [Wynajem atrakcji na imprezy i eventy — co, za ile, od kogo](https://33bots.pl/wynajem-atrakcji-na-imprezy.html): cennik z publicznych ofert, co jest w cenie, umowa, checklista
+- [Pokazy na event — ogień, lasery, drony, barman, robot](https://33bots.pl/pokazy-na-event.html): rodzaje pokazów, ceny, formalności i bezpieczeństwo
+- [Atrakcje na wesele — 30 pomysłów dla gości i ceny 2026](https://33bots.pl/atrakcje-na-wesele.html): atrakcje w tle, momenty wieczoru, tanie pomysły, harmonogram
+- [Zabawy weselne dla gości — 40 pomysłów ze smakiem i bez wodzireja](https://33bots.pl/zabawy-weselne.html): dla wszystkich, dla dzieci, na oczepiny, 20 pytań do pary młodej
+- [Ile kosztuje wesele w 2026 — koszt na 50, 100, 150 i 200 osób](https://33bots.pl/ile-kosztuje-wesele.html): województwa, talerzyk, cennik pozycja po pozycji, koszty ukryte
 
 ## Poradnik dla organizatorów
 
