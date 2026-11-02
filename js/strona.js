@@ -36,11 +36,27 @@
     document.getElementById(q.getAttribute('aria-controls')).hidden = otwarte;
   }));
 
-  // Baner cookie (logika bez zmian).
+  // Baner cookie. Zgody zbiera ConsentBoard (baner ładowany przez GTM): nasz baner
+  // informacyjny znika, gdy tylko skrypt ConsentBoard pojawi się na stronie, i w tej
+  // przeglądarce nie pokazuje się więcej, dopóki ConsentBoard się ładuje.
+  // Bez ConsentBoard działa jak dawniej. Ten sam kod co na stronie głównej.
   const ciasteczka = document.getElementById('cookies');
   if (ciasteczka) {
-    if (!localStorage.getItem('33bots-cookies')) {
-      setTimeout(() => ciasteczka.classList.add('show'), 1400);
+    const pokazBaner = () => { if (!localStorage.getItem('33bots-cookies')) ciasteczka.classList.add('show'); };
+    const skryptCmp = (n) => n.nodeName === 'SCRIPT' && /^https:\/\/([^/]+\.)?consentboard\.[a-z]+\//i.test(n.src);
+    const cmpJest = () => Array.from(document.scripts).some(skryptCmp);
+    const cmpZastepuje = () => { localStorage.setItem('33bots-cmp', '1'); ciasteczka.remove(); };
+    if (cmpJest()) cmpZastepuje();
+    else {
+      new MutationObserver((zmiany, obs) => {
+        if (zmiany.some((z) => Array.from(z.addedNodes).some(skryptCmp))) { obs.disconnect(); cmpZastepuje(); }
+      }).observe(document.documentElement, { childList: true, subtree: true });
+      if (localStorage.getItem('33bots-cmp')) {
+        // ConsentBoard był tu wcześniej, ale 8 s po wejściu wciąż go nie ma: wracamy do naszego banera.
+        setTimeout(() => { if (!cmpJest()) { localStorage.removeItem('33bots-cmp'); pokazBaner(); } }, 8000);
+      } else {
+        setTimeout(pokazBaner, 1400);
+      }
     }
     document.getElementById('cookiesOk').addEventListener('click', () => {
       localStorage.setItem('33bots-cookies', '1');

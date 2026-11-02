@@ -4,24 +4,63 @@
 // ani do FormSubmit. Zapytania do innych serwerów (GTM, Albacross) są blokowane.
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readdirSync, readFileSync } from 'node:fs';
 import { naruszeniaOdstepow, przewinCala } from './odstepy.mjs';
+
+// Teksty interfejsu i treści, które testy sprawdzają dosłownie — po jednym zestawie na język.
+const T_DE = {
+  nastepne: 'Nächstes Foto', menu: 'Menü', zamknij: 'Schließen',
+  leadMowa: 'Er spricht Deutsch und jede andere Sprache', leadBranding: 'Branding im Preis',
+  kraje: 'Litauen, Deutschland, Tschechien und Rumänien', przelacza: 'wechselt während einer Veranstaltung zwischen den Sprachen',
+  ponad40: 'über 40 Veranstaltungen in fünf Ländern', faqMowa: 'Der Roboter spricht Deutsch und jede andere Sprache',
+  zakazane: /Kostüm|Outfit|Garderobe|kostenlos|gratis|\[[^\]]*ergänzen[^\]]*\]/i,
+  kadrDrezno: 'Einsatz ansehen: Dresdner Schlössernacht', lexaiPodpis: 'Langer Markt · Danzig', lexaiOpis: 'Neptunbrunnen',
+  bladTyp: 'Wählen Sie die Art der Veranstaltung.', typy: ['Gala', 'Konferenz', 'Messe', 'Outdoor', 'Sonstiges'],
+  konferencja: 'Konferenz', gala: 'Gala', paroda: 'Messe', nieustalona: 'Termin noch offen', dataWartosc: 'offen', miejscePrefix: 'z. B. ',
+  bladImie: 'Bitte geben Sie Ihren Namen an.', bladMail: 'Bitte geben Sie eine gültige E-Mail-Adresse an.',
+  sukces: 'Ihre Anfrage ist bei uns angekommen.', sukces1: 'Wir melden uns unter max@test.de.',
+  wiadomosc: 'Konferenz, zwei Tage.', licznik: '21', cta: 'Termin und Preis prüfen', heroOpis: 'Dresdner Schlössernacht · Dresden',
+  klienci: ['Dresdner Schlössernacht', 'Gemeinde Jednorozec', 'Perspektywy Foundation · Women in Tech Summit'],
+  cookies: ['Wir verwenden Cookies zu Analysezwecken.', 'Verstanden'],
+  skip: 'Zum Hauptinhalt springen', robot: /Roboter/,
+  heroOpis2: 'Finale Eco Studio ELECTRO-SYSTEM · Warschau', heroAlt2: /Journalistin interviewt/,
+  pauza: 'Pause', wznow: 'Weiter', ruchStop: 'Bewegung anhalten', ruchStart: 'Bewegung fortsetzen',
+};
+const T_LT = {
+  nastepne: 'Kita nuotrauka', menu: 'Meniu', zamknij: 'Uždaryti',
+  leadMowa: 'Kalba lietuviškai ir bet kuria kita kalba', leadBranding: 'ženklinimas — kainoje',
+  kraje: 'Lenkijoje, Lietuvoje, Vokietijoje, Čekijoje ir Rumunijoje', przelacza: 'vieno renginio metu perjungia kalbas',
+  ponad40: 'daugiau nei 40 renginių penkiose šalyse', faqMowa: 'Robotas kalba lietuviškai ir bet kuria kita kalba',
+  zakazane: /nemokam|gratis|kostium|\[[^\]]*papildyti[^\]]*\]/i,
+  kadrDrezno: 'Žiūrėti realizaciją: Drezdeno pilių naktis', lexaiPodpis: 'Ilgasis turgus · Gdanskas', lexaiOpis: 'Neptūno fontano',
+  bladTyp: 'Pasirinkite renginio tipą.', typy: ['Gala vakaras', 'Konferencija', 'Paroda', 'Lauko renginys', 'Kita'],
+  konferencja: 'Konferencija', gala: 'Gala vakaras', paroda: 'Paroda', nieustalona: 'Data dar nežinoma', dataWartosc: 'nežinoma', miejscePrefix: 'pvz., ',
+  bladImie: 'Įrašykite savo vardą ir pavardę.', bladMail: 'Įrašykite teisingą el. pašto adresą.',
+  sukces: 'Jūsų užklausą gavome.', sukces1: 'Atsakysime adresu max@test.de.',
+  wiadomosc: 'Konferencija, dvi dienos.', licznik: '25', cta: 'Patikrinti datą ir kainą', heroOpis: 'Drezdeno pilių naktis · Drezdenas',
+  klienci: ['Drezdeno pilių naktis', 'Jednorozec valsčius', 'Perspektywy fondas · Women in Tech Summit'],
+  cookies: ['Naudojame slapukus analizės tikslais.', 'Supratau'],
+  skip: 'Pereiti prie turinio', robot: /robot/i,
+  heroOpis2: 'Eco Studio ELECTRO-SYSTEM finalas · Varšuva', heroAlt2: /Žurnalistė kalbina/,
+  pauza: 'Pauzė', wznow: 'Tęsti', ruchStop: 'Sustabdyti judėjimą', ruchStart: 'Tęsti judėjimą',
+};
 
 const RYNKI = [
   {
     kod: 'de', adres: 'http://127.0.0.1:8081/', lang: 'de',
-    tytul: 'Humanoide Roboter für Events mieten — deutschlandweit | 33bots',
+    tytul: 'Roboter mieten: humanoider Roboter für Events & Messen | 33bots',
     kanoniczny: 'https://33bots.de/', h1: /humanoide roboter für events mieten/i,
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'realisierungen', 'events', 'video', 'ueber-uns', 'auftritt',
       'leistungen', 'einsatzbereiche', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt'],
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['ab 2.500 €', 'pro Veranstaltungstag', '850 €', '−15 %'],
     kontakt: ['kontakt@33bots.de'],
-    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Blog'],
+    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Ratgeber'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Schreiben Sie uns an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',
     linkLexai: 'case-study-lexai.html',
-    analityka: false, panel: true,
+    analityka: false, panel: true, t: T_DE, telefon: null, faqLiczba: 10,
   },
   {
     kod: 'at', adres: 'http://127.0.0.1:8082/', lang: 'de-AT',
@@ -33,11 +72,27 @@ const RYNKI = [
     ceny: ['Individuelles Angebot', 'ab 2.300 €', 'netto', '−15 %'],
     kontakt: ['+48 531 408 004', 'kontakt@33bots.at'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Angebot'],
-    formularz: 'https://formsubmit.co/ajax/kontakt@33bots.at', dodatkowe: { _subject: 'Neue Anfrage über 33bots.at' },
+    formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.at.',
     miejsce: 'Wien, Messe Wien',
     linkLexai: null,
-    analityka: true, panel: false,
+    analityka: true, panel: false, t: T_DE, telefon: 'tel:+48531408004', faqLiczba: 10,
+  },
+  {
+    kod: 'lt', adres: 'http://127.0.0.1:8083/', lang: 'lt',
+    tytul: 'Humanoidinių robotų nuoma renginiams Lietuvoje | 33bots',
+    kanoniczny: 'https://33bots.lt/', h1: /humanoidinių robotų nuoma renginiams/i,
+    kotwice: ['top', 'hauptinhalt', 'referenzen', 'realizacje', 'zaufanie', 'auftritt', 'mozliwosci', 'case-study',
+      'preise', 'cennik', 'ablauf', 'proces', 'faq', 'kontakt'],
+    ldTypy: ['ProfessionalService', 'WebSite', 'VideoObject', 'Service', 'Product', 'FAQPage'],
+    ceny: ['Individuali kaina', 'nuo 2 100 €', 'be PVM', '−15 %'],
+    kontakt: ['kontakt@33bots.lt'],
+    nav: ['Realizacijos', 'Pasirodymas', 'Kainos', 'Procesas', 'Renginių gidas'],
+    formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
+    blad: 'Nepavyko išsiųsti. Parašykite mums adresu kontakt@33bots.lt.',
+    miejsce: 'Vilnius, LITEXPO',
+    linkLexai: null,
+    analityka: true, panel: false, t: T_LT, telefon: null, faqLiczba: 11,
   },
 ];
 
@@ -119,7 +174,7 @@ for (const m of RYNKI) {
       await page.keyboard.press('Tab');
       const skip = page.locator('.skip-link');
       await expect(skip).toBeFocused();
-      await expect(skip).toHaveText('Zum Hauptinhalt springen');
+      await expect(skip).toHaveText(m.t.skip);
       expect((await skip.boundingBox()).x).toBeGreaterThanOrEqual(0);
       await page.keyboard.press('Enter');
       await expect(page.locator('main#hauptinhalt')).toBeFocused();
@@ -134,10 +189,10 @@ for (const m of RYNKI) {
         .flatMap((e) => ['alt', 'aria-label', 'placeholder', 'data-faq'].map((a) => e.getAttribute(a)).filter(Boolean)));
       expect(atrybuty.filter((a) => POLSKIE.test(a))).toEqual([]);
       // Teksty wstawiane przez skrypt: przycisk hero, przyciski pasów, menu, szuflada.
-      await expect(page.locator('#heroPauza')).toHaveText('Nächstes Foto');
-      await expect(page.locator('#navPrzycisk')).toHaveText('Menü');
+      await expect(page.locator('#heroPauza')).toHaveText(m.t.nastepne);
+      await expect(page.locator('#navPrzycisk')).toHaveText(m.t.menu);
       await page.locator('.realizacja[data-cs="drezno"], .kadr[data-cs="drezno"]').first().click();
-      await expect(page.locator('#szufladaZamknij')).toHaveText('Schließen');
+      await expect(page.locator('#szufladaZamknij')).toHaveText(m.t.zamknij);
       expect(twarde(await page.locator('#szuflada').innerText()).match(POLSKIE)).toBeNull();
       await ctx.close();
     });
@@ -145,13 +200,15 @@ for (const m of RYNKI) {
     test('treść: robot mówi po niemiecku i w każdym innym języku, branding w cenie, bez „Kostüm”', async ({ browser }) => {
       const { ctx, page } = await nowaStrona(browser, m);
       const lead = page.locator('.hero .lead');
-      await expect(lead).toContainText('Er spricht Deutsch und jede andere Sprache');
-      await expect(lead).toContainText('Branding im Preis');
-      await expect(page.locator('#auftritt')).toContainText('Litauen, Deutschland, Tschechien und Rumänien');
-      await expect(page.locator('#auftritt')).toContainText('wechselt während einer Veranstaltung zwischen den Sprachen');
-      await expect(page.locator('#referenzen')).toContainText('über 40 Veranstaltungen in fünf Ländern');
-      expect(await tresc(page, '.faq')).toContain('Der Roboter spricht Deutsch und jede andere Sprache');
-      expect(await tresc(page)).not.toMatch(/Kostüm|Outfit|Garderobe|kostenlos|gratis/i);
+      await expect(lead).toContainText(m.t.leadMowa);
+      await expect(lead).toContainText(m.t.leadBranding);
+      await expect(page.locator('#auftritt')).toContainText(m.t.kraje);
+      await expect(page.locator('#auftritt')).toContainText(m.t.przelacza);
+      await expect(page.locator('#referenzen')).toContainText(m.t.ponad40);
+      expect(await tresc(page, '.faq')).toContain(m.t.faqMowa);
+      expect(await tresc(page)).not.toMatch(m.t.zakazane);
+      // Także w kodzie strony: meta, dane strukturalne (FAQ, HowTo, VideoObject) trafiają do wyników wyszukiwania.
+      expect(await page.content()).not.toMatch(m.t.zakazane);
       await ctx.close();
     });
 
@@ -162,9 +219,9 @@ for (const m of RYNKI) {
       const kontakt = await tresc(page, '#kontakt');
       for (const k of m.kontakt) expect(kontakt, k).toContain(k);
       const telefony = await page.locator('a[href^="tel:"]').count();
-      if (m.kod === 'de') {
-        expect(telefony, '33bots.de nie podaje telefonu').toBe(0);
-        expect(await tresc(page)).not.toMatch(/netto|\+48/);
+      if (!m.telefon) {
+        expect(telefony, `33bots.${m.kod} nie podaje telefonu`).toBe(0);
+        expect(await tresc(page)).not.toMatch(m.kod === 'de' ? /netto|\+48/ : /\+48/);
       } else {
         expect(telefony).toBeGreaterThan(0);
         await expect(page.locator('a[href^="tel:"]').first()).toHaveAttribute('href', 'tel:+48531408004');
@@ -187,11 +244,11 @@ for (const m of RYNKI) {
         expect(html).toMatch(/<noscript><iframe src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-MR7R7CJ3"/);
         await expect(page.locator('script[src="https://serve.albacross.com/track.js"]')).toHaveCount(1);
         const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
-        expect(csp).toContain('https://formsubmit.co');
+        expect(csp).toContain('https://formspree.io');
         // Baner cookie: treść bez zmian, pojawia się sam, znika po kliknięciu i nie wraca.
         const baner = page.locator('#cookies');
-        await expect(baner.locator('.cookies__text')).toHaveText('Wir verwenden Cookies zu Analysezwecken.');
-        await expect(baner.locator('#cookiesOk')).toHaveText('Verstanden');
+        await expect(baner.locator('.cookies__text')).toHaveText(m.t.cookies[0]);
+        await expect(baner.locator('#cookiesOk')).toHaveText(m.t.cookies[1]);
         await page.clock.runFor(1500);
         await expect(baner).toHaveClass(/show/);
         await expect(baner).toBeVisible();
@@ -270,7 +327,7 @@ for (const m of RYNKI) {
         return [];
       });
       expect(widoczne).toEqual(ld.map(([q]) => q));
-      expect(widoczne.length).toBe(10);
+      expect(widoczne.length).toBe(m.faqLiczba);
       const odpowiedzi = await page.locator('.faq__a', { includeHidden: true }).evaluateAll((a) => a.map((e) => e.textContent.trim()));
       expect(odpowiedzi.map(twarde)).toEqual(ld.map(([, a]) => twarde(a)));
       const q = page.locator('.faq__q').nth(2);
@@ -284,12 +341,12 @@ for (const m of RYNKI) {
 
     test('szuflada realizacji: dane po niemiecku, fokus w środku, Esc zamyka', async ({ browser }) => {
       const { ctx, page } = await nowaStrona(browser, m);
-      await expect(page.locator('.kadr[data-cs="drezno"]')).toHaveAttribute('aria-label', 'Einsatz ansehen: Dresdner Schlössernacht');
+      await expect(page.locator('.kadr[data-cs="drezno"]')).toHaveAttribute('aria-label', m.t.kadrDrezno);
       const kafel = page.locator('.realizacja[data-cs="lexai"]');
       await kafel.click();
       await expect(page.locator('#szufladaTytul')).toHaveText('LEX AI');
-      await expect(page.locator('#szufladaPodpis')).toHaveText('Langer Markt · Danzig');
-      await expect(page.locator('#szufladaOpis')).toContainText('Neptunbrunnen');
+      await expect(page.locator('#szufladaPodpis')).toHaveText(m.t.lexaiPodpis);
+      await expect(page.locator('#szufladaOpis')).toContainText(m.t.lexaiOpis);
       if (m.linkLexai) await expect(page.locator('#szufladaLink')).toHaveAttribute('href', m.linkLexai);
       else await expect(page.locator('#szufladaLink')).toBeHidden();
       await expect(page.locator('#szufladaZamknij')).toBeFocused();
@@ -302,7 +359,7 @@ for (const m of RYNKI) {
       for (const klucz of await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-cs]')].map((b) => b.dataset.cs))])) {
         await page.locator(`[data-cs="${klucz}"]`).first().click();
         await expect(page.locator('#szufladaTytul'), klucz).not.toBeEmpty();
-        await expect(page.locator('#szufladaOpis'), klucz).toContainText(/Roboter/);
+        await expect(page.locator('#szufladaOpis'), klucz).toContainText(m.t.robot);
         await page.keyboard.press('Escape');
       }
       await ctx.close();
@@ -318,16 +375,16 @@ for (const m of RYNKI) {
       });
       await page.locator('#formularz').scrollIntoViewIfNeeded();
       await page.locator('#dalej').click();
-      await expect(page.locator('#blad-typ')).toHaveText('Wählen Sie die Art der Veranstaltung.');
+      await expect(page.locator('#blad-typ')).toHaveText(m.t.bladTyp);
       await expect(page.locator('#krok2')).toBeHidden();
       expect((await page.locator('#pole-typ label.chip').allInnerTexts()).map((t) => t.trim()))
-        .toEqual(['Gala', 'Konferenz', 'Messe', 'Outdoor', 'Sonstiges']);
+        .toEqual(m.t.typy);
 
-      await page.locator('label.chip:has-text("Konferenz")').click();
+      await page.locator(`label.chip:has-text("${m.t.konferencja}")`).click();
       await expect(page.locator('#blad-typ')).toBeHidden();
-      await page.locator('label.chip:has-text("Termin noch offen")').click();
+      await page.locator(`label.chip:has-text("${m.t.nieustalona}")`).click();
       await expect(page.locator('#pole-data')).toBeDisabled();
-      await expect(page.locator('#pole-miejsce')).toHaveAttribute('placeholder', `z. B. ${m.miejsce}`);
+      await expect(page.locator('#pole-miejsce')).toHaveAttribute('placeholder', `${m.t.miejscePrefix}${m.miejsce}`);
       await page.fill('#pole-miejsce', m.miejsce);
       await page.locator('label.chip:has-text("500–2000")').click();
       await page.locator('#dalej').click();
@@ -335,25 +392,25 @@ for (const m of RYNKI) {
       await expect(page.locator('#pole-name')).toBeFocused();
 
       await page.locator('#wyslij').click();
-      await expect(page.locator('#pole-imie .pole__blad')).toHaveText('Bitte geben Sie Ihren Namen an.');
+      await expect(page.locator('#pole-imie .pole__blad')).toHaveText(m.t.bladImie);
       await page.fill('#pole-name', 'Max Test');
       await page.fill('#pole-email', 'kein-adresse');
       await page.locator('#wyslij').click();
-      await expect(page.locator('#pole-mail .pole__blad')).toHaveText('Bitte geben Sie eine gültige E-Mail-Adresse an.');
+      await expect(page.locator('#pole-mail .pole__blad')).toHaveText(m.t.bladMail);
       expect(wyslane).toBeNull();
 
       await page.fill('#pole-email', 'max@test.de');
       await page.fill('#pole-company', 'Test GmbH');
-      await page.fill('#pole-message', 'Konferenz, zwei Tage.');
-      await expect(page.locator('#licznik')).toHaveText('21');
+      await page.fill('#pole-message', m.t.wiadomosc);
+      await expect(page.locator('#licznik')).toHaveText(m.t.licznik);
       await page.locator('#wyslij').click();
       const sukces = page.locator('.form-sukces');
       await expect(sukces).toBeVisible();
-      await expect(sukces).toContainText('Ihre Anfrage ist bei uns angekommen.');
-      await expect(sukces).toContainText('Wir melden uns unter max@test.de.');
+      await expect(sukces).toContainText(m.t.sukces);
+      await expect(sukces).toContainText(m.t.sukces1);
       expect(wyslane).toEqual({
-        name: 'Max Test', company: 'Test GmbH', email: 'max@test.de', phone: '—', date: 'offen',
-        location: m.miejsce, message: 'Konferenz, zwei Tage.', event_type: 'Konferenz', guests: '500–2000',
+        name: 'Max Test', company: 'Test GmbH', email: 'max@test.de', phone: '—', date: m.t.dataWartosc,
+        location: m.miejsce, message: m.t.wiadomosc, event_type: m.t.konferencja, guests: '500–2000',
         ...m.dodatkowe,
       });
       await ctx.close();
@@ -363,14 +420,14 @@ for (const m of RYNKI) {
       const { ctx, page } = await nowaStrona(browser, m, {
         przed: (p) => p.route(m.formularz, (r) => r.fulfill({ status: 500, body: '' })),
       });
-      await page.locator('label.chip:has-text("Gala")').click();
+      await page.locator(`label.chip:has-text("${m.t.gala}")`).click();
       await page.locator('#dalej').click();
       await page.fill('#pole-name', 'Max Test');
       await page.fill('#pole-email', 'max@test.de');
       await page.locator('#wyslij').click();
       await expect(page.locator('#blad-wysylki')).toHaveText(m.blad);
       await expect(page.locator('#wyslij')).toBeEnabled();
-      await expect(page.locator('#wyslij')).toContainText('Verfügbarkeit prüfen');
+      await expect(page.locator('#wyslij')).toContainText(m.t.cta);
       await ctx.close();
     });
 
@@ -379,7 +436,7 @@ for (const m of RYNKI) {
       await page.waitForLoadState('load');
       const licznik = page.locator('#heroLicznik');
       await expect(licznik).toHaveText('01 / 06');
-      await expect(page.locator('#heroOpis')).toHaveText('Dresdner Schlössernacht · Dresden');
+      await expect(page.locator('#heroOpis')).toHaveText(m.t.heroOpis);
       await page.evaluate(() => {
         const el = document.getElementById('heroLicznik');
         window.__zmiany = [[Date.now(), el.textContent.trim()]];
@@ -395,8 +452,8 @@ for (const m of RYNKI) {
       await page.clock.runFor(2000); await page.waitForTimeout(50);
       await expect(licznik).toHaveText('01 / 06');
       await dojdzDo('02 / 06');
-      await expect(page.locator('#heroOpis')).toHaveText('Finale Eco Studio ELECTRO-SYSTEM · Warschau');
-      await expect(page.locator('.hero img')).toHaveAttribute('alt', /Journalistin interviewt/);
+      await expect(page.locator('#heroOpis')).toHaveText(m.t.heroOpis2);
+      await expect(page.locator('.hero img')).toHaveAttribute('alt', m.t.heroAlt2);
       for (let n = 3; n <= 6; n++) await dojdzDo(`0${n} / 06`);
       await dojdzDo('01 / 06');
       const zmiany = await page.evaluate(() => window.__zmiany);
@@ -406,10 +463,10 @@ for (const m of RYNKI) {
         expect(d).toBeLessThan(4200);
       }
       const pauza = page.locator('#heroPauza');
-      await expect(pauza).toHaveText('Pause');
+      await expect(pauza).toHaveText(m.t.pauza);
       await pauza.click();
       await expect(pauza).toHaveAttribute('aria-pressed', 'true');
-      await expect(pauza).toHaveText('Weiter');
+      await expect(pauza).toHaveText(m.t.wznow);
       await page.mouse.move(5, 5);
       await page.evaluate(() => document.activeElement.blur());
       await page.clock.runFor(30000); await page.waitForTimeout(200);
@@ -430,16 +487,16 @@ for (const m of RYNKI) {
         .every((li) => li.getAttribute('aria-hidden') === 'true' && [...li.querySelectorAll('button, a')].every((e) => e.tabIndex === -1)));
       expect(kopie).toBe(true);
       const pauza = page.locator('.pasy__pauza[data-pasy="zdjecia"]');
-      await expect(pauza).toHaveText('Bewegung anhalten');
+      await expect(pauza).toHaveText(m.t.ruchStop);
       await pauza.click();
-      await expect(pauza).toHaveText('Bewegung fortsetzen');
+      await expect(pauza).toHaveText(m.t.ruchStart);
       await expect(pauza).toHaveAttribute('aria-pressed', 'true');
       // Nazwy klientów: 40 bez powtórzeń (jak na .pl), utarte nazwy po niemiecku.
       const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
       expect(nazwy.length).toBe(40);
       expect(new Set(nazwy).size).toBe(40);
       expect(nazwy).toContain('Cashify');
-      expect(nazwy).toEqual(expect.arrayContaining(['Dresdner Schlössernacht', 'Gemeinde Jednorożec', 'Perspektywy Foundation · Women in Tech Summit']));
+      expect(nazwy).toEqual(expect.arrayContaining(m.t.klienci));
       await ctx.close();
     });
 
@@ -447,11 +504,11 @@ for (const m of RYNKI) {
       const { ctx, page } = await nowaStrona(browser, m, { vp: TELEFON });
       const p = page.locator('#navPrzycisk');
       await p.click();
-      await expect(p).toHaveText('Schließen');
+      await expect(p).toHaveText(m.t.zamknij);
       await expect(page.locator('#navPanel')).toBeVisible();
       await page.keyboard.press('Escape');
       await expect(page.locator('#navPanel')).toBeHidden();
-      await expect(p).toHaveText('Menü');
+      await expect(p).toHaveText(m.t.menu);
       await expect(p).toBeFocused();
       await ctx.close();
     });
@@ -555,11 +612,12 @@ test.describe('33bots.de — panel dostępności', () => {
 // 33bots.de: przekrój szablonów (miasto, oferta, poradnik, case study, strony prawne);
 // 33bots.at: wszystkie podstrony.
 const PODSTRONY = [
-  [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/leistungen.html',
-    '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-women-in-tech.html', '/blog.html',
-    '/blog-attraktion-firmenevent.html', '/blog-was-kostet-roboter-mieten.html', '/roboter-abiball.html',
-    '/humanoider-roboter-event.html', '/event-attraktionen.html', '/impressum.html', '/404.html']],
-  [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/unitree-g1-mieten.html', '/kontakt.html',
+  [RYNKI[0], ['/roboter-mieten-berlin.html', '/angebot-messen.html', '/angebot-konferenzen-galas.html', '/roboter-firmenevents.html',
+    '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-wallstreet.html', '/case-study-women-in-tech.html', '/blog.html',
+    '/blog-robotik-im-marketing.html', '/roboter-mieten-preise.html', '/unitree-g1-mieten.html', '/case-study-eco-studio-electro-system.html',
+    '/case-study-grupa-rekord-mspo.html', '/roboter-privatfeier.html',
+    '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
+  [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
     '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
     ...['wien', 'graz', 'linz', 'salzburg', 'innsbruck', 'klagenfurt', 'villach', 'wels', 'st-poelten', 'dornbirn', 'eisenstadt']
       .map((m) => `/roboter-mieten-${m}.html`)]],
@@ -590,4 +648,119 @@ for (const [m, strony] of PODSTRONY) {
       });
     }
   }
+}
+
+// ——— Podstrony w nowym układzie (tresci/zagranica/buduj_podstrony.py) ———
+// Każda strona z generatora, sprawdzana według swojego źródła: wygląd i zachowanie jak strona
+// główna rynku, adres, tytuł, canonical, hreflang i dane strukturalne jak w danych strony.
+const ZRODLA = new URL('../tresci/zagranica/podstrony/', import.meta.url);
+const bezZnacznikow = (t) => t.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&shy;/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const NOWY_UKLAD = RYNKI.flatMap((m) => readdirSync(new URL(`${m.kod}/`, ZRODLA)).filter((f) => f.endsWith('.html')).sort().map((f) => {
+  const surowe = readFileSync(new URL(`${m.kod}/${f}`, ZRODLA), 'utf8');
+  return { m, strona: `/${f}`, d: JSON.parse(surowe.match(/<!--\s*(\{[\s\S]*?\})\s*-->/)[1]) };
+}));
+for (const { m, strona, d } of NOWY_UKLAD) {
+  test.describe(`33bots.${m.kod}${strona} — nowy układ`, () => {
+    const otworz = async (browser, vp = DESKTOP, przed) => {
+      const ctx = await browser.newContext({ viewport: vp, reducedMotion: 'reduce' });
+      const page = await ctx.newPage();
+      const bledy = [];
+      page.on('pageerror', (e) => bledy.push(e.message));
+      await zablokujZewnetrzne(page);
+      if (przed) await przed(page);
+      await page.goto(m.adres.replace(/\/$/, '') + strona);
+      await page.evaluate(() => document.fonts.ready);
+      return { ctx, page, bledy };
+    };
+
+    test('SEO jak w danych strony: tytuł, canonical, hreflang, jeden H1, dane strukturalne, FAQ zgodne z FAQPage', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      await expect(page).toHaveTitle(d.tytul);
+      await expect(page.locator('html')).toHaveAttribute('lang', m.lang);
+      await expect(page.locator('meta[name=description]')).toHaveAttribute('content', d.opis);
+      await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', d.robots || 'index, follow, max-image-preview:large');
+      await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', `https://33bots.${m.kod}${strona}`);
+      const hreflang = await page.locator('link[rel=alternate][hreflang]').evaluateAll((l) => l.map((e) => [e.hreflang, e.href]));
+      expect(hreflang).toEqual(d.hreflang);
+      await expect(page.locator('h1')).toHaveCount(1);
+      expect(twarde(await page.locator('h1').innerText())).toBe(bezZnacznikow(d.h1));
+      const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => JSON.parse(s.textContent)));
+      const typy = [...(d.usluga ? ['Service'] : []), 'BreadcrumbList', ...(d.ld || []).map((x) => x['@type']),
+        ...(d.pytania ? ['FAQPage'] : []), ...[d.wideo, ...(d.filmy || [])].filter((f) => f?.ld).map(() => 'VideoObject')];
+      expect(ld.map((x) => x['@type'])).toEqual(typy);
+      const faq = ld.find((x) => x['@type'] === 'FAQPage');
+      expect(await page.locator('.faq__q').evaluateAll((q) => q.map((e) => e.dataset.faq))).toEqual(faq ? faq.mainEntity.map((q) => q.name) : []);
+      await ctx.close();
+    });
+
+    test('menu i stopka jak na stronie głównej; kotwice strony głównej prowadzą na nią', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      const linki = (sel) => page.locator(sel).evaluate((el) => [...el.querySelectorAll('a')].map((a) => [a.textContent.trim(), a.getAttribute('href')]));
+      const tu = { nav: await linki('#nav'), stopka: await linki('footer.stopka') };
+      await page.goto(m.adres);
+      const naGlownej = (l) => l.map(([t, h]) => [t, h === '#top' ? 'index.html' : h.replace(/^#/, 'index.html#')]);
+      expect(tu.nav).toEqual(naGlownej(await linki('#nav')));
+      expect(tu.stopka).toEqual(naGlownej(await linki('footer.stopka')));
+      await ctx.close();
+    });
+
+    test('w języku rynku, bez zakazanych słów (kostenlos, Kostüm, nemokamas); menu, pasek i FAQ działają, bez błędów', async ({ browser }) => {
+      const { ctx, page, bledy } = await otworz(browser, TELEFON);
+      const POLSKIE = /\b(Sprawdź|Zobacz|realizacj|wydarze|Zamknij|Najczęstsze|Czytaj|Okruszki|Strona główna|Robot humanoidalny|Drezdeńska)\w*/i;
+      const t = await tresc(page);
+      expect(t.match(POLSKIE)).toBeNull();
+      expect(t).not.toMatch(m.t.zakazane);
+      expect(await page.content()).not.toMatch(m.t.zakazane);
+      const p = page.locator('#navPrzycisk');
+      await expect(p).toHaveText(m.t.menu);
+      await p.click();
+      await expect(p).toHaveText(m.t.zamknij);
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#navPanel')).toBeHidden();
+      if (await page.locator('.art__tresc').count()) {
+        await expect(page.locator('#pasekMobilny')).not.toHaveClass(/pasek--widoczny/);
+        await page.evaluate(() => scrollTo(0, document.querySelector('.art__tresc').offsetTop + 400));
+        await expect(page.locator('#pasekMobilny')).toHaveClass(/pasek--widoczny/);
+      }
+      if (d.pytania) {
+        const q = page.locator('.faq__q').first();
+        await q.click();
+        await expect(q).toHaveAttribute('aria-expanded', 'true');
+        await expect(page.locator('#faq-1')).toBeVisible();
+      }
+      expect(bledy).toEqual([]);
+      await ctx.close();
+    });
+
+    test('axe: WCAG 2.1 A/AA bez naruszeń', async ({ browser }) => {
+      const { ctx, page } = await otworz(browser);
+      await przewinCala(page);
+      const wynik = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+      const naruszenia = wynik.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(' | ')}`);
+      expect(naruszenia).toEqual([]);
+      await ctx.close();
+    });
+
+    if (d.formularz) {
+      test('formularz ze strony głównej: dwa kroki, zgłoszenie do Formspree (request przechwycony)', async ({ browser }) => {
+        let wyslane = null;
+        const { ctx, page, bledy } = await otworz(browser, DESKTOP, (p) => p.route(m.formularz, async (r) => {
+          wyslane = r.request().postDataJSON();
+          await r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
+        }));
+        await expect(page.locator('#formularz')).toBeVisible();
+        await page.locator(`label.chip:has-text("${m.t.paroda}")`).click();
+        await page.locator('#dalej').click();
+        await expect(page.locator('#krok2')).toBeVisible();
+        await page.fill('#pole-name', 'Max Test');
+        await page.fill('#pole-email', 'max@test.at');
+        await page.locator('#wyslij').click();
+        await expect(page.locator('.form-sukces')).toContainText(m.t.sukces);
+        expect(wyslane).toMatchObject({ name: 'Max Test', email: 'max@test.at', event_type: m.t.paroda, ...m.dodatkowe });
+        await expect(page.locator('#pasekMobilny a')).toHaveAttribute('href', '#kontakt');
+        expect(bledy).toEqual([]);
+        await ctx.close();
+      });
+    }
+  });
 }

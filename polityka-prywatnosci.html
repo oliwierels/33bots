@@ -152,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="mx-auto max-w-3xl">
-    <nav class="reveal mb-8 text-[12px] text-neutral-600" aria-label="Ścieżka nawigacji">
+    <nav class="reveal mb-8 text-[12px] text-neutral-400" aria-label="Ścieżka nawigacji">
       <a href="index.html" class="transition hover:text-neutral-300">Strona główna</a>
       <span class="mx-2">/</span><span class="text-neutral-400">Polityka prywatności</span>
     </nav>
@@ -183,10 +183,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul class="mt-4 space-y-2.5 leading-relaxed text-neutral-400"><li class="flex gap-3"><span class="mt-[.45rem] h-1 w-1 shrink-0 rounded-full bg-accent"></span><span><strong class="text-white">Z formularzy na stronie:</strong> imię i nazwisko, adres e-mail oraz — jeśli je podasz — nazwę firmy, numer telefonu, termin i miejsce wydarzenia, a także treść wiadomości.</span></li><li class="flex gap-3"><span class="mt-[.45rem] h-1 w-1 shrink-0 rounded-full bg-accent"></span><span><strong class="text-white">Z rozmowy handlowej:</strong> dane potrzebne do przygotowania oferty i umowy, a przy zawarciu umowy również dane do faktury, w tym NIP i adres firmy.</span></li><li class="flex gap-3"><span class="mt-[.45rem] h-1 w-1 shrink-0 rounded-full bg-accent"></span><span><strong class="text-white">Automatycznie podczas wizyty:</strong> adres IP, informacje o urządzeniu i przeglądarce, źródło wejścia na stronę oraz dane z plików cookie.</span></li></ul>
 <p class="mt-4 leading-relaxed text-neutral-400">Nie zbieramy danych szczególnych kategorii — o zdrowiu, poglądach, przynależności do związków zawodowych i podobnych. Prosimy, żebyś nie umieszczał ich w treści wiadomości.</p>
 <h2 class="mt-12 font-display text-xl font-700 tracking-[-.02em] text-white md:text-2xl">Po co nam Twoje dane i na jakiej podstawie</h2>
-<div class="mt-5 overflow-x-auto">
+<div class="mt-5 overflow-x-auto" tabindex="0" role="region" aria-label="Tabela: cele, podstawy prawne i okresy przetwarzania danych">
   <table class="w-full min-w-[34rem] border-collapse text-left text-[14px]">
     <thead>
-      <tr class="border-b border-line-mid text-[12px] uppercase tracking-widest text-neutral-500">
+      <tr class="border-b border-line-mid text-[12px] uppercase tracking-widest text-neutral-400">
         <th class="py-3 pr-4 font-600">Cel</th>
         <th class="py-3 pr-4 font-600">Podstawa prawna</th>
         <th class="py-3 font-600">Jak długo</th>
@@ -262,7 +262,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
       <div>
         <p class="font-display text-lg font-700 text-white">33BOTS</p>
-        <p class="mt-2 text-[13px] text-neutral-500">Roboty humanoidalne · wynajem, wdrożenia, sprzedaż</p>
+        <p class="mt-2 text-[13px] text-neutral-400">Roboty humanoidalne · wynajem, wdrożenia, sprzedaż</p>
         <div class="mt-4 flex gap-4 text-[13px] text-neutral-400">
           <a href="tel:+48531408004" class="transition hover:text-white">+48 531 408 004</a>
           <a href="mailto:kontakt@33bots.pl" class="transition hover:text-white">kontakt@33bots.pl</a>
@@ -281,7 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">LinkedIn</a>
       </div>
     </div>
-    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-neutral-600">
+    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-neutral-400">
       <span>© 2026 33bots. Wszelkie prawa zastrzeżone.</span>
       <a href="regulamin.html" class="transition hover:text-neutral-300">Regulamin</a>
       <a href="polityka-prywatnosci.html" class="transition hover:text-neutral-300">Polityka prywatności</a>
@@ -325,9 +325,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nav.classList.toggle('border-line', scrollY > 20);
   }, { passive: true });
 
-  /* ——— Baner cookie ——— */
+  /* ——— Baner cookie ———
+     Zgody zbiera ConsentBoard (baner ładowany przez GTM). Nasz baner informacyjny znika,
+     gdy tylko skrypt ConsentBoard pojawi się na stronie, i w tej przeglądarce nie pokazuje
+     się więcej, dopóki ConsentBoard się ładuje. Bez ConsentBoard działa jak dawniej.
+     Ten sam kod co na stronie głównej. */
   const ciasteczka = document.getElementById('cookies');
-  if (!localStorage.getItem('33bots-cookies')) setTimeout(() => ciasteczka.classList.add('show'), 1400);
+  const pokazBaner = () => { if (!localStorage.getItem('33bots-cookies')) ciasteczka.classList.add('show'); };
+  const skryptCmp = (n) => n.nodeName === 'SCRIPT' && /^https:\/\/([^/]+\.)?consentboard\.[a-z]+\//i.test(n.src);
+  const cmpJest = () => Array.from(document.scripts).some(skryptCmp);
+  const cmpZastepuje = () => { localStorage.setItem('33bots-cmp', '1'); ciasteczka.remove(); };
+  if (cmpJest()) cmpZastepuje();
+  else {
+    new MutationObserver((zmiany, obs) => {
+      if (zmiany.some((z) => Array.from(z.addedNodes).some(skryptCmp))) { obs.disconnect(); cmpZastepuje(); }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+    if (localStorage.getItem('33bots-cmp')) {
+      // ConsentBoard był tu wcześniej, ale 8 s po wejściu wciąż go nie ma: wracamy do naszego banera.
+      setTimeout(() => { if (!cmpJest()) { localStorage.removeItem('33bots-cmp'); pokazBaner(); } }, 8000);
+    } else {
+      setTimeout(pokazBaner, 1400);
+    }
+  }
   document.getElementById('cookiesOk').addEventListener('click', () => {
     localStorage.setItem('33bots-cookies', '1');
     ciasteczka.classList.remove('show');
