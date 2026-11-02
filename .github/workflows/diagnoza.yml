@@ -1,8 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
 # Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.pl po wdrożeniu banera cookie ustępującego ConsentBoard
-# i poprawek dostępności stron prawnych. Gałąź diagnoza-domen do usunięcia po teście.
+# Tym razem: 33bots.pl po wdrożeniu fali 1 przewodnika eventowego (hub + 9 poradników),
+# przekierowanie scalonego wpisu, sitemapa, RSS, spis bloga; na końcu zgłoszenie do IndexNow.
 on:
   push:
     branches: [diagnoza-domen]
@@ -18,26 +18,28 @@ jobs:
     env:
       LC_ALL: C.UTF-8
     steps:
-      - name: 33bots.pl — baner cookie na żywo (cztery warianty kodu)
+      - name: Nowe poradniki na żywo
         run: |
           set +e
-          for u in https://33bots.pl/ https://33bots.pl/blog-atrakcje-eventowe.html https://33bots.pl/robot-na-targi.html https://33bots.pl/sklep.html https://33bots.pl/wdrozenia.html https://33bots.pl/regulamin.html https://33bots.pl/polityka-prywatnosci.html; do
-            curl -s --max-time 30 -H 'Cache-Control: no-cache' "$u" -o s.html
-            echo "$u: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$u"), 33bots-cmp w HTML $(grep -c '33bots-cmp' s.html), main.js $(grep -o 'main.js?v=[0-9a-f]*' s.html | head -1 | sed 's/.*v=//'), strona.js $(grep -o 'js/strona.js?v=[0-9a-f]*' s.html | head -1 | sed 's/.*v=//'), baner $(grep -c 'id="cookies"\|id="cookieBanner"' s.html)"
+          for s in atrakcje-na-event atrakcje-na-impreze-firmowa wynajem-atrakcji-na-imprezy pomysly-na-impreze-firmowa wigilia-firmowa-pomysly integracja-firmowa-pomysly pokazy-na-event atrakcje-na-wesele zabawy-weselne ile-kosztuje-wesele; do
+            curl -s --max-time 30 -H 'Cache-Control: no-cache' "https://33bots.pl/$s.html" -o s.html
+            echo "$s: kod $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://33bots.pl/$s.html"), tytuł: $(grep -o '<title>[^<]*' s.html | cut -c8-), bajtów $(wc -c < s.html), css $(grep -o 'css/site.css?v=[0-9a-f]*' s.html | head -1 | sed 's/.*v=//'), strona.js $(grep -o 'js/strona.js?v=[0-9a-f]*' s.html | head -1 | sed 's/.*v=//'), FAQ $(grep -c 'FAQPage' s.html), 33bots-cmp $(grep -c 33bots-cmp s.html)"
           done
-          echo "oczekiwane: main.js 3f48f25c, strona.js d8d4525a"
-          for s in main.js js/strona.js; do curl -s --max-time 20 "https://33bots.pl/$s" -o x.js; echo "$s z serwera: $(wc -c < x.js) B, 33bots-cmp $(grep -c '33bots-cmp' x.js), consentboard $(grep -c 'consentboard' x.js)"; done
-      - name: Strony prawne — dostępność i CSP
+          echo "wideo w hubie: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -r 0-1000 https://33bots.pl/video/robot-taniec.mp4), og: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/og/atrakcje-na-event.jpg)"
+      - name: Przekierowanie, sitemapa, RSS, spis bloga, stopka
         run: |
           set +e
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/polityka-prywatnosci.html -o p.html -D h.txt
-          echo "polityka: tabela z fokusem $(grep -c 'overflow-x-auto" tabindex="0" role="region"' p.html), nagłówki tabeli jaśniejsze $(grep -c 'tracking-widest text-neutral-400' p.html), stare neutral-500/600 $(grep -c 'text-neutral-500\|text-neutral-600' p.html), iframe ConsentBoard $(grep -c 'cmp-cookies.php?id=e6931d15cd160334' p.html)"
-          csp=$(grep -i '^content-security-policy' h.txt | tr -d '\r')
-          for d in script-src frame-src; do echo "CSP $d zawiera consentboard: $(echo "$csp" | grep -o "$d [^;]*" | grep -c 'consentboard.com')"; done
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/regulamin.html -o r.html
-          echo "regulamin: stare neutral-500/600 $(grep -c 'text-neutral-500\|text-neutral-600' r.html), NIP $(grep -c 5253090645 r.html)"
-      - name: Kontener GTM — tagi Ads (numer bez przedrostka AW-) i ConsentBoard
+          echo "stary wpis: $(curl -s -o /dev/null -w '%{http_code} → %{redirect_url}' --max-time 20 https://33bots.pl/blog-atrakcja-na-event-firmowy.html)"
+          curl -s --max-time 20 https://33bots.pl/sitemap.xml -o sm.xml; echo "sitemap: adresów $(grep -c '<loc>' sm.xml), nowych $(grep -c 'ile-kosztuje-wesele\|zabawy-weselne\|atrakcje-na-wesele\|pokazy-na-event\|integracja-firmowa-pomysly\|wigilia-firmowa-pomysly\|pomysly-na-impreze-firmowa\|wynajem-atrakcji-na-imprezy\|atrakcje-na-impreze-firmowa' sm.xml), stary $(grep -c 'blog-atrakcja-na-event-firmowy' sm.xml)"
+          curl -s --max-time 20 https://33bots.pl/feed.xml -o f.xml; echo "feed: wpisów $(grep -c '<item>' f.xml), nowych $(grep -c 'ile-kosztuje-wesele\|zabawy-weselne' f.xml), poprawny XML: $(python3 -c "import xml.etree.ElementTree as E;E.parse('f.xml');print('tak')" 2>&1 | tail -1)"
+          curl -s --max-time 20 https://33bots.pl/blog.html -o b.html; echo "blog.html: tytuł $(grep -o '<title>[^<]*' b.html | cut -c8-), kafli przewodnika $(grep -c 'Czytaj poradnik' b.html), ItemList $(grep -c '"ListItem"' b.html)"
+          curl -s --max-time 20 https://33bots.pl/ -o g.html; echo "stopka strony głównej: linki do poradników $(grep -o 'href="[a-z-]*\.html"' g.html | grep -c 'atrakcje-na-event\|atrakcje-na-impreze-firmowa\|wynajem-atrakcji\|atrakcje-na-wesele\|ile-kosztuje-wesele')"
+          curl -s --max-time 20 https://33bots.pl/robot-na-wesele.html -o r.html; echo "robot-na-wesele: karta przewodnika $(grep -c 'Przewodnik eventowy' r.html)"
+          echo "llms.txt: $(curl -s --max-time 20 https://33bots.pl/llms.txt | grep -c 'Przewodnik eventowy')"
+      - name: IndexNow (Bing, Yandex, Seznam)
         run: |
           set +e
-          curl -s --max-time 30 'https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3' -o gtm.js
-          echo "gtm.js: $(wc -c < gtm.js) B, '18167851767': $(grep -o '18167851767' gtm.js | wc -l), etykiety tel/mail: $(grep -o 'HilICKPIk9scEPfVjddD\|VYQSCO7Am9scEPfVjddD' gtm.js | sort -u | tr '\n' ' '), consentboard: $(grep -o -i consentboard gtm.js | wc -l)"
+          KEY=9209ab0a2e014f2c808446b0b4b4271a
+          echo "plik klucza: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/$KEY.txt)"
+          LIST='["https://33bots.pl/atrakcje-na-event.html","https://33bots.pl/atrakcje-na-impreze-firmowa.html","https://33bots.pl/wynajem-atrakcji-na-imprezy.html","https://33bots.pl/pomysly-na-impreze-firmowa.html","https://33bots.pl/wigilia-firmowa-pomysly.html","https://33bots.pl/integracja-firmowa-pomysly.html","https://33bots.pl/pokazy-na-event.html","https://33bots.pl/atrakcje-na-wesele.html","https://33bots.pl/zabawy-weselne.html","https://33bots.pl/ile-kosztuje-wesele.html","https://33bots.pl/blog.html","https://33bots.pl/"]'
+          curl -s -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" -d "{\"host\":\"33bots.pl\",\"key\":\"$KEY\",\"keyLocation\":\"https://33bots.pl/$KEY.txt\",\"urlList\":$LIST}" -w "\nIndexNow HTTP %{http_code}\n"
