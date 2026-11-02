@@ -1,8 +1,7 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
-# Tym razem: 33bots.pl po dodaniu listy plików cookie ConsentBoard w polityce prywatności
-# i otwarciu CSP dla consentboard.com. Gałąź diagnoza-domen do usunięcia po teście.
+# Jednorazowe sprawdzenie z sieci GitHuba: czy ramka ConsentBoard pozwala się osadzić na 33bots.pl
+# (nagłówki X-Frame-Options / frame-ancestors) i co zawiera. Gałąź diagnoza-domen do usunięcia po teście.
 on:
   push:
     branches: [diagnoza-domen]
@@ -14,18 +13,13 @@ permissions:
 jobs:
   diagnoza:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      LC_ALL: C.UTF-8
+    timeout-minutes: 5
     steps:
-      - name: 33bots.pl — polityka prywatności i CSP
+      - name: Nagłówki ramki ConsentBoard
         run: |
           set +e
-          u=https://33bots.pl/polityka-prywatnosci.html
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' "$u" -o p.html -D h.txt
-          echo "polityka: kod $(head -1 h.txt | tr -d '\r'), iframe ConsentBoard $(grep -c 'consentboard.com/cmp-cookies.php?id=e6931d15cd160334' p.html), tytuł ramki $(grep -c 'title="Lista plików cookie' p.html), nagłówek $(grep -c '>Lista plików cookie<' p.html), GTM $(grep -c GTM-MR7R7CJ3 p.html)"
-          csp=$(grep -i '^content-security-policy' h.txt | tr -d '\r')
-          for d in script-src style-src img-src connect-src frame-src; do echo "CSP $d zawiera consentboard: $(echo "$csp" | grep -o "$d [^;]*" | grep -c 'consentboard.com')"; done
-          echo "ramka ConsentBoard z sieci: $(curl -s -o cb.html -w '%{http_code}' --max-time 20 'https://consentboard.com/cmp-cookies.php?id=e6931d15cd160334&embed=1'), $(wc -c < cb.html) B, X-Frame-Options: $(curl -s -I --max-time 20 'https://consentboard.com/cmp-cookies.php?id=e6931d15cd160334&embed=1' | grep -i -c 'x-frame-options\|frame-ancestors')"
-          echo "strona główna nadal ok: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/)"
-          echo "CSP .at i .lt (ten sam kontener GTM) zawiera consentboard: .at $(curl -s -I --max-time 20 https://33bots.at/ | grep -i '^content-security-policy' | grep -c consentboard), .lt $(curl -s -I --max-time 20 https://33bots.lt/ | grep -i '^content-security-policy' | grep -c consentboard)"
+          u='https://consentboard.com/cmp-cookies.php?id=e6931d15cd160334&embed=1'
+          curl -s -D h.txt -o b.html --max-time 20 -H 'Referer: https://33bots.pl/polityka-prywatnosci.html' -H 'Sec-Fetch-Dest: iframe' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: cross-site' "$u"
+          echo "--- nagłówki:"; grep -i -E '^(HTTP|x-frame-options|content-security-policy|content-type|set-cookie)' h.txt | cut -c1-300
+          echo "--- treść (pierwsze 1200 znaków bez HTML):"; sed 's/<[^>]*>/ /g' b.html | tr -s ' \n' ' ' | cut -c1-1200
+          echo; echo "--- czy w treści jest 33bots: $(grep -c -i 33bots b.html)"
