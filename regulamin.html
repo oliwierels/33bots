@@ -152,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="mx-auto max-w-3xl">
-    <nav class="reveal mb-8 text-[12px] text-neutral-600" aria-label="Ścieżka nawigacji">
+    <nav class="reveal mb-8 text-[12px] text-neutral-400" aria-label="Ścieżka nawigacji">
       <a href="index.html" class="transition hover:text-neutral-300">Strona główna</a>
       <span class="mx-2">/</span><span class="text-neutral-400">Regulamin</span>
     </nav>
@@ -224,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
       <div>
         <p class="font-display text-lg font-700 text-white">33BOTS</p>
-        <p class="mt-2 text-[13px] text-neutral-500">Roboty humanoidalne · wynajem, wdrożenia, sprzedaż</p>
+        <p class="mt-2 text-[13px] text-neutral-400">Roboty humanoidalne · wynajem, wdrożenia, sprzedaż</p>
         <div class="mt-4 flex gap-4 text-[13px] text-neutral-400">
           <a href="tel:+48531408004" class="transition hover:text-white">+48 531 408 004</a>
           <a href="mailto:kontakt@33bots.pl" class="transition hover:text-white">kontakt@33bots.pl</a>
@@ -243,7 +243,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">LinkedIn</a>
       </div>
     </div>
-    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-neutral-600">
+    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-neutral-400">
       <span>© 2026 33bots. Wszelkie prawa zastrzeżone.</span>
       <a href="regulamin.html" class="transition hover:text-neutral-300">Regulamin</a>
       <a href="polityka-prywatnosci.html" class="transition hover:text-neutral-300">Polityka prywatności</a>
@@ -287,9 +287,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nav.classList.toggle('border-line', scrollY > 20);
   }, { passive: true });
 
-  /* ——— Baner cookie ——— */
+  /* ——— Baner cookie ———
+     Zgody zbiera ConsentBoard (baner ładowany przez GTM). Nasz baner informacyjny znika,
+     gdy tylko skrypt ConsentBoard pojawi się na stronie, i w tej przeglądarce nie pokazuje
+     się więcej, dopóki ConsentBoard się ładuje. Bez ConsentBoard działa jak dawniej.
+     Ten sam kod co na stronie głównej. */
   const ciasteczka = document.getElementById('cookies');
-  if (!localStorage.getItem('33bots-cookies')) setTimeout(() => ciasteczka.classList.add('show'), 1400);
+  const pokazBaner = () => { if (!localStorage.getItem('33bots-cookies')) ciasteczka.classList.add('show'); };
+  const skryptCmp = (n) => n.nodeName === 'SCRIPT' && /^https:\/\/([^/]+\.)?consentboard\.[a-z]+\//i.test(n.src);
+  const cmpJest = () => Array.from(document.scripts).some(skryptCmp);
+  const cmpZastepuje = () => { localStorage.setItem('33bots-cmp', '1'); ciasteczka.remove(); };
+  if (cmpJest()) cmpZastepuje();
+  else {
+    new MutationObserver((zmiany, obs) => {
+      if (zmiany.some((z) => Array.from(z.addedNodes).some(skryptCmp))) { obs.disconnect(); cmpZastepuje(); }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+    if (localStorage.getItem('33bots-cmp')) {
+      // ConsentBoard był tu wcześniej, ale 8 s po wejściu wciąż go nie ma: wracamy do naszego banera.
+      setTimeout(() => { if (!cmpJest()) { localStorage.removeItem('33bots-cmp'); pokazBaner(); } }, 8000);
+    } else {
+      setTimeout(pokazBaner, 1400);
+    }
+  }
   document.getElementById('cookiesOk').addEventListener('click', () => {
     localStorage.setItem('33bots-cookies', '1');
     ciasteczka.classList.remove('show');

@@ -662,7 +662,7 @@ class Strona:
                "      if (typeof gtag === 'function' && document.documentElement.lang === 'pl') {\n"
                "        gtag('event', 'conversion', { send_to: 'AW-18167851767/BdKnCOr2uqQdEPfVjddD' });\n      }\n", '')
         if not r['cookies']:
-            zamien(wycinek('  /* ——— Baner cookie (logika bez zmian) ——— */', '  });\n\n', s), '')
+            zamien(wycinek('  /* ——— Baner cookie ———', '  });\n\n', s), '')
         if r['panel_dostepnosci']:
             zamien("const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;",
                    "// „Animationen: Aus” w panelu dostępności działa jak ograniczony ruch w systemie.\n"

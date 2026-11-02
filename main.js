@@ -109,12 +109,28 @@ window.addEventListener('scroll', () => {
 handleScroll();
 
 // ── COOKIE BANNER ─────────────────────────────────────────────
-// Logika banera bez zmian; warunek chroni tylko strony, na których banera nie ma (404).
+// Zgody zbiera ConsentBoard (baner ładowany przez GTM): nasz baner informacyjny znika,
+// gdy tylko skrypt ConsentBoard pojawi się na stronie, i w tej przeglądarce nie pokazuje
+// się więcej, dopóki ConsentBoard się ładuje. Bez ConsentBoard działa jak dawniej.
+// Warunek chroni strony, na których banera nie ma (404). Ten sam kod co na stronie głównej.
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
 if (cookieBanner && cookieAccept) {
-  if (!localStorage.getItem('33bots-cookies')) {
-    setTimeout(() => cookieBanner.classList.add('visible'), 1200);
+  const pokazBaner = () => { if (!localStorage.getItem('33bots-cookies')) cookieBanner.classList.add('visible'); };
+  const skryptCmp = (n) => n.nodeName === 'SCRIPT' && /^https:\/\/([^/]+\.)?consentboard\.[a-z]+\//i.test(n.src);
+  const cmpJest = () => Array.from(document.scripts).some(skryptCmp);
+  const cmpZastepuje = () => { localStorage.setItem('33bots-cmp', '1'); cookieBanner.remove(); };
+  if (cmpJest()) cmpZastepuje();
+  else {
+    new MutationObserver((zmiany, obs) => {
+      if (zmiany.some((z) => Array.from(z.addedNodes).some(skryptCmp))) { obs.disconnect(); cmpZastepuje(); }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+    if (localStorage.getItem('33bots-cmp')) {
+      // ConsentBoard był tu wcześniej, ale 8 s po wejściu wciąż go nie ma: wracamy do naszego banera.
+      setTimeout(() => { if (!cmpJest()) { localStorage.removeItem('33bots-cmp'); pokazBaner(); } }, 8000);
+    } else {
+      setTimeout(pokazBaner, 1200);
+    }
   }
   cookieAccept.addEventListener('click', () => {
     localStorage.setItem('33bots-cookies', '1');
