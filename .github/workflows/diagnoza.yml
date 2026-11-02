@@ -1,6 +1,8 @@
 name: Diagnoza domen 33bots (jednorazowa)
 
-# Jednorazowe sprawdzenie z sieci GitHuba: polityka prywatności 33bots.pl po poprawce tła ramki ConsentBoard.
+# Jednorazowe sprawdzenie z sieci GitHuba, bo sesja Claude nie ma dostępu do internetu.
+# Tym razem: czy opublikowany kontener GTM-MR7R7CJ3 ładuje już baner ConsentBoard
+# (i spod jakiego adresu), żeby nasz baner cookie wiedział, po czym go poznać.
 on:
   push:
     branches: [diagnoza-domen]
@@ -13,9 +15,30 @@ jobs:
   diagnoza:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      LC_ALL: C.UTF-8
     steps:
-      - name: Polityka prywatności na żywo
+      - name: Kontener GTM-MR7R7CJ3 na żywo
         run: |
           set +e
-          curl -s --max-time 30 -H 'Cache-Control: no-cache' https://33bots.pl/polityka-prywatnosci.html -o p.html
-          echo "ramka z białym tłem: $(grep -c 'min-height:1600px;background:#ffffff' p.html), iframe ConsentBoard: $(grep -c 'cmp-cookies.php?id=e6931d15cd160334' p.html), kod: $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://33bots.pl/polityka-prywatnosci.html)"
+          curl -s --max-time 30 'https://www.googletagmanager.com/gtm.js?id=GTM-MR7R7CJ3' -o gtm.js
+          echo "gtm.js: $(wc -c < gtm.js) B, 'consentboard': $(grep -o -i consentboard gtm.js | wc -l), 'consent': $(grep -o -i consent gtm.js | wc -l)"
+          echo "adresy z consentboard w kontenerze:"
+          grep -o -i -E '[a-z0-9./_:?=&%-]*consentboard[a-z0-9./_:?=&%-]*' gtm.js | sort -u | head -20
+          echo "inne CMP w kontenerze: $(grep -o -i -E 'cookiebot|consentmanager|onetrust|iubenda|cookieyes|usercentrics|cookie-script|cookiefirst' gtm.js | sort | uniq -c | tr '\n' ';')"
+          echo "tagi Ads/GA4/Albacross nadal: AW $(grep -o 'AW-18167851767' gtm.js | wc -l), G- $(grep -o 'G-MNE9Y0S9QV' gtm.js | wc -l), albacross $(grep -o -i albacross gtm.js | wc -l)"
+      - name: ConsentBoard — spod jakiej domeny ładuje skrypty
+        run: |
+          set +e
+          curl -s --max-time 20 'https://consentboard.com/cmp-cookies.php?id=e6931d15cd160334&embed=1' -o cb.html
+          echo "ramka: $(wc -c < cb.html) B; adresy skryptów i zasobów:"
+          grep -o -E 'https?://[a-z0-9.-]+/[^"'"'"' )]*\.(js|css)[^"'"'"' )]*' cb.html | sort -u | head -20
+          curl -s --max-time 20 -L 'https://consentboard.com/' -o home.html
+          echo "strona główna ConsentBoard: $(wc -c < home.html) B; fragmenty z 'script' i 'cmp':"
+          grep -o -i -E '<script[^>]*src="[^"]*"' home.html | sort -u | head -10
+          grep -o -i -E 'https?://[a-z0-9.-]*consentboard[a-z0-9.-]*/[a-z0-9./_-]*\.js[^"'"'"' <]*' home.html cb.html | sort -u | head -10
+      - name: 33bots.pl — baner dziś
+        run: |
+          set +e
+          curl -s --max-time 20 https://33bots.pl/ -o g.html
+          echo "strona główna: id=cookies $(grep -c 'id="cookies"' g.html), 33bots-cmp $(grep -c '33bots-cmp' g.html), GTM $(grep -c GTM-MR7R7CJ3 g.html)"
