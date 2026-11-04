@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "google-analytics": {
+      "command": "bash",
+      "args": ["scripts/analityka/mcp-ga4.sh"]
+    },
+    "clarity": {
+      "command": "bash",
+      "args": ["scripts/analityka/mcp-clarity.sh"]
+    }
+  }
+}

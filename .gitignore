@@ -5,3 +5,11 @@ IMG_*.HEIC
 IMG_*.DNG
 IMG_*.JPG
 IMG_*.PNG
+
+# Analityka: dane z GA4, Search Console i Clarity NIGDY do repozytorium (jest publiczne),
+# tak samo klucze kont usług. Archiwum trzymamy poza repo (~/33bots-analityka-dane) i w BigQuery.
+scripts/analityka/dane/
+*.csv.gz
+*-sa.json
+*service-account*.json
+klucz*.json
