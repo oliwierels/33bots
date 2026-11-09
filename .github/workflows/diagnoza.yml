@@ -32,6 +32,11 @@ jobs:
           curl -s "https://33bots.pl/" | grep -c -E 'glowna\.css|robot3d\.js|data-scena|100\+' | tee -a badania/wyniki/zywo/naglowki.txt
       - name: Strona główna na żywo — robot 3D, zrzuty
         run: node badania/zywo.mjs badania/wyniki/zywo
+      - name: IndexNow — zmienione strony
+        run: |
+          curl -s -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" \
+            -d '{"host":"33bots.pl","key":"9209ab0a2e014f2c808446b0b4b4271a","keyLocation":"https://33bots.pl/9209ab0a2e014f2c808446b0b4b4271a.txt","urlList":["https://33bots.pl/","https://33bots.pl/atrakcje-na-impreze-firmowa.html","https://33bots.pl/pomysly-na-impreze-firmowa.html","https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html"]}' \
+            -w "IndexNow HTTP %{http_code}\n" | tee badania/wyniki/zywo/indexnow.txt
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"

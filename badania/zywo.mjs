@@ -17,14 +17,16 @@ for (const [nazwa, opcje] of [['komputer', { viewport: { width: 1440, height: 90
   await p.waitForTimeout(4500);
   const stan = await p.evaluate(() => ({ robot: document.documentElement.dataset.robot || 'brak sygnału', klasy: document.documentElement.className,
     h1: document.querySelector('h1')?.textContent, cyfry: document.querySelector('.skala__cyfry')?.textContent, canvas: !!document.querySelector('canvas.robot3d'),
-    cena: document.getElementById('kalkKwota')?.textContent }));
+    cena: document.getElementById('kalkKwota')?.textContent, obietnica: document.querySelector('.termin__obietnica')?.textContent, zasady: !!document.getElementById('zasady') }));
   await p.screenshot({ path: `${kat}/${nazwa}-hero.png` });
-  for (const [plik, sel] of [['skala', '.skala__liczba'], ['wystep', '.wiersz[data-poza="mowi"]'], ['formaty', '#formaty']]) {
+  const tanczy = p.locator('[data-robot-gest="tanczy"]');
+  if (await tanczy.isVisible().catch(() => false)) { await tanczy.click(); await p.waitForTimeout(1800); await p.screenshot({ path: `${kat}/${nazwa}-tanczy.png` }); await p.waitForTimeout(3500); }
+  for (const [plik, sel] of [['skala', '.skala__liczba'], ['zasady', '#zasady'], ['kontakt-z-goscmi', '.zasady + .zasady__grupa'], ['wystep', '.wiersz[data-poza="mowi"]'], ['formaty', '#formaty']]) {
     await p.evaluate((s) => { const e = document.querySelector(s); scrollTo({ top: scrollY + e.getBoundingClientRect().top - innerHeight * 0.35, behavior: 'instant' }); }, sel);
     await p.waitForTimeout(1800);
     await p.screenshot({ path: `${kat}/${nazwa}-${plik}.png` });
   }
-  raport[nazwa] = { ...stan, bledy, zasoby };
+  raport[nazwa] = { ...stan, bledy, zasoby: zasoby.filter(([, u]) => /robot|glowna/.test(u.split('?')[0])) };
   await ctx.close();
 }
 fs.writeFileSync(`${kat}/raport.json`, JSON.stringify(raport, null, 1));
