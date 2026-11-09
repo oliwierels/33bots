@@ -228,7 +228,9 @@ test.describe('CTA w hero i rezerwacja', () => {
     await expect(termin).not.toHaveClass(/termin--gotowe/);
     const karta = page.locator('.rez .rez__form');
     await karta.scrollIntoViewIfNeeded();
-    const r = await karta.boundingBox();
+    // html ma scroll-behavior: smooth — czekamy, aż karta przestanie się przesuwać
+    let r = await karta.boundingBox();
+    for (let i = 0; i < 30; i++) { await page.waitForTimeout(100); const n = await karta.boundingBox(); if (n.y === r.y) break; r = n; }
     await page.mouse.move(r.x + 120, r.y + 200);
     await expect.poll(() => karta.evaluate((e) => [e.style.getPropertyValue('--sx'), e.style.getPropertyValue('--sy')])).toEqual(['120px', '200px']);
     await page.mouse.move(5, 5);
