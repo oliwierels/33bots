@@ -33,13 +33,13 @@
   "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
   "skrypty": [
    "https://33bots.pl/js/glowna.js?v=e2370ccc",
-   "https://33bots.pl/js/robot3d.js?v=ff31f06f"
+   "https://33bots.pl/js/robot3d.js?v=75f2105a"
   ],
   "wiedza": [
-   "PROGRAM",
-   "PRELEGENCI",
+   "WYDARZENIE",
+   "TWOJA FIRMA",
    "OFERTA",
-   "PYTANIA"
+   "PYTANIA GOŚCI"
   ],
   "bledy": []
  },
@@ -77,13 +77,13 @@
   "obietnica": "Ohne Anzahlung, Sie zahlen nach der Veranstaltung. Antwort in ca. 30 Minuten.",
   "skrypty": [
    "https://33bots.de/js/glowna.js?v=047daefa",
-   "https://33bots.de/js/robot3d.js?v=0e681a70"
+   "https://33bots.de/js/robot3d.js?v=5f86088c"
   ],
   "wiedza": [
-   "PROGRAMM",
-   "REDNER",
+   "VERANSTALTUNG",
+   "IHRE FIRMA",
    "ANGEBOT",
-   "FRAGEN"
+   "GÄSTEFRAGEN"
   ],
   "bledy": []
  },
@@ -121,11 +121,11 @@
   "obietnica": "Be avanso, mokate po renginio. Atsakome maždaug per 30 minučių.",
   "skrypty": [
    "https://33bots.lt/js/glowna.js?v=a0f1dec1",
-   "https://33bots.lt/js/robot3d.js?v=eb02179c"
+   "https://33bots.lt/js/robot3d.js?v=dd1a6b0c"
   ],
   "wiedza": [
-   "PROGRAMA",
-   "PRANEŠĖJAI",
+   "RENGINYS",
+   "JŪSŲ ĮMONĖ",
    "PASLAUGOS",
    "KLAUSIMAI"
   ],
