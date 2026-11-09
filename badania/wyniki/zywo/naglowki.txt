@@ -2,19 +2,19 @@
 HTTP/2 200 
 content-type: text/html
 content-encoding: br
-content-length: 25989
-== /js/robot3d.js?v=3fd978f3
+content-length: 25998
+== /js/robot3d.js?v=40bf2aee
 HTTP/2 200 
 cache-control: public, max-age=604800
 content-type: application/javascript
 content-encoding: br
-content-length: 14016
+content-length: 15141
 == /css/glowna.css
 HTTP/2 200 
 cache-control: public, max-age=604800
 content-type: text/css
 content-encoding: br
-content-length: 5372
+content-length: 5449
 == /robot/g1.bin
 HTTP/2 200 
 content-type: application/octet-stream

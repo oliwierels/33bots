@@ -1,0 +1,100 @@
+{
+ "bledy": [],
+ "probki": [
+  {
+   "prawyBark": 0.18,
+   "lewyBark": 0.18,
+   "pas": 0,
+   "dymek": ""
+  },
+  {
+   "prawyBark": 0.18,
+   "lewyBark": 0.18,
+   "pas": 0,
+   "dymek": ""
+  },
+  {
+   "prawyBark": -0.86,
+   "lewyBark": 0.18,
+   "pas": -0.09,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": -1,
+   "lewyBark": 0.18,
+   "pas": -0.1,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": -1,
+   "lewyBark": 0.18,
+   "pas": -0.1,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": -1,
+   "lewyBark": 0.18,
+   "pas": -0.1,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": -1,
+   "lewyBark": 0.18,
+   "pas": -0.1,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": -0.02,
+   "lewyBark": 0.18,
+   "pas": -0.02,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": 0.16,
+   "lewyBark": 0.18,
+   "pas": 0,
+   "dymek": "Cześć! Miło Cię widz"
+  },
+  {
+   "prawyBark": 0.18,
+   "lewyBark": 0.18,
+   "pas": 0,
+   "dymek": "Idę do Twoich gości!"
+  },
+  {
+   "prawyBark": -0.19,
+   "lewyBark": 0.55,
+   "pas": 0.09,
+   "dymek": "Idę do Twoich gości!"
+  },
+  {
+   "prawyBark": 0.62,
+   "lewyBark": -0.26,
+   "pas": -0.1,
+   "dymek": "Idę do Twoich gości!"
+  },
+  {
+   "prawyBark": -0.22,
+   "lewyBark": 0.58,
+   "pas": 0.09,
+   "dymek": "Idę do Twoich gości!"
+  },
+  {
+   "prawyBark": 0.39,
+   "lewyBark": -0.03,
+   "pas": -0.05,
+   "dymek": "Idę do Twoich gości!"
+  },
+  {
+   "prawyBark": 0.11,
+   "lewyBark": 0.25,
+   "pas": 0.02,
+   "dymek": "Idę do Twoich gości!"
+  }
+ ],
+ "zakres": [
+  1.62,
+  0.84,
+  0.19
+ ]
+}
