@@ -36,9 +36,19 @@ for (const [kod, adres, machanie] of RYNKI) {
     tel: document.querySelector('a[href^="tel:"]')?.getAttribute('href'),
     obietnica: document.querySelector('.termin__obietnica')?.textContent.trim(),
     skrypty: [...document.scripts].map((s) => s.src).filter((s) => /glowna|robot3d/.test(s)),
+    wiedza: [...document.querySelectorAll('[data-animacja="wiedza"] text')].map((t) => t.textContent),
   }));
   wynik[kod] = { http: odp.status(), robot, dymek, dymekOk: dymek === machanie, ...dane, bledy };
   await p.close();
+  // telefon (iPhone 13): robot w sekcji „z bliska” — bez prześwietlenia
+  const { devices } = await import('playwright');
+  const t = await b.newContext({ ...devices['iPhone 13'] });
+  const pt = await t.newPage();
+  await pt.goto(adres + '?t=' + Date.now(), { waitUntil: 'load' });
+  await pt.evaluate(() => { document.getElementById('cookies')?.remove(); const r = document.getElementById('robot'); scrollTo(0, r.getBoundingClientRect().top + scrollY + 10); });
+  await pt.waitForTimeout(7000);
+  await pt.screenshot({ path: `badania/wyniki/zywo/telefon-${kod}.png` });
+  await t.close();
 }
 fs.writeFileSync('badania/wyniki/zywo/rynki.json', JSON.stringify(wynik, null, 1));
 console.log(JSON.stringify(wynik, null, 1));
