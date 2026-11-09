@@ -176,7 +176,7 @@ class Strona:
         for m in re.finditer(r'<div class="pas" data-predkosc="(\d+)" data-kierunek="(-?1)">(.*?)</ul>', grupa, re.S):
             kadry = re.findall(r'data-cs="([^"]+)"><picture><source type="image/webp" srcset="([a-z0-9-]+)-400\.webp', m.group(3))
             rzedy.append((m.group(1), m.group(2), kadry))
-        assert len(rzedy) == 3 and all(k for _, _, k in rzedy), 'nie rozpoznano pasów na stronie PL'
+        assert len(rzedy) >= 2 and all(k for _, _, k in rzedy), 'nie rozpoznano pasów na stronie PL'
         return rzedy
 
     def nazwy_pl(self):

@@ -24,7 +24,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
 
     test('kolejność sekcji, numeracja i aliasy kotwic', async ({ page }) => {
       await otworz(page, vp);
-      const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.className));
+      const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.classList[0]));
       expect(kolejnosc).toEqual(['hero', 'proof', ...['realizacje', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt']]);
       const numery = await page.evaluate(() => [...document.querySelectorAll('.sec .sec__meta')].map((m) => m.textContent.trim().slice(0, 7)));
       expect(numery).toEqual(['04 / 11', '05 / 11', '06 / 11', '07 / 11', '08 / 11', '09 / 11', '10 / 11']);
@@ -395,6 +395,9 @@ test.describe('hero — rotacja zdjęć z realizacji', () => {
   test('co 3 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
     const page = await ctx.newPage();
+    // Robot 3D rysuje co klatkę — przy przesuwanym zegarze test trwałby minuty. Rotację zdjęć
+    // sprawdzamy bez niego (strona wraca wtedy do zdjęcia w hero, ten sam skrypt rotacji).
+    await page.route('**/robot/*.bin*', (r) => r.abort());
     await page.clock.install();
     await page.goto(ADRES);
     await page.waitForLoadState('load');
@@ -501,7 +504,8 @@ test('treść: branding zamiast stroju, robot mówi w każdym języku', async ({
   await expect(lead).toContainText('branding w cenie');
   await expect(page.locator('#wystep')).toContainText('na Litwie, w Niemczech, Czechach i Rumunii');
   await expect(page.locator('#faq-5')).toContainText('w każdym innym języku');
-  await expect(page.locator('#realizacje')).toContainText('ponad 40 wydarzeń w pięciu krajach');
+  await expect(page.locator('#realizacje')).toContainText('ponad 100 wydarzeń w pięciu krajach');
+  await expect(page.locator('.skala__cyfry')).toHaveText('100+');
   await expect(page.locator('#wystep')).toContainText('przełącza się między językami');
   const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(' '));
   expect(ld).not.toMatch(/\bstr[óo]j/i);
@@ -527,12 +531,19 @@ test.describe('pasy realizacji i klientów', () => {
       const a = await przesuniecia(page);
       await page.waitForTimeout(1200);
       const b = await przesuniecia(page);
-      for (const i of [0, 1, 2]) {
+      for (const i of [0, 1]) { // dwa rzędy zdjęć
         expect(Math.abs(b[i].x - a[i].x), `rząd ${i + 1} stoi`).toBeGreaterThan(10);
         expect(a[i].pokrywa && b[i].pokrywa, `rząd ${i + 1} ma koniec`).toBe(true);
       }
-      // kierunki na przemian
-      expect(Math.sign(b[0].x - a[0].x)).not.toBe(Math.sign(b[1].x - a[1].x) || 0);
+      // kierunki na przemian — w krótkim odstępie, a pomiar z zawinięciem toru (skok o cały komplet) powtarzamy
+      let kierunki = null;
+      for (let proba = 0; proba < 5 && !kierunki; proba++) {
+        const p0 = await przesuniecia(page); await page.waitForTimeout(250); const p1 = await przesuniecia(page);
+        const d = [0, 1].map((i) => p1[i].x - p0[i].x);
+        if (d.every((x) => Math.abs(x) > 0.5 && Math.abs(x) < 200)) kierunki = d.map(Math.sign);
+      }
+      expect(kierunki, 'oba rzędy jadą bez zawinięcia').not.toBeNull();
+      expect(kierunki[0]).not.toBe(kierunki[1]);
 
       // kopie: ukryte przed czytnikiem, poza kolejnością Tab; oryginały bez powtórzeń
       const kopie = await page.evaluate(() => {
@@ -553,7 +564,7 @@ test.describe('pasy realizacji i klientów', () => {
       await page.mouse.move(2, 2); await page.locator('body').evaluate(() => document.activeElement.blur());
       await page.waitForTimeout(1500);
       const c = await przesuniecia(page); await page.waitForTimeout(800); const d = await przesuniecia(page);
-      for (const i of [0, 1, 2]) expect(d[i].x, `rząd ${i + 1} po pauzie`).toBe(c[i].x);
+      for (const i of [0, 1]) expect(d[i].x, `rząd ${i + 1} po pauzie`).toBe(c[i].x);
       await pauza.click();
       await expect(pauza).toHaveText('Zatrzymaj ruch');
       await ctx.close();
@@ -591,7 +602,7 @@ test.describe('pasy realizacji i klientów', () => {
     await page.goto(ADRES);
     const rzedy = await page.evaluate(() => [...document.querySelectorAll('.pasy[data-grupa="zdjecia"] .pas')]
       .map((pas) => [...pas.querySelectorAll('.pas__tor > li:not([data-kopia]) [data-cs]')].map((b) => b.dataset.cs)));
-    expect(rzedy.length).toBeGreaterThanOrEqual(3);
+    expect(rzedy.length).toBe(2); // dwa pasy zdjęć — zdjęcia nie są jedyną atrakcją strony
     for (const r of rzedy) r.forEach((cs, i) => expect(cs, r.join(' ')).not.toBe(r[(i + 1) % r.length]));
     const nazwy = await page.locator('.pasy[data-grupa="nazwy"] .pas__tor > li:not([data-kopia])').allInnerTexts();
     expect(nazwy.length).toBe(40);

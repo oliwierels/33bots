@@ -12,7 +12,8 @@ export default defineConfig({
   timeout: 90_000,
   workers: 2,
   reporter: [['list']],
-  use: { browserName: 'chromium' },
+  // PW_CHROMIUM: ścieżka do Chromium, gdy w systemie jest inna wersja niż ta, której oczekuje Playwright.
+  use: { browserName: 'chromium', launchOptions: process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {} },
   webServer: {
     command: 'python3 -m http.server 8080 --bind 127.0.0.1 --directory ..',
     url: 'http://127.0.0.1:8080/',

@@ -52,6 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="css/site.css?v=f76abb77" />
+<link rel="stylesheet" href="css/glowna.css?v=29a2ca5e" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -237,7 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ HERO ══════════
      Nowy markup, wyłącznie klasy z css/site.css — stare reguły go nie dotykają. -->
-<section class="hero" aria-labelledby="hero-label">
+<section class="hero hero--scena" aria-labelledby="hero-label">
   <div class="hero__text">
     <h1 id="hero-label" class="label">Wynajem robota humanoidalnego na wydarzenia</h1>
     <p class="display">Najczęściej fotografowany gość Twojego wydarzenia.</p>
@@ -255,8 +256,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="link" href="realizacje-wideo.html">Zobacz realizacje</a>
     </div>
   </div>
+  <!-- Scena: robot z punktów (js/robot3d.js) wypełnia to pole. Bez WebGL i bez JS
+       pole zajmuje karta ze zdjęciami z realizacji, jak dawniej całe hero. -->
+  <div class="hero__scena" data-scena="hero">
+    <div class="hud-warstwa" aria-hidden="true">
+      <p class="hud" data-hud="glowa"><span class="hud__kreska"></span><span class="hud__tekst">Mówi w&nbsp;każdym języku</span></p>
+      <p class="hud" data-hud="piers"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo i&nbsp;kod QR na piersi</span></p>
+    </div>
+    <p class="hero__chwyc label" aria-hidden="true">Przeciągnij, żeby obrócić</p>
+  </div>
   <figure class="hero__media" id="heroMedia">
-    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" fetchpriority="high" decoding="async" width="900" height="1200">
+    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" decoding="async" width="900" height="1200">
     <figcaption class="hero__podpis">
       <span class="label" id="heroLicznik">01 / 06</span>
       <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
@@ -265,7 +275,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </figure>
 </section>
 
-<section class="proof" aria-label="Widziani w">
+<section class="proof" aria-label="Skala i media">
+  <div class="skala">
+    <div class="skala__liczba" data-scena="liczba">
+      <p class="skala__cyfry" data-tekst>100+</p>
+      <p class="skala__opis">wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe</p>
+    </div>
+    <dl class="skala__fakty">
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="5">5</span></dt><dd class="fakt__opis">krajów: Polska, Litwa, Niemcy, Czechy, Rumunia</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="3">3</span>&nbsp;×&nbsp;TVP</dt><dd class="fakt__opis">„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="0">0</span>&nbsp;zł</dt><dd class="fakt__opis">zaliczki — fakturę wystawiamy po wydarzeniu</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="24">24</span>&nbsp;h</dt><dd class="fakt__opis">na odpowiedź z&nbsp;ceną, zwykle tego samego dnia</dd></div>
+    </dl>
+  </div>
   <p class="label proof__label">Widziani w</p>
   <ul class="proof__list">
     <li><a href="https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151" target="_blank" rel="noopener">Pytanie na śniadanie, TVP2 <span class="proof__note">0:35–1:00</span></a></li>
@@ -282,7 +304,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sec__glowa wejscie">
       <p class="label sec__meta">04 / 11 · Na sali</p>
       <h2 id="realizacje-h" class="h2">Na sali</h2>
-      <p class="body">Od balu w&nbsp;drezdeńskim pałacu i&nbsp;targów MSPO po gminną paradę i&nbsp;wesele — ponad 40 wydarzeń w&nbsp;pięciu krajach. Kliknij kadr, żeby zobaczyć, co robił robot.</p>
+      <p class="body">Od balu w&nbsp;drezdeńskim pałacu i&nbsp;targów MSPO po gminną paradę i&nbsp;wesele — ponad 100 wydarzeń w&nbsp;pięciu krajach. Kliknij kadr, żeby zobaczyć, co robił robot.</p>
     </div>
     <div class="nasali wejscie">
       <div class="nasali__duzy">
@@ -329,16 +351,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><button class="realizacja" type="button" data-cs="gonia-auto"><picture><source type="image/webp" srcset="realizacja-robot-w-deszczu-400.webp 400w, realizacja-robot-w-deszczu.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce z parasolem przed salonem samochodowym" width="900" height="1200" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Gonia Auto</span><span class="realizacja__opis">salon samochodowy</span></button></li>
         <li><button class="realizacja" type="button" data-cs="dream-med"><picture><source type="image/webp" srcset="realizacja-dream-med-expo-400.webp 400w, realizacja-dream-med-expo.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-dream-med-expo.jpg" alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Dream-Med</span><span class="realizacja__opis">Warsaw Medical Expo · 2026</span></button></li>
         <li><button class="realizacja" type="button" data-cs="lexai"><picture><source type="image/webp" srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" width="900" height="1186" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">LEX AI</span><span class="realizacja__opis">Długi Targ · Gdańsk</span></button></li>
-      </ul>
-    </div>
-    <div class="pas" data-predkosc="23" data-kierunek="-1">
-      <ul class="pas__tor">
         <li><button class="realizacja" type="button" data-cs="matys"><picture><source type="image/webp" srcset="realizacja-matys-stoisko-400.webp 400w, realizacja-matys-stoisko.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-matys-stoisko.jpg" alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Matys Development</span><span class="realizacja__opis">targi nieruchomości · Szczecin</span></button></li>
-        <li><button class="realizacja" type="button" data-cs="jednorozec"><picture><source type="image/webp" srcset="realizacja-jednorozec-zachod-400.webp 400w, realizacja-jednorozec-zachod.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-jednorozec-zachod.jpg" alt="Robot humanoidalny na plenerowej paradzie o zachodzie słońca" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Gmina Jednorożec</span><span class="realizacja__opis">Parada Jednorożców</span></button></li>
-        <li><button class="realizacja" type="button" data-cs="loza"><picture><source type="image/webp" srcset="realizacja-spotkanie-biznesowe-400.webp 400w, realizacja-spotkanie-biznesowe.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-spotkanie-biznesowe.jpg" alt="Robot humanoidalny w koszulce Loży Przedsiębiorców na tarasie" width="900" height="1200" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Loża Przedsiębiorców</span><span class="realizacja__opis">Mikołajki</span></button></li>
         <li><button class="realizacja" type="button" data-cs="szkola-kosmos"><picture><source type="image/webp" srcset="realizacja-szkola-kosmos-scena-400.webp 400w, realizacja-szkola-kosmos-scena.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-szkola-kosmos-scena.jpg" alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Szkoła Kosmos</span><span class="realizacja__opis">rozpoczęcie roku · Majaland</span></button></li>
-        <li><button class="realizacja" type="button" data-cs="yeah-gym"><picture><source type="image/webp" srcset="realizacja-yeah-gym-trening-400.webp 400w, realizacja-yeah-gym-trening.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-yeah-gym-trening.jpg" alt="Robot humanoidalny obok trenerki w klubie fitness" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">YEAH GYM</span><span class="realizacja__opis">klub fitness · Wrocław</span></button></li>
-        <li><button class="realizacja" type="button" data-cs="tet-trung-thu"><picture><source type="image/webp" srcset="realizacja-tet-trung-thu-400.webp 400w, realizacja-tet-trung-thu.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-tet-trung-thu.jpg" alt="Robot humanoidalny w galowej oprawie podczas Święta Środka Jesieni" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Tết Trung Thu</span><span class="realizacja__opis">Święto Środka Jesieni</span></button></li>
       </ul>
     </div>
   </div>
@@ -415,42 +429,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ 05 JAK PROJEKTUJEMY WYSTĘP ══════════ -->
-<section id="wystep" class="sec" aria-labelledby="wystep-h">
+<!-- Robot z hero gra tu kolejne kroki: aktywny krok (najbliżej środka ekranu) ustawia
+     data-poza sekcji, a js/robot3d.js zmienia pozę. Na telefonie scena przykleja się
+     pod nawigacją, a kroki przewijają się pod nią. -->
+<section id="wystep" class="sec" aria-labelledby="wystep-h" data-poza="wita">
   <span class="kotwica" id="uslugi"></span><span class="kotwica" id="mozliwosci"></span>
-  <div class="wrap grid12">
-    <div class="wystep__glowa wejscie">
-      <p class="label sec__meta">05 / 11 · Występ</p>
-      <h2 id="wystep-h" class="h2">Jak projektujemy występ</h2>
-      <p class="body">Ten sam model robota może stać w&nbsp;kącie jako dekoracja albo prowadzić galę. Różnicę robi przygotowanie: charakter, rozmowa i&nbsp;reakcje na salę, które dopracowaliśmy na ponad 40 wydarzeniach — od korporacyjnych konferencji po pikniki.</p>
+  <div class="wrap grid12 wystep">
+    <div class="wystep__lewa">
+      <div class="wystep__glowa wejscie">
+        <p class="label sec__meta">05 / 11 · Występ</p>
+        <h2 id="wystep-h" class="h2">Jak projektujemy występ</h2>
+      </div>
+      <div class="wystep__scena" data-scena="wystep" aria-hidden="true">
+        <p class="wystep__krok label"><span id="wystepNr">01</span> / 05 · <span id="wystepNazwa">Charakter</span></p>
+        <p class="wystep__jezyk" id="wystepJezyk">Dzień dobry</p>
+        <p class="wystep__rec label"><span class="wystep__kropka"></span>REC <span id="wystepCzas">00:00:00</span></p>
+        <span class="wystep__rog wystep__rog--1"></span><span class="wystep__rog wystep__rog--2"></span><span class="wystep__rog wystep__rog--3"></span><span class="wystep__rog wystep__rog--4"></span>
+        <p class="hud hud--scena" data-hud="piers" data-hud-poza="branding"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo</span></p>
+      </div>
     </div>
+    <div class="wystep__prawa">
+      <p class="body wystep__wstep wejscie">Ten sam model robota może stać w&nbsp;kącie jako dekoracja albo prowadzić galę. Różnicę robi przygotowanie: charakter, rozmowa i&nbsp;reakcje na salę, które dopracowaliśmy na ponad 100 wydarzeniach — od korporacyjnych konferencji po pikniki.</p>
     <ol class="wiersze wejscie">
-      <li class="wiersz">
+      <li class="wiersz" data-poza="wita">
         <span class="label wiersz__nr">01</span>
         <div><h3 class="h3">Charakter</h3>
           <p class="body">Ustalamy, jak robot ma się zachowywać: elegancki konferansjer, luźny i&nbsp;żartobliwy albo rzeczowy ekspert. Największe wrażenie robi zwykle moment, w&nbsp;którym nawiązuje do czegoś, co dzieje się akurat na sali.</p></div>
       </li>
-      <li class="wiersz">
+      <li class="wiersz" data-poza="mowi">
         <span class="label wiersz__nr">02</span>
         <div><h3 class="h3">Głos i&nbsp;wiedza</h3>
           <p class="body">Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnie, bez sztucznego, robotycznego brzmienia, a&nbsp;w&nbsp;trakcie jednego wydarzenia przełącza się między językami. Pracowaliśmy na wydarzeniach w&nbsp;Polsce, na Litwie, w&nbsp;Niemczech, Czechach i&nbsp;Rumunii. Wita gości, odpowiada na pytania i&nbsp;zapowiada punkty programu. Wgrywamy wiedzę o&nbsp;wydarzeniu: kto występuje, co jest w&nbsp;programie i&nbsp;z&nbsp;jakiej okazji się spotykacie.</p></div>
       </li>
-      <li class="wiersz">
+      <li class="wiersz" data-poza="tanczy">
         <span class="label wiersz__nr">03</span>
         <div><h3 class="h3">Scenariusz</h3>
           <p class="body">Powitanie gości, zapowiedź prelegenta, odliczanie do północy, wręczenie nagrody. Ma kilka układów choreograficznych — od spokojnych po dynamiczne. Robot wpisany w&nbsp;program, a&nbsp;nie tylko obecny na sali.</p></div>
       </li>
-      <li class="wiersz">
+      <li class="wiersz" data-poza="branding">
         <span class="label wiersz__nr">04</span>
         <div><h3 class="h3">Branding</h3>
           <p class="body">Logo i&nbsp;kod QR na klatce piersiowej, a&nbsp;cała oprawa dobrana do charakteru wydarzenia — od firmowej koszulki po cekinowy smoking i&nbsp;koronę. Branding jest w&nbsp;cenie.</p>
           <figure class="wiersz__foto"><picture><source type="image/webp" srcset="realizacja-gala-detal-400.webp 400w, realizacja-gala-detal.webp 900w" sizes="240px" /><img src="realizacja-gala-detal.jpg" alt="Zbliżenie robota humanoidalnego w koronie i cekinowym smokingu" width="900" height="1200" loading="lazy" decoding="async" /></picture><figcaption class="podpis">Drezdeńska Noc Zamków</figcaption></figure></div>
       </li>
-      <li class="wiersz">
+      <li class="wiersz" data-poza="zdjecie">
         <span class="label wiersz__nr">05</span>
         <div><h3 class="h3">Zdjęcia i&nbsp;nagrania</h3>
           <p class="body">Robot to gość, którego wszyscy nagrywają telefonami. Planujemy momenty pod kadry — powitanie przy ściance, wejście na scenę, taniec — a&nbsp;branding sprawia, że w&nbsp;każdym nagraniu widać Twoją markę.</p></div>
       </li>
     </ol>
+    </div>
   </div>
 </section>
 
@@ -495,26 +523,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 id="formaty-h" class="h2">Formaty i&nbsp;cena</h2>
       <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
     </div>
-    <ul class="formaty wejscie">
-      <li class="format">
-        <h3 class="h3">Wejście</h3>
-        <p class="body">Kilka godzin w&nbsp;programie wydarzenia — otwarcie, blok na scenie, godziny szczytu na stoisku.</p>
-        <p class="num">Wycena indywidualna</p>
-        <p class="label format__cena-opis">zawsze taniej niż pełny dzień</p>
-      </li>
-      <li class="format">
-        <h3 class="h3">Pełny dzień</h3>
-        <p class="body">Robot do dyspozycji przez cały dzień wydarzenia, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.</p>
-        <p class="num">od 5&nbsp;500&nbsp;zł</p>
-        <p class="label format__cena-opis">netto</p>
-      </li>
-      <li class="format">
-        <h3 class="h3">Targi</h3>
-        <p class="body">Dwa dni i&nbsp;więcej — targi, festiwale, roadshow.</p>
-        <p class="num">−15%</p>
-        <p class="label format__cena-opis">za każdy dzień</p>
-      </li>
-    </ul>
+    <!-- Kalkulator: te same trzy formaty i ceny co dotąd, wybór liczy kwotę od razu.
+         Bez JS widać wszystkie trzy opisy i cenę pełnego dnia. Kilka dni: 15% taniej
+         za każdy dzień (FAQ), czyli dni × 5 500 zł × 0,85. -->
+    <div class="kalk wejscie" id="kalkulator">
+      <fieldset class="kalk__formaty">
+        <legend class="label">Wybierz format</legend>
+        <label class="format"><input type="radio" name="kalk_format" value="wejscie" />
+          <span class="format__glowa"><span class="h3">Wejście</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Kilka godzin w&nbsp;programie wydarzenia — otwarcie, blok na scenie, godziny szczytu na stoisku.</span>
+          <span class="label format__cena-opis">Wycena indywidualna · zawsze taniej niż pełny dzień</span></label>
+        <label class="format"><input type="radio" name="kalk_format" value="dzien" checked />
+          <span class="format__glowa"><span class="h3">Pełny dzień</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Robot do dyspozycji przez cały dzień wydarzenia, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.</span>
+          <span class="label format__cena-opis">od 5&nbsp;500&nbsp;zł netto</span></label>
+        <label class="format"><input type="radio" name="kalk_format" value="dni" />
+          <span class="format__glowa"><span class="h3">Targi</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Dwa dni i&nbsp;więcej — targi, festiwale, roadshow.</span>
+          <span class="label format__cena-opis">−15% za każdy dzień</span></label>
+      </fieldset>
+      <div class="kalk__wynik">
+        <div class="kalk__dni" id="kalkDni" hidden>
+          <span class="label" id="kalkDniEtykieta">Liczba dni</span>
+          <div class="kalk__licznik" role="group" aria-labelledby="kalkDniEtykieta">
+            <button class="kalk__krok" type="button" data-dni="-1" aria-label="Jeden dzień mniej">−</button>
+            <output class="kalk__ile" id="kalkIle" aria-live="polite">2</output>
+            <button class="kalk__krok" type="button" data-dni="1" aria-label="Jeden dzień więcej">+</button>
+          </div>
+        </div>
+        <p class="label" id="kalkEtykieta">Pełny dzień · cena netto</p>
+        <p class="kalk__cena" aria-live="polite"><span class="kalk__od" id="kalkOd">od</span> <span id="kalkKwota">5&nbsp;500</span><span class="kalk__zl" id="kalkZl">&nbsp;zł</span></p>
+        <p class="body-sm" id="kalkOpis">Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
+      </div>
+    </div>
     <p class="body formaty__wcenie">W&nbsp;cenie: operator, transport, branding (logo, kod QR), ubezpieczenie OC. <strong>Płacisz po wydarzeniu.</strong> Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
     <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">Sprawdź termin i dokładną cenę <span aria-hidden="true">→</span></a></p>
   </div>
@@ -1502,6 +1543,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 </script>
+<!-- Strona główna: liczniki, kroki występu i kalkulator (glowna.js), robot 3D z punktów (robot3d.js). -->
+<script src="js/glowna.js?v=58c42ff4" defer></script>
+<script src="js/robot3d.js?v=e23d04ca" defer></script>
 <!-- Albacross -->
 <script>window._nQc="89159321";</script>
 <script async src="https://serve.albacross.com/track.js"></script>

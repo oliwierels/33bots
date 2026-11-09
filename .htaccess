@@ -38,6 +38,21 @@ RedirectMatch 404 "/\.(?!well-known/)"
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://33bots.pl/ [L,R=301]
 
+# ── Dane robota 3D na stronie głównej (robot/*.bin) ───────────────────────────
+# Chmura punktów dla js/robot3d.js. Kompresja zmniejsza plik o ok. 10–30%, a adres
+# ma sumę kontrolną (?v=), więc przeglądarka może go trzymać długo.
+<FilesMatch "\.bin$">
+  <IfModule mod_mime.c>
+    ForceType application/octet-stream
+  </IfModule>
+  <IfModule mod_deflate.c>
+    SetOutputFilter DEFLATE
+  </IfModule>
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=2592000"
+  </IfModule>
+</FilesMatch>
+
 # ── Nagłówki bezpieczeństwa ────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   # HSTS: po pierwszej wizycie przeglądarka sama wymusza HTTPS i nie pozwala
