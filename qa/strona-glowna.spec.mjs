@@ -3,7 +3,7 @@
 import { test, expect } from '@playwright/test';
 
 const ADRES = 'http://localhost:8080/';
-const SEKCJE = ['realizacje', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt'];
+const SEKCJE = ['zasady', 'realizacje', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt'];
 const CYJAN = 'rgb(111, 214, 255)';
 
 async function otworz(page, vp, opcje = {}) {
@@ -25,9 +25,9 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
     test('kolejność sekcji, numeracja i aliasy kotwic', async ({ page }) => {
       await otworz(page, vp);
       const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.classList[0]));
-      expect(kolejnosc).toEqual(['hero', 'proof', ...['realizacje', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt']]);
+      expect(kolejnosc).toEqual(['hero', 'proof', ...SEKCJE]);
       const numery = await page.evaluate(() => [...document.querySelectorAll('.sec .sec__meta')].map((m) => m.textContent.trim().slice(0, 7)));
-      expect(numery).toEqual(['04 / 11', '05 / 11', '06 / 11', '07 / 11', '08 / 11', '09 / 11', '10 / 11']);
+      expect(numery).toEqual(['04 / 12', '05 / 12', '06 / 12', '07 / 12', '08 / 12', '09 / 12', '10 / 12', '11 / 12']);
       expect(await page.evaluate(() => document.querySelector('footer.stopka').parentElement.tagName)).toBe('BODY');
       for (const id of ['eventy', 'uslugi', 'cennik', 'mozliwosci', 'klienci', 'kontakt', 'top']) {
         expect(await page.locator(`#${id}`).count(), `#${id}`).toBe(1);
@@ -51,7 +51,8 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
             if (s.textShadow !== 'none') bad.push([nazwa, 'text-shadow']);
             if (s.backgroundImage !== 'none' && !(karta && !pseudo)) bad.push([nazwa, 'background-image']);
             if (s.filter !== 'none' || (s.backdropFilter && s.backdropFilter !== 'none')) bad.push([nazwa, 'filter']);
-            if (s.animationName !== 'none') bad.push([nazwa, 'animation']);
+            // animacje tylko w ilustracjach kart sekcji Zasady ([data-animacja]) — stoją przy ograniczonym ruchu
+            if (s.animationName !== 'none' && !el.closest('[data-animacja]')) bad.push([nazwa, 'animation']);
             if (parseFloat(s.borderTopLeftRadius) > 0) bad.push([nazwa, 'radius']);
           }
         }
@@ -194,7 +195,8 @@ test.describe('CTA w hero i rezerwacja', () => {
     await expect(page.locator('label[for="heroData"]')).toHaveText('Kiedy jest Twoje wydarzenie?');
     await expect(page.locator('#heroData')).toHaveAttribute('min', await dzis(page));
     await expect(page.locator('#pole-data')).toHaveAttribute('min', await dzis(page));
-    await expect(page.locator('.hero .termin__obietnica')).toHaveText('Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy zwykle tego samego dnia.');
+    await expect(page.locator('.hero .termin__obietnica')).toHaveText('Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.');
+    await expect(page.locator('.hero .termin__telefon a')).toHaveAttribute('href', 'tel:+48531408004');
     // „Termin jeszcze nieustalony” zaznaczony wcześniej — data z hero go odznacza
     await page.locator('label.chip:has-text("Termin jeszcze nieustalony")').click();
     await expect(page.locator('#pole-data')).toBeDisabled();
@@ -391,96 +393,15 @@ const doRealizacji = (src) => (REALIZACJA.find(([r]) => r.test(src)) || [null, s
 // Kopie kafli w pasach (aria-hidden) istnieją tylko po to, żeby pętla była bez szwu — nie liczą się jako powtórzenie.
 const unikalne = (page) => page.evaluate(() => { const s = [...document.images].filter((i) => !i.closest('[aria-hidden="true"]')).map((i) => i.getAttribute('src')); return s.length === new Set(s).size; });
 
-test.describe('hero — rotacja zdjęć z realizacji', () => {
-  test('co 3 s kolejny kadr z podpisem, każde zdjęcie raz w DOM, pauza zatrzymuje', async ({ browser }) => {
-    const ctx = await browser.newContext({ reducedMotion: 'no-preference', viewport: { width: 1440, height: 900 } });
-    const page = await ctx.newPage();
-    // Robot 3D rysuje co klatkę — przy przesuwanym zegarze test trwałby minuty. Rotację zdjęć
-    // sprawdzamy bez niego (strona wraca wtedy do zdjęcia w hero, ten sam skrypt rotacji).
-    await page.route('**/robot/*.bin*', (r) => r.abort());
-    await page.clock.install();
-    await page.goto(ADRES);
-    await page.waitForLoadState('load');
-    const img = page.locator('.hero img');
-    const licznik = page.locator('#heroLicznik');
-    await expect(img).toHaveCount(1);
-    await expect(img).toHaveAttribute('src', /gala-wsrod-gosci/);
-    await expect(licznik).toHaveText('01 / 06');
-
-    // Każda zmiana licznika zapisana z czasem strony — z tego mierzymy, jak długo stoi kadr.
-    await page.evaluate(() => {
-      const el = document.getElementById('heroLicznik');
-      window.__zmiany = [[Date.now(), el.textContent.trim()]];
-      new MutationObserver(() => window.__zmiany.push([Date.now(), el.textContent.trim()]))
-        .observe(el, { childList: true, characterData: true, subtree: true });
-    });
-    // Zegar strony po install() płynie też sam, więc przesuwamy go małymi krokami,
-    // aż licznik pokaże oczekiwany kadr — bez ryzyka przeskoczenia kadru.
-    const dojdzDo = async (tekst) => {
-      for (let i = 0; i < 40 && (await licznik.textContent()).trim() !== tekst; i++) {
-        await page.clock.runFor(200); await page.waitForTimeout(20);
-      }
-      await expect(licznik).toHaveText(tekst);
-    };
-
-    // po 2 s kadr jeszcze stoi
-    await page.clock.runFor(2000); await page.waitForTimeout(50);
-    await expect(licznik).toHaveText('01 / 06');
-    const wysokosc = () => page.locator('.hero').evaluate((e) => e.getBoundingClientRect().height);
-    const h0 = await wysokosc();
-    await dojdzDo('02 / 06');
-    await expect(img).toHaveAttribute('src', /eco-studio-wywiad/);
-    expect(await wysokosc(), 'zmiana kadru nie zmienia wysokości hero').toBe(h0);
-    await expect(page.locator('#heroOpis')).toHaveText('Finał Eco Studio ELECTRO-SYSTEM · Warszawa');
-    expect(await unikalne(page)).toBe(true);
-    for (let n = 3; n <= 6; n++) {
-      await dojdzDo(`0${n} / 06`);
-      expect(await unikalne(page), `slajd ${n}`).toBe(true);
-    }
-    await dojdzDo('01 / 06');
-
-    // kolejność bez przeskoków, a każdy kadr stoi ok. 3 s (plus 0,4 s przygaszenia)
-    const zmiany = await page.evaluate(() => window.__zmiany);
-    expect(zmiany.map(([, t]) => t)).toEqual(['01 / 06', '02 / 06', '03 / 06', '04 / 06', '05 / 06', '06 / 06', '01 / 06']);
-    const odstepy = zmiany.slice(2).map(([t], i) => t - zmiany[i + 1][0]);
-    for (const d of odstepy) {
-      expect(d, `odstęp między kadrami ${d} ms`).toBeGreaterThanOrEqual(3000);
-      expect(d, `odstęp między kadrami ${d} ms`).toBeLessThan(4200);
-    }
-
-    // pauza: przycisk zatrzymuje, „Wznów” rusza dalej
-    await page.locator('#heroPauza').click();
-    await expect(page.locator('#heroPauza')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('#heroPauza')).toHaveText('Wznów');
-    await page.mouse.move(5, 5);
-    await page.evaluate(() => document.activeElement.blur());
-    await page.clock.runFor(30000); await page.waitForTimeout(200);
-    await expect(licznik).toHaveText('01 / 06');
-    await page.locator('#heroPauza').click();
-    await page.mouse.move(5, 5);
-    await page.evaluate(() => document.activeElement.blur());
-    await dojdzDo('02 / 06');
-    await ctx.close();
-  });
-
-  test('ograniczony ruch: nic nie zmienia się samo; najwyżej 3 zdjęcia na realizację', async ({ browser }) => {
+test.describe('zdjęcia realizacji', () => {
+  test('najwyżej 3 zdjęcia na realizację (stałe i w szufladach), każde raz w DOM', async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
     const page = await ctx.newPage();
-    await page.clock.install();
     await page.goto(ADRES);
     await page.waitForLoadState('load');
-    await page.clock.runFor(30000);
-    await expect(page.locator('#heroLicznik')).toHaveText('01 / 06');
-    await expect(page.locator('#heroPauza')).toHaveText('Następne zdjęcie');
-
-    // wszystkie zdjęcia, jakie strona pokazuje: stałe, slajdy hero i szuflady
+    // w hero nie ma już rotacji zdjęć — jest robot 3D (zdjęcie zostaje tylko jako zapas bez WebGL)
+    await expect(page.locator('#heroMedia')).toHaveCount(0);
     const pliki = new Set(await page.evaluate(() => [...document.images].map((i) => i.getAttribute('src'))));
-    for (let n = 2; n <= 6; n++) {
-      await page.locator('#heroPauza').click();
-      await page.waitForTimeout(150); await page.clock.runFor(50); await page.waitForTimeout(50);
-      await expect(page.locator('#heroLicznik')).toHaveText(`0${n} / 06`);
-      pliki.add(await page.locator('.hero img').getAttribute('src'));
-    }
     for (const klucz of await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-cs]')].map((b) => b.dataset.cs))])) {
       await page.locator(`[data-cs="${klucz}"]`).first().click();
       for (const s of await page.locator('#szufladaZdjecia img').evaluateAll((im) => im.map((i) => i.getAttribute('src')))) pliki.add(s);
@@ -505,6 +426,7 @@ test('treść: branding zamiast stroju, robot mówi w każdym języku', async ({
   await expect(page.locator('#wystep')).toContainText('na Litwie, w Niemczech, Czechach i Rumunii');
   await expect(page.locator('#faq-5')).toContainText('w każdym innym języku');
   await expect(page.locator('#realizacje')).toContainText('ponad 100 wydarzeń w pięciu krajach');
+  await page.locator('.skala__cyfry').scrollIntoViewIfNeeded(); // licznik liczy od zera, kiedy wchodzi na ekran
   await expect(page.locator('.skala__cyfry')).toHaveText('100+');
   await expect(page.locator('#wystep')).toContainText('przełącza się między językami');
   const ld = await page.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(' '));

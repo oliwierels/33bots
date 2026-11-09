@@ -43,6 +43,28 @@ test.describe('robot 3D', () => {
   });
 });
 
+test.describe('polecenia i ruch', () => {
+  test('przyciski poleceń: gest w dataLayer, dymek; „Zatrzymaj ruch” zatrzymuje robota i animacje kart', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(ADRES);
+    await expect.poll(() => page.evaluate(() => document.documentElement.dataset.robot || ''), { timeout: 20000 }).toMatch(/gotowy|brak/);
+    if (await page.evaluate(() => document.documentElement.dataset.robot) === 'gotowy') {
+      await page.locator('[data-robot-gest="tanczy"]').click();
+      expect(await page.evaluate(() => window.dataLayer.filter((z) => z.event === 'robot_gest').map((z) => z.robot_gest))).toContain('tanczy');
+      await page.locator('[data-robot-gest="mowi"]').click();
+      await expect(page.locator('#robotDymek')).not.toBeEmpty();
+    }
+    const pauza = page.locator('#robotPauza');
+    await pauza.click();
+    await expect(pauza).toHaveAttribute('aria-pressed', 'true');
+    await expect(pauza).toHaveText('Wznów ruch');
+    await expect(page.locator('.zasady__pauza')).toHaveText('Wznów ruch');
+    expect(await page.locator('#zasady .a-wiazka').evaluate((e) => getComputedStyle(e).animationPlayState)).toBe('paused');
+    await page.locator('.zasady__pauza').click();
+    await expect(pauza).toHaveAttribute('aria-pressed', 'false');
+  });
+});
+
 test.describe('kalkulator ceny', () => {
   test.use({ contextOptions: { reducedMotion: 'reduce' } });
   test('formaty, dni, kwoty i wycena w opisie zgłoszenia', async ({ page }) => {
