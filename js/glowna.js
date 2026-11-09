@@ -21,7 +21,8 @@
   /* ——— Robot z bliska: aktywna część ciała z postępu przewijania (działa też bez WebGL) ——— */
   const robot = document.getElementById('robot');
   if (robot) {
-    const CZESCI = [['glowa', 0.07], ['twarz', 0.16], ['piers', 0.38], ['rece', 0.62], ['nogi', 0.88], ['stopy', 1.01]]; // jak kamera w robot3d.js
+    // sześć równych odcinków przewijania; robot3d.js podświetla tę samą część na robocie
+    const CZESCI = [['glowa', 0.17], ['twarz', 0.33], ['piers', 0.5], ['rece', 0.67], ['nogi', 0.83], ['stopy', 1.01]];
     const czesc = () => {
       const r = robot.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight)));

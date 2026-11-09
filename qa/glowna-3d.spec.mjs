@@ -103,7 +103,7 @@ test.describe('robot z bliska', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(ADRES);
     const sekcja = page.locator('#robot');
-    for (const [p, czesc] of [[0, 'glowa'], [0.25, 'piers'], [0.5, 'rece'], [0.75, 'nogi'], [0.97, 'stopy']]) {
+    for (const [p, czesc] of [[0, 'glowa'], [0.25, 'twarz'], [0.42, 'piers'], [0.58, 'rece'], [0.75, 'nogi'], [0.97, 'stopy']]) {
       await page.evaluate((p) => { const r = document.getElementById('robot'); const top = scrollY + r.getBoundingClientRect().top;
         scrollTo({ top: top + (r.offsetHeight - innerHeight) * p, behavior: 'instant' }); }, p);
       await expect(sekcja).toHaveAttribute('data-czesc', czesc);
