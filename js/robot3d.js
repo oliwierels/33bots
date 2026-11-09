@@ -76,7 +76,7 @@
 attribute vec3 aPos; attribute vec2 aNrm; attribute float aSeg; attribute float aLos;
 uniform vec4 uQ[26]; uniform vec4 uT[26];
 uniform float uSkala, uMorf, uCzas, uPx, uSkan, uRozb, uZaslona, uLogo, uLed, uJasnosc, uTors;
-uniform mat4 uM, uVP; uniform vec3 uKam; uniform vec4 uBlask;
+uniform mat4 uM, uVP; uniform vec3 uKam, uBarwa; uniform vec4 uBlask;
 varying vec3 vK;
 vec3 obr(vec4 q, vec3 v) { return v + 2.0 * cross(q.xyz, cross(q.xyz, v) + q.w * v); }
 vec3 okt(vec2 e) {
@@ -115,10 +115,10 @@ void main() {
   float j = (0.16 + 0.6 * swiatlo + 0.55 * kontur + 0.55 * kraw) * przod + 0.85 * skan + 0.9 * blask;
   if (i == 25) j = 0.22 * (1.0 - smoothstep(0.35, 0.62, length(wp.xy)));
   if (abs(k - uTors) < 0.5 && logo < 0.5 && lp.x > 0.04 && abs(lp.y) < 0.11 && lp.z > 0.11 && lp.z < 0.222) j *= 0.28;
-  vec3 kol = vec3(j * uJasnosc);
-  kol = mix(kol, vec3(1.0, 1.0, 1.0) * (1.05 + 0.5 * uLogo), logo);
+  vec3 kol = vec3(j * uJasnosc) * uBarwa;
+  kol = mix(kol, uBarwa * (1.05 + 0.5 * uLogo), logo);
   kol = mix(kol, vec3(0.05, 0.62, 1.0) * uLed, led);
-  vK = mix(kol, vec3(0.95), t);
+  vK = mix(kol, vec3(0.95) * uBarwa, t);
   float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask + 0.1 * led) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
   gl_PointSize = mix(rozm, uPx * 1.15, t);
 }`;
@@ -146,7 +146,7 @@ void main() {
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
   } catch (e) { bez3d(); return; }
   const U = {};
-  for (const n of ['uQ', 'uT', 'uSkala', 'uMorf', 'uCzas', 'uPx', 'uSkan', 'uRozb', 'uM', 'uVP', 'uKam', 'uBlask', 'uAlfa', 'uZaslona', 'uLogo', 'uLed', 'uJasnosc', 'uTors']) U[n] = gl.getUniformLocation(prog, n);
+  for (const n of ['uQ', 'uT', 'uSkala', 'uMorf', 'uCzas', 'uPx', 'uSkan', 'uRozb', 'uM', 'uVP', 'uKam', 'uBlask', 'uBarwa', 'uAlfa', 'uZaslona', 'uLogo', 'uLed', 'uJasnosc', 'uTors']) U[n] = gl.getUniformLocation(prog, n);
   const A = {};
   for (const n of ['aPos', 'aNrm', 'aSeg', 'aLos']) A[n] = gl.getAttribLocation(prog, n);
 
@@ -562,6 +562,8 @@ void main() {
       gl.uniform1f(U.uPx, px * Math.pow(dpr, 0.85));
       gl.uniform1f(U.uAlfa, wyglad.alfa);
       gl.uniform1f(U.uJasnosc, st.strefa === 'robot' ? lerp(0.9, 1.45, clamp((rr.height - 250) / 450, 0, 1)) : 1.15);
+      const sila = innerWidth < 768 ? 0.5 : 1; // telefon: srebrnoszary, nie jaskrawa biel
+      gl.uniform3f(U.uBarwa, sila * 0.92, sila * 0.96, sila);
       gl.clear(gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
       gl.colorMask(false, false, false, false);
