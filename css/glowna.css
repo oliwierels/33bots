@@ -88,6 +88,8 @@ html:not(.js) .robot, .bez-3d .robot { display: none; }
   .polecenie { flex: none; }
   .hud { display: none; }
 }
+/* Telefon: pod sceną robota zostaje miejsce na pasek „Sprawdź termin” (76 px), żeby nie zasłaniał poleceń. */
+@media (max-width: 767px) { .robot__scena { padding-bottom: 76px; } }
 
 /* ══════════ Skala: 100+ wydarzeń i fakty ══════════ */
 .skala { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter);
