@@ -177,12 +177,13 @@ html:not(.js) .robot, .bez-3d .robot { display: none; }
 .a-slowa text:nth-child(8) { animation-delay: 7s; }
 @keyframes a-slowo { 0% { visibility: visible; } 12.5% { visibility: hidden; } }
 
-.a-wiersz { fill: var(--text-2); transform-box: fill-box; transform-origin: left center; animation: a-pisz 3.6s steps(18, end) infinite; }
-.a-r2 { animation-delay: .35s; } .a-r3 { animation-delay: .7s; } .a-r4 { animation-delay: 1.05s; }
-@keyframes a-pisz { 0% { transform: scaleX(0); } 25%, 85% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-.a-kursor { animation: a-kursor 1s steps(1, end) infinite; }
-@keyframes a-kursor { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .a-wymiana, .a-slowa text:first-child { visibility: visible; } }
+.a-etykieta { text-anchor: start; }
+.a-wgraj { fill: var(--text); transform-box: fill-box; transform-origin: left center; animation: a-wgraj 5s cubic-bezier(.5, 0, .2, 1) infinite; }
+.a-ptaszek { fill: none; stroke: var(--text); stroke-width: 1.5; visibility: hidden; animation: a-ptaszek 5s step-end infinite; }
+.a-r2 { animation-delay: .7s; } .a-r3 { animation-delay: 1.4s; } .a-r4 { animation-delay: 2.1s; }
+@keyframes a-wgraj { 0% { transform: scaleX(0); } 14%, 86% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+@keyframes a-ptaszek { 0% { visibility: hidden; } 14% { visibility: visible; } 88% { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .a-wymiana, .a-slowa text:first-child, .a-ptaszek { visibility: visible; } }
 
 .ruch-stop [data-animacja] * { animation-play-state: paused !important; }
 .zasady__pauza { justify-self: start; }
