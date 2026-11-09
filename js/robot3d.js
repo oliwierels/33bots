@@ -265,13 +265,14 @@ void main() {
     for (let i = 0; i < n; i++) {
       if ((seg[i] & 31) !== ts || seg[i] >= 128) continue;
       const x = pos[i * 3] / 32767 * skala, y = pos[i * 3 + 1] / 32767 * skala, z = pos[i * 3 + 2] / 32767 * skala;
+      if (x < 0.02) continue; // tylko przód: puste komórki nie mogą łapać tyłu głowy
       const a = Math.floor((y - Y0) / K), b = Math.floor((z - Z0) / K);
       if (a < 0 || b < 0 || a >= NY || b >= NZ) continue;
       if (x > mapa[b * NY + a]) mapa[b * NY + a] = x;
     }
-    const przod = (y, z) => {
+    const przod = (y, z, maxR = 4) => {
       const a = Math.floor((y - Y0) / K), b = Math.floor((z - Z0) / K);
-      for (let r = 0; r < 4; r++) {
+      for (let r = 0; r < maxR; r++) {
         let m = -9;
         for (let db = -r; db <= r; db++) for (let da = -r; da <= r; da++) {
           const aa = a + da, bb = b + db;
@@ -281,14 +282,14 @@ void main() {
       }
       return null;
     };
-    // twarz G1: wklęsła, pod daszkiem głowy (z ok. 0,35–0,42 m w układzie tułowia);
-    // pasek LED w poprzek twarzy na wysokości oczu
+    // Pasek LED jak w prawdziwym G1: na dolnej krawędzi daszka głowy, nad wklęsłą twarzą
+    // (z ok. 0,43 m w układzie tułowia), wzdłuż zaokrąglenia daszka.
     const pkt = [];
-    // Listwa jest płaska i lekko wygięta, z przodu twarzy — nie oblepia boków głowy (nie ucieka do tyłu).
-    const ileLed = lekki ? 180 : 300, zOczy = 0.394, xOczy = (przod(0, zOczy) ?? 0.05) + 0.004;
+    const ileLed = lekki ? 240 : 390, zLed = 0.437, kolumny = Math.ceil(ileLed / 3);
     for (let i = 0; i < ileLed; i++) {
-      const y = (Math.floor(i / 3) / (Math.ceil(ileLed / 3) - 1) - 0.5) * 0.054, z = zOczy + ((i % 3) - 1) * 0.0016;
-      pkt.push([xOczy - 2.2 * y * y, y, z, 32 + ts]);
+      const y = (Math.floor(i / 3) / (kolumny - 1) - 0.5) * 0.088, z = zLed + ((i % 3) - 1) * 0.0016;
+      const x = przod(y, z, 3);
+      if (x !== null) pkt.push([x + 0.003, y, z, 32 + ts]);
     }
     // napis „TWOJE / LOGO” na piersi
     const c = document.createElement('canvas'); c.width = 360; c.height = 220;
