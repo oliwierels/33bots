@@ -249,6 +249,18 @@ void main() {
     },
     branding: (t) => ({ left_shoulder_pitch_joint: 0.3, right_shoulder_pitch_joint: 0.3, left_shoulder_roll_joint: 0.35,
       right_shoulder_roll_joint: -0.35, left_elbow_joint: 1.35, right_elbow_joint: 1.35, waist_yaw_joint: 0.05 * Math.sin(t) }),
+    // chodzenie w miejscu: na zmianę unosi kolana, ręce idą przeciwnie do nóg
+    chodzi: (t) => {
+      const f = Math.sin(t * 5.6), L = Math.max(0, f), R = Math.max(0, -f);
+      const k = 0.07 * f; // kołysanie bioder w stronę nogi podporowej
+      return { left_hip_pitch_joint: -0.14 - 0.85 * L, left_knee_joint: 0.32 + 1.45 * L, left_ankle_pitch_joint: -0.18 - 0.6 * L,
+        right_hip_pitch_joint: -0.14 - 0.85 * R, right_knee_joint: 0.32 + 1.45 * R, right_ankle_pitch_joint: -0.18 - 0.6 * R,
+        left_hip_roll_joint: 0.02 + k, right_hip_roll_joint: -0.02 + k, left_ankle_roll_joint: -0.02 - k, right_ankle_roll_joint: 0.02 - k,
+        left_shoulder_pitch_joint: 0.18 + 0.6 * f, right_shoulder_pitch_joint: 0.18 - 0.6 * f,
+        left_elbow_joint: 0.9, right_elbow_joint: 0.9, waist_yaw_joint: 0.14 * f };
+    },
+    // obrót wokół własnej osi: ruch robi orbita (polecenie), tu tylko lekko rozłożone ręce
+    obrot: () => ({ left_shoulder_roll_joint: 0.55, right_shoulder_roll_joint: -0.55, left_elbow_joint: 0.8, right_elbow_joint: 0.8 }),
     // do zdjęcia: obie ręce w górę
     zdjecie: (t) => ({ left_shoulder_pitch_joint: -2.6, right_shoulder_pitch_joint: -2.6, left_shoulder_roll_joint: 0.5 + 0.06 * Math.sin(t * 3),
       right_shoulder_roll_joint: -0.5 - 0.06 * Math.sin(t * 3), left_elbow_joint: 1.4, right_elbow_joint: 1.4 }),
@@ -422,14 +434,20 @@ void main() {
   const dymek = document.getElementById('robotDymek');
   const MOWA = ['Dzień dobry! Mówię po polsku i w każdym innym języku.', 'Hello! Welcome to your event.', 'Guten Tag! Schön, Sie zu sehen.',
     'Laba diena! Zrobimy sobie zdjęcie?', 'Dobrý den! Podejdę do Twoich gości.', 'Bună ziua! Opowiem o Twojej firmie.'];
-  const TEKST = { macha: 'Cześć! Miło Cię widzieć.', tanczy: 'Muzyka, maestro!', buziak: 'Muah!', zdjecie: 'Uśmiech do zdjęcia!' };
-  const CZAS = { macha: 2.6, tanczy: 4.5, buziak: 2.4, zdjecie: 3, mowi: 3.6 };
+  const TEKST = { macha: 'Cześć! Miło Cię widzieć.', tanczy: 'Muzyka, maestro!', buziak: 'Muah!', zdjecie: 'Uśmiech do zdjęcia!',
+    chodzi: 'Idę do Twoich gości!', obrot: 'Zobacz mnie z każdej strony.', przedstawia: 'Przed Państwem — nasz prelegent!' };
+  const CZAS = { macha: 2.6, tanczy: 4.5, buziak: 2.4, zdjecie: 3, mowi: 3.6, chodzi: 4, obrot: 2.4, przedstawia: 3 };
+  // Program na co dzień: robot sam przechodzi przez ruchy, kiedy nikt nie wydaje poleceń.
+  const PROGRAM = ['macha', 'chodzi', 'mowi', 'tanczy', 'buziak', 'obrot', 'zdjecie', 'chodzi', 'przedstawia', 'tanczy', 'mowi', 'buziak'];
+  let programNr = 0, nastepnyAuto = 0;
   let gestNazwa = null, gestDo = 0, gestOd = 0, gestZoom = false, dbgKaty = null, dbgOrbita = null, mowaNr = 0, zegar = 0;
   const gest = (nazwa, czas, zblizenie = false) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; gestZoom = zblizenie; obudz(); };
   // Polecenie z przycisku: kamera odjeżdża, żeby było widać całego robota (oprócz mowy i machania).
   const polecenie = (nazwa, zPrzycisku = false) => {
     if (zatrzymany() || !POZY[nazwa]) return;
     gest(nazwa, CZAS[nazwa] || 2.5, zPrzycisku && !['mowi', 'macha', 'buziak'].includes(nazwa));
+    if (nazwa === 'obrot') { orbitaV = 19; puszczono = performance.now() / 1000 + 0.6; } // jeden pełny obrót, potem powrót przodem
+    nastepnyAuto = gestDo + (zPrzycisku ? 3 : 0.9 + Math.random() * 0.8); // po poleceniu z przycisku program chwilę czeka
     if (dymek && (zPrzycisku || innerWidth >= 768)) { // na telefonie samo powitanie bez dymka — nie zasłania tekstu
       dymek.textContent = nazwa === 'mowi' ? MOWA[mowaNr++ % MOWA.length] : (TEKST[nazwa] || '');
       dymek.dataset.do = String(gestDo);
@@ -508,14 +526,18 @@ void main() {
     let morf = st.morf;
     if (wejscie < 1) morf = Math.max(morf, 1 - gladko(0, 1, wejscie));
     // pierwsze wejście na scenę robota: powitanie machnięciem
-    if (!przywital && st.strefa === 'robot' && morf < 0.05 && !reduce) { przywital = true; polecenie('macha'); }
+    // program: na scenie robota kolejne ruchy same, z krótkimi przerwami (pierwszy — powitanie)
+    if (st.strefa === 'robot' && morf < 0.05 && !stoj && !(gestNazwa && zegar < gestDo) && zegar >= nastepnyAuto) {
+      polecenie(przywital ? PROGRAM[programNr++ % PROGRAM.length] : 'macha');
+      if (!przywital) { przywital = true; programNr = 1; }
+    }
     wyglad.alfa += (st.alfa - wyglad.alfa) * (reduce ? 1 : 1 - Math.exp(-dt * 8));
 
     // pozy
     let poza = st.poza || 'stoi';
     if (st.strefa !== 'wystep') {
       if (gestTrwa) poza = gestNazwa;
-      else { gestNazwa = null; if (wejscie >= 1 && !stoj && zegar > 4 && Math.floor(zegar) % 16 === 0 && Math.random() < dt * 1.2) gest('macha', 2.4); }
+      else gestNazwa = null;
     }
     for (const [k, v] of Object.entries(BAZA)) qCel[IDX[k]] = v;
     const czas = stoj ? 0 : zegar;
@@ -610,7 +632,7 @@ void main() {
     for (const h of hud) {
       const [staw, lok] = HUD_PKT[h.el.dataset.hud] || [];
       let pokaz = !!lok && spokoj && (!h.pozy.length || h.pozy.includes(poza));
-      pokaz = pokaz && h.scena === scenaTeraz && !(st.strefa === 'robot' && gestTrwa);
+      pokaz = pokaz && h.scena === scenaTeraz && !(st.strefa === 'robot' && gestTrwa && gestZoom);
       let X = 0, Y = 0;
       if (pokaz) {
         [X, Y] = naEkran(punktSwiata(IDX[staw], lok));
