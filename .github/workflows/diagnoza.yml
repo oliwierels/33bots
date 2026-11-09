@@ -30,8 +30,8 @@ jobs:
             echo "== $u"; curl -s -o /dev/null -D - -H 'Accept-Encoding: gzip, br' "https://33bots.pl$u" | grep -iE '^(HTTP|content-type|content-encoding|content-length|cache-control)'
           done | tee badania/wyniki/zywo/naglowki.txt
           curl -s "https://33bots.pl/" | grep -c -E 'glowna\.css|robot3d\.js|data-scena|100\+' | tee -a badania/wyniki/zywo/naglowki.txt
-      - name: Strona główna na żywo — robot 3D, zrzuty
-        run: node badania/zywo.mjs badania/wyniki/zywo
+      - name: Robot na żywej stronie — czy sam się rusza
+        run: mkdir -p badania/wyniki/zywo && node badania/ruch.mjs
       - name: IndexNow — zmienione strony
         run: |
           curl -s -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" \
