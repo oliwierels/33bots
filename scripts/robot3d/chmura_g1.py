@@ -30,6 +30,8 @@ import numpy as np
 
 URDF = 'g1_23dof_rev_1_0.urdf'
 KAT_KRAWEDZI = math.radians(50)
+# Gęstość punktów względem reszty robota: głowa i tułów są na zbliżeniu w hero.
+GESTOSC = {'head_link.STL': 3.2, 'torso_link_23dof_rev_1_0.STL': 1.5, 'logo_link.STL': 1.5}
 rng = np.random.default_rng(33)
 
 
@@ -172,8 +174,11 @@ def main():
             tv = tr @ transformacja(liczby(o.get('xyz') if o is not None else None), liczby(o.get('rpy') if o is not None else None))
             tri = wczytaj_stl(katalog / m.get('filename'))
             v = tri.reshape(-1, 3) @ tv[:3, :3].T + tv[:3, 3]
-            siatki[si].append(v.reshape(-1, 3, 3))
-    siatki = [np.concatenate(s) if s else np.zeros((0, 3, 3)) for s in siatki]
+            siatki[si].append((v.reshape(-1, 3, 3), GESTOSC.get(Path(m.get('filename')).name, 1.0)))
+    czesci = siatki
+    siatki = [np.concatenate([t for t, _ in s]) if s else np.zeros((0, 3, 3)) for s in czesci]
+    pole = lambda t: float(np.linalg.norm(np.cross(t[:, 1] - t[:, 0], t[:, 2] - t[:, 0]), axis=1).sum() / 2)  # noqa: E731
+    waga_calosc = sum(pole(t) * g for s in czesci for t, g in s)
 
     pola = np.array([float(np.linalg.norm(np.cross(s[:, 1] - s[:, 0], s[:, 2] - s[:, 0]), axis=1).sum() / 2) if len(s) else 0 for s in siatki])
     odcinki = [krawedzie_ostre(s) if len(s) else [] for s in siatki]
@@ -183,9 +188,14 @@ def main():
     for si, s in enumerate(siatki):
         blok = [si, 0, 0]
         if len(s):
-            cel = max(60, int(round(n_pow * pola[si] / pola.sum())))
-            p, n = probki_powierzchni(s, cel * 10)
-            p, n = przerzedz(p, n, cel)
+            # każda siatka osobno: własna gęstość i własne przerzedzanie
+            pp, nn_ = [], []
+            for t, g in czesci[si]:
+                cel = max(40, int(round(n_pow * pole(t) * g / waga_calosc)))
+                p, n = probki_powierzchni(t, cel * 10)
+                p, n = przerzedz(p, n, cel)
+                pp.append(p); nn_.append(n)
+            p, n = np.concatenate(pp), np.concatenate(nn_)
             P.append(p); N.append(n); blok[1] = len(p)
             # krawędzie: punkty w losowych miejscach odcinków, gęstość równa dla całego robota
             cel_k = int(round(n_kraw * dlugosci[si] / max(dlugosci.sum(), 1e-9)))

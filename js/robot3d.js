@@ -1,22 +1,25 @@
-/* Robot w hero: chmura punktów prawdziwego Unitree G1 (23 stopnie swobody).
+/* Robot na stronie głównej: chmura punktów prawdziwego Unitree G1 (23 stopnie swobody).
    Geometria z unitreerobotics/unitree_ros (URDF i siatki STL, BSD-3-Clause) — licencja
    w robot/LICENCJA-UNITREE.txt. Dane przygotowuje scripts/robot3d/chmura_g1.py.
 
-   Jedno płótno WebGL na cały ekran, nad treścią, bez zdarzeń wskaźnika. Robot zajmuje
-   pole wskazane w HTML przez [data-scena]: hero (stoi i patrzy za kursorem), liczba
-   (punkty układają się w „100+”), wystep (pozy kolejnych kroków występu). Układ strony
-   decyduje, gdzie robot stoi — skrypt tylko wypełnia te pola.
+   Jedno płótno WebGL na cały ekran, bez zdarzeń wskaźnika. Dwie strefy:
+   • olbrzym — od hero do końca sekcji #zasady robot jest ogromny, stoi w tle po prawej,
+     a przewijanie prowadzi kamerę od głowy do stóp (robot przy tym się obraca);
+     podpisy przy częściach ciała pojawiają się, kiedy dana część jest na ekranie;
+   • wystep — w sekcji #wystep cały robot w polu [data-scena="wystep"] gra kolejne kroki.
+   Przyciski [data-robot-gest] wydają robotowi polecenia (machanie, taniec, buziak…).
+   Ring LED na twarzy i napis „TWOJE LOGO” na piersi powstają z punktów przy ładowaniu.
 
-   Bez WebGL: klasa bez-3d na <html>, hero wraca do zdjęcia. Ograniczony ruch: robot stoi,
-   bez przelotów i gestów; pauza w hero zatrzymuje też robota (WCAG 2.2.2). */
+   Bez WebGL: klasa bez-3d na <html>. Ograniczony ruch albo przycisk „Zatrzymaj ruch”:
+   robot stoi, bez gestów i przelotów (WCAG 2.2.2). */
 (() => {
   'use strict';
   const html = document.documentElement;
   const scenaHero = document.querySelector('[data-scena="hero"]');
   if (!scenaHero) return;
-  const scenaLiczba = document.querySelector('[data-scena="liczba"]');
   const scenaWystep = document.querySelector('[data-scena="wystep"]');
   const wystep = document.getElementById('wystep');
+  const zasady = document.getElementById('zasady');
   const ruchMq = matchMedia('(prefers-reduced-motion: reduce)');
   let reduce = ruchMq.matches;
   const lekki = innerWidth < 768 || (navigator.hardwareConcurrency || 8) <= 4 || !!(navigator.connection && navigator.connection.saveData);
@@ -63,7 +66,7 @@
     r[0] = f; r[5] = f; r[10] = (far + near) / (near - far); r[11] = -1; r[14] = 2 * far * near / (near - far);
     return r;
   };
-  const m4widok = (oko, cel) => { // kamera na osi Z (GL), patrzy w cel, góra = +Y
+  const m4widok = (oko, cel) => { // kamera patrzy w cel, góra = +Y
     const z = [oko[0] - cel[0], oko[1] - cel[1], oko[2] - cel[2]];
     const dz = Math.hypot(...z); z[0] /= dz; z[1] /= dz; z[2] /= dz;
     const x = [z[2], 0, -z[0]]; const dx = Math.hypot(...x); x[0] /= dx; x[2] /= dx;
@@ -77,16 +80,18 @@
     return r;
   };
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
   const gladko = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
   const hash = (i) => { const s = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return s - Math.floor(s); };
 
-  /* ——— Shadery ——— */
+  /* ——— Shadery ———
+     aSeg: numer segmentu + 128 (krawędź) + 64 (napis na piersi) + 32 (ring LED). */
   const VS = `
-attribute vec3 aPos; attribute vec2 aNrm; attribute float aSeg; attribute vec2 aTxt; attribute float aLos;
+attribute vec3 aPos; attribute vec2 aNrm; attribute float aSeg; attribute float aLos;
 uniform vec4 uQ[26]; uniform vec4 uT[26];
-uniform float uSkala, uMorf, uCel, uCzas, uPx, uSkan, uRozb, uWiatr;
-uniform mat4 uM, uVP; uniform vec4 uTxt; uniform vec3 uKam; uniform vec4 uBlask; uniform float uZaslona;
-varying float vJ;
+uniform float uSkala, uMorf, uCzas, uPx, uSkan, uRozb, uZaslona, uLogo, uLed, uJasnosc, uTors;
+uniform mat4 uM, uVP; uniform vec3 uKam; uniform vec4 uBlask;
+varying vec3 vK;
 vec3 obr(vec4 q, vec3 v) { return v + 2.0 * cross(q.xyz, cross(q.xyz, v) + q.w * v); }
 vec3 okt(vec2 e) {
   vec3 v = vec3(e, 1.0 - abs(e.x) - abs(e.y));
@@ -94,9 +99,11 @@ vec3 okt(vec2 e) {
   return normalize(v);
 }
 void main() {
-  float kraw = step(127.5, aSeg);
-  float s = aSeg - 128.0 * kraw;
-  int i = int(s + 0.5);
+  float k = aSeg;
+  float kraw = step(127.5, k); k -= 128.0 * kraw;
+  float logo = step(63.5, k); k -= 64.0 * logo;
+  float led = step(31.5, k); k -= 32.0 * led;
+  int i = int(k + 0.5);
   vec3 lp = aPos * uSkala;
   vec3 wp = obr(uQ[i], lp) + uT[i].xyz;
   vec3 wn = obr(uQ[i], okt(aNrm));
@@ -104,18 +111,14 @@ void main() {
   vec3 n = normalize(mat3(uM) * wn);
   vec4 c = uVP * sw;
   vec3 ndcR = c.xyz / c.w;
-  vec2 tekst = vec2(uTxt.x + aTxt.x, uTxt.y + aTxt.y) * uTxt.zw;
-  tekst = vec2(tekst.x - 1.0, 1.0 - tekst.y);
+  // rozproszenie: punkty odlatują w chmurę wokół środka ekranu i wracają
   float a1 = aLos * 6.2832, a2 = fract(aLos * 7.31) * 6.2832;
-  vec2 chmura = vec2(cos(a1), sin(a1)) * (0.35 + 0.9 * fract(aLos * 3.7)) * vec2(1.3, 1.0) + vec2(0.0, 0.25);
-  vec2 cel = mix(tekst, chmura, uCel);
+  vec2 chmura = vec2(cos(a1), sin(a1)) * (0.35 + 0.9 * fract(aLos * 3.7)) * vec2(1.3, 1.0) + vec2(0.0, 0.1);
   float t = clamp(uMorf * 1.7 - aLos * 0.7, 0.0, 1.0);
   t = t * t * (3.0 - 2.0 * t);
-  vec2 p = mix(ndcR.xy, cel, t);
-  float lot = sin(3.14159 * t);
-  p += lot * uRozb * vec2(cos(a2 + uCzas * 0.7), sin(a2 * 1.3 + uCzas * 0.5)) * (0.08 + 0.22 * fract(aLos * 5.3));
-  p.x += uWiatr * (fract(aLos * 9.1) - 0.5) * 0.04 * (1.0 - t);
-  float z = mix(clamp(ndcR.z, -1.0, 1.0), 0.0, t) + uZaslona * 0.004;
+  vec2 p = mix(ndcR.xy, chmura, t);
+  p += sin(3.14159 * t) * uRozb * vec2(cos(a2 + uCzas * 0.7), sin(a2 * 1.3 + uCzas * 0.5)) * (0.08 + 0.22 * fract(aLos * 5.3));
+  float z = mix(clamp(ndcR.z, -1.0, 1.0), 0.0, t) + uZaslona * 0.004 - (logo + led) * 0.002;
   gl_Position = vec4(p, z, 1.0);
   vec3 V = normalize(uKam - sw.xyz);
   float nv = dot(n, V);
@@ -126,19 +129,24 @@ void main() {
   float blask = uBlask.w * (1.0 - smoothstep(0.0, 0.11, distance(wp, uBlask.xyz)));
   float j = (0.16 + 0.6 * swiatlo + 0.55 * kontur + 0.55 * kraw) * przod + 0.85 * skan + 0.9 * blask;
   if (i == 25) j = 0.22 * (1.0 - smoothstep(0.35, 0.62, length(wp.xy)));
-  vJ = mix(j, 0.95, t);
-  float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
+  // ciemna „matryca” pod napisem na piersi: napis czytelny jak na wyświetlaczu
+  if (abs(k - uTors) < 0.5 && logo < 0.5 && lp.x > 0.04 && abs(lp.y) < 0.11 && lp.z > 0.11 && lp.z < 0.222) j *= 0.28;
+  vec3 kol = vec3(j * uJasnosc);
+  kol = mix(kol, vec3(1.0, 1.0, 1.0) * (1.05 + 0.5 * uLogo), logo);
+  kol = mix(kol, vec3(0.28, 0.74, 1.0) * uLed, led);
+  vK = mix(kol, vec3(0.95), t);
+  float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask + 0.35 * led) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
   gl_PointSize = mix(rozm, uPx * 1.15, t);
 }`;
   const FS = `
 precision mediump float;
-varying float vJ; uniform float uAlfa;
+varying vec3 vK; uniform float uAlfa;
 void main() {
   vec2 d = gl_PointCoord - 0.5;
   float r = dot(d, d);
   if (r > 0.25) discard;
   float a = (1.0 - r * 4.0) * uAlfa * 0.75;
-  gl_FragColor = vec4(vec3(min(vJ, 1.4)) * a, a);
+  gl_FragColor = vec4(min(vK, vec3(1.6)) * a, a);
 }`;
   const shader = (typ, zrodlo) => {
     const s = gl.createShader(typ); gl.shaderSource(s, zrodlo); gl.compileShader(s);
@@ -154,15 +162,15 @@ void main() {
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
   } catch (e) { bez3d(); return; }
   const U = {};
-  for (const n of ['uQ', 'uT', 'uSkala', 'uMorf', 'uCel', 'uCzas', 'uPx', 'uSkan', 'uRozb', 'uWiatr', 'uM', 'uVP', 'uTxt', 'uKam', 'uBlask', 'uAlfa', 'uZaslona']) U[n] = gl.getUniformLocation(prog, n);
+  for (const n of ['uQ', 'uT', 'uSkala', 'uMorf', 'uCzas', 'uPx', 'uSkan', 'uRozb', 'uM', 'uVP', 'uKam', 'uBlask', 'uAlfa', 'uZaslona', 'uLogo', 'uLed', 'uJasnosc', 'uTors']) U[n] = gl.getUniformLocation(prog, n);
   const A = {};
-  for (const n of ['aPos', 'aNrm', 'aSeg', 'aTxt', 'aLos']) A[n] = gl.getAttribLocation(prog, n);
+  for (const n of ['aPos', 'aNrm', 'aSeg', 'aLos']) A[n] = gl.getAttribLocation(prog, n);
 
   /* ——— Stan robota ——— */
   let S = null;           // segmenty z pliku
   let q = null, qCel = null;
   const IDX = {};
-  let N = 0, bufTxt = null, txt = null, podeszwa = null;
+  let N = 0, podeszwa = null;
   const kw = new Float32Array(26 * 4), tr = new Float32Array(26 * 4);
   const swiat = [];       // [R, t] segmentów po kinematyce, układ URDF (z w górę, x do przodu)
 
@@ -194,15 +202,14 @@ void main() {
   /* ——— Pozy: kąty w radianach, nazwy stawów z URDF ———
      Ramię: pitch ujemny = do przodu/w górę, roll lewego dodatni = w bok (prawego ujemny),
      łokieć 0 = przedramię poziomo do przodu, ok. 1,5 = wyprostowane w dół. */
-  const P = (o) => o;
-  const BAZA = P({
+  const BAZA = {
     left_hip_pitch_joint: -0.14, right_hip_pitch_joint: -0.14, left_knee_joint: 0.32, right_knee_joint: 0.32,
     left_ankle_pitch_joint: -0.18, right_ankle_pitch_joint: -0.18,
     left_hip_roll_joint: 0.02, right_hip_roll_joint: -0.02, left_ankle_roll_joint: -0.02, right_ankle_roll_joint: 0.02,
     left_shoulder_pitch_joint: 0.18, right_shoulder_pitch_joint: 0.18, left_shoulder_roll_joint: 0.16, right_shoulder_roll_joint: -0.16,
     left_shoulder_yaw_joint: 0.05, right_shoulder_yaw_joint: -0.05, left_elbow_joint: 1.15, right_elbow_joint: 1.15,
     left_wrist_roll_joint: 0, right_wrist_roll_joint: 0, waist_yaw_joint: 0,
-  });
+  };
   const POZY = {
     stoi: (t) => ({ left_elbow_joint: 1.15 + 0.03 * Math.sin(t * 1.3), right_elbow_joint: 1.15 + 0.03 * Math.sin(t * 1.3 + 1) }),
     // ramię w bok i w górę, przedramię pionowo; machanie = obrót wokół osi ramienia
@@ -219,7 +226,6 @@ void main() {
       left_elbow_joint: 0.3 + 0.15 * Math.sin(t * 2.6 + 0.5), right_elbow_joint: 0.3 + 0.18 * Math.sin(t * 2.1 + 2),
       left_wrist_roll_joint: -0.5 + 0.3 * Math.sin(t * 3), right_wrist_roll_joint: 0.5 + 0.3 * Math.sin(t * 2.7),
       waist_yaw_joint: 0.12 * Math.sin(t * 0.9) }),
-    // zapowiedź prelegenta: ręka w bok, otwarta dłoń
     przedstawia: (t) => ({ right_shoulder_pitch_joint: -1.25, right_shoulder_roll_joint: -0.6, right_elbow_joint: 1.45,
       right_wrist_roll_joint: 0.6, waist_yaw_joint: -0.25 + 0.04 * Math.sin(t * 1.2), left_elbow_joint: 1.0 }),
     tanczy: (t) => {
@@ -231,6 +237,14 @@ void main() {
         left_hip_pitch_joint: -0.14 - 0.11 * k, right_hip_pitch_joint: -0.14 - 0.11 * k,
         left_ankle_pitch_joint: -0.18 - 0.11 * k, right_ankle_pitch_joint: -0.18 - 0.11 * k };
     },
+    // buziak: dłoń do twarzy, potem ręka wyrzucona do przodu, w stronę widza
+    // (t liczone od początku gestu)
+    buziak: (t) => {
+      const f = gladko(1.0, 1.45, t);
+      return { right_shoulder_pitch_joint: lerp(-1.15, -1.3, f), right_shoulder_roll_joint: lerp(-0.3, -0.65, f),
+        right_shoulder_yaw_joint: lerp(0.48, 0, f), right_elbow_joint: lerp(0.45, 1.45, f), right_wrist_roll_joint: 0.3,
+        waist_yaw_joint: lerp(0.08, -0.15, f) };
+    },
     branding: (t) => ({ left_shoulder_pitch_joint: 0.3, right_shoulder_pitch_joint: 0.3, left_shoulder_roll_joint: 0.35,
       right_shoulder_roll_joint: -0.35, left_elbow_joint: 1.35, right_elbow_joint: 1.35, waist_yaw_joint: 0.05 * Math.sin(t) }),
     // do zdjęcia: obie ręce w górę
@@ -239,8 +253,59 @@ void main() {
   };
 
   /* ——— Ładowanie danych ——— */
-  const WERSJA_DANYCH = 'c5fc3eba'; // ustawia buduj.sh (suma plików robot/*.bin)
+  const WERSJA_DANYCH = '4ef53e7e'; // ustawia buduj.sh (suma plików robot/*.bin)
   const dpr = Math.min(devicePixelRatio || 1, lekki ? 1.5 : 2);
+  let skala = 1;
+
+  // Ring LED i napis na piersi: punkty na powierzchni tułowia (mapa wysokości x(y, z) z chmury).
+  const dodatki = (pos, seg, n, ts) => {
+    const K = 0.004, Y0 = -0.24, Z0 = -0.05, NY = 120, NZ = 160, mapa = new Float32Array(NY * NZ).fill(-9);
+    for (let i = 0; i < n; i++) {
+      if ((seg[i] & 31) !== ts || seg[i] >= 128) continue;
+      const x = pos[i * 3] / 32767 * skala, y = pos[i * 3 + 1] / 32767 * skala, z = pos[i * 3 + 2] / 32767 * skala;
+      const a = Math.floor((y - Y0) / K), b = Math.floor((z - Z0) / K);
+      if (a < 0 || b < 0 || a >= NY || b >= NZ) continue;
+      if (x > mapa[b * NY + a]) mapa[b * NY + a] = x;
+    }
+    const przod = (y, z) => {
+      const a = Math.floor((y - Y0) / K), b = Math.floor((z - Z0) / K);
+      for (let r = 0; r < 4; r++) {
+        let m = -9;
+        for (let db = -r; db <= r; db++) for (let da = -r; da <= r; da++) {
+          const aa = a + da, bb = b + db;
+          if (aa >= 0 && bb >= 0 && aa < NY && bb < NZ) m = Math.max(m, mapa[bb * NY + aa]);
+        }
+        if (m > -9) return m;
+      }
+      return null;
+    };
+    // twarz G1: wklęsła, pod daszkiem głowy (z ok. 0,35–0,42 m w układzie tułowia); ring LED dookoła
+    const zc = 0.386, yc = 0;
+    const pkt = [];
+    const ileLed = lekki ? 520 : 1100;
+    for (let i = 0; i < ileLed; i++) {
+      const a = (i / ileLed) * Math.PI * 2, gr = (hash(i * 3.1) - 0.5) * 0.004;
+      const y = yc + Math.cos(a) * (0.041 + gr), z = zc + Math.sin(a) * (0.036 + gr);
+      const x = przod(y, z);
+      if (x !== null) pkt.push([x + 0.003, y, z, 32 + ts]);
+    }
+    // napis „TWOJE / LOGO” na piersi
+    const c = document.createElement('canvas'); c.width = 360; c.height = 220;
+    const g = c.getContext('2d', { willReadFrequently: true });
+    g.fillStyle = '#fff'; g.font = '700 96px "Space Grotesk", system-ui, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText('TWOJE', 180, 62); g.fillText('LOGO', 180, 160);
+    const d = g.getImageData(0, 0, c.width, c.height).data;
+    // siatka punktów jak na matrycy LED: równy krok, więc litery są ostre także z bliska
+    const krok = lekki ? 3 : 2, szer = 0.19, wys = szer * c.height / c.width, zLogo = 0.165;
+    for (let py = 0; py < c.height; py += krok) for (let px = (py / krok) % 2 ? krok / 2 : 0; px < c.width; px += krok) {
+      if (d[(Math.floor(py) * c.width + Math.floor(px)) * 4 + 3] < 150) continue;
+      const y = (px / c.width - 0.5) * szer, z = zLogo + (0.5 - py / c.height) * wys; // +y (lewa strona robota) = prawa strona ekranu
+      const x = przod(y, z);
+      if (x !== null) pkt.push([x + 0.004, y, z, 64 + ts]);
+    }
+    return pkt;
+  };
+
   const wczytaj = async () => {
     const r = await fetch((lekki ? 'robot/g1-lekki.bin' : 'robot/g1.bin') + '?v=' + WERSJA_DANYCH, { priority: 'low' });
     if (!r.ok) throw new Error('robot: ' + r.status);
@@ -249,6 +314,7 @@ void main() {
     const dl = dv.getUint32(0, true);
     const nag = JSON.parse(new TextDecoder().decode(new Uint8Array(dane, 4, dl)));
     const n = nag.n, o = 4 + dl;
+    skala = nag.skala;
     const pos = new Int16Array(dane, o, n * 3);
     const nrm = new Int8Array(dane, o + n * 6, n * 2);
     // Punkty leżą blokami: segment po segmencie, najpierw powierzchnia, potem krawędzie (bit 128).
@@ -267,11 +333,14 @@ void main() {
     // Podeszwy: środek najniższych punktów stopy w układzie członu kostki.
     podeszwa = {};
     for (const nazwa of ['left_ankle_roll_joint', 'right_ankle_roll_joint']) {
-      const si = IDX[nazwa]; let zmin = 9, sx = 0, sy = 0, ile = 0;
+      const si = IDX[nazwa]; let zmin = 32767, sx = 0, sy = 0, ile = 0;
       for (let i = 0; i < n; i++) if ((seg[i] & 127) === si) zmin = Math.min(zmin, pos[i * 3 + 2]);
       for (let i = 0; i < n; i++) if ((seg[i] & 127) === si && pos[i * 3 + 2] < zmin + 600) { sx += pos[i * 3]; sy += pos[i * 3 + 1]; ile++; }
-      podeszwa[si] = [sx / ile / 32767 * nag.skala, sy / ile / 32767 * nag.skala, zmin / 32767 * nag.skala];
+      podeszwa[si] = [sx / ile / 32767 * skala, sy / ile / 32767 * skala, zmin / 32767 * skala];
     }
+
+    try { await document.fonts.load('600 92px "Space Grotesk"'); } catch (e) { /* font systemowy */ }
+    const ekstra = dodatki(pos, seg, n, IDX.waist_yaw_joint);
 
     // Podłoga: koncentryczne okręgi punktów wokół stóp (segment 25, bez ruchu).
     const kola = [];
@@ -279,71 +348,33 @@ void main() {
       for (let i = 0; i < ile; i++) { const a = (i / ile) * Math.PI * 2; kola.push(Math.cos(a) * r, Math.sin(a) * r * 0.999, 0); }
     }
     for (let i = 0; i < 72; i++) { const a = (i / 72) * Math.PI * 2; for (let k = 0; k < 6; k++) { const r = 0.58 + k * 0.012; kola.push(Math.cos(a) * r, Math.sin(a) * r, 0); } }
-    const nP = kola.length / 3;
-    N = n + nP;
+    const nP = kola.length / 3, nE = ekstra.length;
+    N = n + nE + nP;
     const P16 = new Int16Array(N * 3); P16.set(pos);
-    for (let i = 0; i < kola.length; i++) P16[n * 3 + i] = Math.round(kola[i] / nag.skala * 32767);
-    const N8 = new Int8Array(N * 2); N8.set(nrm); // podłoga: normalna (0, 0, 1) = (0, 0) w kodowaniu oktaedrycznym
-    const S8 = new Uint8Array(N); S8.set(seg); S8.fill(25, n);
+    const N8 = new Int8Array(N * 2); N8.set(nrm);
+    const S8 = new Uint8Array(N); S8.set(seg);
+    ekstra.forEach(([x, y, z, s], i) => {
+      const j = n + i;
+      P16[j * 3] = Math.round(x / skala * 32767); P16[j * 3 + 1] = Math.round(y / skala * 32767); P16[j * 3 + 2] = Math.round(z / skala * 32767);
+      N8[j * 2] = 127; N8[j * 2 + 1] = 0; // normalna do przodu (+x)
+      S8[j] = s;
+    });
+    for (let i = 0; i < kola.length; i++) P16[(n + nE) * 3 + i] = Math.round(kola[i] / skala * 32767);
+    S8.fill(25, n + nE); // podłoga: normalna (0, 0, 1) = (0, 0) w kodowaniu oktaedrycznym
     const los = new Float32Array(N);
     for (let i = 0; i < N; i++) los[i] = hash(i + 0.5);
-    txt = new Float32Array(N * 2);
 
     const bufor = (dane, atr, rozm, typ, norm) => {
       const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, dane, gl.STATIC_DRAW);
       gl.enableVertexAttribArray(atr); gl.vertexAttribPointer(atr, rozm, typ, norm, 0, 0);
-      return b;
     };
     gl.useProgram(prog);
     bufor(P16, A.aPos, 3, gl.SHORT, true);
     bufor(N8, A.aNrm, 2, gl.BYTE, true);
     bufor(S8, A.aSeg, 1, gl.UNSIGNED_BYTE, false);
     bufor(los, A.aLos, 1, gl.FLOAT, false);
-    bufTxt = bufor(txt, A.aTxt, 2, gl.FLOAT, false);
-    gl.uniform1f(U.uSkala, nag.skala);
-  };
-
-  /* ——— Cel „100+”: punkty z pikseli napisu, w pikselach CSS względem pola liczby ——— */
-  let txtGotowy = false, txtKlucz = '';
-  const zbudujTekst = async () => {
-    const el = scenaLiczba && scenaLiczba.querySelector('[data-tekst]');
-    if (!el || !N) return;
-    const st = getComputedStyle(el);
-    const klucz = [el.textContent, st.fontSize, st.fontWeight, st.letterSpacing, el.clientWidth].join('|');
-    if (klucz === txtKlucz) return;
-    txtKlucz = klucz;
-    try { await document.fonts.load(`${st.fontWeight} ${st.fontSize} ${st.fontFamily}`); } catch (e) { /* font systemowy */ }
-    const fs = parseFloat(st.fontSize), lh = parseFloat(st.lineHeight) || fs;
-    const r = el.getBoundingClientRect();
-    const w = Math.ceil(r.width + fs), h = Math.ceil(lh + fs * 0.5);
-    const k = Math.min(1, 900 / w);
-    const c = document.createElement('canvas'); c.width = Math.ceil(w * k); c.height = Math.ceil(h * k);
-    const x = c.getContext('2d', { willReadFrequently: true });
-    x.scale(k, k);
-    x.font = `${st.fontWeight} ${fs}px ${st.fontFamily}`;
-    if ('letterSpacing' in x) x.letterSpacing = st.letterSpacing === 'normal' ? '0px' : st.letterSpacing;
-    x.textBaseline = 'alphabetic';
-    const m = x.measureText(el.textContent);
-    const asc = m.fontBoundingBoxAscent ?? fs * 0.8, desc = m.fontBoundingBoxDescent ?? fs * 0.2;
-    const linia = (lh - (asc + desc)) / 2 + asc;
-    const lewo = st.textAlign === 'right' || st.textAlign === 'end' ? r.width - m.width : 0;
-    x.fillStyle = '#fff';
-    x.fillText(el.textContent, lewo, linia);
-    const d = x.getImageData(0, 0, c.width, c.height).data;
-    const pel = [];
-    for (let i = 3; i < d.length; i += 4) if (d[i] > 140) pel.push((i - 3) / 4);
-    if (!pel.length) return;
-    // Pozycja napisu względem pola sceny (nie samego elementu tekstu).
-    const rs = scenaLiczba.getBoundingClientRect();
-    const ox = r.left - rs.left, oy = r.top - rs.top;
-    for (let i = 0; i < N; i++) {
-      const p = pel[Math.floor(hash(i * 1.7 + 3.1) * pel.length)];
-      const px = (p % c.width + hash(i + 9.3)) / k, py = (Math.floor(p / c.width) + hash(i + 4.4)) / k;
-      txt[i * 2] = ox + px; txt[i * 2 + 1] = oy + py;
-    }
-    gl.bindBuffer(gl.ARRAY_BUFFER, bufTxt);
-    gl.bufferData(gl.ARRAY_BUFFER, txt, gl.STATIC_DRAW);
-    txtGotowy = true;
+    gl.uniform1f(U.uSkala, skala);
+    gl.uniform1f(U.uTors, IDX.waist_yaw_joint);
   };
 
   /* ——— Wejście użytkownika ——— */
@@ -352,19 +383,19 @@ void main() {
   addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse') { mysz.x = e.clientX / innerWidth; mysz.y = e.clientY / innerHeight; mysz.jest = true; } }, { passive: true });
   document.addEventListener('mouseleave', () => { mysz.jest = false; });
   scenaHero.addEventListener('pointerdown', (e) => {
-    if (reduce || e.button !== 0) return;
+    if (reduce || e.button !== 0 || e.target.closest('button, a')) return; // przyciski poleceń działają zwykłym kliknięciem
     ciagnie = { id: e.pointerId, x: e.clientX, t: performance.now(), dx: 0 };
     scenaHero.setPointerCapture(e.pointerId);
   });
   scenaHero.addEventListener('pointermove', (e) => {
     if (!ciagnie || ciagnie.id !== e.pointerId) return;
     const dx = e.clientX - ciagnie.x, t = performance.now();
-    orbita += dx * 0.011; orbitaV = dx * 0.011 / Math.max(0.008, (t - ciagnie.t) / 1000);
+    orbita += dx * 0.008; orbitaV = dx * 0.008 / Math.max(0.008, (t - ciagnie.t) / 1000);
     ciagnie.x = e.clientX; ciagnie.t = t; ciagnie.dx += Math.abs(dx);
   });
   const pusc = (e) => {
     if (!ciagnie || ciagnie.id !== e.pointerId) return;
-    if (ciagnie.dx < 6) gest('macha', 2.4);
+    if (ciagnie.dx < 6) polecenie('macha');
     ciagnie = null; puszczono = performance.now() / 1000;
   };
   scenaHero.addEventListener('pointerup', pusc);
@@ -376,43 +407,69 @@ void main() {
   if (ctaHero) {
     ctaHero.addEventListener('pointerenter', () => { wskazuje = true; });
     ctaHero.addEventListener('pointerleave', () => { wskazuje = false; });
-    ctaHero.addEventListener('focus', () => { wskazuje = true; });
-    ctaHero.addEventListener('blur', () => { wskazuje = false; });
   }
-  // Pauza w hero (przycisk rotacji zdjęć) zatrzymuje też robota.
-  const pauza = document.getElementById('heroPauza');
-  const zatrzymany = () => reduce || (pauza && pauza.getAttribute('aria-pressed') === 'true');
+  // „Zatrzymaj ruch” (i pauza rotacji zdjęć, jeśli jest) zatrzymuje robota.
+  // Klasa ruch-stop na <html> (przyciski [data-ruch-przelacz], js/glowna.js) zatrzymuje robota i animacje kart.
+  const pauzy = [document.getElementById('heroPauza')].filter(Boolean);
+  const zatrzymany = () => reduce || html.classList.contains('ruch-stop') || pauzy.some((p) => p.getAttribute('aria-pressed') === 'true');
 
-  let gestNazwa = null, gestDo = 0, dbgKaty = null, dbgOrbita = null;
-  const gest = (nazwa, czas) => { if (zatrzymany()) return; gestNazwa = nazwa; gestDo = zegar + czas; };
+  /* ——— Polecenia: przyciski [data-robot-gest] i dymek z tekstem ——— */
+  const dymek = document.getElementById('robotDymek');
+  const MOWA = ['Dzień dobry! Mówię po polsku i w każdym innym języku.', 'Hello! Welcome to your event.', 'Guten Tag! Schön, Sie zu sehen.',
+    'Laba diena! Zrobimy sobie zdjęcie?', 'Dobrý den! Podejdę do Twoich gości.', 'Bună ziua! Opowiem o Twojej firmie.'];
+  const TEKST = { macha: 'Cześć! Miło Cię widzieć.', tanczy: 'Muzyka, maestro!', buziak: 'Muah!', zdjecie: 'Uśmiech do zdjęcia!' };
+  const CZAS = { macha: 2.6, tanczy: 4.5, buziak: 2.4, zdjecie: 3, mowi: 3.6 };
+  let gestNazwa = null, gestDo = 0, gestOd = 0, gestZoom = false, dbgKaty = null, dbgOrbita = null, mowaNr = 0, zegar = 0;
+  const gest = (nazwa, czas, zblizenie = false) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; gestZoom = zblizenie; obudz(); };
+  // Polecenie z przycisku: kamera odjeżdża, żeby było widać całego robota (oprócz mowy i machania).
+  const polecenie = (nazwa, zPrzycisku = false) => {
+    if (zatrzymany() || !POZY[nazwa]) return;
+    gest(nazwa, CZAS[nazwa] || 2.5, zPrzycisku && !['mowi', 'macha', 'buziak'].includes(nazwa));
+    if (dymek && (zPrzycisku || innerWidth >= 768)) { // na telefonie samo powitanie bez dymka — nie zasłania tekstu
+      dymek.textContent = nazwa === 'mowi' ? MOWA[mowaNr++ % MOWA.length] : (TEKST[nazwa] || '');
+      dymek.dataset.do = String(gestDo);
+    }
+    if (zPrzycisku && window.dataLayer) window.dataLayer.push({ event: 'robot_gest', robot_gest: nazwa });
+  };
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-robot-gest]');
+    if (!b) return;
+    polecenie(b.dataset.robotGest, true);
+  });
 
-  /* ——— Reżyser: gdzie robot stoi, w co się zmienia, jak bardzo go widać ——— */
-  let zegar = 0, wejscie = 0, gotowy = false;
+  /* ——— Reżyser ——— */
+  let wejscie = 0, gotowy = false, zoom = 0;
   const rezyser = () => {
-    const vh = innerHeight;
-    const rH = scenaHero.getBoundingClientRect();
-    const widacH = clamp(Math.min(rH.bottom, vh) - Math.max(rH.top, 0), 0, rH.height) / Math.max(1, Math.min(rH.height, vh));
-    const st = { rect: rH, morf: 0, cel: 0, alfa: gladko(0.05, 0.6, widacH), poza: null, strefa: 'hero' };
+    const vh = innerHeight, vw = innerWidth;
+    // strefa występu: cały robot w polu sceny
     if (scenaWystep && scenaWystep.offsetParent !== null) {
       const rW = scenaWystep.getBoundingClientRect(), rs = wystep.getBoundingClientRect();
       if (rs.top < vh && rs.bottom > 0) {
         const wej = clamp((vh - rs.top) / (vh * 0.55), 0, 1), wyj = clamp(rs.bottom / (vh * 0.6), 0, 1);
         const m = 1 - Math.min(wej, wyj);
-        return { rect: rW, morf: reduce ? (m < 1 ? 0 : 1) : m, cel: 1, alfa: reduce ? (m < 1 ? 1 : 0) : 1 - gladko(0.55, 1, m), poza: wystep.dataset.poza || 'wita', strefa: 'wystep' };
+        return { rect: rW, morf: reduce ? (m < 1 ? 0 : 1) : m, alfa: reduce ? (m < 1 ? 1 : 0) : 1 - gladko(0.55, 1, m),
+          poza: wystep.dataset.poza || 'wita', strefa: 'wystep', z: 'przod' };
       }
     }
-    if (scenaLiczba && txtGotowy && !reduce) {
-      const rL = scenaLiczba.getBoundingClientRect();
-      const srodek = rL.top + rL.height / 2;
-      const m = gladko(vh * 0.95, vh * 0.5, srodek);
-      if (m > 0) {
-        st.morf = m; st.cel = 0; st.strefa = 'liczba';
-        const zostaje = clamp((rL.bottom - 40) / (rL.height * 0.7), 0, 1);
-        st.alfa = Math.max(st.alfa * (1 - m), m * zostaje);
-        st.rectL = rL;
-      }
-    }
-    return st;
+    // strefa olbrzyma: od góry strony do końca #zasady
+    const koniec = zasady ? zasady.getBoundingClientRect().bottom : scenaHero.getBoundingClientRect().bottom;
+    if (koniec < 0) return { rect: null, morf: 1, alfa: 0, strefa: 'nic', z: 'tlo' };
+    const zakres = Math.max(1, koniec + scrollY - vh);
+    const p = clamp(scrollY / zakres, 0, 1);
+    const telefon = vw < 768, tablet = vw < 1024;
+    const okno0 = telefon ? 1.3 : tablet ? 0.9 : 0.66;
+    const okno = lerp(okno0, telefon ? 1.75 : 1.6, zoom);
+    const pe = p * p * (3 - 2 * p) * 0.35 + p * 0.65;
+    const zc = lerp(lerp(1.12, 0.32, pe), 0.72, zoom);
+    const pxm = vh / okno, h = 1.42 * pxm;
+    const cx = vw * (telefon ? 0.82 : tablet ? 0.74 : 0.72);
+    const cy = vh * 0.5 + (zc - 0.66) * pxm;
+    const rect = { left: cx - h / 2, top: cy - h / 2, width: h, height: h };
+    // pod koniec sekcji #zasady robot rozsypuje się w punkty i znika
+    const zostaje = clamp((koniec - vh * 0.2) / (vh * 0.5), 0, 1);
+    const m = reduce ? (zostaje > 0 ? 0 : 1) : 1 - zostaje;
+    return { rect, morf: m, alfa: (reduce ? (zostaje > 0 ? 1 : 0) : 1 - gladko(0.5, 1, m)) * (telefon ? 0.4 : tablet ? 0.6 : 1), poza: null,
+      strefa: 'olbrzym', p, z: 'tlo', yaw: lerp(-0.22, 0.6, pe) * (1 - zoom) };
   };
 
   /* ——— Rysowanie ——— */
@@ -423,42 +480,45 @@ void main() {
   };
   const FOV = 24 * Math.PI / 180, ODL = 1.42 / (2 * Math.tan(FOV / 2));
   const OKO = [0, 0.7, ODL], CEL = [0, 0.66, 0];
-  const PROJ = m4persp(FOV, 0.1, 20), WIDOK = m4widok(OKO, CEL);
-  // Podpisy przy robocie: każdy należy do swojej sceny, data-hud-poza zawęża go do wybranych póz.
-  const hud = [...document.querySelectorAll('[data-hud]')].map((el) => ({ el, scena: el.closest('[data-scena]'),
+  const PROJ = m4persp(FOV, 0.1, 20), WIDOK = m4widok(OKO, CEL), VP0 = m4mnoz(PROJ, WIDOK);
+  // Podpisy przy robocie: data-hud = punkt ciała, data-hud-poza zawęża do pozy (scena występu).
+  const hud = [...document.querySelectorAll('[data-hud]')].map((el) => ({ el, scena: el.closest('[data-scena]'), olbrzym: !!el.closest('.hud-olbrzym'),
     pozy: (el.dataset.hudPoza || '').split(' ').filter(Boolean) }));
-  const HUD_PKT = { // punkt w układzie członu (URDF): głowa i pierś po lewej stronie robota = prawa strona ekranu
-    glowa: ['waist_yaw_joint', [0.03, 0.1, 0.42]], piers: ['waist_yaw_joint', [0.1, 0.11, 0.2]],
-    dlon: ['right_wrist_roll_joint', [0.1, -0.02, 0]], podloga: [null, [0, 0.5, 0.02]],
+  const HUD_PKT = { // punkt w układzie członu (URDF): lewa strona robota (+y) = prawa strona ekranu
+    glowa: ['waist_yaw_joint', [0.04, 0.09, 0.47]], twarz: ['waist_yaw_joint', [0.08, 0.06, 0.41]],
+    piers: ['waist_yaw_joint', [0.1, 0.12, 0.17]], dlon: ['left_wrist_roll_joint', [0.08, 0.03, 0]],
+    kolano: ['left_knee_joint', [0.06, 0.05, -0.12]], stopa: ['left_ankle_roll_joint', [0.12, 0.05, -0.02]],
   };
-  let ost = 0, wyglad = { morf: 0, alfa: 0 }, klatkaId = 0, dziala = false, lookX = 0;
+  let ost = 0, wyglad = { alfa: 0 }, klatkaId = 0, dziala = false, lookX = 0, trybZ = '';
 
   const klatka = (tms) => {
     klatkaId = 0;
     const t = tms / 1000, dt = Math.min(0.05, ost ? t - ost : 0.016); ost = t;
     const stoj = zatrzymany();
     if (!stoj) zegar += dt;
+    const gestTrwa = gestNazwa && zegar < gestDo;
+    zoom += ((gestTrwa && gestZoom && !reduce ? 1 : 0) - zoom) * (1 - Math.exp(-dt * 2.4));
     const st = rezyser();
     rozmiar();
+    if (st.z !== trybZ) { trybZ = st.z; canvas.classList.toggle('robot3d--tlo', st.z === 'tlo'); }
     const cr = canvas.getBoundingClientRect();
 
     // wejście: punkty zlatują się w robota po załadowaniu
     wejscie = reduce ? 1 : Math.min(1, wejscie + dt / 2.2);
-    let morf = st.morf, cel = st.cel;
-    if (wejscie < 1 && st.strefa === 'hero') { morf = 1 - gladko(0, 1, wejscie); cel = 1; }
+    let morf = st.morf;
+    if (wejscie < 1 && st.strefa === 'olbrzym') morf = Math.max(morf, 1 - gladko(0, 1, wejscie));
     wyglad.alfa += (st.alfa - wyglad.alfa) * (reduce ? 1 : 1 - Math.exp(-dt * 8));
 
     // pozy
     let poza = st.poza || 'stoi';
-    if (st.strefa === 'hero') {
-      if (wskazuje) poza = 'wskazuje';
-      else if (gestNazwa && zegar < gestDo) poza = gestNazwa;
-      else { gestNazwa = null; if (wejscie >= 1 && !stoj && zegar > 3 && Math.floor(zegar) % 14 === 0 && Math.random() < dt * 1.5) gest('macha', 2.4); }
+    if (st.strefa !== 'wystep') {
+      if (gestTrwa) poza = gestNazwa;
+      else if (wskazuje && st.p < 0.15) poza = 'wskazuje';
+      else { gestNazwa = null; if (wejscie >= 1 && !stoj && zegar > 4 && Math.floor(zegar) % 16 === 0 && Math.random() < dt * 1.2) gest('macha', 2.4); }
     }
-    for (let i = 0; i < S.length; i++) qCel[i] = q[i];
     for (const [k, v] of Object.entries(BAZA)) qCel[IDX[k]] = v;
     const czas = stoj ? 0 : zegar;
-    const nad = (POZY[poza] || POZY.stoi)(czas);
+    const nad = (POZY[poza] || POZY.stoi)(poza === gestNazwa && gestTrwa ? zegar - gestOd : czas);
     for (const [k, v] of Object.entries(nad)) qCel[IDX[k]] = v;
     if (dbgKaty) for (const [k, v] of Object.entries(dbgKaty)) qCel[IDX[k]] = v;
     if (!stoj) { // oddech: lekkie ugięcie kolan
@@ -466,66 +526,60 @@ void main() {
       for (const s of ['left', 'right']) { qCel[IDX[s + '_knee_joint']] += o * 2; qCel[IDX[s + '_hip_pitch_joint']] -= o; qCel[IDX[s + '_ankle_pitch_joint']] -= o; }
     }
     // spojrzenie za kursorem: obrót tułowia w pasie (G1 nie ma szyi)
-    const rr = st.rect;
+    const rr = st.rect || { left: 0, top: 0, width: 1, height: 1 };
     const sx = (rr.left + rr.width / 2) / innerWidth;
-    const celLook = mysz.jest && !stoj && st.strefa === 'hero' && !wskazuje ? clamp((mysz.x - sx) * 1.6, -0.75, 0.75) : 0;
+    const celLook = mysz.jest && !stoj && st.strefa === 'olbrzym' && !gestTrwa && !wskazuje ? clamp((mysz.x - sx) * 1.4, -0.7, 0.7) : 0;
     lookX += (celLook - lookX) * (1 - Math.exp(-dt * 4));
     qCel[IDX.waist_yaw_joint] += lookX * 0.8;
-    const k = reduce ? 1 : 1 - Math.exp(-dt * (poza === 'tanczy' || poza === 'macha' || poza === 'mowi' ? 14 : 6));
+    const k = reduce ? 1 : 1 - Math.exp(-dt * (['tanczy', 'macha', 'mowi', 'buziak'].includes(poza) ? 14 : 6));
     for (let i = 0; i < S.length; i++) {
       const s = S[i]; if (!s.staw) continue;
       q[i] += (clamp(qCel[i], s.min, s.max) - q[i]) * k;
     }
     kinematyka();
 
-    // orbita: przeciąganie, potem powolny powrót przodem do widza
+    // orbita: przeciąganie, potem powolny powrót; w strefie olbrzyma obrót wynika też z przewinięcia
     if (!ciagnie) {
       orbita += orbitaV * dt; orbitaV *= Math.exp(-dt * 3);
       if (t - puszczono > 1.2) { const cel0 = Math.round(orbita / (Math.PI * 2)) * Math.PI * 2; orbita += (cel0 - orbita) * (1 - Math.exp(-dt * 1.6)); }
     }
-    const yaw = dbgOrbita ?? orbita + lookX * 0.35;
+    const yaw = dbgOrbita ?? orbita + (reduce ? 0 : (st.yaw || 0)) + lookX * 0.35;
 
     // macierz modelu: URDF (x przód, y lewo, z góra) → GL (x prawo, y góra, z do widza)
     const c = Math.cos(yaw), s = Math.sin(yaw);
     const M = m4();
-    M[0] = s; M[1] = 0; M[2] = c;          // kolumna x_urdf
-    M[4] = c; M[5] = 0; M[6] = -s;         // kolumna y_urdf
-    M[8] = 0; M[9] = 1; M[10] = 0;         // kolumna z_urdf
-    M[15] = 1;
-    // przesunięcie obiektywu: robot wypełnia pole sceny w płótnie
+    M[0] = s; M[2] = c; M[4] = c; M[6] = -s; M[9] = 1; M[15] = 1;
+    // przesunięcie obiektywu: robot wypełnia prostokąt rr w płótnie
     const cx = ((rr.left - cr.left + rr.width / 2) / cr.width) * 2 - 1;
     const cy = 1 - ((rr.top - cr.top + rr.height / 2) / cr.height) * 2;
-    const sy = rr.height / cr.height, sxk = rr.height / cr.width;
-    const SH = m4(); SH[0] = sxk; SH[5] = sy; SH[10] = 1; SH[15] = 1; SH[8] = 0; SH[12] = 0;
-    const VP = m4mnoz(PROJ, WIDOK);
-    // clip' = SH·clip + przesunięcie·w
-    const PRZ = m4(); PRZ[0] = 1; PRZ[5] = 1; PRZ[10] = 1; PRZ[15] = 1; PRZ[8] = 0; PRZ[9] = 0;
-    const VP2 = m4mnoz(SH, VP);
-    for (let i = 0; i < 4; i++) { VP2[i * 4] += cx * VP[i * 4 + 3]; VP2[i * 4 + 1] += cy * VP[i * 4 + 3]; }
+    const SH = m4(); SH[0] = rr.height / cr.width; SH[5] = rr.height / cr.height; SH[10] = 1; SH[15] = 1;
+    const VP2 = m4mnoz(SH, VP0);
+    for (let i = 0; i < 4; i++) { VP2[i * 4] += cx * VP0[i * 4 + 3]; VP2[i * 4 + 1] += cy * VP0[i * 4 + 3]; }
 
     gl.viewport(0, 0, W, H);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
-    if (wyglad.alfa > 0.004) {
+    if (wyglad.alfa > 0.004 && st.rect) {
       gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
       gl.useProgram(prog);
       gl.uniform4fv(U.uQ, kw); gl.uniform4fv(U.uT, tr);
       gl.uniformMatrix4fv(U.uM, false, M);
       gl.uniformMatrix4fv(U.uVP, false, VP2);
       gl.uniform3f(U.uKam, OKO[0], OKO[1], OKO[2]);
-      const rl = st.rectL || (scenaLiczba && scenaLiczba.getBoundingClientRect()) || { left: 0, top: 0 };
-      gl.uniform4f(U.uTxt, rl.left - cr.left, rl.top - cr.top, 2 / cr.width, 2 / cr.height);
       gl.uniform1f(U.uMorf, morf);
-      gl.uniform1f(U.uCel, cel);
       gl.uniform1f(U.uCzas, czas);
       gl.uniform1f(U.uRozb, reduce ? 0 : 1);
-      gl.uniform1f(U.uWiatr, 0);
       gl.uniform1f(U.uSkan, stoj ? -1 : ((czas % 7) / 5.2) * 1.5 - 0.1);
-      const blask = poza === 'branding' ? 0.55 + 0.25 * Math.sin(czas * 3) : 0;
-      const pk = punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.22]);
-      gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], blask);
-      gl.uniform1f(U.uPx, clamp(rr.height / 820, 0.55, 1.3) * (lekki ? 2.5 : 2.4) * Math.pow(dpr, 0.85));
+      const branding = poza === 'branding';
+      gl.uniform1f(U.uLogo, branding ? 1.2 + 0.6 * Math.sin(czas * 6) : 0.6);
+      gl.uniform1f(U.uLed, stoj ? 1.5 : 1.35 + 0.35 * Math.sin(czas * 2.2) + (poza === 'mowi' ? 0.5 * Math.abs(Math.sin(czas * 9)) : 0));
+      const pk = punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.17]);
+      gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], branding ? 0.35 : 0);
+      // punkty: drobne przy olbrzymie (gęsty, ostry rysunek), większe w małej scenie
+      const px = st.strefa === 'olbrzym' ? clamp(rr.height / 1700, 0.8, 1.6) * 2.5 : clamp(rr.height / 820, 0.55, 1.3) * (lekki ? 2.5 : 2.4);
+      gl.uniform1f(U.uPx, px * Math.pow(dpr, 0.85));
       gl.uniform1f(U.uAlfa, wyglad.alfa);
+      gl.uniform1f(U.uJasnosc, st.strefa === 'olbrzym' && innerWidth >= 768 ? 1.3 : 1);
       // 1. przebieg: większe punkty tylko do bufora głębi — przód robota zasłania tył.
       gl.clear(gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
@@ -540,24 +594,45 @@ void main() {
       gl.depthMask(true);
     }
 
-    // podpisy przy robocie: rzut punktów ciała na ekran
-    const scenaTeraz = st.strefa === 'wystep' ? scenaWystep : scenaHero;
-    for (const h of hud) {
-      const el = h.el;
-      const [staw, lok] = HUD_PKT[el.dataset.hud] || [];
-      const pokazHud = !!lok && h.scena === scenaTeraz && st.strefa !== 'liczba' && morf < 0.05 && wejscie >= 1 && wyglad.alfa > 0.5
-        && (!h.pozy.length || h.pozy.includes(poza));
-      el.classList.toggle('hud--widoczny', pokazHud);
-      if (!pokazHud) continue;
-      const p = staw ? punktSwiata(IDX[staw], lok) : lok;
+    // rzut punktu ciała na ekran (piksele CSS względem okna)
+    const naEkran = (p) => {
       const v = [M[0] * p[0] + M[4] * p[1] + M[8] * p[2], M[1] * p[0] + M[5] * p[1] + M[9] * p[2], M[2] * p[0] + M[6] * p[1] + M[10] * p[2], 1];
-      const cl = [0, 1, 2, 3].map((r) => VP2[r] * v[0] + VP2[4 + r] * v[1] + VP2[8 + r] * v[2] + VP2[12 + r]);
-      const X = (cl[0] / cl[3] + 1) / 2 * cr.width + cr.left - rr.left, Y = (1 - cl[1] / cl[3]) / 2 * cr.height + cr.top - rr.top;
-      el.style.setProperty('--x', X.toFixed(1) + 'px');
-      el.style.setProperty('--y', Y.toFixed(1) + 'px');
+      const cl = [0, 1, 3].map((r) => VP2[r] * v[0] + VP2[4 + r] * v[1] + VP2[8 + r] * v[2] + VP2[12 + r]);
+      return [(cl[0] / cl[2] + 1) / 2 * cr.width + cr.left, (1 - cl[1] / cl[2]) / 2 * cr.height + cr.top];
+    };
+    const scenaTeraz = st.strefa === 'wystep' ? scenaWystep : null;
+    const spokoj = morf < 0.05 && wejscie >= 1 && wyglad.alfa > 0.5;
+    for (const h of hud) {
+      const [staw, lok] = HUD_PKT[h.el.dataset.hud] || [];
+      let pokaz = !!lok && spokoj && (!h.pozy.length || h.pozy.includes(poza));
+      pokaz = pokaz && (h.olbrzym ? st.strefa === 'olbrzym' && !gestTrwa : h.scena === scenaTeraz);
+      let X = 0, Y = 0;
+      if (pokaz) {
+        [X, Y] = naEkran(punktSwiata(IDX[staw], lok));
+        if (h.olbrzym) pokaz = Y > innerHeight * 0.14 && Y < innerHeight * 0.88;
+        else { const r = h.scena.getBoundingClientRect(); X -= r.left; Y -= r.top; }
+      }
+      h.el.classList.toggle('hud--widoczny', pokaz);
+      if (pokaz) {
+        // przy prawej krawędzi ekranu podpis przechodzi na lewą stronę punktu
+        h.el.classList.toggle('hud--lewo', h.olbrzym && X > innerWidth - 250);
+        h.el.style.setProperty('--x', X.toFixed(1) + 'px'); h.el.style.setProperty('--y', Y.toFixed(1) + 'px');
+      }
+    }
+    // dymek przy głowie, póki trwa polecenie
+    if (dymek) {
+      const widac = gestTrwa && st.strefa === 'olbrzym' && +dymek.dataset.do === gestDo && wyglad.alfa > 0.3;
+      if (widac) {
+        // po lewej stronie głowy, nie wyżej niż pod nawigacją i nie poza lewą krawędzią
+        const [X, Y] = naEkran(punktSwiata(IDX.waist_yaw_joint, [0.05, -0.07, 0.42]));
+        const w = dymek.offsetWidth, hD = dymek.offsetHeight;
+        dymek.style.setProperty('--x', clamp(X - w - 16, 16, innerWidth - w - 16).toFixed(1) + 'px');
+        dymek.style.setProperty('--y', clamp(Y - hD / 2, 88, innerHeight - hD - 16).toFixed(1) + 'px');
+      }
+      dymek.classList.toggle('dymek--widoczny', widac);
     }
 
-    const dalej = wyglad.alfa > 0.004 || st.alfa > 0.004;
+    const dalej = wyglad.alfa > 0.004 || st.alfa > 0.004 || gestTrwa;
     if (dalej && !document.hidden) planuj();
     else { dziala = false; canvas.style.visibility = 'hidden'; }
   };
@@ -568,32 +643,29 @@ void main() {
     planuj();
   };
   addEventListener('scroll', obudz, { passive: true });
-  addEventListener('resize', () => { obudz(); clearTimeout(zbudujTekst.t); zbudujTekst.t = setTimeout(zbudujTekst, 200); });
+  addEventListener('resize', obudz);
   document.addEventListener('visibilitychange', obudz);
   addEventListener('pointermove', obudz, { passive: true });
-  if (pauza) new MutationObserver(obudz).observe(pauza, { attributes: true, attributeFilter: ['aria-pressed'] });
+  pauzy.forEach((p) => new MutationObserver(obudz).observe(p, { attributes: true, attributeFilter: ['aria-pressed'] }));
+  new MutationObserver(obudz).observe(html, { attributes: true, attributeFilter: ['class'] });
   if (wystep) new MutationObserver(obudz).observe(wystep, { attributes: true, attributeFilter: ['data-poza'] });
   ruchMq.addEventListener?.('change', (e) => { reduce = e.matches; obudz(); });
 
   const dane = wczytaj(); // od razu: plik idzie równolegle z resztą strony, rysowanie rusza po załadowaniu
   dane.catch(() => {});
-  const start = async () => {
-    try {
-      await dane;
-    } catch (e) { bez3d(); return; }
+  (async () => {
+    try { await dane; } catch (e) { bez3d(); return; }
     document.body.append(canvas);
     html.classList.add('z-3d');
     gotowy = true; dziala = true;
     html.dataset.robot = 'gotowy';
     planuj();
-    zbudujTekst();
-    if (!reduce) setTimeout(() => gest('macha', 2.6), 2300);
-  };
-  start();
+    if (!reduce) setTimeout(() => polecenie('macha'), 2300);
+  })();
 
   // Podgląd do strojenia (tylko z ?robot-debug).
   if (/[?&]robot-debug/.test(location.search)) {
     window.__robot = { POZY, BAZA, IDX: () => IDX, ustaw: (n) => { gestNazwa = n; gestDo = 1e9; obudz(); }, q: () => q,
-      orbita: (v) => { dbgOrbita = v; obudz(); }, katy: (o) => { dbgKaty = o; obudz(); } };
+      orbita: (v) => { dbgOrbita = v; obudz(); }, katy: (o) => { dbgKaty = o; obudz(); }, polecenie };
   }
 })();

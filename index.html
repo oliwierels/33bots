@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="css/site.css?v=f76abb77" />
-<link rel="stylesheet" href="css/glowna.css?v=29a2ca5e" />
+<link rel="stylesheet" href="css/glowna.css?v=585ff004" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -151,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HowTo","name":"Jak wynająć robota humanoidalnego — 5 kroków bez zaliczki","step":[
 {"@type":"HowToStep","position":1,"name":"Szybki kontakt","text":"Zostawiasz kontakt w formularzu — zajmuje to dwie minuty."},
-{"@type":"HowToStep","position":2,"name":"Telefon i wycena","text":"Oddzwaniamy, poznajemy event i podajemy konkretną kwotę. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia."},
+{"@type":"HowToStep","position":2,"name":"Telefon i wycena","text":"Oddzwaniamy, poznajemy event i podajemy konkretną kwotę. Odpowiadamy zwykle w ciągu 30 minut, a przez telefon wycenę podajemy od razu."},
 {"@type":"HowToStep","position":3,"name":"Prosta umowa","text":"Bezpłatna rezerwacja terminu, zero zaliczki, w razie potrzeby dłuższy termin płatności."},
 {"@type":"HowToStep","position":4,"name":"Realizacja","text":"Przyjeżdżamy, konfigurujemy i prowadzimy pokaz. Ty zajmujesz się gośćmi."},
 {"@type":"HowToStep","position":5,"name":"Faktura po evencie","text":"Płatność następuje dopiero po zakończonym wydarzeniu."}]}
@@ -251,7 +251,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input class="termin__data" type="date" id="heroData" />
           <a class="btn btn--akcja" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę <span aria-hidden="true">→</span></a>
         </div>
-        <p class="termin__obietnica"><strong>Bez zaliczki, płacisz po wydarzeniu.</strong> Odpowiadamy zwykle tego samego dnia.</p>
+        <p class="termin__obietnica"><strong>Bez zaliczki, płacisz po wydarzeniu.</strong> Odpowiadamy w&nbsp;ciągu ok. 30 minut.</p>
+        <p class="termin__telefon">Potrzebujesz wyceny od razu? Zadzwoń: <a href="tel:+48531408004" data-tel="hero">+48 531 408 004</a></p>
       </div>
       <a class="link" href="realizacje-wideo.html">Zobacz realizacje</a>
     </div>
@@ -259,33 +260,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Scena: robot z punktów (js/robot3d.js) wypełnia to pole. Bez WebGL i bez JS
        pole zajmuje karta ze zdjęciami z realizacji, jak dawniej całe hero. -->
   <div class="hero__scena" data-scena="hero">
-    <div class="hud-warstwa" aria-hidden="true">
-      <p class="hud" data-hud="glowa"><span class="hud__kreska"></span><span class="hud__tekst">Mówi w&nbsp;każdym języku</span></p>
-      <p class="hud" data-hud="piers"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo i&nbsp;kod QR na piersi</span></p>
-    </div>
+    <img class="hero__zapas" src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" width="900" height="1200" loading="lazy" decoding="async" />
     <p class="hero__chwyc label" aria-hidden="true">Przeciągnij, żeby obrócić</p>
+    <!-- Polecenia: robot (js/robot3d.js) wykonuje gest, a dymek pokazuje, co mówi. -->
+    <div class="polecenia" role="group" aria-labelledby="poleceniaTytul">
+      <p class="label" id="poleceniaTytul">Wydaj robotowi polecenie</p>
+      <div class="polecenia__lista">
+        <button class="polecenie" type="button" data-robot-gest="macha">Pomachaj</button>
+        <button class="polecenie" type="button" data-robot-gest="tanczy">Zatańcz</button>
+        <button class="polecenie" type="button" data-robot-gest="buziak">Wyślij buziaka</button>
+        <button class="polecenie" type="button" data-robot-gest="zdjecie">Ręce w górę</button>
+        <button class="polecenie" type="button" data-robot-gest="mowi">Powiedz coś</button>
+      </div>
+      <button class="polecenia__pauza" id="robotPauza" type="button" aria-pressed="false" data-ruch-przelacz>Zatrzymaj ruch</button>
+    </div>
   </div>
-  <figure class="hero__media" id="heroMedia">
-    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" decoding="async" width="900" height="1200">
-    <figcaption class="hero__podpis">
-      <span class="label" id="heroLicznik">01 / 06</span>
-      <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
-      <button class="hero__pauza" id="heroPauza" type="button" aria-pressed="false" hidden>Pauza</button>
-    </figcaption>
-  </figure>
+  <p class="dymek" id="robotDymek" role="status" aria-live="polite"></p>
+  <!-- Podpisy przy częściach ciała olbrzymiego robota w tle: pojawiają się, gdy dana część jest na ekranie. -->
+  <div class="hud-olbrzym" aria-hidden="true">
+    <p class="hud" data-hud="glowa"><span class="hud__kreska"></span><span class="hud__tekst">LiDAR i&nbsp;kamera — widzi gości wokół siebie</span></p>
+    <p class="hud" data-hud="twarz"><span class="hud__kreska"></span><span class="hud__tekst">Mówi w&nbsp;każdym języku</span></p>
+    <p class="hud" data-hud="piers"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo i&nbsp;kod QR na piersi</span></p>
+    <p class="hud" data-hud="dlon"><span class="hud__kreska"></span><span class="hud__tekst">Wita gości i&nbsp;podaje rękę</span></p>
+    <p class="hud" data-hud="kolano"><span class="hud__kreska"></span><span class="hud__tekst">Chodzi wśród gości, omija ludzi i&nbsp;przeszkody</span></p>
+    <p class="hud" data-hud="stopa"><span class="hud__kreska"></span><span class="hud__tekst">Wystarczy mu kilka metrów kwadratowych</span></p>
+  </div>
 </section>
 
 <section class="proof" aria-label="Skala i media">
   <div class="skala">
-    <div class="skala__liczba" data-scena="liczba">
-      <p class="skala__cyfry" data-tekst>100+</p>
+    <div class="skala__liczba">
+      <p class="skala__cyfry"><span data-licz="100">100</span>+</p>
       <p class="skala__opis">wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe</p>
     </div>
     <dl class="skala__fakty">
       <div class="fakt"><dt class="fakt__liczba"><span data-licz="5">5</span></dt><dd class="fakt__opis">krajów: Polska, Litwa, Niemcy, Czechy, Rumunia</dd></div>
       <div class="fakt"><dt class="fakt__liczba"><span data-licz="3">3</span>&nbsp;×&nbsp;TVP</dt><dd class="fakt__opis">„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk</dd></div>
       <div class="fakt"><dt class="fakt__liczba"><span data-licz="0">0</span>&nbsp;zł</dt><dd class="fakt__opis">zaliczki — fakturę wystawiamy po wydarzeniu</dd></div>
-      <div class="fakt"><dt class="fakt__liczba"><span data-licz="24">24</span>&nbsp;h</dt><dd class="fakt__opis">na odpowiedź z&nbsp;ceną, zwykle tego samego dnia</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="30">30</span>&nbsp;min</dt><dd class="fakt__opis">na odpowiedź z&nbsp;ceną — przez telefon od razu</dd></div>
     </dl>
   </div>
   <p class="label proof__label">Widziani w</p>
@@ -297,12 +309,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 </section>
 
-<!-- ══════════ 04 NA SALI ══════════ -->
+<!-- ══════════ 04 ZASADY: bezpieczeństwo i kontakt z gośćmi ══════════
+     Fakty z FAQ (operator, LiDAR i wizja komputerowa, wymienne baterie, OC, języki,
+     wiedza o wydarzeniu) i z deklaracji właściciela (robot podchodzi do gości, 11.2026).
+     Animacje: SVG w [data-animacja], przy ograniczonym ruchu stoją. Na desktopie treść
+     w lewych sześciu kolumnach — po prawej stoi w tle olbrzymi robot (js/robot3d.js). -->
+<section id="zasady" class="sec" aria-labelledby="zasady-h">
+  <span class="kotwica" id="bezpieczenstwo"></span>
+  <div class="wrap">
+    <div class="zasady__glowa wejscie">
+      <p class="label sec__meta">04 / 12 · Zasady</p>
+      <h2 id="zasady-h" class="h2">Bezpieczeństwo gości przed popisami.</h2>
+      <button class="pasy__pauza zasady__pauza" type="button" aria-pressed="false" data-ruch-przelacz hidden>Zatrzymaj ruch</button>
+      <p class="body">Salto dobrze wygląda na filmiku. Na sali pełnej ludzi liczy się co innego: żeby nikomu nic się nie stało i&nbsp;żeby z&nbsp;robotem porozmawiało jak najwięcej osób. Tak pracujemy na każdym wydarzeniu.</p>
+    </div>
+
+    <h3 class="label zasady__grupa">Bezpieczeństwo</h3>
+    <ul class="zasady wejscie">
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="operator" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><path class="a-tor" d="M16 84 C 70 30, 130 120, 224 50" /><g class="a-para"><rect x="-6" y="-6" width="12" height="12" class="a-pelny" /><circle cx="0" cy="22" r="6" class="a-obrys" /><line x1="0" y1="6" x2="0" y2="16" class="a-cienka" /></g></svg>
+        </div>
+        <h4 class="h3">Operator cały czas obok</h4>
+        <p class="body">Certyfikowany operator jest przy robocie od pierwszej do ostatniej minuty — odpowiada za konfigurację, obsługę i&nbsp;bezpieczeństwo pokazu. Każda realizacja jest objęta ubezpieczeniem OC.</p>
+      </li>
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="radar" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><circle cx="120" cy="60" r="18" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="36" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="54" class="a-obrys a-slabo" /><g class="a-wiazka"><line x1="120" y1="60" x2="120" y2="4" class="a-linia" /></g><rect x="116" y="56" width="8" height="8" class="a-pelny" /><circle cx="92" cy="30" r="4" class="a-gosc a-g1" /><circle cx="160" cy="44" r="4" class="a-gosc a-g2" /><circle cx="150" cy="96" r="4" class="a-gosc a-g3" /><circle cx="80" cy="84" r="4" class="a-gosc a-g4" /></svg>
+        </div>
+        <h4 class="h3">Widzi ludzi wokół siebie</h4>
+        <p class="body">LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.</p>
+      </li>
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="bateria" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><rect x="60" y="38" width="108" height="44" class="a-obrys" /><rect x="168" y="52" width="8" height="16" class="a-pelny" /><rect x="66" y="44" width="96" height="32" class="a-ogniwo" /><text x="120" y="108" class="a-napis a-wymiana">WYMIANA — POKAZ TRWA</text></svg>
+        </div>
+        <h4 class="h3">Baterie bez przerwy w&nbsp;pokazie</h4>
+        <p class="body">Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.</p>
+      </li>
+    </ul>
+
+    <h3 class="label zasady__grupa">Kontakt z&nbsp;gośćmi</h3>
+    <ul class="zasady wejscie">
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="goscie" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><circle cx="40" cy="30" r="5" class="a-gosc a-w1" /><circle cx="96" cy="92" r="5" class="a-gosc a-w2" /><circle cx="150" cy="24" r="5" class="a-gosc a-w3" /><circle cx="206" cy="84" r="5" class="a-gosc a-w4" /><circle cx="24" cy="96" r="5" class="a-gosc a-slabo" /><circle cx="222" cy="22" r="5" class="a-gosc a-slabo" /><g class="a-robot"><rect x="-6" y="-6" width="12" height="12" class="a-pelny" /></g></svg>
+        </div>
+        <h4 class="h3">Wychodzimy do ludzi</h4>
+        <p class="body">Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.</p>
+      </li>
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="mowa" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><g class="a-fala"><rect x="44" y="40" width="6" height="40" /><rect x="56" y="40" width="6" height="40" /><rect x="68" y="40" width="6" height="40" /><rect x="80" y="40" width="6" height="40" /><rect x="92" y="40" width="6" height="40" /><rect x="104" y="40" width="6" height="40" /><rect x="116" y="40" width="6" height="40" /><rect x="128" y="40" width="6" height="40" /><rect x="140" y="40" width="6" height="40" /><rect x="152" y="40" width="6" height="40" /><rect x="164" y="40" width="6" height="40" /><rect x="176" y="40" width="6" height="40" /><rect x="188" y="40" width="6" height="40" /></g><g class="a-slowa"><text x="120" y="112">Dzień dobry</text><text x="120" y="112">Hello</text><text x="120" y="112">Guten Tag</text><text x="120" y="112">Laba diena</text><text x="120" y="112">Bună ziua</text></g></svg>
+        </div>
+        <h4 class="h3">Rozmawia w&nbsp;każdym języku</h4>
+        <p class="body">Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.</p>
+      </li>
+      <li class="zasada">
+        <div class="zasada__anim" data-animacja="wiedza" aria-hidden="true">
+          <svg viewBox="0 0 240 120"><rect x="40" y="24" width="150" height="6" class="a-wiersz a-r1" /><rect x="40" y="44" width="120" height="6" class="a-wiersz a-r2" /><rect x="40" y="64" width="160" height="6" class="a-wiersz a-r3" /><rect x="40" y="84" width="90" height="6" class="a-wiersz a-r4" /><rect x="40" y="100" width="8" height="12" class="a-pelny a-kursor" /></svg>
+        </div>
+        <h4 class="h3">Zna Twoje wydarzenie</h4>
+        <p class="body">Przed eventem wgrywamy wiedzę: program, prelegentów, ofertę i&nbsp;najczęstsze pytania. Robot odpowiada gościom konkretnie i&nbsp;nawiązuje do tego, co dzieje się na sali.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ 05 NA SALI ══════════ -->
 <section id="realizacje" class="sec" aria-labelledby="realizacje-h">
   <span class="kotwica" id="eventy"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">04 / 11 · Na sali</p>
+      <p class="label sec__meta">05 / 12 · Na sali</p>
       <h2 id="realizacje-h" class="h2">Na sali</h2>
       <p class="body">Od balu w&nbsp;drezdeńskim pałacu i&nbsp;targów MSPO po gminną paradę i&nbsp;wesele — ponad 100 wydarzeń w&nbsp;pięciu krajach. Kliknij kadr, żeby zobaczyć, co robił robot.</p>
     </div>
@@ -437,7 +516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap grid12 wystep">
     <div class="wystep__lewa">
       <div class="wystep__glowa wejscie">
-        <p class="label sec__meta">05 / 11 · Występ</p>
+        <p class="label sec__meta">06 / 12 · Występ</p>
         <h2 id="wystep-h" class="h2">Jak projektujemy występ</h2>
       </div>
       <div class="wystep__scena" data-scena="wystep" aria-hidden="true">
@@ -486,7 +565,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="case-study" class="sec sec--jasna" aria-labelledby="cs-h">
   <div class="wrap grid12">
     <div class="cs__tekst wejscie">
-      <p class="label sec__meta">06 / 11 · Case study</p>
+      <p class="label sec__meta">07 / 12 · Case study</p>
       <h2 id="cs-h" class="h2">Wielki Finał Eco Studio ELECTRO-SYSTEM</h2>
       <dl class="cs__opis">
         <div><dt class="label">Wydarzenie</dt>
@@ -519,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="kotwica" id="cennik"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">07 / 11 · Formaty</p>
+      <p class="label sec__meta">08 / 12 · Formaty</p>
       <h2 id="formaty-h" class="h2">Formaty i&nbsp;cena</h2>
       <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
     </div>
@@ -562,20 +641,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ 08 PROCES ══════════
-     Czasy wyłącznie z treści już obecnych w serwisie: 24 godziny robocze
-     (strona główna) i 1–2 tygodnie na scenariusz i termin (FAQ case study LEX AI). -->
+     Czasy: odpowiedź zwykle w ciągu 30 minut (podał właściciel, 11.2026) i 1–2 tygodnie
+     na scenariusz i termin (FAQ case study LEX AI). -->
 <section id="proces" class="sec" aria-labelledby="proces-h">
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">08 / 11 · Proces</p>
+      <p class="label sec__meta">09 / 12 · Proces</p>
       <h2 id="proces-h" class="h2">Od rozmowy do faktury</h2>
     </div>
     <ol class="kroki wejscie">
       <li class="krok">
         <span class="label">01</span>
         <h3 class="h3">Rozmowa</h3>
-        <p class="label krok__czas">do 24 godzin roboczych</p>
-        <p class="body">Zostawiasz kontakt albo dzwonisz. Oddzwaniamy i&nbsp;podajemy konkretną kwotę, zwykle tego samego dnia.</p>
+        <p class="label krok__czas">ok. 30 minut</p>
+        <p class="body">Zostawiasz kontakt albo dzwonisz. Oddzwaniamy i&nbsp;podajemy konkretną kwotę, zwykle w&nbsp;ciągu 30 minut. Przez telefon — od razu.</p>
       </li>
       <li class="krok">
         <span class="label">02</span>
@@ -604,7 +683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="faq" class="sec" aria-labelledby="faq-h">
   <div class="wrap grid12">
     <div class="faq__glowa wejscie">
-      <p class="label sec__meta">09 / 11 · FAQ</p>
+      <p class="label sec__meta">10 / 12 · FAQ</p>
       <h2 id="faq-h" class="h2">Zanim zapytasz</h2>
     </div>
     <div class="faq wejscie">
@@ -660,7 +739,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
   <div class="wrap grid12 rez">
     <div class="rez__glowa wejscie">
-      <p class="label sec__meta">10 / 11 · Rezerwacja</p>
+      <p class="label sec__meta">11 / 12 · Rezerwacja</p>
       <h2 id="kontakt-h" class="h2">Sprawdź, czy Twój termin jest wolny.</h2>
     </div>
 
@@ -750,14 +829,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="osoba"><p class="label">E-mail</p>
           <a class="link osoba__mail" href="mailto:kontakt@33bots.pl" data-mail="kontakt">kontakt@33bots.pl</a></li>
       </ul>
-      <p class="body-sm">Odpowiadamy w&nbsp;ciągu 24 godzin roboczych, zwykle tego samego dnia. Rezerwacja bez zaliczki, cała Polska.</p>
+      <p class="body-sm">Odpowiadamy zwykle w&nbsp;ciągu 30 minut. Wycenę od razu podamy przez telefon. Rezerwacja bez zaliczki, cała Polska.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ══════════ 11 STOPKA ══════════ -->
+<!-- ══════════ 12 STOPKA ══════════ -->
 <footer class="stopka">
   <div class="wrap grid12">
     <div class="stopka__marka">
@@ -898,6 +977,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { src: 'realizacja-szkola-kosmos-majaland.jpg', alt: 'Robot humanoidalny w fartuchu Szkoły Kosmos na rozpoczęciu roku', klient: 'Szkoła Kosmos', gdzie: 'Majaland' },
   ];
   const heroMedia = document.getElementById('heroMedia');
+  // .pl: w hero jest robot 3D zamiast zdjęć — rotacja działa tylko tam, gdzie jest karta zdjęć.
+  if (heroMedia) {
   const heroImg = heroMedia.querySelector('img');
   const heroLicznik = document.getElementById('heroLicznik');
   const heroOpis = document.getElementById('heroOpis');
@@ -945,6 +1026,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     heroMedia.addEventListener('focusout', () => wstrzymaj(false));
     document.addEventListener('visibilitychange', planuj);
     if (document.readyState === 'complete') planuj(); else addEventListener('load', planuj);
+  }
   }
 
   /* ——— Hero: data wydarzenia przechodzi do formularza rezerwacji ———
@@ -1532,7 +1614,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const t = document.createElement('p'); t.className = 'h3'; t.textContent = 'Mamy Twoje zgłoszenie.';
       const p = document.createElement('p'); p.className = 'body';
       p.append('Odezwiemy się na ', Object.assign(document.createElement('strong'), { textContent: payload.email }),
-        '. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.');
+        '. Odpowiadamy zwykle w ciągu 30 minut. Wycenę od razu podamy przez telefon: +48 531 408 004.');
       sukces.append(t, p);
       form.replaceChildren(sukces);
     } catch (err) {
@@ -1544,8 +1626,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <!-- Strona główna: liczniki, kroki występu i kalkulator (glowna.js), robot 3D z punktów (robot3d.js). -->
-<script src="js/glowna.js?v=58c42ff4" defer></script>
-<script src="js/robot3d.js?v=e23d04ca" defer></script>
+<script src="js/glowna.js?v=9e537ab9" defer></script>
+<script src="js/robot3d.js?v=a2dfa570" defer></script>
 <!-- Albacross -->
 <script>window._nQc="89159321";</script>
 <script async src="https://serve.albacross.com/track.js"></script>

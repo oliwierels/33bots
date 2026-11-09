@@ -7,6 +7,17 @@
   const kwota = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   const rzadko = (f) => { let czeka = false; return () => { if (czeka) return; czeka = true; requestAnimationFrame(() => { czeka = false; f(); }); }; };
 
+  /* ——— „Zatrzymaj ruch”: jeden stan dla robota 3D i animacji w kartach (WCAG 2.2.2) ——— */
+  const przelaczniki = [...document.querySelectorAll('[data-ruch-przelacz]')];
+  if (!reduce) przelaczniki.forEach((b) => {
+    b.hidden = false;
+    b.addEventListener('click', () => {
+      const stop = !document.documentElement.classList.contains('ruch-stop');
+      document.documentElement.classList.toggle('ruch-stop', stop);
+      przelaczniki.forEach((x) => { x.setAttribute('aria-pressed', String(stop)); x.textContent = stop ? 'Wznów ruch' : 'Zatrzymaj ruch'; });
+    });
+  });
+
   /* ——— Liczniki: liczą od zera, kiedy wchodzą na ekran (te widoczne od razu stoją) ——— */
   const liczniki = [...document.querySelectorAll('[data-licz]')].filter((el) => +el.dataset.licz > 0);
   if (!reduce && 'IntersectionObserver' in window) {

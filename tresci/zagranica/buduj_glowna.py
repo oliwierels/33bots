@@ -623,7 +623,7 @@ class Strona:
         zamien("btn.textContent = 'Wysyłanie…';", f"btn.textContent = {js(f['wysylanie'])};")
         zamien("t.textContent = 'Mamy Twoje zgłoszenie.';", f"t.textContent = {js(f['sukces'])};")
         zamien("p.append('Odezwiemy się na ', ", f"p.append({js(f['sukces_1'])}, ")
-        zamien("'. Odpowiadamy w ciągu 24 godzin roboczych, zwykle tego samego dnia.');", f"{js(r['sukces_2'])});")
+        zamien("'. Odpowiadamy zwykle w ciągu 30 minut. Wycenę od razu podamy przez telefon: +48 531 408 004.');", f"{js(r['sukces_2'])});")
         zamien("blad.textContent = 'Nie udało się wysłać. Zadzwoń: +48 531 408 004 albo napisz na kontakt@33bots.pl.';",
                f"blad.textContent = {js(r['blad_wysylki'])};")
         fo = r['formularz']
