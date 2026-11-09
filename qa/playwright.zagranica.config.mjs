@@ -29,6 +29,6 @@ export default defineConfig({
   timeout: 90_000,
   workers: 2,
   reporter: [['list']],
-  use: { browserName: 'chromium' },
+  use: { browserName: 'chromium', launchOptions: process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {} },
   webServer: [serwer(8081, DE), serwer(8082, AT), serwer(8083, LT)],
 });

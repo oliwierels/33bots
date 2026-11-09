@@ -13,8 +13,9 @@ zatrzyma generator — tak ma być.
 """
 
 KRAJE_DE = 'in Polen, Litauen, Deutschland, Tschechien und Rumänien'
-# „über 40 Veranstaltungen” — z CRM: 43 wygrane z pierwszym dniem realizacji do 9.10.2026
-# (bez zaplanowanych i bez tych bez daty); na .pl „ponad 40 wydarzeń”.
+# „über 100 Veranstaltungen” — jak „ponad 100 wydarzeń” na .pl (podał właściciel, 11.2026).
+# Telefon i „ok. 30 minut” — jak na .pl (strona główna 1:1 z .pl, poza językiem; 11.2026).
+TEL = ('tel:+48531408004', '+48 531 408 004')
 
 # Zdjęcia do rotacji w hero: plik, alt, klient, miejsce.
 SLAJDY_DE = [
@@ -145,14 +146,15 @@ WSPOLNE_DE = {
     'cta': 'Termin und Preis prüfen', 'cta_krotki': 'Termin prüfen',
     # Hero: pole daty obok przycisku i obietnica pod nim (jak na .pl).
     'hero_data_pytanie': 'Wann findet Ihre Veranstaltung statt?',
-    'hero_obietnica': '<strong>Ohne Anzahlung, Sie zahlen nach der Veranstaltung.</strong> Antwort meist noch am selben Tag.',
+    'hero_obietnica': '<strong>Ohne Anzahlung, Sie zahlen nach der Veranstaltung.</strong> Antwort in ca. 30&nbsp;Minuten.',
+    'hero_telefon': 'Sie brauchen sofort ein Angebot? Rufen Sie an:',
     # Miękkie dzielenie: długie niemieckie słowo nie wyjdzie poza kolumnę.
     'display': 'Der meist&shy;fotografierte Gast Ihrer Veranstaltung.',
     'pauza': 'Pause', 'wznow': 'Weiter', 'nastepne': 'Nächstes Foto',
     'slajdy': SLAJDY_DE,
     'proof_label': 'Bekannt aus',
-    'realizacje_meta': '04 / 11 · Im Einsatz', 'realizacje_h2': 'Im Einsatz',
-    'realizacje_body': 'Vom Ball in einem Dresdner Palais und der Messe MSPO bis zur Gemeindeparade und zur Hochzeit — über 40 Veranstaltungen in fünf Ländern. Klicken Sie auf ein Bild, um zu sehen, was der Roboter gemacht hat.',
+    'realizacje_meta': '06 / 13 · Im Einsatz', 'realizacje_h2': 'Im Einsatz',
+    'realizacje_body': 'Vom Ball in einem Dresdner Palais und der Messe MSPO bis zur Gemeindeparade und zur Hochzeit — über 100 Veranstaltungen in fünf Ländern. Klicken Sie auf ein Bild, um zu sehen, was der Roboter gemacht hat.',
     'zobacz_realizacje': 'Einsatz ansehen',
     'wyroznione': WYROZNIONE_DE,
     'wiecej': 'Weitere Einsätze', 'zatrzymaj_ruch': 'Bewegung anhalten', 'wznow_ruch': 'Bewegung fortsetzen',
@@ -160,8 +162,8 @@ WSPOLNE_DE = {
     'klienci': KLIENCI_DE,
     'klienci_label': 'Für wen wir gearbeitet haben',
     'klienci_kraje': f'Konzerne und öffentliche Einrichtungen, Wissenschaftszentren, Gemeinden, Clubs und private Feiern — {KRAJE_DE}.',
-    'wystep_meta': '05 / 11 · Auftritt', 'wystep_h2': 'Wie wir den Auftritt planen',
-    'wystep_body': 'Dasselbe Robotermodell kann als Dekoration in der Ecke stehen oder eine Gala moderieren. Den Unterschied macht die Vorbereitung: Charakter, Gespräch und Reaktionen auf das Publikum, die wir auf über 40 Veranstaltungen verfeinert haben — von Firmenkonferenzen bis zu Picknicks.',
+    'wystep_meta': '07 / 13 · Auftritt', 'wystep_h2': 'Wie wir den Auftritt planen',
+    'wystep_body': 'Dasselbe Robotermodell kann als Dekoration in der Ecke stehen oder eine Gala moderieren. Den Unterschied macht die Vorbereitung: Charakter, Gespräch und Reaktionen auf das Publikum, die wir auf über 100 Veranstaltungen verfeinert haben — von Firmenkonferenzen bis zu Picknicks.',
     'wiersze': [
         ('Charakter', 'Wir legen fest, wie sich der Roboter verhält: eleganter Moderator, locker und humorvoll oder sachlicher Experte. Den größten Eindruck macht meist der Moment, in dem er auf etwas eingeht, das gerade im Saal passiert.'),
         ('Stimme und Wissen', f'Er spricht Deutsch und jede andere Sprache — natürlich, ohne künstlichen Roboterklang — und wechselt während einer Veranstaltung zwischen den Sprachen. Wir waren auf Veranstaltungen {KRAJE_DE} im Einsatz. Er begrüßt Gäste, beantwortet Fragen und kündigt Programmpunkte an. Wir spielen ihm Wissen über die Veranstaltung ein: wer auftritt, was auf dem Programm steht und aus welchem Anlass Sie zusammenkommen.'),
@@ -171,7 +173,7 @@ WSPOLNE_DE = {
     ],
     'wystep_foto_alt': 'Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking',
     'wystep_foto_podpis': 'Dresdner Schlössernacht',
-    'cs_meta': '06 / 11 · Case Study', 'cs_h2': 'Großes Finale Eco Studio ELECTRO-SYSTEM',
+    'cs_meta': '08 / 13 · Case Study', 'cs_h2': 'Großes Finale Eco Studio ELECTRO-SYSTEM',
     'cs_opis': [
         ('Veranstaltung', 'Finale der 7. Staffel eines landesweiten Bildungs- und Umweltprojekts für Schulen in Polen. Im Publikum Schülerinnen und Schüler aus dem ganzen Land, auf der Bühne Saszan, Antek Smykiewicz und Vicky.'),
         ('Rolle des Roboters', 'Eine der Attraktionen des Finales, neben Konzerten und dem offiziellen Teil — auf der Bühne mit den Moderatoren und Finalisten sowie an der Sponsorenwand.'),
@@ -189,12 +191,12 @@ WSPOLNE_DE = {
     'cs_cytat': '„Musik, Ökologie und ein humanoider Roboter haben junge Menschen verbunden.“',
     'cs_cytat_zrodlo': 'aus dem Titel des Berichts, übersetzt',
     'cs_cytat_link': ('https://4influ.pl/wielki-final-eco-studio-electro-system-muzyka-ekologia-i-robot-humanoidalny-polaczyly-mlodych-ludzi/', '4influ.pl'),
-    'formaty_meta': '07 / 11 · Formate', 'formaty_h2': 'Formate und Preise',
+    'formaty_meta': '09 / 13 · Formate', 'formaty_h2': 'Formate und Preise',
     'formaty_body': 'Wir kalkulieren einen Auftritt, keine Gerätemiete. In jedem Format kommt der Roboter mit Operator, Drehbuch und Wissen über Ihre Veranstaltung.',
-    'proces_meta': '08 / 11 · Ablauf', 'proces_h2': 'Vom Gespräch zur Rechnung',
+    'proces_meta': '10 / 13 · Ablauf', 'proces_h2': 'Vom Gespräch zur Rechnung',
     'proces_akcent': 'Sie zahlen nach der Veranstaltung.',
-    'faq_meta': '09 / 11 · FAQ', 'faq_h2': 'Bevor Sie fragen',
-    'kontakt_meta': '10 / 11 · Reservierung', 'kontakt_h2': 'Prüfen Sie, ob Ihr Termin frei ist.',
+    'faq_meta': '11 / 13 · FAQ', 'faq_h2': 'Bevor Sie fragen',
+    'kontakt_meta': '12 / 13 · Reservierung', 'kontakt_h2': 'Prüfen Sie, ob Ihr Termin frei ist.',
     'form': {
         'krok1': '01 Veranstaltung', 'krok2': '02 Kontakt',
         'typ': 'Art der Veranstaltung *', 'typy': ['Gala', 'Konferenz', 'Messe', 'Outdoor', 'Sonstiges'],
@@ -208,7 +210,7 @@ WSPOLNE_DE = {
         'wstecz': 'Zurück', 'wysylanie': 'Wird gesendet…', 'sukces': 'Ihre Anfrage ist bei uns angekommen.',
         'sukces_1': 'Wir melden uns unter ',
     },
-    'pasek': 'Termin prüfen',
+    'pasek': 'Termin prüfen', 'pasek_tel': 'Anrufen',
     'szuflada_zamknij': 'Schließen', 'szuflada_link': 'Zur Case Study',
     'realizacje': REALIZACJE_DE,
     'a11y': {
@@ -239,7 +241,7 @@ DE = {**WSPOLNE_DE,
     ],
     'nav': [('#referenzen', 'Referenzen'), ('#auftritt', 'Auftritt'), ('#preise', 'Preise'), ('#ablauf', 'Ablauf')],
     'nav_drugi': ('blog.html', 'Ratgeber'),
-    'kontakt_nav': ('mailto:kontakt@33bots.de', 'kontakt@33bots.de', 'data-mail'),
+    'kontakt_nav': (*TEL, 'data-tel'),
     # Dawne kotwice strony głównej — prowadzą do nich linki z podstron.
     'kotwice': {'referenzen': ['realisierungen', 'events', 'video', 'ueber-uns'], 'auftritt': ['leistungen', 'einsatzbereiche']},
     'linki_realizacji': {'women-in-tech': 'case-study-women-in-tech.html', 'lexai': 'case-study-lexai.html'},
@@ -251,13 +253,13 @@ DE = {**WSPOLNE_DE,
     ],
     'formaty_wcenie': 'Im Preis: Operator, Anfahrt in ganz Deutschland, Branding (Logo, QR-Code), Haftpflichtversicherung. <strong>Sie zahlen nach der Veranstaltung.</strong> Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.',
     'kroki': [
-        ('Gespräch', 'innerhalb von 24 Werkstunden', 'Sie füllen das Formular aus oder schreiben uns eine E-Mail. Wir melden uns und nennen einen konkreten Betrag, meist noch am selben Tag.'),
+        ('Gespräch', 'ca. 30 Minuten', 'Sie hinterlassen Ihre Kontaktdaten oder rufen an. Wir rufen zurück und nennen einen konkreten Betrag, meist innerhalb von 30 Minuten. Am Telefon — sofort.'),
         ('Drehbuch und Vertrag', 'meist 1–2 Wochen', 'Wir legen Drehbuch und Branding fest und bestätigen Ort und Termin. Reservierung ohne Anzahlung.'),
         ('Veranstaltung', 'am Veranstaltungstag', 'Wir kommen mit Roboter und Operator. Um Technisches müssen Sie sich nicht kümmern.'),
         ('Rechnung nach der Veranstaltung', 'nach der Veranstaltung', 'Die Rechnung stellen wir nach der Veranstaltung. Bei Bedarf vereinbaren wir ein längeres Zahlungsziel.'),
     ],
     'faq': [
-        ('Was kostet die Miete genau?', 'Ein ganzer Veranstaltungstag kostet ab 2.500 €. Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag, den Roboterhund buchen Sie optional für 850 € pro Tag. Im Preis sind Anfahrt, Operator, Branding und Haftpflichtversicherung enthalten.'),
+        ('Was kostet die Miete genau?', 'Ein ganzer Veranstaltungstag kostet ab 2.500 €. Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab. Sie können den Roboter auch für einen kürzeren Auftritt mieten, etwa einige Stunden während einer Konferenzpause — dann kalkulieren wir individuell und immer günstiger als einen ganzen Tag. Ab zwei Veranstaltungstagen erhalten Sie 15 % Rabatt auf jeden Tag, den Roboterhund buchen Sie optional für 850 € pro Tag. Im Preis sind Anfahrt, Operator, Branding und Haftpflichtversicherung enthalten.'),
         FAQ_ZALICZKA,
         FAQ_BATERIE,
         ('Wie viel Platz und Technik braucht der Roboter?', 'Rund 2×2 m freie Fläche und eine gewöhnliche 230-V-Steckdose. Der Roboter arbeitet am Messestand, auf der Bühne und im Gang zwischen den Gästen. Internet oder besondere Beleuchtung sind nicht nötig — unser Operator bringt die komplette Ausrüstung mit und ist in 30–45 Minuten einsatzbereit.'),
@@ -268,15 +270,14 @@ DE = {**WSPOLNE_DE,
         ('Kommen Sie in meine Stadt?', 'Ja — nach Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf und in jede andere Stadt in Deutschland. Die Anfahrt ist im Preis enthalten, ohne Kilometerpauschale.'),
         FAQ_ZAGRANICA,
     ],
-    # „24 Werkstunden” jak w formularzach podstron .de (main.js), na .pl i .at.
-    'kontakt_lista': [('E-Mail', 'mailto:kontakt@33bots.de', 'kontakt@33bots.de')],
-    'kontakt_tekst': 'Wir antworten innerhalb von 24 Werkstunden, meist noch am selben Tag. Reservierung ohne Anzahlung, deutschlandweit.',
+    'mail': 'kontakt@33bots.de',
+    'kontakt_tekst': 'Wir antworten meist innerhalb von 30&nbsp;Minuten. Ein Angebot nennen wir Ihnen am Telefon sofort. Reservierung ohne Anzahlung, deutschlandweit.',
     'miejsce_ph': 'z. B. Berlin, Messe Berlin',
     'formularz': {'adres': 'https://formspree.io/f/mnjwvray', 'dodatkowe': {}, 'gtag': False},
-    'sukces_2': '. Wir antworten innerhalb von 24 Werkstunden, meist noch am selben Tag.',
-    'blad_wysylki': 'Senden fehlgeschlagen. Schreiben Sie uns an kontakt@33bots.de.',
+    'sukces_2': '. Wir antworten meist innerhalb von 30 Minuten. Ein Angebot sofort erhalten Sie am Telefon: +48 531 408 004.',
+    'blad_wysylki': 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.de.',
     'stopka_opis': 'Humanoide Roboter mieten · deutschlandweit',
-    'stopka_kontakt': [('mailto:kontakt@33bots.de', 'kontakt@33bots.de', 'data-mail')],
+    'stopka_kontakt': [(*TEL, 'data-tel'), ('mailto:kontakt@33bots.de', 'kontakt@33bots.de', 'data-mail')],
     'stopka_jezyki': [('https://33bots.pl/', 'pl', 'Polski — 33bots.pl'), ('https://33bots.lt/', 'lt', 'Lietuvių — 33bots.lt'), ('https://33bots.at/', 'de-AT', 'Österreich — 33bots.at')],
     'stopka_social': [('https://www.instagram.com/33bots_/', 'Instagram'), ('https://www.tiktok.com/@aimforum', 'TikTok'), ('https://www.facebook.com/33bots', 'Facebook'), ('https://www.linkedin.com/company/33bots', 'LinkedIn')],
     # Cztery kolumny mieszczą się w siatce stopki — linki społecznościowe idą wtedy pod kontakt.
@@ -336,7 +337,7 @@ AT = {**WSPOLNE_DE,
     ],
     'formaty_wcenie': 'Im Preis: Operator, Transport in ganz Österreich, Branding (Logo, QR-Code), Haftpflichtversicherung. <strong>Sie zahlen nach der Veranstaltung.</strong> Den endgültigen Preis kalkulieren wir nach Dauer, Ort und Programm. Zusatzoption: Roboterhund, auf Anfrage.',
     'kroki': [
-        ('Gespräch', 'innerhalb von 24 Werkstunden', 'Sie hinterlassen Ihre Kontaktdaten oder rufen an. Wir rufen zurück und nennen einen konkreten Betrag, meist noch am selben Tag.'),
+        ('Gespräch', 'ca. 30 Minuten', 'Sie hinterlassen Ihre Kontaktdaten oder rufen an. Wir rufen zurück und nennen einen konkreten Betrag, meist innerhalb von 30 Minuten. Am Telefon — sofort.'),
         ('Drehbuch und Vertrag', 'meist 1–2 Wochen', 'Wir legen Drehbuch und Branding fest und bestätigen Ort und Termin. Reservierung ohne Anzahlung.'),
         ('Veranstaltung', 'am Veranstaltungstag', 'Wir kommen mit Roboter und Operator. Um Technisches müssen Sie sich nicht kümmern.'),
         ('Rechnung nach der Veranstaltung', 'nach der Veranstaltung', 'Die Rechnung stellen wir nach der Veranstaltung. Bei Bedarf vereinbaren wir ein längeres Zahlungsziel.'),
@@ -353,11 +354,11 @@ AT = {**WSPOLNE_DE,
         ('Kommen Sie auch in meine Stadt?', 'Ja — in jede Stadt Österreichs, ohne Aufschlag und ohne Kilometerlimit. Von Wien bis Dornbirn, von Innsbruck bis Eisenstadt.'),
         FAQ_ZAGRANICA,
     ],
-    'kontakt_lista': [('Telefon', 'tel:+48531408004', '+48 531 408 004'), ('E-Mail', 'mailto:kontakt@33bots.at', 'kontakt@33bots.at')],
-    'kontakt_tekst': 'Wir antworten innerhalb von 24 Werkstunden, meist noch am selben Tag. Reservierung ohne Anzahlung, in ganz Österreich.',
+    'mail': 'kontakt@33bots.at',
+    'kontakt_tekst': 'Wir antworten meist innerhalb von 30&nbsp;Minuten. Ein Angebot nennen wir Ihnen am Telefon sofort. Reservierung ohne Anzahlung, in ganz Österreich.',
     'miejsce_ph': 'z. B. Wien, Messe Wien',
     'formularz': {'adres': 'https://formspree.io/f/mnjwvray', 'dodatkowe': {}, 'gtag': True},
-    'sukces_2': '. Wir antworten innerhalb von 24 Werkstunden, meist noch am selben Tag.',
+    'sukces_2': '. Wir antworten meist innerhalb von 30 Minuten. Ein Angebot sofort erhalten Sie am Telefon: +48 531 408 004.',
     'blad_wysylki': 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.at.',
     'stopka_opis': 'Humanoide Roboter mieten · ganz Österreich',
     'stopka_kontakt': [('tel:+48531408004', '+48 531 408 004', 'data-tel'), ('mailto:kontakt@33bots.at', 'kontakt@33bots.at', 'data-mail')],
@@ -380,8 +381,8 @@ AT = {**WSPOLNE_DE,
 
 # ——— 33bots.lt ———
 # Fakty rynku z dotychczasowej strony 33bots.lt: nuo 2 100 € be PVM už visą dieną, −15 % od dwóch dni,
-# krótszy pokaz wyceniany indywidualnie, bez zaliczki i faktura po wydarzeniu, odpowiedź w 24 godziny
-# robocze, GTM + Albacross z banerem cookie, kontakt wyłącznie e-mailowy. Dojazd jak na .pl: w cenie,
+# krótszy pokaz wyceniany indywidualnie, bez zaliczki i faktura po wydarzeniu, GTM + Albacross z banerem
+# cookie. Telefon i „ok. 30 minut” jak na .pl (strona główna 1:1 z .pl, 11.2026). Dojazd jak na .pl: w cenie,
 # a lokalizacja wpływa na wysokość wyceny. Robota-psa na .lt nie oferujemy.
 KRAJE_LT = 'Lenkijoje, Lietuvoje, Vokietijoje, Čekijoje ir Rumunijoje'
 
@@ -493,7 +494,6 @@ FAQ_LT = [
     ('Ar reikia mokėti avansą?', 'Ne. Datą rezervuojame be avanso. Sąskaitą išrašome tik po įvykusio renginio, o prireikus suderiname ilgesnį mokėjimo terminą.'),
     ('Ar reikia mokėti valdyti robotą?', 'Ne. Visą renginį dalyvauja mūsų sertifikuotas operatorius — jis atsako už konfigūraciją, valdymą ir pasirodymo saugumą.'),
     ('Ar robotas saugus svečiams?', 'Taip. LiDAR ir kompiuterinė rega leidžia realiu laiku apeiti žmones ir kliūtis, pasirodymą prižiūri operatorius, o veiklai taikoma civilinės atsakomybės draudimo apsauga.'),
-    ('Ar galima ant roboto pateikti savo logotipą?', 'Taip. Jūsų logotipas ir QR kodas atsiduria ant roboto krūtinės, o visa išvaizda derinama prie renginio pobūdžio. Ženklinimas įskaičiuotas į kainą.'),
     ('Ar atvažiuojate į mano miestą?', 'Taip — į kiekvieną Lietuvos miestą: nuo Klaipėdos iki Visagino, nuo Palangos iki Druskininkų. Atvykimas įskaičiuotas į kainą, o pati renginio vieta turi įtakos galutinei sumai.'),
     ('Ar dirbate ir užsienyje?', f'Taip. Esame dirbę renginiuose {KRAJE_LT}. Robotas kalba bet kuria kalba ir renginio metu perjungia kalbas — taip jis pasveikina svečius jų kalba ir atsako į jų klausimus.'),
 ]
@@ -508,7 +508,8 @@ LT = {
     'menu': 'Meniu', 'menu_zamknij': 'Uždaryti',
     'cta': 'Patikrinti datą ir kainą', 'cta_krotki': 'Patikrinti datą',
     'hero_data_pytanie': 'Kada vyks jūsų renginys?',
-    'hero_obietnica': '<strong>Be avanso, mokate po renginio.</strong> Atsakome dažniausiai tą pačią dieną.',
+    'hero_obietnica': '<strong>Be avanso, mokate po renginio.</strong> Atsakome maždaug per 30&nbsp;minučių.',
+    'hero_telefon': 'Kainos reikia iš karto? Skambinkite:',
     'h1': 'Humanoidinių robotų nuoma renginiams Lietuvoje',
     'display': 'Dažniausiai fotografuo&shy;jamas jūsų renginio svečias.',
     'lead': 'Humanoidinis robotas su charakteriu ir scenarijumi jūsų gala vakarui, konferencijai ar parodos stendui. Kalba lietuviškai ir bet kuria kita kalba. Operatorius, atvykimas ir ženklinimas — kainoje.',
@@ -522,8 +523,8 @@ LT = {
         ('#referenzen', 'Women in Tech Summit', None),
         ('https://naszemiasto.pl/wielki-final-eco-studio-electro-system-z-okazji-sprzatania-swiata/ar/c1p2-29359081', 'Eko Partner 2026, ELECTRO-SYSTEM', None),
     ],
-    'realizacje_meta': '04 / 11 · Realizacijos', 'realizacje_h2': 'Realizacijos',
-    'realizacje_body': 'Nuo pokylio Drezdeno rūmuose ir MSPO parodos iki valsčiaus parado ir vestuvių — daugiau nei 40 renginių penkiose šalyse. Spustelėkite kadrą ir pamatysite, ką darė robotas.',
+    'realizacje_meta': '06 / 13 · Realizacijos', 'realizacje_h2': 'Realizacijos',
+    'realizacje_body': 'Nuo pokylio Drezdeno rūmuose ir MSPO parodos iki valsčiaus parado ir vestuvių — daugiau nei 100 renginių penkiose šalyse. Spustelėkite kadrą ir pamatysite, ką darė robotas.',
     'zobacz_realizacje': 'Žiūrėti realizaciją',
     'wyroznione': WYROZNIONE_LT,
     'wiecej': 'Daugiau realizacijų', 'zatrzymaj_ruch': 'Sustabdyti judėjimą', 'wznow_ruch': 'Tęsti judėjimą',
@@ -531,8 +532,8 @@ LT = {
     'klienci': KLIENCI_LT,
     'klienci_label': 'Kam dirbome',
     'klienci_kraje': f'Korporacijos ir viešosios įstaigos, mokslo centrai, savivaldybės, klubai ir privačios šventės — {KRAJE_LT}.',
-    'wystep_meta': '05 / 11 · Pasirodymas', 'wystep_h2': 'Kaip kuriame pasirodymą',
-    'wystep_body': 'Tas pats roboto modelis gali stovėti kampe kaip dekoracija arba vesti gala vakarą. Skirtumą lemia pasiruošimas: charakteris, pokalbis ir reakcijos į salę, kuriuos ištobulinome per daugiau nei 40 renginių — nuo korporatyvinių konferencijų iki piknikų.',
+    'wystep_meta': '07 / 13 · Pasirodymas', 'wystep_h2': 'Kaip kuriame pasirodymą',
+    'wystep_body': 'Tas pats roboto modelis gali stovėti kampe kaip dekoracija arba vesti gala vakarą. Skirtumą lemia pasiruošimas: charakteris, pokalbis ir reakcijos į salę, kuriuos ištobulinome per daugiau nei 100 renginių — nuo korporatyvinių konferencijų iki piknikų.',
     'wiersze': [
         ('Charakteris', 'Nustatome, kaip robotas turi elgtis: elegantiškas vedėjas, laisvas ir linksmas ar dalykiškas ekspertas. Didžiausią įspūdį paprastai palieka akimirka, kai jis sureaguoja į tai, kas ką tik įvyko salėje.'),
         ('Balsas ir žinios', f'Kalba lietuviškai ir bet kuria kita kalba — natūraliai, be dirbtinio robotiško skambesio, o vieno renginio metu perjungia kalbas. Esame dirbę renginiuose {KRAJE_LT}. Pasitinka svečius, atsako į klausimus ir pristato programos punktus. Įkeliame jam žinias apie renginį: kas pasirodo, kas numatyta programoje ir kokia proga susirenkate.'),
@@ -543,7 +544,7 @@ LT = {
     'wiersz_z_foto': 'Ženklinimas',
     'wystep_foto_alt': 'Humanoidinio roboto su karūna ir blizgučiais siuvinėtu smokingu stambus planas',
     'wystep_foto_podpis': 'Drezdeno pilių naktis',
-    'cs_meta': '06 / 11 · Atvejo analizė', 'cs_h2': 'Eco Studio ELECTRO-SYSTEM didysis finalas',
+    'cs_meta': '08 / 13 · Atvejo analizė', 'cs_h2': 'Eco Studio ELECTRO-SYSTEM didysis finalas',
     'cs_opis': [
         ('Renginys', 'Visos Lenkijos švietimo ir ekologijos projekto mokykloms 7-ojo sezono finalas. Žiūrovų salėje — mokiniai iš visos Lenkijos, scenoje — Saszan, Antek Smykiewicz ir Vicky.'),
         ('Roboto vaidmuo', 'Viena iš finalo atrakcijų greta koncertų ir oficialiosios dalies — scenoje su vedėjais ir finalininkais bei prie rėmėjų sienelės.'),
@@ -561,7 +562,7 @@ LT = {
     'cs_cytat': '„Muzika, ekologija ir humanoidinis robotas suvienijo jaunus žmones.“',
     'cs_cytat_zrodlo': 'iš reportažo pavadinimo, išversta',
     'cs_cytat_link': ('https://4influ.pl/wielki-final-eco-studio-electro-system-muzyka-ekologia-i-robot-humanoidalny-polaczyly-mlodych-ludzi/', '4influ.pl'),
-    'formaty_meta': '07 / 11 · Formatai', 'formaty_h2': 'Formatai ir kaina',
+    'formaty_meta': '09 / 13 · Formatai', 'formaty_h2': 'Formatai ir kaina',
     'formaty_body': 'Įkainojame pasirodymą, o ne įrangos nuomą. Kiekvienu formatu robotas atvyksta su operatoriumi, scenarijumi ir žiniomis apie jūsų renginį.',
     'formaty': [
         ('Kelios valandos', 'Kelios valandos renginio programoje — atidarymas, blokas scenoje, piko valandos parodos stende.', 'Individuali kaina', 'visada pigiau nei visa diena'),
@@ -569,19 +570,19 @@ LT = {
         ('Parodos', 'Dvi dienos ir daugiau — parodos, festivaliai, roadshow.', '−15&nbsp;%', 'kiekvienai dienai'),
     ],
     'formaty_wcenie': 'Į kainą įeina: operatorius, atvykimas, ženklinimas (logotipas, QR kodas) ir civilinės atsakomybės draudimas. <strong>Mokate po renginio.</strong> Galutinė suma priklauso nuo renginio vietos ir trukmės.',
-    'proces_meta': '08 / 11 · Procesas', 'proces_h2': 'Nuo pokalbio iki sąskaitos',
+    'proces_meta': '10 / 13 · Procesas', 'proces_h2': 'Nuo pokalbio iki sąskaitos',
     'kroki': [
-        ('Pokalbis', 'per 24 darbo valandas', 'Paliekate kontaktus arba parašote. Susisiekiame ir pasakome konkrečią sumą — dažniausiai tą pačią dieną.'),
+        ('Pokalbis', 'apie 30 minučių', 'Paliekate kontaktus arba paskambinate. Perskambiname ir pasakome konkrečią sumą, dažniausiai per 30 minučių. Telefonu — iš karto.'),
         ('Scenarijus ir sutartis', 'dažniausiai 1–2 savaitės', 'Suderiname scenarijų ir ženklinimą, patvirtiname vietą ir datą. Rezervacija be avanso.'),
         ('Renginys', 'renginio dieną', 'Atvykstame su robotu ir operatoriumi. Jums nereikia rūpintis jokiais techniniais dalykais.'),
         ('Sąskaita po renginio', 'po renginio', 'Sąskaitą išrašome po įvykusio renginio. Prireikus suderiname ilgesnį mokėjimo terminą.'),
     ],
     'proces_akcent': 'Mokate po renginio.',
-    'faq_meta': '09 / 11 · DUK', 'faq_h2': 'Prieš paklausiant',
+    'faq_meta': '11 / 13 · DUK', 'faq_h2': 'Prieš paklausiant',
     'faq': FAQ_LT,
-    'kontakt_meta': '10 / 11 · Rezervacija', 'kontakt_h2': 'Patikrinkite, ar jūsų data laisva.',
-    'kontakt_lista': [('El. paštas', 'mailto:kontakt@33bots.lt', 'kontakt@33bots.lt')],
-    'kontakt_tekst': 'Atsakome per 24 darbo valandas, dažniausiai tą pačią dieną. Rezervacija be avanso, visoje Lietuvoje.',
+    'kontakt_meta': '12 / 13 · Rezervacija', 'kontakt_h2': 'Patikrinkite, ar jūsų data laisva.',
+    'mail': 'kontakt@33bots.lt',
+    'kontakt_tekst': 'Dažniausiai atsakome per 30&nbsp;minučių. Kainą telefonu pasakysime iš karto. Rezervacija be avanso, visoje Lietuvoje.',
     'miejsce_ph': 'pvz., Vilnius, LITEXPO',
     'form': {
         'krok1': '01 Renginys', 'krok2': '02 Kontaktai',
@@ -597,20 +598,20 @@ LT = {
         'sukces_1': 'Atsakysime adresu ',
     },
     'formularz': {'adres': 'https://formspree.io/f/mnjwvray', 'dodatkowe': {}, 'gtag': True, 'gtag_etykieta': 'Kontaktinė forma'},
-    'sukces_2': '. Atsakome per 24 darbo valandas, dažniausiai tą pačią dieną.',
-    'blad_wysylki': 'Nepavyko išsiųsti. Parašykite mums adresu kontakt@33bots.lt.',
-    'pasek': 'Patikrinti datą',
+    'sukces_2': '. Dažniausiai atsakome per 30 minučių. Kainą iš karto pasakysime telefonu: +48 531 408 004.',
+    'blad_wysylki': 'Nepavyko išsiųsti. Skambinkite: +48 531 408 004 arba parašykite adresu kontakt@33bots.lt.',
+    'pasek': 'Patikrinti datą', 'pasek_tel': 'Skambinti',
     'szuflada_zamknij': 'Uždaryti', 'szuflada_link': 'Plačiau apie realizaciją',
     'realizacje': REALIZACJE_LT,
     'nav': [('#referenzen', 'Realizacijos'), ('#auftritt', 'Pasirodymas'), ('#preise', 'Kainos'), ('#ablauf', 'Procesas')],
     'nav_drugi': ('blog.html', 'Renginių gidas'),
-    'kontakt_nav': ('mailto:kontakt@33bots.lt', 'kontakt@33bots.lt', 'data-mail'),
+    'kontakt_nav': (*TEL, 'data-tel'),
     # Dawne kotwice strony głównej .lt (#cennik jest też w danych strukturalnych Product).
     'kotwice': {'referenzen': ['realizacje', 'zaufanie'], 'auftritt': ['mozliwosci'], 'preise': ['cennik'], 'ablauf': ['proces']},
     'linki_realizacji': {},
     'wszystkie_realizacje': ('video-realizacijos.html', 'Visi vaizdo įrašai iš realizacijų'),
     'stopka_opis': 'Humanoidinių robotų nuoma · visa Lietuva',
-    'stopka_kontakt': [('mailto:kontakt@33bots.lt', 'kontakt@33bots.lt', 'data-mail')],
+    'stopka_kontakt': [(*TEL, 'data-tel'), ('mailto:kontakt@33bots.lt', 'kontakt@33bots.lt', 'data-mail')],
     'stopka_jezyki': [('https://33bots.pl/', 'pl', 'Polski — 33bots.pl'), ('https://33bots.de/', 'de', 'Deutschland — 33bots.de'), ('https://33bots.at/', 'de-AT', 'Österreich — 33bots.at')],
     'stopka_social': [('https://www.instagram.com/33bots_/', 'Instagram'), ('https://www.tiktok.com/@aimforum', 'TikTok'), ('https://www.facebook.com/33bots', 'Facebook'), ('https://www.linkedin.com/company/33bots', 'LinkedIn')],
     'stopka_kolumny': [
@@ -649,5 +650,196 @@ LT = {
     # Treść banera bez zmian względem dotychczasowej strony (zmienia się tylko wygląd).
     'cookies': ('Naudojame slapukus analizės tikslais.', 'Supratau'),
 }
+
+# ══════════ Nowe sekcje strony głównej (11.2026): skala, robot 3D, zasady, występ, kalkulator ══════════
+# Kod tych sekcji generator bierze 1:1 z polskiego index.html i podmienia wyłącznie teksty: klucz to
+# tekst węzła z .pl (z encjami, jak w pliku), wartość — tłumaczenie. Nowy albo zmieniony tekst na .pl
+# bez wpisu tutaj zatrzyma generator — tak ma być.
+TEKSTY_DE = {
+    # skala
+    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern — Galas, Messen, Konferenzen, Firmen- und Outdoor-Events',
+    'krajów: Polska, Litwa, Niemcy, Czechy, Rumunia': 'Länder: Polen, Litauen, Deutschland, Tschechien, Rumänien',
+    '„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk': 'TVP2-Frühstücksfernsehen, Teleexpress und TVP Danzig',
+    '&nbsp;zł': '&nbsp;€',
+    'zaliczki — fakturę wystawiamy po wydarzeniu': 'Anzahlung — die Rechnung kommt nach der Veranstaltung',
+    '&nbsp;min': '&nbsp;Min.',
+    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'bis zur Antwort mit Preis — am Telefon sofort',
+    # robot z bliska
+    '04 / 13 · Robot z bliska': '04 / 13 · Roboter aus der Nähe',
+    'Poznaj go, zanim przyjedzie.': 'Lernen Sie ihn kennen, bevor er kommt.',
+    '01 · Głowa': '01 · Kopf', 'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR und Kamera — er sieht die Gäste um sich herum',
+    '02 · Twarz': '02 · Gesicht', 'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Spricht jede Sprache, mit natürlicher Stimme',
+    '03 · Pierś': '03 · Brust', 'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Ihr Logo und QR-Code — auf jedem Foto der Gäste',
+    '04 · Ręce': '04 · Hände', 'Wita, podaje rękę, pozuje do zdjęć': 'Begrüßt, gibt die Hand, posiert für Fotos',
+    '05 · Nogi': '05 · Beine', 'Chodzi wśród gości i&nbsp;omija przeszkody': 'Geht zwischen den Gästen und weicht Hindernissen aus',
+    '06 · Stopy': '06 · Füße', 'Wystarczy mu kilka metrów kwadratowych': 'Ihm genügen wenige Quadratmeter',
+    'Wydaj robotowi polecenie': 'Geben Sie dem Roboter einen Befehl',
+    'Pomachaj': 'Wink uns zu', 'Zatańcz': 'Tanz', 'Wyślij buziaka': 'Wirf ein Küsschen', 'Ręce w&nbsp;górę': 'Hände hoch', 'Powiedz coś': 'Sag etwas',
+    'Zatrzymaj ruch': 'Bewegung anhalten',
+    'Przeciągnij, żeby obrócić': 'Ziehen zum Drehen',
+    'LiDAR i&nbsp;kamera': 'LiDAR und Kamera', 'Głos w&nbsp;każdym języku': 'Stimme in jeder Sprache', 'Twoje logo': 'Ihr Logo',
+    'Podaje rękę': 'Gibt die Hand', 'Omija przeszkody': 'Weicht Hindernissen aus', 'Kilka m²': 'Wenige m²',
+    # zasady
+    '05 / 13 · Zasady': '05 / 13 · Grundsätze',
+    'Najpierw bezpieczeństwo gości. Potem efekt.': 'Erst die Sicherheit der Gäste. Dann der Effekt.',
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+        'Was der Roboter wann macht, entscheidet immer der Operator. Komplexere Bewegungsabläufe zeigen wir nur dort, wo Platz dafür ist — der Operator schätzt den Saal ein, achtet auf Abstände und behält die Menge im Griff. So passiert niemandem etwas, und möglichst viele Menschen kommen mit dem Roboter ins Gespräch.',
+    'Bezpieczeństwo': 'Sicherheit',
+    'TŁOCZNO — OPERATOR OBOK': 'GEDRÄNGE — OPERATOR NAH', 'LUŹNO — OPERATOR W CIENIU': 'RUHIG — OPERATOR DISKRET',
+    'Operator: blisko, ale dyskretnie': 'Operator: nah, aber diskret',
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+        'Ein zertifizierter Operator ist während der gesamten Veranstaltung beim Roboter. Wird es voll, steht er direkt daneben und achtet auf die Sicherheit. Ist es ruhiger, tritt er in den Hintergrund — die Gäste sehen den Roboter, nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
+    'Widzi ludzi wokół siebie': 'Er sieht die Menschen um sich herum',
+    'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
+        'Dank LiDAR und Computer Vision weicht er Menschen und Hindernissen in Echtzeit aus. Der Roboter bewegt sich ruhig zwischen den Gästen, und der Operator behält jeden Schritt im Blick.',
+    'WYMIANA — POKAZ TRWA': 'AKKUWECHSEL — SHOW LÄUFT',
+    'Baterie bez przerwy w&nbsp;pokazie': 'Akkuwechsel ohne Showpause',
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+        'Der Roboter arbeitet mit Wechselakkus. Der Operator hat einen Satz Ersatzakkus dabei und tauscht sie während der Veranstaltung — die Show unterbricht nicht zum Laden.',
+    'Kontakt z&nbsp;gośćmi': 'Kontakt mit den Gästen',
+    'Wychodzimy do ludzi': 'Wir gehen auf die Menschen zu',
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+        'Der Roboter wartet nicht in der Ecke, bis jemand kommt. Er geht auf die Gäste zu, spricht sie an und lädt zum Gespräch ein — damit möglichst viele mit ihm reden, nicht nur die Mutigsten.',
+    # powitania: język rynku idzie na pierwsze miejsce, polskie na jego dawne miejsce
+    'Dzień dobry': 'Guten Tag', 'Guten Tag': 'Dzień dobry',
+    'Rozmawia w&nbsp;każdym języku': 'Er spricht jede Sprache',
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+        'Er spricht Deutsch und jede andere Sprache, mit natürlicher Stimme, und wechselt während der Veranstaltung zwischen den Sprachen — auch wenn die Gäste aus mehreren Ländern kommen.',
+    'Zna Twoje wydarzenie': 'Er kennt Ihre Veranstaltung',
+    'Przed eventem wgrywamy wiedzę: program, prelegentów, ofertę i&nbsp;najczęstsze pytania. Robot odpowiada gościom konkretnie i&nbsp;nawiązuje do tego, co dzieje się na sali.':
+        'Vor dem Event spielen wir ihm das Wissen ein: Programm, Redner, Angebot und häufige Fragen. Der Roboter antwortet den Gästen konkret und geht auf das ein, was im Saal passiert.',
+    # kalkulator (wspólne etykiety)
+    'Wybierz format': 'Format wählen', 'Liczba dni': 'Anzahl der Tage', 'Jeden dzień mniej': 'Einen Tag weniger', 'Jeden dzień więcej': 'Einen Tag mehr',
+    'Sprawdź termin i dokładną cenę': 'Termin und genauen Preis prüfen',
+    # kontakt
+    'Odbiera osobiście': 'Nimmt persönlich ab', 'E-mail': 'E-Mail',
+}
+
+TEKSTY_LT = {
+    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'renginių penkiose šalyse — gala vakarai, parodos, konferencijos, įmonių ir lauko renginiai',
+    'krajów: Polska, Litwa, Niemcy, Czechy, Rumunia': 'šalys: Lenkija, Lietuva, Vokietija, Čekija, Rumunija',
+    '„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk': 'TVP2 rytinė laida, Teleexpress ir TVP Gdanskas',
+    '&nbsp;zł': '&nbsp;€',
+    'zaliczki — fakturę wystawiamy po wydarzeniu': 'avanso — sąskaitą išrašome po renginio',
+    '&nbsp;min': '&nbsp;min',
+    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'iki atsakymo su kaina — telefonu iš karto',
+    '04 / 13 · Robot z bliska': '04 / 13 · Robotas iš arti',
+    'Poznaj go, zanim przyjedzie.': 'Susipažinkite su juo dar prieš jam atvykstant.',
+    '01 · Głowa': '01 · Galva', 'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR ir kamera — mato aplink esančius svečius',
+    '02 · Twarz': '02 · Veidas', 'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Kalba bet kuria kalba, natūraliu balsu',
+    '03 · Pierś': '03 · Krūtinė', 'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Jūsų logotipas ir QR kodas — kiekvienoje svečių nuotraukoje',
+    '04 · Ręce': '04 · Rankos', 'Wita, podaje rękę, pozuje do zdjęć': 'Pasisveikina, paspaudžia ranką, pozuoja nuotraukoms',
+    '05 · Nogi': '05 · Kojos', 'Chodzi wśród gości i&nbsp;omija przeszkody': 'Vaikšto tarp svečių ir apeina kliūtis',
+    '06 · Stopy': '06 · Pėdos', 'Wystarczy mu kilka metrów kwadratowych': 'Jam užtenka kelių kvadratinių metrų',
+    'Wydaj robotowi polecenie': 'Duokite robotui komandą',
+    'Pomachaj': 'Pamojuok', 'Zatańcz': 'Pašok', 'Wyślij buziaka': 'Pasiųsk bučinį', 'Ręce w&nbsp;górę': 'Rankas aukštyn', 'Powiedz coś': 'Pasakyk ką nors',
+    'Zatrzymaj ruch': 'Sustabdyti judėjimą',
+    'Przeciągnij, żeby obrócić': 'Vilkite ir sukite',
+    'LiDAR i&nbsp;kamera': 'LiDAR ir kamera', 'Głos w&nbsp;każdym języku': 'Balsas bet kuria kalba', 'Twoje logo': 'Jūsų logotipas',
+    'Podaje rękę': 'Paspaudžia ranką', 'Omija przeszkody': 'Apeina kliūtis', 'Kilka m²': 'Keli m²',
+    '05 / 13 · Zasady': '05 / 13 · Principai',
+    'Najpierw bezpieczeństwo gości. Potem efekt.': 'Pirmiausia — svečių saugumas. Tada — efektas.',
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+        'Ką ir kada daro robotas, visada sprendžia operatorius. Sudėtingesnius judesius rodome tik ten, kur jiems yra vietos — operatorius įvertina salę, prižiūri atstumus ir suvaldo minią. Todėl niekam nieko nenutinka, o su robotu pasikalba kuo daugiau žmonių.',
+    'Bezpieczeństwo': 'Saugumas',
+    'TŁOCZNO — OPERATOR OBOK': 'ANKŠTA — OPERATORIUS ŠALIA', 'LUŹNO — OPERATOR W CIENIU': 'ERDVU — OPERATORIUS NUOŠALIAI',
+    'Operator: blisko, ale dyskretnie': 'Operatorius: arti, bet nepastebimai',
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+        'Sertifikuotas operatorius būna prie roboto viso renginio metu. Kai aplink susidaro spūstis, jis stovi šalia ir prižiūri saugumą. Kai erdviau, pasitraukia į šešėlį — svečiai mato robotą, o ne šalia jo esantį žmogų. Kiekvienai realizacijai taikomas civilinės atsakomybės draudimas.',
+    'Widzi ludzi wokół siebie': 'Mato aplink esančius žmones',
+    'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
+        'LiDAR ir kompiuterinė rega leidžia realiu laiku apeiti žmones ir kliūtis. Robotas ramiai juda tarp svečių, o kiekvieną jo žingsnį prižiūri operatorius.',
+    'WYMIANA — POKAZ TRWA': 'KEITIMAS — ŠOU TĘSIASI',
+    'Baterie bez przerwy w&nbsp;pokazie': 'Baterijos be pertraukos pasirodyme',
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+        'Robotas dirba su keičiamomis baterijomis. Operatorius turi atsarginį komplektą ir keičia baterijas renginio metu — pasirodymas nesustoja dėl įkrovimo.',
+    'Kontakt z&nbsp;gośćmi': 'Bendravimas su svečiais',
+    'Wychodzimy do ludzi': 'Einame pas žmones',
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+        'Robotas nelaukia kampe, kol kas nors prieis. Jis pats prieina prie svečių, užkalbina ir kviečia pasikalbėti — kad su robotu pasikalbėtų kuo daugiau žmonių, o ne tik drąsiausieji.',
+    'Dzień dobry': 'Laba diena', 'Laba diena': 'Dzień dobry',
+    'Rozmawia w&nbsp;każdym języku': 'Kalba bet kuria kalba',
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+        'Kalba lietuviškai ir bet kuria kita kalba, natūraliu balsu, ir renginio metu perjungia kalbas — net tada, kai svečiai atvyko iš kelių šalių.',
+    'Zna Twoje wydarzenie': 'Žino jūsų renginį',
+    'Przed eventem wgrywamy wiedzę: program, prelegentów, ofertę i&nbsp;najczęstsze pytania. Robot odpowiada gościom konkretnie i&nbsp;nawiązuje do tego, co dzieje się na sali.':
+        'Prieš renginį įkeliame žinias: programą, pranešėjus, paslaugas ir dažniausius klausimus. Robotas svečiams atsako konkrečiai ir reaguoja į tai, kas vyksta salėje.',
+    'Wybierz format': 'Pasirinkite formatą', 'Liczba dni': 'Dienų skaičius', 'Jeden dzień mniej': 'Viena diena mažiau', 'Jeden dzień więcej': 'Viena diena daugiau',
+    'Sprawdź termin i dokładną cenę': 'Patikrinti datą ir tikslią kainą',
+    'Odbiera osobiście': 'Atsiliepia asmeniškai', 'E-mail': 'El. paštas',
+}
+
+# Kalkulator: formaty jak na .pl (wejście · pełny dzień · targi), ceny rynku. „etykieta_dni” i opisy
+# z ${…} to szablony JS z js/glowna.js (zmienne: dni, DZIEN, RABAT, kwota, zl).
+KALK_DE = {
+    'dzien_kwota': 2500, 'separator': '.', 'kwota_html': '2.500', 'waluta': '€',
+    'formaty': {
+        'wejscie': ('Kurzauftritt', 'Ein paar Stunden im Programm — Eröffnung, Bühnenblock, Stoßzeiten am Messestand.', 'Individuelles Angebot · immer günstiger als ein ganzer Tag'),
+        'dzien': ('Ganzer Tag', 'Der Roboter steht Ihnen den ganzen Veranstaltungstag zur Verfügung, mit Operator und Ersatzakkus.', 'ab 2.500&nbsp;€ pro Veranstaltungstag'),
+        'dni': ('Messen', 'Zwei Tage und mehr — Messen, Festivals, Roadshows.', '−15&nbsp;% auf jeden Tag'),
+    },
+    'etykieta_wejscie': 'Kurzauftritt · einige Stunden · Richtpreis', 'etykieta_dzien': 'Ganzer Tag · Richtpreis',
+    'etykieta_dni': '`${dni} Tage · Richtpreis`', 'od': 'ab', 'ponizej': 'unter',
+    'opis_wejscie': 'Den Betrag nennen wir nach einem kurzen Gespräch über das Programm — immer günstiger als ein ganzer Tag.',
+    'opis_dzien': 'Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.',
+    'opis_dni': '`${dni} × ${kwota(DZIEN * RABAT)} € statt ${dni} × ${kwota(DZIEN)} € — Sie sparen ${kwota(dni * DZIEN * (1 - RABAT))} €.`',
+    'wcenie_1': 'Im Preis: Operator, Anfahrt in ganz Deutschland, Branding (Logo, QR-Code), Haftpflichtversicherung.',
+    'zgloszenie_wejscie': "'Ich interessiere mich für einen Kurzauftritt (einige Stunden).'",
+    'zgloszenie_dni': '`Ich interessiere mich für ${dni} Tage (ab ${zl(dni * DZIEN * RABAT)} €).`',
+    'zgloszenie_dzien': '`Ich interessiere mich für einen ganzen Tag (ab ${zl(DZIEN)} €).`',
+}
+KALK_AT = {**KALK_DE,
+    'dzien_kwota': 2300, 'kwota_html': '2.300',
+    'formaty': {**KALK_DE['formaty'],
+        'dzien': ('Ganzer Tag', 'Der Roboter steht Ihnen den ganzen Veranstaltungstag zur Verfügung, mit Operator und Ersatzakkus.', 'ab 2.300&nbsp;€ netto')},
+    'etykieta_wejscie': 'Kurzauftritt · einige Stunden · netto', 'etykieta_dzien': 'Ganzer Tag · netto', 'etykieta_dni': '`${dni} Tage · netto`',
+    'opis_dzien': 'Den endgültigen Preis kalkulieren wir nach Dauer, Ort und Programm.',
+    'wcenie_1': 'Im Preis: Operator, Transport in ganz Österreich, Branding (Logo, QR-Code), Haftpflichtversicherung.',
+    'zgloszenie_dni': '`Ich interessiere mich für ${dni} Tage (ab ${zl(dni * DZIEN * RABAT)} € netto).`',
+    'zgloszenie_dzien': '`Ich interessiere mich für einen ganzen Tag (ab ${zl(DZIEN)} € netto).`',
+}
+KALK_LT = {
+    'dzien_kwota': 2100, 'separator': ' ', 'kwota_html': '2&nbsp;100', 'waluta': '€',
+    'formaty': {
+        'wejscie': ('Kelios valandos', 'Kelios valandos renginio programoje — atidarymas, blokas scenoje, piko valandos parodos stende.', 'Individuali kaina · visada pigiau nei visa diena'),
+        'dzien': ('Visa diena', 'Robotas jūsų dispozicijoje visą renginio dieną, su operatoriumi ir atsarginėmis baterijomis.', 'nuo 2&nbsp;100&nbsp;€ be PVM'),
+        'dni': ('Parodos', 'Dvi dienos ir daugiau — parodos, festivaliai, roadshow.', '−15&nbsp;% kiekvienai dienai'),
+    },
+    'etykieta_wejscie': 'Kelios valandos · kaina be PVM', 'etykieta_dzien': 'Visa diena · kaina be PVM',
+    'etykieta_dni': '`${dni} dienos · kaina be PVM`', 'od': 'nuo', 'ponizej': 'mažiau nei',
+    'opis_wejscie': 'Sumą pasakome po trumpo pokalbio apie programą — visada pigiau nei visa diena.',
+    'opis_dzien': 'Galutinė suma priklauso nuo renginio vietos ir trukmės.',
+    'opis_dni': '`${dni} × ${kwota(DZIEN * RABAT)} € vietoj ${dni} × ${kwota(DZIEN)} € — sutaupote ${kwota(dni * DZIEN * (1 - RABAT))} €.`',
+    'wcenie_1': 'Į kainą įeina: operatorius, atvykimas, ženklinimas (logotipas, QR kodas) ir civilinės atsakomybės draudimas.',
+    'zgloszenie_wejscie': "'Domina trumpesnis pasirodymas (kelios valandos).'",
+    'zgloszenie_dni': '`Domina ${dni} dienų renginys (nuo ${zl(dni * DZIEN * RABAT)} € be PVM).`',
+    'zgloszenie_dzien': '`Domina visos dienos renginys (nuo ${zl(DZIEN)} € be PVM).`',
+}
+
+# Robot 3D (js/robot3d.js): napis na piersi, dymki. Powitania w innych językach zostają jak na .pl.
+ROBOT_DE = {
+    'logo': ('IHR', 'LOGO'),
+    'mowa': ['Guten Tag! Ich spreche Deutsch und jede andere Sprache.', 'Hello! Welcome to your event.', 'Dzień dobry! Schön, Sie zu sehen.',
+             'Laba diena! Machen wir ein Foto?', 'Dobrý den! Ich komme zu Ihren Gästen.', 'Bună ziua! Ich erzähle von Ihrem Unternehmen.'],
+    'tekst': {'macha': 'Hallo! Schön, Sie zu sehen.', 'tanczy': 'Musik, Maestro!', 'buziak': 'Muah!', 'zdjecie': 'Bitte lächeln!',
+              'chodzi': 'Ich gehe zu Ihren Gästen!', 'obrot': 'Sehen Sie mich von allen Seiten.', 'przedstawia': 'Meine Damen und Herren — unser Redner!'},
+    'powitania': ['Guten Tag', 'Hello', 'Dzień dobry', 'Laba diena', 'Dobrý den', 'Bună ziua', 'Bonjour', 'Hola', 'Ciao', 'こんにちは'],
+}
+ROBOT_LT = {
+    'logo': ('JŪSŲ', 'LOGO'),
+    'mowa': ['Laba diena! Kalbu lietuviškai ir bet kuria kita kalba.', 'Hello! Welcome to your event.', 'Guten Tag! Malonu jus matyti.',
+             'Dzień dobry! Gal nusifotografuojame?', 'Dobrý den! Prieisiu prie jūsų svečių.', 'Bună ziua! Papasakosiu apie jūsų įmonę.'],
+    'tekst': {'macha': 'Labas! Malonu jus matyti.', 'tanczy': 'Muzika, maestro!', 'buziak': 'Muah!', 'zdjecie': 'Šypsokitės nuotraukai!',
+              'chodzi': 'Einu pas jūsų svečius!', 'obrot': 'Apžiūrėkite mane iš visų pusių.', 'przedstawia': 'Ponios ir ponai — mūsų pranešėjas!'},
+    'powitania': ['Laba diena', 'Hello', 'Guten Tag', 'Dzień dobry', 'Dobrý den', 'Bună ziua', 'Bonjour', 'Hola', 'Ciao', 'こんにちは'],
+}
+
+for _r, _t, _k, _rb in ((DE, TEKSTY_DE, KALK_DE, ROBOT_DE), (AT, TEKSTY_DE, KALK_AT, ROBOT_DE), (LT, TEKSTY_LT, KALK_LT, ROBOT_LT)):
+    _r.update({'teksty': _t, 'kalk': _k, 'robot': _rb})
+DE['skala_aria'] = AT['skala_aria'] = 'Umfang und Medien'
+LT['skala_aria'] = 'Mastas ir žiniasklaida'
+DE['cs_link'] = ('case-study-eco-studio-electro-system.html', 'Vollständige Case Study')
+AT['cs_link'] = None
+LT['cs_link'] = ('video-realizacijos.html', 'Visos realizacijos ir vaizdo įrašai')  # .lt nie ma podstrony case study
 
 RYNKI = {'de': DE, 'at': AT, 'lt': LT}

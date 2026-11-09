@@ -12,7 +12,7 @@ const T_DE = {
   nastepne: 'Nächstes Foto', menu: 'Menü', zamknij: 'Schließen',
   leadMowa: 'Er spricht Deutsch und jede andere Sprache', leadBranding: 'Branding im Preis',
   kraje: 'Litauen, Deutschland, Tschechien und Rumänien', przelacza: 'wechselt während einer Veranstaltung zwischen den Sprachen',
-  ponad40: 'über 40 Veranstaltungen in fünf Ländern', faqMowa: 'Der Roboter spricht Deutsch und jede andere Sprache',
+  ponad40: 'über 100 Veranstaltungen in fünf Ländern', faqMowa: 'Der Roboter spricht Deutsch und jede andere Sprache',
   zakazane: /Kostüm|Outfit|Garderobe|kostenlos|gratis|\[[^\]]*ergänzen[^\]]*\]/i,
   kadrDrezno: 'Einsatz ansehen: Dresdner Schlössernacht', lexaiPodpis: 'Langer Markt · Danzig', lexaiOpis: 'Neptunbrunnen',
   bladTyp: 'Wählen Sie die Art der Veranstaltung.', typy: ['Gala', 'Konferenz', 'Messe', 'Outdoor', 'Sonstiges'],
@@ -25,12 +25,13 @@ const T_DE = {
   skip: 'Zum Hauptinhalt springen', robot: /Roboter/,
   heroOpis2: 'Finale Eco Studio ELECTRO-SYSTEM · Warschau', heroAlt2: /Journalistin interviewt/,
   pauza: 'Pause', wznow: 'Weiter', ruchStop: 'Bewegung anhalten', ruchStart: 'Bewegung fortsetzen',
+  machanie: 'Hallo! Schön, Sie zu sehen.', kalkDni: '3 Tage', zgloszenie: 'Ich interessiere mich für 3 Tage',
 };
 const T_LT = {
   nastepne: 'Kita nuotrauka', menu: 'Meniu', zamknij: 'Uždaryti',
   leadMowa: 'Kalba lietuviškai ir bet kuria kita kalba', leadBranding: 'ženklinimas — kainoje',
   kraje: 'Lenkijoje, Lietuvoje, Vokietijoje, Čekijoje ir Rumunijoje', przelacza: 'vieno renginio metu perjungia kalbas',
-  ponad40: 'daugiau nei 40 renginių penkiose šalyse', faqMowa: 'Robotas kalba lietuviškai ir bet kuria kita kalba',
+  ponad40: 'daugiau nei 100 renginių penkiose šalyse', faqMowa: 'Robotas kalba lietuviškai ir bet kuria kita kalba',
   zakazane: /nemokam|gratis|kostium|\[[^\]]*papildyti[^\]]*\]/i,
   kadrDrezno: 'Žiūrėti realizaciją: Drezdeno pilių naktis', lexaiPodpis: 'Ilgasis turgus · Gdanskas', lexaiOpis: 'Neptūno fontano',
   bladTyp: 'Pasirinkite renginio tipą.', typy: ['Gala vakaras', 'Konferencija', 'Paroda', 'Lauko renginys', 'Kita'],
@@ -43,6 +44,7 @@ const T_LT = {
   skip: 'Pereiti prie turinio', robot: /robot/i,
   heroOpis2: 'Eco Studio ELECTRO-SYSTEM finalas · Varšuva', heroAlt2: /Žurnalistė kalbina/,
   pauza: 'Pauzė', wznow: 'Tęsti', ruchStop: 'Sustabdyti judėjimą', ruchStart: 'Tęsti judėjimą',
+  machanie: 'Labas! Malonu jus matyti.', kalkDni: '3 dienos', zgloszenie: 'Domina 3 dienų renginys',
 };
 
 const RYNKI = [
@@ -53,14 +55,14 @@ const RYNKI = [
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'realisierungen', 'events', 'video', 'ueber-uns', 'auftritt',
       'leistungen', 'einsatzbereiche', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt'],
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
-    ceny: ['ab 2.500 €', 'pro Veranstaltungstag', '850 €', '−15 %'],
-    kontakt: ['kontakt@33bots.de'],
+    ceny: ['Individuelles Angebot', 'ab 2.500 €', 'pro Veranstaltungstag', '−15 %'], kalkTrzyDni: '6.375 €',
+    kontakt: ['+48 531 408 004', 'kontakt@33bots.de'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Ratgeber'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
-    blad: 'Senden fehlgeschlagen. Schreiben Sie uns an kontakt@33bots.de.',
+    blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',
     linkLexai: 'case-study-lexai.html',
-    analityka: false, panel: true, t: T_DE, telefon: null, faqLiczba: 10,
+    analityka: false, panel: true, t: T_DE, telefon: 'tel:+48531408004', faqLiczba: 10,
   },
   {
     kod: 'at', adres: 'http://127.0.0.1:8082/', lang: 'de-AT',
@@ -69,7 +71,7 @@ const RYNKI = [
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'vertrauen', 'auftritt', 'moeglichkeiten', 'case-study',
       'preise', 'ablauf', 'faq', 'kontakt'],
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'HowTo', 'VideoObject', 'WebSite'],
-    ceny: ['Individuelles Angebot', 'ab 2.300 €', 'netto', '−15 %'],
+    ceny: ['Individuelles Angebot', 'ab 2.300 €', 'netto', '−15 %'], kalkTrzyDni: '5.865 €',
     kontakt: ['+48 531 408 004', 'kontakt@33bots.at'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Angebot'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
@@ -85,14 +87,14 @@ const RYNKI = [
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'realizacje', 'zaufanie', 'auftritt', 'mozliwosci', 'case-study',
       'preise', 'cennik', 'ablauf', 'proces', 'faq', 'kontakt'],
     ldTypy: ['ProfessionalService', 'WebSite', 'VideoObject', 'Service', 'Product', 'FAQPage'],
-    ceny: ['Individuali kaina', 'nuo 2 100 €', 'be PVM', '−15 %'],
-    kontakt: ['kontakt@33bots.lt'],
+    ceny: ['Individuali kaina', 'nuo 2 100 €', 'be PVM', '−15 %'], kalkTrzyDni: '5 355 €',
+    kontakt: ['+48 531 408 004', 'kontakt@33bots.lt'],
     nav: ['Realizacijos', 'Pasirodymas', 'Kainos', 'Procesas', 'Renginių gidas'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
-    blad: 'Nepavyko išsiųsti. Parašykite mums adresu kontakt@33bots.lt.',
+    blad: 'Nepavyko išsiųsti. Skambinkite: +48 531 408 004 arba parašykite adresu kontakt@33bots.lt.',
     miejsce: 'Vilnius, LITEXPO',
     linkLexai: null,
-    analityka: true, panel: false, t: T_LT, telefon: null, faqLiczba: 11,
+    analityka: true, panel: false, t: T_LT, telefon: 'tel:+48531408004', faqLiczba: 10,
   },
 ];
 
@@ -151,9 +153,9 @@ for (const m of RYNKI) {
     test('struktura jak na .pl, dawne kotwice działają, identyfikatory unikalne', async ({ browser }) => {
       const { ctx, page } = await nowaStrona(browser, m);
       const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.className));
-      expect(kolejnosc).toEqual(['hero', 'proof', 'referenzen', 'auftritt', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt']);
+      expect(kolejnosc).toEqual(['hero', 'proof', 'robot', 'zasady', 'referenzen', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt']);
       const numery = await page.evaluate(() => [...document.querySelectorAll('.sec .sec__meta')].map((e) => e.textContent.trim().slice(0, 7)));
-      expect(numery).toEqual(['04 / 11', '05 / 11', '06 / 11', '07 / 11', '08 / 11', '09 / 11', '10 / 11']);
+      expect(numery).toEqual(['04 / 13', '05 / 13', '06 / 13', '07 / 13', '08 / 13', '09 / 13', '10 / 13', '11 / 13', '12 / 13']);
       for (const id of m.kotwice) expect(await page.locator(`#${id}`).count(), `#${id}`).toBe(1);
       const duplikaty = await page.evaluate(() => {
         const ile = {};
@@ -202,8 +204,8 @@ for (const m of RYNKI) {
       const lead = page.locator('.hero .lead');
       await expect(lead).toContainText(m.t.leadMowa);
       await expect(lead).toContainText(m.t.leadBranding);
-      await expect(page.locator('#auftritt')).toContainText(m.t.kraje);
-      await expect(page.locator('#auftritt')).toContainText(m.t.przelacza);
+      await expect(page.locator('#wystep')).toContainText(m.t.kraje);
+      await expect(page.locator('#wystep')).toContainText(m.t.przelacza);
       await expect(page.locator('#referenzen')).toContainText(m.t.ponad40);
       expect(await tresc(page, '.faq')).toContain(m.t.faqMowa);
       expect(await tresc(page)).not.toMatch(m.t.zakazane);
@@ -214,20 +216,41 @@ for (const m of RYNKI) {
 
     test('fakty rynku: ceny, kontakt, formularz rynku', async ({ browser }) => {
       const { ctx, page } = await nowaStrona(browser, m);
-      const ceny = await tresc(page, '#preise');
+      const ceny = await tresc(page, '#formaty');
       for (const c of m.ceny) expect(ceny, c).toContain(c);
       const kontakt = await tresc(page, '#kontakt');
       for (const k of m.kontakt) expect(kontakt, k).toContain(k);
       const telefony = await page.locator('a[href^="tel:"]').count();
       if (!m.telefon) {
         expect(telefony, `33bots.${m.kod} nie podaje telefonu`).toBe(0);
-        expect(await tresc(page)).not.toMatch(m.kod === 'de' ? /netto|\+48/ : /\+48/);
+        expect(await tresc(page)).not.toMatch(/\+48/);
       } else {
+        if (m.kod === 'de') expect(await tresc(page)).not.toMatch(/netto/);
         expect(telefony).toBeGreaterThan(0);
         await expect(page.locator('a[href^="tel:"]').first()).toHaveAttribute('href', 'tel:+48531408004');
       }
       const skrypt = await page.evaluate(() => [...document.scripts].map((s) => s.textContent).join('\n'));
       expect(skrypt).toContain(`fetch("${m.formularz}"`);
+      await ctx.close();
+    });
+
+    test('robot 3D i kalkulator jak na .pl, teksty rynku', async ({ browser }) => {
+      const { ctx, page, bledy } = await nowaStrona(browser, m, { ruch: 'no-preference' });
+      await page.evaluate(() => { const r = document.getElementById('robot'); scrollTo({ top: scrollY + r.getBoundingClientRect().top + 10, behavior: 'instant' }); });
+      await expect.poll(() => page.evaluate(() => document.documentElement.dataset.robot || ''), { timeout: 20000 }).toMatch(/gotowy|brak/);
+      if (await page.evaluate(() => document.documentElement.dataset.robot) === 'gotowy') {
+        await page.locator('[data-robot-gest="macha"]').click();
+        await expect(page.locator('#robotDymek')).toHaveText(m.t.machanie);
+      }
+      const kalk = page.locator('#kalkulator');
+      await kalk.scrollIntoViewIfNeeded();
+      await kalk.locator('input[value="dni"]').check({ force: true });
+      await kalk.locator('[data-dni="1"]').click();
+      await expect(page.locator('#kalkEtykieta')).toContainText(m.t.kalkDni);
+      await expect.poll(async () => twarde(await page.locator('#kalkKwota').innerText() + await page.locator('#kalkZl').innerText())).toBe(m.kalkTrzyDni);
+      await page.locator('#formaty [data-cta="formaty"]').click();
+      await expect(page.locator('#pole-message')).toHaveValue(new RegExp(m.t.zgloszenie));
+      expect(bledy).toEqual([]);
       await ctx.close();
     });
 
@@ -482,7 +505,7 @@ for (const m of RYNKI) {
       await page.mouse.move(2, 2);
       const x = () => page.evaluate(() => [...document.querySelectorAll('.pas')].map((p) => new DOMMatrix(getComputedStyle(p.querySelector('.pas__tor')).transform).m41));
       const a = await x(); await page.waitForTimeout(1200); const b = await x();
-      for (const i of [0, 1, 2]) expect(Math.abs(b[i] - a[i]), `rząd ${i + 1}`).toBeGreaterThan(10);
+      for (const i of [0, 1]) expect(Math.abs(b[i] - a[i]), `rząd ${i + 1}`).toBeGreaterThan(10); // dwa rzędy zdjęć, jak na .pl
       const kopie = await page.evaluate(() => [...document.querySelectorAll('.pas__tor > [data-kopia]')]
         .every((li) => li.getAttribute('aria-hidden') === 'true' && [...li.querySelectorAll('button, a')].every((e) => e.tabIndex === -1)));
       expect(kopie).toBe(true);

@@ -8,7 +8,12 @@ z SEO (tytuł, opisy, canonical, hreflang, og, dane strukturalne) w
 glowa-<rynek>.html — tu nic się w niej nie wymyśla, poza FAQPage, który
 powstaje z pytań widocznych na stronie.
 
-Skrypt kopiuje też do repozytorium rynku arkusz css/site.css, fonty i zdjęcia,
+Sekcje z 11.2026 (skala, robot 3D, zasady, występ, kalkulator, proces) generator bierze
+wprost z kodu polskiej strony i podmienia wyłącznie teksty — węzeł po węźle, według
+słownika rynku (rynki.py, TEKSTY_*). Polski tekst bez tłumaczenia zatrzymuje generator.
+
+Skrypt kopiuje też do repozytorium rynku arkusze css/site.css i css/glowna.css, skrypty
+js/glowna.js i js/robot3d.js (z tekstami rynku), dane robota (robot/*), fonty i zdjęcia,
 których strona potrzebuje.
 
 Użycie (z katalogu głównego repozytorium 33bots.pl):
@@ -28,7 +33,7 @@ from pathlib import Path
 TU = Path(__file__).resolve().parent
 PL = TU.parent.parent
 sys.path.insert(0, str(TU))
-from rynki import RYNKI  # noqa: E402
+from rynki import RYNKI, TEL  # noqa: E402
 import bez_komentarzy  # noqa: E402
 
 INDEX_PL = (PL / 'index.html').read_text(encoding='utf-8')
@@ -47,6 +52,52 @@ def e(s):
 def wycinek(od, do, zrodlo=INDEX_PL):
     i = zrodlo.index(od)
     return zrodlo[i:zrodlo.index(do, i) + len(do)]
+
+
+LITERA = re.compile(r'[^\W\d_]')
+ATRYBUT = re.compile(r'(\s(?:aria-label|alt|placeholder|title)=")([^"]*)(")')
+# Teksty bez tłumaczenia: nazwy własne, skróty i powitania w innych językach.
+NEUTRALNE = {'REC', '&nbsp;×&nbsp;TVP', 'Hello', 'Guten Tag', 'Laba diena', 'Bună ziua', 'Dobrý den', 'Bonjour', 'Hola',
+             'Oliwier Latek', 'Bartosz Wysocki'}
+
+
+def tlumacz(fragment, mapa, opis, uzyte=None):
+    """Kod z .pl z przetłumaczonymi tekstami: każdy węzeł tekstu i atrybut tekstowy (alt, aria-label,
+    placeholder, title) z literami musi mieć tłumaczenie w mapie albo być w NEUTRALNE."""
+    fragment = re.sub(r'[ \t]*<!--.*?-->[ \t]*\n?', '', fragment, flags=re.S)
+    braki = []
+
+    def wezel(t):
+        k = t.strip()
+        if not k or not LITERA.search(html.unescape(k)) or re.fullmatch(r'[\w.-]+@[\w.-]+', k):
+            return t
+        if k in mapa:
+            if uzyte is not None:
+                uzyte.add(k)
+            i = t.index(k)
+            return t[:i] + mapa[k] + t[i + len(k):]
+        if k not in NEUTRALNE:
+            braki.append(k)
+        return t
+    wynik = ATRYBUT.sub(lambda m: m.group(1) + wezel(m.group(2)) + m.group(3), fragment)
+    wynik = re.sub(r'(?<=>)([^<>]+)(?=<)', lambda m: wezel(m.group(1)), wynik)
+    assert not braki, f'{opis}: brak tłumaczenia (rynki.py, TEKSTY_*): {braki}'
+    return wynik
+
+
+def pary(*listy):
+    """Słownik z par (tekst .pl, tłumaczenie); ten sam tekst .pl musi mieć zawsze to samo tłumaczenie."""
+    mapa = {}
+    for pl, obce in (p for lista in listy for p in lista):
+        assert mapa.get(pl, obce) == obce, f'„{pl}” ma dwa różne tłumaczenia: {mapa[pl]} / {obce}'
+        mapa[pl] = obce
+    return mapa
+
+
+def podmien(tekst, stare, nowe, n=1, opis='kod .pl'):
+    ile = tekst.count(stare)
+    assert ile == n, f'{opis}: „{stare[:60]}” występuje {ile}×, oczekiwano {n} — sprawdź generator'
+    return tekst.replace(stare, nowe)
 
 
 def wymiary(plik):
@@ -70,6 +121,7 @@ class Strona:
         self.r = r
         self.cel = Path(cel)
         self.zdjecia = set()          # pliki bazowe zdjęć do skopiowania
+        self.uzyte = set()            # wykorzystane wpisy słownika TEKSTY_* (nieużyty = literówka albo stary tekst)
 
     # ——— drobne klocki ———
     def zdjecie(self, plik, alt, sizes, extra=''):
@@ -96,6 +148,21 @@ class Strona:
         """Dawne kotwice w osobnym wierszu — tylko gdy rynek jakieś ma (bez pustej linii na .de/.at)."""
         k = self.kotwice(sekcja)
         return f'\n  {k}' if k else ''
+
+    def sekcja_pl(self, id_):
+        return wycinek(f'<section id="{id_}"', '</section>')
+
+    def kotwice_pl(self, fragment, id_pl, sekcja):
+        """Kotwice .pl (dawne adresy polskiej strony) → kotwice rynku: jego nazwa sekcji i dawne adresy."""
+        nowe = ([sekcja] if sekcja else []) + [k for k in self.r['kotwice'].get(sekcja, []) if k != id_pl]
+        spany = ''.join(f'<span class="kotwica" id="{k}"></span>' for k in nowe)
+        fragment, n = re.subn(r'\n  (?:<span class="kotwica" id="[^"]+"></span>)+', f'\n  {spany}' if spany else '', fragment, count=1)
+        if not n and spany:
+            fragment = re.sub(r'(<section [^>]*>)', lambda m: f'{m.group(1)}\n  {spany}', fragment, count=1)
+        return fragment
+
+    def teksty(self, fragment, opis, *pary_rynku):
+        return tlumacz(fragment, pary(self.r['teksty'].items(), *pary_rynku), opis, self.uzyte)
 
     # ——— sekcje ———
     def nawigacja(self):
@@ -148,6 +215,7 @@ class Strona:
           <a class="btn btn--akcja" href="#kontakt" data-cta="hero">{r['cta']}{STRZALKA}</a>
         </div>
         <p class="termin__obietnica">{r['hero_obietnica']}</p>
+        <p class="termin__telefon">{r['hero_telefon']} <a href="{TEL[0]}" data-tel="hero">{TEL[1]}</a></p>
       </div>
       <a class="link" href="{lh}">{lt}</a>
     </div>
@@ -162,12 +230,19 @@ class Strona:
   </figure>
 </section>
 
-<section class="proof" aria-label="{e(r['proof_label'])}">
+<section class="proof" aria-label="{e(r['skala_aria'])}">
+  {self.teksty(wycinek('<div class="skala">', '</dl>' + chr(10) + '  </div>'), 'skala')}
   <p class="label proof__label">{r['proof_label']}</p>
   <ul class="proof__list">
 ''' + '\n'.join(f'    <li>{self.link(href, self.dowod(tekst, nota))}</li>' for href, tekst, nota in r['proof']) + '''
   </ul>
 </section>'''
+
+    def robot(self):
+        return self.teksty(self.sekcja_pl('robot'), 'robot z bliska')
+
+    def zasady(self):
+        return self.teksty(self.kotwice_pl(self.sekcja_pl('zasady'), 'zasady', None), 'zasady')
 
     def pasy_pl(self):
         """Rzędy kadrów z polskiej strony: prędkość, kierunek, pliki i klucze realizacji."""
@@ -278,31 +353,17 @@ class Strona:
 
     def wystep(self):
         r = self.r
-        wiersze = []
-        for i, (tytul, tekst) in enumerate(r['wiersze'], 1):
-            foto = ''
-            if tytul == r.get('wiersz_z_foto', 'Branding'):
-                foto = (f'\n          <figure class="wiersz__foto">{self.zdjecie("realizacja-gala-detal", r["wystep_foto_alt"], "240px")}'
-                        f'<figcaption class="podpis">{r["wystep_foto_podpis"]}</figcaption></figure>')
-            wiersze.append(f'''      <li class="wiersz">
-        <span class="label wiersz__nr">{i:02d}</span>
-        <div><h3 class="h3">{tytul}</h3>
-          <p class="body">{tekst}</p>{foto}</div>
-      </li>''')
-        return f'''<!-- ══════════ 05 AUFTRITT ══════════ -->
-<section id="auftritt" class="sec" aria-labelledby="auftritt-h">
-  {self.kotwice('auftritt')}
-  <div class="wrap grid12">
-    <div class="wystep__glowa wejscie">
-      <p class="label sec__meta">{r['wystep_meta']}</p>
-      <h2 id="auftritt-h" class="h2">{r['wystep_h2']}</h2>
-      <p class="body">{r['wystep_body']}</p>
-    </div>
-    <ol class="wiersze wejscie">
-{chr(10).join(wiersze)}
-    </ol>
-  </div>
-</section>'''
+        pl = self.kotwice_pl(self.sekcja_pl('wystep'), 'wystep', 'auftritt')
+        wiersze = re.findall(r'<h3 class="h3">(.*?)</h3>\s*<p class="body">(.*?)</p>', pl)
+        assert len(wiersze) == len(r['wiersze']), f'występ: {len(wiersze)} kroków na .pl, {len(r["wiersze"])} w rynki.py'
+        foto = re.search(r'<figure class="wiersz__foto">.*?alt="([^"]*)".*?<figcaption class="podpis">(.*?)</figcaption>', pl, re.S)
+        self.zdjecia.add('realizacja-gala-detal')
+        return self.teksty(pl, 'występ', [
+            (re.search(r'<p class="label sec__meta">(.*?)</p>', pl).group(1), r['wystep_meta']),
+            (re.search(r'<h2 id="wystep-h" class="h2">(.*?)</h2>', pl).group(1), r['wystep_h2']),
+            (re.search(r'<p class="body wystep__wstep wejscie">(.*?)</p>', pl).group(1), r['wystep_body']),
+            (foto.group(1), r['wystep_foto_alt']), (foto.group(2), r['wystep_foto_podpis'])],
+            [p for (pt, pb), (t, b) in zip(wiersze, r['wiersze']) for p in ((pt, t), (pb, b))])
 
     def case_study(self):
         r = self.r
@@ -312,6 +373,7 @@ class Strona:
             srodek = f'<span class="cs__fakt">{fakt}</span><span class="label">{etykieta}</span>'
             fakty.append(f'      <li>{self.link(href, srodek) if href else srodek}</li>')
         lh, lt = r['cs_cytat_link']
+        link = f'\n      <p><a class="link" href="{r["cs_link"][0]}">{r["cs_link"][1]}{STRZALKA}</a></p>' if r['cs_link'] else ''
         return f'''<!-- ══════════ 06 CASE STUDY — jedyna jasna sekcja ══════════ -->
 <section id="case-study" class="sec sec--jasna" aria-labelledby="cs-h">
   <div class="wrap grid12">
@@ -320,7 +382,7 @@ class Strona:
       <h2 id="cs-h" class="h2">{r['cs_h2']}</h2>
       <dl class="cs__opis">
 {opis}
-      </dl>
+      </dl>{link}
     </div>
     <figure class="cs__foto wejscie">
       {self.zdjecie('realizacja-eco-studio-eko-partner', r['cs_foto_alt'], '(max-width: 1023px) 100vw, 45vw')}
@@ -337,50 +399,34 @@ class Strona:
 </section>'''
 
     def formaty(self):
-        r = self.r
-        karty = '\n'.join(f'''      <li class="format">
-        <h3 class="h3">{nazwa}</h3>
-        <p class="body">{opis}</p>
-        <p class="num">{cena}</p>
-        <p class="label format__cena-opis">{cena_opis}</p>
-      </li>''' for nazwa, opis, cena, cena_opis in r['formaty'])
-        return f'''<!-- ══════════ 07 FORMATE UND PREISE ══════════ -->
-<section id="preise" class="sec" aria-labelledby="preise-h">{self.kotwice_wiersz('preise')}
-  <div class="wrap">
-    <div class="sec__glowa wejscie">
-      <p class="label sec__meta">{r['formaty_meta']}</p>
-      <h2 id="preise-h" class="h2">{r['formaty_h2']}</h2>
-      <p class="body">{r['formaty_body']}</p>
-    </div>
-    <ul class="formaty wejscie">
-{karty}
-    </ul>
-    <p class="body formaty__wcenie">{r['formaty_wcenie']}</p>
-    <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">{r['cta']}{STRZALKA}</a></p>
-  </div>
-</section>'''
+        r, k = self.r, self.r['kalk']
+        pl = self.kotwice_pl(self.sekcja_pl('formaty'), 'formaty', 'preise')
+        pl = podmien(pl, '<span id="kalkKwota">5&nbsp;500</span>', f'<span id="kalkKwota">{k["kwota_html"]}</span>', opis='kalkulator .pl')
+        formaty = []
+        for wartosc, nazwa, opis, cena in re.findall(r'value="(\w+)"[^>]*/>\s*<span class="format__glowa"><span class="h3">(.*?)</span>.*?'
+                                                    r'<span class="body">(.*?)</span>\s*<span class="label format__cena-opis">(.*?)</span>', pl, re.S):
+            formaty += list(zip((nazwa, opis, cena), k['formaty'][wartosc]))
+        assert len(formaty) == 9, 'kalkulator .pl: nie rozpoznano trzech formatów'
+        wcenie = re.search(r'<p class="body formaty__wcenie">(.*?) <strong>(.*?)</strong> (.*?)</p>', pl)
+        return self.teksty(pl, 'formaty', formaty, [
+            (re.search(r'<p class="label sec__meta">(.*?)</p>', pl).group(1), r['formaty_meta']),
+            (re.search(r'<h2 id="formaty-h" class="h2">(.*?)</h2>', pl).group(1), r['formaty_h2']),
+            (re.search(r'<div class="sec__glowa wejscie">.*?<p class="body">(.*?)</p>', pl, re.S).group(1), r['formaty_body']),
+            (re.search(r'<p class="label" id="kalkEtykieta">(.*?)</p>', pl).group(1), k['etykieta_dzien']),
+            (re.search(r'<span class="kalk__od" id="kalkOd">(.*?)</span>', pl).group(1), k['od']),
+            (re.search(r'<p class="body-sm" id="kalkOpis">(.*?)</p>', pl).group(1), k['opis_dzien']),
+            (wcenie.group(1), k['wcenie_1']), (wcenie.group(2), r['proces_akcent']), (wcenie.group(3), k['opis_dzien'])])
 
     def proces(self):
         r = self.r
-        kroki = '\n'.join(f'''      <li class="krok">
-        <span class="label">{i:02d}</span>
-        <h3 class="h3">{tytul}</h3>
-        <p class="label krok__czas">{czas}</p>
-        <p class="body">{tekst}</p>
-      </li>''' for i, (tytul, czas, tekst) in enumerate(r['kroki'], 1))
-        return f'''<!-- ══════════ 08 ABLAUF ══════════ -->
-<section id="ablauf" class="sec" aria-labelledby="ablauf-h">{self.kotwice_wiersz('ablauf')}
-  <div class="wrap">
-    <div class="sec__glowa wejscie">
-      <p class="label sec__meta">{r['proces_meta']}</p>
-      <h2 id="ablauf-h" class="h2">{r['proces_h2']}</h2>
-    </div>
-    <ol class="kroki wejscie">
-{kroki}
-    </ol>
-    <p class="proces__akcent wejscie">{r['proces_akcent']}</p>
-  </div>
-</section>'''
+        pl = self.kotwice_pl(self.sekcja_pl('proces'), 'proces', 'ablauf')
+        kroki = re.findall(r'<h3 class="h3">(.*?)</h3>\s*<p class="label krok__czas">(.*?)</p>\s*<p class="body">(.*?)</p>', pl)
+        assert len(kroki) == len(r['kroki']), f'proces: {len(kroki)} kroków na .pl, {len(r["kroki"])} w rynki.py'
+        return self.teksty(pl, 'proces', [
+            (re.search(r'<p class="label sec__meta">(.*?)</p>', pl).group(1), r['proces_meta']),
+            (re.search(r'<h2 id="proces-h" class="h2">(.*?)</h2>', pl).group(1), r['proces_h2']),
+            (re.search(r'<p class="proces__akcent wejscie">(.*?)</p>', pl).group(1), r['proces_akcent'])],
+            [p for (pt, pc, pb), (t, c, b) in zip(kroki, r['kroki']) for p in ((pt, t), (pc, c), (pb, b))])
 
     def faq(self):
         r = self.r
@@ -403,14 +449,8 @@ class Strona:
 
     def kontakt(self):
         r, f = self.r, self.r['form']
-        osoby = []
-        for etykieta, href, tekst in r['kontakt_lista']:
-            if href.startswith('tel:'):
-                osoby.append(f'        <li class="osoba"><p class="label">{etykieta}</p>\n'
-                             f'          <a class="osoba__tel" href="{href}" data-tel="kontakt">{tekst}</a></li>')
-            else:
-                osoby.append(f'        <li class="osoba"><p class="label">{etykieta}</p>\n'
-                             f'          <a class="link osoba__mail" href="{href}" data-mail="kontakt">{tekst}</a></li>')
+        osoby = wycinek('<ul class="osoby">', '</ul>').replace('kontakt@33bots.pl', r['mail'])
+        osoby = self.teksty(osoby, 'kontakt — osoby')
         typy = '\n'.join(f'            <label class="chip"><input type="radio" name="event_type" value="{e(t)}" required /><span>{t}</span></label>' for t in f['typy'])
         goscie = '\n'.join(f'            <label class="chip"><input type="radio" name="guests" value="{e(g)}" /><span>{g}</span></label>' for g in f['goscie_opcje'])
         return f'''<!-- ══════════ 10 RESERVIERUNG ══════════
@@ -494,9 +534,7 @@ class Strona:
     </form>
 
     <div class="rez__kontakty wejscie">
-      <ul class="osoby">
-{chr(10).join(osoby)}
-      </ul>
+      {osoby}
       <p class="body-sm">{r['kontakt_tekst']}</p>
     </div>
   </div>
@@ -592,6 +630,7 @@ class Strona:
         return f'''<!-- ══════════ Pasek mobilny: pojawia się po minięciu hero ══════════ -->
 <div class="pasek" id="pasekMobilny">
   <a class="btn btn--akcja" href="#kontakt" data-cta="sticky">{r['pasek']}{STRZALKA}</a>
+  <a class="pasek__tel" href="{TEL[0]}" data-tel="pasek">{r['pasek_tel']}</a>
 </div>
 <div class="pasek-odstep"></div>
 {cookies}
@@ -700,7 +739,7 @@ class Strona:
         return '<script type="application/ld+json">\n' + json.dumps(dane, ensure_ascii=False, indent=2) + '\n</script>'
 
     # ——— całość ———
-    def zloz(self, wersja_css):
+    def zloz(self, wersje):
         r = self.r
         glowa = (TU / f'glowa-{r["kod"]}.html').read_text(encoding='utf-8')
         style = [
@@ -712,7 +751,8 @@ class Strona:
             style.append("<script>try{var p=JSON.parse(localStorage.getItem('a11y-prefs')||'{}');"
                          "['font','theme','contrast','motion'].forEach(function(k){if(p[k])"
                          "document.documentElement.setAttribute('data-a11y-'+k,p[k]);});}catch(e){}</script>")
-        style.append(f'<link rel="stylesheet" href="css/site.css?v={wersja_css}" />')
+        style.append(f'<link rel="stylesheet" href="css/site.css?v={wersje["css/site.css"]}" />')
+        style.append(f'<link rel="stylesheet" href="css/glowna.css?v={wersje["css/glowna.css"]}" />')
         glowa = glowa.replace('{{STYLE}}', '\n'.join(style)).replace('{{FAQ}}', self.faq_jsonld())
 
         gtm_body = ''
@@ -736,6 +776,8 @@ class Strona:
             '<main id="hauptinhalt" tabindex="-1">',
             '',
             self.hero(), '',
+            self.robot(), '',
+            self.zasady(), '',
             self.realizacje(), '',
             self.wystep(), '',
             self.case_study(), '',
@@ -748,7 +790,9 @@ class Strona:
             self.stopka(),
             '',
         ]
-        czesci += [self.dodatki(), '', self.skrypt()]
+        czesci += [self.dodatki(), '', self.skrypt(),
+                   f'<script src="js/glowna.js?v={wersje["js/glowna.js"]}" defer></script>',
+                   f'<script src="js/robot3d.js?v={wersje["js/robot3d.js"]}" defer></script>']
         if r['panel_dostepnosci']:
             wersja_a11y = hashlib.md5((self.cel / 'a11y.js').read_bytes()).hexdigest()[:8]
             czesci.append(f'<script src="a11y.js?v={wersja_a11y}" defer></script>')
@@ -773,12 +817,81 @@ class Strona:
             return 1
         return 0
 
+    # ——— skrypty strony głównej: kod .pl, teksty rynku ———
+    def js_rynku(self, kod, plik):
+        """bez polskich komentarzy (także na końcu linii) i bez polskich tekstów poza powitaniami."""
+        kod = bez_komentarzy.js(kod)
+        kod = re.sub(r'(?m)(?<=[;,{}()\[\]])[ \t]+//[^\n]*$', lambda m: '' if bez_komentarzy.POLSKIE.search(m.group(0)) else m.group(0), kod)
+        bez = re.sub(r'/\*.*?\*/|^\s*//[^\n]*|(?<=[;,{}()\[\]])[ \t]+//[^\n]*', '', kod, flags=re.S | re.M).replace('Dzień dobry', '')
+        litery = 'ćłńóśźżĆŁŃÓŚŹŻ' if self.r['lang'] == 'lt' else 'ąćęłńóśźżĄĆĘŁŃÓŚŹŻ'
+        polskie = re.findall(rf'[^\n]*[{litery}][^\n]*', bez)
+        assert not polskie, f'{plik}: zostały polskie teksty: {polskie[:3]}'
+        return kod
+
+    def glowna_js(self):
+        r, k, rb = self.r, self.r['kalk'], self.r['robot']
+        js = lambda t: json.dumps(t, ensure_ascii=False)  # noqa: E731
+        s = (PL / 'js/glowna.js').read_text(encoding='utf-8')
+        o = 'js/glowna.js'
+        s = podmien(s, "x.textContent = stop ? 'Wznów ruch' : 'Zatrzymaj ruch';", f"x.textContent = stop ? {js(r['wznow_ruch'])} : {js(r['zatrzymaj_ruch'])};", opis=o)
+        s = podmien(s, "(?!\\d))/g, '\u00a0');", f"(?!\\d))/g, {js(k['separator'])});", opis=o)
+        s, n = re.subn(r"const POWITANIA = \[[^\]]*\];", lambda _: 'const POWITANIA = ' + js(rb['powitania']).replace('","', '", "') + ';', s)
+        assert n == 1, f'{o}: nie znaleziono POWITANIA'
+        s = podmien(s, 'const DZIEN = 5500, RABAT = 0.85;', f'const DZIEN = {k["dzien_kwota"]}, RABAT = 0.85;', opis=o)
+        s = podmien(s, "pole.etykieta.textContent = 'Wejście · kilka godzin · cena netto';", f"pole.etykieta.textContent = {js(k['etykieta_wejscie'])};", opis=o)
+        s = podmien(s, "pole.od.textContent = 'poniżej';", f"pole.od.textContent = {js(k['ponizej'])};", opis=o)
+        s = podmien(s, "pole.opis.textContent = 'Kwotę podajemy po krótkiej rozmowie o programie — zawsze taniej niż pełny dzień.';",
+                    f"pole.opis.textContent = {js(k['opis_wejscie'])};", opis=o)
+        s = podmien(s, "pole.etykieta.textContent = `${dni} dni · cena netto`;", f"pole.etykieta.textContent = {k['etykieta_dni']};", opis=o)
+        s = podmien(s, "pole.od.textContent = 'od';", f"pole.od.textContent = {js(k['od'])};", n=2, opis=o)
+        s = podmien(s, "pole.opis.textContent = `${dni} × ${kwota(DZIEN * RABAT)} zł zamiast ${dni} × ${kwota(DZIEN)} zł — oszczędzasz ${kwota(dni * DZIEN * (1 - RABAT))} zł.`;",
+                    f"pole.opis.textContent = {k['opis_dni']};", opis=o)
+        s = podmien(s, "pole.etykieta.textContent = 'Pełny dzień · cena netto';", f"pole.etykieta.textContent = {js(k['etykieta_dzien'])};", opis=o)
+        s = podmien(s, "pole.opis.textContent = 'Ostateczna kwota zależy od lokalizacji i długości trwania.';", f"pole.opis.textContent = {js(k['opis_dzien'])};", opis=o)
+        s = podmien(s, "opis.value = f === 'wejscie' ? 'Interesuje mnie krótsze wejście (kilka godzin).'", f"opis.value = f === 'wejscie' ? {k['zgloszenie_wejscie']}", opis=o)
+        s = podmien(s, ": f === 'dni' ? `Interesuje mnie ${dni} dni (od ${zl(dni * DZIEN * RABAT)} zł netto).`", f": f === 'dni' ? {k['zgloszenie_dni']}", opis=o)
+        s = podmien(s, ": `Interesuje mnie pełny dzień (od ${zl(DZIEN)} zł netto).`;", f": {k['zgloszenie_dzien']};", opis=o)
+        if r['panel_dostepnosci']:
+            s = podmien(s, "const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;",
+                        "const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches\n"
+                        "    || document.documentElement.getAttribute('data-a11y-motion') === 'off';", opis=o)
+        return self.js_rynku(s, o)
+
+    def robot_js(self):
+        r, rb = self.r, self.r['robot']
+        js = lambda t: json.dumps(t, ensure_ascii=False)  # noqa: E731
+        s = (PL / 'js/robot3d.js').read_text(encoding='utf-8')
+        o = 'js/robot3d.js'
+        g1, g2 = rb['logo']
+        s = podmien(s, "g.fillText('TWOJE', 180, 62); g.fillText('LOGO', 180, 160);", f"g.fillText({js(g1)}, 180, 62); g.fillText({js(g2)}, 180, 160);", opis=o)
+        s, n = re.subn(r"const MOWA = \[.*?\];", lambda _: 'const MOWA = [' + ',\n    '.join(js(t) for t in rb['mowa']) + '];', s, flags=re.S)
+        assert n == 1, f'{o}: nie znaleziono MOWA'
+        s, n = re.subn(r"const TEKST = \{.*?\};", lambda _: 'const TEKST = { ' + ',\n    '.join(f'{k}: {js(v)}' for k, v in rb['tekst'].items()) + ' };', s, flags=re.S)
+        assert n == 1, f'{o}: nie znaleziono TEKST'
+        if r['panel_dostepnosci']:
+            s = podmien(s, 'let reduce = ruchMq.matches;', "let reduce = ruchMq.matches || document.documentElement.getAttribute('data-a11y-motion') === 'off';", opis=o)
+        return self.js_rynku(s, o)
+
+    def zapisz(self, cel, tresc):
+        cel.parent.mkdir(parents=True, exist_ok=True)
+        if not cel.exists() or cel.read_text(encoding='utf-8') != tresc:
+            cel.write_text(tresc, encoding='utf-8')
+            return 1
+        return 0
+
     def buduj(self):
         nowe = self.kopiuj_css(PL / 'css/site.css', self.cel / 'css/site.css')
+        nowe += self.kopiuj_css(PL / 'css/glowna.css', self.cel / 'css/glowna.css')
+        nowe += self.zapisz(self.cel / 'js/glowna.js', self.glowna_js())
+        nowe += self.zapisz(self.cel / 'js/robot3d.js', self.robot_js())
+        for plik in ('g1.bin', 'g1-lekki.bin', 'LICENCJA-UNITREE.txt'):
+            nowe += self.kopiuj(PL / 'robot' / plik, self.cel / 'robot' / plik)
         for plik in FONTY:
             nowe += self.kopiuj(PL / 'fonts' / plik, self.cel / 'fonts' / plik)
-        wersja = hashlib.md5((self.cel / 'css/site.css').read_bytes()).hexdigest()[:8]
-        strona = self.zloz(wersja)
+        wersje = {p: hashlib.md5((self.cel / p).read_bytes()).hexdigest()[:8] for p in ('css/site.css', 'css/glowna.css', 'js/glowna.js', 'js/robot3d.js')}
+        strona = self.zloz(wersje)
+        nieuzyte = set(self.r['teksty']) - self.uzyte
+        assert not nieuzyte, f'nieużyte tłumaczenia w rynki.py (tekst zniknął z .pl?): {sorted(nieuzyte)}'
         for plik in sorted(self.zdjecia):
             for wariant in (f'{plik}.jpg', f'{plik}.webp', f'{plik}-400.webp'):
                 nowe += self.kopiuj(PL / wariant, self.cel / wariant)

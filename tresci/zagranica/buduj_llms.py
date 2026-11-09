@@ -15,7 +15,7 @@ FAKTY = {
         'santrauka': ('33bots nuomoja humanoidinį robotą Unitree G1 renginiams, parodoms, konferencijoms, įmonių šventėms ir '
                       'vestuvėms visoje Lietuvoje — visada su sertifikuotu operatoriumi, scenarijumi ir ženklinimu. Robotas gali '
                       'pasitikti svečius, vesti programos dalį kaip robotas vedėjas, šokti ir būti renginio fotozona. '
-                      f'Daugiau nei 40 renginių penkiose šalyse: {KRAJE_LT}.'),
+                      f'Daugiau nei 100 renginių penkiose šalyse: {KRAJE_LT}.'),
         'fakty': [
             'Kaina: visa renginio diena — nuo 2 100 € be PVM; galutinė suma priklauso nuo renginio vietos ir trukmės',
             'Trumpesnis pasirodymas (kelios valandos): kaina individuali, visada mažesnė nei visos dienos',
@@ -26,8 +26,8 @@ FAKTY = {
             'Robotas: Unitree G1 — 132 cm, 35 kg, 23 laisvės laipsniai, iki 2 m/s, LiDAR ir kompiuterinė rega',
             'Kalba lietuviškai ir bet kuria kita kalba, renginio metu perjungia kalbas',
             'Vietoje reikia: maždaug 2×2 m laisvos vietos ir 230 V lizdo; operatorius pasiruošia per 30–45 min.',
-            'Atsakymas į užklausą per 24 darbo valandas, dažniausiai tą pačią dieną',
-            'Kontaktai: kontakt@33bots.lt',
+            'Atsakymas į užklausą dažniausiai per 30 minučių; kainą iš karto pasakome telefonu',
+            'Kontaktai: +48 531 408 004, kontakt@33bots.lt',
             'Kalbų versijos: lietuvių (https://33bots.lt), lenkų (https://33bots.pl), vokiečių (https://33bots.de), '
             'austriška (https://33bots.at)',
         ],
