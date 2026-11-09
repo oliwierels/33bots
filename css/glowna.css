@@ -64,6 +64,7 @@ html:not(.js) .robot, .bez-3d .robot { display: none; }
   transform: translate(var(--x, 0), calc(var(--y, 0) - 50%)); visibility: hidden;
   font: 500 0.6875rem/1.35 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
 .hud__kreska { flex: none; width: 40px; height: 1px; background: var(--text-2); }
+.robot .hud__kreska { width: 56px; background: var(--text); } /* scena robota: podpis aktywnej części (cyjan zostaje dla rezerwacji) */
 .hud__tekst { color: var(--text); }
 .hud--widoczny { visibility: visible; }
 .hud--lewo { flex-direction: row-reverse; transform: translate(calc(var(--x, 0) - 100%), calc(var(--y, 0) - 50%)); }
@@ -76,7 +77,7 @@ html:not(.js) .robot, .bez-3d .robot { display: none; }
   .robot__pole { grid-row: 4; } .polecenia { grid-row: 5; }
   .robot__tekst .sec__meta { padding-top: 24px; }
   .robot__tekst .h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); margin-top: 8px; }
-  /* telefon: z listy widać tylko aktywną część — tekst zmienia się razem z kamerą */
+  /* telefon: z listy widać tylko aktywną część — tekst zmienia się razem z podświetleniem na robocie */
   .robot__czesci { border-top: 0; margin-top: 12px; padding-top: 0; }
   .robot__czesci li { display: none; }
   .robot[data-czesc="glowa"] li[data-czesc="glowa"], .robot[data-czesc="twarz"] li[data-czesc="twarz"], .robot[data-czesc="piers"] li[data-czesc="piers"],

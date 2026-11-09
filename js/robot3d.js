@@ -4,8 +4,8 @@
 
    Jedno płótno WebGL na cały ekran, bez zdarzeń wskaźnika; rysuje tylko w polu sceny
    (gl.scissor), więc punkty nigdy nie wchodzą pod tekst. Dwie sceny:
-   • robot — sekcja #robot: środek sekcji jest przyklejony, przewijanie prowadzi kamerę
-     od głowy do stóp, robot się obraca, przy częściach ciała pojawiają się podpisy;
+   • robot — sekcja #robot: środek sekcji jest przyklejony, cały robot stoi w kadrze, przewijanie
+     obraca go i przesuwa podświetlenie (poświata + podpis) od głowy do stóp;
    • wystep — w sekcji #wystep cały robot w polu [data-scena="wystep"] gra kolejne kroki.
    Przyciski [data-robot-gest] wydają robotowi polecenia (machanie, taniec, buziak…).
    Pasek LED na wysokości oczu i napis „TWOJE LOGO” na piersi powstają z punktów.
@@ -440,13 +440,12 @@ void main() {
   // Program na co dzień: robot sam przechodzi przez ruchy, kiedy nikt nie wydaje poleceń.
   const PROGRAM = ['macha', 'chodzi', 'mowi', 'tanczy', 'buziak', 'obrot', 'zdjecie', 'chodzi', 'przedstawia', 'tanczy', 'mowi', 'buziak'];
   let programNr = 0, nastepnyAuto = 0;
-  let gestNazwa = null, gestDo = 0, gestOd = 0, gestZoom = false, dbgKaty = null, dbgOrbita = null, mowaNr = 0, zegar = 0;
-  const gest = (nazwa, czas, zblizenie = 0) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; gestZoom = zblizenie; obudz(); };
-  // Polecenie z przycisku: kamera odjeżdża, żeby było widać całego robota (oprócz mowy i machania).
+  let gestNazwa = null, gestDo = 0, gestOd = 0, dbgKaty = null, dbgOrbita = null, mowaNr = 0, zegar = 0;
+  const gest = (nazwa, czas) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; obudz(); };
+  // Polecenie z przycisku albo z programu: robot jest cały w kadrze, więc kamera stoi.
   const polecenie = (nazwa, zPrzycisku = false) => {
     if (zatrzymany() || !POZY[nazwa]) return;
-    const caly = !['mowi', 'macha', 'buziak'].includes(nazwa); // ruchy całego ciała — kamera odjeżdża
-    gest(nazwa, CZAS[nazwa] || 2.5, caly ? (zPrzycisku ? 1 : 0.55) : 0);
+    gest(nazwa, CZAS[nazwa] || 2.5);
     if (nazwa === 'obrot') { orbitaV = 19; puszczono = performance.now() / 1000 + 0.6; } // jeden pełny obrót, potem powrót przodem
     nastepnyAuto = gestDo + (zPrzycisku ? 3 : 0.9 + Math.random() * 0.8); // po poleceniu z przycisku program chwilę czeka
     if (dymek && (zPrzycisku || innerWidth >= 768)) { // na telefonie samo powitanie bez dymka — nie zasłania tekstu
@@ -462,7 +461,7 @@ void main() {
   });
 
   /* ——— Reżyser ——— */
-  let gotowy = false, zoom = 0, morfAkt = 1; // morfAkt: 0 = złożony robot, 1 = rozsypane punkty
+  let gotowy = false, morfAkt = 1; // morfAkt: 0 = złożony robot, 1 = rozsypane punkty
   const rezyser = () => {
     const vh = innerHeight, vw = innerWidth;
     // strefa występu: cały robot w polu sceny
@@ -474,20 +473,19 @@ void main() {
         return { rect: rW, pole: rW, morfCel: widac ? 0 : 1, poza: wystep.dataset.poza || 'wita', strefa: 'wystep' };
       }
     }
-    // scena robota: środek sekcji #robot jest przyklejony; postęp przewijania prowadzi kamerę od głowy do stóp
+    // scena robota: środek sekcji #robot jest przyklejony; cały robot (1,32 m) zawsze w kadrze, z zapasem
+    // na podłogę i dymek. Przewijanie obraca go powoli i przesuwa podświetlenie od głowy do stóp.
     const rs = sekcjaRobot.getBoundingClientRect();
     if (rs.bottom <= 0 || rs.top >= vh || scenaRobot.offsetParent === null) return { rect: null, morfCel: 1, strefa: 'nic' };
     const pole = scenaRobot.getBoundingClientRect();
     const p = clamp(-rs.top / Math.max(1, rs.height - vh), 0, 1);
     const widac = rs.top < vh * 0.4 && rs.bottom > vh * 0.6;
-    const telefon = vw < 768;
-    const okno = lerp(telefon ? 0.95 : 0.8, 1.6, zoom);
+    const okno = vw < 768 ? 1.46 : 1.5;
     const pe = p * p * (3 - 2 * p) * 0.4 + p * 0.6;
-    const zc = lerp(lerp(1.06, 0.3, pe), 0.72, zoom);
-    const pxm = pole.height / okno, h = 1.42 * pxm;
-    const cx = pole.left + pole.width / 2, cy = pole.top + pole.height / 2 + (zc - 0.66) * pxm;
+    const pxm = Math.min(pole.height / okno, pole.width / 0.95), h = 1.42 * pxm;
+    const cx = pole.left + pole.width / 2, cy = pole.top + pole.height / 2 + 0.02 * pxm;
     return { rect: { left: cx - h / 2, top: cy - h / 2, width: h, height: h }, pole, morfCel: widac ? 0 : 1,
-      poza: null, strefa: 'robot', p, yaw: lerp(-0.35, 0.55, pe) * (1 - zoom) };
+      poza: null, strefa: 'robot', p, yaw: lerp(-0.35, 0.55, pe) };
   };
 
   /* ——— Rysowanie ——— */
@@ -507,6 +505,8 @@ void main() {
     piers: ['waist_yaw_joint', [0.1, 0.12, 0.17]], dlon: ['left_wrist_roll_joint', [0.08, 0.03, 0]],
     kolano: ['left_knee_joint', [0.06, 0.05, -0.12]], stopa: ['left_ankle_roll_joint', [0.12, 0.05, -0.02]],
   };
+  // część ciała z listy w sekcji #robot (data-czesc) → podpis przy robocie (data-hud)
+  const HUD_CZESC = { glowa: 'glowa', twarz: 'twarz', piers: 'piers', rece: 'dlon', nogi: 'kolano', stopy: 'stopa' };
   let ost = 0, wyglad = { alfa: 0 }, klatkaId = 0, dziala = false, lookX = 0, przywital = false;
 
   const klatka = (tms) => {
@@ -515,8 +515,6 @@ void main() {
     const stoj = zatrzymany();
     if (!stoj) zegar += dt;
     let gestTrwa = gestNazwa && zegar < gestDo;
-    // kamera odjeżdża przy ruchach całego ciała: mocno po przycisku, lżej w programie
-    zoom += ((gestTrwa && gestZoom && !reduce ? gestZoom : 0) - zoom) * (1 - Math.exp(-dt * 2.2));
     const st = rezyser();
     rozmiar();
     const cr = canvas.getBoundingClientRect();
@@ -600,8 +598,10 @@ void main() {
       const branding = poza === 'branding';
       gl.uniform1f(U.uLogo, branding ? 1.2 + 0.6 * Math.sin(czas * 6) : 0.6);
       gl.uniform1f(U.uLed, stoj ? 1.1 : 1.0 + 0.25 * Math.sin(czas * 2.2) + (poza === 'mowi' ? 0.45 * Math.abs(Math.sin(czas * 9)) : 0));
-      const pk = punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.17]);
-      gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], branding ? 0.35 : 0);
+      // poświata: logo przy brandingu, a na scenie robota część ciała, o której jest akurat mowa w liście
+      const [bStaw, bLok] = st.strefa === 'robot' ? HUD_PKT[HUD_CZESC[sekcjaRobot.dataset.czesc]] || [] : [];
+      const pk = bLok ? punktSwiata(IDX[bStaw], bLok) : punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.17]);
+      gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], branding ? 0.35 : bLok ? 0.22 : 0);
       // punkty: na zbliżeniu drobne i gęste, w małej scenie większe
       const px = st.strefa === 'robot' ? clamp(rr.height / 1600, 0.85, 1.7) * 2.6 : clamp(rr.height / 820, 0.55, 1.3) * (lekki ? 2.5 : 2.4);
       gl.uniform1f(U.uPx, px * Math.pow(dpr, 0.85));
@@ -633,12 +633,13 @@ void main() {
     for (const h of hud) {
       const [staw, lok] = HUD_PKT[h.el.dataset.hud] || [];
       let pokaz = !!lok && spokoj && (!h.pozy.length || h.pozy.includes(poza));
-      pokaz = pokaz && h.scena === scenaTeraz && !(st.strefa === 'robot' && gestTrwa && gestZoom > 0.8);
+      // na scenie robota tylko podpis aktywnej części — robot cały w kadrze, podpis wędruje od głowy do stóp
+      pokaz = pokaz && h.scena === scenaTeraz && (h.scena !== scenaRobot || HUD_CZESC[sekcjaRobot.dataset.czesc] === h.el.dataset.hud);
       let X = 0, Y = 0;
       if (pokaz) {
         [X, Y] = naEkran(punktSwiata(IDX[staw], lok));
         const r = h.scena.getBoundingClientRect(); X -= r.left; Y -= r.top;
-        pokaz = Y > r.height * 0.06 && Y < r.height * 0.94 && X > 0 && X < r.width;
+        pokaz = Y > r.height * 0.03 && Y < r.height * 0.98 && X > 0 && X < r.width;
       }
       h.el.classList.toggle('hud--widoczny', pokaz);
       if (pokaz) {
