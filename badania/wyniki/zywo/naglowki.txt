@@ -2,28 +2,28 @@
 HTTP/2 200 
 content-type: text/html
 content-encoding: br
-content-length: 23586
-== /js/robot3d.js?v=e23d04ca
+content-length: 25463
+== /js/robot3d.js?v=a2dfa570
 HTTP/2 200 
 cache-control: public, max-age=604800
 content-type: application/javascript
 content-encoding: br
-content-length: 11721
+content-length: 13897
 == /css/glowna.css
 HTTP/2 200 
 cache-control: public, max-age=604800
 content-type: text/css
 content-encoding: br
-content-length: 3166
+content-length: 4943
 == /robot/g1.bin
 HTTP/2 200 
 content-type: application/octet-stream
-content-length: 445272
+content-length: 614364
 cache-control: public, max-age=2592000
 == /robot/g1-lekki.bin
 HTTP/2 200 
 content-type: application/octet-stream
-content-length: 189900
+content-length: 254748
 cache-control: public, max-age=2592000
 == /robot/LICENCJA-UNITREE.txt
 HTTP/2 200 
