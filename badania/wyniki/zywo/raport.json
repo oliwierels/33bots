@@ -7,48 +7,45 @@
   "canvas": true,
   "cena": "5 500",
   "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
-  "zasady": true,
+  "zasady": "Najpierw bezpieczeństwo gości. Potem efekt.",
+  "heroImg": "realizacja-eco-studio-wywiad.jpg",
   "bledy": [],
   "zasoby": [
    [
     200,
-    "/css/glowna.css?v=585ff004"
-   ],
-   [
-    200,
-    "%2F%3Fkontrola%3D1794232600829&rcb=6&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=837026555.1794232602&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=68&gcp=5"
+    "/css/glowna.css?v=2261684d"
    ],
    [
     204,
-    "%2F%3Fkontrola%3D1794232600829&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=745"
+    "%2F%3Fkontrola%3D1794234294811&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=737"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232600829&rcb=6&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=837026555.1794232602&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=4"
+    "%2F%3Fkontrola%3D1794234294811&rcb=16&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=98363403.1794234296&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=68&gcp=5"
    ],
    [
     200,
-    "/js/glowna.js?v=9e537ab9"
+    "%2F%3Fkontrola%3D1794234294811&rcb=16&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=98363403.1794234296&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=4"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232600829&rcb=6&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=837026555.1794232602&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS0wEAogo4dRm6FJVO7Pyt8fi2cGDHuiAGrUE_gm9OHxXxXKuS63ZgRu3JW-ty48pKmQETo47C0o6QufRnFDymPaRA6T7dxs-6uvYRMEUk4oXgw0bzUih8hCMBgbVlLxAIsV7Zur0QNxKZtXYXP8UZ7tnM86oVK-lTUoj9mYJVseCBHadAVyMQfMSWqLzld41Ue7N1eKqKW6WIwF98rKJqwsm-xTR3C0gtiHLKTEPM9JUNRM2uWSCrPgh81ZkmlDG3DbeEyzLX2H1KW_8h7qvSrrftIiqC&random=611945791&rmt_tld=0&ipr=y"
+    "%2F%3Fkontrola%3D1794234294811&rcb=16&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=98363403.1794234296&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Linux&uapv=7.0.0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS0wEAogo4deJ5lxSUKSRXs5JFEQjK-Gl-a_j80m2RjijdL1JJ0kBN3uuK-Z-0rF4V91Q7FR7sM7zWoMRZb9sQccHRY1dMOqLbnTf4sgoFOLOkIaHCdmXntjVWPeCkO6pI0OAFADL483kNXY2DM2_dmWbx3_REXoqjkFZ3Vilb5kdkDe0ZU3Y0DeAHRRbanGmZUhkx9TfnjCmChjpDXr_VLABYlFkMIC_6HQzybd0CNkL__By0Ild5kHmydS8Y77m0xztKAMnlq5j1C5iFJUxugf0jqW7V&random=3903922908&rmt_tld=0&ipr=y"
    ],
    [
     200,
-    "/js/robot3d.js?v=a2dfa570"
+    "/js/glowna.js?v=ae0e50ca"
    ],
    [
     200,
-    "/robot/g1-lekki.bin?v=4ef53e7e"
+    "/js/robot3d.js?v=3fd978f3"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232600829&ti0=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&re0=1440&re0=900&o0=landscape-primary"
+    "/robot/g1.bin?v=4ef53e7e"
    ],
    [
-    204,
-    "%2F%3Fkontrola%3D1794232600829&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=scroll&epn.percent_scrolled=90&_et=23&tfd=5771"
+    200,
+    "%2F%3Fkontrola%3D1794234294811&ti0=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&re0=1440&re0=900&o0=landscape-primary"
    ],
    [
     200,
@@ -57,51 +54,56 @@
   ]
  },
  "telefon": {
-  "robot": "gotowy",
-  "klasy": "js z-3d",
+  "robot": "czeka",
+  "klasy": "js",
   "h1": "Wynajem robota humanoidalnego na wydarzenia",
   "cyfry": "0+",
-  "canvas": true,
+  "canvas": false,
   "cena": "5 500",
   "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
-  "zasady": true,
+  "zasady": "Najpierw bezpieczeństwo gości. Potem efekt.",
+  "heroImg": "realizacja-eco-studio-wywiad.jpg",
   "bledy": [],
   "zasoby": [
    [
     200,
-    "/css/glowna.css?v=585ff004"
-   ],
-   [
-    200,
-    "/js/glowna.js?v=9e537ab9"
+    "/css/glowna.css?v=2261684d"
    ],
    [
     204,
-    "%2F%3Fkontrola%3D1794232629015&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=766"
+    "%2F%3Fkontrola%3D1794234333688&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=708"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232629015&rcb=18&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1843475320.1794232630&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=68&gcp=5"
+    "%2F%3Fkontrola%3D1794234333688&rcb=19&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=305434642.1794234334&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=68&gcp=5"
    ],
    [
     200,
-    "/js/robot3d.js?v=a2dfa570"
+    "%2F%3Fkontrola%3D1794234333688&rcb=19&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=305434642.1794234334&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=4"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232629015&rcb=18&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1843475320.1794232630&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=4"
+    "%2F%3Fkontrola%3D1794234333688&rcb=19&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=305434642.1794234334&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS0wEAogo4dbZVWg9AM2YIlQlLbBgryd0wdSgYLMq9IHRXd2CtzCib4TDKjRX_Idx2iRiQzxqk0HZZ7wuuQlas-kgTt_RJt56TXAg4wDFIXNxXhPTXVicrzEl0sYxCBMt-esZ84VxxA8WKb1pdZV9jdSQsy-mcMKZbfukS_d0sq1P5HQ6UNVGUH09O3NXNYfatbsDL5aISNBett47AH7ds9PCCS-AGgmej435uaKkZUtJ9T-5JiGgj5jcaAZSX25g7oWXaavVSiNGZ1BYsl7oeSkXAHicz&random=3380085112&rmt_tld=0&ipr=y"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232629015&rcb=18&frm=0&tiba=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1843475320.1794232630&uaa=arm&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=1&uam=&uap=iOS&uapv=15_0&uaw=0&data=event%3Dgtag.config&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS0wEAogo4db3FbyilgTSa4M5ivyC4TtjXhECHVFdFuW4I7jou_t2Ql_r0zRfYwsibIxvl49ZNBUzIfNh5eMnv2iW5BtqJQW65HEyQFMl7mXl_Cm0Qcs8HlNRIlvdE6QN2dM4Xmol18slAHNOIrMQY873Jml51Hl8r6eF82feeOIizKGlLbmwlMLQmEG0JQ4SBgGHg8BgJmHBiHWKUrd_4c9qUT0BCN15cMJH9Bsu3JgZgMooxl4sPTs--htJyWrZtFYNobabJIRevJgXWmG4M2W3zv4uN&random=2257372170&rmt_tld=0&ipr=y"
+    "/js/glowna.js?v=ae0e50ca"
    ],
    [
     200,
-    "/robot/g1-lekki.bin?v=4ef53e7e"
+    "/js/robot3d.js?v=3fd978f3"
    ],
    [
     200,
-    "%2F%3Fkontrola%3D1794232629015&ti0=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&re0=390&re0=844&o0=portrait-primary"
+    "%2F%3Fkontrola%3D1794234333688&ti0=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&re0=390&re0=844&o0=portrait-primary"
+   ],
+   [
+    204,
+    "%2F%3Fkontrola%3D1794234333688&dt=Wynajem%20robota%20humanoidalnego%20na%20event%20%E2%80%94%20od%205500%20z%C5%82%20%7C%2033bots&en=scroll&epn.percent_scrolled=90&_et=22&tfd=5735"
+   ],
+   [
+    200,
+    "/robot/g1.bin?v=4ef53e7e"
    ]
   ]
  }
