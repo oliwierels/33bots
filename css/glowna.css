@@ -184,7 +184,7 @@ html:not(.js) .robot, .bez-3d .robot { display: none; }
 .a-slowa text:nth-child(5) { animation-delay: 4s; } .a-slowa text:nth-child(6) { animation-delay: 5s; } .a-slowa text:nth-child(7) { animation-delay: 6s; }
 .a-slowa text:nth-child(8) { animation-delay: 7s; }
 @keyframes a-slowo { 0% { visibility: visible; } 12.5% { visibility: hidden; } }
-/* wiedza: przed eventem robot dostaje program, prelegentów, ofertę i pytania — wiersz po wierszu, z potwierdzeniem */
+/* wiedza: przed wydarzeniem robot dostaje informacje o wydarzeniu, firmie, ofercie i pytaniach gości — wiersz po wierszu */
 .a-etykieta { text-anchor: start; }
 .a-wgraj { fill: var(--text); transform-box: fill-box; transform-origin: left center; animation: a-wgraj 5s cubic-bezier(.5, 0, .2, 1) infinite; }
 .a-ptaszek { fill: none; stroke: var(--text); stroke-width: 1.5; visibility: hidden; animation: a-ptaszek 5s step-end infinite; }
