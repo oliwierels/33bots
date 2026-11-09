@@ -111,6 +111,19 @@ test.describe('robot z bliska', () => {
   });
 });
 
+test.describe('robot sam z siebie', () => {
+  test('na przyklejonej scenie robot sam wykonuje ruchy (stawy się zmieniają)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(ADRES + '?robot-debug');
+    await page.evaluate(() => { const r = document.getElementById('robot'); scrollTo({ top: scrollY + r.getBoundingClientRect().top + 10, behavior: 'instant' }); });
+    await expect.poll(() => page.evaluate(() => document.documentElement.dataset.robot || ''), { timeout: 20000 }).toMatch(/gotowy|brak/);
+    test.skip(await page.evaluate(() => document.documentElement.dataset.robot) !== 'gotowy', 'bez WebGL w przeglądarce testowej');
+    const katy = () => page.evaluate(() => { const q = window.__robot.q(), I = window.__robot.IDX(); return [q[I.right_shoulder_pitch_joint], q[I.left_shoulder_pitch_joint], q[I.waist_yaw_joint]]; });
+    const start = await katy();
+    await expect.poll(async () => { const k = await katy(); return Math.max(...k.map((v, i) => Math.abs(v - start[i]))); }, { timeout: 15000 }).toBeGreaterThan(0.3);
+  });
+});
+
 test.describe('kroki występu', () => {
   for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     test(`aktywny krok ustawia pozę robota @${vp.width}`, async ({ page }) => {

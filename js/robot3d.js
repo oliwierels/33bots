@@ -441,11 +441,12 @@ void main() {
   const PROGRAM = ['macha', 'chodzi', 'mowi', 'tanczy', 'buziak', 'obrot', 'zdjecie', 'chodzi', 'przedstawia', 'tanczy', 'mowi', 'buziak'];
   let programNr = 0, nastepnyAuto = 0;
   let gestNazwa = null, gestDo = 0, gestOd = 0, gestZoom = false, dbgKaty = null, dbgOrbita = null, mowaNr = 0, zegar = 0;
-  const gest = (nazwa, czas, zblizenie = false) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; gestZoom = zblizenie; obudz(); };
+  const gest = (nazwa, czas, zblizenie = 0) => { if (zatrzymany()) return; gestNazwa = nazwa; gestOd = zegar; gestDo = zegar + czas; gestZoom = zblizenie; obudz(); };
   // Polecenie z przycisku: kamera odjeżdża, żeby było widać całego robota (oprócz mowy i machania).
   const polecenie = (nazwa, zPrzycisku = false) => {
     if (zatrzymany() || !POZY[nazwa]) return;
-    gest(nazwa, CZAS[nazwa] || 2.5, zPrzycisku && !['mowi', 'macha', 'buziak'].includes(nazwa));
+    const caly = !['mowi', 'macha', 'buziak'].includes(nazwa); // ruchy całego ciała — kamera odjeżdża
+    gest(nazwa, CZAS[nazwa] || 2.5, caly ? (zPrzycisku ? 1 : 0.55) : 0);
     if (nazwa === 'obrot') { orbitaV = 19; puszczono = performance.now() / 1000 + 0.6; } // jeden pełny obrót, potem powrót przodem
     nastepnyAuto = gestDo + (zPrzycisku ? 3 : 0.9 + Math.random() * 0.8); // po poleceniu z przycisku program chwilę czeka
     if (dymek && (zPrzycisku || innerWidth >= 768)) { // na telefonie samo powitanie bez dymka — nie zasłania tekstu
@@ -461,34 +462,32 @@ void main() {
   });
 
   /* ——— Reżyser ——— */
-  let wejscie = 0, gotowy = false, zoom = 0;
+  let gotowy = false, zoom = 0, morfAkt = 1; // morfAkt: 0 = złożony robot, 1 = rozsypane punkty
   const rezyser = () => {
     const vh = innerHeight, vw = innerWidth;
     // strefa występu: cały robot w polu sceny
     if (scenaWystep && scenaWystep.offsetParent !== null) {
       const rW = scenaWystep.getBoundingClientRect(), rs = wystep.getBoundingClientRect();
       if (rs.top < vh && rs.bottom > 0) {
-        const wej = clamp((vh - rs.top) / (vh * 0.55), 0, 1), wyj = clamp(rs.bottom / (vh * 0.6), 0, 1);
-        const m = 1 - Math.min(wej, wyj);
-        return { rect: rW, pole: rW, morf: reduce ? (m < 1 ? 0 : 1) : m, alfa: reduce ? (m < 1 ? 1 : 0) : 1 - gladko(0.55, 1, m),
-          poza: wystep.dataset.poza || 'wita', strefa: 'wystep' };
+        // przewinięcie tylko włącza składanie albo rozsypywanie — samo przejście trwa stały czas (klatka)
+        const widac = rs.top < vh * 0.5 && rs.bottom > vh * 0.5;
+        return { rect: rW, pole: rW, morfCel: widac ? 0 : 1, poza: wystep.dataset.poza || 'wita', strefa: 'wystep' };
       }
     }
     // scena robota: środek sekcji #robot jest przyklejony; postęp przewijania prowadzi kamerę od głowy do stóp
     const rs = sekcjaRobot.getBoundingClientRect();
-    if (rs.bottom <= 0 || rs.top >= vh || scenaRobot.offsetParent === null) return { rect: null, morf: 1, alfa: 0, strefa: 'nic' };
+    if (rs.bottom <= 0 || rs.top >= vh || scenaRobot.offsetParent === null) return { rect: null, morfCel: 1, strefa: 'nic' };
     const pole = scenaRobot.getBoundingClientRect();
     const p = clamp(-rs.top / Math.max(1, rs.height - vh), 0, 1);
-    const wej = clamp((vh - rs.top) / (vh * 0.7), 0, 1), wyj = clamp(rs.bottom / (vh * 0.7), 0, 1);
-    const m = 1 - Math.min(wej, wyj);
+    const widac = rs.top < vh * 0.4 && rs.bottom > vh * 0.6;
     const telefon = vw < 768;
     const okno = lerp(telefon ? 0.95 : 0.8, 1.6, zoom);
     const pe = p * p * (3 - 2 * p) * 0.4 + p * 0.6;
     const zc = lerp(lerp(1.06, 0.3, pe), 0.72, zoom);
     const pxm = pole.height / okno, h = 1.42 * pxm;
     const cx = pole.left + pole.width / 2, cy = pole.top + pole.height / 2 + (zc - 0.66) * pxm;
-    return { rect: { left: cx - h / 2, top: cy - h / 2, width: h, height: h }, pole, morf: reduce ? (m < 1 ? 0 : 1) : m,
-      alfa: reduce ? (m < 1 ? 1 : 0) : 1 - gladko(0.55, 1, m), poza: null, strefa: 'robot', p, yaw: lerp(-0.35, 0.55, pe) * (1 - zoom) };
+    return { rect: { left: cx - h / 2, top: cy - h / 2, width: h, height: h }, pole, morfCel: widac ? 0 : 1,
+      poza: null, strefa: 'robot', p, yaw: lerp(-0.35, 0.55, pe) * (1 - zoom) };
   };
 
   /* ——— Rysowanie ——— */
@@ -515,29 +514,31 @@ void main() {
     const t = tms / 1000, dt = Math.min(0.05, ost ? t - ost : 0.016); ost = t;
     const stoj = zatrzymany();
     if (!stoj) zegar += dt;
-    const gestTrwa = gestNazwa && zegar < gestDo;
-    zoom += ((gestTrwa && gestZoom && !reduce ? 1 : 0) - zoom) * (1 - Math.exp(-dt * 2.4));
+    let gestTrwa = gestNazwa && zegar < gestDo;
+    // kamera odjeżdża przy ruchach całego ciała: mocno po przycisku, lżej w programie
+    zoom += ((gestTrwa && gestZoom && !reduce ? gestZoom : 0) - zoom) * (1 - Math.exp(-dt * 2.2));
     const st = rezyser();
     rozmiar();
     const cr = canvas.getBoundingClientRect();
 
-    // wejście: punkty zlatują się w robota po załadowaniu
-    wejscie = reduce ? 1 : Math.min(1, wejscie + dt / 2.2);
-    let morf = st.morf;
-    if (wejscie < 1) morf = Math.max(morf, 1 - gladko(0, 1, wejscie));
-    // pierwsze wejście na scenę robota: powitanie machnięciem
+    // składanie (ok. 1,6 s) i rozsypywanie (ok. 2,2 s) w stałym tempie, niezależnie od szybkości przewijania
+    if (reduce) morfAkt = st.morfCel;
+    else if (st.morfCel < morfAkt) morfAkt = Math.max(st.morfCel, morfAkt - dt / 1.6);
+    else morfAkt = Math.min(st.morfCel, morfAkt + dt / 2.2);
+    const morf = morfAkt;
     // program: na scenie robota kolejne ruchy same, z krótkimi przerwami (pierwszy — powitanie)
     if (st.strefa === 'robot' && morf < 0.05 && !stoj && !(gestNazwa && zegar < gestDo) && zegar >= nastepnyAuto) {
       polecenie(przywital ? PROGRAM[programNr++ % PROGRAM.length] : 'macha');
       if (!przywital) { przywital = true; programNr = 1; }
+      gestTrwa = gestNazwa && zegar < gestDo; // ruch rusza w tej samej klatce — inaczej zostałby od razu skasowany
     }
-    wyglad.alfa += (st.alfa - wyglad.alfa) * (reduce ? 1 : 1 - Math.exp(-dt * 8));
+    wyglad.alfa = st.rect ? 1 - gladko(0.75, 1, morf) : 0;
 
     // pozy
     let poza = st.poza || 'stoi';
     if (st.strefa !== 'wystep') {
       if (gestTrwa) poza = gestNazwa;
-      else gestNazwa = null;
+      else if (gestNazwa && zegar >= gestDo) gestNazwa = null;
     }
     for (const [k, v] of Object.entries(BAZA)) qCel[IDX[k]] = v;
     const czas = stoj ? 0 : zegar;
@@ -628,11 +629,11 @@ void main() {
       return [(cl[0] / cl[2] + 1) / 2 * cr.width + cr.left, (1 - cl[1] / cl[2]) / 2 * cr.height + cr.top];
     };
     const scenaTeraz = st.strefa === 'wystep' ? scenaWystep : st.strefa === 'robot' ? scenaRobot : null;
-    const spokoj = morf < 0.05 && wejscie >= 1 && wyglad.alfa > 0.5;
+    const spokoj = morf < 0.05 && wyglad.alfa > 0.5;
     for (const h of hud) {
       const [staw, lok] = HUD_PKT[h.el.dataset.hud] || [];
       let pokaz = !!lok && spokoj && (!h.pozy.length || h.pozy.includes(poza));
-      pokaz = pokaz && h.scena === scenaTeraz && !(st.strefa === 'robot' && gestTrwa && gestZoom);
+      pokaz = pokaz && h.scena === scenaTeraz && !(st.strefa === 'robot' && gestTrwa && gestZoom > 0.8);
       let X = 0, Y = 0;
       if (pokaz) {
         [X, Y] = naEkran(punktSwiata(IDX[staw], lok));
@@ -659,7 +660,7 @@ void main() {
       dymek.classList.toggle('dymek--widoczny', widac);
     }
 
-    const dalej = wyglad.alfa > 0.004 || st.alfa > 0.004 || gestTrwa;
+    const dalej = !!st.rect && (wyglad.alfa > 0.004 || morfAkt !== st.morfCel);
     if (dalej && !document.hidden) planuj();
     else { dziala = false; canvas.style.visibility = 'hidden'; }
   };
