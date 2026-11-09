@@ -1,0 +1,26 @@
+== 33bots.de/css/glowna.css
+HTTP/2 200 
+cache-control: public, max-age=31536000
+content-type: text/css
+content-length: 19415
+== 33bots.de/robot/g1.bin
+HTTP/2 200 
+content-type: application/octet-stream
+content-length: 614364
+== 33bots.de/robot/g1-lekki.bin
+HTTP/2 200 
+content-type: application/octet-stream
+content-length: 254748
+== 33bots.lt/css/glowna.css
+HTTP/2 200 
+cache-control: public, max-age=31536000
+content-type: text/css
+content-length: 19415
+== 33bots.lt/robot/g1.bin
+HTTP/2 200 
+content-type: application/octet-stream
+content-length: 614364
+== 33bots.lt/robot/g1-lekki.bin
+HTTP/2 200 
+content-type: application/octet-stream
+content-length: 254748

@@ -1,0 +1,116 @@
+{
+ "pl": {
+  "http": 200,
+  "robot": "gotowy",
+  "dymek": "Cześć! Miło Cię widzieć.",
+  "dymekOk": true,
+  "sekcje": [
+   "hero",
+   "proof",
+   "robot",
+   "zasady",
+   "realizacje",
+   "wystep",
+   "case-study",
+   "formaty",
+   "proces",
+   "faq",
+   "kontakt"
+  ],
+  "numery": [
+   "04 / 13",
+   "05 / 13",
+   "06 / 13",
+   "07 / 13",
+   "08 / 13",
+   "09 / 13",
+   "10 / 13",
+   "11 / 13",
+   "12 / 13"
+  ],
+  "kalk": "3 dni · cena netto | od | 14 025 zł | 3 × 4 675 zł zamiast 3 × 5 500 zł — oszczędzasz 2 475 zł.",
+  "tel": "tel:+48531408004",
+  "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
+  "skrypty": [
+   "https://33bots.pl/js/glowna.js?v=e2370ccc",
+   "https://33bots.pl/js/robot3d.js?v=9308f790"
+  ],
+  "bledy": []
+ },
+ "de": {
+  "http": 200,
+  "robot": "gotowy",
+  "dymek": "Hallo! Schön, Sie zu sehen.",
+  "dymekOk": true,
+  "sekcje": [
+   "hero",
+   "proof",
+   "robot",
+   "zasady",
+   "referenzen",
+   "wystep",
+   "case-study",
+   "formaty",
+   "proces",
+   "faq",
+   "kontakt"
+  ],
+  "numery": [
+   "04 / 13",
+   "05 / 13",
+   "06 / 13",
+   "07 / 13",
+   "08 / 13",
+   "09 / 13",
+   "10 / 13",
+   "11 / 13",
+   "12 / 13"
+  ],
+  "kalk": "3 Tage · Richtpreis | ab | 6.375 € | 3 × 2.125 € statt 3 × 2.500 € — Sie sparen 1.125 €.",
+  "tel": "tel:+48531408004",
+  "obietnica": "Ohne Anzahlung, Sie zahlen nach der Veranstaltung. Antwort in ca. 30 Minuten.",
+  "skrypty": [
+   "https://33bots.de/js/glowna.js?v=047daefa",
+   "https://33bots.de/js/robot3d.js?v=7c153010"
+  ],
+  "bledy": []
+ },
+ "lt": {
+  "http": 200,
+  "robot": "gotowy",
+  "dymek": "Labas! Malonu jus matyti.",
+  "dymekOk": true,
+  "sekcje": [
+   "hero",
+   "proof",
+   "robot",
+   "zasady",
+   "referenzen",
+   "wystep",
+   "case-study",
+   "formaty",
+   "proces",
+   "faq",
+   "kontakt"
+  ],
+  "numery": [
+   "04 / 13",
+   "05 / 13",
+   "06 / 13",
+   "07 / 13",
+   "08 / 13",
+   "09 / 13",
+   "10 / 13",
+   "11 / 13",
+   "12 / 13"
+  ],
+  "kalk": "3 dienos · kaina be PVM | nuo | 5 355 € | 3 × 1 785 € vietoj 3 × 2 100 € — sutaupote 945 €.",
+  "tel": "tel:+48531408004",
+  "obietnica": "Be avanso, mokate po renginio. Atsakome maždaug per 30 minučių.",
+  "skrypty": [
+   "https://33bots.lt/js/glowna.js?v=a0f1dec1",
+   "https://33bots.lt/js/robot3d.js?v=676dedd6"
+  ],
+  "bledy": []
+ }
+}
