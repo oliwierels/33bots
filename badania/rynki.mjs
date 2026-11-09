@@ -1,4 +1,4 @@
-// Strona główna na żywo: .pl, .de, .lt — robot gotowy, polecenie z dymkiem, kalkulator, telefon, bez błędów.
+// Strona główna na żywo: .pl, .de, .lt — robot gotowy, polecenie z dymkiem, kalkulator, telefon, bez błędów (przebieg 3).
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 const RYNKI = [
