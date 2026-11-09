@@ -63,3 +63,15 @@ for STRONA in $(grep -rl 'src="js/strona\.js' --include='*.html' . | sed 's|^\./
   sed -i -E "s|src=\"js/strona\.js(\?v=[^\"]*)?\"|src=\"js/strona.js?v=${WERSJA_STRONA}\"|g" "${STRONA}"
 done
 echo "  js/strona.js?v=${WERSJA_STRONA} na $(grep -rl 'src="js/strona\.js' --include='*.html' . | wc -l) stronach"
+
+# Strona główna: arkusz css/glowna.css, skrypty js/glowna.js i js/robot3d.js
+# oraz dane robota (robot/*.bin, wersja z sumy obu plików — robot3d.js dopisuje ją do adresu).
+WERSJA_GLOWNA_CSS=$(md5sum css/glowna.css | cut -c1-8)
+sed -i -E "s|href=\"css/glowna\.css(\?v=[^\"]*)?\"|href=\"css/glowna.css?v=${WERSJA_GLOWNA_CSS}\"|g" index.html
+WERSJA_DANYCH=$(cat robot/g1.bin robot/g1-lekki.bin | md5sum | cut -c1-8)
+sed -i -E "s|const WERSJA_DANYCH = '[^']*';|const WERSJA_DANYCH = '${WERSJA_DANYCH}';|" js/robot3d.js
+for PLIK in glowna robot3d; do
+  WERSJA=$(md5sum "js/${PLIK}.js" | cut -c1-8)
+  sed -i -E "s|src=\"js/${PLIK}\.js(\?v=[^\"]*)?\"|src=\"js/${PLIK}.js?v=${WERSJA}\"|g" index.html
+done
+echo "  index.html → css/glowna.css?v=${WERSJA_GLOWNA_CSS}, js/glowna.js, js/robot3d.js, dane robota ${WERSJA_DANYCH}"
