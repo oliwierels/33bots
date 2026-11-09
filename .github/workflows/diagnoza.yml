@@ -22,24 +22,17 @@ jobs:
           npm init -y >/dev/null
           npm install --silent playwright@1.56.1
           npx playwright install --with-deps chromium >/dev/null
-      - name: Nagłówki plików nowej strony głównej
+      - name: Nagłówki danych robota na .de i .lt
         run: |
           mkdir -p badania/wyniki/zywo
-          V=$(curl -s "https://33bots.pl/?x=$RANDOM" | grep -o 'robot3d\.js?v=[a-f0-9]*' | head -1); echo "robot3d: $V"
-          for u in "/" "/$( [ -n "$V" ] && echo js/$V || echo js/robot3d.js)" /css/glowna.css /robot/g1.bin /robot/g1-lekki.bin /robot/LICENCJA-UNITREE.txt; do
-            echo "== $u"; curl -s -o /dev/null -D - -H 'Accept-Encoding: gzip, br' "https://33bots.pl$u" | grep -iE '^(HTTP|content-type|content-encoding|content-length|cache-control)'
-          done | tee badania/wyniki/zywo/naglowki.txt
-          curl -s "https://33bots.pl/" | grep -c -E 'glowna\.css|robot3d\.js|data-scena|100\+' | tee -a badania/wyniki/zywo/naglowki.txt
-      - name: Robot na żywej stronie — czy sam się rusza
-        run: mkdir -p badania/wyniki/zywo && node badania/ruch.mjs
-      - name: IndexNow — zmienione strony
-        run: |
-          curl -s -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json; charset=utf-8" \
-            -d '{"host":"33bots.pl","key":"9209ab0a2e014f2c808446b0b4b4271a","keyLocation":"https://33bots.pl/9209ab0a2e014f2c808446b0b4b4271a.txt","urlList":["https://33bots.pl/"]}' \
-            -w "IndexNow HTTP %{http_code}\n" | tee badania/wyniki/zywo/indexnow.txt
+          for d in 33bots.de 33bots.lt; do for u in /css/glowna.css /robot/g1.bin /robot/g1-lekki.bin; do
+            echo "== $d$u"; curl -s -o /dev/null -D - "https://$d$u" | grep -iE '^(HTTP|content-type|content-length|cache-control)'
+          done; done | tee badania/wyniki/zywo/naglowki-rynki.txt
+      - name: Strona główna na żywo — .pl, .de, .lt
+        run: mkdir -p badania/wyniki/zywo && node badania/rynki.mjs
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add badania/wyniki
-          git commit -q -m "Wyniki: kontrola na żywo strony głównej 33bots.pl" && git push -q origin HEAD:diagnoza-domen
+          git commit -q -m "Wyniki: kontrola na żywo stron głównych .pl, .de, .lt" && git push -q origin HEAD:diagnoza-domen
