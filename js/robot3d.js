@@ -282,23 +282,24 @@ void main() {
       }
       return null;
     };
-    // LED jak w prawdziwym G1 (z w układzie tułowia): obwódka wzdłuż dolnej krawędzi daszka
-    // (z ok. 0,418 m) i dookoła ramy twarzy do podbródka, przyklejona do powierzchni głowy,
-    // oraz belka „oczu” w otworze twarzy, tuż pod czujnikami.
+    // Pasek LED: jedna równa belka na wysokości dolnej krawędzi daszka (z = 0,418 m w układzie
+    // tułowia), z zaokrąglonymi końcami. Głębokość nie z pojedynczych punktów (byłoby nierówno),
+    // tylko z gładkiej paraboli dopasowanej do przodu głowy na tej wysokości.
     const pkt = [];
-    const krokL = lekki ? 0.0011 : 0.0007, zDaszek = 0.418;
-    const led = (y, z, gl) => { const x = przod(y, z, 2); if (x !== null) pkt.push([x + 0.002, y, z, 32 + ts]); };
-    for (let y = -0.052; y <= 0.052; y += krokL) for (const dz of [0, 0.0014]) led(y, zDaszek + dz);
-    // rama: superelipsa od krawędzi daszka w dół do podbródka (z ok. 0,335 m)
-    for (let t = 0; t <= Math.PI; t += krokL / 0.07) {
-      const c = Math.cos(t), sn = Math.sin(t);
-      const y = 0.053 * Math.sign(c) * Math.pow(Math.abs(c), 2 / 3), z = zDaszek - 0.083 * Math.pow(sn, 2 / 3);
-      for (const d of [0, 0.0014]) led(y * (1 - d * 8), z + d);
+    const zLed = 0.418, krokL = lekki ? 0.0009 : 0.0006;
+    let s0 = 0, s2 = 0, s4 = 0, sx = 0, sx2 = 0, ile = 0;
+    for (let y = -0.044; y <= 0.044; y += 0.004) {
+      const x = przod(y, zLed, 2);
+      if (x === null) continue;
+      const y2 = y * y; s0++; s2 += y2; s4 += y2 * y2; sx += x; sx2 += x * y2; ile++;
     }
-    // belka oczu: w otworze twarzy, nie na ramie — stała głębokość
-    for (let y = -0.028; y <= 0.028; y += krokL) for (const dz of [-0.0014, 0, 0.0014]) {
-      if (dz && Math.abs(y) > 0.025) continue; // zaokrąglone końce belki
-      pkt.push([0.036 - 1.6 * y * y, y, 0.399 + dz, 32 + ts]);
+    // x(y) = a + c·y², najmniejsze kwadraty; c ograniczone, żeby pasek nie zawijał się do tyłu
+    const det = s0 * s4 - s2 * s2;
+    const kLed = ile > 3 && det ? clamp((s0 * sx2 - s2 * sx) / det, -6, 0) : -2;
+    const a0 = ile ? (sx - kLed * s2) / s0 : 0.053;
+    for (let y = -0.048; y <= 0.048; y += krokL) for (const dz of [-0.0014, 0, 0.0014]) {
+      if (dz && Math.abs(y) > 0.045) continue; // zaokrąglone końce
+      pkt.push([a0 + kLed * y * y + 0.003, y, zLed + dz, 32 + ts]);
     }
     // napis „TWOJE / LOGO” na piersi
     const c = document.createElement('canvas'); c.width = 360; c.height = 220;
