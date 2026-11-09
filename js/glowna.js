@@ -18,6 +18,20 @@
     });
   });
 
+  /* ——— Robot z bliska: aktywna część ciała z postępu przewijania (działa też bez WebGL) ——— */
+  const robot = document.getElementById('robot');
+  if (robot) {
+    const CZESCI = [['glowa', 0.07], ['twarz', 0.16], ['piers', 0.38], ['rece', 0.62], ['nogi', 0.88], ['stopy', 1.01]]; // jak kamera w robot3d.js
+    const czesc = () => {
+      const r = robot.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight)));
+      const nowa = CZESCI.find(([, do_]) => p < do_)[0];
+      if (robot.dataset.czesc !== nowa) robot.dataset.czesc = nowa;
+    };
+    addEventListener('scroll', rzadko(czesc), { passive: true });
+    czesc();
+  }
+
   /* ——— Liczniki: liczą od zera, kiedy wchodzą na ekran (te widoczne od razu stoją) ——— */
   const liczniki = [...document.querySelectorAll('[data-licz]')].filter((el) => +el.dataset.licz > 0);
   if (!reduce && 'IntersectionObserver' in window) {

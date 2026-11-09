@@ -52,7 +52,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="css/site.css?v=f76abb77" />
-<link rel="stylesheet" href="css/glowna.css?v=585ff004" />
+<link rel="stylesheet" href="css/glowna.css?v=2261684d" />
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Wynajem robota humanoidalnego Unitree G1","description":"Wynajem robota humanoidalnego Unitree G1 na eventy, targi i konferencje w całej Polsce.","url":"https://33bots.pl","image":"https://33bots.pl/robot-g1.jpg","brand":{"@type":"Brand","name":"Unitree"},"offers":{"@type":"AggregateOffer","priceCurrency":"PLN","lowPrice":"5500","highPrice":"6500","availability":"https://schema.org/InStock","url":"https://33bots.pl/#cennik","description":"Cały dzień realizacji z transportem, operatorem i brandingiem w cenie. Możliwy krótszy pokaz (wycena indywidualna) oraz realizacje wielodniowe z rabatem 15% na każdy dzień. Zero zaliczki, faktura po wydarzeniu."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"3","bestRating":"5","worstRating":"1"}}
@@ -238,7 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ HERO ══════════
      Nowy markup, wyłącznie klasy z css/site.css — stare reguły go nie dotykają. -->
-<section class="hero hero--scena" aria-labelledby="hero-label">
+<section class="hero" aria-labelledby="hero-label">
   <div class="hero__text">
     <h1 id="hero-label" class="label">Wynajem robota humanoidalnego na wydarzenia</h1>
     <p class="display">Najczęściej fotografowany gość Twojego wydarzenia.</p>
@@ -257,34 +257,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="link" href="realizacje-wideo.html">Zobacz realizacje</a>
     </div>
   </div>
-  <!-- Scena: robot z punktów (js/robot3d.js) wypełnia to pole. Bez WebGL i bez JS
-       pole zajmuje karta ze zdjęciami z realizacji, jak dawniej całe hero. -->
-  <div class="hero__scena" data-scena="hero">
-    <img class="hero__zapas" src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" width="900" height="1200" loading="lazy" decoding="async" />
-    <p class="hero__chwyc label" aria-hidden="true">Przeciągnij, żeby obrócić</p>
-    <!-- Polecenia: robot (js/robot3d.js) wykonuje gest, a dymek pokazuje, co mówi. -->
-    <div class="polecenia" role="group" aria-labelledby="poleceniaTytul">
-      <p class="label" id="poleceniaTytul">Wydaj robotowi polecenie</p>
-      <div class="polecenia__lista">
-        <button class="polecenie" type="button" data-robot-gest="macha">Pomachaj</button>
-        <button class="polecenie" type="button" data-robot-gest="tanczy">Zatańcz</button>
-        <button class="polecenie" type="button" data-robot-gest="buziak">Wyślij buziaka</button>
-        <button class="polecenie" type="button" data-robot-gest="zdjecie">Ręce w górę</button>
-        <button class="polecenie" type="button" data-robot-gest="mowi">Powiedz coś</button>
-      </div>
-      <button class="polecenia__pauza" id="robotPauza" type="button" aria-pressed="false" data-ruch-przelacz>Zatrzymaj ruch</button>
-    </div>
-  </div>
-  <p class="dymek" id="robotDymek" role="status" aria-live="polite"></p>
-  <!-- Podpisy przy częściach ciała olbrzymiego robota w tle: pojawiają się, gdy dana część jest na ekranie. -->
-  <div class="hud-olbrzym" aria-hidden="true">
-    <p class="hud" data-hud="glowa"><span class="hud__kreska"></span><span class="hud__tekst">LiDAR i&nbsp;kamera — widzi gości wokół siebie</span></p>
-    <p class="hud" data-hud="twarz"><span class="hud__kreska"></span><span class="hud__tekst">Mówi w&nbsp;każdym języku</span></p>
-    <p class="hud" data-hud="piers"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo i&nbsp;kod QR na piersi</span></p>
-    <p class="hud" data-hud="dlon"><span class="hud__kreska"></span><span class="hud__tekst">Wita gości i&nbsp;podaje rękę</span></p>
-    <p class="hud" data-hud="kolano"><span class="hud__kreska"></span><span class="hud__tekst">Chodzi wśród gości, omija ludzi i&nbsp;przeszkody</span></p>
-    <p class="hud" data-hud="stopa"><span class="hud__kreska"></span><span class="hud__tekst">Wystarczy mu kilka metrów kwadratowych</span></p>
-  </div>
+  <figure class="hero__media" id="heroMedia">
+    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" fetchpriority="high" decoding="async" width="900" height="1200">
+    <figcaption class="hero__podpis">
+      <span class="label" id="heroLicznik">01 / 06</span>
+      <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
+      <button class="hero__pauza" id="heroPauza" type="button" aria-pressed="false" hidden>Pauza</button>
+    </figcaption>
+  </figure>
 </section>
 
 <section class="proof" aria-label="Skala i media">
@@ -309,33 +289,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 </section>
 
-<!-- ══════════ 04 ZASADY: bezpieczeństwo i kontakt z gośćmi ══════════
+<!-- ══════════ 04 ROBOT Z BLISKA ══════════
+     Osobna scena dla robota 3D (js/robot3d.js): sekcja jest wysoka, środek przykleja się
+     do ekranu, a przewijanie prowadzi kamerę od głowy do stóp. Punkty rysują się tylko
+     w polu sceny — nigdy pod tekstem. Lista części ciała podświetla się razem z kamerą
+     (js/glowna.js). Bez WebGL i bez JS sekcji nie ma (klasa bez-3d). -->
+<section id="robot" class="sec robot" aria-labelledby="robot-h" data-czesc="glowa">
+  <div class="robot__scena">
+    <div class="wrap robot__uklad">
+      <div class="robot__tekst">
+        <p class="label sec__meta">04 / 13 · Robot z bliska</p>
+        <h2 id="robot-h" class="h2">Poznaj go, zanim przyjedzie.</h2>
+        <ol class="robot__czesci">
+          <li data-czesc="glowa"><span class="label">01 · Głowa</span><span class="robot__opis">LiDAR i&nbsp;kamera — widzi gości wokół siebie</span></li>
+          <li data-czesc="twarz"><span class="label">02 · Twarz</span><span class="robot__opis">Mówi w&nbsp;każdym języku, naturalnym głosem</span></li>
+          <li data-czesc="piers"><span class="label">03 · Pierś</span><span class="robot__opis">Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości</span></li>
+          <li data-czesc="rece"><span class="label">04 · Ręce</span><span class="robot__opis">Wita, podaje rękę, pozuje do zdjęć</span></li>
+          <li data-czesc="nogi"><span class="label">05 · Nogi</span><span class="robot__opis">Chodzi wśród gości i&nbsp;omija przeszkody</span></li>
+          <li data-czesc="stopy"><span class="label">06 · Stopy</span><span class="robot__opis">Wystarczy mu kilka metrów kwadratowych</span></li>
+        </ol>
+        <div class="polecenia" role="group" aria-labelledby="poleceniaTytul">
+          <p class="label" id="poleceniaTytul">Wydaj robotowi polecenie</p>
+          <div class="polecenia__lista">
+            <button class="polecenie" type="button" data-robot-gest="macha">Pomachaj</button>
+            <button class="polecenie" type="button" data-robot-gest="tanczy">Zatańcz</button>
+            <button class="polecenie" type="button" data-robot-gest="buziak">Wyślij buziaka</button>
+            <button class="polecenie" type="button" data-robot-gest="zdjecie">Ręce w&nbsp;górę</button>
+            <button class="polecenie" type="button" data-robot-gest="mowi">Powiedz coś</button>
+          </div>
+          <button class="polecenia__pauza" id="robotPauza" type="button" aria-pressed="false" data-ruch-przelacz>Zatrzymaj ruch</button>
+        </div>
+      </div>
+      <div class="robot__pole" data-scena="robot" aria-hidden="true">
+        <p class="robot__chwyc label">Przeciągnij, żeby obrócić</p>
+        <p class="hud" data-hud="glowa"><span class="hud__kreska"></span><span class="hud__tekst">LiDAR i&nbsp;kamera</span></p>
+        <p class="hud" data-hud="twarz"><span class="hud__kreska"></span><span class="hud__tekst">Głos w&nbsp;każdym języku</span></p>
+        <p class="hud" data-hud="piers"><span class="hud__kreska"></span><span class="hud__tekst">Twoje logo</span></p>
+        <p class="hud" data-hud="dlon"><span class="hud__kreska"></span><span class="hud__tekst">Podaje rękę</span></p>
+        <p class="hud" data-hud="kolano"><span class="hud__kreska"></span><span class="hud__tekst">Omija przeszkody</span></p>
+        <p class="hud" data-hud="stopa"><span class="hud__kreska"></span><span class="hud__tekst">Kilka m²</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="dymek" id="robotDymek" role="status" aria-live="polite"></p>
+</section>
+
+<!-- ══════════ 05 ZASADY: bezpieczeństwo i kontakt z gośćmi ══════════
      Fakty z FAQ (operator, LiDAR i wizja komputerowa, wymienne baterie, OC, języki,
      wiedza o wydarzeniu) i z deklaracji właściciela (robot podchodzi do gości, 11.2026).
-     Animacje: SVG w [data-animacja], przy ograniczonym ruchu stoją. Na desktopie treść
-     w lewych sześciu kolumnach — po prawej stoi w tle olbrzymi robot (js/robot3d.js). -->
+     Animacje: SVG w [data-animacja], przy ograniczonym ruchu stoją. -->
 <section id="zasady" class="sec" aria-labelledby="zasady-h">
   <span class="kotwica" id="bezpieczenstwo"></span>
   <div class="wrap">
     <div class="zasady__glowa wejscie">
-      <p class="label sec__meta">04 / 12 · Zasady</p>
-      <h2 id="zasady-h" class="h2">Bezpieczeństwo gości przed popisami.</h2>
+      <p class="label sec__meta">05 / 13 · Zasady</p>
+      <h2 id="zasady-h" class="h2">Najpierw bezpieczeństwo gości. Potem efekt.</h2>
+      <p class="body">O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.</p>
       <button class="pasy__pauza zasady__pauza" type="button" aria-pressed="false" data-ruch-przelacz hidden>Zatrzymaj ruch</button>
-      <p class="body">Salto dobrze wygląda na filmiku. Na sali pełnej ludzi liczy się co innego: żeby nikomu nic się nie stało i&nbsp;żeby z&nbsp;robotem porozmawiało jak najwięcej osób. Tak pracujemy na każdym wydarzeniu.</p>
     </div>
 
     <h3 class="label zasady__grupa">Bezpieczeństwo</h3>
     <ul class="zasady wejscie">
       <li class="zasada">
         <div class="zasada__anim" data-animacja="operator" aria-hidden="true">
-          <svg viewBox="0 0 240 120"><path class="a-tor" d="M16 84 C 70 30, 130 120, 224 50" /><g class="a-para"><rect x="-6" y="-6" width="12" height="12" class="a-pelny" /><circle cx="0" cy="22" r="6" class="a-obrys" /><line x1="0" y1="6" x2="0" y2="16" class="a-cienka" /></g></svg>
+          <svg viewBox="0 0 240 120"><g class="a-tlum"><circle cx="70" cy="34" r="5" class="a-gosc a-t1" /><circle cx="64" cy="82" r="5" class="a-gosc a-t2" /><circle cx="168" cy="30" r="5" class="a-gosc a-t3" /><circle cx="176" cy="86" r="5" class="a-gosc a-t4" /><circle cx="120" cy="104" r="5" class="a-gosc a-t5" /></g><rect x="114" y="54" width="12" height="12" class="a-pelny" /><g class="a-operator"><circle cx="0" cy="0" r="6" class="a-obrys" /></g><text x="120" y="12" class="a-napis a-gesto">TŁOCZNO — OPERATOR OBOK</text><text x="120" y="12" class="a-napis a-luzno">LUŹNO — OPERATOR W CIENIU</text></svg>
         </div>
-        <h4 class="h3">Operator cały czas obok</h4>
-        <p class="body">Certyfikowany operator jest przy robocie od pierwszej do ostatniej minuty — odpowiada za konfigurację, obsługę i&nbsp;bezpieczeństwo pokazu. Każda realizacja jest objęta ubezpieczeniem OC.</p>
+        <h4 class="h3">Operator: blisko, ale dyskretnie</h4>
+        <p class="body">Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.</p>
       </li>
       <li class="zasada">
         <div class="zasada__anim" data-animacja="radar" aria-hidden="true">
-          <svg viewBox="0 0 240 120"><circle cx="120" cy="60" r="18" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="36" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="54" class="a-obrys a-slabo" /><g class="a-wiazka"><line x1="120" y1="60" x2="120" y2="4" class="a-linia" /></g><rect x="116" y="56" width="8" height="8" class="a-pelny" /><circle cx="92" cy="30" r="4" class="a-gosc a-g1" /><circle cx="160" cy="44" r="4" class="a-gosc a-g2" /><circle cx="150" cy="96" r="4" class="a-gosc a-g3" /><circle cx="80" cy="84" r="4" class="a-gosc a-g4" /></svg>
+          <svg viewBox="0 0 240 120"><circle cx="120" cy="60" r="18" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="36" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="54" class="a-obrys a-slabo" /><circle cx="120" cy="60" r="54" class="a-obrys a-ping" /><g class="a-wiazka"><line x1="120" y1="60" x2="120" y2="4" class="a-linia" /></g><rect x="116" y="56" width="8" height="8" class="a-pelny" /><circle cx="92" cy="30" r="4" class="a-gosc a-g1" /><circle cx="160" cy="44" r="4" class="a-gosc a-g2" /><circle cx="150" cy="96" r="4" class="a-gosc a-g3" /><circle cx="80" cy="84" r="4" class="a-gosc a-g4" /></svg>
         </div>
         <h4 class="h3">Widzi ludzi wokół siebie</h4>
         <p class="body">LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.</p>
@@ -353,14 +377,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="zasady wejscie">
       <li class="zasada">
         <div class="zasada__anim" data-animacja="goscie" aria-hidden="true">
-          <svg viewBox="0 0 240 120"><circle cx="40" cy="30" r="5" class="a-gosc a-w1" /><circle cx="96" cy="92" r="5" class="a-gosc a-w2" /><circle cx="150" cy="24" r="5" class="a-gosc a-w3" /><circle cx="206" cy="84" r="5" class="a-gosc a-w4" /><circle cx="24" cy="96" r="5" class="a-gosc a-slabo" /><circle cx="222" cy="22" r="5" class="a-gosc a-slabo" /><g class="a-robot"><rect x="-6" y="-6" width="12" height="12" class="a-pelny" /></g></svg>
+          <svg viewBox="0 0 240 120"><circle cx="40" cy="30" r="5" class="a-gosc a-w1" /><circle cx="96" cy="92" r="5" class="a-gosc a-w2" /><circle cx="150" cy="24" r="5" class="a-gosc a-w3" /><circle cx="206" cy="84" r="5" class="a-gosc a-w4" /><circle cx="24" cy="96" r="5" class="a-gosc a-slabo" /><circle cx="222" cy="22" r="5" class="a-gosc a-slabo" /><g class="a-robot"><circle cx="0" cy="0" r="16" class="a-obrys a-ping2" /><rect x="-6" y="-6" width="12" height="12" class="a-pelny" /></g></svg>
         </div>
         <h4 class="h3">Wychodzimy do ludzi</h4>
         <p class="body">Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.</p>
       </li>
       <li class="zasada">
         <div class="zasada__anim" data-animacja="mowa" aria-hidden="true">
-          <svg viewBox="0 0 240 120"><g class="a-fala"><rect x="44" y="40" width="6" height="40" /><rect x="56" y="40" width="6" height="40" /><rect x="68" y="40" width="6" height="40" /><rect x="80" y="40" width="6" height="40" /><rect x="92" y="40" width="6" height="40" /><rect x="104" y="40" width="6" height="40" /><rect x="116" y="40" width="6" height="40" /><rect x="128" y="40" width="6" height="40" /><rect x="140" y="40" width="6" height="40" /><rect x="152" y="40" width="6" height="40" /><rect x="164" y="40" width="6" height="40" /><rect x="176" y="40" width="6" height="40" /><rect x="188" y="40" width="6" height="40" /></g><g class="a-slowa"><text x="120" y="112">Dzień dobry</text><text x="120" y="112">Hello</text><text x="120" y="112">Guten Tag</text><text x="120" y="112">Laba diena</text><text x="120" y="112">Bună ziua</text></g></svg>
+          <svg viewBox="0 0 240 120"><g class="a-fala"><rect x="44" y="40" width="6" height="40" /><rect x="56" y="40" width="6" height="40" /><rect x="68" y="40" width="6" height="40" /><rect x="80" y="40" width="6" height="40" /><rect x="92" y="40" width="6" height="40" /><rect x="104" y="40" width="6" height="40" /><rect x="116" y="40" width="6" height="40" /><rect x="128" y="40" width="6" height="40" /><rect x="140" y="40" width="6" height="40" /><rect x="152" y="40" width="6" height="40" /><rect x="164" y="40" width="6" height="40" /><rect x="176" y="40" width="6" height="40" /><rect x="188" y="40" width="6" height="40" /></g><g class="a-slowa"><text x="120" y="112">Dzień dobry</text><text x="120" y="112">Hello</text><text x="120" y="112">Guten Tag</text><text x="120" y="112">Laba diena</text><text x="120" y="112">Bună ziua</text><text x="120" y="112">Dobrý den</text><text x="120" y="112">Bonjour</text><text x="120" y="112">Hola</text></g></svg>
         </div>
         <h4 class="h3">Rozmawia w&nbsp;każdym języku</h4>
         <p class="body">Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.</p>
@@ -376,12 +400,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ══════════ 05 NA SALI ══════════ -->
+<!-- ══════════ 06 NA SALI ══════════ -->
 <section id="realizacje" class="sec" aria-labelledby="realizacje-h">
   <span class="kotwica" id="eventy"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">05 / 12 · Na sali</p>
+      <p class="label sec__meta">06 / 13 · Na sali</p>
       <h2 id="realizacje-h" class="h2">Na sali</h2>
       <p class="body">Od balu w&nbsp;drezdeńskim pałacu i&nbsp;targów MSPO po gminną paradę i&nbsp;wesele — ponad 100 wydarzeń w&nbsp;pięciu krajach. Kliknij kadr, żeby zobaczyć, co robił robot.</p>
     </div>
@@ -516,7 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap grid12 wystep">
     <div class="wystep__lewa">
       <div class="wystep__glowa wejscie">
-        <p class="label sec__meta">06 / 12 · Występ</p>
+        <p class="label sec__meta">07 / 13 · Występ</p>
         <h2 id="wystep-h" class="h2">Jak projektujemy występ</h2>
       </div>
       <div class="wystep__scena" data-scena="wystep" aria-hidden="true">
@@ -565,7 +589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="case-study" class="sec sec--jasna" aria-labelledby="cs-h">
   <div class="wrap grid12">
     <div class="cs__tekst wejscie">
-      <p class="label sec__meta">07 / 12 · Case study</p>
+      <p class="label sec__meta">08 / 13 · Case study</p>
       <h2 id="cs-h" class="h2">Wielki Finał Eco Studio ELECTRO-SYSTEM</h2>
       <dl class="cs__opis">
         <div><dt class="label">Wydarzenie</dt>
@@ -598,7 +622,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="kotwica" id="cennik"></span>
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">08 / 12 · Formaty</p>
+      <p class="label sec__meta">09 / 13 · Formaty</p>
       <h2 id="formaty-h" class="h2">Formaty i&nbsp;cena</h2>
       <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
     </div>
@@ -646,7 +670,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="proces" class="sec" aria-labelledby="proces-h">
   <div class="wrap">
     <div class="sec__glowa wejscie">
-      <p class="label sec__meta">09 / 12 · Proces</p>
+      <p class="label sec__meta">10 / 13 · Proces</p>
       <h2 id="proces-h" class="h2">Od rozmowy do faktury</h2>
     </div>
     <ol class="kroki wejscie">
@@ -683,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="faq" class="sec" aria-labelledby="faq-h">
   <div class="wrap grid12">
     <div class="faq__glowa wejscie">
-      <p class="label sec__meta">10 / 12 · FAQ</p>
+      <p class="label sec__meta">11 / 13 · FAQ</p>
       <h2 id="faq-h" class="h2">Zanim zapytasz</h2>
     </div>
     <div class="faq wejscie">
@@ -739,7 +763,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
   <div class="wrap grid12 rez">
     <div class="rez__glowa wejscie">
-      <p class="label sec__meta">11 / 12 · Rezerwacja</p>
+      <p class="label sec__meta">12 / 13 · Rezerwacja</p>
       <h2 id="kontakt-h" class="h2">Sprawdź, czy Twój termin jest wolny.</h2>
     </div>
 
@@ -836,7 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </main>
 
-<!-- ══════════ 12 STOPKA ══════════ -->
+<!-- ══════════ 13 STOPKA ══════════ -->
 <footer class="stopka">
   <div class="wrap grid12">
     <div class="stopka__marka">
@@ -1626,8 +1650,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <!-- Strona główna: liczniki, kroki występu i kalkulator (glowna.js), robot 3D z punktów (robot3d.js). -->
-<script src="js/glowna.js?v=9e537ab9" defer></script>
-<script src="js/robot3d.js?v=a2dfa570" defer></script>
+<script src="js/glowna.js?v=ae0e50ca" defer></script>
+<script src="js/robot3d.js?v=3fd978f3" defer></script>
 <!-- Albacross -->
 <script>window._nQc="89159321";</script>
 <script async src="https://serve.albacross.com/track.js"></script>
