@@ -135,7 +135,7 @@ void main() {
   if (abs(k - uTors) < 0.5 && logo < 0.5 && lp.x > 0.04 && abs(lp.y) < 0.11 && lp.z > 0.11 && lp.z < 0.222) j *= 0.28;
   vec3 kol = vec3(j * uJasnosc);
   kol = mix(kol, vec3(1.0, 1.0, 1.0) * (1.05 + 0.5 * uLogo), logo);
-  kol = mix(kol, vec3(0.06, 0.38, 1.0) * uLed, led); // błękit LED, bez wybielenia
+  kol = mix(kol, vec3(0.05, 0.62, 1.0) * uLed, led); // turkusowy błękit jak LED w G1, bez wybielenia
   vK = mix(kol, vec3(0.95), t);
   float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask + 0.1 * led) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
   gl_PointSize = mix(rozm, uPx * 1.15, t);
@@ -282,14 +282,23 @@ void main() {
       }
       return null;
     };
-    // Pasek LED jak w prawdziwym G1: na dolnej krawędzi daszka głowy, nad wklęsłą twarzą
-    // (z ok. 0,43 m w układzie tułowia), wzdłuż zaokrąglenia daszka.
+    // LED jak w prawdziwym G1 (z w układzie tułowia): obwódka wzdłuż dolnej krawędzi daszka
+    // (z ok. 0,418 m) i dookoła ramy twarzy do podbródka, przyklejona do powierzchni głowy,
+    // oraz belka „oczu” w otworze twarzy, tuż pod czujnikami.
     const pkt = [];
-    const ileLed = lekki ? 240 : 390, zLed = 0.437, kolumny = Math.ceil(ileLed / 3);
-    for (let i = 0; i < ileLed; i++) {
-      const y = (Math.floor(i / 3) / (kolumny - 1) - 0.5) * 0.088, z = zLed + ((i % 3) - 1) * 0.0016;
-      const x = przod(y, z, 3);
-      if (x !== null) pkt.push([x + 0.003, y, z, 32 + ts]);
+    const krokL = lekki ? 0.0011 : 0.0007, zDaszek = 0.418;
+    const led = (y, z, gl) => { const x = przod(y, z, 2); if (x !== null) pkt.push([x + 0.002, y, z, 32 + ts]); };
+    for (let y = -0.052; y <= 0.052; y += krokL) for (const dz of [0, 0.0014]) led(y, zDaszek + dz);
+    // rama: superelipsa od krawędzi daszka w dół do podbródka (z ok. 0,335 m)
+    for (let t = 0; t <= Math.PI; t += krokL / 0.07) {
+      const c = Math.cos(t), sn = Math.sin(t);
+      const y = 0.053 * Math.sign(c) * Math.pow(Math.abs(c), 2 / 3), z = zDaszek - 0.083 * Math.pow(sn, 2 / 3);
+      for (const d of [0, 0.0014]) led(y * (1 - d * 8), z + d);
+    }
+    // belka oczu: w otworze twarzy, nie na ramie — stała głębokość
+    for (let y = -0.028; y <= 0.028; y += krokL) for (const dz of [-0.0014, 0, 0.0014]) {
+      if (dz && Math.abs(y) > 0.025) continue; // zaokrąglone końce belki
+      pkt.push([0.036 - 1.6 * y * y, y, 0.399 + dz, 32 + ts]);
     }
     // napis „TWOJE / LOGO” na piersi
     const c = document.createElement('canvas'); c.width = 360; c.height = 220;
