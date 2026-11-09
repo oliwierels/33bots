@@ -135,9 +135,9 @@ void main() {
   if (abs(k - uTors) < 0.5 && logo < 0.5 && lp.x > 0.04 && abs(lp.y) < 0.11 && lp.z > 0.11 && lp.z < 0.222) j *= 0.28;
   vec3 kol = vec3(j * uJasnosc);
   kol = mix(kol, vec3(1.0, 1.0, 1.0) * (1.05 + 0.5 * uLogo), logo);
-  kol = mix(kol, vec3(0.28, 0.74, 1.0) * uLed, led);
+  kol = mix(kol, vec3(0.06, 0.38, 1.0) * uLed, led); // błękit LED, bez wybielenia
   vK = mix(kol, vec3(0.95), t);
-  float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask + 0.35 * led) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
+  float rozm = uPx * mix(1.0, 0.85, kraw) * (1.0 + 0.8 * skan + 0.6 * blask + 0.1 * led) * (3.3 / c.w) * (1.0 + uZaslona * 1.6);
   gl_PointSize = mix(rozm, uPx * 1.15, t);
 }`;
   const FS = `
@@ -284,11 +284,11 @@ void main() {
     // twarz G1: wklęsła, pod daszkiem głowy (z ok. 0,35–0,42 m w układzie tułowia);
     // pasek LED w poprzek twarzy na wysokości oczu
     const pkt = [];
-    const ileLed = lekki ? 260 : 420, zOczy = 0.394;
+    // Listwa jest płaska i lekko wygięta, z przodu twarzy — nie oblepia boków głowy (nie ucieka do tyłu).
+    const ileLed = lekki ? 180 : 300, zOczy = 0.394, xOczy = (przod(0, zOczy) ?? 0.05) + 0.004;
     for (let i = 0; i < ileLed; i++) {
-      const y = (i / (ileLed - 1) - 0.5) * 0.068, z = zOczy + ((i % 3) - 1) * 0.0022;
-      const x = przod(y, z);
-      if (x !== null) pkt.push([x + 0.004, y, z, 32 + ts]);
+      const y = (Math.floor(i / 3) / (Math.ceil(ileLed / 3) - 1) - 0.5) * 0.054, z = zOczy + ((i % 3) - 1) * 0.0016;
+      pkt.push([xOczy - 2.2 * y * y, y, z, 32 + ts]);
     }
     // napis „TWOJE / LOGO” na piersi
     const c = document.createElement('canvas'); c.width = 360; c.height = 220;
@@ -565,7 +565,7 @@ void main() {
       gl.uniform1f(U.uSkan, stoj ? -1 : ((czas % 7) / 5.2) * 1.5 - 0.1);
       const branding = poza === 'branding';
       gl.uniform1f(U.uLogo, branding ? 1.2 + 0.6 * Math.sin(czas * 6) : 0.6);
-      gl.uniform1f(U.uLed, stoj ? 1.5 : 1.35 + 0.35 * Math.sin(czas * 2.2) + (poza === 'mowi' ? 0.5 * Math.abs(Math.sin(czas * 9)) : 0));
+      gl.uniform1f(U.uLed, stoj ? 1.1 : 1.0 + 0.25 * Math.sin(czas * 2.2) + (poza === 'mowi' ? 0.45 * Math.abs(Math.sin(czas * 9)) : 0));
       const pk = punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.17]);
       gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], branding ? 0.35 : 0);
       // punkty: na zbliżeniu drobne i gęste, w małej scenie większe
