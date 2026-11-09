@@ -5,25 +5,9 @@
    cieni i zaokrągleń; cyjan wyłącznie na drodze do rezerwacji.
    ══════════════════════════════════════════════════════════════ */
 
-/* ——— Płótno robota (js/robot3d.js): bez zdarzeń wskaźnika ———
-   W strefie olbrzyma (hero → #zasady) leży pod treścią (z-index -1, body bez własnego tła,
-   tło daje <html>), w sekcji występu nad treścią — tam scena na telefonie jest przyklejona i nieprzezroczysta. */
+/* ——— Płótno robota (js/robot3d.js): nad treścią, bez zdarzeń wskaźnika ———
+   Rysuje wyłącznie w polu sceny (gl.scissor), więc nie zasłania tekstu. */
 .robot3d { position: fixed; left: 0; top: 0; z-index: 5; width: 100%; height: 100vh; height: 100lvh; pointer-events: none; }
-.robot3d--tlo { z-index: -1; }
-html.z-3d body { background: transparent; }
-
-/* ══════════ Hero: tekst po lewej, olbrzymi robot w tle po prawej ══════════
-   Pole sceny służy do obracania robota i trzyma polecenia. Bez JS i bez WebGL w polu
-   jest zdjęcie z realizacji (hero__zapas, ładowane tylko wtedy). */
-.hero--scena { grid-template-rows: minmax(0, 1fr); }
-.hero__scena { grid-column: 7 / -1; grid-row: 1; position: relative; min-height: 520px; margin-right: var(--margin); }
-.js:not(.bez-3d) .hero__scena { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
-.js:not(.bez-3d) .hero__scena:active { cursor: grabbing; }
-.hero__zapas { display: none; }
-html:not(.js) .hero__zapas, .bez-3d .hero__zapas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-html:not(.js) .hero__scena, .bez-3d .hero__scena { margin-right: 0; }
-html:not(.js) .polecenia, .bez-3d .polecenia, html:not(.js) .hero__chwyc, .bez-3d .hero__chwyc,
-html:not(.js) .hud-olbrzym, .bez-3d .hud-olbrzym, .bez-3d .dymek { display: none; }
 
 .termin__telefon { margin: 0; font-size: 0.875rem; line-height: 1.6; color: var(--text-2); }
 .termin__telefon a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px;
@@ -31,52 +15,85 @@ html:not(.js) .hud-olbrzym, .bez-3d .hud-olbrzym, .bez-3d .dymek { display: none
 .termin__telefon a:hover { text-decoration-color: var(--text); }
 .termin__telefon a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-.hero__chwyc { position: absolute; right: 0; top: 24px; white-space: nowrap; visibility: hidden; }
-.z-3d .hero__chwyc { visibility: visible; }
-@media (pointer: coarse) { .hero__chwyc { display: none; } }
+/* ══════════ 04 Robot z bliska: własna scena ══════════
+   Sekcja ma 280 % wysokości ekranu, środek przykleja się pod nawigacją. Po lewej lista
+   części ciała (aktywna podświetlona) i polecenia, po prawej czyste pole robota. */
+html:not(.js) .robot, .bez-3d .robot { display: none; }
+.robot { padding-block: 0; height: 280vh; height: 280svh; }
+.robot__scena { position: sticky; top: 0; height: 100vh; height: 100svh; padding-top: var(--nav-h); overflow: hidden; }
+.robot__uklad { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); height: 100%; }
+.robot__tekst { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 32px; padding-block: 48px; min-height: 0; }
+.robot__tekst .sec__meta { margin-bottom: 0; }
+.robot__czesci { list-style: none; margin: 0; padding: var(--inset) 0 0; display: grid; gap: 14px; border-top: 1px solid var(--line); }
+.robot__czesci li { display: grid; gap: 2px; }
+.robot__czesci .label { transition: color .3s; }
+.robot__opis { font: 400 1.0625rem/1.4 var(--font-body); color: var(--text-2); transition: color .3s; }
+.robot[data-czesc="glowa"] li[data-czesc="glowa"] .robot__opis, .robot[data-czesc="twarz"] li[data-czesc="twarz"] .robot__opis,
+.robot[data-czesc="piers"] li[data-czesc="piers"] .robot__opis, .robot[data-czesc="rece"] li[data-czesc="rece"] .robot__opis,
+.robot[data-czesc="nogi"] li[data-czesc="nogi"] .robot__opis, .robot[data-czesc="stopy"] li[data-czesc="stopy"] .robot__opis { color: var(--text); }
+.robot[data-czesc="glowa"] li[data-czesc="glowa"] .label, .robot[data-czesc="twarz"] li[data-czesc="twarz"] .label,
+.robot[data-czesc="piers"] li[data-czesc="piers"] .label, .robot[data-czesc="rece"] li[data-czesc="rece"] .label,
+.robot[data-czesc="nogi"] li[data-czesc="nogi"] .label, .robot[data-czesc="stopy"] li[data-czesc="stopy"] .label { color: var(--text); }
+.robot__pole { grid-column: 6 / -1; position: relative; min-height: 0; margin-block: 24px; cursor: grab; touch-action: pan-y;
+  user-select: none; -webkit-user-select: none; border-left: 1px solid var(--line); }
+.robot__pole:active { cursor: grabbing; }
+.robot__chwyc { position: absolute; right: 0; top: 0; white-space: nowrap; }
+@media (pointer: coarse) { .robot__chwyc { display: none; } }
 
 /* Polecenia: zwykłe przyciski z linią — nie cyjan, bo to nie droga do rezerwacji. */
-.polecenia { position: absolute; left: 0; right: 0; bottom: 32px; display: grid; gap: 12px; justify-items: end; text-align: right; }
-.polecenia__lista { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.polecenia { display: grid; gap: 12px; margin-top: auto; }
+.polecenia__lista { display: flex; flex-wrap: wrap; gap: 8px; }
 .polecenie { height: 40px; padding: 0 16px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--text);
   font: 500 0.875rem/1 var(--font-body); cursor: pointer; transition: border-color .2s, background-color .2s, color .2s; }
 .polecenie:hover { border-color: var(--text); }
 .polecenie:active { background: var(--text); color: var(--ink); }
 .polecenie:focus-visible, .polecenia__pauza:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.polecenia__pauza { padding: 0; border: 0; background: none; color: var(--text-2); cursor: pointer; font: 400 0.8125rem/1.5 var(--font-body);
+.polecenia__pauza { justify-self: start; padding: 0; border: 0; background: none; color: var(--text-2); cursor: pointer; font: 400 0.8125rem/1.5 var(--font-body);
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; text-decoration-color: var(--line-strong); }
 .polecenia__pauza:hover { color: var(--text); }
 @media (prefers-reduced-motion: reduce) { .polecenia { display: none; } }
 
 /* Dymek: przy głowie robota, póki trwa polecenie (pozycja z robot3d.js). */
-.dymek { position: fixed; left: 0; top: 0; z-index: 6; max-width: 260px; margin: 0; padding: 12px 16px; pointer-events: none;
+.dymek { position: fixed; left: 0; top: 0; z-index: 6; max-width: 300px; margin: 0; padding: var(--inset); pointer-events: none;
   transform: translate(var(--x, -999px), var(--y, 0px)); visibility: hidden;
   background: var(--text); color: var(--ink); font: 500 0.9375rem/1.35 var(--font-body); }
 .dymek--widoczny { visibility: visible; }
 
-/* Podpisy przy częściach ciała olbrzyma: warstwa na cały ekran, nad treścią, bez zdarzeń. */
-.hud-olbrzym { position: fixed; inset: 0; z-index: 6; pointer-events: none; overflow: hidden; }
-.hud { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 10px; margin: 0; max-width: 220px;
+/* Podpisy przy częściach ciała: w polu sceny, pozycja z robot3d.js. */
+.hud { position: absolute; left: 0; top: 0; z-index: 6; display: flex; align-items: center; gap: 10px; margin: 0; white-space: nowrap;
   transform: translate(var(--x, 0), calc(var(--y, 0) - 50%)); visibility: hidden;
   font: 500 0.6875rem/1.35 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
 .hud__kreska { flex: none; width: 40px; height: 1px; background: var(--text-2); }
 .hud__tekst { color: var(--text); }
 .hud--widoczny { visibility: visible; }
-.hud--lewo { flex-direction: row-reverse; text-align: right; transform: translate(calc(var(--x, 0) - 100%), calc(var(--y, 0) - 50%)); }
-@media (max-width: 1199px) { .hud-olbrzym { display: none; } }
+.hud--lewo { flex-direction: row-reverse; transform: translate(calc(var(--x, 0) - 100%), calc(var(--y, 0) - 50%)); }
 
 @media (max-width: 1023px) {
-  .hero--scena { grid-template-rows: auto auto; }
-  .hero__scena { grid-column: 1 / -1; grid-row: 2; min-height: 0; height: min(110vw, 64svh); margin: 0; }
-  .polecenia { bottom: 24px; justify-items: start; text-align: left; }
-  .polecenia__lista { justify-content: flex-start; }
+  .robot__uklad { grid-template-rows: auto auto auto minmax(0, 1fr) auto; }
+  .robot__tekst { display: contents; }
+  .robot__tekst .sec__meta, .robot__tekst .h2, .robot__czesci, .polecenia { grid-column: 1 / -1; }
+  .robot__tekst .sec__meta { grid-row: 1; } .robot__tekst .h2 { grid-row: 2; } .robot__czesci { grid-row: 3; }
+  .robot__pole { grid-row: 4; } .polecenia { grid-row: 5; }
+  .robot__tekst .sec__meta { padding-top: 24px; }
+  .robot__tekst .h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); margin-top: 8px; }
+  /* telefon: z listy widać tylko aktywną część — tekst zmienia się razem z kamerą */
+  .robot__czesci { border-top: 0; margin-top: 12px; padding-top: 0; }
+  .robot__czesci li { display: none; }
+  .robot[data-czesc="glowa"] li[data-czesc="glowa"], .robot[data-czesc="twarz"] li[data-czesc="twarz"], .robot[data-czesc="piers"] li[data-czesc="piers"],
+  .robot[data-czesc="rece"] li[data-czesc="rece"], .robot[data-czesc="nogi"] li[data-czesc="nogi"], .robot[data-czesc="stopy"] li[data-czesc="stopy"] { display: grid; }
+  .robot__pole { grid-column: 1 / -1; margin: 12px calc(-1 * var(--margin)); border-left: 0; }
+  .polecenia { padding-bottom: 24px; }
+  .polecenia__lista { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--margin)); padding-inline: var(--margin); }
+  .polecenia__lista::-webkit-scrollbar { display: none; }
+  .polecenie { flex: none; }
+  .hud { display: none; }
 }
 
-/* ══════════ Skala: 100+ wydarzeń i fakty ══════════
-   Na desktopie w lewych sześciu kolumnach — po prawej stoi w tle robot. */
+/* ══════════ Skala: 100+ wydarzeń i fakty ══════════ */
 .skala { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter);
   row-gap: 48px; align-items: end; padding-block: 48px 96px; }
-.skala__liczba, .skala__fakty { grid-column: 1 / span 6; }
+.skala__liczba { grid-column: 1 / span 7; }
+.skala__fakty { grid-column: 8 / -1; }
 .skala__cyfry { margin: 0 0 0 -0.04em; font: 400 clamp(7.5rem, 17vw, 15rem)/1 var(--font-display); letter-spacing: -.055em;
   color: var(--text); font-variant-numeric: tabular-nums; }
 .skala__opis { max-width: 30ch; margin: 24px 0 0; font: 400 clamp(1.25rem, 1.8vw, 1.625rem)/1.3 var(--font-display);
@@ -95,13 +112,14 @@ html:not(.js) .hud-olbrzym, .bez-3d .hud-olbrzym, .bez-3d .dymek { display: none
 }
 @media (max-width: 479px) { .skala__fakty { grid-template-columns: 1fr; gap: 32px; } }
 
-/* ══════════ 04 Zasady: bezpieczeństwo i kontakt z gośćmi ══════════ */
-@media (min-width: 1024px) { #zasady .wrap > * { max-width: calc((100% + var(--gutter)) * 6 / 12 - var(--gutter)); } }
-.zasady__glowa { display: grid; gap: 24px; margin-bottom: 64px; }
+/* ══════════ 05 Zasady: bezpieczeństwo i kontakt z gośćmi ══════════ */
+.zasady__glowa { display: grid; gap: 24px; margin-bottom: 64px; max-width: 64ch; }
 .zasady__glowa .sec__meta { margin-bottom: 8px; }
 .zasady__grupa { margin: 64px 0 24px; color: var(--text); }
-.zasady { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 48px var(--gutter); }
-.zasada { display: grid; gap: 16px; align-content: start; padding-top: var(--inset); border-top: 1px solid var(--line-strong); }
+.zasady { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px var(--gutter); }
+@media (max-width: 1023px) { .zasady { grid-template-columns: 1fr 1fr; } }
+.zasada { display: grid; gap: 16px; align-content: start; padding-top: var(--inset); border-top: 1px solid var(--line-strong); transition: border-color .3s; }
+.zasada:hover { border-top-color: var(--text); }
 .zasada__anim { aspect-ratio: 2 / 1; max-width: 360px; }
 .zasada__anim svg { display: block; width: 100%; height: 100%; overflow: visible; }
 @media (max-width: 767px) { .zasady { grid-template-columns: 1fr; } }
@@ -116,42 +134,56 @@ html:not(.js) .hud-olbrzym, .bez-3d .hud-olbrzym, .bez-3d .dymek { display: none
 .a-napis, .a-slowa text { fill: var(--text-2); font: 500 9px/1 var(--font-body); letter-spacing: .12em; text-anchor: middle; }
 .a-slowa text { fill: var(--text); font: 400 15px/1 var(--font-display); letter-spacing: 0; }
 
-/* operator i robot idą razem po trasie */
-.a-para { offset-path: path("M16 84 C 70 30, 130 120, 224 50"); animation: a-trasa 7s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
-@keyframes a-trasa { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+/* operator: tłum gęstnieje — operator staje obok robota; tłum rzednie — operator usuwa się w cień */
+.a-t1 { --dx: 30px; --dy: 16px; } .a-t2 { --dx: 34px; --dy: -13px; } .a-t3 { --dx: -29px; --dy: 18px; }
+.a-t4 { --dx: -34px; --dy: -16px; } .a-t5 { --dx: 0px; --dy: -26px; }
+.a-tlum .a-gosc { animation: a-tlok 6s cubic-bezier(.65, 0, .35, 1) infinite; }
+.a-t2 { animation-delay: .12s !important; } .a-t3 { animation-delay: .24s !important; } .a-t4 { animation-delay: .08s !important; } .a-t5 { animation-delay: .18s !important; }
+@keyframes a-tlok { 0%, 12% { transform: none; stroke: var(--text-2); } 34%, 58% { transform: translate(var(--dx), var(--dy)); stroke: var(--text); } 80%, 100% { transform: none; stroke: var(--text-2); } }
+.a-operator { animation: a-operator 6s cubic-bezier(.65, 0, .35, 1) infinite; }
+@keyframes a-operator { 0%, 14% { transform: translate(26px, 102px); } 34%, 58% { transform: translate(98px, 66px); } 80%, 100% { transform: translate(26px, 102px); } }
+.a-gesto, .a-luzno { visibility: hidden; animation: a-gesto 6s step-end infinite; }
+.a-luzno { animation-name: a-luzno; }
+@keyframes a-gesto { 0% { visibility: hidden; } 32% { visibility: visible; } 62% { visibility: hidden; } }
+@keyframes a-luzno { 0% { visibility: visible; } 16% { visibility: hidden; } 80% { visibility: visible; } }
 /* radar: wiązka obraca się, goście rozbłyskują, kiedy ich „widzi” */
-.a-wiazka { transform-origin: 120px 60px; animation: a-obrot 3.2s linear infinite; }
+.a-wiazka { transform-origin: 120px 60px; animation: a-obrot 2.2s linear infinite; }
+.a-ping { transform-origin: 120px 60px; animation: a-ping 2.2s cubic-bezier(.2, 0, 0, 1) infinite; }
+@keyframes a-ping { from { transform: scale(.15); opacity: 1; } to { transform: scale(1.15); opacity: 0; } }
 @keyframes a-obrot { to { transform: rotate(360deg); } }
-.a-gosc.a-g1, .a-gosc.a-g2, .a-gosc.a-g3, .a-gosc.a-g4 { animation: a-blysk 3.2s linear infinite; }
-.a-g1 { animation-delay: -2.6s !important; } .a-g2 { animation-delay: -0.4s !important; }
-.a-g3 { animation-delay: -1.2s !important; } .a-g4 { animation-delay: -2.0s !important; }
+.a-gosc.a-g1, .a-gosc.a-g2, .a-gosc.a-g3, .a-gosc.a-g4 { animation: a-blysk 2.2s linear infinite; }
+.a-g1 { animation-delay: -1.8s !important; } .a-g2 { animation-delay: -0.3s !important; }
+.a-g3 { animation-delay: -0.8s !important; } .a-g4 { animation-delay: -1.4s !important; }
 @keyframes a-blysk { 0%, 100% { fill: transparent; stroke: var(--text-2); } 4% { fill: var(--text); stroke: var(--text); } 30% { fill: transparent; stroke: var(--text-2); } }
 /* bateria: rozładowuje się, wymiana, znów pełna — pokaz trwa */
-.a-ogniwo { fill: var(--text); transform-origin: 66px 60px; animation: a-bateria 6s linear infinite; }
-@keyframes a-bateria { 0% { transform: scaleX(1); } 72% { transform: scaleX(.14); opacity: 1; } 76% { transform: scaleX(.14); opacity: 0; } 80% { transform: scaleX(1); opacity: 0; } 86%, 100% { transform: scaleX(1); opacity: 1; } }
-.a-wymiana { visibility: hidden; animation: a-wymiana 6s step-end infinite; }
-@keyframes a-wymiana { 0% { visibility: hidden; } 73% { visibility: visible; } 93% { visibility: hidden; } }
+.a-ogniwo { fill: var(--text); transform-origin: 66px 60px; animation: a-bateria 4s cubic-bezier(.5, 0, .5, 1) infinite; }
+@keyframes a-bateria { 0% { transform: scaleX(1); } 62% { transform: scaleX(.12); } 66% { transform: translateY(40px) scaleX(.12); opacity: 0; }
+  70% { transform: translateY(-40px) scaleX(1); opacity: 0; } 78%, 100% { transform: none; opacity: 1; } }
+.a-wymiana { visibility: hidden; animation: a-wymiana 4s step-end infinite; }
+@keyframes a-wymiana { 0% { visibility: hidden; } 62% { visibility: visible; } 92% { visibility: hidden; } }
 /* robot podchodzi po kolei do gości, każdy rozjaśnia się przy rozmowie */
-.a-robot { animation: a-podchodzi 8s cubic-bezier(.45, 0, .55, 1) infinite; }
+.a-robot { animation: a-podchodzi 6s cubic-bezier(.7, 0, .3, 1) infinite; }
+.a-ping2 { transform-box: fill-box; transform-origin: center; animation: a-ping 1s cubic-bezier(.2, 0, 0, 1) infinite; }
 @keyframes a-podchodzi {
   0%, 8% { transform: translate(56px, 40px); } 20%, 30% { transform: translate(96px, 76px); } 42%, 52% { transform: translate(150px, 40px); }
   64%, 74% { transform: translate(190px, 84px); } 88%, 100% { transform: translate(56px, 40px); } }
-.a-w1, .a-w2, .a-w3, .a-w4 { animation: a-rozmowa 8s linear infinite; }
-.a-w2 { animation-delay: 1.8s; } .a-w3 { animation-delay: 3.6s; } .a-w4 { animation-delay: 5.4s; }
+.a-w1, .a-w2, .a-w3, .a-w4 { animation: a-rozmowa 6s linear infinite; }
+.a-w2 { animation-delay: 1.35s; } .a-w3 { animation-delay: 2.7s; } .a-w4 { animation-delay: 4.05s; }
 @keyframes a-rozmowa { 0%, 1% { fill: var(--text); stroke: var(--text); } 12% { fill: var(--text); stroke: var(--text); } 20%, 100% { fill: transparent; stroke: var(--text-2); } }
 /* mowa: fala dźwięku i powitania w kolejnych językach */
-.a-fala rect { fill: var(--text); transform-box: fill-box; transform-origin: center; animation: a-fala 1.1s ease-in-out infinite alternate; }
-.a-fala rect:nth-child(odd) { animation-duration: .8s; }
-.a-fala rect:nth-child(3n) { animation-duration: 1.4s; }
+.a-fala rect { fill: var(--text); transform-box: fill-box; transform-origin: center; animation: a-fala .55s ease-in-out infinite alternate; }
+.a-fala rect:nth-child(odd) { animation-duration: .38s; }
+.a-fala rect:nth-child(3n) { animation-duration: .7s; }
 .a-fala rect:nth-child(4n+1) { animation-delay: -.5s; }
 @keyframes a-fala { from { transform: scaleY(.12); } to { transform: scaleY(1); } }
-.a-slowa text { visibility: hidden; animation: a-slowo 10s step-end infinite; }
-.a-slowa text:nth-child(2) { animation-delay: 2s; } .a-slowa text:nth-child(3) { animation-delay: 4s; }
-.a-slowa text:nth-child(4) { animation-delay: 6s; } .a-slowa text:nth-child(5) { animation-delay: 8s; }
-@keyframes a-slowo { 0% { visibility: visible; } 20% { visibility: hidden; } }
+.a-slowa text { visibility: hidden; animation: a-slowo 8s step-end infinite; }
+.a-slowa text:nth-child(2) { animation-delay: 1s; } .a-slowa text:nth-child(3) { animation-delay: 2s; } .a-slowa text:nth-child(4) { animation-delay: 3s; }
+.a-slowa text:nth-child(5) { animation-delay: 4s; } .a-slowa text:nth-child(6) { animation-delay: 5s; } .a-slowa text:nth-child(7) { animation-delay: 6s; }
+.a-slowa text:nth-child(8) { animation-delay: 7s; }
+@keyframes a-slowo { 0% { visibility: visible; } 12.5% { visibility: hidden; } }
 /* wiedza: wiersze „wpisują się” po kolei, kursor mruga */
-.a-wiersz { fill: var(--text-2); transform-box: fill-box; transform-origin: left center; animation: a-pisz 6s steps(24, end) infinite; }
-.a-r2 { animation-delay: .6s; } .a-r3 { animation-delay: 1.2s; } .a-r4 { animation-delay: 1.8s; }
+.a-wiersz { fill: var(--text-2); transform-box: fill-box; transform-origin: left center; animation: a-pisz 3.6s steps(18, end) infinite; }
+.a-r2 { animation-delay: .35s; } .a-r3 { animation-delay: .7s; } .a-r4 { animation-delay: 1.05s; }
 @keyframes a-pisz { 0% { transform: scaleX(0); } 25%, 85% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
 .a-kursor { animation: a-kursor 1s steps(1, end) infinite; }
 @keyframes a-kursor { 50% { opacity: 0; } }
@@ -160,7 +192,7 @@ html:not(.js) .hud-olbrzym, .bez-3d .hud-olbrzym, .bez-3d .dymek { display: none
 .ruch-stop [data-animacja] * { animation-play-state: paused !important; }
 .zasady__pauza { justify-self: start; }
 
-/* ══════════ 06 Występ: scena z robotem, który gra kolejne kroki ══════════ */
+/* ══════════ 07 Występ: scena z robotem, który gra kolejne kroki ══════════ */
 .wystep { align-items: start; }
 .wystep__lewa { grid-column: 1 / span 5; display: grid; gap: 48px; align-content: start; }
 .wystep .wystep__glowa { grid-column: auto; }
@@ -207,7 +239,7 @@ html:not(.js) .wystep__scena, .bez-3d .wystep__scena { display: none; }
   .js .wiersz { min-height: 40svh; }
 }
 
-/* ══════════ 08 Formaty i cena: kalkulator ══════════ */
+/* ══════════ 09 Formaty i cena: kalkulator ══════════ */
 .kalk { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 48px; align-items: start; }
 .kalk__formaty { grid-column: 1 / span 7; margin: 0; padding: 0; border: 0; min-width: 0; }
 .kalk__formaty > legend { padding: 0; margin-bottom: 24px; }

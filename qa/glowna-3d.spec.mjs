@@ -24,6 +24,8 @@ test.describe('robot 3D', () => {
     page.on('pageerror', (e) => bledy.push(e.message));
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(ADRES);
+    // dane robota ładują się dopiero po załadowaniu strony, przy zbliżaniu się do jego sceny
+    await page.locator('#robot').scrollIntoViewIfNeeded();
     await expect.poll(() => page.evaluate(() => document.documentElement.dataset.robot || ''), { timeout: 20000 }).toMatch(/gotowy|brak/);
     const stan = await page.evaluate(() => document.documentElement.dataset.robot);
     if (stan === 'gotowy') {
@@ -35,9 +37,7 @@ test.describe('robot 3D', () => {
       await page.locator('.hero [data-cta="hero"]').click({ trial: true });
     } else {
       await expect(page.locator('html')).toHaveClass(/bez-3d/);
-      await expect(page.locator('.hero__scena')).toBeHidden();
-      const r = await page.locator('.hero__media').boundingBox();
-      expect(r.height, 'zdjęcie zajmuje prawą połowę hero').toBeGreaterThan(500);
+      await expect(page.locator('#robot')).toBeHidden();
     }
     expect(bledy).toEqual([]);
   });
@@ -47,6 +47,7 @@ test.describe('polecenia i ruch', () => {
   test('przyciski poleceń: gest w dataLayer, dymek; „Zatrzymaj ruch” zatrzymuje robota i animacje kart', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(ADRES);
+    await page.evaluate(() => { const r = document.getElementById('robot'); scrollTo({ top: scrollY + r.getBoundingClientRect().top + 10, behavior: 'instant' }); });
     await expect.poll(() => page.evaluate(() => document.documentElement.dataset.robot || ''), { timeout: 20000 }).toMatch(/gotowy|brak/);
     if (await page.evaluate(() => document.documentElement.dataset.robot) === 'gotowy') {
       await page.locator('[data-robot-gest="tanczy"]').click();
@@ -94,6 +95,19 @@ test.describe('kalkulator ceny', () => {
     await expect(page.locator('#licznik')).toHaveText('43');
     // pola kalkulatora nie trafiają do zgłoszenia (są poza formularzem)
     expect(await page.evaluate(() => [...new FormData(document.getElementById('formularz')).keys()].includes('kalk_format'))).toBe(false);
+  });
+});
+
+test.describe('robot z bliska', () => {
+  test('przewijanie sceny podświetla kolejne części ciała', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(ADRES);
+    const sekcja = page.locator('#robot');
+    for (const [p, czesc] of [[0, 'glowa'], [0.25, 'piers'], [0.5, 'rece'], [0.75, 'nogi'], [0.97, 'stopy']]) {
+      await page.evaluate((p) => { const r = document.getElementById('robot'); const top = scrollY + r.getBoundingClientRect().top;
+        scrollTo({ top: top + (r.offsetHeight - innerHeight) * p, behavior: 'instant' }); }, p);
+      await expect(sekcja).toHaveAttribute('data-czesc', czesc);
+    }
   });
 });
 
