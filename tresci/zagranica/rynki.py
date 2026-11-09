@@ -705,6 +705,7 @@ TEKSTY_DE = {
     'Rozmawia w&nbsp;każdym języku': 'Er spricht jede Sprache',
     'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Er spricht Deutsch und jede andere Sprache, mit natürlicher Stimme, und wechselt während der Veranstaltung zwischen den Sprachen — auch wenn die Gäste aus mehreren Ländern kommen.',
+    'PROGRAM': 'PROGRAMM', 'PRELEGENCI': 'REDNER', 'OFERTA': 'ANGEBOT', 'PYTANIA': 'FRAGEN',
     'Zna Twoje wydarzenie': 'Er kennt Ihre Veranstaltung',
     'Przed eventem wgrywamy wiedzę: program, prelegentów, ofertę i&nbsp;najczęstsze pytania. Robot odpowiada gościom konkretnie i&nbsp;nawiązuje do tego, co dzieje się na sali.':
         'Vor dem Event spielen wir ihm das Wissen ein: Programm, Redner, Angebot und häufige Fragen. Der Roboter antwortet den Gästen konkret und geht auf das ein, was im Saal passiert.',
@@ -761,6 +762,7 @@ TEKSTY_LT = {
     'Rozmawia w&nbsp;każdym języku': 'Kalba bet kuria kalba',
     'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Kalba lietuviškai ir bet kuria kita kalba, natūraliu balsu, ir renginio metu perjungia kalbas — net tada, kai svečiai atvyko iš kelių šalių.',
+    'PROGRAM': 'PROGRAMA', 'PRELEGENCI': 'PRANEŠĖJAI', 'OFERTA': 'PASLAUGOS', 'PYTANIA': 'KLAUSIMAI',
     'Zna Twoje wydarzenie': 'Žino jūsų renginį',
     'Przed eventem wgrywamy wiedzę: program, prelegentów, ofertę i&nbsp;najczęstsze pytania. Robot odpowiada gościom konkretnie i&nbsp;nawiązuje do tego, co dzieje się na sali.':
         'Prieš renginį įkeliame žinias: programą, pranešėjus, paslaugas ir dažniausius klausimus. Robotas svečiams atsako konkrečiai ir reaguoja į tai, kas vyksta salėje.',

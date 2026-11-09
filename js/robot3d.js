@@ -602,11 +602,11 @@ void main() {
       const [bStaw, bLok] = st.strefa === 'robot' ? HUD_PKT[HUD_CZESC[sekcjaRobot.dataset.czesc]] || [] : [];
       const pk = bLok ? punktSwiata(IDX[bStaw], bLok) : punktSwiata(IDX.waist_yaw_joint, [0.1, 0, 0.17]);
       gl.uniform4f(U.uBlask, pk[0], pk[1], pk[2], branding ? 0.35 : bLok ? 0.22 : 0);
-      // punkty: na zbliżeniu drobne i gęste, w małej scenie większe
-      const px = st.strefa === 'robot' ? clamp(rr.height / 1600, 0.85, 1.7) * 2.6 : clamp(rr.height / 820, 0.55, 1.3) * (lekki ? 2.5 : 2.4);
+      // punkty rosną z robotem: mały robot (telefon) ma drobne punkty — inaczej zlewają się w białą plamę
+      const px = clamp(rr.height / 820, 0.3, 1.3) * (lekki ? 2.5 : 2.4);
       gl.uniform1f(U.uPx, px * Math.pow(dpr, 0.85));
       gl.uniform1f(U.uAlfa, wyglad.alfa);
-      gl.uniform1f(U.uJasnosc, st.strefa === 'robot' ? 1.45 : 1.15);
+      gl.uniform1f(U.uJasnosc, st.strefa === 'robot' ? lerp(0.9, 1.45, clamp((rr.height - 250) / 450, 0, 1)) : 1.15);
       // 1. przebieg: większe punkty tylko do bufora głębi — przód robota zasłania tył.
       gl.clear(gl.DEPTH_BUFFER_BIT);
       gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
