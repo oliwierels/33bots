@@ -33,7 +33,7 @@
   "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
   "skrypty": [
    "https://33bots.pl/js/glowna.js?v=e2370ccc",
-   "https://33bots.pl/js/robot3d.js?v=75f2105a"
+   "https://33bots.pl/js/robot3d.js?v=3b0636e4"
   ],
   "wiedza": [
    "WYDARZENIE",
@@ -41,6 +41,8 @@
    "OFERTA",
    "PYTANIA GOŚCI"
   ],
+  "mgla": true,
+  "meta": "rgb(255, 116, 220)",
   "bledy": []
  },
  "de": {
@@ -77,7 +79,7 @@
   "obietnica": "Ohne Anzahlung, Sie zahlen nach der Veranstaltung. Antwort in ca. 30 Minuten.",
   "skrypty": [
    "https://33bots.de/js/glowna.js?v=047daefa",
-   "https://33bots.de/js/robot3d.js?v=5f86088c"
+   "https://33bots.de/js/robot3d.js?v=b7771ca1"
   ],
   "wiedza": [
    "VERANSTALTUNG",
@@ -85,6 +87,8 @@
    "ANGEBOT",
    "GÄSTEFRAGEN"
   ],
+  "mgla": true,
+  "meta": "rgb(255, 116, 220)",
   "bledy": []
  },
  "lt": {
@@ -121,7 +125,7 @@
   "obietnica": "Be avanso, mokate po renginio. Atsakome maždaug per 30 minučių.",
   "skrypty": [
    "https://33bots.lt/js/glowna.js?v=a0f1dec1",
-   "https://33bots.lt/js/robot3d.js?v=dd1a6b0c"
+   "https://33bots.lt/js/robot3d.js?v=89ada0a7"
   ],
   "wiedza": [
    "RENGINYS",
@@ -129,6 +133,8 @@
    "PASLAUGOS",
    "KLAUSIMAI"
   ],
+  "mgla": true,
+  "meta": "rgb(255, 116, 220)",
   "bledy": []
  }
 }
