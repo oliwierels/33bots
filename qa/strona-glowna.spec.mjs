@@ -35,30 +35,34 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
       expect(await page.locator('h1').innerText()).toMatch(/wynajem robota humanoidalnego/i);
     });
 
-    // Wyjątek jest jeden: droga do rezerwacji. Poświata przycisków .btn--akcja i niebieska
-    // poświata karty formularza — reszta strony bez cieni i gradientów.
-    test('zero efektów: cienie, gradienty, filtry, animacje, zaokrąglenia — poza drogą do rezerwacji', async ({ page }) => {
+    // Warstwa koloru (11.2026): magenta, poświaty i żywe tło są częścią systemu — ale ostre
+    // narożniki, bez cieni tekstu, bez dodatkowych pseudoelementów poza tłem i scenami robota,
+    // a przy ograniczonym ruchu nic się nie rusza (ten describe ma reducedMotion: 'reduce').
+    test('kolor z umiarem: ostre narożniki, bez cieni tekstu, przy ograniczonym ruchu nic się nie rusza', async ({ page }) => {
       await otworz(page, vp, { przewin: true });
       const zle = await page.evaluate(() => {
         const bad = [];
+        const SCENY = '.robot__pole, .wystep__scena';
         for (const el of document.querySelectorAll('.nav, .nav *, .sec, .sec *, .stopka, .stopka *, .pasek, .pasek *, .cookies, .cookies *')) {
-          const przycisk = el.matches('.btn--akcja'), karta = el.matches('.rez .rez__form');
           for (const pseudo of [null, '::before', '::after']) {
             const s = getComputedStyle(el, pseudo);
             const nazwa = `${el.tagName.toLowerCase()}.${(el.getAttribute('class') || '').split(' ')[0]}${pseudo || ''}`;
-            if (pseudo && s.content !== 'none' && s.content !== 'normal') bad.push([nazwa, 'content']);
-            if (s.boxShadow !== 'none' && !(przycisk && !pseudo)) bad.push([nazwa, 'box-shadow']);
+            if (pseudo && s.content !== 'none' && s.content !== 'normal' && !(pseudo === '::before' && el.matches(SCENY))) bad.push([nazwa, 'content']);
             if (s.textShadow !== 'none') bad.push([nazwa, 'text-shadow']);
-            if (s.backgroundImage !== 'none' && !(karta && !pseudo)) bad.push([nazwa, 'background-image']);
-            if (s.filter !== 'none' || (s.backdropFilter && s.backdropFilter !== 'none')) bad.push([nazwa, 'filter']);
-            // animacje tylko w ilustracjach kart sekcji Zasady ([data-animacja]) — stoją przy ograniczonym ruchu
-            if (s.animationName !== 'none' && !el.closest('[data-animacja]')) bad.push([nazwa, 'animation']);
+            if (s.animationName !== 'none' && s.animationPlayState === 'running' && !el.closest('[data-animacja]')) bad.push([nazwa, 'animation']);
             if (parseFloat(s.borderTopLeftRadius) > 0) bad.push([nazwa, 'radius']);
           }
+        }
+        for (const pseudo of ['::before', '::after']) {
+          const s = getComputedStyle(document.body, pseudo);
+          if (s.animationName !== 'none') bad.push(['body' + pseudo, 'animation przy ograniczonym ruchu']);
         }
         return bad;
       });
       expect(zle).toEqual([]);
+      // tło: mgła z magentą pod treścią
+      const tlo = await page.evaluate(() => { const s = getComputedStyle(document.body, '::before'); return [s.position, s.zIndex, s.backgroundImage.includes('255, 61, 205')]; });
+      expect(tlo).toEqual(['fixed', '-1', true]);
     });
 
     test('cyjan tylko na drodze do rezerwacji: przyciski akcji, „Sprawdź termin” w menu, formularz', async ({ page }) => {
@@ -87,7 +91,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
         .filter((s) => getComputedStyle(s).backgroundColor === 'rgb(240, 240, 240)').map((s) => s.id));
       expect(jasne).toEqual(['case-study']);
       await expect(page.locator('#case-study .h2')).toHaveCSS('color', 'rgb(5, 5, 5)');
-      await expect(page.locator('#case-study .sec__meta')).toHaveCSS('color', 'rgb(92, 92, 92)');
+      await expect(page.locator('#case-study .sec__meta')).toHaveCSS('color', 'rgb(163, 18, 127)'); // magenta na jasnym tle
     });
 
     test('każde zdjęcie raz w DOM, także przy otwartej szufladzie', async ({ page }) => {
@@ -155,8 +159,8 @@ test.describe('nawigacja', () => {
     await expect(page.locator('.nav__cta')).toHaveText('Sprawdź termin');
     await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
     await page.evaluate(() => scrollTo({ top: 1200, behavior: 'instant' }));
-    await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgb(5, 5, 5)');
-    await expect(page.locator('#nav')).toHaveCSS('border-bottom-color', 'rgb(31, 31, 31)');
+    await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgba(5, 5, 5, 0.78)'); // szkło nad mgłą
+    await expect(page.locator('#nav')).toHaveCSS('border-bottom-color', 'rgb(34, 32, 42)');
   });
 
   test('mobile: menu otwiera się, zamyka klawiszem Esc i po kliknięciu linku', async ({ page }) => {

@@ -135,6 +135,8 @@ void main() {
   if (abs(k - uTors) < 0.5 && logo < 0.5 && lp.x > 0.04 && abs(lp.y) < 0.11 && lp.z > 0.11 && lp.z < 0.222) j *= 0.28;
   // uBarwa: biel na dużym ekranie, przygaszone srebro na telefonie (mała scena nie razi w oczy)
   vec3 kol = vec3(j * uJasnosc) * uBarwa;
+  // hologram: krawędzie bryły i linia skanu świecą magentą (marka), front zostaje biały
+  if (i != 25) kol += vec3(1.0, 0.24, 0.8) * (0.5 * kontur * przod + 0.55 * skan) * uBarwa.z * uJasnosc;
   kol = mix(kol, uBarwa * (1.05 + 0.5 * uLogo), logo);
   kol = mix(kol, vec3(0.05, 0.62, 1.0) * uLed, led); // turkusowy błękit jak LED w G1, bez wybielenia
   vK = mix(kol, vec3(0.95) * uBarwa, t);

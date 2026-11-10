@@ -73,7 +73,9 @@ export async function naruszeniaOdstepow(page, minimum) {
         && (['fixed', 'sticky'].includes(s.position) || r.top + scrollY <= 1);
       if (kontrolka || plakietka || naglowekStrony) continue;
 
-      const tlo = alfa(s.backgroundColor) > 0.02 || s.backgroundImage !== 'none';
+      // Gradient przycięty do tekstu (background-clip: text) to kolor liter, nie tło kontenera.
+      const tekstGradient = s.backgroundClip === 'text' || s.webkitBackgroundClip === 'text';
+      const tlo = !tekstGradient && (alfa(s.backgroundColor) > 0.02 || s.backgroundImage !== 'none');
       const ramka = {};
       for (const [st, St] of [['top', 'Top'], ['right', 'Right'], ['bottom', 'Bottom'], ['left', 'Left']]) {
         ramka[st] = parseFloat(s[`border${St}Width`]) >= 1 && s[`border${St}Style`] !== 'none'
