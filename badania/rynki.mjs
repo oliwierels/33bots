@@ -38,7 +38,7 @@ for (const [kod, adres, machanie] of RYNKI) {
     obietnica: document.querySelector('.termin__obietnica')?.textContent.trim(),
     skrypty: [...document.scripts].map((s) => s.src).filter((s) => /glowna|robot3d/.test(s)),
     wiedza: [...document.querySelectorAll('[data-animacja="wiedza"] text')].map((t) => t.textContent),
-    mgla: getComputedStyle(document.body, '::before').backgroundImage.includes('255, 61, 205'),
+    mgla: getComputedStyle(document.body, '::before').backgroundImage.includes('96, 88, 255'), roz: getComputedStyle(document.body, '::before').backgroundImage.includes('255, 61, 205'), tytul: getComputedStyle(document.querySelector('.hero .display')).color,
     meta: getComputedStyle(document.querySelector('.sec__meta')).color,
   }));
   wynik[kod] = { http: odp.status(), robot, dymek, dymekOk: dymek === machanie, ...dane, bledy };
