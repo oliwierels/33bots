@@ -36,11 +36,14 @@
 :root {
   --ink: #050505; --surface: #100f14; --text: #f5f5f7; --text-2: #a0a0aa;
   --line: #22202a; --line-strong: #353240; --accent: #6fd6ff;
-  /* Magenta: drugi akcent marki — numery sekcji, liczby, wyróżnienia, ilustracje, robot.
-     Cyjan zostaje wyłącznie na drodze do rezerwacji. --magenta-tekst: kontrast ≥ 7:1 na czerni. */
-  --magenta: #ff3dcd; --magenta-tekst: #ff74dc; --fiolet: #9a5cff;
-  --magenta-mgla: rgba(255, 61, 205, .17); --fiolet-mgla: rgba(154, 92, 255, .13);
-  --gradient-tekst: linear-gradient(172deg, #ffffff 34%, #ffc6f0 58%, #ff74dc 80%, #c29cff 100%);
+  /* System kolorów — każdy kolor znaczy jedno:
+     • biel i szarości = treść (tytuły, opisy, liczby, nagłówek, stopka);
+     • cyjan (--accent) = Twój ruch: rezerwacja i kontakt, zaznaczenie, fokus;
+     • magenta (--robot) = robot i tylko robot: robot 3D, jego światło, robot na
+       ilustracjach, jego mowa i polecenia dla niego (css/glowna.css);
+     • tło = chłodna, neutralna mgła (indygo), bez różu. */
+  --robot: #ff3dcd; --robot-tekst: #ff74dc;
+  --mgla-1: rgba(96, 88, 255, .085); --mgla-2: rgba(70, 64, 160, .11);
   /* Droga do rezerwacji: cyjan jako tekst (w jasnym motywie ciemniejszy, żeby był czytelny) i tło karty formularza. */
   --accent-tekst: #6fd6ff; --karta: #090c0f;
   /* Tekst ciągły w artykułach — jaśniejszy od --text-2, łagodniejszy od --text. */
@@ -416,7 +419,7 @@ fieldset.pole > legend { margin-bottom: 8px; }
 .pole textarea { resize: vertical; min-height: 120px; }
 .pole input:focus, .pole textarea:focus { outline: none; border-bottom-color: var(--accent); }
 .pole input:disabled { opacity: .4; }
-.pole ::placeholder { color: #6b6b6b; }
+.pole ::placeholder { color: #8a8a94; }
 .pole[data-blad] input, .pole[data-blad] textarea { border-bottom-color: #ff8a80; }
 .pole__blad { margin: 0; font-size: 0.8125rem; color: #ff8a80; }
 .pole__blad[hidden] { display: none; }
@@ -678,21 +681,19 @@ html[data-a11y-motion="off"] *, html[data-a11y-motion="off"] *::before, html[dat
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 
-/* ══════════ Warstwa koloru (11.2026): magenta, głębia, żywe tło ══════════
-   Tło nie jest już płaską czernią: dryfująca mgła (magenta, fiolet, odrobina cyjanu),
-   drobne ziarno i co kilkanaście sekund przechodząca smuga światła — bardzo subtelnie,
-   pod treścią (z-index -1). Stoi przy ograniczonym ruchu, po „Zatrzymaj ruch”
-   (html.ruch-stop) i „Animationen: Aus”; w jasnym motywie i wysokim kontraście
-   panelu dostępności jej nie ma. Animowany jest tylko transform (warstwa GPU). */
+/* ══════════ Tło (11.2026): mgła, ziarno, smuga światła ══════════
+   Tło nie jest płaską czernią: chłodna mgła (indygo, odrobina błękitu), drobne ziarno i co
+   kilkanaście sekund przechodząca smuga światła — bardzo subtelnie, pod treścią (z-index -1).
+   Stoi przy ograniczonym ruchu, po „Zatrzymaj ruch” (html.ruch-stop) i „Animationen: Aus”;
+   w jasnym motywie i wysokim kontraście panelu dostępności jej nie ma. Tylko transform. */
 body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; }
 body::before {
   inset: -10vmax;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='z'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23z)'/%3E%3C/svg%3E"),
-    radial-gradient(34vmax 26vmax at 12% 16%, var(--magenta-mgla), transparent 70%),
-    radial-gradient(42vmax 32vmax at 90% 70%, var(--fiolet-mgla), transparent 70%),
-    radial-gradient(26vmax 18vmax at 64% 6%, rgba(111, 214, 255, .06), transparent 70%),
-    radial-gradient(30vmax 22vmax at 28% 96%, rgba(255, 61, 205, .09), transparent 70%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='z'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23z)'/%3E%3C/svg%3E"),
+    radial-gradient(36vmax 26vmax at 12% 14%, var(--mgla-1), transparent 70%),
+    radial-gradient(44vmax 32vmax at 90% 72%, var(--mgla-2), transparent 70%),
+    radial-gradient(26vmax 18vmax at 66% 6%, rgba(111, 214, 255, .045), transparent 70%);
   animation: tlo-mgla 72s ease-in-out infinite alternate;
 }
 @keyframes tlo-mgla {
@@ -702,7 +703,7 @@ body::before {
 }
 body::after {
   inset: -20% -60%;
-  background: linear-gradient(112deg, transparent 43%, rgba(255, 116, 220, .035) 47.5%, rgba(255, 255, 255, .05) 50%, rgba(194, 156, 255, .03) 52.5%, transparent 57%);
+  background: linear-gradient(112deg, transparent 44%, rgba(255, 255, 255, .04) 50%, transparent 56%);
   transform: translate3d(-75%, 0, 0);
   animation: tlo-smuga 21s cubic-bezier(.55, 0, .45, 1) infinite;
 }
@@ -713,46 +714,15 @@ html[data-a11y-motion="off"] body::after { display: none; animation: none; }
 html[data-a11y-theme="light"] body::before, html[data-a11y-theme="light"] body::after,
 html[data-a11y-contrast="high"] body::before, html[data-a11y-contrast="high"] body::after { display: none; }
 
-::selection { background: var(--magenta); color: #050505; }
+/* Powierzchnie przeglądarki z palety: zaznaczenie i kursor to Twój ruch (cyjan), pasek przewijania w tonie tła. */
+::selection { background: rgba(111, 214, 255, .3); color: #ffffff; }
+html { scrollbar-color: var(--line-strong) var(--ink); }
+input, textarea { caret-color: var(--accent); }
+html[data-a11y-theme="light"] { --robot: #c2189a; --robot-tekst: #a3127f; }
+html[data-a11y-theme="light"] ::selection { background: rgba(10, 106, 140, .22); color: #101014; }
 
-/* Numery sekcji i nadtytuły: magenta prowadzi przez stronę */
-.sec__meta { color: var(--magenta-tekst); }
-.sec--jasna { --magenta-tekst: #a3127f; }
-html[data-a11y-theme="light"] { --magenta-tekst: #a3127f; --magenta: #c2189a; }
-html[data-a11y-contrast="high"] { --magenta-tekst: #ffa6ea; }
-html[data-a11y-theme="light"][data-a11y-contrast="high"] { --magenta-tekst: #7a0a5e; --magenta: #8a0c6a; }
-
-/* Najważniejsze zdanie strony: od bieli do magenty i fioletu */
-.hero .display { background: var(--gradient-tekst); -webkit-background-clip: text; background-clip: text; color: transparent; }
-html[data-a11y-theme="light"] .hero .display, html[data-a11y-contrast="high"] .hero .display { background: none; color: var(--text); }
-
-/* Zdjęcia: głębia i magentowa poświata */
-.hero__media { box-shadow: 0 48px 140px -48px rgba(255, 61, 205, .42), 0 0 0 1px rgba(255, 255, 255, .05); }
-.kadr, .realizacja picture { display: block; transition: box-shadow .45s cubic-bezier(.2, 0, 0, 1); }
-.kadr:hover, .kadr:focus-visible, .realizacja:hover picture, .realizacja:focus-visible picture {
-  box-shadow: 0 0 0 1px rgba(255, 61, 205, .7), 0 28px 90px -28px rgba(255, 61, 205, .6); }
-
-/* Linki i nawigacja */
-.link:hover { text-decoration-color: var(--magenta); }
-.nav--tlo { background: rgba(5, 5, 5, .78); -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
-.nav__menu a:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--magenta); text-underline-offset: 8px; text-decoration-thickness: 1px; }
-
-/* Liczby i kroki */
-.krok > .label:first-child, .wiersz__nr { color: var(--magenta-tekst); }
-.krok { transition: border-color .3s; }
-.krok:hover { border-top-color: var(--magenta); }
-.faq__q:hover .faq__znak span, .faq__q[aria-expanded="true"] .faq__znak span { background: var(--magenta); }
-.faq__q:hover { color: #ffffff; }
-
-/* Kontakt i karty artykułów: powierzchnia z odrobiną koloru zamiast płaskiej szarości */
-.sec--powierzchnia { background: radial-gradient(70% 60% at 0% 0%, rgba(255, 61, 205, .08), transparent 70%), rgba(16, 15, 20, .86); }
-.art__cta, .ramka { background-image: radial-gradient(90% 120% at 100% 0%, rgba(255, 61, 205, .12), transparent 60%); border-top: 1px solid rgba(255, 61, 205, .55); }
-
-/* Stopka: znak marki w gradiencie */
-.stopka__logo { background: var(--gradient-tekst); -webkit-background-clip: text; background-clip: text; color: transparent; }
-html[data-a11y-theme="light"] .stopka__logo, html[data-a11y-contrast="high"] .stopka__logo { background: none; color: var(--text); }
-/* Poradniki: nadtytuł artykułu jak numer sekcji */
-.art__tekst > .label:first-child { color: var(--magenta-tekst); }
-/* Jasny motyw panelu dostępności (.de): szkło i powierzchnie w jasnych odcieniach */
-html[data-a11y-theme="light"] .nav--tlo { background: rgba(255, 255, 255, .9); }
+/* Nawigacja nad mgłą: półprzezroczysta, żeby treść pod nią nie mieszała się z linkami */
+.nav--tlo { background: rgba(5, 5, 5, .82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+html[data-a11y-theme="light"] .nav--tlo { background: rgba(255, 255, 255, .92); }
+.sec--powierzchnia { background: rgba(16, 15, 20, .88); }
 html[data-a11y-theme="light"] .sec--powierzchnia { background: var(--surface); }

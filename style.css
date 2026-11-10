@@ -2259,22 +2259,20 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
 @media (min-width: 1024px) { :root { --inset: 32px; } }
 
-/* ══════════ Warstwa koloru (11.2026): magenta i żywe tło — jak na stronie głównej ══════════
-   Mgła (magenta, fiolet, odrobina cyjanu), ziarno i co kilkanaście sekund smuga światła
-   pod treścią; stoją przy ograniczonym ruchu. Magenta: nadtytuły, kropka w pigułce,
-   nagłówek strony, numery i ikony FAQ. */
+/* ══════════ Tło (11.2026): mgła, ziarno, smuga światła — jak na stronie głównej ══════════
+   Chłodna mgła (indygo, odrobina błękitu), ziarno i co kilkanaście sekund smuga światła pod
+   treścią; stoją przy ograniczonym ruchu. Bez różu: magenta należy do robota 3D na stronie głównej. */
 html { background: #050505; }
 body { background: transparent; }
-::selection { background: #ff3dcd; color: #050505; }
+::selection { background: rgba(111, 214, 255, .3); color: #ffffff; }
 body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; }
 body::before {
   inset: -10vmax;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='z'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23z)'/%3E%3C/svg%3E"),
-    radial-gradient(34vmax 26vmax at 12% 16%, rgba(255, 61, 205, .17), transparent 70%),
-    radial-gradient(42vmax 32vmax at 90% 70%, rgba(154, 92, 255, .13), transparent 70%),
-    radial-gradient(26vmax 18vmax at 64% 6%, rgba(111, 214, 255, .06), transparent 70%),
-    radial-gradient(30vmax 22vmax at 28% 96%, rgba(255, 61, 205, .09), transparent 70%);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='z'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23z)'/%3E%3C/svg%3E"),
+    radial-gradient(36vmax 26vmax at 12% 14%, rgba(96, 88, 255, .085), transparent 70%),
+    radial-gradient(44vmax 32vmax at 90% 72%, rgba(70, 64, 160, .11), transparent 70%),
+    radial-gradient(26vmax 18vmax at 66% 6%, rgba(111, 214, 255, .045), transparent 70%);
   animation: tlo-mgla 72s ease-in-out infinite alternate;
 }
 @keyframes tlo-mgla {
@@ -2284,15 +2282,9 @@ body::before {
 }
 body::after {
   inset: -20% -60%;
-  background: linear-gradient(112deg, transparent 43%, rgba(255, 116, 220, .035) 47.5%, rgba(255, 255, 255, .05) 50%, rgba(194, 156, 255, .03) 52.5%, transparent 57%);
+  background: linear-gradient(112deg, transparent 44%, rgba(255, 255, 255, .04) 50%, transparent 56%);
   transform: translate3d(-75%, 0, 0);
   animation: tlo-smuga 21s cubic-bezier(.55, 0, .45, 1) infinite;
 }
 @keyframes tlo-smuga { 0%, 66% { transform: translate3d(-75%, 0, 0); } 100% { transform: translate3d(75%, 0, 0); } }
 @media (prefers-reduced-motion: reduce) { body::before { animation: none !important; } body::after { display: none; animation: none !important; } }
-.hero__eyebrow::before { background: #ff3dcd !important; box-shadow: 0 0 12px rgba(255, 61, 205, .8); }
-.hero__title { background: linear-gradient(172deg, #ffffff 40%, #ffc6f0 64%, #ff74dc 86%, #c29cff 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent; }
-.section-header .tag, .tag { color: #ff74dc; border-color: rgba(255, 61, 205, .45); }
-.faq-q__icon { color: #ff74dc; }
-.tile:hover { border-color: rgba(255, 61, 205, .55); box-shadow: 0 30px 90px -40px rgba(255, 61, 205, .55); }

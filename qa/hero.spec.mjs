@@ -23,8 +23,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     const bodyText = await page.locator('body').innerText();
     expect(bodyText).not.toMatch(/\bDOF\b|M\/S|132\s?CM|✓|darmow|Najlepsze ceny|10×/i);
 
-    // 4. hero i pasek dowodu: ostre narożniki, bez cieni tekstu i filtrów; kolor daje gradient
-    //    najważniejszego zdania, poświata zdjęcia i mgła w tle (body::before z magentą)
+    // 4. hero i pasek dowodu: ostre narożniki, bez cieni tekstu i filtrów
     const offenders = await page.evaluate(() => {
       const bad = [];
       for (const el of document.querySelectorAll('.hero, .hero *, .proof, .proof *')) {
@@ -39,8 +38,11 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
       return bad;
     });
     expect(offenders).toEqual([]);
-    expect(await page.evaluate(() => getComputedStyle(document.querySelector('.hero .display')).backgroundClip)).toBe('text');
-    expect(await page.evaluate(() => getComputedStyle(document.body, '::before').backgroundImage)).toContain('255, 61, 205');
+    // najważniejsze zdanie w bieli (treść), pod spodem chłodna mgła bez różu
+    await expect(page.locator('.hero .display')).toHaveCSS('color', 'rgb(245, 245, 247)');
+    const mgla = await page.evaluate(() => getComputedStyle(document.body, '::before').backgroundImage);
+    expect(mgla).toContain('96, 88, 255');
+    expect(mgla).not.toContain('255, 61, 205');
 
     // 5. brak poziomego przewijania
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

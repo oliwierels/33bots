@@ -60,9 +60,31 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
         return bad;
       });
       expect(zle).toEqual([]);
-      // tło: mgła z magentą pod treścią
-      const tlo = await page.evaluate(() => { const s = getComputedStyle(document.body, '::before'); return [s.position, s.zIndex, s.backgroundImage.includes('255, 61, 205')]; });
-      expect(tlo).toEqual(['fixed', '-1', true]);
+      // tło: chłodna mgła pod treścią (bez różu)
+      const tlo = await page.evaluate(() => { const s = getComputedStyle(document.body, '::before'); return [s.position, s.zIndex, s.backgroundImage.includes('96, 88, 255'), s.backgroundImage.includes('255, 61, 205')]; });
+      expect(tlo).toEqual(['fixed', '-1', true, false]);
+    });
+
+    // System kolorów: biel = treść, cyjan = rezerwacja, magenta = robot i tylko robot.
+    test('magenta tylko przy robocie, żadnego tekstu w gradiencie', async ({ page }) => {
+      await otworz(page, vp, { przewin: true });
+      const zle = await page.evaluate(() => {
+        const MAGENTA = ['rgb(255, 61, 205)', 'rgb(255, 116, 220)'];
+        const ROBOT = '#robot, .wystep__scena, [data-animacja], .dymek';
+        const bad = [];
+        for (const el of document.querySelectorAll('body *')) {
+          const s = getComputedStyle(el);
+          const nazwa = `${el.tagName.toLowerCase()}.${(el.getAttribute('class') || '').split(' ')[0]}`;
+          if (s.backgroundClip === 'text' || s.webkitBackgroundClip === 'text') bad.push([nazwa, 'gradient w tekście']);
+          if (el.closest(ROBOT)) continue;
+          for (const w of ['color', 'backgroundColor', 'borderTopColor', 'borderBottomColor', 'borderLeftColor', 'borderRightColor', 'textDecorationColor', 'fill', 'stroke']) {
+            if (MAGENTA.includes(s[w])) bad.push([nazwa, w]);
+          }
+          if (/255, 61, 205|255, 116, 220/.test(s.backgroundImage + s.boxShadow)) bad.push([nazwa, 'poświata']);
+        }
+        return bad;
+      });
+      expect(zle).toEqual([]);
     });
 
     test('cyjan tylko na drodze do rezerwacji: przyciski akcji, „Sprawdź termin” w menu, formularz', async ({ page }) => {
@@ -91,7 +113,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 768, height: 1024 }, { 
         .filter((s) => getComputedStyle(s).backgroundColor === 'rgb(240, 240, 240)').map((s) => s.id));
       expect(jasne).toEqual(['case-study']);
       await expect(page.locator('#case-study .h2')).toHaveCSS('color', 'rgb(5, 5, 5)');
-      await expect(page.locator('#case-study .sec__meta')).toHaveCSS('color', 'rgb(163, 18, 127)'); // magenta na jasnym tle
+      await expect(page.locator('#case-study .sec__meta')).toHaveCSS('color', 'rgb(92, 92, 92)');
     });
 
     test('każde zdjęcie raz w DOM, także przy otwartej szufladzie', async ({ page }) => {
@@ -159,7 +181,7 @@ test.describe('nawigacja', () => {
     await expect(page.locator('.nav__cta')).toHaveText('Sprawdź termin');
     await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
     await page.evaluate(() => scrollTo({ top: 1200, behavior: 'instant' }));
-    await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgba(5, 5, 5, 0.78)'); // szkło nad mgłą
+    await expect(page.locator('#nav')).toHaveCSS('background-color', 'rgba(5, 5, 5, 0.82)'); // półprzezroczysta nad mgłą
     await expect(page.locator('#nav')).toHaveCSS('border-bottom-color', 'rgb(34, 32, 42)');
   });
 
