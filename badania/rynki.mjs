@@ -23,6 +23,7 @@ for (const [kod, adres, machanie] of RYNKI) {
     await p.waitForTimeout(600);
     dymek = await p.locator('#robotDymek').textContent();
     await p.screenshot({ path: `badania/wyniki/zywo/robot-${kod}.png` });
+    await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(1200); await p.screenshot({ path: `badania/wyniki/zywo/hero-${kod}.png` });
   }
   const kalk = p.locator('#kalkulator');
   await kalk.scrollIntoViewIfNeeded();
@@ -37,6 +38,8 @@ for (const [kod, adres, machanie] of RYNKI) {
     obietnica: document.querySelector('.termin__obietnica')?.textContent.trim(),
     skrypty: [...document.scripts].map((s) => s.src).filter((s) => /glowna|robot3d/.test(s)),
     wiedza: [...document.querySelectorAll('[data-animacja="wiedza"] text')].map((t) => t.textContent),
+    mgla: getComputedStyle(document.body, '::before').backgroundImage.includes('255, 61, 205'),
+    meta: getComputedStyle(document.querySelector('.sec__meta')).color,
   }));
   wynik[kod] = { http: odp.status(), robot, dymek, dymekOk: dymek === machanie, ...dane, bledy };
   await p.close();
