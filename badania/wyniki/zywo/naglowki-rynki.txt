@@ -2,7 +2,7 @@
 HTTP/2 200 
 cache-control: public, max-age=31536000
 content-type: text/css
-content-length: 22473
+content-length: 21033
 == 33bots.de/robot/g1.bin
 HTTP/2 200 
 content-type: application/octet-stream
@@ -15,7 +15,7 @@ content-length: 254748
 HTTP/2 200 
 cache-control: public, max-age=31536000
 content-type: text/css
-content-length: 22473
+content-length: 21033
 == 33bots.lt/robot/g1.bin
 HTTP/2 200 
 content-type: application/octet-stream

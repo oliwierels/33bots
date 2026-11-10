@@ -28,7 +28,7 @@
    "11 / 13",
    "12 / 13"
   ],
-  "kalk": "3 dni · cena netto | od | 14 025 zł | 3 × 4 675 zł zamiast 3 × 5 500 zł — oszczędzasz 2 475 zł.",
+  "kalk": "3 dni · cena netto | od | 9 350 zł | 3 × 4 675 zł zamiast 3 × 5 500 zł — oszczędzasz 2 475 zł.",
   "tel": "tel:+48531408004",
   "obietnica": "Bez zaliczki, płacisz po wydarzeniu. Odpowiadamy w ciągu ok. 30 minut.",
   "skrypty": [
@@ -42,7 +42,9 @@
    "PYTANIA GOŚCI"
   ],
   "mgla": true,
-  "meta": "rgb(255, 116, 220)",
+  "roz": false,
+  "tytul": "rgb(245, 245, 247)",
+  "meta": "rgb(160, 160, 170)",
   "bledy": []
  },
  "de": {
@@ -88,7 +90,9 @@
    "GÄSTEFRAGEN"
   ],
   "mgla": true,
-  "meta": "rgb(255, 116, 220)",
+  "roz": false,
+  "tytul": "rgb(245, 245, 247)",
+  "meta": "rgb(160, 160, 170)",
   "bledy": []
  },
  "lt": {
@@ -134,7 +138,9 @@
    "KLAUSIMAI"
   ],
   "mgla": true,
-  "meta": "rgb(255, 116, 220)",
+  "roz": false,
+  "tytul": "rgb(245, 245, 247)",
+  "meta": "rgb(160, 160, 170)",
   "bledy": []
  }
 }
