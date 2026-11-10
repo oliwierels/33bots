@@ -245,6 +245,8 @@ for (const m of RYNKI) {
       const kalk = page.locator('#kalkulator');
       await kalk.scrollIntoViewIfNeeded();
       await kalk.locator('input[value="dni"]').check({ force: true });
+      await expect(page.locator('#kalkDni')).toBeVisible();
+      await expect(page.locator('#kalkEtykieta')).toContainText(m.t.kalkDni.replace('3', '2'));
       await kalk.locator('[data-dni="1"]').click();
       await expect(page.locator('#kalkEtykieta')).toContainText(m.t.kalkDni);
       await expect.poll(async () => twarde(await page.locator('#kalkKwota').innerText() + await page.locator('#kalkZl').innerText())).toBe(m.kalkTrzyDni);
@@ -575,7 +577,7 @@ test.describe('33bots.de — panel dostępności', () => {
       await expect(page.locator('html')).toHaveAttribute('data-a11y-font', 'large');
       expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('18px');
       await panel.locator('[data-a11y="theme"][data-value="light"]').click();
-      await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+      await expect(page.locator('html')).toHaveCSS('background-color', 'rgb(255, 255, 255)'); // tło na <html>, <body> przezroczyste (mgła)
       await expect(panel.locator('[data-a11y="theme"][data-value="light"]')).toHaveAttribute('aria-pressed', 'true');
       await page.locator('#a11yReset').click();
       await expect(page.locator('html')).toHaveAttribute('data-a11y-theme', 'dark');

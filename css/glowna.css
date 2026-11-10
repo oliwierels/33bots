@@ -276,3 +276,48 @@ html:not(.js) .wystep__scena, .bez-3d .wystep__scena { display: none; }
   .kalk__formaty, .kalk__wynik { grid-column: 1 / -1; }
   .kalk__wynik { position: static; }
 }
+
+/* ══════════ Warstwa koloru (11.2026): magenta na stronie głównej ══════════
+   Robot i to, co robi, świeci magentą: aktywna część ciała, podpisy, polecenia,
+   ilustracje w kartach zasad, kadr sceny występu, wynik kalkulatora, skala. */
+.skala__cyfry { background: linear-gradient(170deg, #ffffff 22%, #ffb8ec 52%, #ff74dc 76%, #b98cff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fakt__liczba { color: var(--magenta-tekst); }
+.fakt { transition: border-color .3s; }
+.fakt:hover { border-top-color: var(--magenta); }
+html[data-a11y-theme="light"] .skala__cyfry, html[data-a11y-contrast="high"] .skala__cyfry { background: none; color: var(--text); }
+
+/* robot z bliska: scena jak na estradzie — magentowe światło pod robotem, fiolet w głębi */
+.robot__pole::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(46% 20% at 50% 94%, rgba(255, 61, 205, .26), transparent 72%),
+    radial-gradient(52% 54% at 50% 42%, rgba(154, 92, 255, .10), transparent 72%); }
+.robot[data-czesc="glowa"] li[data-czesc="glowa"] .label, .robot[data-czesc="twarz"] li[data-czesc="twarz"] .label,
+.robot[data-czesc="piers"] li[data-czesc="piers"] .label, .robot[data-czesc="rece"] li[data-czesc="rece"] .label,
+.robot[data-czesc="nogi"] li[data-czesc="nogi"] .label, .robot[data-czesc="stopy"] li[data-czesc="stopy"] .label { color: var(--magenta-tekst); }
+.robot .hud__kreska { background: var(--magenta); }
+.polecenie:hover { border-color: var(--magenta); box-shadow: 0 0 28px -8px rgba(255, 61, 205, .75); }
+.polecenie:active { background: var(--magenta); border-color: var(--magenta); color: #050505; }
+.dymek { box-shadow: 0 22px 70px -22px rgba(255, 61, 205, .8), inset 3px 0 0 var(--magenta); }
+
+/* zasady: robot w ilustracjach zawsze magentowy, goście i operator w bieli i szarości */
+.zasada:hover { border-top-color: var(--magenta); }
+.a-pelny { fill: var(--magenta); }
+.a-ping, .a-ping2 { stroke: var(--magenta); }
+.a-wiazka .a-linia { stroke: var(--magenta); }
+.a-wgraj { fill: var(--magenta); }
+.a-fala rect:nth-child(3n + 1) { fill: var(--magenta); }
+
+/* występ: kadr i numer aktywnego kroku */
+.wystep__rog { border-color: var(--magenta); }
+.js .wiersz--aktywny .wiersz__nr { color: var(--magenta-tekst); }
+.wystep__scena::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(48% 22% at 50% 96%, rgba(255, 61, 205, .2), transparent 72%); }
+
+/* kalkulator: wynik z magentową poświatą, wybrany format zaznaczony magentą */
+.kalk__wynik { background: radial-gradient(120% 90% at 100% 0%, rgba(255, 61, 205, .16), transparent 62%), var(--surface);
+  box-shadow: inset 0 1px 0 rgba(255, 61, 205, .6); }
+.format input:checked ~ .format__glowa .format__znak { background: var(--magenta); border-color: var(--magenta); }
+#kalkKwota { background: linear-gradient(170deg, #ffffff 30%, #ff9be6 75%, #c29cff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+html[data-a11y-theme="light"] #kalkKwota, html[data-a11y-contrast="high"] #kalkKwota { background: none; color: var(--text); }
+html[data-a11y-theme="light"] .robot__pole::before, html[data-a11y-theme="light"] .wystep__scena::before,
+html[data-a11y-contrast="high"] .robot__pole::before, html[data-a11y-contrast="high"] .wystep__scena::before { display: none; }
