@@ -4,13 +4,23 @@
 
 Robot Unitree G1: wzrost 132 cm, waga 35 kg, 23 stopnie swobody, prędkość do 2 m/s. Chodzi na dwóch nogach, gestykuluje, wita gości, pozuje do zdjęć, tańczy i rozmawia — po polsku i w każdym innym języku, także przełączając się między językami w trakcie jednego wydarzenia. Charakter, scenariusz i wiedzę o firmie klienta ustalamy przed wydarzeniem. Potrzebuje kilku metrów kwadratowych; pracuje na wymiennych bateriach, które operator wymienia w trakcie.
 
-Doświadczenie: ponad 40 wydarzeń w Polsce, na Litwie, w Niemczech, Czechach i Rumunii — od gali w drezdeńskim pałacu (Drezdeńska Noc Zamków), przez targi MSPO w Kielcach, Women in Tech Summit (EXPO XXI) i wieczór w Centrum Nauki Kopernik, po pikniki, parady gminne i wesela.
+Doświadczenie: ponad 100 wydarzeń w Polsce, na Litwie, w Niemczech, Czechach i Rumunii — od gali w drezdeńskim pałacu (Drezdeńska Noc Zamków), przez targi MSPO w Kielcach, Women in Tech Summit (EXPO XXI) i wieczór w Centrum Nauki Kopernik, po pikniki, parady gminne i wesela.
 
 Realizacja dla klienta LEX AI na Długim Targu w Gdańsku trafiła do Teleexpressu TVP oraz reportażu TVP Gdańsk „Pan Mecenas Robot".
 
 Zaufali nam m.in.: Fundacja Perspektywy (Women in Tech Summit — największa konferencja women-in-tech w Europie), DSV (globalny operator logistyczny), Cashify oraz LEX AI, a także VELUX, Play, Adamed, REMONDIS Electrorecycling, Westernacher, KDT Europe, Grupa Rekord, Centrum Nauki Kopernik, ELECTRO-SYSTEM i Stowarzyszenie Inwestorów Indywidualnych.
 
 Kanał RSS bloga: https://33bots.pl/feed.xml
+
+## API i serwer MCP (dla asystentów AI i integracji)
+
+Asystent AI może sam sprawdzić orientacyjną cenę i — po wyraźnej zgodzie użytkownika — wysłać w jego imieniu zapytanie o termin. Bez klucza.
+
+- Serwer MCP (Streamable HTTP): https://33bots.pl/mcp — narzędzia `get_offer_info` (oferta, wymagania, kontakt), `get_quote` (orientacyjna cena „od”), `request_quote` (zapytanie o termin i wycenę)
+- Orientacyjna cena: `GET https://33bots.pl/api/wycena?rynek=pl&dni=2` — rynek: pl, de, at, lt; od dwóch dni rabat 15% na każdy dzień; `krotki=1` dla pokazu na kilka godzin
+- Zapytanie o termin: `POST https://33bots.pl/api/zapytania` (JSON) — wymagane `imie`, `email`, `zgoda: true`; opcjonalnie `telefon`, `firma`, `data` (RRRR-MM-DD albo „nieustalony”), `miejsce`, `rodzaj`, `goscie`, `opis`, `rynek`
+- Opis i specyfikacja: https://33bots.pl/api/ oraz https://33bots.pl/api/openapi.json
+- Zapytanie trafia do zespołu 33bots tak samo jak formularz na stronie; odpowiadamy zwykle w ciągu 30 minut. Wysyłaj je tylko z danymi osoby, która chce kontaktu.
 
 ## Oferta
 

@@ -38,6 +38,20 @@ RedirectMatch 404 "/\.(?!well-known/)"
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://33bots.pl/ [L,R=301]
 
+# ── Publiczne API i serwer MCP (api/index.php) ───────────────────────────────
+# /api/ — opis, /api/wycena — orientacyjna cena, /api/zapytania — zapytanie o termin,
+# /mcp — serwer MCP dla asystentów AI. Pliki statyczne w /api/ (openapi.json) idą wprost.
+RewriteRule ^api/?$ api/index.php [L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/([a-z0-9-]+)/?$ api/index.php?zasob=$1 [L,QSA]
+RewriteRule ^mcp/?$ api/index.php?zasob=mcp [L,QSA]
+
+# ── Źródła i testy nie są częścią serwisu ─────────────────────────────────────
+# Paczka wdrożeniowa zawiera katalogi ze źródłami treści i testami. Serwer nie ma ich
+# podawać: to surowe fragmenty stron (także w innych językach), których wyszukiwarka
+# nie powinna znaleźć pod tą domeną.
+RedirectMatch 404 "^/(tresci|qa|badania)/"
+
 # ── Dane robota 3D na stronie głównej (robot/*.bin) ───────────────────────────
 # Chmura punktów dla js/robot3d.js. Kompresja zmniejsza plik o ok. 10–30%, a adres
 # ma sumę kontrolną (?v=), więc przeglądarka może go trzymać długo.
