@@ -1,0 +1,334 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API 33bots",
+    "version": "1.0.0",
+    "description": "Orientacyjna cena i zapytanie o termin wynajmu robota humanoidalnego Unitree G1 na wydarzenie. Bez klucza. Zapytanie trafia do zespołu 33bots tak samo jak formularz na stronie; odpowiadamy zwykle w ciągu 30 minut.",
+    "contact": {
+      "name": "33bots",
+      "email": "kontakt@33bots.pl",
+      "url": "https://33bots.pl/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://33bots.pl"
+    }
+  ],
+  "paths": {
+    "/api/": {
+      "get": {
+        "operationId": "opisApi",
+        "summary": "Opis API i informacje o ofercie",
+        "responses": {
+          "200": {
+            "description": "Opis zasobów, limity, fakty o ofercie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wycena": {
+      "get": {
+        "operationId": "wycena",
+        "summary": "Orientacyjna cena „od”",
+        "parameters": [
+          {
+            "name": "rynek",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pl",
+                "de",
+                "at",
+                "lt"
+              ],
+              "default": "pl",
+              "description": "Kraj wydarzenia: pl = Polska, de = Niemcy, at = Austria, lt = Litwa"
+            }
+          },
+          {
+            "name": "dni",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30,
+              "default": 1
+            },
+            "description": "Liczba dni wydarzenia; od dwóch dni rabat 15% na każdy dzień"
+          },
+          {
+            "name": "krotki",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Krótki pokaz na kilka godzin — wyceniany indywidualnie"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cena orientacyjna",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rynek": {
+                      "type": "string"
+                    },
+                    "waluta": {
+                      "type": "string"
+                    },
+                    "podatek": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "cena_za_dzien_od": {
+                      "type": "integer"
+                    },
+                    "kwota_od": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "rabat_procent": {
+                      "type": "integer"
+                    },
+                    "w_cenie": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "uwaga": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Niepoprawne parametry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "blad": {
+                      "type": "string"
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "pola": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/zapytania": {
+      "post": {
+        "operationId": "wyslijZapytanie",
+        "summary": "Zapytanie o termin i wycenę",
+        "description": "Wysyła prawdziwe zapytanie do 33bots. Używaj tylko z danymi osoby, która chce, żeby 33bots się z nią skontaktowało.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "imie",
+                  "email",
+                  "zgoda"
+                ],
+                "properties": {
+                  "imie": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 120,
+                    "description": "Imię i nazwisko osoby kontaktowej"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "telefon": {
+                    "type": "string"
+                  },
+                  "firma": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "RRRR-MM-DD albo „nieustalony”"
+                  },
+                  "miejsce": {
+                    "type": "string"
+                  },
+                  "rodzaj": {
+                    "type": "string",
+                    "description": "gala, konferencja, targi, plener, inne"
+                  },
+                  "goscie": {
+                    "type": "string"
+                  },
+                  "opis": {
+                    "type": "string",
+                    "maxLength": 3000
+                  },
+                  "rynek": {
+                    "type": "string",
+                    "enum": [
+                      "pl",
+                      "de",
+                      "at",
+                      "lt"
+                    ],
+                    "default": "pl",
+                    "description": "Kraj wydarzenia: pl = Polska, de = Niemcy, at = Austria, lt = Litwa"
+                  },
+                  "zgoda": {
+                    "type": "boolean",
+                    "const": true,
+                    "description": "Potwierdzenie, że osoba, której dane przesyłasz, chce kontaktu ze strony 33bots"
+                  }
+                }
+              },
+              "example": {
+                "imie": "Anna Kowalska",
+                "email": "anna@firma.pl",
+                "data": "2027-03-18",
+                "miejsce": "Warszawa, EXPO XXI",
+                "rodzaj": "targi",
+                "opis": "Dwa dni targów, robot przy stoisku.",
+                "zgoda": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Zapytanie przyjęte",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "przyjete"
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "kontakt": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Niepoprawne dane — pole „pola” wskazuje, co poprawić",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "blad": {
+                      "type": "string"
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "pola": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Za dużo zapytań z jednego adresu (5 na godzinę)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "blad": {
+                      "type": "string"
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "pola": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Nie udało się przekazać zapytania — w odpowiedzi telefon i e-mail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "blad": {
+                      "type": "string"
+                    },
+                    "opis": {
+                      "type": "string"
+                    },
+                    "pola": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
