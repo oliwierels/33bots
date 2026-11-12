@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Pełne wersje czterech artykułów 33bots.de, które miały po ok. 200 słów (11.2026).
 
-Search Console: większość adresów .de „zeskanowana — obecnie niezindeksowana”. Cztery artykuły były
+Krótkie streszczenia nie mają czego wnieść do wyników wyszukiwania. Cztery artykuły były
 streszczeniami polskich oryginałów (189–221 słów, bez FAQ). Tutaj dostają pełną treść opartą na
 oryginałach z 33bots.pl (psychologia spotkania z robotem, business case dla zarządu, bezpieczeństwo,
 trendy) oraz pytania i odpowiedzi. Fakty wyłącznie z polskich oryginałów i dotychczasowych stron .de.

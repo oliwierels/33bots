@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Strony miast 33bots.at pisane osobno, nie z szablonu (11.2026).
 
-Search Console: 33bots.at ma 11 stron w indeksie i 10 poza nim, a 11 stron miast powstało z jednego
+Jedenaście stron miast 33bots.at powstało z jednego
 szablonu (35–40% tekstu wspólnego z innymi podstronami, Wien–Graz 59% podobieństwa). Tutaj pięć
 największych rynków — Wien, Graz, Salzburg, Linz, Innsbruck — ma własną treść: lokalne targi
 i kongresy, sale, typowy przebieg i pytania. Pozostałe sześć stron miast dostaje noindex i wypada

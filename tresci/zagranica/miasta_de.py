@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Strony miast 33bots.de pisane osobno, nie z szablonu (11.2026).
 
-Search Console: 112 ze 122 znanych adresów .de poza indeksem („zeskanowana/wykryta — niezindeksowana”).
 Strony miast powstawały z jednego szablonu (ok. 50% wspólnego tekstu), co Google traktuje jak
 doorway pages. Tutaj siedem najważniejszych miast ma własną treść: lokalne targi i kongresy, sale,
 typowy przebieg i referencję dobraną do profilu miasta; niemiecka realizacja (Dresdner Schlössernacht)
