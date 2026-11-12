@@ -303,9 +303,9 @@ DE = {**WSPOLNE_DE,
         ('blog.html', 'Alle Ratgeber'),
     ]),
     'stopka_miasta_tytul': 'Roboter mieten in Ihrer Stadt',
+    # Tylko miasta z własną, osobno napisaną treścią (miasta_de.py); pozostałe strony miast mają noindex.
     'miasta': [('berlin', 'Berlin'), ('muenchen', 'München'), ('hamburg', 'Hamburg'), ('koeln', 'Köln'), ('frankfurt', 'Frankfurt am Main'),
-               ('stuttgart', 'Stuttgart'), ('duesseldorf', 'Düsseldorf'), ('leipzig', 'Leipzig'), ('dortmund', 'Dortmund'), ('essen', 'Essen'),
-               ('bremen', 'Bremen'), ('dresden', 'Dresden'), ('hannover', 'Hannover'), ('nuernberg', 'Nürnberg')],
+               ('duesseldorf', 'Düsseldorf'), ('dresden', 'Dresden')],
     'stopka_prawa': '© 2026 33bots. Alle Rechte vorbehalten.',
     'cookies': None,
 }
