@@ -1,0 +1,57 @@
+################ 33bots.de po wdrożeniu
+/ → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/ | 102660B | Roboter mieten: humanoider Roboter für Events &amp; Messen | 33bots
+roboter-mieten-berlin.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/roboter-mieten-berlin.html | 39084B | Humanoiden Roboter mieten Berlin — Roboter für Events | 33bots
+roboter-mieten-dresden.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/roboter-mieten-dresden.html | 38583B | Humanoiden Roboter mieten Dresden — Roboter für Events | 33bots
+roboter-mieten-bremen.html → 200 | <html lang="de"> | noindex, follow | canonical: https://33bots.de/roboter-mieten-bremen.html | 39399B | Humanoiden Roboter mieten Bremen — Roboter für Events | 33bots
+roboter-mieten-stuttgart.html → 200 | <html lang="de"> | noindex, follow | canonical: https://33bots.de/roboter-mieten-stuttgart.html | 39976B | Humanoiden Roboter mieten Stuttgart — Roboter für Events | 33bots
+roboter-stadtfest.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/roboter-stadtfest.html | 28677B | Roboter für Stadtfeste — humanoiden Roboter mieten | 33bots
+humanoiden-roboter-mieten.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/humanoiden-roboter-mieten.html | 44873B | Humanoiden Roboter mieten — Unitree G1 für Ihr Event | 33bots
+angebot-messen.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/angebot-messen.html | 39405B | Roboter für Messen mieten — mehr Standbesucher | 33bots
+angebot-konferenzen-galas.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/angebot-konferenzen-galas.html | 37118B | Roboter für Konferenzen und Galas mieten | 33bots
+blog-psychologie-humanoider-roboter.html → 200 | <html lang="de"> | index, follow | canonical: https://33bots.de/blog-psychologie-humanoider-roboter.html | 25360B | Psychologie humanoider Roboter — warum sie wirken | 33bots
+sitemap .de: 82 adresów; miasta: roboter-mieten-berlin.html roboter-mieten-dresden.html roboter-mieten-duesseldorf.html roboter-mieten-frankfurt.html roboter-mieten-hamburg.html roboter-mieten-koeln.html roboter-mieten-muenchen.html roboter-mieten-preise.html 
+stopka .de — miasta: href="roboter-mieten-berlin.html" href="roboter-mieten-dresden.html" href="roboter-mieten-duesseldorf.html" href="roboter-mieten-frankfurt.html" href="roboter-mieten-hamburg.html" href="roboter-mieten-koeln.html" href="roboter-mieten-muenchen.html" href="roboter-mieten-preise.html" 
+Dresden — nowa treść: 2
+Stadtfest — nowa treść: 2
+llms.txt — Referenz: 1
+IndexNow klucz: 200
+sitemap .de — kody:      82 200 
+################ 33bots.at — każda strona z mapy
+nagłówki /: HTTP/2 200   cache-control: public, max-age=3600  content-type: text/html  last-modified: Sat, 24 Oct 2026 14:56:16 GMT  server: LiteSpeed  
+sha256 index: 6ce084a954dc3ec6  zwykła przeglądarka: 6ce084a954dc3ec6
+robots.txt:
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://33bots.at/sitemap.xml
+/ → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/ | 86571B | Roboter mieten für Events in Österreich — ab 2.300 € | 33bots
+/ → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/ | 86571B | Roboter mieten für Events in Österreich — ab 2.300 € | 33bots
+/datenschutz.html → 200 | <html lang="de-AT"> | index, follow | canonical: https://33bots.at/datenschutz.html | 14379B | Datenschutzerklärung | 33bots Österreich
+/humanoider-roboter-mieten.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/humanoider-roboter-mieten.html | 23334B | Humanoiden Roboter mieten in Österreich | Unitree G1 – 33bots
+/impressum.html → 200 | <html lang="de-AT"> | index, follow | canonical: https://33bots.at/impressum.html | 12155B | Impressum | 33bots Österreich
+/kontakt.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/kontakt.html | 20735B | Kontakt & Angebot anfragen | Roboter mieten – 33bots Österreich
+/messe-roboter-mieten.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/messe-roboter-mieten.html | 22819B | Messe-Roboter mieten | Publikumsmagnet für Ihren Stand – 33bots
+/roboter-mieten-dornbirn.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-dornbirn.html | 22694B | Roboter mieten in Dornbirn | Unitree G1 für Events – 33bots
+/roboter-mieten-eisenstadt.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-eisenstadt.html | 22976B | Roboter mieten in Eisenstadt | Unitree G1 für Events – 33bots
+/roboter-mieten-graz.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-graz.html | 22675B | Roboter mieten in Graz | Unitree G1 für Events – 33bots
+/roboter-mieten-innsbruck.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-innsbruck.html | 22907B | Roboter mieten in Innsbruck | Unitree G1 für Events – 33bots
+/roboter-mieten-klagenfurt.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-klagenfurt.html | 22816B | Roboter mieten in Klagenfurt | Unitree G1 für Events – 33bots
+/roboter-mieten-linz.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-linz.html | 22545B | Roboter mieten in Linz | Unitree G1 für Events – 33bots
+/roboter-mieten-salzburg.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-salzburg.html | 22560B | Roboter mieten in Salzburg | Unitree G1 für Events – 33bots
+/roboter-mieten-st-poelten.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-st-poelten.html | 22868B | Roboter mieten in St. Pölten | Unitree G1 für Events – 33bots
+/roboter-mieten-villach.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-villach.html | 22673B | Roboter mieten in Villach | Unitree G1 für Events – 33bots
+/roboter-mieten-wels.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-wels.html | 22498B | Roboter mieten in Wels | Unitree G1 für Events – 33bots
+/roboter-mieten-wien.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-mieten-wien.html | 23025B | Roboter mieten in Wien | Unitree G1 für Events – 33bots
+/roboter-weihnachtsfeier.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/roboter-weihnachtsfeier.html | 24730B | Roboter für die Weihnachtsfeier mieten | Österreich – 33bots
+/unitree-g1-mieten.html → 200 | <html lang="de-AT"> | index, follow, max-image-preview:large | canonical: https://33bots.at/unitree-g1-mieten.html | 22332B | Unitree G1 mieten in Österreich | inkl. Operator – 33bots
+hreflang /: <link rel="alternate" hreflang="de-AT" href="https://33bots.at/" /> <link rel="alternate" hreflang="pl" href="https://33bots.pl/" /> <link rel="alternate" hreflang="de" href="https://33bots.de/" /> <link rel="alternate" hreflang="lt" href="https://33bots.lt/" /> <link rel="alternate" hreflang="x-default" href="https://33bots.pl/" /> 
+og:locale: <meta property="og:locale" content="de_AT" />  inLanguage: "inLanguage": "de-AT" 
+przekierowania: http → 301 https://33bots.at/ | www → 301 https://33bots.at/ | index.html → 301 https://33bots.at/
+stare adresy AT: roboter-mieten.html=404 angebot.html=404 blog.html=404 referenzen.html=404 preise.html=404 
+################ .de a .at — podobieństwo
+https://33bots.de/ vs https://33bots.at/ podobieństwo 0.74 2066 1468
+https://33bots.de/unitree-g1-mieten.html vs https://33bots.at/unitree-g1-mieten.html podobieństwo 0.18 1349 636
+https://33bots.de/humanoiden-roboter-mieten.html vs https://33bots.at/humanoider-roboter-mieten.html podobieństwo 0.06 1174 712
+https://33bots.at/roboter-mieten-wien.html vs https://33bots.at/roboter-mieten-graz.html podobieństwo 0.59 696 645
+https://33bots.at/roboter-mieten-wien.html vs https://33bots.at/roboter-mieten-salzburg.html podobieństwo 0.58 696 635
