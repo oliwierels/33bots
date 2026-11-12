@@ -17,13 +17,14 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: Stan na żywo 33bots.de i 33bots.at
+      - name: API i serwer MCP na żywo
         run: |
           mkdir -p badania/wyniki/zywo
-          bash badania/seo_at.sh 2>&1 | tee badania/wyniki/zywo/seo_at.txt
+          sleep 75   # wdrożenie produkcyjne .pl trwa około minuty
+          bash badania/api_zywo.sh 2>&1 | tee badania/wyniki/zywo/api_zywo.txt
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add badania/wyniki
-          git commit -q -m "Wyniki: stan na żywo .de i .at" && git push -q origin HEAD:diagnoza-domen
+          git commit -q -m "Wyniki: API i MCP na żywo" && git push -q origin HEAD:diagnoza-domen
