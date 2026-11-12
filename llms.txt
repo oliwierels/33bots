@@ -25,6 +25,13 @@ Veranstaltungen in Polen, Litauen, Deutschland, Tschechien und Rumänien.
 - Referenzen und Case Studies: https://33bots.de/referenzen-videos.html
 - Eventratgeber (Übersicht aller Ratgeber): https://33bots.de/blog.html
 
+## API und MCP-Server (für KI-Assistenten)
+Ein KI-Assistent kann den Richtpreis abfragen und, nach ausdrücklicher Zustimmung der Nutzerin oder des Nutzers, in deren Namen eine Terminanfrage senden. Ohne Schlüssel.
+- MCP-Server (Streamable HTTP): https://33bots.pl/mcp mit den Tools get_offer_info, get_quote und request_quote
+- Richtpreis: GET https://33bots.pl/api/wycena?rynek=de&dni=2 (rynek = Land: de, at, pl, lt; dni = Veranstaltungstage)
+- Terminanfrage: POST https://33bots.pl/api/zapytania (JSON; Pflichtfelder imie = Name, email, zgoda = true; dazu rynek = "de")
+- Beschreibung und Spezifikation: https://33bots.pl/api/ und https://33bots.pl/api/openapi.json
+
 ## Referenz in Deutschland
 Dresdner Schlössernacht (Dresden): Der Roboter trat im Paillettensmoking mit Krone auf, auf dem roten
 Teppich, im Ballsaal und unter den Gästen. Mehr: https://33bots.de/roboter-mieten-dresden.html
