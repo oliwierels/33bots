@@ -372,8 +372,8 @@ AT = {**WSPOLNE_DE,
     ],
     'stopka_poradnik': None,
     'stopka_miasta_tytul': 'Roboter mieten in Ihrer Stadt',
-    'miasta': [('wien', 'Wien'), ('graz', 'Graz'), ('linz', 'Linz'), ('salzburg', 'Salzburg'), ('innsbruck', 'Innsbruck'), ('klagenfurt', 'Klagenfurt'),
-               ('villach', 'Villach'), ('wels', 'Wels'), ('st-poelten', 'St. Pölten'), ('dornbirn', 'Dornbirn'), ('eisenstadt', 'Eisenstadt')],
+    # Tylko miasta z własną, osobno napisaną treścią (miasta_at.py); pozostałe strony miast mają noindex.
+    'miasta': [('wien', 'Wien'), ('graz', 'Graz'), ('linz', 'Linz'), ('salzburg', 'Salzburg'), ('innsbruck', 'Innsbruck')],
     'stopka_prawa': '© 2026 33bots Österreich. Alle Rechte vorbehalten.',
     # Treść banera bez zmian względem dotychczasowej strony (zmienia się tylko wygląd).
     'cookies': ('Wir verwenden Cookies zu Analysezwecken.', 'Verstanden'),
