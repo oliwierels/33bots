@@ -28,6 +28,14 @@ echo "og:locale: $(curl -s -A "$GB" https://33bots.at/ | grep -oE '<meta propert
 for p in www http; do :; done
 echo "przekierowania: http → $(curl -s -o /dev/null -A "$GB" -w '%{http_code} %{redirect_url}' http://33bots.at/) | www → $(curl -s -o /dev/null -A "$GB" -w '%{http_code} %{redirect_url}' https://www.33bots.at/) | index.html → $(curl -s -o /dev/null -A "$GB" -w '%{http_code} %{redirect_url}' https://33bots.at/index.html)"
 echo "stare adresy AT: $(for p in roboter-mieten.html angebot.html blog.html referenzen.html preise.html; do echo -n "$p=$(curl -s -o /dev/null -A "$GB" -w '%{http_code}' https://33bots.at/$p) "; done)"
+echo "stopka .at — miasta: $(curl -s -A "$GB" https://33bots.at/ | grep -oE 'href="roboter-mieten-[a-z-]+\.html"' | sort -u | tr '\n' ' ')"
+echo "sitemap .at: $(curl -s https://33bots.at/sitemap.xml | grep -c '<loc>') adresów; kody: $(curl -s https://33bots.at/sitemap.xml | grep -oE '<loc>[^<]+' | sed 's/<loc>//' | while read u; do curl -s -o /dev/null -A "$GB" -w '%{http_code}\n' "$u"; done | sort | uniq -c | tr '\n' ' ')"
+for p in dornbirn eisenstadt klagenfurt st-poelten villach wels; do echo "/roboter-mieten-$p.html → $(strona https://33bots.at/roboter-mieten-$p.html)"; done
+echo ".at strona główna: robot 3D $(curl -s -A "$GB" https://33bots.at/ | grep -c 'id="robot"'), 30 Minuten $(curl -s -A "$GB" https://33bots.at/ | grep -c '30&nbsp;Minuten\|30 Minuten'), 24 Werkstunden $(curl -s -A "$GB" https://33bots.at/ | grep -c '24 Werkstunden')"
+echo ".at zasoby: $(for z in css/glowna.css js/glowna.js js/robot3d.js robot/g1.bin d26cc6827bff8b3fdaebd366644a7aec.txt; do echo -n "$z=$(curl -s -o /dev/null -w '%{http_code}' https://33bots.at/$z) "; done)"
+echo "Wien — nowa treść: $(curl -s -A "$GB" https://33bots.at/roboter-mieten-wien.html | grep -c 'Kongressstadt mit internationalem Publikum')"
+echo "################ 33bots.pl — link do Drezna"
+echo "artykuł: $(curl -s -A "$GB" https://33bots.pl/blog-robot-na-event-miedzynarodowy.html | grep -c 'https://33bots.de/roboter-mieten-dresden.html')"
 echo "################ .de a .at — podobieństwo"
 python3 - <<'PY'
 import re,urllib.request,difflib
