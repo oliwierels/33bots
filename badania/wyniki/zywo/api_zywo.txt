@@ -1,0 +1,41 @@
+################ strona po zmianie .htaccess
+// → 200 106592B
+/wypozyczenie-robota.html → 200 40895B
+/blog-robot-na-event-miedzynarodowy.html → 200 26639B
+/robots.txt → 200 363B
+/llms.txt → 200 9805B
+/sitemap.xml → 200 47416B
+################ źródła i testy
+/tresci/artykuly/blog-robot-na-event-miedzynarodowy.html → 404
+/tresci/zagranica/podstrony/de/roboter-mieten-berlin.html → 404
+/qa/package.json → 404
+/qa/api/router.php → 404
+/tresci/ → 404
+################ API
+GET /api/ → 200
+content-type: application/json; charset=utf-8 x-robots-tag: noindex access-control-allow-origin: * cache-control: public, max-age=300 
+{
+    "nazwa": "API 33bots",
+    "wersja": "1.0.0",
+    "opis": "Orientacyjna cena i zapytanie o termin wynajmu robota humanoidalnego Unitree G1 na wydarzenie. Bez klucza.",
+    "zasoby": {
+        "GET /api/wycena": "orientacyjna cena; parametry: rynek (pl|de|at|lt), dni (1–30), krotki (1 = kilka godzin)",
+        "POST /api/zapytania": "zapytanie o termin i wycenę (JSON); wymagane: imie, email, zgoda=true; opcjo
+GET /api (bez ukośnika) → 200 
+GET /api/wycena?dni=2 → 9350 PLN netto | Od 9 350 PLN netto za 2 dni (rabat 15% na każdy dzień).
+GET /api/wycena?rynek=de&dni=3 → 6375 EUR
+GET /api/wycena?rynek=xx → 422
+GET /api/openapi.json → 200 application/json 3.1.0 ['/api/', '/api/wycena', '/api/zapytania']
+GET /api/nic → {    "blad": "nie_ma",    "opis": "Nie ma takiego zasobu. Opis API: https://33bots.pl/api/"} [404]
+GET /api/zapytania → 405
+POST /api/zapytania (bez zgody, zły e-mail — odpada na walidacji) → {    "blad": "niepoprawne_dane",    "opis": "Popraw wskazane pola i wyślij ponownie.",    "pola": {        "imie": "Podaj imię i nazwisko osoby kontaktowej.",        "email": "Podaj poprawny adres e-mail, na który mamy odpowiedzieć.",        "zgoda": "Ustaw \"zgoda\": true — potwierdzenie, że osoba, której dane przesyłasz, chce, żeby 33bots się z nią skontaktowało."    }} [422]
+POST /api/zapytania (zły JSON) → 400
+################ MCP
+initialize → 2025-06-18 {'name': '33bots', 'title': '33bots — wynajem robota humanoidalnego', 'version': '1.0.0'} ['tools']
+notifications/initialized → 202
+tools/list → ['get_offer_info', 'get_quote', 'request_quote']
+tools/call get_quote → False Od 3 910 EUR netto za 2 dni (rabat 15% na każdy dzień). W cenie: Operator, Transport in ganz Österreich, Branding (Logo, QR-Code), Haftpflichtversicherung. Kwota orientacyjna „od”. Ostateczną cenę pod
+tools/call request_quote bez zgody (nic nie wysyła) → True ['imie', 'email', 'zgoda']
+GET /mcp → 405  OPTIONS /mcp → 204
+################ .de llms.txt
+sekcja MCP: 2  .pl llms: 1
