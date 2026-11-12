@@ -25,6 +25,20 @@ Veranstaltungen in Polen, Litauen, Deutschland, Tschechien und Rumänien.
 - Referenzen und Case Studies: https://33bots.de/referenzen-videos.html
 - Eventratgeber (Übersicht aller Ratgeber): https://33bots.de/blog.html
 
+## Referenz in Deutschland
+Dresdner Schlössernacht (Dresden): Der Roboter trat im Paillettensmoking mit Krone auf, auf dem roten
+Teppich, im Ballsaal und unter den Gästen. Mehr: https://33bots.de/roboter-mieten-dresden.html
+
+## Städte mit eigenen Seiten (Messen, Locations, Beispiele)
+Die Anfahrt ist deutschlandweit im Preis enthalten. Für sieben Städte gibt es eigene Seiten:
+- Berlin (IFA, ITB, CityCube, Estrel): https://33bots.de/roboter-mieten-berlin.html
+- München (automatica, bauma, EXPO REAL, ICM): https://33bots.de/roboter-mieten-muenchen.html
+- Hamburg (SMM, INTERNORGA, OMR, CCH): https://33bots.de/roboter-mieten-hamburg.html
+- Köln (gamescom, DMEXCO, FIBO, Koelnmesse): https://33bots.de/roboter-mieten-koeln.html
+- Frankfurt am Main (Automechanika, Light + Building, Kap Europa): https://33bots.de/roboter-mieten-frankfurt.html
+- Düsseldorf (MEDICA, EuroShop, boot, CCD): https://33bots.de/roboter-mieten-duesseldorf.html
+- Dresden (Dresdner Schlössernacht, Elbschlösser, ICD): https://33bots.de/roboter-mieten-dresden.html
+
 ## Eventratgeber (Ratgeber für Veranstalter)
 Praktische Ratgeber mit Ideen, Abläufen und Preisen aus öffentlichen Angeboten (Stand Oktober 2026). Der humanoide Roboter wird darin als eine von vielen Möglichkeiten genannt.
 
