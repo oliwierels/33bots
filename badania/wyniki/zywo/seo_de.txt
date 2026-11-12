@@ -1,0 +1,161 @@
+################ 33bots.de
+DNS: 195.78.66.229  | NS: ns2.cyberfolks.pl. ns1.cyberfolks.pl. ns3.cyberfolks.pl. 
+-- http://33bots.de/ → 301 https://33bots.de/
+-- http://www.33bots.de/ → 301 https://www.33bots.de/
+-- https://www.33bots.de/ → 301 https://33bots.de/
+-- https://33bots.de/index.html → 301 https://33bots.de/
+== https://33bots.de/ (Googlebot)
+HTTP/2 200 
+cache-control: public, max-age=3600
+content-type: text/html
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.de/robots.txt (Googlebot)
+HTTP/2 200 
+content-type: text/plain
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.de/sitemap.xml (Googlebot)
+HTTP/2 200 
+content-type: application/xml
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== smartfon Googlebot: 200 103073B 0.625005s
+== zwykła przeglądarka: 200 103073B
+== robots.txt:
+User-agent: *
+Allow: /
+
+Sitemap: https://33bots.de/sitemap.xml
+== w HTML: <meta name="robots" content="index, follow" /> <link rel="canonical" href="https://33bots.de/" /> 
+== Bing site: 16,400 results
+== DuckDuckGo site: 0
+################ 33bots.at
+DNS: 195.78.66.229  | NS: ns1.cyberfolks.pl. ns2.cyberfolks.pl. ns3.cyberfolks.pl. 
+-- http://33bots.at/ → 301 https://33bots.at/
+-- http://www.33bots.at/ → 301 https://33bots.at/
+-- https://www.33bots.at/ → 301 https://33bots.at/
+-- https://33bots.at/index.html → 301 https://33bots.at/
+== https://33bots.at/ (Googlebot)
+HTTP/2 200 
+cache-control: public, max-age=3600
+content-type: text/html
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.at/robots.txt (Googlebot)
+HTTP/2 200 
+content-type: text/plain
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.at/sitemap.xml (Googlebot)
+HTTP/2 200 
+content-type: application/xml
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== smartfon Googlebot: 200 86572B 0.718059s
+== zwykła przeglądarka: 200 86572B
+== robots.txt:
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://33bots.at/sitemap.xml
+== w HTML: <link rel="canonical" href="https://33bots.at/" /> <meta name="robots" content="index, follow, max-image-preview:large" /> 
+== Bing site: 
+== DuckDuckGo site: 0
+################ 33bots.lt
+DNS: 195.78.66.229  | NS: ns1.cyberfolks.pl. ns2.cyberfolks.pl. ns3.cyberfolks.pl. 
+-- http://33bots.lt/ → 301 https://33bots.lt/
+-- http://www.33bots.lt/ → 301 https://33bots.lt/
+-- https://www.33bots.lt/ → 301 https://33bots.lt/
+-- https://33bots.lt/index.html → 301 https://33bots.lt/
+== https://33bots.lt/ (Googlebot)
+HTTP/2 200 
+cache-control: public, max-age=3600
+content-type: text/html
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.lt/robots.txt (Googlebot)
+HTTP/2 200 
+content-type: text/plain
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.lt/sitemap.xml (Googlebot)
+HTTP/2 200 
+content-type: application/xml
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== smartfon Googlebot: 200 103842B 0.751690s
+== zwykła przeglądarka: 200 103842B
+== robots.txt:
+User-agent: *
+Allow: /
+
+# AI naršyklės — sąmoningai leidžiame
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+== w HTML: <link rel="canonical" href="https://33bots.lt/" /> 
+== Bing site: 
+== DuckDuckGo site: 0
+################ 33bots.pl
+DNS: 195.78.66.229  | NS: ns3.cyberfolks.pl. ns2.cyberfolks.pl. ns1.cyberfolks.pl. 
+-- http://33bots.pl/ → 301 https://33bots.pl/
+-- http://www.33bots.pl/ → 301 https://www.33bots.pl/
+-- https://www.33bots.pl/ → 301 https://33bots.pl/
+-- https://33bots.pl/index.html → 301 https://33bots.pl/
+== https://33bots.pl/ (Googlebot)
+HTTP/2 200 
+content-type: text/html
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.pl/robots.txt (Googlebot)
+HTTP/2 200 
+content-type: text/plain
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== https://33bots.pl/sitemap.xml (Googlebot)
+HTTP/2 200 
+content-type: application/xml
+server: LiteSpeed
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+== smartfon Googlebot: 200 106592B 0.686606s
+== zwykła przeglądarka: 200 106592B
+== robots.txt:
+User-agent: *
+Allow: /
+
+# AI crawlers — explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+== w HTML: <link rel="canonical" href="https://33bots.pl/" /> 
+== Bing site: 
+== DuckDuckGo site: 0
+################ podstrony .de (Googlebot)
+humanoiden-roboter-mieten.html → 200 44520B 
+roboter-mieten-preise.html → 200 40255B 
+unitree-g1-mieten.html → 200 46525B 
+roboter-mieten-berlin.html → 200 40453B 
+roboter-mieten-muenchen.html → 200 40454B 
+angebot-messen.html → 200 38270B 
+blog.html → 200 36863B 
+################ sitemap .de: 89 adresów; sprawdzam kody
+     89 200 https://33bots.de/
+################ .de a .at — podobieństwo stron głównych
+https://33bots.de/ vs https://33bots.at/ podobieństwo 0.74 2066 1468
+https://33bots.de/unitree-g1-mieten.html vs https://33bots.at/unitree-g1-mieten.html podobieństwo 0.19 1408 636
