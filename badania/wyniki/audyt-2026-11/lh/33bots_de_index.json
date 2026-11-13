@@ -1,0 +1,17 @@
+{
+ "adres": "https://33bots.de/",
+ "wyniki": {
+  "performance": 1,
+  "accessibility": 1,
+  "seo": 1
+ },
+ "LCP": "1.2 s",
+ "CLS": "0",
+ "TBT": "0 ms",
+ "FCP": "1.2 s",
+ "SI": "2.0 s",
+ "waga": "Total size was 340 KiB",
+ "lcp_element": "<p class=\"display\">",
+ "nieudane_seo": [],
+ "nieudane_a11y": []
+}

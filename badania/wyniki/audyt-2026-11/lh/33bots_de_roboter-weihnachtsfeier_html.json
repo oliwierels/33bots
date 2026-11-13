@@ -1,0 +1,17 @@
+{
+ "adres": "https://33bots.de/roboter-weihnachtsfeier.html",
+ "wyniki": {
+  "performance": 1,
+  "accessibility": 1,
+  "seo": 1
+ },
+ "LCP": "1.5 s",
+ "CLS": "0",
+ "TBT": "0 ms",
+ "FCP": "1.1 s",
+ "SI": "1.8 s",
+ "waga": "Total size was 324 KiB",
+ "lcp_element": "<p class=\"art__lead\">",
+ "nieudane_seo": [],
+ "nieudane_a11y": []
+}

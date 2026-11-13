@@ -1,0 +1,25 @@
+{
+ "adres": "https://33bots.at/roboter-mieten-wien.html",
+ "wyniki": {
+  "performance": 0.65,
+  "accessibility": 0.94,
+  "seo": 0.92
+ },
+ "LCP": "6.6 s",
+ "CLS": "0",
+ "TBT": "290 ms",
+ "FCP": "2.6 s",
+ "SI": "4.0 s",
+ "waga": "Total size was 660 KiB",
+ "lcp_element": "<img src=\"https://33bots.at/realizacja-gala-wsrod-gosci.webp\" alt=\"Humanoider Roboter zwischen Gala-Gästen\" width=\"900\" height=\"1200\" loading=\"eager\" decoding=\"async\" fetchpriority=\"high\">",
+ "nieudane_seo": [
+  {
+   "id": "image-alt",
+   "weight": 1,
+   "group": "seo-content"
+  }
+ ],
+ "nieudane_a11y": [
+  "image-alt"
+ ]
+}
