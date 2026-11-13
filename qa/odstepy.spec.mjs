@@ -54,6 +54,11 @@ const STRONY = [
   '/wypozyczenie-robota.html',
   '/wynajem-robotow.html',
   '/robot-humanoidalny-na-event.html',
+  // strony okazji pisane od nowa (tresci/okazje, 11.2026)
+  '/robot-na-mikolajki.html',
+  '/robot-na-sylwestra.html',
+  '/robot-dla-agencji-eventowych.html',
+  '/koniec-roku-z-robotem.html',
 ];
 const EKRANY = [
   { width: 375, height: 812, minimum: 24 },

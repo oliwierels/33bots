@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MR7R7CJ3');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{{GLOWA}}
+  <script>history.scrollRestoration = 'manual';</script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css?v=27" />
+    <link rel="dns-prefetch" href="//serve.albacross.com" />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+  <style>
+    .hero { grid-template-columns: 1fr; min-height: 70vh; }
+    .hero__content { max-width: none; padding: var(--s12) 0 var(--s8); }
+    .hero__title { text-wrap: unset; }
+
+    /* Komponenty stron okazji przebudowanych w 11.2026: fakty, plan godzinowy, tabela wymagań, zdjęcie z realizacji. */
+    .hero { max-width: 924px; padding-right: var(--s4); min-height: 0; }
+    .hero__content { padding: var(--s8) 0 var(--s6); }
+    .hero__sub { max-width: 62ch; }
+    .ok-sekcja { padding-block: clamp(40px, 5vw, 72px); }
+    .ok-wrap { max-width: 860px; margin: 0 auto; }
+    .ok-wrap .body-text { font-size: 1rem; }
+    .ok-wrap > h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: var(--s3); }
+    .ok-wrap h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin: var(--s5) 0 var(--s1); color: var(--text); }
+    .ok-wrap a:not(.btn-primary):not(.btn-ghost) { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    .ok-fakty { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--s2); margin: var(--s5) 0 0; padding: 0; list-style: none; }
+    .ok-fakty li { padding: calc(var(--s4) + 4px) var(--s4) var(--s4); border: 1px solid var(--border-mid); border-radius: 12px; background: var(--surface-2); }
+    .ok-fakty b { display: block; font-size: 1.3rem; letter-spacing: -0.02em; color: var(--text); line-height: 1.2; }
+    .ok-fakty span { display: block; margin-top: 6px; font-size: 0.85rem; line-height: 1.5; color: var(--text-2); }
+    .ok-plan { list-style: none; margin: var(--s4) 0 0; padding: 0; border-left: 1px solid var(--border-hi); }
+    .ok-plan li { position: relative; padding: 0 0 var(--s3) var(--s4); }
+    .ok-plan li:last-child { padding-bottom: 0; }
+    .ok-plan li::before { content: ""; position: absolute; left: -5px; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+    .ok-plan .godz { display: block; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); font-size: 0.95rem; }
+    .ok-plan p { margin: 4px 0 0; color: var(--text-2); line-height: 1.7; }
+    .ok-tab { width: 100%; border-collapse: collapse; margin-top: var(--s4); font-size: 0.95rem; }
+    .ok-tab th, .ok-tab td { text-align: left; padding: var(--s3) var(--s3) var(--s4) 0; border-bottom: 1px solid var(--border-mid); vertical-align: top; line-height: 1.65; }
+    .ok-tab th { width: 32%; color: var(--text); font-weight: 700; }
+    .ok-tab td { color: var(--text-2); }
+    .ok-lista { margin: var(--s3) 0 0; padding-left: 1.2em; color: var(--text-2); line-height: 1.8; }
+    .ok-lista li + li { margin-top: var(--s1); }
+    .ok-lista b { color: var(--text); }
+    .ok-foto { margin: var(--s5) 0 0; }
+    .ok-foto img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border-mid); }
+    .ok-foto figcaption { font-size: 0.85rem; color: var(--text-2); margin-top: var(--s1); line-height: 1.6; }
+    .ok-foto--pion { max-width: 420px; }
+    .data-zmiany { font-size: 0.85rem; color: var(--text-2); margin-top: var(--s3); }
+    @media (max-width: 640px) {
+      .ok-fakty li { padding: calc(var(--s3) + 4px) var(--s3) var(--s3); }
+      .ok-plan li { padding-left: var(--s3); }
+      .ok-tab th, .ok-tab td { display: block; width: auto; padding: 0; border-bottom: 0; }
+      .ok-tab th { padding-top: var(--s3); }
+      .ok-tab td { padding-top: var(--s1); padding-bottom: var(--s3); border-bottom: 1px solid var(--border-mid); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR7R7CJ3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="logo">33BOTS</a>
+      <nav class="nav__links">
+        <div class="nav__dropdown">
+          <button class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button">Oferta <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="nav__dropdown-menu">
+            <a href="oferta-targi.html">Targi</a>
+            <a href="oferta-konferencje.html">Konferencje i Gale</a>
+            <a href="oferta-dni-otwarte.html">Dni otwarte i showroomy</a>
+            <a href="atrakcje-na-event.html">Wszystkie atrakcje</a>
+          </div>
+        </div>
+        <a href="index.html#o-nas">O nas</a>
+        <a href="index.html#eventy">Eventy</a>
+        <a href="blog.html">Blog</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </header>
+  <main>
+
+  <nav class="crumbs" aria-label="Okruszki" style="max-width:924px; margin:0 auto; padding:calc(var(--s8) + 48px) var(--s4) 0; font-size:0.85rem; letter-spacing:0.02em;">
+    <a href="index.html" style="color:var(--text-2); text-decoration:none;">Strona główna</a> <span aria-hidden="true" style="color:var(--text-2);">›</span> <span style="color:var(--text);">{{OKRUCH}}</span>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <span class="mobile-menu__label">Oferta</span>
+    <a href="oferta-targi.html" class="mobile-menu__sub">Targi</a>
+    <a href="oferta-konferencje.html" class="mobile-menu__sub">Konferencje i Gale</a>
+    <a href="oferta-dni-otwarte.html" class="mobile-menu__sub">Dni otwarte i showroomy</a>
+    <a href="atrakcje-na-event.html" class="mobile-menu__sub">Wszystkie atrakcje</a>
+    <a href="index.html#o-nas">O nas</a>
+    <a href="index.html#eventy">Eventy</a>
+    <a href="blog.html">Blog</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+
+{{TRESC}}
+  <section class="section" id="kontakt">
+    <div class="contact-layout">
+      <div class="contact-left">
+        <span class="tag">Kontakt</span>
+        <h2 class="section-title">{{KONTAKT_H2}}</h2>
+        <p class="body-text">{{KONTAKT_LEAD}}</p>
+        <div class="contact-details">
+          <a href="mailto:kontakt@33bots.pl" class="contact-detail">
+            <span class="contact-detail__label">E-mail</span>
+            <span class="contact-detail__val">kontakt@33bots.pl</span>
+          </a>
+          <a href="tel:+48531408004" class="contact-detail">
+            <span class="contact-detail__label">Telefon</span>
+            <span class="contact-detail__val">+48 531 408 004</span>
+          </a>
+          <a href="tel:+48601499947" class="contact-detail">
+            <span class="contact-detail__label">Telefon</span>
+            <span class="contact-detail__val">+48 601 499 947</span>
+          </a>
+          <div class="contact-detail">
+            <span class="contact-detail__label">Zasięg</span>
+            <span class="contact-detail__val">Cała Polska — transport w cenie</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <form id="contactForm" class="form" novalidate>
+          <div class="form-steps-header">
+            <span class="form-step-ind active" id="stepInd1">01 — Dane kontaktowe</span>
+            <span class="form-step-sep">/</span>
+            <span class="form-step-ind" id="stepInd2">02 — Twoje wydarzenie</span>
+          </div>
+          <div class="form-step" id="formStep1">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-name">Imię i nazwisko *</label>
+                <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required />
+                <span class="form-field__err" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-company">Firma (opcjonalnie)</label>
+                <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-email">E-mail *</label>
+                <input id="f-email" type="email" name="email" placeholder="jan@email.pl" autocomplete="email" required />
+                <span class="form-field__err" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="f-phone">Telefon</label>
+                <input id="f-phone" type="tel" name="phone" placeholder="+48 531 408 004" autocomplete="tel" />
+              </div>
+            </div>
+            <button type="button" id="btnNext" class="btn-submit">Dalej — Opowiedz o wydarzeniu →</button>
+          </div>
+          <div class="form-step form-step--hidden" id="formStep2" aria-hidden="true">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="f-date">Data wydarzenia</label>
+                <input id="f-date" type="text" name="date" placeholder="np. 14 czerwca 2026" />
+              </div>
+              <div class="form-field">
+                <label for="f-location">Miejsce / Miasto</label>
+                <input id="f-location" type="text" name="location" placeholder="np. Kraków" autocomplete="address-level2" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="f-message">Opisz wydarzenie *</label>
+              <textarea id="f-message" name="message" rows="6" placeholder="Liczba gości, czas trwania, charakter wydarzenia..." required></textarea>
+              <div class="form-field__footer">
+                <span class="form-field__err" aria-live="polite"></span>
+                <span class="char-counter"><span id="charCount">0</span> / 600</span>
+              </div>
+            </div>
+            <div class="form-step__nav">
+              <button type="button" id="btnBack" class="btn-back">← Wróć</button>
+              <button type="submit" class="btn-submit">Wyślij zapytanie →</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-block:var(--s6) var(--s4); background:var(--surface-1)">
+    <div class="container" style="max-width:1140px; margin-inline:auto; padding-inline:var(--s4)">
+      <h2 style="font-size:clamp(1rem,2vw,1.4rem); font-weight:700; margin-bottom:var(--s3); color:var(--text-1)">Wynajem robota w Twoim mieście</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+        <a href="robot-wynajem-warszawa.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Warszawa</a>
+        <a href="robot-wynajem-krakow.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Kraków</a>
+        <a href="robot-wynajem-wroclaw.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Wrocław</a>
+        <a href="robot-wynajem-poznan.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Poznań</a>
+        <a href="robot-wynajem-gdansk.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Gdańsk</a>
+        <a href="robot-wynajem-katowice.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Katowice</a>
+        <a href="robot-wynajem-lodz.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Łódź</a>
+        <a href="robot-wynajem-szczecin.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Szczecin</a>
+        <a href="robot-wynajem-lublin.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Lublin</a>
+        <a href="robot-wynajem-rzeszow.html" style="padding:0.35rem 0.8rem; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--text-2); text-decoration:none; transition:border-color 0.2s">Rzeszów</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="logo">33BOTS</span>
+        <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Wynajem robotów humanoidalnych</a> · Polska</p>
+        <div class="footer__nap">
+          <a href="tel:+48531408004" class="footer__nap-item">+48 531 408 004</a>
+          <a href="mailto:kontakt@33bots.pl" class="footer__nap-item">kontakt@33bots.pl</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="atrakcje-na-event.html">Atrakcje na event</a>
+        <a href="realizacje-wideo.html">Realizacje</a>
+        <a href="case-study-lexai.html">Case study</a>
+        <a href="index.html#o-nas">O nas</a>
+        <a href="blog.html">Blog</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer__right">
+        <div class="footer__socials">
+          <a href="https://www.instagram.com/33bots_/" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Instagram</a>
+          <a href="https://www.tiktok.com/@aimforum" target="_blank" rel="noopener noreferrer" class="footer__social">↗ TikTok</a>
+          <a href="https://www.facebook.com/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Facebook</a>
+          <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ LinkedIn</a>
+        </div>
+        <span class="footer__copy">© 2026 33bots. Wszelkie prawa zastrzeżone. · <a href="regulamin.html" style="color:inherit">Regulamin</a> · <a href="polityka-prywatnosci.html" style="color:inherit">Polityka prywatności</a></span>
+        <span class="footer__copy footer__jezyki"><a href="https://33bots.lt/" hreflang="lt" lang="lt" style="color:inherit">Lietuvių — 33bots.lt</a> · <a href="https://33bots.de/" hreflang="de" lang="de" style="color:inherit">Deutsch — 33bots.de</a> · <a href="https://33bots.at/" hreflang="de-AT" lang="de-AT" style="color:inherit">Österreich — 33bots.at</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner" aria-live="polite">
+    <p class="cookie-banner__text">Ta strona używa plików cookie do celów analitycznych. <a href="#" class="cookie-banner__link">Polityka prywatności</a></p>
+    <button class="cookie-banner__btn" id="cookieAccept">Rozumiem</button>
+  </div>
+
+  <div class="sticky-cta">
+    <a href="#kontakt" class="btn-primary">Zapytaj o termin →</a>
+  </div>
+
+  <script src="main.js?v=3f48f25c"></script>
+  <!-- Albacross -->
+  <script>window._nQc="89159321";</script>
+  <script async src="https://serve.albacross.com/track.js"></script>
+</body>
+</html>

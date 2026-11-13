@@ -24,6 +24,13 @@ if [ -f tresci/buduj_artykuly.py ]; then
   python3 tresci/buduj_artykuly.py
 fi
 
+# Strony okazji pisane od nowa (plan godzinowy, wymagania, cena, ograniczenia):
+# tresci/okazje/*.html → strony w katalogu głównym.
+if [ -f tresci/buduj_okazje.py ]; then
+  echo "Składam strony okazji…"
+  python3 tresci/buduj_okazje.py
+fi
+
 echo "Kompiluję arkusz stylów…"
 npx --yes tailwindcss@3.4.17 \
   -c tailwind.config.js \
@@ -75,3 +82,9 @@ for PLIK in glowna robot3d; do
   sed -i -E "s|src=\"js/${PLIK}\.js(\?v=[^\"]*)?\"|src=\"js/${PLIK}.js?v=${WERSJA}\"|g" index.html
 done
 echo "  index.html → css/glowna.css?v=${WERSJA_GLOWNA_CSS}, js/glowna.js, js/robot3d.js, dane robota ${WERSJA_DANYCH}"
+
+# Mapa witryny: <lastmod> = dzień ostatniej zmiany treści strony (rejestr seo/lastmod/pl.json),
+# a nie dzień budowania. Zmiana numeru wersji arkusza powyżej daty nie rusza.
+if [ -f seo/lastmod.py ]; then
+  python3 seo/lastmod.py pl .
+fi
