@@ -1,0 +1,362 @@
+{
+ "404.html": {
+  "data": "2026-10-23",
+  "odcisk": "a191e5aaf5b0f18e612c157bd507cd51"
+ },
+ "abiball-planen.html": {
+  "data": "2026-11-12",
+  "odcisk": "5e0b6dce59c45a15acbb2402dce1769a"
+ },
+ "angebot-konferenzen-galas.html": {
+  "data": "2026-11-12",
+  "odcisk": "185c600da548b66894ee56b4ddf06fdf"
+ },
+ "angebot-messen.html": {
+  "data": "2026-11-12",
+  "odcisk": "a431a73760ce3a0d74f5fd6bfb16d743"
+ },
+ "angebot-tag-der-offenen-tuer.html": {
+  "data": "2026-11-12",
+  "odcisk": "2357cbc666bbe403ed3763b29c571648"
+ },
+ "attraktionen-mieten.html": {
+  "data": "2026-11-13",
+  "odcisk": "341e44f458d0aa7253f6b5aa091511ea"
+ },
+ "barrierefreiheit.html": {
+  "data": "2026-11-12",
+  "odcisk": "da3e77217d30b86572d2215ba3c999f7"
+ },
+ "betriebsveranstaltung-steuer.html": {
+  "data": "2026-11-13",
+  "odcisk": "dd10a328c57dc750525c0d10a6732bd9"
+ },
+ "blog-geschaeftsfuehrung-ueberzeugen.html": {
+  "data": "2026-11-12",
+  "odcisk": "2324fcabae2e9981144f178bc1056f00"
+ },
+ "blog-psychologie-humanoider-roboter.html": {
+  "data": "2026-11-12",
+  "odcisk": "a23adfb1b4e7d130fce501fc14c51d5d"
+ },
+ "blog-robotik-im-marketing.html": {
+  "data": "2026-10-24",
+  "odcisk": "6640e3b04cbd6b8dfe1f05fb8d16d8b7"
+ },
+ "blog-sicherheit-roboter-event.html": {
+  "data": "2026-11-12",
+  "odcisk": "dab5115c6c45e2177578b0d6cea71d9e"
+ },
+ "blog-trends-humanoide-roboter-events.html": {
+  "data": "2026-11-12",
+  "odcisk": "e8cdd17cfe0a9a59e6f232b8f1e557be"
+ },
+ "blog.html": {
+  "data": "2026-11-12",
+  "odcisk": "7adea4e902104e8257b98b8d00c72662"
+ },
+ "case-study-centrum-nauki-kopernik.html": {
+  "data": "2026-11-12",
+  "odcisk": "375d56ecf0e53f82c27d2086c43e7ecd"
+ },
+ "case-study-eco-studio-electro-system.html": {
+  "data": "2026-11-12",
+  "odcisk": "caf72b987aa5145ee36f863b46a5112f"
+ },
+ "case-study-grupa-rekord-mspo.html": {
+  "data": "2026-11-12",
+  "odcisk": "1f7cb684267e6b8d431cf8ef9c4a20a3"
+ },
+ "case-study-lexai.html": {
+  "data": "2026-11-12",
+  "odcisk": "65c7a5d0c501451c77c545655c5d8483"
+ },
+ "case-study-ogrod-przelewice.html": {
+  "data": "2026-11-12",
+  "odcisk": "95dd36736547ea53c677788c463c0d38"
+ },
+ "case-study-wallstreet.html": {
+  "data": "2026-11-12",
+  "odcisk": "f06ba6cdf4f99f9b1287396b1633ab70"
+ },
+ "case-study-women-in-tech.html": {
+  "data": "2026-11-12",
+  "odcisk": "18735a17f2eef721cd5cea18e8c6d3e7"
+ },
+ "casino-abend.html": {
+  "data": "2026-11-12",
+  "odcisk": "040d32d8bde3bf88ca684896695a43c2"
+ },
+ "datenschutz.html": {
+  "data": "2026-10-24",
+  "odcisk": "bc282b6223c9dad91fafa74018c70a18"
+ },
+ "dj-hochzeit.html": {
+  "data": "2026-11-12",
+  "odcisk": "b0e26da86a960c93814af5d074550bef"
+ },
+ "eroeffnung-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "0d0f0313daa03f8c83d12b0fd9082c51"
+ },
+ "event-attraktionen.html": {
+  "data": "2026-11-12",
+  "odcisk": "cc87eae422718d80e586cdaeadcaa1b9"
+ },
+ "event-planen.html": {
+  "data": "2026-11-13",
+  "odcisk": "2c3a71c5399c36c3ac638140b2f2f4b8"
+ },
+ "feuershow-buchen.html": {
+  "data": "2026-11-12",
+  "odcisk": "4fae47f67099f5f49e6aea321c1c9cbe"
+ },
+ "firmenfeier-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "dc1d1645b7c32f4e5fb37089179c8a73"
+ },
+ "firmenjubilaeum-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "b2c51ed477b2a7a2c1cb6c356f9559f1"
+ },
+ "food-truck-mieten.html": {
+  "data": "2026-11-12",
+  "odcisk": "0f02392bd1d9c208e4f75c94decc309a"
+ },
+ "fotobox-mieten.html": {
+  "data": "2026-11-12",
+  "odcisk": "11dbb9bda0e9ca3c3a26d38f422f7d70"
+ },
+ "freie-trauung.html": {
+  "data": "2026-11-12",
+  "odcisk": "265e13896b63893ea4f1c51df3b4d9bd"
+ },
+ "geburtstag-feiern-ideen.html": {
+  "data": "2026-11-12",
+  "odcisk": "4e7ce3f150acd84db42244bf2f64abb9"
+ },
+ "hochzeit-ablaufplan.html": {
+  "data": "2026-11-12",
+  "odcisk": "43142da2dc231c4d292d7fcb0a3d79c3"
+ },
+ "hochzeit-kosten.html": {
+  "data": "2026-11-12",
+  "odcisk": "41bfa74c479cec6cbcd0603c986e9a6c"
+ },
+ "hochzeit-unterhaltung.html": {
+  "data": "2026-11-12",
+  "odcisk": "343a24e40d0cc40a2e1fd6158d3bc0ea"
+ },
+ "hochzeitsband.html": {
+  "data": "2026-11-12",
+  "odcisk": "9dda83b3121e3bb19e475aa97669d219"
+ },
+ "hochzeitsspiele.html": {
+  "data": "2026-11-12",
+  "odcisk": "a0392783fe00737ebe6ff8730314ea0d"
+ },
+ "humanoiden-roboter-kaufen.html": {
+  "data": "2026-11-12",
+  "odcisk": "08a52ce302426539bb5bf6e7f96af13f"
+ },
+ "humanoiden-roboter-mieten.html": {
+  "data": "2026-11-12",
+  "odcisk": "95374367db7c8eb240cf2e931397087c"
+ },
+ "impressum.html": {
+  "data": "2026-11-12",
+  "odcisk": "6c003784a29e1cdd4517e81d3d1ffc0f"
+ },
+ "index.html": {
+  "data": "2026-11-13",
+  "odcisk": "a5b1bb6e1ac4ab5b71c460bf14460fe7"
+ },
+ "jga-ideen.html": {
+  "data": "2026-11-12",
+  "odcisk": "a9f1b1fd4cb86328712d9bfb661b32c7"
+ },
+ "ki-roboter-veranstaltung.html": {
+  "data": "2026-11-12",
+  "odcisk": "e96a11a62109c4190778f320aded30fd"
+ },
+ "kick-off-veranstaltung.html": {
+  "data": "2026-11-13",
+  "odcisk": "10e65cada95a4dbaf37a1e513270f8f8"
+ },
+ "kindergeburtstag-ideen.html": {
+  "data": "2026-11-12",
+  "odcisk": "c9fcc949110354c9961759a1cfc1057b"
+ },
+ "konferenz-organisieren.html": {
+  "data": "2026-11-12",
+  "odcisk": "410d5835f8ec0b3166e4662b76706970"
+ },
+ "messestand-ideen.html": {
+  "data": "2026-11-12",
+  "odcisk": "3da4fd794df1c89a90528ebde2ce7d43"
+ },
+ "moderator-buchen.html": {
+  "data": "2026-11-13",
+  "odcisk": "3494b5d217253dfd4e002d08eeaa3ae0"
+ },
+ "polterabend.html": {
+  "data": "2026-11-12",
+  "odcisk": "bcf2fb2e21632cfcafefa624c0b5602a"
+ },
+ "referenzen-videos.html": {
+  "data": "2026-11-12",
+  "odcisk": "df5790d1e8a17b2c1c253a805764e6bb"
+ },
+ "roboter-employer-branding.html": {
+  "data": "2026-11-12",
+  "odcisk": "ff6b86441166a5e52369efdcd2843dd3"
+ },
+ "roboter-eroeffnung.html": {
+  "data": "2026-11-12",
+  "odcisk": "9e2e95e1fff80e50e0359291a5d23426"
+ },
+ "roboter-eventmoderation.html": {
+  "data": "2026-11-12",
+  "odcisk": "ebdc0bcecd0a1fa3bd0c9da07317e161"
+ },
+ "roboter-firmenevents.html": {
+  "data": "2026-11-12",
+  "odcisk": "ac0e5f5d93c5a574fb99235e051020ea"
+ },
+ "roboter-firmenfeier.html": {
+  "data": "2026-11-12",
+  "odcisk": "d2767d04a3c9a09ab5970ba2efd67cf9"
+ },
+ "roboter-fuer-eventagenturen.html": {
+  "data": "2026-11-12",
+  "odcisk": "34afe3c7096ecd4a1e0210603ed4bbbd"
+ },
+ "roboter-gaesteempfang.html": {
+  "data": "2026-11-12",
+  "odcisk": "70dbb968937056f7e4ceac1d32f4246a"
+ },
+ "roboter-hochschule.html": {
+  "data": "2026-11-12",
+  "odcisk": "e1a1a887106ee3530ee3817b6cc90886"
+ },
+ "roboter-hochzeit.html": {
+  "data": "2026-11-12",
+  "odcisk": "45f9d7c86b316237cbae91b2edbf035c"
+ },
+ "roboter-mieten-berlin.html": {
+  "data": "2026-11-13",
+  "odcisk": "f054d21523b304925c383f5c40bf4731"
+ },
+ "roboter-mieten-bremen.html": {
+  "data": "2026-11-12",
+  "odcisk": "f641f56c5083c0b10428ff5812c8ad46"
+ },
+ "roboter-mieten-dortmund.html": {
+  "data": "2026-11-12",
+  "odcisk": "b44672e625de510897e9413b36489f80"
+ },
+ "roboter-mieten-dresden.html": {
+  "data": "2026-11-13",
+  "odcisk": "acafbf11e9013b9257852f08979ead37"
+ },
+ "roboter-mieten-duesseldorf.html": {
+  "data": "2026-11-13",
+  "odcisk": "1fbbc2e3b19c1f615084bcdc64483d97"
+ },
+ "roboter-mieten-essen.html": {
+  "data": "2026-11-12",
+  "odcisk": "6b5c2e17fbaeae1f6b39da6128fa9ccf"
+ },
+ "roboter-mieten-frankfurt.html": {
+  "data": "2026-11-13",
+  "odcisk": "cfbc33a73b200ac08860d9fa99c117e7"
+ },
+ "roboter-mieten-hamburg.html": {
+  "data": "2026-11-13",
+  "odcisk": "b8a247f049aa79a66ded7ffd0f6ff08c"
+ },
+ "roboter-mieten-hannover.html": {
+  "data": "2026-11-12",
+  "odcisk": "3843546ee13d02268042a0a3112bf117"
+ },
+ "roboter-mieten-koeln.html": {
+  "data": "2026-11-13",
+  "odcisk": "5144c78a499312fdd9d84eb9c03fc147"
+ },
+ "roboter-mieten-leipzig.html": {
+  "data": "2026-11-12",
+  "odcisk": "1db41e1dfdf8814f528d49617bcf0e40"
+ },
+ "roboter-mieten-muenchen.html": {
+  "data": "2026-11-13",
+  "odcisk": "fc8077cac2e7d0ff33427f69e84b9553"
+ },
+ "roboter-mieten-nuernberg.html": {
+  "data": "2026-11-12",
+  "odcisk": "ecba8b763bfccc98f951168db2fbf8a3"
+ },
+ "roboter-mieten-preise.html": {
+  "data": "2026-11-12",
+  "odcisk": "6da7c2a697c77b646bc46ef0cce4d86e"
+ },
+ "roboter-mieten-stuttgart.html": {
+  "data": "2026-11-12",
+  "odcisk": "3c588018508ea82da537535428b2c1dc"
+ },
+ "roboter-privatfeier.html": {
+  "data": "2026-11-12",
+  "odcisk": "64d83c8c92c3b74145de16642eda2930"
+ },
+ "roboter-produktlaunch.html": {
+  "data": "2026-11-12",
+  "odcisk": "a513c2fbf60250ac1dc42c92040d3025"
+ },
+ "roboter-show.html": {
+  "data": "2026-11-12",
+  "odcisk": "c361f6c70ef17bb8ae3941e5a27998c8"
+ },
+ "roboter-stadtfest.html": {
+  "data": "2026-11-12",
+  "odcisk": "6347cd25002561d9625aa8032d9a7049"
+ },
+ "roboter-weihnachtsfeier.html": {
+  "data": "2026-11-12",
+  "odcisk": "52138baa0122fd6c4badc66daf7cdbf3"
+ },
+ "roboter-werbung-film.html": {
+  "data": "2026-11-12",
+  "odcisk": "b7e63d4f92154fdc7d23ca083c0fcad4"
+ },
+ "showact-buchen.html": {
+  "data": "2026-11-13",
+  "odcisk": "13c8a98a81264cb26367f006ae659290"
+ },
+ "sommerfest-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "7284b1d8c7e1725bb7e96ab711ad2ee9"
+ },
+ "stadtfest-organisieren.html": {
+  "data": "2026-11-13",
+  "odcisk": "81d7c316dc1c9afb87e591a77c2d6dc3"
+ },
+ "teambuilding-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "45d84c44af65c56785b21f5853cc588e"
+ },
+ "unitree-g1-mieten.html": {
+  "data": "2026-11-12",
+  "odcisk": "f4ca6b1b67aee7b366dcb5ab3328f932"
+ },
+ "weihnachtsfeier-ideen.html": {
+  "data": "2026-11-13",
+  "odcisk": "b6cb495d213866fdc2b142e9f4fdf76c"
+ },
+ "weihnachtsfeier-spiele.html": {
+  "data": "2026-11-13",
+  "odcisk": "6d6a1947e6ae397a9d235038b44eec03"
+ },
+ "zauberer-buchen.html": {
+  "data": "2026-11-12",
+  "odcisk": "e997e7f57fb5dcd5bb48a4f5e74d3d06"
+ }
+}

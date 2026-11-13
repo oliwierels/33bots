@@ -1,29 +1,23 @@
 # sitemap.xml z gotowych stron rynku: każda indeksowana strona z adresem kanonicznym, hreflang, obrazem og,
-# wideo z danych VideoObject i datą zmiany. Data: dziś dla stron zmienionych względem HEAD, inaczej z poprzedniej mapy.
+# wideo z danych VideoObject i datą zmiany. Data pochodzi z rejestru seo/lastmod/<rynek>.json: zmienia się
+# tylko wtedy, gdy zmieniła się treść strony (tekst główny, tytuł, opis, dane strukturalne), nie przy każdej przebudowie.
 # Użycie: python3 buduj_mape.py <repo> <domena>     np. python3 buduj_mape.py /home/user/litwa-strona 33bots.lt
 import html
 import json
 import re
-import subprocess
 import sys
-from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'seo'))
+import lastmod  # noqa: E402
+
 repo, domena = Path(sys.argv[1]), sys.argv[2]
 baza = f'https://{domena}/'
-dzis = date.today().isoformat()
+rynek = domena.rsplit('.', 1)[1]
 
-stare_daty = {}
-if (repo / 'sitemap.xml').exists():
-    for loc, mod in re.findall(r'<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>', (repo / 'sitemap.xml').read_text(encoding='utf-8')):
-        stare_daty[loc] = mod
-
-
-def zmieniona(plik):
-    """Plik zmieniony względem HEAD albo jeszcze nieśledzony."""
-    st = subprocess.run(['git', '-C', str(repo), 'status', '--porcelain', '--', plik.name], capture_output=True, text=True).stdout
-    return bool(st.strip())
+rejestr, zmienione = lastmod.aktualizuj(rynek, repo)
+lastmod.zapisz(rynek, rejestr)
 
 
 def meta(s, wzor):
@@ -58,7 +52,7 @@ for plik in sorted(repo.glob('*.html'), key=lambda p: (p.name != 'index.html', p
     kanon = loc.replace(baza, '') or 'index.html'
     if kanon != plik.name:
         continue  # strona wskazuje inny adres kanoniczny — w mapie tylko ten adres
-    mod = dzis if zmieniona(plik) else stare_daty.get(loc, dzis)
+    mod = rejestr[plik.name]['data']
     linie = [f'    <loc>{escape(loc)}</loc>', f'    <lastmod>{mod}</lastmod>']
     for jezyk, href in re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"', s):
         linie.append(f'    <xhtml:link rel="alternate" hreflang="{jezyk}" href="{escape(html.unescape(href))}" />')

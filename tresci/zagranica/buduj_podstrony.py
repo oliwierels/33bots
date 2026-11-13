@@ -29,6 +29,10 @@ import struct
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'seo'))
+import lastmod  # noqa: E402  (rejestr dat zmiany treści — widoczna data i dateModified)
+from datetime import date as _date  # noqa: E402
+
 import bez_komentarzy
 
 PL = Path(__file__).resolve().parents[2]
@@ -154,6 +158,8 @@ def md5(plik):
 class Rynek:
     def __init__(self, kod, cel):
         self.kod, self.cel, self.k = kod, Path(cel), RYNKI[kod]
+        self.rejestr = lastmod.wczytaj(kod)
+        self.dzis = _date.today().isoformat()
         glowna = (self.cel / 'index.html').read_text(encoding='utf-8')
         self.nav = na_strone_glowna(wycinek(glowna, '<header class="nav" id="nav">', '</header>'))
         self.stopka = na_strone_glowna(wycinek(glowna, '<footer class="stopka">', '</footer>'))
@@ -430,8 +436,30 @@ class Rynek:
 </body>
 </html>
 '''
-        (self.cel / adres).write_text(bez_komentarzy.strona(strona), encoding='utf-8')
+        (self.cel / adres).write_text(self.daty_z_rejestru(adres, bez_komentarzy.strona(strona)), encoding='utf-8')
         return adres
+
+    DATA_W_META = re.compile(r'(<p class="art__meta">[^<]*?)((?:Aktualisiert am|aktualisiert am) \d{2}\.\d{2}\.\d{4}|(?:Atnaujinta|atnaujinta) \d{4}-\d{2}-\d{2})')
+    DATA_ZMIANY_LD = re.compile(r'("dateModified":\s*")[^"]*(")')
+
+    def daty_z_rejestru(self, adres, strona):
+        """Widoczna data aktualizacji i dateModified = dzień ostatniej zmiany treści z rejestru seo/lastmod.
+        Data wpisana ręcznie w źródle („Aktualisiert am 24.10.2026”) starzała się przy każdej poprawce tekstu.
+        Odcisk treści pomija element .data-zmiany i dateModified, więc sama zmiana daty nie rusza rejestru."""
+        m = self.DATA_W_META.search(strona)
+        if m:
+            strona = strona[:m.start(2)] + '<span class="data-zmiany">' + m.group(2) + '</span>' + strona[m.end(2):]
+        stary = self.rejestr.get(adres)
+        data = stary['data'] if stary and stary['odcisk'] == lastmod.odcisk(strona) else self.dzis
+        r, mi, dz = data.split('-')
+
+        def widoczna(x):
+            tekst = x.group(1)
+            if 'ktualisiert' in tekst:
+                return re.sub(r'\d{2}\.\d{2}\.\d{4}', f'{dz}.{mi}.{r}', tekst)
+            return re.sub(r'(tnaujinta) \d{4}-\d{2}-\d{2}', rf'\1 {data}', tekst)
+        strona = re.sub(r'<span class="data-zmiany">[^<]*</span>', lambda x: widoczna(re.match(r'(.*)', x.group(0))), strona, count=1)
+        return self.DATA_ZMIANY_LD.sub(lambda x: x.group(1) + data + x.group(2), strona)
 
 
 def kanal_rss(rynek, zrodla):

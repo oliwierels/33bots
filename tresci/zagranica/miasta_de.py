@@ -46,7 +46,7 @@ SCHLOESSERNACHT = '<b>Dresdner Schlössernacht</b> · Dresden'
 MIASTA = {
     'berlin': {
         'opis': 'Humanoiden Roboter Unitree G1 in Berlin mieten: für IFA, ITB, Kongresse im CityCube und Galas. Operator, Anfahrt und Branding im Preis, ab 2.500 € pro Tag.',
-        'lead': 'Der Unitree G1 kommt zu Ihrer Veranstaltung in Berlin und Brandenburg: auf die Messe unter dem Funkturm, zum Kongress im CityCube oder Estrel, zum Launch in der STATION Berlin. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt zu Ihrer Veranstaltung in Berlin und Brandenburg: auf die Messe unter dem Funkturm, zum Kongress im CityCube oder Estrel, zum Launch in der STATION Berlin.',
         'foto': ('realizacja-gala-wsrod-gosci', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-dresden.html', 'Roboter mieten in Dresden'], ['roboter-mieten-hamburg.html', 'Roboter mieten in Hamburg'],
                    ['humanoiden-roboter-mieten.html', 'Humanoiden Roboter mieten'], ['angebot-konferenzen-galas.html', 'Roboter für Konferenzen und Galas'],
@@ -90,7 +90,7 @@ MIASTA = {
   <li><strong>Kraftwerk Berlin und AXICA</strong> — Abendveranstaltungen mit Bühne: Der Roboter eröffnet den Abend oder überreicht einen Preis.</li>
 </ul>
 
-<p>Vor Ort braucht der Roboter eine ebene Fläche von rund 2×2&nbsp;m und eine gewöhnliche 230-V-Steckdose. Der Operator ist in der Regel 30–45 Minuten nach Ankunft einsatzbereit. Ersatzakkus hat er dabei, die Show läuft den ganzen Tag.</p>
+<p>Was der Roboter vor Ort braucht, steht gesammelt auf der Seite <a href="unitree-g1-mieten.html">Unitree G1: technische Daten und Anforderungen</a>. Ersatzakkus hat der Operator dabei, die Show läuft den ganzen Messetag.</p>
 
 <h2 id="ablauf-berlin">So läuft ein Tag auf einer Berliner Konferenz ab</h2>
 
@@ -106,7 +106,7 @@ MIASTA = {
 
     'muenchen': {
         'opis': 'Humanoiden Roboter Unitree G1 in München mieten: für automatica, bauma, EXPO REAL, Kongresse im ICM und Firmenfeiern. Ab 2.500 € pro Tag, Anfahrt inklusive.',
-        'lead': 'Der Unitree G1 kommt nach München und Oberbayern: auf das Messegelände in Riem, ins ICM, in die BMW Welt oder zu Ihrer Firmenfeier. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt nach München und Oberbayern: auf das Messegelände in Riem, ins ICM, in die BMW Welt oder zu Ihrer Firmenfeier.',
         'foto': ('realizacja-gala-czerwony-dywan', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-frankfurt.html', 'Roboter mieten in Frankfurt'], ['roboter-mieten-berlin.html', 'Roboter mieten in Berlin'],
                    ['angebot-messen.html', 'Roboter für Messen'], ['roboter-firmenfeier.html', 'Roboter für die Firmenfeier'],
@@ -148,7 +148,7 @@ MIASTA = {
   <li><strong>Paulaner am Nockherberg</strong> — Festsäle für Weihnachts- und Jahresabschlussfeiern.</li>
 </ul>
 
-<p>Für alle Locations gilt: Der Roboter kommt mit dem Operator, braucht etwa 2×2&nbsp;m ebene Fläche und eine normale Steckdose. Aufbau und Funktionstest dauern in der Regel 30–45 Minuten.</p>
+<p>Für alle genannten Locations gelten dieselben technischen Anforderungen; sie stehen auf der Seite <a href="unitree-g1-mieten.html">Unitree G1</a>. Der Roboter kommt immer mit dem Operator.</p>
 
 <h2 id="firmenfeier-muenchen">Firmenfeier in München: Der Roboter als Programmpunkt</h2>
 
@@ -164,7 +164,7 @@ MIASTA = {
 
     'hamburg': {
         'opis': 'Humanoiden Roboter Unitree G1 in Hamburg mieten: für OMR, SMM, INTERNORGA, Kongresse im CCH und Events am Hafen. Ab 2.500 € pro Tag, Anfahrt inklusive.',
-        'lead': 'Der Unitree G1 kommt nach Hamburg und in die Metropolregion: in die Messehallen am Fernsehturm, ins CCH, in die Fischauktionshalle oder in die HafenCity. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt nach Hamburg und in die Metropolregion: in die Messehallen am Fernsehturm, ins CCH, in die Fischauktionshalle oder in die HafenCity.',
         'foto': ('realizacja-gala-zdjecia-gosci', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-berlin.html', 'Roboter mieten in Berlin'], ['roboter-mieten-koeln.html', 'Roboter mieten in Köln'],
                    ['humanoiden-roboter-mieten.html', 'Humanoiden Roboter mieten'], ['roboter-produktlaunch.html', 'Roboter für den Produktlaunch'],
@@ -212,7 +212,7 @@ MIASTA = {
 
     'koeln': {
         'opis': 'Humanoiden Roboter Unitree G1 in Köln mieten: für gamescom, DMEXCO, FIBO, Anuga und Firmenevents. Operator und Anfahrt im Preis, ab 2.500 € pro Tag.',
-        'lead': 'Der Unitree G1 kommt nach Köln und ins Rheinland: auf die Koelnmesse in Deutz, ins Confex, in die Flora oder ins Palladium. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt nach Köln und ins Rheinland: auf die Koelnmesse in Deutz, ins Confex, in die Flora oder ins Palladium.',
         'foto': ('realizacja-gala-detal', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-duesseldorf.html', 'Roboter mieten in Düsseldorf'], ['roboter-mieten-frankfurt.html', 'Roboter mieten in Frankfurt'],
                    ['angebot-messen.html', 'Roboter für Messen'], ['roboter-show.html', 'Roboter-Show'],
@@ -250,7 +250,7 @@ MIASTA = {
 
 <p>Für Galas und Preisverleihungen stehen in Köln die <strong>Flora</strong>, der <strong>Gürzenich</strong> und die <strong>Wolkenburg</strong> bereit. Dort arbeitet der Roboter im eleganten Branding als Gastgeber am Eingang und auf der Bühne. Für Kick-offs, Sommerfeste und Produktshows werden häufig das <strong>Palladium</strong>, das <strong>E-Werk</strong> und die <strong>XPOST</strong> gebucht, Industriehallen mit Platz für eine Choreografie. In der <strong>LANXESS arena</strong> und in den Business-Bereichen des Stadions kann er vor großem Publikum auftreten.</p>
 
-<p>Technisch genügen etwa 2×2&nbsp;m ebene Fläche und eine Steckdose. Der Operator ist 30–45 Minuten nach Ankunft startklar und bleibt während des gesamten Einsatzes beim Roboter.</p>
+<p>Die technischen Anforderungen sind überall gleich und auf der Seite <a href="unitree-g1-mieten.html">Unitree G1</a> beschrieben. Der Operator bleibt während des gesamten Einsatzes beim Roboter.</p>
 
 <h2 id="karneval">Karneval und Session</h2>
 
@@ -266,7 +266,7 @@ MIASTA = {
 
     'frankfurt': {
         'opis': 'Humanoiden Roboter Unitree G1 in Frankfurt mieten: für Automechanika, Light + Building, Buchmesse und Kongresse. Ab 2.500 € pro Tag, Anfahrt inklusive.',
-        'lead': 'Der Unitree G1 kommt nach Frankfurt und ins Rhein-Main-Gebiet: auf das Messegelände, ins Kap Europa, in die Alte Oper oder in den Palmengarten. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt nach Frankfurt und ins Rhein-Main-Gebiet: auf das Messegelände, ins Kap Europa, in die Alte Oper oder in den Palmengarten.',
         'foto': ('realizacja-gala-palac', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-koeln.html', 'Roboter mieten in Köln'], ['roboter-mieten-muenchen.html', 'Roboter mieten in München'],
                    ['angebot-konferenzen-galas.html', 'Roboter für Konferenzen und Galas'], ['roboter-gaesteempfang.html', 'Roboter für den Gästeempfang'],
@@ -314,7 +314,7 @@ MIASTA = {
   <li><strong>Klassikstadt</strong> — Kundenabende und Produktpräsentationen zwischen Oldtimern.</li>
 </ul>
 
-<p>Für alle Orte gilt dasselbe: ebene Fläche von rund 2×2&nbsp;m, eine 230-V-Steckdose, 30–45 Minuten Vorbereitung. Mehr dazu, wie der Roboter durch einen Abend führt, steht unter <a href="angebot-konferenzen-galas.html">Roboter für Konferenzen und Galas</a>.</p>
+<p>Die Anforderungen an den Ort sind an allen genannten Adressen dieselben (<a href="unitree-g1-mieten.html">technische Daten des Unitree G1</a>). Mehr dazu, wie der Roboter durch einen Abend führt, steht unter <a href="angebot-konferenzen-galas.html">Roboter für Konferenzen und Galas</a>.</p>
 
 <h2 id="empfang-frankfurt">Der Roboter am Empfang</h2>
 
@@ -330,7 +330,7 @@ MIASTA = {
 
     'duesseldorf': {
         'opis': 'Humanoiden Roboter Unitree G1 in Düsseldorf mieten: für MEDICA, EuroShop, boot, Kongresse im CCD und Galas. Ab 2.500 € pro Tag, Anfahrt inklusive.',
-        'lead': 'Der Unitree G1 kommt nach Düsseldorf und an den Niederrhein: auf das Messegelände in Stockum, ins CCD, ins Areal Böhler oder auf die Rheinterrasse. Operator, Anfahrt und Branding sind im Preis.',
+        'lead': 'Der Unitree G1 kommt nach Düsseldorf und an den Niederrhein: auf das Messegelände in Stockum, ins CCD, ins Areal Böhler oder auf die Rheinterrasse.',
         'foto': ('realizacja-gala-wsrod-gosci', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-koeln.html', 'Roboter mieten in Köln'], ['roboter-mieten-frankfurt.html', 'Roboter mieten in Frankfurt'],
                    ['angebot-messen.html', 'Roboter für Messen'], ['ki-roboter-veranstaltung.html', 'KI-Roboter, der Deutsch spricht'],
@@ -374,7 +374,7 @@ MIASTA = {
   <li><strong>Merkur Spiel-Arena</strong> — Großveranstaltungen und Business-Bereiche für Firmenevents.</li>
 </ul>
 
-<p>Der Roboter braucht rund 2×2&nbsp;m ebene Fläche und eine normale Steckdose. Der Operator bereitet den Einsatz in 30–45 Minuten vor und bleibt die ganze Zeit dabei.</p>
+<p>Was der Roboter am Einsatzort braucht, haben wir auf der Seite <a href="unitree-g1-mieten.html">Unitree G1</a> zusammengefasst. Der Operator bleibt die ganze Zeit dabei.</p>
 
 <h2 id="referenzen">Referenzen: Dresden und zwei Messestände</h2>
 
@@ -424,7 +424,7 @@ MIASTA = {
   <li><strong>Deutsches Hygiene-Museum und Kulturpalast</strong> — Tagungen, Festakte und Abendveranstaltungen im Zentrum.</li>
 </ul>
 
-<p>Technisch braucht es wenig: etwa 2×2&nbsp;m ebene Fläche und eine 230-V-Steckdose. Der Operator ist 30–45 Minuten nach Ankunft bereit und bleibt den ganzen Einsatz über beim Roboter.</p>
+<p>Die technischen Anforderungen stehen auf der Seite <a href="unitree-g1-mieten.html">Unitree G1</a>. Der Operator bleibt den ganzen Einsatz über beim Roboter.</p>
 
 <h2 id="silicon-saxony">Für Unternehmen im Silicon Saxony</h2>
 

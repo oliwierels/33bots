@@ -428,13 +428,39 @@ class Strona:
             (re.search(r'<p class="proces__akcent wejscie">(.*?)</p>', pl).group(1), r['proces_akcent'])],
             [p for (pt, pc, pb), (t, c, b) in zip(kroki, r['kroki']) for p in ((pt, t), (pc, c), (pb, b))])
 
+    def przeglad(self):
+        """Linki w treści strony głównej do stron usług i miast rynku (11.2026): dotąd prowadziła do nich tylko stopka."""
+        p = self.r.get('przeglad')
+        if not p:
+            return ''
+        grupy = '\n'.join(f'''      <div class="przeglad__grupa">
+        <h3 class="przeglad__h">{e(tytul)}</h3>
+        <ul class="przeglad__lista">
+''' + '\n'.join(f'          <li><a href="{href}">{e(nazwa)}</a>' + (f'<span>{e(opis)}</span>' if opis else '') + '</li>' for href, nazwa, opis in pozycje) + '''
+        </ul>
+      </div>''' for tytul, pozycje in p['grupy'])
+        return f'''<section id="{p['id']}" class="sec" aria-labelledby="przeglad-h">
+  <div class="wrap grid12">
+    <div class="faq__glowa wejscie">
+      <p class="label">{p['meta']}</p>
+      <h2 id="przeglad-h" class="h2">{p['h2']}</h2>
+      <p class="przeglad__lead">{e(p['lead'])}</p>
+    </div>
+    <div class="przeglad wejscie">
+{grupy}
+    </div>
+  </div>
+</section>
+
+'''
+
     def faq(self):
         r = self.r
         pozycje = '\n'.join(f'''      <div class="faq__item">
         <h3 class="faq__h"><button class="faq__q" type="button" id="faq-{i}-q" aria-expanded="false" aria-controls="faq-{i}" data-faq="{e(q)}">{e(q)}<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
         <div class="faq__a" id="faq-{i}" role="region" aria-labelledby="faq-{i}-q" hidden><p>{e(a)}</p></div>
       </div>''' for i, (q, a) in enumerate(r['faq'], 1))
-        return f'''<!-- ══════════ 09 FAQ ══════════ -->
+        return self.przeglad() + f'''<!-- ══════════ 09 FAQ ══════════ -->
 <section id="faq" class="sec" aria-labelledby="faq-h">
   <div class="wrap grid12">
     <div class="faq__glowa wejscie">
@@ -753,6 +779,13 @@ class Strona:
                          "document.documentElement.setAttribute('data-a11y-'+k,p[k]);});}catch(e){}</script>")
         style.append(f'<link rel="stylesheet" href="css/site.css?v={wersje["css/site.css"]}" />')
         style.append(f'<link rel="stylesheet" href="css/glowna.css?v={wersje["css/glowna.css"]}" />')
+        if self.r.get('przeglad'):
+            style.append('<style>.przeglad{grid-column:6 / -1;display:grid;gap:48px}.przeglad__h{margin:0 0 20px;font:500 .8125rem/1.4 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--text-2)}'
+                         '.przeglad__lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}'
+                         '.przeglad__lista a{display:inline-block;padding-block:4px;color:var(--text);font-size:1.0625rem;line-height:1.4;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--text-2)}'
+                         '.przeglad__lista a:hover{text-decoration-color:currentColor}.przeglad__lista a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}'
+                         '.przeglad__lista span{display:block;margin-top:4px;color:var(--text-2);font-size:.9375rem;line-height:1.5}.przeglad__lead{margin:0;color:var(--text-2);font-size:1.0625rem;line-height:1.6;max-width:34ch}'
+                         '@media (max-width:1023px){.przeglad{grid-column:1 / -1}}@media (max-width:640px){.przeglad__lista{grid-template-columns:1fr}}</style>')
         glowa = glowa.replace('{{STYLE}}', '\n'.join(style)).replace('{{FAQ}}', self.faq_jsonld())
 
         gtm_body = ''
