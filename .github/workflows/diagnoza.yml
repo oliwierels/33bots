@@ -17,14 +17,32 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: API i serwer MCP na żywo
+      - name: Dokumentacja Google Search Central (aktualna treść)
+        run: python3 badania/google_docs.py badania/wyniki/google
+      - name: Stan wyjściowy czterech domen
+        run: python3 badania/audyt_zywo.py badania/wyniki/audyt-2026-11
+      - name: Lighthouse (telefon) — strony główne i po jednej stronie ofertowej
         run: |
-          mkdir -p badania/wyniki/zywo
-          sleep 75   # wdrożenie produkcyjne .pl trwa około minuty
-          bash badania/api_zywo.sh 2>&1 | tee badania/wyniki/zywo/api_zywo.txt
+          npm init -y >/dev/null 2>&1; npm install --silent lighthouse@12 >/dev/null 2>&1 || true
+          mkdir -p badania/wyniki/audyt-2026-11/lh
+          for u in https://33bots.pl/ https://33bots.pl/robot-na-mikolajki.html https://33bots.de/ https://33bots.de/roboter-weihnachtsfeier.html https://33bots.at/ https://33bots.at/roboter-mieten-wien.html https://33bots.lt/ https://33bots.lt/humanoidinio-roboto-nuoma.html; do
+            n=$(echo "$u" | sed 's|https://||; s|/$|/index|; s|[/.]|_|g')
+            npx lighthouse "$u" --only-categories=performance,seo,accessibility --form-factor=mobile --quiet --output=json --output-path=/tmp/lh.json --chrome-flags="--headless=new --no-sandbox" >/dev/null 2>&1 || echo "lighthouse nie powiódł się: $u"
+            python3 - "$u" "badania/wyniki/audyt-2026-11/lh/$n.json" <<'PY' || true
+          import json, sys
+          d = json.load(open('/tmp/lh.json')); a = d['audits']
+          w = {'adres': sys.argv[1], 'wyniki': {k: v['score'] for k, v in d['categories'].items()},
+               'LCP': a['largest-contentful-paint']['displayValue'], 'CLS': a['cumulative-layout-shift']['displayValue'], 'TBT': a['total-blocking-time']['displayValue'],
+               'FCP': a['first-contentful-paint']['displayValue'], 'SI': a['speed-index']['displayValue'], 'waga': a['total-byte-weight']['displayValue'],
+               'lcp_element': (a.get('largest-contentful-paint-element', {}).get('details', {}).get('items', [{}])[0].get('items', [{}])[0].get('node', {}).get('snippet')),
+               'nieudane_seo': [k for k in d['categories']['seo']['auditRefs'] if a[k['id']]['score'] == 0],
+               'nieudane_a11y': [k['id'] for k in d['categories']['accessibility']['auditRefs'] if a[k['id']]['score'] == 0]}
+          json.dump(w, open(sys.argv[2], 'w'), ensure_ascii=False, indent=1); print(w['adres'], w['wyniki'], w['LCP'], w['CLS'], w['TBT'])
+          PY
+          done
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add badania/wyniki
-          git commit -q -m "Wyniki: API i MCP na żywo" && git push -q origin HEAD:diagnoza-domen
+          git commit -q -m "Wyniki: dokumentacja Google i stan wyjściowy domen" && git push -q origin HEAD:diagnoza-domen
