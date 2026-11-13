@@ -111,6 +111,43 @@ def przepisz_mape(katalog, rej):
     return n != t
 
 
+MIESIACE = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia']
+LINIA_DATY = re.compile(r'(<p class="data-zmiany" data-opublikowano="(\d{4}-\d{2}-\d{2})"[^>]*>)(.*?)(</p>)', re.S)
+META_PORADNIKA = re.compile(r'(<p class="art__meta"><time datetime="(\d{4}-\d{2}-\d{2})">[^<]*</time>[^<]*?)(<span class="data-zmiany">[^<]*</span>)?(</p>)')
+LD_DATY = re.compile(r'("datePublished":\s*"(\d{4}-\d{2}-\d{2})[^"]*",\s*"dateModified":\s*")[^"]*(")')
+
+
+def slownie(iso):
+    r, m, d = iso.split('-')
+    return f'{int(d)} {MIESIACE[int(m) - 1]} {r}'
+
+
+def stempluj(katalog, rej):
+    """Widoczne daty i dateModified na stronach .pl = data z rejestru. Zwraca liczbę zmienionych plików.
+    Wpisy są poza odciskiem treści (element .data-zmiany, <time>, dateModified), więc nie zmieniają rejestru."""
+    zmienione = 0
+    for nazwa, surowe in strony(katalog):
+        if nazwa not in rej:
+            continue
+        data = rej[nazwa]['data']
+
+        def linia(m):
+            opub = m.group(2)
+            tekst = f'Opublikowano {slownie(opub)}' + (f' · zaktualizowano {slownie(data)}' if data > opub else '') + ' · zespół 33bots'
+            return m.group(1) + tekst + m.group(4)
+
+        def meta(m):
+            return m.group(1) + (f'<span class="data-zmiany"> · zaktualizowano {".".join(reversed(data.split("-")))}</span>' if data > m.group(2) else '') + m.group(4)
+
+        def ld(m):
+            return m.group(1) + (data if data > m.group(2) else m.group(2)) + m.group(3)
+        nowe = LD_DATY.sub(ld, META_PORADNIKA.sub(meta, LINIA_DATY.sub(linia, surowe)))
+        if nowe != surowe:
+            (Path(katalog) / nazwa).write_text(nowe, encoding='utf-8')
+            zmienione += 1
+    return zmienione
+
+
 def niezgodne_w_mapie(katalog, rej):
     t = (Path(katalog) / 'sitemap.xml').read_text(encoding='utf-8')
     zle = []
@@ -147,7 +184,9 @@ def main():
     nowy, zmienione = aktualizuj(rynek, katalog)
     zapisz(rynek, nowy)
     przepisana = przepisz_mape(katalog, nowy) if rynek == 'pl' else False
-    print(f'{rynek}: {len(nowy)} stron w rejestrze, nowa data dla {len(zmienione)}' + (', sitemap.xml przepisana' if przepisana else ''))
+    ostemplowane = stempluj(katalog, nowy) if rynek == 'pl' else 0
+    print(f'{rynek}: {len(nowy)} stron w rejestrze, nowa data dla {len(zmienione)}' + (', sitemap.xml przepisana' if przepisana else '')
+          + (f', daty na stronach odświeżone w {ostemplowane} plikach' if ostemplowane else ''))
 
 
 if __name__ == '__main__':
