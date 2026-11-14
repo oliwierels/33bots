@@ -17,11 +17,11 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: Kontrola na żywo po wdrożeniu (cztery domeny)
-        run: mkdir -p badania/wyniki/po-wdrozeniu && python3 badania/po_wdrozeniu.py badania/wyniki/po-wdrozeniu/2026-11-14.json
+      - name: Rekordy DNS czterech domen (serwery nazw, rekord własności Google)
+        run: mkdir -p badania/wyniki/dns && python3 badania/dns.py badania/wyniki/dns/2026-11-14.json
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add badania/wyniki
-          git commit -q -m "Wyniki: kontrola na żywo po wdrożeniu" && git push -q origin HEAD:diagnoza-domen
+          git commit -q -m "Wyniki: rekordy DNS domen" && git push -q origin HEAD:diagnoza-domen
