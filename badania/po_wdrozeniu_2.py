@@ -40,7 +40,7 @@ TESTY = [
     ('https://33bots.at/messe-roboter-mieten.html', 200, ['Ein Messetag mit Roboter', 'roboter-mieten-preise.html'], ['stärkste Stopper']),
     ('https://33bots.at/humanoider-roboter-mieten.html', 200, ['Was Sie buchen', 'roboter-firmenfeier.html'], []),
     ('https://33bots.at/roboter-mieten-wien.html', 200, ['roboter-kongress-gala.html', 'roboter-mieten-preise.html'], []),
-    ('https://33bots.at/roboter-weihnachtsfeier.html', 200, ['roboter-firmenfeier.html'], []),
+    ('https://33bots.at/roboter-weihnachtsfeier.html', 200, ['roboter-firmenfeier.html', 'Der Dezember 2026 im Kalender', 'Weihnachtsfeier von 18 bis 22 Uhr'], ['Der erste Eindruck des Abends']),
     ('https://33bots.at/sitemap.xml', 200, ['roboter-mieten-preise.html', 'roboter-firmenfeier.html', 'roboter-kongress-gala.html'], ['video:video']),
     ('https://33bots.de/', 200, ['"legalName"', 'Warszawa', 'id="przeglad"'], ['aggregateRating']),
     ('https://33bots.de/roboter-fuer-eventagenturen.html', 200, ['Was Sie Ihrem Kunden nicht versprechen sollten', 'Briefing: Was wir von Ihnen wissen müssen'], []),
@@ -56,7 +56,7 @@ TESTY = [
 
 gotowe = {d: czekaj(u, z) for d, u, z in [
     ('de', 'https://33bots.de/roboter-fuer-eventagenturen.html', 'Was Sie Ihrem Kunden nicht versprechen sollten'),
-    ('at', 'https://33bots.at/roboter-kongress-gala.html', 'Einlage zu Mitternacht')]}
+    ('at', 'https://33bots.at/roboter-weihnachtsfeier.html', 'Der Dezember 2026 im Kalender')]}
 wyniki, bledy = [], []
 for url, kod_ocz, ma, nie_ma in TESTY:
     kod, t = pobierz(url)
