@@ -370,7 +370,7 @@ CZAS = [
 CTA_STRON = {
     'humanoider-roboter-mieten': 'Nennen Sie uns Datum, Ort und Anlass. Wir antworten meist innerhalb von 30 Minuten, am Telefon nennen wir den Preis sofort: +48 531 408 004.',
     'messe-roboter-mieten': 'Nennen Sie uns Messe, Standgröße und Termin. Die Antwort mit dem Preis für Ihre Messetage kommt meist innerhalb von 30 Minuten.',
-    'roboter-weihnachtsfeier': 'Schreiben Sie uns Termin und Ort Ihrer Weihnachtsfeier. Sie erhalten meist innerhalb von 30 Minuten eine Antwort mit Preis und Verfügbarkeit.',
+    'roboter-weihnachtsfeier': 'Nennen Sie uns Datum, Ort und Gästezahl Ihrer Weihnachtsfeier. Meist kennen Sie innerhalb von 30 Minuten Preis und Verfügbarkeit.',
     'unitree-g1-mieten': 'Fragen Sie den Unitree G1 für Ihren Termin an. Wir prüfen die Verfügbarkeit und melden uns meist innerhalb von 30 Minuten.',
 }
 PIEC_MIAST = ('<a href="roboter-mieten-wien.html">Wien</a>, <a href="roboter-mieten-graz.html">Graz</a>, '
