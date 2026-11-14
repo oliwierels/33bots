@@ -59,6 +59,7 @@ const STRONY = [
   '/robot-na-sylwestra.html',
   '/robot-dla-agencji-eventowych.html',
   '/koniec-roku-z-robotem.html',
+  '/robot-na-karnawal.html',
 ];
 const EKRANY = [
   { width: 375, height: 812, minimum: 24 },
