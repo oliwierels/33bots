@@ -1,0 +1,247 @@
+{
+ "gotowe_po_czekaniu": {
+  "pl": true,
+  "de": true,
+  "at": true,
+  "lt": true
+ },
+ "bledy": [],
+ "testy": [
+  {
+   "adres": "https://33bots.pl/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/koniec-roku-z-robotem.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-mikolajki.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-impreze-firmowa.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-sylwestra.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-dla-agencji-eventowych.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-rocznice-firmy.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-gale.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-na-karnawal.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/robot-wynajem-elblag.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-logistyka-robota-w-dniu-eventu.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/wigilia-firmowa-pomysly.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/nie-ma-takiej-strony-kontrola.html",
+   "kod": 404,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/seo/lastmod.py",
+   "kod": 404,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/sklep.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/zauberer-buchen.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/hochzeit-kosten.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/weihnachtsfeier-ideen.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/roboter-mieten-berlin.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/humanoiden-roboter-mieten.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/galerija.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/robotu-nuoma-vilnius.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/unitree-g1-nuoma.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  }
+ ],
+ "mapy": {
+  "33bots.pl": {
+   "kod": 200,
+   "adresow": 207,
+   "lastmod": {
+    "2026-11-14": 40,
+    "2026-11-13": 155,
+    "2026-11-02": 1,
+    "2026-10-24": 1,
+    "2026-10-20": 1
+   },
+   "kody_adresow": {
+    "200": 207
+   }
+  },
+  "33bots.de": {
+   "kod": 200,
+   "adresow": 65,
+   "lastmod": {
+    "2026-11-14": 9,
+    "2026-11-13": 19,
+    "2026-11-12": 35,
+    "2026-10-24": 2
+   },
+   "kody_adresow": {
+    "200": 65
+   }
+  },
+  "33bots.at": {
+   "kod": 200,
+   "adresow": 13,
+   "lastmod": {
+    "2026-11-13": 1,
+    "2026-11-12": 9,
+    "2026-10-23": 3
+   },
+   "kody_adresow": {
+    "200": 13
+   }
+  },
+  "33bots.lt": {
+   "kod": 200,
+   "adresow": 79,
+   "lastmod": {
+    "2026-11-14": 37,
+    "2026-11-13": 5,
+    "2026-10-24": 35,
+    "2026-10-07": 2
+   },
+   "kody_adresow": {
+    "200": 79
+   }
+  }
+ }
+}
