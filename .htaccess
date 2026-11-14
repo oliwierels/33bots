@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# ── Własna strona błędu 404 ───────────────────────────────────────────────────
+# Bez tej linii serwer oddawał domyślną stronę hostingu („Error 404 Nie
+# znaleziono strony”) zamiast 404.html z nawigacją do oferty.
+ErrorDocument 404 /404.html
+
 # Force HTTPS and non-www (canonical: https://33bots.pl)
 RewriteCond %{HTTP_HOST} ^www\.33bots\.pl$ [NC,OR]
 RewriteCond %{HTTPS} off
@@ -50,7 +55,7 @@ RewriteRule ^mcp/?$ api/index.php?zasob=mcp [L,QSA]
 # Paczka wdrożeniowa zawiera katalogi ze źródłami treści i testami. Serwer nie ma ich
 # podawać: to surowe fragmenty stron (także w innych językach), których wyszukiwarka
 # nie powinna znaleźć pod tą domeną.
-RedirectMatch 404 "^/(tresci|qa|badania)/"
+RedirectMatch 404 "^/(tresci|qa|badania|seo)/"
 
 # ── Dane robota 3D na stronie głównej (robot/*.bin) ───────────────────────────
 # Chmura punktów dla js/robot3d.js. Kompresja zmniejsza plik o ok. 10–30%, a adres

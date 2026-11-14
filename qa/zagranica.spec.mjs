@@ -153,7 +153,9 @@ for (const m of RYNKI) {
     test('struktura jak na .pl, dawne kotwice działają, identyfikatory unikalne', async ({ browser }) => {
       const { ctx, page } = await nowaStrona(browser, m);
       const kolejnosc = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id || s.className));
-      expect(kolejnosc).toEqual(['hero', 'proof', 'robot', 'zasady', 'referenzen', 'wystep', 'case-study', 'formaty', 'proces', 'faq', 'kontakt']);
+      // 'przeglad' (11.2026): sekcja z linkami w treści do stron usług i miast rynku — jedyne świadome odstępstwo od układu .pl,
+      // bo dotąd do tych stron prowadziła tylko stopka.
+      expect(kolejnosc).toEqual(['hero', 'proof', 'robot', 'zasady', 'referenzen', 'wystep', 'case-study', 'formaty', 'proces', 'przeglad', 'faq', 'kontakt']);
       const numery = await page.evaluate(() => [...document.querySelectorAll('.sec .sec__meta')].map((e) => e.textContent.trim().slice(0, 7)));
       expect(numery).toEqual(['04 / 13', '05 / 13', '06 / 13', '07 / 13', '08 / 13', '09 / 13', '10 / 13', '11 / 13', '12 / 13']);
       for (const id of m.kotwice) expect(await page.locator(`#${id}`).count(), `#${id}`).toBe(1);
