@@ -1,0 +1,175 @@
+{
+ "gotowe_po_czekaniu": {
+  "de": true,
+  "at": true
+ },
+ "bledy": [],
+ "testy": [
+  {
+   "adres": "https://33bots.at/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/roboter-mieten-preise.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/roboter-firmenfeier.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/roboter-kongress-gala.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/unitree-g1-mieten.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/messe-roboter-mieten.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/humanoider-roboter-mieten.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/roboter-mieten-wien.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/roboter-weihnachtsfeier.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/sitemap.xml",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/roboter-fuer-eventagenturen.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/angebot-konferenzen-galas.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/roboter-mieten-preise.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/roboter-firmenfeier.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/roboter-werbung-film.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/impressum.html",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/",
+   "kod": 200,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  }
+ ],
+ "mapy": {
+  "33bots.de": {
+   "kod": 200,
+   "adresow": 65,
+   "lastmod": {
+    "2026-11-14": 15,
+    "2026-11-13": 19,
+    "2026-11-12": 30,
+    "2026-10-24": 1
+   },
+   "kody_adresow": {
+    "200": 65
+   }
+  },
+  "33bots.at": {
+   "kod": 200,
+   "adresow": 16,
+   "lastmod": {
+    "2026-11-14": 13,
+    "2026-10-23": 3
+   },
+   "kody_adresow": {
+    "200": 16
+   }
+  }
+ }
+}
