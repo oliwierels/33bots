@@ -53,8 +53,8 @@ MIASTA = {
         'lead': 'Der Unitree G1 kommt zu Ihrer Veranstaltung in Wien: auf die Messe im Prater, zum Kongress im Austria Center, zur Gala in der Hofburg. Operator, Transport und Branding sind im Preis.',
         'foto': ('realizacja-gala-wsrod-gosci', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-graz.html', 'Roboter mieten in Graz'], ['roboter-mieten-linz.html', 'Roboter mieten in Linz'],
-                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich'],
-                   ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier']],
+                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-kongress-gala.html', 'Roboter für Kongress, Gala und Ball'],
+                   ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich'], ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier']],
         'pytania': [
             ['Was kostet es, einen Roboter in Wien zu mieten?', 'Ein ganzer Veranstaltungstag kostet ab 2.300 € netto. Operator, Transport, Branding und Haftpflichtversicherung sind enthalten. Ab zwei Tagen, etwa bei einer Messe im Prater, gibt es 15 % Rabatt auf jeden Tag. Einen kürzeren Auftritt kalkulieren wir individuell.'],
             ['Kommen Sie auch ins Wiener Umland?', 'Ja. Neben allen 23 Wiener Gemeindebezirken kommen wir auch nach Schwechat, Mödling, Klosterneuburg, Baden oder Korneuburg. Einen Aufschlag pro Kilometer gibt es nicht.'],
@@ -66,7 +66,7 @@ MIASTA = {
 
 <p>In Wien treffen sich Fachgesellschaften, Verbände und Konzerne aus aller Welt. Wer hier einlädt, hat Gäste vor sich, die viele Kongresse und viele Empfänge kennen. Ein humanoider Roboter, der frei durch das Foyer geht, jeden Gast in seiner Sprache begrüßt und Ihr Logo auf der Brust trägt, gehört selten dazu.</p>
 
-<p>Wir kommen mit dem Unitree G1, einem Operator und einem abgestimmten Drehbuch nach Wien. Ein ganzer Veranstaltungstag kostet ab 2.300&nbsp;€ netto, Transport, Branding und Haftpflichtversicherung eingeschlossen. Was der Roboter kann, steht auf der Seite <a href="humanoider-roboter-mieten.html">Humanoiden Roboter mieten in Österreich</a>.</p>
+<p>Wir kommen mit dem Unitree G1, einem Operator und einem abgestimmten Drehbuch nach Wien. Ein ganzer Veranstaltungstag kostet ab 2.300&nbsp;€ netto, Transport, Branding und Haftpflichtversicherung eingeschlossen. Rechenbeispiele für mehrere Tage stehen unter <a href="roboter-mieten-preise.html">Preise</a>. Was der Roboter kann, steht auf der Seite <a href="humanoider-roboter-mieten.html">Humanoiden Roboter mieten in Österreich</a>.</p>
 
 <h2 id="messe-wien">Messe Wien und Austria Center: Welche Aufgabe der Roboter übernimmt</h2>
 
@@ -97,7 +97,7 @@ MIASTA = {
 
 <h2 id="ballsaison">Ballsaison und Galas</h2>
 
-<p>Zwischen November und Fasching ist in Wien Ballsaison, und viele Unternehmen laden in dieser Zeit zu eigenen Festabenden. Der Roboter begrüßt die Gäste beim Einzug, steht für das Foto an der Sponsorenwand bereit und bewegt sich später durch den Saal. Charakter, Texte und Wege legen wir vorher gemeinsam fest.</p>
+<p>Zwischen November und Fasching ist in Wien Ballsaison, und viele Unternehmen laden in dieser Zeit zu eigenen Festabenden. Der Roboter begrüßt die Gäste beim Einzug, steht für das Foto an der Sponsorenwand bereit und bewegt sich später durch den Saal. Charakter, Texte und Wege legen wir vorher gemeinsam fest. Wie ein solcher Abend abläuft, steht auf der Seite <a href="roboter-kongress-gala.html">Kongress, Gala und Ball</a>.</p>
 
 <h2 id="einsaetze">Referenzen: Ball in Dresden, Konferenz mit 14.000 Gästen</h2>
 
@@ -114,7 +114,7 @@ MIASTA = {
         'lead': 'Der Unitree G1 kommt nach Graz und in die Steiermark: auf das Messegelände, in die Stadthalle, in die Helmut List Halle oder zu Ihrem Firmenevent. Operator, Transport und Branding sind im Preis.',
         'foto': ('realizacja-gala-czerwony-dywan', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-wien.html', 'Roboter mieten in Wien'], ['roboter-mieten-linz.html', 'Roboter mieten in Linz'],
-                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['unitree-g1-mieten.html', 'Unitree G1 mieten in Österreich'],
+                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-firmenfeier.html', 'Roboter für die Firmenfeier'], ['unitree-g1-mieten.html', 'Unitree G1 mieten in Österreich'],
                    ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich']],
         'pytania': [
             ['Was kostet ein Roboter für ein Event in Graz?', 'Ein ganzer Veranstaltungstag kostet ab 2.300 € netto, mit Operator, Transport, Branding und Haftpflichtversicherung. Bei zwei und mehr Tagen gibt es 15 % Rabatt auf jeden Tag.'],
@@ -141,7 +141,7 @@ MIASTA = {
 
 <h3>Helmut List Halle und Seifenfabrik</h3>
 
-<p>Industriehallen für Produktpräsentationen, Kick-offs und Firmenfeiern, mit Platz für eine Tanzchoreografie auf der Bühne.</p>
+<p>Industriehallen für Produktpräsentationen, Kick-offs und <a href="roboter-firmenfeier.html">Firmenfeiern</a>, mit Platz für eine Tanzchoreografie auf der Bühne.</p>
 
 <wideo/>
 
@@ -168,7 +168,7 @@ MIASTA = {
         'lead': 'Der Unitree G1 kommt nach Salzburg: ins Messezentrum, in den Salzburg Congress, in ein Schloss oder ein Tagungshotel im Salzburger Land. Operator, Transport und Branding sind im Preis.',
         'foto': ('realizacja-gala-palac', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-innsbruck.html', 'Roboter mieten in Innsbruck'], ['roboter-mieten-linz.html', 'Roboter mieten in Linz'],
-                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'],
+                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-kongress-gala.html', 'Roboter für Kongress, Gala und Ball'], ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'],
                    ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich']],
         'pytania': [
             ['Was kostet ein Roboter für ein Event in Salzburg?', 'Ab 2.300 € netto für einen ganzen Veranstaltungstag. Operator, Transport, Branding und Haftpflichtversicherung sind enthalten. Einen kürzeren Auftritt, etwa nur zum Empfang, kalkulieren wir individuell.'],
@@ -181,7 +181,7 @@ MIASTA = {
 
 <p>Salzburg lebt von Gästen: Festspielpublikum, Tagungsteilnehmer, Urlauber und die Kunden einer starken Tourismus- und Handelsbranche. Veranstaltungen sind hier oft international und finden in Räumen statt, die selbst schon Eindruck machen. Der Roboter ergänzt diese Kulisse um einen Moment, den niemand erwartet.</p>
 
-<p>Wir kommen mit dem Unitree G1 und einem Operator nach Salzburg. Der Preis beginnt bei 2.300&nbsp;€ netto pro Veranstaltungstag, Transport, Branding und Haftpflichtversicherung eingeschlossen. Die Rechnung stellen wir nach der Veranstaltung.</p>
+<p>Wir kommen mit dem Unitree G1 und einem Operator nach Salzburg. Der Preis beginnt bei 2.300&nbsp;€ netto pro Veranstaltungstag, Transport, Branding und Haftpflichtversicherung eingeschlossen. Die Rechnung stellen wir nach der Veranstaltung. Alle Formate stehen unter <a href="roboter-mieten-preise.html">Preise</a>.</p>
 
 <h2 id="messezentrum-salzburg">Messezentrum Salzburg und Salzburg Congress</h2>
 
@@ -196,7 +196,7 @@ MIASTA = {
 
 <h2 id="locations-salzburg">Schlösser, Hangar und Brauerei</h2>
 
-<p>Für Galas und Jubiläen stehen in Salzburg Säle bereit, die es so nur hier gibt: die <strong>Residenz</strong> in der Altstadt, <strong>Schloss Leopoldskron</strong> am Weiher, das <strong>Kavalierhaus Klessheim</strong>. Dort tritt der Roboter im eleganten Branding auf und arbeitet als Gastgeber am Eingang. Für Produktpräsentationen und Kundenabende werden häufig der <strong>Hangar-7</strong> am Flughafen und die <strong>Stiegl-Brauwelt</strong> gebucht.</p>
+<p>Für <a href="roboter-kongress-gala.html">Galas</a> und Jubiläen stehen in Salzburg Säle bereit, die es so nur hier gibt: die <strong>Residenz</strong> in der Altstadt, <strong>Schloss Leopoldskron</strong> am Weiher, das <strong>Kavalierhaus Klessheim</strong>. Dort tritt der Roboter im eleganten Branding auf und arbeitet als Gastgeber am Eingang. Für Produktpräsentationen und Kundenabende werden häufig der <strong>Hangar-7</strong> am Flughafen und die <strong>Stiegl-Brauwelt</strong> gebucht.</p>
 
 <h2 id="hotellerie">Für Hotellerie und Tourismus</h2>
 
@@ -221,7 +221,7 @@ MIASTA = {
         'lead': 'Der Unitree G1 kommt nach Linz und Oberösterreich: ins Design Center, ins Brucknerhaus, in die Tabakfabrik oder direkt in Ihr Werk. Operator, Transport und Branding sind im Preis.',
         'foto': ('realizacja-gala-zdjecia-gosci', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-wien.html', 'Roboter mieten in Wien'], ['roboter-mieten-salzburg.html', 'Roboter mieten in Salzburg'],
-                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['unitree-g1-mieten.html', 'Unitree G1 mieten in Österreich'],
+                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-firmenfeier.html', 'Roboter für die Firmenfeier'], ['unitree-g1-mieten.html', 'Unitree G1 mieten in Österreich'],
                    ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich']],
         'pytania': [
             ['Was kostet ein Roboter für ein Event in Linz?', 'Ein ganzer Veranstaltungstag kostet ab 2.300 € netto, mit Operator, Transport, Branding und Haftpflichtversicherung. Bei Einsätzen ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag.'],
@@ -241,7 +241,7 @@ MIASTA = {
 <ul>
   <li><strong>Design Center Linz</strong> — Fachmessen und Kongresse unter dem Glasdach. Der Roboter arbeitet am Stand und holt Besucher aus dem Gang.</li>
   <li><strong>Brucknerhaus</strong> — Festakte, Jubiläen und Preisverleihungen an der Donau, der Roboter als Gastgeber im Foyer.</li>
-  <li><strong>Tabakfabrik Linz</strong> — Produktpräsentationen, Start-up-Events und Firmenfeiern in Industriearchitektur.</li>
+  <li><strong>Tabakfabrik Linz</strong> — Produktpräsentationen, Start-up-Events und <a href="roboter-firmenfeier.html">Firmenfeiern</a> in Industriearchitektur.</li>
   <li><strong>voestalpine Stahlwelt</strong> — Kundenveranstaltungen, bei denen Technik das Thema ist.</li>
 </ul>
 
@@ -272,7 +272,7 @@ MIASTA = {
         'lead': 'Der Unitree G1 kommt nach Innsbruck und Tirol: in den Congress am Rennweg, auf das Messegelände, in ein Tagungshotel oder zu Ihrem Firmenevent. Operator, Transport und Branding sind im Preis.',
         'foto': ('realizacja-gala-detal', SCHLOESSERNACHT),
         'czytaj': [['roboter-mieten-salzburg.html', 'Roboter mieten in Salzburg'], ['roboter-mieten-wien.html', 'Roboter mieten in Wien'],
-                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'],
+                   ['messe-roboter-mieten.html', 'Messe-Roboter mieten'], ['roboter-kongress-gala.html', 'Roboter für Kongress, Gala und Ball'], ['roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'],
                    ['humanoider-roboter-mieten.html', 'Humanoiden Roboter mieten in Österreich']],
         'pytania': [
             ['Was kostet ein Roboter für ein Event in Innsbruck?', 'Ab 2.300 € netto für einen ganzen Veranstaltungstag, mit Operator, Transport, Branding und Haftpflichtversicherung. Bei mehrtägigen Messen oder Kongressen gibt es ab zwei Tagen 15 % Rabatt auf jeden Tag.'],
@@ -291,7 +291,7 @@ MIASTA = {
 
 <h3>Congress Innsbruck</h3>
 
-<p>Im Kongresshaus am Rennweg begrüßt der Roboter die Teilnehmenden im Foyer, kündigt Vortragende an und steht in den Pausen für Fotos bereit. Bei wissenschaftlichen Kongressen legen wir einen sachlichen Auftritt fest.</p>
+<p>Im Kongresshaus am Rennweg begrüßt der Roboter die Teilnehmenden im Foyer, kündigt Vortragende an und steht in den Pausen für Fotos bereit. Bei wissenschaftlichen Kongressen legen wir einen sachlichen Auftritt fest. Die Aufgaben über einen Kongresstag beschreibt die Seite <a href="roboter-kongress-gala.html">Kongress, Gala und Ball</a>.</p>
 
 <h3>Messe Innsbruck</h3>
 
@@ -299,7 +299,7 @@ MIASTA = {
 
 <h3>Olympiaworld</h3>
 
-<p>Großveranstaltungen, Sportevents und Firmenfeiern mit Bühne, auf der der Roboter eine Choreografie tanzt.</p>
+<p>Großveranstaltungen, Sportevents und <a href="roboter-firmenfeier.html">Firmenfeiern</a> mit Bühne, auf der der Roboter eine Choreografie tanzt.</p>
 
 <wideo/>
 
@@ -378,9 +378,6 @@ PIEC_MIAST = ('<a href="roboter-mieten-wien.html">Wien</a>, <a href="roboter-mie
               'und <a href="roboter-mieten-innsbruck.html">Innsbruck</a>')
 # (plik, wzorzec, zamiennik, znacznik obecny po zamianie)
 POPRAWKI = [
-    ('humanoider-roboter-mieten',
-     r'bis <a href="roboter-mieten-dornbirn\.html">Dornbirn</a>',
-     'bis Dornbirn', 'bis Dornbirn</li>'),
     ('roboter-weihnachtsfeier',
      r'<p>Wir kommen in jede Stadt Österreichs, ohne Aufschlag und ohne Kilometerlimit\. Mehr zu einzelnen Städten:.*?</p>',
      f'<p>Wir kommen in jede Stadt Österreichs, ohne Aufschlag und ohne Kilometerlimit. Eigene Seiten gibt es für {PIEC_MIAST}.</p>',

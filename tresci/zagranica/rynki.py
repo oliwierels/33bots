@@ -343,8 +343,53 @@ AT = {**WSPOLNE_DE,
     'analityka': True,           # GTM i Albacross jak dotąd, z banerem cookie
     'panel_dostepnosci': False,
     'h1': 'Humanoide Roboter mieten für Events in Österreich',
-    'lead': 'Ein humanoider Roboter mit Charakter und Drehbuch für Ihre Gala, Konferenz oder Ihren Messestand. Er spricht Deutsch und jede andere Sprache. Operator, Transport und Branding im Preis.',
+    # Strona główna .at pisana osobno (11.2026): te same fakty firmy co na .de, inne zdania i inny dobór
+    # argumentów. Do tego fakty rynku: ceny netto, wszystkie kraje związkowe, kalendarz sezonu 2026/27,
+    # bal jako okazja. Case study to Women in Tech Summit (na .de: Eco Studio). Bez „zertifiziert”:
+    # podstrony .at mówią o „geschulter Operator”, a certyfikatu nikt nie potwierdził.
+    'display': 'Der Gast, mit dem alle ein Foto wollen.',
+    'lead': 'Der Unitree G1 kommt mit Operator und fertigem Drehbuch zu Ihrem Kongress, Ihrer Messe oder Ihrem Firmenfest, von Wien bis Dornbirn. Er spricht Deutsch und jede andere Sprache. Transport und Branding sind im Preis.',
+    'cta': 'Termin und Preis anfragen', 'cta_krotki': 'Termin anfragen', 'pasek': 'Termin anfragen',
+    'hero_data_pytanie': 'Für welchen Tag planen Sie?',
+    'hero_obietnica': '<strong>Keine Anzahlung, die Rechnung kommt nach dem Event.</strong> Rückmeldung in rund 30&nbsp;Minuten.',
+    'hero_telefon': 'Am Telefon nennen wir den Preis sofort:',
     'hero_link': ('#referenzen', 'Referenzen ansehen'),
+    'proof_label': 'Gesehen bei',
+    'realizacje_meta': '06 / 13 · Referenzen', 'realizacje_h2': 'Wo der Roboter schon im Einsatz war',
+    'realizacje_body': 'Ballsaal in Dresden, Messe MSPO in Kielce, Tech-Konferenz mit rund 14.000 Teilnehmenden in Warschau, dazu Gemeindefeste, Clubs und Hochzeiten: mehr als 100 Veranstaltungen in fünf Ländern. Ein Klick auf ein Bild zeigt, welche Aufgabe der Roboter dort hatte.',
+    'klienci_label': 'Auftraggeber',
+    'klienci_kraje': f'Vom Konzern bis zur Gemeinde, vom Wissenschaftszentrum bis zur Hochzeitsgesellschaft. Einsätze {KRAJE_DE}.',
+    'wystep_h2': 'Was vor dem Auftritt feststeht',
+    'wystep_body': 'Ob der Roboter am Rand steht oder durch den Abend führt, entscheidet die Vorbereitung. Fünf Punkte klären wir mit Ihnen, bevor er den Saal betritt. Die Erfahrung dafür kommt aus mehr als 100 Veranstaltungen, vom Firmenkongress bis zum Gemeindefest.',
+    'wiersze': [
+        ('Rolle', 'Gastgeber im Smoking, humorvoller Partner der Moderation oder sachlicher Auskunftgeber am Stand: Die Rolle steht vor dem Event fest. Am stärksten wirkt der Roboter, wenn er auf das eingeht, was im Saal gerade geschieht.'),
+        ('Sprache und Wissen', f'Der Roboter spricht Deutsch und jede andere Sprache, mit natürlich klingender Stimme, und wechselt während der Veranstaltung von einer Sprache in die andere. Im Einsatz waren wir bisher {KRAJE_DE}. Vorab bekommt er das Wissen zu Ihrem Event: Programm, Vortragende, Anlass und Angebot Ihres Unternehmens.'),
+        ('Ablauf', 'Empfang beim Einlass, Ansage der Vortragenden, Countdown zu Mitternacht, Ankündigung der Preisträgerinnen und Preisträger. Dazu kommen mehrere Choreografien, von ruhig bis schwungvoll. Jeder Einsatz hat seinen festen Platz im Programm.'),
+        ('Branding', 'Ihr Logo und ein QR-Code sitzen auf der Brust des Roboters. Der Auftritt reicht vom Firmen-T-Shirt bis zum Paillettensmoking mit Krone, wie beim Ball in Dresden. Zusätzliche Kosten entstehen dafür nicht.'),
+        ('Bilder', 'Beim Roboter greifen Gäste von selbst zum Handy. Deshalb planen wir die Momente dafür ein: Begrüßung an der Fotowand, Bühnenauftritt, Tanz. Mit dem Logo auf der Brust ist Ihre Marke auf diesen Aufnahmen zu sehen.'),
+    ],
+    'wystep_foto_alt': 'Humanoider Roboter mit Krone und Paillettensmoking in Nahaufnahme',
+    'cs_h2': 'Women in Tech Summit: ein Roboter unter rund 14.000 Teilnehmenden',
+    'cs_opis': [
+        ('Veranstaltung', 'Der Perspektywy Women in Tech Summit ist nach Angaben der Veranstalter die größte Konferenz Europas für Frauen in der Technologie. Die Ausgabe 2026 fand am 10. und 11. Juni im Warschauer EXPO XXI statt, mit über 400 Speakerinnen auf fünf Bühnen.'),
+        ('Aufgabe des Roboters', 'Der Unitree G1 war auf dem Laufsteg und mitten im Publikum unterwegs. Er begrüßte Gäste, posierte für Fotos und kam zwischen den Vorträgen mit den Teilnehmenden ins Gespräch.'),
+        ('Was wir für große Hallen gelernt haben', 'Bei Tausenden Gästen grenzen wir eine Showzone ab. Der Operator steuert die Gespräche und die Schlange für Fotos. So wartet niemand lange, und der Roboter arbeitet sicher.'),
+    ],
+    'cs_foto_plik': 'realizacja-women-in-tech-wybieg',
+    'cs_foto_alt': 'Humanoider Roboter auf dem rosa Laufsteg des Women in Tech Summit, im Hintergrund das Publikum',
+    'cs_foto_podpis': 'Women in Tech Summit, EXPO XXI in Warschau, Juni 2026.',
+    'cs_fakty': [
+        ('https://womenintechsummit.pl/', 'rund 14.000 Teilnehmende', 'Angabe der Veranstalter'),
+        (None, '10.–11. Juni 2026', 'EXPO XXI, Warschau'),
+        (None, 'über 400 Speakerinnen', '5 Bühnen · 9 Themenzonen'),
+    ],
+    'cs_cytat': None,
+    'formaty_h2': 'Was der Auftritt in Österreich kostet',
+    'formaty_body': 'Alle Beträge sind Nettopreise. Kalkuliert wird ein Auftritt mit Operator, Drehbuch und Vorbereitung, kein Leihgerät.',
+    'proces_h2': 'In vier Schritten zum Auftritt',
+    'proces_akcent': 'Bezahlt wird nach dem Event.',
+    'faq_h2': 'Häufige Fragen aus Österreich',
+    'kontakt_h2': 'Ist Ihr Termin noch frei?',
     'proof': [
         ('https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151', 'TVP2-Frühstücksfernsehen', '0:35–1:00'),
         ('https://www.tiktok.com/@teleexpress.tvp/video/7654958168786619680', 'Teleexpress, TVP', None),
@@ -364,25 +409,25 @@ AT = {**WSPOLNE_DE,
     ],
     'formaty_wcenie': 'Im Preis: Operator, Transport in ganz Österreich, Branding (Logo, QR-Code), Haftpflichtversicherung. <strong>Sie zahlen nach der Veranstaltung.</strong> Den endgültigen Preis kalkulieren wir nach Dauer, Ort und Programm. Zusatzoption: Roboterhund, auf Anfrage.',
     'kroki': [
-        ('Gespräch', 'ca. 30 Minuten', 'Sie hinterlassen Ihre Kontaktdaten oder rufen an. Wir rufen zurück und nennen einen konkreten Betrag, meist innerhalb von 30 Minuten. Am Telefon — sofort.'),
-        ('Drehbuch und Vertrag', 'meist 1–2 Wochen', 'Wir legen Drehbuch und Branding fest und bestätigen Ort und Termin. Reservierung ohne Anzahlung.'),
-        ('Veranstaltung', 'am Veranstaltungstag', 'Wir kommen mit Roboter und Operator. Um Technisches müssen Sie sich nicht kümmern.'),
-        ('Rechnung nach der Veranstaltung', 'nach der Veranstaltung', 'Die Rechnung stellen wir nach der Veranstaltung. Bei Bedarf vereinbaren wir ein längeres Zahlungsziel.'),
+        ('Anfrage', 'rund 30 Minuten', 'Sie schreiben uns Datum, Ort und Anlass oder rufen an. Meist innerhalb von 30 Minuten kennen Sie den konkreten Betrag, am Telefon gleich.'),
+        ('Drehbuch und Vereinbarung', 'meist 1–2 Wochen', 'Gemeinsam fixieren wir Rolle, Texte und Branding und bestätigen Termin und Ort. Eine Anzahlung brauchen wir nicht.'),
+        ('Event', 'am Veranstaltungstag', 'Roboter und Operator kommen zu Ihnen. Die Technik liegt in unserer Hand.'),
+        ('Rechnung', 'nach dem Event', 'Die Rechnung kommt nach der Veranstaltung, auf Wunsch mit längerem Zahlungsziel.'),
     ],
     'faq': [
-        ('Was kostet die Miete genau?', 'Ab 2.300 € netto für einen ganzen Veranstaltungstag — den endgültigen Betrag kalkulieren wir nach Dauer, Ort und Programm. Sie können den Roboter auch für einen kürzeren Auftritt mieten, etwa für einige Stunden während einer Konferenzpause — dann kalkulieren wir individuell und immer günstiger als einen ganzen Tag. Bei Einsätzen ab zwei Tagen gewähren wir 15 % Rabatt auf jeden Tag. Transport, Operator, Branding und Haftpflichtversicherung sind inklusive; der Roboterhund ist auf Anfrage zubuchbar.'),
-        ('Sind die Preise netto oder brutto?', 'Netto. Alle Beträge auf dieser Seite sind Nettopreise.'),
-        FAQ_BATERIE,
-        ('Wie viel Platz braucht der Roboter?', 'Einige Quadratmeter genügen. Der Roboter arbeitet am Messestand, auf der Bühne und im Gang zwischen den Gästen — ohne eigene Zone oder technisches Backoffice.'),
-        FAQ_MOWA,
-        FAQ_ZALICZKA,
-        FAQ_OPERATOR,
-        FAQ_BEZPIECZENSTWO,
-        ('Kommen Sie auch in meine Stadt?', 'Ja — in jede Stadt Österreichs, ohne Aufschlag und ohne Kilometerlimit. Von Wien bis Dornbirn, von Innsbruck bis Eisenstadt.'),
-        FAQ_ZAGRANICA,
+        ('Was kostet ein Roboter für einen Tag?', 'Ein ganzer Veranstaltungstag kostet ab 2.300 € netto. Der genaue Betrag hängt von Dauer, Ort und Programm ab. Ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag, zwei Tage kosten also ab 3.910 € netto. Ein Auftritt von einigen Stunden wird eigens kalkuliert und liegt immer unter dem Tagespreis. Enthalten sind Operator, Transport, Branding und Haftpflichtversicherung. Den Roboterhund gibt es auf Anfrage dazu.'),
+        ('Verstehen sich die Preise netto?', 'Ja. Alle Beträge auf dieser Seite sind Nettopreise.'),
+        ('Kommen Sie auch nach Vorarlberg, Kärnten oder ins Burgenland?', 'Ja. Wir kommen in jede Stadt Österreichs, ohne Aufschlag und ohne Kilometerlimit: von Wien bis Dornbirn, von Innsbruck bis Eisenstadt. Eigene Seiten gibt es für Wien, Graz, Linz, Salzburg und Innsbruck.'),
+        ('Welche Termine der Saison 2026/27 sollte man früh anfragen?', 'Die Abende, an denen viele Firmen gleichzeitig feiern. Der Nikolaustag fällt 2026 auf einen Sonntag, Mariä Empfängnis am 8. Dezember auf einen Dienstag. Die Freitage vor Weihnachten sind der 4., 11. und 18. Dezember, Silvester ist ein Donnerstag. Die Ballsaison läuft bis zum Faschingsdienstag am 9. Februar 2027.'),
+        ('Passt der Roboter auf einen Ball oder eine Gala?', 'Ja. Bei der Dresdner Schlössernacht trat er im Paillettensmoking mit Krone auf: auf dem roten Teppich, im Ballsaal und unter den Gästen. Für einen Ballabend legen wir vorher fest, wo er empfängt, wann er auf die Bühne kommt und welche Texte er spricht.'),
+        ('Spricht der Roboter Deutsch?', 'Ja. Der Roboter spricht Deutsch und jede andere Sprache, mit natürlich klingender Stimme. Er begrüßt Gäste, beantwortet Fragen und sagt Programmpunkte an. Vor dem Event bekommt er das Wissen über Ihr Unternehmen: Angebot, Produktnamen, häufige Fragen und den Ablauf. Diese Vorbereitung ist im Preis enthalten.'),
+        ('Was braucht der Roboter vor Ort?', 'Einige Quadratmeter ebene Fläche und eine gewöhnliche Steckdose. Er arbeitet am Messestand, auf der Bühne und zwischen den Gästen, bei trockenem Wetter auch im Freien. Der Operator hat Ersatzakkus dabei und wechselt sie während des Events, eine Ladepause gibt es nicht.'),
+        ('Wer bedient den Roboter?', 'Unser Operator. Er ist während des gesamten Einsatzes beim Roboter, steuert die Auftritte und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss sich niemand um die Technik kümmern.'),
+        ('Ist der Roboter zwischen den Gästen sicher?', 'Ja. LiDAR und Kamera erkennen Menschen und Hindernisse, der Roboter weicht ihnen in Echtzeit aus. Der Operator entscheidet, was er wann zeigt, und jeder Einsatz ist haftpflichtversichert.'),
+        ('Brauchen Sie eine Anzahlung?', 'Nein. Sie reservieren ohne Anzahlung. Die Rechnung stellen wir nach der Veranstaltung, auf Wunsch mit längerem Zahlungsziel.'),
     ],
     'mail': 'kontakt@33bots.at',
-    'kontakt_tekst': 'Wir antworten meist innerhalb von 30&nbsp;Minuten. Ein Angebot nennen wir Ihnen am Telefon sofort. Reservierung ohne Anzahlung, in ganz Österreich.',
+    'kontakt_tekst': 'Schreiben Sie uns Datum, Ort und Anlass. Meist melden wir uns innerhalb von 30&nbsp;Minuten, am Telefon nennen wir den Preis sofort. Reservierung ohne Anzahlung, in ganz Österreich.',
     'miejsce_ph': 'z. B. Wien, Messe Wien',
     'formularz': {'adres': 'https://formspree.io/f/mnjwvray', 'dodatkowe': {}, 'gtag': True},
     'sukces_2': '. Wir antworten meist innerhalb von 30 Minuten. Ein Angebot sofort erhalten Sie am Telefon: +48 531 408 004.',
@@ -393,20 +438,23 @@ AT = {**WSPOLNE_DE,
     'stopka_social': [('https://www.instagram.com/33bots_/', 'Instagram'), ('https://www.tiktok.com/@aimforum', 'TikTok'), ('https://www.facebook.com/33bots', 'Facebook'), ('https://www.linkedin.com/company/33bots', 'LinkedIn')],
     # None w miejscu listy linków = kolumna z linkami społecznościowymi.
     'stopka_kolumny': [
-        ('Angebot', [('humanoider-roboter-mieten.html', 'Humanoider Roboter mieten'), ('messe-roboter-mieten.html', 'Roboter für Messen'), ('roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'), ('unitree-g1-mieten.html', 'Unitree G1 mieten'), ('kontakt.html', 'Kontakt')]),
+        ('Angebot', [('humanoider-roboter-mieten.html', 'Humanoider Roboter mieten'), ('roboter-mieten-preise.html', 'Preise'), ('messe-roboter-mieten.html', 'Roboter für Messen'), ('roboter-kongress-gala.html', 'Kongress, Gala und Ball'), ('roboter-firmenfeier.html', 'Roboter für die Firmenfeier'), ('roboter-weihnachtsfeier.html', 'Roboter für die Weihnachtsfeier'), ('unitree-g1-mieten.html', 'Unitree G1 mieten'), ('kontakt.html', 'Kontakt')]),
         ('Social Media', None),
         ('Rechtliches', [('impressum.html', 'Impressum'), ('datenschutz.html', 'Datenschutz')]),
     ],
     'stopka_poradnik': None,
     'przeglad': {
-        'id': 'przeglad', 'meta': 'Leistungen · Städte', 'h2': 'Wofür und wo Sie den Roboter buchen',
-        'lead': 'Jede Seite beschreibt einen Einsatz genauer: Ablauf, Anforderungen an den Ort und Preis.',
+        'id': 'przeglad', 'meta': 'Anlässe · Städte', 'h2': 'Anlässe und Städte in Österreich',
+        'lead': 'Zu jedem Anlass gibt es eine eigene Seite mit Ablauf, Voraussetzungen vor Ort und Preis.',
         'grupy': [
-            ('Leistungen', [
-                ('humanoider-roboter-mieten.html', 'Humanoider Roboter mieten', 'Was im Preis ab 2.300 € netto enthalten ist und wie die Buchung abläuft.'),
-                ('messe-roboter-mieten.html', 'Roboter für Messen', 'Standposition, Drehbuch und QR-Code auf der Brust.'),
-                ('roboter-weihnachtsfeier.html', 'Weihnachtsfeier', 'Empfang, Fotopunkt am Baum und Tanzshow.'),
-                ('unitree-g1-mieten.html', 'Unitree G1', 'Technische Daten und Anforderungen vor Ort.'),
+            ('Anlässe', [
+                ('humanoider-roboter-mieten.html', 'Humanoider Roboter mieten', 'Das Komplettpaket: Roboter, Operator, Transport und Branding.'),
+                ('roboter-mieten-preise.html', 'Preise', 'Tagespreis, Rabatt ab zwei Tagen und Rechenbeispiele in Euro netto.'),
+                ('messe-roboter-mieten.html', 'Roboter für Messen', 'Rolle am Stand, Texte und QR-Code auf der Brust.'),
+                ('roboter-kongress-gala.html', 'Kongress, Gala und Ball', 'Empfang, Ansagen auf der Bühne und Einlage zu Mitternacht.'),
+                ('roboter-firmenfeier.html', 'Firmenfeier', 'Sommerfest, Jubiläum, Kick-off: Ablauf eines Abends.'),
+                ('roboter-weihnachtsfeier.html', 'Weihnachtsfeier', 'Empfang, Foto am Baum und Tanz zur Playlist.'),
+                ('unitree-g1-mieten.html', 'Unitree G1', 'Technische Daten und was der Ort bieten muss.'),
             ]),
             ('Städte', [
                 ('roboter-mieten-wien.html', 'Roboter mieten in Wien', ''),
@@ -860,9 +908,15 @@ KALK_DE = {
 }
 KALK_AT = {**KALK_DE,
     'dzien_kwota': 2300, 'kwota_html': '2.300',
-    'formaty': {**KALK_DE['formaty'],
-        'dzien': ('Ganzer Tag', 'Der Roboter steht Ihnen den ganzen Veranstaltungstag zur Verfügung, mit Operator und Ersatzakkus.', 'ab 2.300&nbsp;€ netto')},
-    'etykieta_wejscie': 'Kurzauftritt · einige Stunden · netto', 'etykieta_dzien': 'Ganzer Tag · netto', 'etykieta_dni': '`${dni} Tage · netto`',
+    'formaty': {
+        'wejscie': ('Einige Stunden', 'Empfang, ein Block auf der Bühne oder die stärksten Stunden am Messestand.', 'Individuelles Angebot · immer unter dem Tagespreis'),
+        'dzien': ('Ganzer Tag', 'Der Roboter ist den ganzen Veranstaltungstag bei Ihnen, mit Operator und Ersatzakkus.', 'ab 2.300&nbsp;€ netto'),
+        'dni': ('Mehrere Tage', 'Zwei Tage oder mehr, etwa Messen, Kongresse und Roadshows.', '−15&nbsp;% auf jeden Tag'),
+    },
+    'etykieta_wejscie': 'Einige Stunden · netto', 'etykieta_dzien': 'Ganzer Tag · netto', 'etykieta_dni': '`${dni} Tage · netto`',
+    'opis_wejscie': 'Nach einem kurzen Gespräch über Ihr Programm nennen wir den Betrag. Er liegt immer unter dem Tagespreis.',
+    'opis_dni': '`${dni} Tage zu je ${kwota(DZIEN * RABAT)} € statt ${kwota(DZIEN)} €. Sie sparen ${kwota(dni * DZIEN * (1 - RABAT))} €.`',
+    'zgloszenie_wejscie': "'Ich interessiere mich für einen Auftritt von einigen Stunden.'",
     'opis_dzien': 'Den endgültigen Preis kalkulieren wir nach Dauer, Ort und Programm.',
     'wcenie_1': 'Im Preis: Operator, Transport in ganz Österreich, Branding (Logo, QR-Code), Haftpflichtversicherung.',
     'zgloszenie_dni': '`Ich interessiere mich für ${dni} Tage (ab ${zl(dni * DZIEN * RABAT)} € netto).`',
@@ -904,7 +958,51 @@ ROBOT_LT = {
     'powitania': ['Laba diena', 'Hello', 'Guten Tag', 'Dzień dobry', 'Dobrý den', 'Bună ziua', 'Bonjour', 'Hola', 'Ciao', 'こんにちは'],
 }
 
-for _r, _t, _k, _rb in ((DE, TEKSTY_DE, KALK_DE, ROBOT_DE), (AT, TEKSTY_DE, KALK_AT, ROBOT_DE), (LT, TEKSTY_LT, KALK_LT, ROBOT_LT)):
+# 33bots.at: sekcje brane z kodu .pl (skala, robot z bliska, zasady) z własnym niemieckim tekstem.
+# Krótkie etykiety interfejsu zostają wspólne z .de; dłuższe zdania są napisane osobno.
+TEKSTY_AT = {**TEKSTY_DE,
+    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern: Galas, Messen, Kongresse, Firmenfeste und Open-Air-Events',
+    'zaliczki — fakturę wystawiamy po wydarzeniu': 'Anzahlung — bezahlt wird nach dem Event',
+    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'bis Sie den Preis kennen — telefonisch sofort',
+    'Poznaj go, zanim przyjedzie.': 'Der Unitree G1 aus der Nähe.',
+    'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR und Kamera erfassen den Raum und die Gäste',
+    'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Natürliche Stimme, jede Sprache',
+    'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Platz für Ihr Logo und einen QR-Code',
+    'Wita, podaje rękę, pozuje do zdjęć': 'Winken, Händeschütteln, Posen fürs Foto',
+    'Chodzi wśród gości i&nbsp;omija przeszkody': 'Geht frei durch den Saal und umgeht Hindernisse',
+    'Wystarczy mu kilka metrów kwadratowych': 'Kommt mit einigen Quadratmetern aus',
+    'Wydaj robotowi polecenie': 'Was soll der Roboter tun?',
+    'Najpierw bezpieczeństwo gości. Potem efekt.': 'Zuerst die Sicherheit Ihrer Gäste, dann die Show.',
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+        'Der Operator bestimmt in jedem Moment, was der Roboter zeigt. Aufwendigere Bewegungen gibt es nur, wenn der Platz dafür reicht: Er beurteilt den Raum, hält Abstand und lenkt den Andrang. So bleibt der Abend für alle sicher, und viele Gäste kommen an die Reihe.',
+    'Operator: blisko, ale dyskretnie': 'Der Operator: nah, wenn es eng wird',
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+        'Unser Operator begleitet den Roboter vom ersten bis zum letzten Auftritt. Bei Gedränge steht er unmittelbar daneben. In ruhigeren Phasen hält er sich zurück, damit der Roboter im Mittelpunkt steht und nicht sein Begleiter. Für jeden Einsatz besteht eine Haftpflichtversicherung.',
+    'Widzi ludzi wokół siebie': 'Er nimmt wahr, wer um ihn steht',
+    'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
+        'LiDAR und Computer Vision erkennen Menschen und Hindernisse in Echtzeit, der Roboter umgeht sie. Er bewegt sich ruhig durch den Saal, und der Operator hat jeden Schritt im Auge.',
+    'Baterie bez przerwy w&nbsp;pokazie': 'Frische Akkus, ohne Unterbrechung',
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+        'Die Akkus des Roboters sind austauschbar. Der Operator bringt einen Ersatzsatz mit und wechselt während der Veranstaltung. Eine Ladepause braucht die Show nicht.',
+    'Wychodzimy do ludzi': 'Der Roboter geht auf die Gäste zu',
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+        'Er bleibt nicht am Rand stehen und wartet. Der Roboter geht hin, spricht Gäste an und beginnt das Gespräch. So kommen auch jene zum Zug, die von sich aus nicht hingegangen wären.',
+    'Dzień dobry': 'Grüß Gott',
+    'Rozmawia w&nbsp;każdym języku': 'Jede Sprache, auch gemischt',
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+        'Der Roboter spricht Deutsch und jede andere Sprache, mit natürlicher Stimme. Kommen Ihre Gäste aus mehreren Ländern, wechselt er während der Veranstaltung von einer Sprache in die andere.',
+    'Zna Twoje wydarzenie': 'Er ist auf Ihr Event vorbereitet',
+    'Przed wydarzeniem wgrywamy to, czego potrzebujesz: informacje o&nbsp;samym wydarzeniu, o&nbsp;firmie, którą robot reprezentuje, o&nbsp;jej ofercie i&nbsp;najczęstszych pytaniach gości. Robot odpowiada konkretnie i&nbsp;nawiązuje do tego, co dzieje się na miejscu.':
+        'Vorab spielen wir ein, was er wissen soll: Fakten zur Veranstaltung, zum Unternehmen, das er vertritt, zum Angebot und zu den Fragen, die Gäste häufig stellen. Seine Antworten sind konkret und beziehen sich auf das, was vor Ort geschieht.',
+    'Sprawdź termin i dokładną cenę': 'Termin und genauen Preis anfragen',
+}
+ROBOT_AT = {**ROBOT_DE,
+    'mowa': ['Grüß Gott! Ich spreche Deutsch und jede andere Sprache.', 'Hello! Welcome to your event.', 'Dzień dobry! Schön, Sie zu sehen.',
+             'Laba diena! Machen wir ein Foto?', 'Dobrý den! Ich komme zu Ihren Gästen.', 'Bună ziua! Ich erzähle von Ihrem Unternehmen.'],
+    'powitania': ['Grüß Gott', 'Hello', 'Dzień dobry', 'Laba diena', 'Dobrý den', 'Bună ziua', 'Bonjour', 'Hola', 'Ciao', 'こんにちは'],
+}
+
+for _r, _t, _k, _rb in ((DE, TEKSTY_DE, KALK_DE, ROBOT_DE), (AT, TEKSTY_AT, KALK_AT, ROBOT_AT), (LT, TEKSTY_LT, KALK_LT, ROBOT_LT)):
     _r.update({'teksty': _t, 'kalk': _k, 'robot': _rb})
 DE['skala_aria'] = AT['skala_aria'] = 'Umfang und Medien'
 LT['skala_aria'] = 'Mastas ir žiniasklaida'

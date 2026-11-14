@@ -372,8 +372,19 @@ class Strona:
         for href, fakt, etykieta in r['cs_fakty']:
             srodek = f'<span class="cs__fakt">{fakt}</span><span class="label">{etykieta}</span>'
             fakty.append(f'      <li>{self.link(href, srodek) if href else srodek}</li>')
-        lh, lt = r['cs_cytat_link']
         link = f'\n      <p><a class="link" href="{r["cs_link"][0]}">{r["cs_link"][1]}{STRZALKA}</a></p>' if r['cs_link'] else ''
+        # Rynek może pokazać inną realizację niż .de (33bots.at: Women in Tech Summit) — wtedy podaje własne
+        # zdjęcie, a cytat z relacji prasowej pomija, jeśli takiej relacji nie ma.
+        foto = r.get('cs_foto_plik', 'realizacja-eco-studio-eko-partner')
+        pion = wymiary(foto)[1] > wymiary(foto)[0]
+        cytat = ''
+        if r['cs_cytat']:
+            lh, lt = r['cs_cytat_link']
+            cytat = f'''
+    <blockquote class="cs__cytat wejscie">
+      <p>{r['cs_cytat']}</p>
+      <footer class="label">{r['cs_cytat_zrodlo']} · {self.link(lh, lt)}</footer>
+    </blockquote>'''
         return f'''<!-- ══════════ 06 CASE STUDY — jedyna jasna sekcja ══════════ -->
 <section id="case-study" class="sec sec--jasna" aria-labelledby="cs-h">
   <div class="wrap grid12">
@@ -384,17 +395,13 @@ class Strona:
 {opis}
       </dl>{link}
     </div>
-    <figure class="cs__foto wejscie">
-      {self.zdjecie('realizacja-eco-studio-eko-partner', r['cs_foto_alt'], '(max-width: 1023px) 100vw, 45vw')}
+    <figure class="cs__foto{' cs__foto--pion' if pion else ''} wejscie">
+      {self.zdjecie(foto, r['cs_foto_alt'], '(max-width: 1023px) 100vw, 45vw')}
       <figcaption class="podpis">{r['cs_foto_podpis']}</figcaption>
     </figure>
     <ul class="cs__fakty wejscie">
 {chr(10).join(fakty)}
-    </ul>
-    <blockquote class="cs__cytat wejscie">
-      <p>{r['cs_cytat']}</p>
-      <footer class="label">{r['cs_cytat_zrodlo']} · {self.link(lh, lt)}</footer>
-    </blockquote>
+    </ul>{cytat}
   </div>
 </section>'''
 
@@ -786,6 +793,10 @@ class Strona:
                          '.przeglad__lista a:hover{text-decoration-color:currentColor}.przeglad__lista a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}'
                          '.przeglad__lista span{display:block;margin-top:4px;color:var(--text-2);font-size:.9375rem;line-height:1.5}.przeglad__lead{margin:0;color:var(--text-2);font-size:1.0625rem;line-height:1.6;max-width:34ch}'
                          '@media (max-width:1023px){.przeglad{grid-column:1 / -1}}@media (max-width:640px){.przeglad__lista{grid-template-columns:1fr}}</style>')
+        if self.r.get('cs_foto_plik'):
+            # Pionowe zdjęcie w case study: przycięte do proporcji 4:5 i węższe, żeby nie było dużo wyższe od tekstu obok.
+            style.append('<style>.cs__foto--pion{grid-column:8 / -1}.cs__foto--pion img{aspect-ratio:4 / 5;object-fit:cover;object-position:50% 35%}'
+                         '@media (max-width:1023px){.cs__foto--pion{grid-column:1 / -1;max-width:480px}}</style>')
         glowa = glowa.replace('{{STYLE}}', '\n'.join(style)).replace('{{FAQ}}', self.faq_jsonld())
 
         gtm_body = ''

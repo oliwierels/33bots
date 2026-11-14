@@ -62,12 +62,14 @@ TEKSTY_DE = {
     'start': 'Startseite', 'okruchy': 'Brotkrumen', 'skip': 'Zum Hauptinhalt springen',
     'spis': 'Auf dieser Seite', 'faq': 'Häufige Fragen', 'czytaj': 'Weiterlesen',
     'cta_tytul': 'Prüfen Sie, ob Ihr Termin frei ist',
-    'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Sie erhalten das Angebot innerhalb von 24 Werkstunden.',
+    'cta_tekst': 'Beschreiben Sie Ihre Veranstaltung in ein paar Sätzen. Wir antworten meist innerhalb von 30 Minuten.',
     'cta_przycisk': 'Termin und Preis prüfen', 'pasek': 'Termin prüfen',
     'menu': ("'Schließen' : 'Menü'"),
     'rss_opis': 'Eventratgeber: Ideen, Attraktionen und Kosten für Firmenfeier, Hochzeit und Event — und Wissen über humanoide Roboter.', 'rss_jezyk': 'de-DE',
     'rss_tytul': '33bots — Eventratgeber',
 }
+# 33bots.at: przyciski jak na własnej stronie głównej rynku („anfragen”).
+TEKSTY_AT = {**TEKSTY_DE, 'cta_tytul': 'Ist Ihr Termin noch frei?', 'cta_przycisk': 'Termin und Preis anfragen', 'pasek': 'Termin anfragen'}
 TEKSTY_LT = {
     'start': 'Pradžia', 'okruchy': 'Naršymo kelias', 'skip': 'Pereiti prie turinio',
     'spis': 'Šiame puslapyje', 'faq': 'Dažniausi klausimai', 'czytaj': 'Skaitykite toliau',
@@ -77,7 +79,8 @@ TEKSTY_LT = {
     'menu': ("'Uždaryti' : 'Meniu'"),
     'rss_opis': 'Renginių gidas: pramogos, vedėjai, idėjos ir humanoidinis robotas renginyje.', 'rss_jezyk': 'lt-LT',
 }
-RYNKI['de']['teksty'] = RYNKI['at']['teksty'] = TEKSTY_DE
+RYNKI['de']['teksty'] = TEKSTY_DE
+RYNKI['at']['teksty'] = TEKSTY_AT
 RYNKI['lt']['teksty'] = TEKSTY_LT
 
 
