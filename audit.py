@@ -26,6 +26,13 @@ STRONY = sorted(p for p in glob.glob("*.html") if p not in POMIJANE)
 # a żadna inna strona nie może dostać noindex po cichu.
 CELOWO_POZA_INDEKSEM = {f"roboter-mieten-{m}.html" for m in
                         ("bremen", "dortmund", "essen", "hannover", "leipzig", "nuernberg", "stuttgart")}
+# Poradniki o usługach spoza oferty i o imprezach prywatnych (11.2026): zostają dla czytelników,
+# ale poza indeksem — na młodej domenie rozmywały temat serwisu (wynajem robota na wydarzenia firmowe).
+CELOWO_POZA_INDEKSEM |= {f"{n}.html" for n in (
+    "zauberer-buchen", "feuershow-buchen", "food-truck-mieten", "casino-abend", "fotobox-mieten",
+    "hochzeit-unterhaltung", "hochzeit-kosten", "hochzeit-ablaufplan", "hochzeitsband", "hochzeitsspiele",
+    "dj-hochzeit", "freie-trauung", "polterabend", "jga-ideen", "geburtstag-feiern-ideen",
+    "kindergeburtstag-ideen", "abiball-planen")}
 
 wyniki = defaultdict(list)
 

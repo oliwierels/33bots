@@ -5,7 +5,7 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://33bots.de/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://33bots.pl/" />
     <xhtml:link rel="alternate" hreflang="lt" href="https://33bots.lt/" />
@@ -17,18 +17,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://33bots.de/abiball-planen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/abiball-planen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/abiball-planen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-szkola-kosmos-scena.jpg</image:loc>
-      <image:title>Humanoider Roboter auf der Bühne der Kosmos-Schule vor Schülern</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://33bots.de/angebot-konferenzen-galas.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/angebot-konferenzen-galas.html" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://33bots.pl/oferta-konferencje.html" />
     <xhtml:link rel="alternate" hreflang="lt" href="https://33bots.lt/robotas-konferencijai.html" />
@@ -63,7 +53,7 @@
   </url>
   <url>
     <loc>https://33bots.de/attraktionen-mieten.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/attraktionen-mieten.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/attraktionen-mieten.html" />
     <image:image>
@@ -205,7 +195,7 @@
   </url>
   <url>
     <loc>https://33bots.de/case-study-wallstreet.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/case-study-wallstreet.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/case-study-wallstreet.html" />
     <image:image>
@@ -224,16 +214,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://33bots.de/casino-abend.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/casino-abend.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/casino-abend.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-czerwony-dywan.jpg</image:loc>
-      <image:title>Humanoider Roboter im Paillettensmoking auf dem roten Teppich einer Gala</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://33bots.de/datenschutz.html</loc>
     <lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/datenschutz.html" />
@@ -241,16 +221,6 @@
     <image:image>
       <image:loc>https://33bots.de/og-image.jpg</image:loc>
       <image:title>Datenschutzerklärung</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/dj-hochzeit.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/dj-hochzeit.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/dj-hochzeit.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-wesele-konfetti.jpg</image:loc>
-      <image:title>Humanoider Roboter im Nebel auf der Tanzfläche einer Hochzeit</image:title>
     </image:image>
   </url>
   <url>
@@ -283,31 +253,13 @@
   </url>
   <url>
     <loc>https://33bots.de/event-planen.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/event-planen.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/event-planen.html" />
     <image:image>
       <image:loc>https://33bots.de/realizacja-dream-med-expo.jpg</image:loc>
       <image:title>Humanoider Roboter am Stand von Dream-Med auf der Warsaw Medical Expo</image:title>
     </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/feuershow-buchen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/feuershow-buchen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/feuershow-buchen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-nocny-pokaz.jpg</image:loc>
-      <image:title>Humanoider Roboter mit rotem Umhang und Krone nachts vor einem Palais</image:title>
-    </image:image>
-    <video:video>
-      <video:thumbnail_loc>https://33bots.de/video/robot-taniec-poster.jpg</video:thumbnail_loc>
-      <video:title>Humanoider Roboter tanzt — Choreografie-Show</video:title>
-      <video:description>Der Unitree G1 tanzt eine zur Musik synchronisierte Choreografie. Der Höhepunkt jeder Show.</video:description>
-      <video:content_loc>https://33bots.de/video/robot-taniec.mp4</video:content_loc>
-      <video:duration>17</video:duration>
-      <video:family_friendly>yes</video:family_friendly>
-    </video:video>
   </url>
   <url>
     <loc>https://33bots.de/firmenfeier-ideen.html</loc>
@@ -330,96 +282,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://33bots.de/food-truck-mieten.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/food-truck-mieten.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/food-truck-mieten.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-spotkanie-biznesowe.jpg</image:loc>
-      <image:title>Humanoider Roboter im T-Shirt der Unternehmerloge auf einer Terrasse</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/fotobox-mieten.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/fotobox-mieten.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/fotobox-mieten.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-zdjecia-gosci.jpg</image:loc>
-      <image:title>Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/freie-trauung.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/freie-trauung.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/freie-trauung.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-przelewice-arkady.jpg</image:loc>
-      <image:title>Humanoider Roboter in beleuchteten Arkaden während der Märchennacht</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/geburtstag-feiern-ideen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/geburtstag-feiern-ideen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/geburtstag-feiern-ideen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-zdjecia-gosci.jpg</image:loc>
-      <image:title>Galagäste fotografieren den humanoiden Roboter an der Sponsorenwand</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/hochzeit-ablaufplan.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/hochzeit-ablaufplan.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/hochzeit-ablaufplan.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-palac.jpg</image:loc>
-      <image:title>Humanoider Roboter im Smoking im Ballsaal eines Palais</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/hochzeit-kosten.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/hochzeit-kosten.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/hochzeit-kosten.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-wesele-konfetti.jpg</image:loc>
-      <image:title>Humanoider Roboter im Nebel auf der Tanzfläche einer Hochzeit</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/hochzeit-unterhaltung.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/hochzeit-unterhaltung.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/hochzeit-unterhaltung.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-wesele-konfetti.jpg</image:loc>
-      <image:title>Humanoider Roboter im Nebel auf der Tanzfläche einer Hochzeit</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/hochzeitsband.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/hochzeitsband.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/hochzeitsband.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-eco-studio-scena.jpg</image:loc>
-      <image:title>Humanoider Roboter auf der Bühne des Eco-Studio-Finales in rotem Licht</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/hochzeitsspiele.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/hochzeitsspiele.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/hochzeitsspiele.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-detal.jpg</image:loc>
-      <image:title>Nahaufnahme des humanoiden Roboters mit Krone und Paillettensmoking</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://33bots.de/humanoiden-roboter-kaufen.html</loc>
     <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/humanoiden-roboter-kaufen.html" />
@@ -431,7 +293,7 @@
   </url>
   <url>
     <loc>https://33bots.de/humanoiden-roboter-mieten.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/humanoiden-roboter-mieten.html" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://33bots.pl/wypozyczenie-robota.html" />
     <xhtml:link rel="alternate" hreflang="lt" href="https://33bots.lt/humanoidinio-roboto-nuoma.html" />
@@ -450,16 +312,6 @@
     <image:image>
       <image:loc>https://33bots.de/og-image.jpg</image:loc>
       <image:title>Impressum</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/jga-ideen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/jga-ideen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/jga-ideen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-event-nad-woda.jpg</image:loc>
-      <image:title>Humanoider Roboter winkt auf einer Terrasse über einem Jachthafen</image:title>
     </image:image>
   </url>
   <url>
@@ -491,16 +343,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://33bots.de/kindergeburtstag-ideen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/kindergeburtstag-ideen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/kindergeburtstag-ideen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-szkola-kosmos-majaland.jpg</image:loc>
-      <image:title>Humanoider Roboter in der Schürze der Kosmos-Schule beim Schuljahresbeginn</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://33bots.de/konferenz-organisieren.html</loc>
     <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/konferenz-organisieren.html" />
@@ -528,16 +370,6 @@
     <image:image>
       <image:loc>https://33bots.de/realizacja-eco-studio-wywiad.jpg</image:loc>
       <image:title>Eine Journalistin interviewt den humanoiden Roboter an der Sponsorenwand von Eco Studio</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/polterabend.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/polterabend.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/polterabend.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-jednorozec-zachod.jpg</image:loc>
-      <image:title>Humanoider Roboter bei einer Parade im Freien bei Sonnenuntergang</image:title>
     </image:image>
   </url>
   <url>
@@ -612,7 +444,7 @@
   </url>
   <url>
     <loc>https://33bots.de/roboter-eroeffnung.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/roboter-eroeffnung.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/roboter-eroeffnung.html" />
     <image:image>
@@ -905,7 +737,7 @@
   </url>
   <url>
     <loc>https://33bots.de/roboter-produktlaunch.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/roboter-produktlaunch.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/roboter-produktlaunch.html" />
     <image:image>
@@ -1044,7 +876,7 @@
   </url>
   <url>
     <loc>https://33bots.de/unitree-g1-mieten.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/unitree-g1-mieten.html" />
     <xhtml:link rel="alternate" hreflang="de-AT" href="https://33bots.at/unitree-g1-mieten.html" />
     <xhtml:link rel="alternate" hreflang="lt" href="https://33bots.lt/unitree-g1-nuoma.html" />
@@ -1080,16 +912,6 @@
     <image:image>
       <image:loc>https://33bots.de/realizacja-nocny-pokaz.jpg</image:loc>
       <image:title>Humanoider Roboter mit rotem Umhang und Krone nachts vor einem Palais</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://33bots.de/zauberer-buchen.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/zauberer-buchen.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/zauberer-buchen.html" />
-    <image:image>
-      <image:loc>https://33bots.de/realizacja-gala-wsrod-gosci.jpg</image:loc>
-      <image:title>Humanoider Roboter unter den Gästen einer Gala</image:title>
     </image:image>
   </url>
 </urlset>
