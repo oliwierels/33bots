@@ -25,7 +25,7 @@ FAKTY = {
             'Rezervacija be avanso, sąskaita tik po renginio',
             'Robotas: Unitree G1 — 132 cm, 35 kg, 23 laisvės laipsniai, iki 2 m/s, LiDAR ir kompiuterinė rega',
             'Kalba lietuviškai ir bet kuria kita kalba, renginio metu perjungia kalbas',
-            'Vietoje reikia: maždaug 2×2 m laisvos vietos ir 230 V lizdo; operatorius pasiruošia per 30–45 min.',
+            'Vietoje reikia: maždaug 2×2 m laisvos vietos ir 230 V lizdo',
             'Atsakymas į užklausą dažniausiai per 30 minučių; kainą iš karto pasakome telefonu',
             'Kontaktai: +48 531 408 004, kontakt@33bots.lt',
             'Kalbų versijos: lietuvių (https://33bots.lt), lenkų (https://33bots.pl), vokiečių (https://33bots.de), '

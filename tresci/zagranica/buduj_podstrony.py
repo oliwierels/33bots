@@ -74,7 +74,7 @@ TEKSTY_LT = {
     'start': 'Pradžia', 'okruchy': 'Naršymo kelias', 'skip': 'Pereiti prie turinio',
     'spis': 'Šiame puslapyje', 'faq': 'Dažniausi klausimai', 'czytaj': 'Skaitykite toliau',
     'cta_tytul': 'Patikrinkite, ar jūsų data laisva',
-    'cta_tekst': 'Keliais sakiniais aprašykite savo renginį. Pasiūlymą atsiųsime per 24 darbo valandas.',
+    'cta_tekst': 'Keliais sakiniais aprašykite savo renginį. Atsakysime dažniausiai per 30 minučių.',
     'cta_przycisk': 'Patikrinti datą ir kainą', 'pasek': 'Patikrinti datą',
     'menu': ("'Uždaryti' : 'Meniu'"),
     'rss_opis': 'Renginių gidas: pramogos, vedėjai, idėjos ir humanoidinis robotas renginyje.', 'rss_jezyk': 'lt-LT',
