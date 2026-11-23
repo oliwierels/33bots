@@ -33,6 +33,13 @@ CELOWO_POZA_INDEKSEM |= {f"{n}.html" for n in (
     "hochzeit-unterhaltung", "hochzeit-kosten", "hochzeit-ablaufplan", "hochzeitsband", "hochzeitsspiele",
     "dj-hochzeit", "freie-trauung", "polterabend", "jga-ideen", "geburtstag-feiern-ideen",
     "kindergeburtstag-ideen", "abiball-planen")}
+# Ogólne poradniki eventowe i ich spis (23.11.2026): w Search Console „zeskanowana, niezindeksowana”
+# albo „wykryta”, zero wyświetleń. Zostają dla czytelników, poza indeksem; indeks skupia się na ofercie robota.
+CELOWO_POZA_INDEKSEM |= {f"{n}.html" for n in (
+    "attraktionen-mieten", "betriebsveranstaltung-steuer", "eroeffnung-ideen", "event-attraktionen", "event-planen",
+    "firmenfeier-ideen", "firmenjubilaeum-ideen", "kick-off-veranstaltung", "konferenz-organisieren", "messestand-ideen",
+    "moderator-buchen", "showact-buchen", "sommerfest-ideen", "stadtfest-organisieren", "teambuilding-ideen",
+    "weihnachtsfeier-ideen", "weihnachtsfeier-spiele", "blog")}
 
 wyniki = defaultdict(list)
 
