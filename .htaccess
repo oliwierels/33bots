@@ -31,6 +31,13 @@ Redirect 301 /oferta.html                         /wypozyczenie-robota.html
 # rozdział do poradnika „Atrakcje na imprezę firmową”.
 Redirect 301 /blog-atrakcja-na-event-firmowy.html /atrakcje-na-impreze-firmowa.html
 
+# Adresy z literówkami i bez .html, które Google pokazywał w Skuteczności (raport z 23.11.2026) — dotąd 404.
+Redirect 301 /blog-co-potrafi-robot-humanoidalny-unitree-g1/ /blog-co-potrafi-robot-humanoidalny.html
+Redirect 301 /blog-ile-kosztuje-robot-humanoidalne.html     /blog-ile-kosztuje-robot-humanoidalny.html
+Redirect 301 /blog-jak-wynajac-checklist.html               /blog-jak-wynajac-robota-checklist.html
+Redirect 301 /wypozyczenie-roba.html                        /wypozyczenie-robota.html
+RedirectMatch 301 ^/wypozyczenie-robota-ca                   /wypozyczenie-robota.html
+
 # ── Pliki ukryte (zaczynające się kropką) ─────────────────────────────────────
 # Paczka wdrożeniowa zawiera np. .mcp.json (konfiguracja narzędzi analitycznych
 # Claude — bez sekretów). Nie ma powodu, by serwer je podawał; wyjątek:
@@ -42,6 +49,12 @@ RedirectMatch 404 "/\.(?!well-known/)"
 # strony z identycznym tytułem, a Google sam wybiera, którą pokazać.
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
 RewriteRule ^index\.html$ https://33bots.pl/ [L,R=301]
+
+# Adres bez .html (np. /blog-unitree-g1-robot) → ta sama strona z .html, gdy taki plik istnieje.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([a-z0-9-]+)$ https://33bots.pl/$1.html [L,R=301]
 
 # ── Publiczne API i serwer MCP (api/index.php) ───────────────────────────────
 # /api/ — opis, /api/wycena — orientacyjna cena, /api/zapytania — zapytanie o termin,

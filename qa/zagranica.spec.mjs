@@ -27,6 +27,12 @@ const T_DE = {
   pauza: 'Pause', wznow: 'Weiter', ruchStop: 'Bewegung anhalten', ruchStart: 'Bewegung fortsetzen',
   machanie: 'Hallo! Schön, Sie zu sehen.', kalkDni: '3 Tage', zgloszenie: 'Ich interessiere mich für 3 Tage',
 };
+// 33bots.at ma własną treść strony głównej (11.2026): te same fakty co .de, inne zdania.
+const T_AT = {
+  ...T_DE,
+  leadBranding: 'Branding sind im Preis', przelacza: 'wechselt während der Veranstaltung von einer Sprache in die andere',
+  ponad40: 'mehr als 100 Veranstaltungen in fünf Ländern', cta: 'Termin und Preis anfragen',
+};
 const T_LT = {
   nastepne: 'Kita nuotrauka', menu: 'Meniu', zamknij: 'Uždaryti',
   leadMowa: 'Kalba lietuviškai ir bet kuria kita kalba', leadBranding: 'ženklinimas — kainoje',
@@ -57,7 +63,7 @@ const RYNKI = [
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['Individuelles Angebot', 'ab 2.500 €', 'pro Veranstaltungstag', '−15 %'], kalkTrzyDni: '6.375 €',
     kontakt: ['+48 531 408 004', 'kontakt@33bots.de'],
-    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Ratgeber'],
+    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Unitree G1'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',
@@ -70,7 +76,7 @@ const RYNKI = [
     kanoniczny: 'https://33bots.at/', h1: /roboter mieten für events in österreich/i,
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'vertrauen', 'auftritt', 'moeglichkeiten', 'case-study',
       'preise', 'ablauf', 'faq', 'kontakt'],
-    ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'HowTo', 'VideoObject', 'WebSite'],
+    ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['Individuelles Angebot', 'ab 2.300 €', 'netto', '−15 %'], kalkTrzyDni: '5.865 €',
     kontakt: ['+48 531 408 004', 'kontakt@33bots.at'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Angebot'],
@@ -78,7 +84,7 @@ const RYNKI = [
     blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.at.',
     miejsce: 'Wien, Messe Wien',
     linkLexai: null,
-    analityka: true, panel: false, t: T_DE, telefon: 'tel:+48531408004', faqLiczba: 10,
+    analityka: true, panel: false, t: T_AT, telefon: 'tel:+48531408004', faqLiczba: 10,
   },
   {
     kod: 'lt', adres: 'http://127.0.0.1:8083/', lang: 'lt',
@@ -643,8 +649,10 @@ const PODSTRONY = [
     '/referenzen-videos.html', '/case-study-lexai.html', '/case-study-wallstreet.html', '/case-study-women-in-tech.html', '/blog.html',
     '/blog-robotik-im-marketing.html', '/roboter-mieten-preise.html', '/unitree-g1-mieten.html', '/case-study-eco-studio-electro-system.html',
     '/case-study-grupa-rekord-mspo.html', '/roboter-privatfeier.html',
-    '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html']],
+    '/humanoiden-roboter-mieten.html', '/event-attraktionen.html', '/roboter-weihnachtsfeier.html', '/impressum.html', '/404.html',
+    '/roboter-fuer-eventagenturen.html', '/angebot-tag-der-offenen-tuer.html', '/roboter-werbung-film.html']],
   [RYNKI[1], ['/humanoider-roboter-mieten.html', '/messe-roboter-mieten.html', '/roboter-weihnachtsfeier.html', '/unitree-g1-mieten.html', '/kontakt.html',
+    '/roboter-mieten-preise.html', '/roboter-firmenfeier.html', '/roboter-kongress-gala.html',
     '/impressum.html', '/datenschutz.html', '/danke.html', '/404.html',
     ...['wien', 'graz', 'linz', 'salzburg', 'innsbruck', 'klagenfurt', 'villach', 'wels', 'st-poelten', 'dornbirn', 'eisenstadt']
       .map((m) => `/roboter-mieten-${m}.html`)]],
