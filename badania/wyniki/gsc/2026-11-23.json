@@ -1,0 +1,5959 @@
+{
+ "adresy": {
+  "http://33bots.at/": {
+   "kroki": [
+    [
+     "http://33bots.at/",
+     301
+    ],
+    [
+     "https://33bots.at/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/",
+   "bajty": 100090
+  },
+  "http://33bots.at/index.html": {
+   "kroki": [
+    [
+     "http://33bots.at/index.html",
+     301
+    ],
+    [
+     "https://33bots.at/index.html",
+     301
+    ],
+    [
+     "https://33bots.at/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/",
+   "bajty": 100090
+  },
+  "http://33bots.at/roboter-mieten-klagenfurt.html": {
+   "kroki": [
+    [
+     "http://33bots.at/roboter-mieten-klagenfurt.html",
+     301
+    ],
+    [
+     "https://33bots.at/roboter-mieten-klagenfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-klagenfurt.html",
+   "bajty": 22502
+  },
+  "http://33bots.de/": {
+   "kroki": [
+    [
+     "http://33bots.de/",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/",
+   "bajty": 105621
+  },
+  "http://33bots.pl/": {
+   "kroki": [
+    [
+     "http://33bots.pl/",
+     301
+    ],
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "http://www.33bots.pl/": {
+   "kroki": [
+    [
+     "http://www.33bots.pl/",
+     301
+    ],
+    [
+     "https://www.33bots.pl/",
+     301
+    ],
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://33bots.at/": {
+   "kroki": [
+    [
+     "https://33bots.at/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/",
+   "bajty": 100090
+  },
+  "https://33bots.at/datenschutz.html": {
+   "kroki": [
+    [
+     "https://33bots.at/datenschutz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/datenschutz.html",
+   "bajty": 14165
+  },
+  "https://33bots.at/humanoider-roboter-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.at/humanoider-roboter-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/humanoider-roboter-mieten.html",
+   "bajty": 24247
+  },
+  "https://33bots.at/impressum.html": {
+   "kroki": [
+    [
+     "https://33bots.at/impressum.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/impressum.html",
+   "bajty": 11945
+  },
+  "https://33bots.at/index.html": {
+   "kroki": [
+    [
+     "https://33bots.at/index.html",
+     301
+    ],
+    [
+     "https://33bots.at/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/",
+   "bajty": 100090
+  },
+  "https://33bots.at/kontakt.html": {
+   "kroki": [
+    [
+     "https://33bots.at/kontakt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/kontakt.html",
+   "bajty": 20900
+  },
+  "https://33bots.at/messe-roboter-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.at/messe-roboter-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/messe-roboter-mieten.html",
+   "bajty": 25351
+  },
+  "https://33bots.at/roboter-mieten-dornbirn.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-dornbirn.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-dornbirn.html",
+   "bajty": 22390
+  },
+  "https://33bots.at/roboter-mieten-eisenstadt.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-eisenstadt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-eisenstadt.html",
+   "bajty": 22678
+  },
+  "https://33bots.at/roboter-mieten-graz.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-graz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-graz.html",
+   "bajty": 22091
+  },
+  "https://33bots.at/roboter-mieten-innsbruck.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-innsbruck.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-innsbruck.html",
+   "bajty": 22469
+  },
+  "https://33bots.at/roboter-mieten-klagenfurt.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-klagenfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-klagenfurt.html",
+   "bajty": 22502
+  },
+  "https://33bots.at/roboter-mieten-linz.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-linz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-linz.html",
+   "bajty": 22161
+  },
+  "https://33bots.at/roboter-mieten-salzburg.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-salzburg.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-salzburg.html",
+   "bajty": 22518
+  },
+  "https://33bots.at/roboter-mieten-wien.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-mieten-wien.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-mieten-wien.html",
+   "bajty": 23173
+  },
+  "https://33bots.at/roboter-weihnachtsfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.at/roboter-weihnachtsfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/roboter-weihnachtsfeier.html",
+   "bajty": 26776
+  },
+  "https://33bots.at/sitemap.xml": {
+   "kroki": [
+    [
+     "https://33bots.at/sitemap.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 9777
+  },
+  "https://33bots.at/unitree-g1-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.at/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.at/unitree-g1-mieten.html",
+   "bajty": 24472
+  },
+  "https://33bots.de/": {
+   "kroki": [
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/",
+   "bajty": 105621
+  },
+  "https://33bots.de/angebot-konferenzen-galas.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "bajty": 37062
+  },
+  "https://33bots.de/angebot-messen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "bajty": 39139
+  },
+  "https://33bots.de/angebot-tag-der-offenen-tuer.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+   "bajty": 24714
+  },
+  "https://33bots.de/attraktionen-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/attraktionen-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/attraktionen-mieten.html",
+   "bajty": 33649
+  },
+  "https://33bots.de/barrierefreiheit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/barrierefreiheit.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/barrierefreiheit.html",
+   "bajty": 17296
+  },
+  "https://33bots.de/betriebsveranstaltung-steuer.html": {
+   "kroki": [
+    [
+     "https://33bots.de/betriebsveranstaltung-steuer.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/betriebsveranstaltung-steuer.html",
+   "bajty": 36315
+  },
+  "https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-preise.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-preise.html",
+   "bajty": 39620
+  },
+  "https://33bots.de/blog-attraktion-firmenevent.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-attraktion-firmenevent.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "bajty": 41108
+  },
+  "https://33bots.de/blog-attraktion-firmengala.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-attraktion-firmengala.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "bajty": 37062
+  },
+  "https://33bots.de/blog-event-attraktionen-ranking.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-event-attraktionen-ranking.html",
+     301
+    ],
+    [
+     "https://33bots.de/event-attraktionen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/event-attraktionen.html",
+   "bajty": 41715
+  },
+  "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+   "bajty": 26280
+  },
+  "https://33bots.de/blog-humanoider-vs-mobiler-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-humanoider-vs-mobiler-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "bajty": 45250
+  },
+  "https://33bots.de/blog-kann-roboter-event-moderieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-kann-roboter-event-moderieren.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-eventmoderation.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eventmoderation.html",
+   "bajty": 26920
+  },
+  "https://33bots.de/blog-psychologie-humanoider-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+   "bajty": 25195
+  },
+  "https://33bots.de/blog-roboter-als-empfang.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-als-empfang.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-gaesteempfang.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-gaesteempfang.html",
+   "bajty": 27824
+  },
+  "https://33bots.de/blog-roboter-auf-dem-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-auf-dem-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "bajty": 41108
+  },
+  "https://33bots.de/blog-roboter-auf-der-hochzeit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-auf-der-hochzeit.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-hochzeit.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-hochzeit.html",
+   "bajty": 24732
+  },
+  "https://33bots.de/blog-roboter-branding-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-branding-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/blog-robotik-im-marketing.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-robotik-im-marketing.html",
+   "bajty": 20955
+  },
+  "https://33bots.de/blog-roboter-fuer-event-auswaehlen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-fuer-event-auswaehlen.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "bajty": 45250
+  },
+  "https://33bots.de/blog-roboter-kinderveranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-kinderveranstaltung.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "bajty": 28386
+  },
+  "https://33bots.de/blog-roboter-messe-vs-konferenz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-messe-vs-konferenz.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "bajty": 39139
+  },
+  "https://33bots.de/blog-roboter-outdoor-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-outdoor-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-stadtfest.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-stadtfest.html",
+   "bajty": 28462
+  },
+  "https://33bots.de/blog-roboter-store-eroeffnung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-store-eroeffnung.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-eroeffnung.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eroeffnung.html",
+   "bajty": 27561
+  },
+  "https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-show.html",
+   "bajty": 26427
+  },
+  "https://33bots.de/blog-robotik-im-marketing.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-robotik-im-marketing.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-robotik-im-marketing.html",
+   "bajty": 20955
+  },
+  "https://33bots.de/blog-roi-roboter-messestand.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roi-roboter-messestand.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "bajty": 39139
+  },
+  "https://33bots.de/blog-trends-humanoide-roboter-events.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+   "bajty": 23173
+  },
+  "https://33bots.de/blog-unitree-g1-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-unitree-g1-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "bajty": 45250
+  },
+  "https://33bots.de/blog-was-kann-ein-humanoider-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-was-kann-ein-humanoider-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "bajty": 45250
+  },
+  "https://33bots.de/blog.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog.html",
+   "bajty": 36061
+  },
+  "https://33bots.de/case-study-centrum-nauki-kopernik.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+   "bajty": 22963
+  },
+  "https://33bots.de/case-study-eco-studio-electro-system.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-eco-studio-electro-system.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-eco-studio-electro-system.html",
+   "bajty": 27907
+  },
+  "https://33bots.de/case-study-grupa-rekord-mspo.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-grupa-rekord-mspo.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-grupa-rekord-mspo.html",
+   "bajty": 22518
+  },
+  "https://33bots.de/case-study-lexai.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-lexai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-lexai.html",
+   "bajty": 24539
+  },
+  "https://33bots.de/case-study-ogrod-przelewice.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-ogrod-przelewice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-ogrod-przelewice.html",
+   "bajty": 22949
+  },
+  "https://33bots.de/case-study-wallstreet.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-wallstreet.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-wallstreet.html",
+   "bajty": 22244
+  },
+  "https://33bots.de/case-study-women-in-tech.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-women-in-tech.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-women-in-tech.html",
+   "bajty": 23555
+  },
+  "https://33bots.de/datenschutz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/datenschutz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/datenschutz.html",
+   "bajty": 18759
+  },
+  "https://33bots.de/eroeffnung-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/eroeffnung-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/eroeffnung-ideen.html",
+   "bajty": 31164
+  },
+  "https://33bots.de/event-attraktionen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/event-attraktionen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/event-attraktionen.html",
+   "bajty": 41715
+  },
+  "https://33bots.de/event-planen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/event-planen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/event-planen.html",
+   "bajty": 32641
+  },
+  "https://33bots.de/firmenfeier-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/firmenfeier-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/firmenfeier-ideen.html",
+   "bajty": 37752
+  },
+  "https://33bots.de/firmenjubilaeum-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/firmenjubilaeum-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/firmenjubilaeum-ideen.html",
+   "bajty": 31322
+  },
+  "https://33bots.de/humanoiden-roboter-kaufen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/humanoiden-roboter-kaufen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/humanoiden-roboter-kaufen.html",
+   "bajty": 31535
+  },
+  "https://33bots.de/impressum.html": {
+   "kroki": [
+    [
+     "https://33bots.de/impressum.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/impressum.html",
+   "bajty": 16223
+  },
+  "https://33bots.de/index.html": {
+   "kroki": [
+    [
+     "https://33bots.de/index.html",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/",
+   "bajty": 105621
+  },
+  "https://33bots.de/ki-roboter-veranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/ki-roboter-veranstaltung.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/ki-roboter-veranstaltung.html",
+   "bajty": 26808
+  },
+  "https://33bots.de/kick-off-veranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/kick-off-veranstaltung.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/kick-off-veranstaltung.html",
+   "bajty": 30791
+  },
+  "https://33bots.de/konferenz-organisieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/konferenz-organisieren.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/konferenz-organisieren.html",
+   "bajty": 31973
+  },
+  "https://33bots.de/leistungen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/leistungen.html",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/",
+   "bajty": 105621
+  },
+  "https://33bots.de/messestand-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/messestand-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/messestand-ideen.html",
+   "bajty": 33092
+  },
+  "https://33bots.de/moderator-buchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/moderator-buchen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/moderator-buchen.html",
+   "bajty": 33280
+  },
+  "https://33bots.de/referenzen-videos.html": {
+   "kroki": [
+    [
+     "https://33bots.de/referenzen-videos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/referenzen-videos.html",
+   "bajty": 39713
+  },
+  "https://33bots.de/roboter-corporate-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-corporate-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "bajty": 41108
+  },
+  "https://33bots.de/roboter-employer-branding.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-employer-branding.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-employer-branding.html",
+   "bajty": 26930
+  },
+  "https://33bots.de/roboter-eroeffnung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eroeffnung.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eroeffnung.html",
+   "bajty": 27561
+  },
+  "https://33bots.de/roboter-eventmoderation.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eventmoderation.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eventmoderation.html",
+   "bajty": 26920
+  },
+  "https://33bots.de/roboter-firmenevents.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "bajty": 41108
+  },
+  "https://33bots.de/roboter-firmenfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenfeier.html",
+   "bajty": 40266
+  },
+  "https://33bots.de/roboter-fuer-eventagenturen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-fuer-eventagenturen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-fuer-eventagenturen.html",
+   "bajty": 30530
+  },
+  "https://33bots.de/roboter-gaesteempfang.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-gaesteempfang.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-gaesteempfang.html",
+   "bajty": 27824
+  },
+  "https://33bots.de/roboter-gala.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-gala.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "bajty": 37062
+  },
+  "https://33bots.de/roboter-geburtstag.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-geburtstag.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "bajty": 28386
+  },
+  "https://33bots.de/roboter-hochschule.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochschule.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-hochschule.html",
+   "bajty": 26785
+  },
+  "https://33bots.de/roboter-hochzeit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochzeit.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-hochzeit.html",
+   "bajty": 24732
+  },
+  "https://33bots.de/roboter-mieten-berlin.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-berlin.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-berlin.html",
+   "bajty": 38778
+  },
+  "https://33bots.de/roboter-mieten-bielefeld.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bielefeld.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-dortmund.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-dortmund.html",
+   "bajty": 39211
+  },
+  "https://33bots.de/roboter-mieten-bochum.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bochum.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-essen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-essen.html",
+   "bajty": 39278
+  },
+  "https://33bots.de/roboter-mieten-bonn.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bonn.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-koeln.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-koeln.html",
+   "bajty": 37466
+  },
+  "https://33bots.de/roboter-mieten-dortmund.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-dortmund.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-dortmund.html",
+   "bajty": 39211
+  },
+  "https://33bots.de/roboter-mieten-dresden.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-dresden.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-dresden.html",
+   "bajty": 38324
+  },
+  "https://33bots.de/roboter-mieten-duesseldorf.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "bajty": 38133
+  },
+  "https://33bots.de/roboter-mieten-frankfurt.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "bajty": 38138
+  },
+  "https://33bots.de/roboter-mieten-hamburg.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-hamburg.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-hamburg.html",
+   "bajty": 37819
+  },
+  "https://33bots.de/roboter-mieten-hannover.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-hannover.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-hannover.html",
+   "bajty": 39324
+  },
+  "https://33bots.de/roboter-mieten-koeln.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-koeln.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-koeln.html",
+   "bajty": 37466
+  },
+  "https://33bots.de/roboter-mieten-leipzig.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-leipzig.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-leipzig.html",
+   "bajty": 39325
+  },
+  "https://33bots.de/roboter-mieten-mainz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-mainz.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "bajty": 38138
+  },
+  "https://33bots.de/roboter-mieten-mannheim.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-mannheim.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "bajty": 38138
+  },
+  "https://33bots.de/roboter-mieten-moenchengladbach.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-moenchengladbach.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "bajty": 38133
+  },
+  "https://33bots.de/roboter-mieten-muenchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-muenchen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-muenchen.html",
+   "bajty": 38552
+  },
+  "https://33bots.de/roboter-mieten-nuernberg.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-nuernberg.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-nuernberg.html",
+   "bajty": 39448
+  },
+  "https://33bots.de/roboter-mieten-preise.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-preise.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-preise.html",
+   "bajty": 39620
+  },
+  "https://33bots.de/roboter-mieten-stuttgart.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-stuttgart.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-stuttgart.html",
+   "bajty": 39635
+  },
+  "https://33bots.de/roboter-mieten-wiesbaden.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-wiesbaden.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "bajty": 38138
+  },
+  "https://33bots.de/roboter-privatfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "bajty": 28386
+  },
+  "https://33bots.de/roboter-produktlaunch.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-produktlaunch.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-produktlaunch.html",
+   "bajty": 28539
+  },
+  "https://33bots.de/roboter-show.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-show.html",
+   "bajty": 26427
+  },
+  "https://33bots.de/roboter-stadtfest.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-stadtfest.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-stadtfest.html",
+   "bajty": 28462
+  },
+  "https://33bots.de/roboter-weihnachtsfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-weihnachtsfeier.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-weihnachtsfeier.html",
+   "bajty": 38989
+  },
+  "https://33bots.de/roboter-werbung-film.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-werbung-film.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-werbung-film.html",
+   "bajty": 25742
+  },
+  "https://33bots.de/showact-buchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/showact-buchen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/showact-buchen.html",
+   "bajty": 37136
+  },
+  "https://33bots.de/sitemap.xml": {
+   "kroki": [
+    [
+     "https://33bots.de/sitemap.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 52738
+  },
+  "https://33bots.de/sommerfest-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/sommerfest-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/sommerfest-ideen.html",
+   "bajty": 32264
+  },
+  "https://33bots.de/stadtfest-organisieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/stadtfest-organisieren.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/stadtfest-organisieren.html",
+   "bajty": 33275
+  },
+  "https://33bots.de/teambuilding-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/teambuilding-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/teambuilding-ideen.html",
+   "bajty": 38103
+  },
+  "https://33bots.de/unitree-g1-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "bajty": 45250
+  },
+  "https://33bots.de/weihnachtsfeier-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/weihnachtsfeier-ideen.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/weihnachtsfeier-ideen.html",
+   "bajty": 42517
+  },
+  "https://33bots.de/weihnachtsfeier-spiele.html": {
+   "kroki": [
+    [
+     "https://33bots.de/weihnachtsfeier-spiele.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/weihnachtsfeier-spiele.html",
+   "bajty": 35562
+  },
+  "https://33bots.lt/": {
+   "kroki": [
+    [
+     "https://33bots.lt/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.lt/",
+   "bajty": 104849
+  },
+  "https://33bots.lt/apie-mus.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/apie-mus.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/apie-mus.html",
+   "bajty": 19567
+  },
+  "https://33bots.lt/atrakcijos-parodoms.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/atrakcijos-parodoms.html",
+     301
+    ],
+    [
+     "https://33bots.lt/parodos-stendo-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parodos-stendo-idejos.html",
+   "bajty": 31314
+  },
+  "https://33bots.lt/atrakcijos-renginiams.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/atrakcijos-renginiams.html",
+     301
+    ],
+    [
+     "https://33bots.lt/pramogos-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-renginiams.html",
+   "bajty": 42133
+  },
+  "https://33bots.lt/blog-employer-branding-renginiai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-employer-branding-renginiai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-employer-branding-renginiai.html",
+   "bajty": 23339
+  },
+  "https://33bots.lt/blog-humanoidinis-ar-mobilus-robotas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-humanoidinis-ar-mobilus-robotas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-humanoidinis-ar-mobilus-robotas.html",
+   "bajty": 23133
+  },
+  "https://33bots.lt/blog-imones-renginio-biudzetas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-imones-renginio-biudzetas.html",
+     301
+    ],
+    [
+     "https://33bots.lt/imones-renginio-organizavimas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/imones-renginio-organizavimas.html",
+   "bajty": 34685
+  },
+  "https://33bots.lt/blog-kaip-issinuomoti-robota.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-kaip-issinuomoti-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-kaip-issinuomoti-robota.html",
+   "bajty": 25040
+  },
+  "https://33bots.lt/blog-kaip-pritraukti-lankytojus-i-stenda.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-kaip-pritraukti-lankytojus-i-stenda.html",
+     301
+    ],
+    [
+     "https://33bots.lt/parodos-stendo-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parodos-stendo-idejos.html",
+   "bajty": 31314
+  },
+  "https://33bots.lt/blog-kaledinio-renginio-planavimas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-kaledinio-renginio-planavimas.html",
+     301
+    ],
+    [
+     "https://33bots.lt/kaledinio-vakarelio-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/kaledinio-vakarelio-idejos.html",
+   "bajty": 37559
+  },
+  "https://33bots.lt/blog-kiek-kainuoja-roboto-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-kiek-kainuoja-roboto-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-kiek-kainuoja-roboto-nuoma.html",
+   "bajty": 26539
+  },
+  "https://33bots.lt/blog-kodel-robotas-renginyje.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-kodel-robotas-renginyje.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-kodel-robotas-renginyje.html",
+   "bajty": 23775
+  },
+  "https://33bots.lt/blog-renginio-pramogos-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-renginio-pramogos-idejos.html",
+     301
+    ],
+    [
+     "https://33bots.lt/pramogos-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-renginiams.html",
+   "bajty": 42133
+  },
+  "https://33bots.lt/blog-robotas-ar-kitos-pramogos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-robotas-ar-kitos-pramogos.html",
+     301
+    ],
+    [
+     "https://33bots.lt/pramogos-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-renginiams.html",
+   "bajty": 42133
+  },
+  "https://33bots.lt/blog-robotas-parodu-stende.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-robotas-parodu-stende.html",
+     301
+    ],
+    [
+     "https://33bots.lt/parodos-stendo-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parodos-stendo-idejos.html",
+   "bajty": 31314
+  },
+  "https://33bots.lt/blog-roboto-nuoma-ar-pirkimas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-roboto-nuoma-ar-pirkimas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-roboto-nuoma-ar-pirkimas.html",
+   "bajty": 23345
+  },
+  "https://33bots.lt/blog-roboto-sauga-renginyje.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-roboto-sauga-renginyje.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-roboto-sauga-renginyje.html",
+   "bajty": 23934
+  },
+  "https://33bots.lt/blog-unitree-g1-specifikacija.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog-unitree-g1-specifikacija.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog-unitree-g1-specifikacija.html",
+   "bajty": 25111
+  },
+  "https://33bots.lt/blog.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/blog.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/blog.html",
+   "bajty": 30876
+  },
+  "https://33bots.lt/feed.xml": {
+   "kroki": [
+    [
+     "https://33bots.lt/feed.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 16249
+  },
+  "https://33bots.lt/fotobudeles-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/fotobudeles-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/fotobudeles-nuoma.html",
+   "bajty": 34152
+  },
+  "https://33bots.lt/galerija.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/galerija.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/galerija.html",
+   "bajty": 28309
+  },
+  "https://33bots.lt/gimtadienio-idejos-suaugusiems.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/gimtadienio-idejos-suaugusiems.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/gimtadienio-idejos-suaugusiems.html",
+   "bajty": 36495
+  },
+  "https://33bots.lt/humanoidinio-roboto-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/humanoidinio-roboto-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/humanoidinio-roboto-nuoma.html",
+   "bajty": 37209
+  },
+  "https://33bots.lt/imones-renginio-organizavimas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/imones-renginio-organizavimas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/imones-renginio-organizavimas.html",
+   "bajty": 34685
+  },
+  "https://33bots.lt/imones-vasaros-svente.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/imones-vasaros-svente.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/imones-vasaros-svente.html",
+   "bajty": 29778
+  },
+  "https://33bots.lt/index.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/index.html",
+     301
+    ],
+    [
+     "https://33bots.lt/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.lt/",
+   "bajty": 104849
+  },
+  "https://33bots.lt/isleistuviu-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/isleistuviu-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/isleistuviu-idejos.html",
+   "bajty": 30177
+  },
+  "https://33bots.lt/jubiliejaus-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/jubiliejaus-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/jubiliejaus-idejos.html",
+   "bajty": 31594
+  },
+  "https://33bots.lt/kainos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/kainos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/kainos.html",
+   "bajty": 39850
+  },
+  "https://33bots.lt/kaledinio-vakarelio-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/kaledinio-vakarelio-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/kaledinio-vakarelio-idejos.html",
+   "bajty": 37559
+  },
+  "https://33bots.lt/komandos-formavimo-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/komandos-formavimo-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/komandos-formavimo-idejos.html",
+   "bajty": 35826
+  },
+  "https://33bots.lt/konferencijos-organizavimas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/konferencijos-organizavimas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/konferencijos-organizavimas.html",
+   "bajty": 32449
+  },
+  "https://33bots.lt/kontaktai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/kontaktai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/kontaktai.html",
+   "bajty": 26049
+  },
+  "https://33bots.lt/mergvakario-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/mergvakario-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/mergvakario-idejos.html",
+   "bajty": 31000
+  },
+  "https://33bots.lt/miesto-sventes-organizavimas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/miesto-sventes-organizavimas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/miesto-sventes-organizavimas.html",
+   "bajty": 31173
+  },
+  "https://33bots.lt/modernios-pramogos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/modernios-pramogos.html",
+     301
+    ],
+    [
+     "https://33bots.lt/pramogos-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-renginiams.html",
+   "bajty": 42133
+  },
+  "https://33bots.lt/muzika-vestuvems.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/muzika-vestuvems.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/muzika-vestuvems.html",
+   "bajty": 30386
+  },
+  "https://33bots.lt/parduotuve.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/parduotuve.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parduotuve.html",
+   "bajty": 39894
+  },
+  "https://33bots.lt/parduotuves-atidarymas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/parduotuves-atidarymas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parduotuves-atidarymas.html",
+   "bajty": 31045
+  },
+  "https://33bots.lt/parodos-stendo-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/parodos-stendo-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/parodos-stendo-idejos.html",
+   "bajty": 31314
+  },
+  "https://33bots.lt/pramogos-renginiams.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/pramogos-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-renginiams.html",
+   "bajty": 42133
+  },
+  "https://33bots.lt/pramogos-vestuvems.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/pramogos-vestuvems.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogos-vestuvems.html",
+   "bajty": 34442
+  },
+  "https://33bots.lt/pramogu-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/pramogu-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/pramogu-nuoma.html",
+   "bajty": 30229
+  },
+  "https://33bots.lt/privatumo-politika.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/privatumo-politika.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/privatumo-politika.html",
+   "bajty": 16859
+  },
+  "https://33bots.lt/renginio-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/renginio-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/renginio-idejos.html",
+   "bajty": 41085
+  },
+  "https://33bots.lt/renginiu-vedejas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/renginiu-vedejas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/renginiu-vedejas.html",
+   "bajty": 32850
+  },
+  "https://33bots.lt/robotas-atidarymui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-atidarymui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-atidarymui.html",
+   "bajty": 35742
+  },
+  "https://33bots.lt/robotas-fotosesijai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-fotosesijai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-fotosesijai.html",
+   "bajty": 34760
+  },
+  "https://33bots.lt/robotas-gimtadieniui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-gimtadieniui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-gimtadieniui.html",
+   "bajty": 35700
+  },
+  "https://33bots.lt/robotas-imones-sventei.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-imones-sventei.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-imones-sventei.html",
+   "bajty": 35717
+  },
+  "https://33bots.lt/robotas-kaledinei-sventei.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-kaledinei-sventei.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-kaledinei-sventei.html",
+   "bajty": 34683
+  },
+  "https://33bots.lt/robotas-komandos-formavimui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-komandos-formavimui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-komandos-formavimui.html",
+   "bajty": 34839
+  },
+  "https://33bots.lt/robotas-konferencijai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-konferencijai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-konferencijai.html",
+   "bajty": 36138
+  },
+  "https://33bots.lt/robotas-mokyklai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-mokyklai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-mokyklai.html",
+   "bajty": 34794
+  },
+  "https://33bots.lt/robotas-parodoms.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-parodoms.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-parodoms.html",
+   "bajty": 36200
+  },
+  "https://33bots.lt/robotas-prekybos-centrui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-prekybos-centrui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-prekybos-centrui.html",
+   "bajty": 34886
+  },
+  "https://33bots.lt/robotas-renginiui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-renginiui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-renginiui.html",
+   "bajty": 36239
+  },
+  "https://33bots.lt/robotas-sporto-renginiui.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-sporto-renginiui.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-sporto-renginiui.html",
+   "bajty": 34581
+  },
+  "https://33bots.lt/robotas-vedejas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-vedejas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-vedejas.html",
+   "bajty": 44633
+  },
+  "https://33bots.lt/robotas-vestuvems.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotas-vestuvems.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotas-vestuvems.html",
+   "bajty": 35696
+  },
+  "https://33bots.lt/robotu-nuoma-alytus.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-alytus.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-alytus.html",
+   "bajty": 38406
+  },
+  "https://33bots.lt/robotu-nuoma-anyksciai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-anyksciai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-anyksciai.html",
+   "bajty": 38464
+  },
+  "https://33bots.lt/robotu-nuoma-birstonas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-birstonas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-birstonas.html",
+   "bajty": 38448
+  },
+  "https://33bots.lt/robotu-nuoma-druskininkai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-druskininkai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-druskininkai.html",
+   "bajty": 38825
+  },
+  "https://33bots.lt/robotu-nuoma-elektrenai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-elektrenai.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-vilnius.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-vilnius.html",
+   "bajty": 38929
+  },
+  "https://33bots.lt/robotu-nuoma-jonava.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-jonava.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-jonava.html",
+   "bajty": 38190
+  },
+  "https://33bots.lt/robotu-nuoma-kaunas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-kaunas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-kaunas.html",
+   "bajty": 38431
+  },
+  "https://33bots.lt/robotu-nuoma-kedainiai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-kedainiai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-kedainiai.html",
+   "bajty": 38502
+  },
+  "https://33bots.lt/robotu-nuoma-klaipeda.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-klaipeda.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-klaipeda.html",
+   "bajty": 38592
+  },
+  "https://33bots.lt/robotu-nuoma-kretinga.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-kretinga.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-klaipeda.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-klaipeda.html",
+   "bajty": 38592
+  },
+  "https://33bots.lt/robotu-nuoma-marijampole.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-marijampole.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-marijampole.html",
+   "bajty": 38693
+  },
+  "https://33bots.lt/robotu-nuoma-mazeikiai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-mazeikiai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-mazeikiai.html",
+   "bajty": 38446
+  },
+  "https://33bots.lt/robotu-nuoma-palanga.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-palanga.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-palanga.html",
+   "bajty": 38591
+  },
+  "https://33bots.lt/robotu-nuoma-panevezys.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-panevezys.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-panevezys.html",
+   "bajty": 38518
+  },
+  "https://33bots.lt/robotu-nuoma-plunge.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-plunge.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-telsiai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-telsiai.html",
+   "bajty": 38403
+  },
+  "https://33bots.lt/robotu-nuoma-prienai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-prienai.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-kaunas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-kaunas.html",
+   "bajty": 38431
+  },
+  "https://33bots.lt/robotu-nuoma-radviliskis.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-radviliskis.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-siauliai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-siauliai.html",
+   "bajty": 38453
+  },
+  "https://33bots.lt/robotu-nuoma-rokiskis.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-rokiskis.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-panevezys.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-panevezys.html",
+   "bajty": 38518
+  },
+  "https://33bots.lt/robotu-nuoma-siauliai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-siauliai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-siauliai.html",
+   "bajty": 38453
+  },
+  "https://33bots.lt/robotu-nuoma-silute.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-silute.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-klaipeda.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-klaipeda.html",
+   "bajty": 38592
+  },
+  "https://33bots.lt/robotu-nuoma-taurage.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-taurage.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-taurage.html",
+   "bajty": 38316
+  },
+  "https://33bots.lt/robotu-nuoma-telsiai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-telsiai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-telsiai.html",
+   "bajty": 38403
+  },
+  "https://33bots.lt/robotu-nuoma-trakai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-trakai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-trakai.html",
+   "bajty": 38456
+  },
+  "https://33bots.lt/robotu-nuoma-ukmerge.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-ukmerge.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-vilnius.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-vilnius.html",
+   "bajty": 38929
+  },
+  "https://33bots.lt/robotu-nuoma-utena.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-utena.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-utena.html",
+   "bajty": 38155
+  },
+  "https://33bots.lt/robotu-nuoma-vilnius.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-vilnius.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-vilnius.html",
+   "bajty": 38929
+  },
+  "https://33bots.lt/robotu-nuoma-visaginas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma-visaginas.html",
+     301
+    ],
+    [
+     "https://33bots.lt/robotu-nuoma-utena.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma-utena.html",
+   "bajty": 38155
+  },
+  "https://33bots.lt/robotu-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/robotu-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/robotu-nuoma.html",
+   "bajty": 39025
+  },
+  "https://33bots.lt/simtadienio-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/simtadienio-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/simtadienio-idejos.html",
+   "bajty": 30852
+  },
+  "https://33bots.lt/sitemap.xml": {
+   "kroki": [
+    [
+     "https://33bots.lt/sitemap.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 48170
+  },
+  "https://33bots.lt/sou-programa-renginiams.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/sou-programa-renginiams.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/sou-programa-renginiams.html",
+   "bajty": 31929
+  },
+  "https://33bots.lt/unitree-g1-nuoma.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/unitree-g1-nuoma.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/unitree-g1-nuoma.html",
+   "bajty": 36059
+  },
+  "https://33bots.lt/vaiku-gimtadienio-idejos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/vaiku-gimtadienio-idejos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/vaiku-gimtadienio-idejos.html",
+   "bajty": 31523
+  },
+  "https://33bots.lt/vestuviu-kaina.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/vestuviu-kaina.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/vestuviu-kaina.html",
+   "bajty": 31282
+  },
+  "https://33bots.lt/vestuviu-programa.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/vestuviu-programa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/vestuviu-programa.html",
+   "bajty": 32109
+  },
+  "https://33bots.lt/vestuviu-vedejas.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/vestuviu-vedejas.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/vestuviu-vedejas.html",
+   "bajty": 35553
+  },
+  "https://33bots.lt/vestuviu-zaidimai.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/vestuviu-zaidimai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/vestuviu-zaidimai.html",
+   "bajty": 34047
+  },
+  "https://33bots.lt/video-realizacijos.html": {
+   "kroki": [
+    [
+     "https://33bots.lt/video-realizacijos.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.lt/video-realizacijos.html",
+   "bajty": 23682
+  },
+  "https://33bots.pl/": {
+   "kroki": [
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://33bots.pl/..": {
+   "kroki": [
+    [
+     "https://33bots.pl/..",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/atrakcje-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/atrakcje-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/atrakcje-na-event.html",
+   "bajty": 46777
+  },
+  "https://33bots.pl/atrakcje-na-impreze-firmowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/atrakcje-na-impreze-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/atrakcje-na-impreze-firmowa.html",
+   "bajty": 39278
+  },
+  "https://33bots.pl/atrakcje-na-wesele.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/atrakcje-na-wesele.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/atrakcje-na-wesele.html",
+   "bajty": 35613
+  },
+  "https://33bots.pl/blog-atrakcja-na-event-firmowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-atrakcja-na-event-firmowy.html",
+     301
+    ],
+    [
+     "https://33bots.pl/atrakcje-na-impreze-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/atrakcje-na-impreze-firmowa.html",
+   "bajty": 39278
+  },
+  "https://33bots.pl/blog-atrakcja-na-gale-firmowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-atrakcja-na-gale-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-atrakcja-na-gale-firmowa.html",
+   "bajty": 25518
+  },
+  "https://33bots.pl/blog-atrakcje-eventowe.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-atrakcje-eventowe.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-atrakcje-eventowe.html",
+   "bajty": 29762
+  },
+  "https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-atrakcje-technologiczne-na-imprezy-firmowe.html",
+   "bajty": 23402
+  },
+  "https://33bots.pl/blog-bezpieczenstwo-robota-na-evencie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-bezpieczenstwo-robota-na-evencie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-bezpieczenstwo-robota-na-evencie.html",
+   "bajty": 22324
+  },
+  "https://33bots.pl/blog-branding-robota-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-branding-robota-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-branding-robota-na-event.html",
+   "bajty": 21810
+  },
+  "https://33bots.pl/blog-co-potrafi-robot-humanoidalny": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-co-potrafi-robot-humanoidalny",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/blog-co-potrafi-robot-humanoidalny-unitree-g1/": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-co-potrafi-robot-humanoidalny-unitree-g1/",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html",
+   "bajty": 22302
+  },
+  "https://33bots.pl/blog-czy-robot-moze-prowadzic-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-czy-robot-moze-prowadzic-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-czy-robot-moze-prowadzic-event.html",
+   "bajty": 21916
+  },
+  "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalne.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalne.html",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html",
+   "bajty": 26465
+  },
+  "https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-ile-kosztuje-wynajem-robota.html",
+   "bajty": 27537
+  },
+  "https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-jak-wybrac-firme-do-wynajmu-robota.html",
+   "bajty": 25756
+  },
+  "https://33bots.pl/blog-jak-wybrac-robota-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-jak-wybrac-robota-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-jak-wybrac-robota-na-event.html",
+   "bajty": 31273
+  },
+  "https://33bots.pl/blog-jak-wynajac-checklist.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-jak-wynajac-checklist.html",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/blog-jak-wynajac-robota-checklist.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-jak-wynajac-robota-checklist.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-jak-wynajac-robota-checklist.html",
+   "bajty": 19639
+  },
+  "https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html",
+   "bajty": 31802
+  },
+  "https://33bots.pl/blog-lekcje-z-eventow-z-robotem.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-lekcje-z-eventow-z-robotem.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-lekcje-z-eventow-z-robotem.html",
+   "bajty": 27207
+  },
+  "https://33bots.pl/blog-psychologia-robota-humanoidalnego.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-psychologia-robota-humanoidalnego.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-psychologia-robota-humanoidalnego.html",
+   "bajty": 31181
+  },
+  "https://33bots.pl/blog-robot-ambasador-marki.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-ambasador-marki.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-ambasador-marki.html",
+   "bajty": 22796
+  },
+  "https://33bots.pl/blog-robot-humanoidalny-vs-mobilny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-humanoidalny-vs-mobilny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-humanoidalny-vs-mobilny.html",
+   "bajty": 24762
+  },
+  "https://33bots.pl/blog-robot-i-artysta-na-scenie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-i-artysta-na-scenie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-i-artysta-na-scenie.html",
+   "bajty": 30707
+  },
+  "https://33bots.pl/blog-robot-na-evencie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-evencie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-evencie.html",
+   "bajty": 24809
+  },
+  "https://33bots.pl/blog-robot-na-event-dla-dzieci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-event-dla-dzieci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-event-dla-dzieci.html",
+   "bajty": 21910
+  },
+  "https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-event-korporacyjny-przewodnik.html",
+   "bajty": 28057
+  },
+  "https://33bots.pl/blog-robot-na-event-miedzynarodowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-event-miedzynarodowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-event-miedzynarodowy.html",
+   "bajty": 26148
+  },
+  "https://33bots.pl/blog-robot-na-event-plenerowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-event-plenerowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-event-plenerowy.html",
+   "bajty": 22047
+  },
+  "https://33bots.pl/blog-robot-na-juwenalia-festiwal.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-juwenalia-festiwal.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-juwenalia-festiwal.html",
+   "bajty": 21968
+  },
+  "https://33bots.pl/blog-robot-na-otwarcie-sklepu.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-otwarcie-sklepu.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-otwarcie-sklepu.html",
+   "bajty": 22127
+  },
+  "https://33bots.pl/blog-robot-na-piknik-firmowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-piknik-firmowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-piknik-firmowy.html",
+   "bajty": 22242
+  },
+  "https://33bots.pl/blog-robot-na-stoisko-targowe.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-stoisko-targowe.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-stoisko-targowe.html",
+   "bajty": 26605
+  },
+  "https://33bots.pl/blog-robot-na-stoisku-targowym-roi.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-stoisku-targowym-roi.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-stoisku-targowym-roi.html",
+   "bajty": 30781
+  },
+  "https://33bots.pl/blog-robot-na-targi-pracy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-targi-pracy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-targi-pracy.html",
+   "bajty": 21867
+  },
+  "https://33bots.pl/blog-robot-na-wesele.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-na-wesele.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-na-wesele.html",
+   "bajty": 39874
+  },
+  "https://33bots.pl/blog-robot-recepcjonista-witajacy-gosci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-recepcjonista-witajacy-gosci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-recepcjonista-witajacy-gosci.html",
+   "bajty": 22587
+  },
+  "https://33bots.pl/blog-robot-targi-vs-konferencja.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-targi-vs-konferencja.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-targi-vs-konferencja.html",
+   "bajty": 25061
+  },
+  "https://33bots.pl/blog-robot-viral-marketing-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-viral-marketing-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-viral-marketing-event.html",
+   "bajty": 22461
+  },
+  "https://33bots.pl/blog-robot-z-ai-rozmawiajacy-po-polsku.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-z-ai-rozmawiajacy-po-polsku.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-z-ai-rozmawiajacy-po-polsku.html",
+   "bajty": 23204
+  },
+  "https://33bots.pl/blog-robot-zamiast-hostessy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robot-zamiast-hostessy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robot-zamiast-hostessy.html",
+   "bajty": 22015
+  },
+  "https://33bots.pl/blog-roboty-humanoidalne-na-eventach-trendy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-roboty-humanoidalne-na-eventach-trendy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-roboty-humanoidalne-na-eventach-trendy.html",
+   "bajty": 22624
+  },
+  "https://33bots.pl/blog-robotyka-w-marketingu.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-robotyka-w-marketingu.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-robotyka-w-marketingu.html",
+   "bajty": 25185
+  },
+  "https://33bots.pl/blog-unitree-g1-robot": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-unitree-g1-robot",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/blog-unitree-g1-robot.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-unitree-g1-robot.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-unitree-g1-robot.html",
+   "bajty": 28779
+  },
+  "https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-wdrozenie-robota-humanoidalnego-w-firmie.html",
+   "bajty": 38304
+  },
+  "https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog-wypozyczenie-robota-przewodnik.html",
+   "bajty": 27397
+  },
+  "https://33bots.pl/blog.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/blog.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/blog.html",
+   "bajty": 47509
+  },
+  "https://33bots.pl/case-study-centrum-nauki-kopernik.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-centrum-nauki-kopernik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-centrum-nauki-kopernik.html",
+   "bajty": 18761
+  },
+  "https://33bots.pl/case-study-eco-studio-electro-system.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-eco-studio-electro-system.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-eco-studio-electro-system.html",
+   "bajty": 32446
+  },
+  "https://33bots.pl/case-study-grupa-rekord-mspo.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-grupa-rekord-mspo.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-grupa-rekord-mspo.html",
+   "bajty": 18492
+  },
+  "https://33bots.pl/case-study-lexai.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-lexai.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-lexai.html",
+   "bajty": 27112
+  },
+  "https://33bots.pl/case-study-wallstreet.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-wallstreet.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-wallstreet.html",
+   "bajty": 26593
+  },
+  "https://33bots.pl/case-study-women-in-tech.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/case-study-women-in-tech.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/case-study-women-in-tech.html",
+   "bajty": 25633
+  },
+  "https://33bots.pl/feed.xml": {
+   "kroki": [
+    [
+     "https://33bots.pl/feed.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 29687
+  },
+  "https://33bots.pl/ile-kosztuje-wesele.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/ile-kosztuje-wesele.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/ile-kosztuje-wesele.html",
+   "bajty": 35435
+  },
+  "https://33bots.pl/index.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/index.html",
+     301
+    ],
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://33bots.pl/integracja-firmowa-pomysly.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/integracja-firmowa-pomysly.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/integracja-firmowa-pomysly.html",
+   "bajty": 37371
+  },
+  "https://33bots.pl/integracja-firmowa-pomysly.html#koszty": {
+   "kroki": [
+    [
+     "https://33bots.pl/integracja-firmowa-pomysly.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/integracja-firmowa-pomysly.html",
+   "bajty": 37371
+  },
+  "https://33bots.pl/integracja-firmowa-pomysly.html#teren": {
+   "kroki": [
+    [
+     "https://33bots.pl/integracja-firmowa-pomysly.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/integracja-firmowa-pomysly.html",
+   "bajty": 37371
+  },
+  "https://33bots.pl/integracja-firmowa-pomysly.html#warsztaty": {
+   "kroki": [
+    [
+     "https://33bots.pl/integracja-firmowa-pomysly.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/integracja-firmowa-pomysly.html",
+   "bajty": 37371
+  },
+  "https://33bots.pl/oferta-dni-otwarte.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/oferta-dni-otwarte.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/oferta-dni-otwarte.html",
+   "bajty": 31797
+  },
+  "https://33bots.pl/oferta-konferencje.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/oferta-konferencje.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/oferta-konferencje.html",
+   "bajty": 34475
+  },
+  "https://33bots.pl/oferta-targi.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/oferta-targi.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/oferta-targi.html",
+   "bajty": 36302
+  },
+  "https://33bots.pl/oferta.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/oferta.html",
+     301
+    ],
+    [
+     "https://33bots.pl/wypozyczenie-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wypozyczenie-robota.html",
+   "bajty": 40343
+  },
+  "https://33bots.pl/pokazy-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/pokazy-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/pokazy-na-event.html",
+   "bajty": 34813
+  },
+  "https://33bots.pl/polityka-prywatnosci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/polityka-prywatnosci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/polityka-prywatnosci.html",
+   "bajty": 30014
+  },
+  "https://33bots.pl/pomysly-na-impreze-firmowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/pomysly-na-impreze-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/pomysly-na-impreze-firmowa.html",
+   "bajty": 37243
+  },
+  "https://33bots.pl/realizacje-wideo.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/realizacje-wideo.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/realizacje-wideo.html",
+   "bajty": 25804
+  },
+  "https://33bots.pl/robot-ai-na-wydarzenie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-ai-na-wydarzenie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-ai-na-wydarzenie.html",
+   "bajty": 30760
+  },
+  "https://33bots.pl/robot-dla-dzieci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-dla-dzieci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-dla-dzieci.html",
+   "bajty": 30802
+  },
+  "https://33bots.pl/robot-do-galerii-handlowej.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-do-galerii-handlowej.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-do-galerii-handlowej.html",
+   "bajty": 30301
+  },
+  "https://33bots.pl/robot-do-hotelu.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-do-hotelu.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-do-hotelu.html",
+   "bajty": 29942
+  },
+  "https://33bots.pl/robot-do-reklamy-i-filmu.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-do-reklamy-i-filmu.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-do-reklamy-i-filmu.html",
+   "bajty": 30006
+  },
+  "https://33bots.pl/robot-do-restauracji.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-do-restauracji.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-do-restauracji.html",
+   "bajty": 29910
+  },
+  "https://33bots.pl/robot-do-teledysku.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-do-teledysku.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-do-teledysku.html",
+   "bajty": 29822
+  },
+  "https://33bots.pl/robot-employer-branding.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-employer-branding.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-employer-branding.html",
+   "bajty": 31022
+  },
+  "https://33bots.pl/robot-humanoidalny-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-humanoidalny-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-humanoidalny-na-event.html",
+   "bajty": 31191
+  },
+  "https://33bots.pl/robot-na-andrzejki.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-andrzejki.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-andrzejki.html",
+   "bajty": 30103
+  },
+  "https://33bots.pl/robot-na-bankiet.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-bankiet.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-bankiet.html",
+   "bajty": 30723
+  },
+  "https://33bots.pl/robot-na-ceremonie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-ceremonie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-ceremonie.html",
+   "bajty": 30068
+  },
+  "https://33bots.pl/robot-na-dni-miasta.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-dni-miasta.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-dni-miasta.html",
+   "bajty": 31362
+  },
+  "https://33bots.pl/robot-na-dzien-dziecka.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-dzien-dziecka.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-dzien-dziecka.html",
+   "bajty": 30810
+  },
+  "https://33bots.pl/robot-na-dzien-otwarty.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-dzien-otwarty.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-dzien-otwarty.html",
+   "bajty": 30196
+  },
+  "https://33bots.pl/robot-na-event-budowlany.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-budowlany.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-budowlany.html",
+   "bajty": 30494
+  },
+  "https://33bots.pl/robot-na-event-edukacyjny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-edukacyjny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-edukacyjny.html",
+   "bajty": 30500
+  },
+  "https://33bots.pl/robot-na-event-farmaceutyczny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-farmaceutyczny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-farmaceutyczny.html",
+   "bajty": 30533
+  },
+  "https://33bots.pl/robot-na-event-handlowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-handlowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-handlowy.html",
+   "bajty": 30561
+  },
+  "https://33bots.pl/robot-na-event-hybrydowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-hybrydowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-hybrydowy.html",
+   "bajty": 30335
+  },
+  "https://33bots.pl/robot-na-event-it.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-it.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-it.html",
+   "bajty": 30293
+  },
+  "https://33bots.pl/robot-na-event-korporacyjny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-korporacyjny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-korporacyjny.html",
+   "bajty": 31182
+  },
+  "https://33bots.pl/robot-na-event-kulturalny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-kulturalny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-kulturalny.html",
+   "bajty": 30529
+  },
+  "https://33bots.pl/robot-na-event-miejski.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-miejski.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-miejski.html",
+   "bajty": 30875
+  },
+  "https://33bots.pl/robot-na-event-modowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-modowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-modowy.html",
+   "bajty": 30451
+  },
+  "https://33bots.pl/robot-na-event-nieruchomosci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-nieruchomosci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-nieruchomosci.html",
+   "bajty": 30726
+  },
+  "https://33bots.pl/robot-na-event-outdoor.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-outdoor.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-outdoor.html",
+   "bajty": 31290
+  },
+  "https://33bots.pl/robot-na-event-prawniczy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-prawniczy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-prawniczy.html",
+   "bajty": 30597
+  },
+  "https://33bots.pl/robot-na-event-sportowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-sportowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-sportowy.html",
+   "bajty": 30378
+  },
+  "https://33bots.pl/robot-na-event-startupowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-startupowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-startupowy.html",
+   "bajty": 30452
+  },
+  "https://33bots.pl/robot-na-event-turystyczny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event-turystyczny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event-turystyczny.html",
+   "bajty": 30466
+  },
+  "https://33bots.pl/robot-na-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-event.html",
+   "bajty": 31749
+  },
+  "https://33bots.pl/robot-na-gale.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-gale.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-gale.html",
+   "bajty": 34252
+  },
+  "https://33bots.pl/robot-na-halloween.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-halloween.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-halloween.html",
+   "bajty": 30205
+  },
+  "https://33bots.pl/robot-na-imieniny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-imieniny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-imieniny.html",
+   "bajty": 30129
+  },
+  "https://33bots.pl/robot-na-impreze-firmowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-impreze-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-impreze-firmowa.html",
+   "bajty": 37716
+  },
+  "https://33bots.pl/robot-na-impreze-prywatna.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-impreze-prywatna.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-impreze-prywatna.html",
+   "bajty": 30303
+  },
+  "https://33bots.pl/robot-na-impreze.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-impreze.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-impreze.html",
+   "bajty": 32371
+  },
+  "https://33bots.pl/robot-na-integracje-firmowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-integracje-firmowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-integracje-firmowa.html",
+   "bajty": 31581
+  },
+  "https://33bots.pl/robot-na-karnawal.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-karnawal.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-karnawal.html",
+   "bajty": 32170
+  },
+  "https://33bots.pl/robot-na-konferencje.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-konferencje.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-konferencje.html",
+   "bajty": 31617
+  },
+  "https://33bots.pl/robot-na-konwent.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-konwent.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-konwent.html",
+   "bajty": 30051
+  },
+  "https://33bots.pl/robot-na-mikolajki.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-mikolajki.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-mikolajki.html",
+   "bajty": 40475
+  },
+  "https://33bots.pl/robot-na-otwarcie.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-otwarcie.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-otwarcie.html",
+   "bajty": 30324
+  },
+  "https://33bots.pl/robot-na-piknik-firmowy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-piknik-firmowy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-piknik-firmowy.html",
+   "bajty": 31911
+  },
+  "https://33bots.pl/robot-na-rocznice.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-rocznice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-rocznice.html",
+   "bajty": 30110
+  },
+  "https://33bots.pl/robot-na-targi-pracy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-targi-pracy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-targi-pracy.html",
+   "bajty": 30360
+  },
+  "https://33bots.pl/robot-na-targi.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-targi.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-targi.html",
+   "bajty": 32506
+  },
+  "https://33bots.pl/robot-na-team-building.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-team-building.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-team-building.html",
+   "bajty": 30944
+  },
+  "https://33bots.pl/robot-na-urodziny.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-urodziny.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-urodziny.html",
+   "bajty": 30758
+  },
+  "https://33bots.pl/robot-na-walentynki.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-walentynki.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-walentynki.html",
+   "bajty": 30149
+  },
+  "https://33bots.pl/robot-na-wesele.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-wesele.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-wesele.html",
+   "bajty": 28715
+  },
+  "https://33bots.pl/robot-na-wieczor-panienski.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-na-wieczor-panienski.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-na-wieczor-panienski.html",
+   "bajty": 30876
+  },
+  "https://33bots.pl/robot-prelegent.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-prelegent.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-prelegent.html",
+   "bajty": 29928
+  },
+  "https://33bots.pl/robot-prowadzacy-event.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-prowadzacy-event.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-prowadzacy-event.html",
+   "bajty": 30370
+  },
+  "https://33bots.pl/robot-recepcjonista.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-recepcjonista.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-recepcjonista.html",
+   "bajty": 30274
+  },
+  "https://33bots.pl/robot-tancerz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-tancerz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-tancerz.html",
+   "bajty": 29960
+  },
+  "https://33bots.pl/robot-witajacy-gosci.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-witajacy-gosci.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-witajacy-gosci.html",
+   "bajty": 30041
+  },
+  "https://33bots.pl/robot-wynajem-bialystok.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-bialystok.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-bialystok.html",
+   "bajty": 37951
+  },
+  "https://33bots.pl/robot-wynajem-bydgoszcz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-bydgoszcz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-bydgoszcz.html",
+   "bajty": 37872
+  },
+  "https://33bots.pl/robot-wynajem-bytom.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-bytom.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-chorzow.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-chorzow.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-czestochowa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-czestochowa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-czestochowa.html",
+   "bajty": 37857
+  },
+  "https://33bots.pl/robot-wynajem-dabrowa-gornicza.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-dabrowa-gornicza.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-elblag.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-elblag.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-elblag.html",
+   "bajty": 37516
+  },
+  "https://33bots.pl/robot-wynajem-gdansk.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-gdansk.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-gdansk.html",
+   "bajty": 41604
+  },
+  "https://33bots.pl/robot-wynajem-gliwice.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-gliwice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-gliwice.html",
+   "bajty": 37750
+  },
+  "https://33bots.pl/robot-wynajem-grudziadz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-grudziadz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-grudziadz.html",
+   "bajty": 37704
+  },
+  "https://33bots.pl/robot-wynajem-jaworzno.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-jaworzno.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-kalisz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-kalisz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-kalisz.html",
+   "bajty": 37571
+  },
+  "https://33bots.pl/robot-wynajem-karpacz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-karpacz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-karpacz.html",
+   "bajty": 38350
+  },
+  "https://33bots.pl/robot-wynajem-katowice.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-kielce.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-kielce.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-kielce.html",
+   "bajty": 37714
+  },
+  "https://33bots.pl/robot-wynajem-koszalin.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-koszalin.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-koszalin.html",
+   "bajty": 37668
+  },
+  "https://33bots.pl/robot-wynajem-krakow.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-krakow.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-krakow.html",
+   "bajty": 40643
+  },
+  "https://33bots.pl/robot-wynajem-legnica.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-legnica.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-legnica.html",
+   "bajty": 37518
+  },
+  "https://33bots.pl/robot-wynajem-lodz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-lodz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-lodz.html",
+   "bajty": 37978
+  },
+  "https://33bots.pl/robot-wynajem-lublin.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-lublin.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-lublin.html",
+   "bajty": 37730
+  },
+  "https://33bots.pl/robot-wynajem-mikolajki.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-mikolajki.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-mikolajki.html",
+   "bajty": 39822
+  },
+  "https://33bots.pl/robot-wynajem-nowy-sacz.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-nowy-sacz.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-nowy-sacz.html",
+   "bajty": 37694
+  },
+  "https://33bots.pl/robot-wynajem-olsztyn.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-olsztyn.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-olsztyn.html",
+   "bajty": 37728
+  },
+  "https://33bots.pl/robot-wynajem-opole.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-opole.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-opole.html",
+   "bajty": 37705
+  },
+  "https://33bots.pl/robot-wynajem-pila.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-pila.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-pila.html",
+   "bajty": 37430
+  },
+  "https://33bots.pl/robot-wynajem-plock.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-plock.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-plock.html",
+   "bajty": 37715
+  },
+  "https://33bots.pl/robot-wynajem-poznan.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-poznan.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-poznan.html",
+   "bajty": 40419
+  },
+  "https://33bots.pl/robot-wynajem-radom.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-radom.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-radom.html",
+   "bajty": 37775
+  },
+  "https://33bots.pl/robot-wynajem-rybnik.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-rybnik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-rybnik.html",
+   "bajty": 37473
+  },
+  "https://33bots.pl/robot-wynajem-rzeszow.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-rzeszow.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-rzeszow.html",
+   "bajty": 37877
+  },
+  "https://33bots.pl/robot-wynajem-slupsk.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-slupsk.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-slupsk.html",
+   "bajty": 37426
+  },
+  "https://33bots.pl/robot-wynajem-sosnowiec.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-sosnowiec.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-szczecin.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-szczecin.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-szczecin.html",
+   "bajty": 37837
+  },
+  "https://33bots.pl/robot-wynajem-tarnow.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-tarnow.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-tarnow.html",
+   "bajty": 37650
+  },
+  "https://33bots.pl/robot-wynajem-torun.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-torun.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-torun.html",
+   "bajty": 37772
+  },
+  "https://33bots.pl/robot-wynajem-tychy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-tychy.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-walbrzych.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-walbrzych.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-walbrzych.html",
+   "bajty": 37878
+  },
+  "https://33bots.pl/robot-wynajem-warszawa.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-warszawa.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-warszawa.html",
+   "bajty": 41718
+  },
+  "https://33bots.pl/robot-wynajem-wloclawek.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-wloclawek.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-wloclawek.html",
+   "bajty": 37577
+  },
+  "https://33bots.pl/robot-wynajem-wroclaw.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-wroclaw.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-wroclaw.html",
+   "bajty": 40599
+  },
+  "https://33bots.pl/robot-wynajem-zabrze.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-zabrze.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-katowice.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-katowice.html",
+   "bajty": 39127
+  },
+  "https://33bots.pl/robot-wynajem-zielona-gora.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/robot-wynajem-zielona-gora.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-zielona-gora.html",
+   "bajty": 37919
+  },
+  "https://33bots.pl/roboty-na-eventy-firmowe.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/roboty-na-eventy-firmowe.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/roboty-na-eventy-firmowe.html",
+   "bajty": 31563
+  },
+  "https://33bots.pl/sitemap.xml": {
+   "kroki": [
+    [
+     "https://33bots.pl/sitemap.xml",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 47512
+  },
+  "https://33bots.pl/wdrozenia.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wdrozenia.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wdrozenia.html",
+   "bajty": 49311
+  },
+  "https://33bots.pl/wigilia-firmowa-pomysly.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wigilia-firmowa-pomysly.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wigilia-firmowa-pomysly.html",
+   "bajty": 36390
+  },
+  "https://33bots.pl/wynajem-atrakcji-na-imprezy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wynajem-atrakcji-na-imprezy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wynajem-atrakcji-na-imprezy.html",
+   "bajty": 35348
+  },
+  "https://33bots.pl/wynajem-robota-do-firmy.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wynajem-robota-do-firmy.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wynajem-robota-do-firmy.html",
+   "bajty": 30778
+  },
+  "https://33bots.pl/wypozyczenie-roba.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wypozyczenie-roba.html",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/wypozyczenie-robota-ca": {
+   "kroki": [
+    [
+     "https://33bots.pl/wypozyczenie-robota-ca",
+     404
+    ]
+   ],
+   "koncowy_kod": 404,
+   "robots": "noindex, follow",
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 3737
+  },
+  "https://33bots.pl/wypozyczenie-robota.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/wypozyczenie-robota.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/wypozyczenie-robota.html",
+   "bajty": 40343
+  },
+  "https://33bots.pl/zabawy-weselne.html": {
+   "kroki": [
+    [
+     "https://33bots.pl/zabawy-weselne.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/zabawy-weselne.html",
+   "bajty": 32469
+  },
+  "https://oliwierels.gi": {
+   "kroki": [
+    [
+     "https://oliwierels.gi",
+     0
+    ]
+   ],
+   "koncowy_kod": 0,
+   "robots": null,
+   "x_robots": null,
+   "canonical": null,
+   "bajty": 52
+  },
+  "https://oliwierels.github.io/33bots/": {
+   "kroki": [
+    [
+     "https://oliwierels.github.io/33bots/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://www.33bots.pl/": {
+   "kroki": [
+    [
+     "https://www.33bots.pl/",
+     301
+    ],
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://www.33bots.pl/index.html": {
+   "kroki": [
+    [
+     "https://www.33bots.pl/index.html",
+     301
+    ],
+    [
+     "https://33bots.pl/index.html",
+     301
+    ],
+    [
+     "https://33bots.pl/",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": null,
+   "x_robots": null,
+   "canonical": "https://33bots.pl/",
+   "bajty": 104425
+  },
+  "https://www.33bots.pl/robot-wynajem-bialystok.html": {
+   "kroki": [
+    [
+     "https://www.33bots.pl/robot-wynajem-bialystok.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-bialystok.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-bialystok.html",
+   "bajty": 37951
+  },
+  "https://www.33bots.pl/robot-wynajem-rybnik.html": {
+   "kroki": [
+    [
+     "https://www.33bots.pl/robot-wynajem-rybnik.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-rybnik.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-rybnik.html",
+   "bajty": 37473
+  },
+  "https://www.33bots.pl/robot-wynajem-zielona-gora.html": {
+   "kroki": [
+    [
+     "https://www.33bots.pl/robot-wynajem-zielona-gora.html",
+     301
+    ],
+    [
+     "https://33bots.pl/robot-wynajem-zielona-gora.html",
+     200
+    ]
+   ],
+   "koncowy_kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.pl/robot-wynajem-zielona-gora.html",
+   "bajty": 37919
+  }
+ },
+ "mapy": {
+  "33bots.pl": {
+   "kod": 200,
+   "typ": "application/xml",
+   "bajty": 47512,
+   "xml": "ok",
+   "adresow": 207,
+   "problemy": {},
+   "wideo": 12,
+   "wideo_kody": {
+    "https://33bots.pl/video/33bots-robot-event-poster.jpg": 200,
+    "https://33bots.pl/video/33bots-robot-event.mp4": 200,
+    "https://33bots.pl/video/robot-branding-poster.jpg": 200,
+    "https://33bots.pl/video/robot-branding.mp4": 200,
+    "https://33bots.pl/video/robot-gesty-poster.jpg": 200,
+    "https://33bots.pl/video/robot-gesty.mp4": 200,
+    "https://33bots.pl/video/robot-powitanie-poster.jpg": 200,
+    "https://33bots.pl/video/robot-powitanie.mp4": 200,
+    "https://33bots.pl/video/robot-spacer-poster.jpg": 200,
+    "https://33bots.pl/video/robot-spacer.mp4": 200,
+    "https://33bots.pl/video/robot-taniec-poster.jpg": 200,
+    "https://33bots.pl/video/robot-taniec.mp4": 200,
+    "https://i.ytimg.com/vi/58gfsJptDeY/hqdefault.jpg": 200,
+    "https://i.ytimg.com/vi/KWqMFDfeZYc/hqdefault.jpg": 200,
+    "https://i.ytimg.com/vi/Mzmc4W2tqDE/hqdefault.jpg": 200,
+    "https://i.ytimg.com/vi/xOrY7Bn4zns/hqdefault.jpg": 200
+   }
+  },
+  "33bots.de": {
+   "kod": 200,
+   "typ": "application/xml",
+   "bajty": 52738,
+   "xml": "ok",
+   "adresow": 65,
+   "problemy": {},
+   "wideo": 30,
+   "wideo_kody": {
+    "https://33bots.de/video/robot-branding-poster.jpg": 200,
+    "https://33bots.de/video/robot-branding.mp4": 200,
+    "https://33bots.de/video/robot-gesty-poster.jpg": 200,
+    "https://33bots.de/video/robot-gesty.mp4": 200,
+    "https://33bots.de/video/robot-powitanie-poster.jpg": 200,
+    "https://33bots.de/video/robot-powitanie.mp4": 200,
+    "https://33bots.de/video/robot-spacer-poster.jpg": 200,
+    "https://33bots.de/video/robot-spacer.mp4": 200,
+    "https://33bots.de/video/robot-taniec-poster.jpg": 200,
+    "https://33bots.de/video/robot-taniec.mp4": 200
+   }
+  },
+  "33bots.at": {
+   "kod": 200,
+   "typ": "application/xml",
+   "bajty": 9777,
+   "xml": "ok",
+   "adresow": 16,
+   "problemy": {},
+   "wideo": 0,
+   "wideo_kody": {}
+  },
+  "33bots.lt": {
+   "kod": 200,
+   "typ": "application/xml",
+   "bajty": 48170,
+   "xml": "ok",
+   "adresow": 79,
+   "problemy": {},
+   "wideo": 7,
+   "wideo_kody": {
+    "https://33bots.lt/video/33bots-robot-event-poster.jpg": 200,
+    "https://33bots.lt/video/33bots-robot-event.mp4": 200,
+    "https://33bots.lt/video/robot-branding-poster.jpg": 200,
+    "https://33bots.lt/video/robot-branding.mp4": 200,
+    "https://33bots.lt/video/robot-gesty-poster.jpg": 200,
+    "https://33bots.lt/video/robot-gesty.mp4": 200,
+    "https://33bots.lt/video/robot-powitanie-poster.jpg": 200,
+    "https://33bots.lt/video/robot-powitanie.mp4": 200,
+    "https://33bots.lt/video/robot-spacer-poster.jpg": 200,
+    "https://33bots.lt/video/robot-spacer.mp4": 200,
+    "https://33bots.lt/video/robot-taniec-poster.jpg": 200,
+    "https://33bots.lt/video/robot-taniec.mp4": 200
+   }
+  }
+ },
+ "github_pages": {
+  "https://oliwierels.github.io/33bots/": {
+   "kod": 200,
+   "location": null,
+   "canonical": "https://33bots.pl/",
+   "title": "Wynajem robota humanoidalnego na event — od 5500 zł | 33bots",
+   "lang": "pl"
+  },
+  "https://oliwierels.github.io/33bots/index.html": {
+   "kod": 200,
+   "location": null,
+   "canonical": "https://33bots.pl/",
+   "title": "Wynajem robota humanoidalnego na event — od 5500 zł | 33bots",
+   "lang": "pl"
+  },
+  "https://oliwierels.github.io/33bots/roboter-firmenfeier.html": {
+   "kod": 404,
+   "location": null,
+   "canonical": null,
+   "title": "Strona nie znaleziona | 33bots",
+   "lang": "pl"
+  },
+  "https://oliwierels.github.io/33bots/angebot-messen.html": {
+   "kod": 404,
+   "location": null,
+   "canonical": null,
+   "title": "Strona nie znaleziona | 33bots",
+   "lang": "pl"
+  },
+  "https://oliwierels.github.io/Strona-austria/": {
+   "kod": 301,
+   "location": "http://33bots.at/",
+   "canonical": null,
+   "title": "301 Moved Permanently",
+   "lang": null
+  },
+  "https://oliwierels.github.io/litwa-strona/": {
+   "kod": 404,
+   "location": null,
+   "canonical": null,
+   "title": "Site not found &middot; GitHub Pages",
+   "lang": null
+  },
+  "https://oliwierels.github.io/33bots/robots.txt": {
+   "kod": 200,
+   "location": null,
+   "canonical": null,
+   "title": null,
+   "lang": null
+  }
+ },
+ "http": {
+  "http://33bots.de/": [
+   [
+    "http://33bots.de/",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "http://33bots.de/index.html": [
+   [
+    "http://33bots.de/index.html",
+    301
+   ],
+   [
+    "https://33bots.de/index.html",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "http://33bots.de/roboter-mieten-wien.html": [
+   [
+    "http://33bots.de/roboter-mieten-wien.html",
+    301
+   ],
+   [
+    "https://33bots.de/roboter-mieten-wien.html",
+    404
+   ]
+  ],
+  "http://33bots.de/angebot-messen.html": [
+   [
+    "http://33bots.de/angebot-messen.html",
+    301
+   ],
+   [
+    "https://33bots.de/angebot-messen.html",
+    200
+   ]
+  ],
+  "http://33bots.de/sitemap.xml": [
+   [
+    "http://33bots.de/sitemap.xml",
+    301
+   ],
+   [
+    "https://33bots.de/sitemap.xml",
+    200
+   ]
+  ],
+  "http://33bots.de/roboter-mieten-preise.html": [
+   [
+    "http://33bots.de/roboter-mieten-preise.html",
+    301
+   ],
+   [
+    "https://33bots.de/roboter-mieten-preise.html",
+    200
+   ]
+  ],
+  "http://33bots.at/": [
+   [
+    "http://33bots.at/",
+    301
+   ],
+   [
+    "https://33bots.at/",
+    200
+   ]
+  ],
+  "http://33bots.at/index.html": [
+   [
+    "http://33bots.at/index.html",
+    301
+   ],
+   [
+    "https://33bots.at/index.html",
+    301
+   ],
+   [
+    "https://33bots.at/",
+    200
+   ]
+  ],
+  "http://33bots.at/roboter-mieten-wien.html": [
+   [
+    "http://33bots.at/roboter-mieten-wien.html",
+    301
+   ],
+   [
+    "https://33bots.at/roboter-mieten-wien.html",
+    200
+   ]
+  ],
+  "http://33bots.at/angebot-messen.html": [
+   [
+    "http://33bots.at/angebot-messen.html",
+    301
+   ],
+   [
+    "https://33bots.at/angebot-messen.html",
+    404
+   ]
+  ],
+  "http://33bots.at/sitemap.xml": [
+   [
+    "http://33bots.at/sitemap.xml",
+    301
+   ],
+   [
+    "https://33bots.at/sitemap.xml",
+    200
+   ]
+  ],
+  "http://33bots.at/roboter-mieten-preise.html": [
+   [
+    "http://33bots.at/roboter-mieten-preise.html",
+    301
+   ],
+   [
+    "https://33bots.at/roboter-mieten-preise.html",
+    200
+   ]
+  ],
+  "https://www.33bots.de/": [
+   [
+    "https://www.33bots.de/",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "robots 33bots.de": "User-agent: *\nAllow: /\n\nSitemap: https://33bots.de/sitemap.xml\n",
+  "https://www.33bots.at/": [
+   [
+    "https://www.33bots.at/",
+    301
+   ],
+   [
+    "https://33bots.at/",
+    200
+   ]
+  ],
+  "robots 33bots.at": "User-agent: *\nAllow: /\n\n# Sitemap\nSitemap: https://33bots.at/sitemap.xml\n"
+ }
+}
