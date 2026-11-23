@@ -1,0 +1,204 @@
+{
+ "gotowe": {
+  "pl": true,
+  "de": true,
+  "lt": true
+ },
+ "bledy": [],
+ "testy": [
+  {
+   "adres": "https://33bots.de/weihnachtsfeier-ideen.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/blog.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/humanoiden-roboter-kaufen.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.de/sitemap.xml",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/case-study-women-in-tech.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-unitree-g1-robot.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/wypozyczenie-robota.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-unitree-g1-robot",
+   "kod": 301,
+   "location": "https://33bots.pl/blog-unitree-g1-robot.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-co-potrafi-robot-humanoidalny",
+   "kod": 301,
+   "location": "https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-co-potrafi-robot-humanoidalny-unitree-g1/",
+   "kod": 301,
+   "location": "https://33bots.pl/blog-co-potrafi-robot-humanoidalny.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalne.html",
+   "kod": 301,
+   "location": "https://33bots.pl/blog-ile-kosztuje-robot-humanoidalny.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/blog-jak-wynajac-checklist.html",
+   "kod": 301,
+   "location": "https://33bots.pl/blog-jak-wynajac-robota-checklist.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/wypozyczenie-roba.html",
+   "kod": 301,
+   "location": "https://33bots.pl/wypozyczenie-robota.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/wypozyczenie-robota-ca",
+   "kod": 301,
+   "location": "https://33bots.pl/wypozyczenie-robota.html",
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/nie-ma-takiej-strony",
+   "kod": 404,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/api/",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.pl/wypozyczenie-robota.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/humanoidinio-roboto-nuoma.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.lt/blog.html",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  },
+  {
+   "adres": "https://33bots.at/",
+   "kod": 200,
+   "location": null,
+   "ok": true,
+   "brak": [],
+   "niechciane": []
+  }
+ ],
+ "github_pages": {
+  "https://oliwierels.github.io/33bots/": {
+   "kod": 301,
+   "location": "http://33bots.pl/"
+  },
+  "https://oliwierels.github.io/33bots/oferta-targi.html": {
+   "kod": 301,
+   "location": "http://33bots.pl/oferta-targi.html"
+  }
+ }
+}
