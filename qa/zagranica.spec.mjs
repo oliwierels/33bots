@@ -63,7 +63,7 @@ const RYNKI = [
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['Individuelles Angebot', 'ab 2.500 €', 'pro Veranstaltungstag', '−15 %'], kalkTrzyDni: '6.375 €',
     kontakt: ['+48 531 408 004', 'kontakt@33bots.de'],
-    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Ratgeber'],
+    nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Unitree G1'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
     blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',
