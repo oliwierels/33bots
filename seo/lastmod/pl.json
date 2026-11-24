@@ -5,7 +5,7 @@
  },
  "atrakcje-na-event.html": {
   "data": "2026-11-24",
-  "odcisk": "05c3904a81ddaae8664cff711c195e35"
+  "odcisk": "84276f3b38c79ec291dcee8cb7ef2119"
  },
  "atrakcje-na-impreze-firmowa.html": {
   "data": "2026-11-24",
@@ -17,7 +17,7 @@
  },
  "blog-atrakcja-na-gale-firmowa.html": {
   "data": "2026-11-24",
-  "odcisk": "bb1ef63d22c85b3a360fd7bbc2d52356"
+  "odcisk": "fe72a14fde621f5ac758f197a5262274"
  },
  "blog-atrakcje-eventowe.html": {
   "data": "2026-11-24",
@@ -97,7 +97,7 @@
  },
  "blog-robot-na-evencie.html": {
   "data": "2026-11-24",
-  "odcisk": "3b74bfd118747925f45bc982da235fe1"
+  "odcisk": "fea619593eef6cabdd75c8654379a7f2"
  },
  "blog-robot-na-event-dla-dzieci.html": {
   "data": "2026-11-24",
@@ -121,7 +121,7 @@
  },
  "blog-robot-na-juwenalia-festiwal.html": {
   "data": "2026-11-24",
-  "odcisk": "80ceb6c4ca9817345429cc10eb03b9f3"
+  "odcisk": "3ec62bc424962bd8878eb1af58a41d4b"
  },
  "blog-robot-na-otwarcie-sklepu.html": {
   "data": "2026-11-24",
@@ -137,7 +137,7 @@
  },
  "blog-robot-na-stoisko-targowe.html": {
   "data": "2026-11-24",
-  "odcisk": "363af0604657405c8f5c579ae650b027"
+  "odcisk": "f5efe594d3e4baab7d8dbc49865d6378"
  },
  "blog-robot-na-stoisku-targowym-roi.html": {
   "data": "2026-11-24",
@@ -149,7 +149,7 @@
  },
  "blog-robot-na-wesele.html": {
   "data": "2026-11-24",
-  "odcisk": "366c50fc6a0afae1d44861487dd2fbd4"
+  "odcisk": "b3cd1460da993b755509e6e36a067028"
  },
  "blog-robot-recepcjonista-witajacy-gosci.html": {
   "data": "2026-11-24",
@@ -193,7 +193,7 @@
  },
  "blog.html": {
   "data": "2026-11-24",
-  "odcisk": "ea523cd842e0925b33fd294748a51a4a"
+  "odcisk": "476bc1fbe6d27ea1c581f3b627782961"
  },
  "case-study-centrum-nauki-kopernik.html": {
   "data": "2026-11-24",
@@ -245,15 +245,15 @@
  },
  "oferta-dni-otwarte.html": {
   "data": "2026-11-24",
-  "odcisk": "aa041c8b7556fc453a64091aad68a143"
+  "odcisk": "6cdd9fa44dcc0addc20e6eac1f674993"
  },
  "oferta-konferencje.html": {
   "data": "2026-11-24",
-  "odcisk": "3d3d9cad83407e5440fb4cef73a68274"
+  "odcisk": "c54571d6d70528f9f87b69d14446b365"
  },
  "oferta-targi.html": {
   "data": "2026-11-24",
-  "odcisk": "ff8c3bfd37218a8d6aa0c55369de5997"
+  "odcisk": "e30fe133356dcbb68d525382255d14a5"
  },
  "pokazy-na-event.html": {
   "data": "2026-11-24",
@@ -266,6 +266,10 @@
  "pomysly-na-impreze-firmowa.html": {
   "data": "2026-11-24",
   "odcisk": "e28f3081a07d6f0a55f2efab3a858e9e"
+ },
+ "pomysly-na-stoisko-targowe.html": {
+  "data": "2026-11-24",
+  "odcisk": "59365f7309adedfbccf5f22986626f45"
  },
  "realizacje-wideo.html": {
   "data": "2026-11-24",
@@ -305,11 +309,11 @@
  },
  "robot-do-hotelu.html": {
   "data": "2026-11-24",
-  "odcisk": "225962e5eaa785f36662e94937aef3f9"
+  "odcisk": "b22ebed302b8de52fe5f62a9458c8d5a"
  },
  "robot-do-marketingu.html": {
   "data": "2026-11-24",
-  "odcisk": "fe79b6afe2107072f15496ed7f47ab90"
+  "odcisk": "f8bcc30553580507d55a574b4187b4cd"
  },
  "robot-do-reklamy-i-filmu.html": {
   "data": "2026-11-24",
@@ -525,7 +529,7 @@
  },
  "robot-na-impreze.html": {
   "data": "2026-11-24",
-  "odcisk": "ef92242e640033e57b9bb1b8c0efb9aa"
+  "odcisk": "7fecc3f3cd1130635942ca714937f691"
  },
  "robot-na-integracje-firmowa.html": {
   "data": "2026-11-24",
@@ -613,7 +617,7 @@
  },
  "robot-na-wesele.html": {
   "data": "2026-11-24",
-  "odcisk": "338d5de4b79da4687d638d35bca394e3"
+  "odcisk": "5f67f2d74aa5f5dde7ca5bbfe950ab72"
  },
  "robot-na-wieczor-panienski.html": {
   "data": "2026-11-24",
@@ -653,15 +657,15 @@
  },
  "robot-wynajem-bialystok.html": {
   "data": "2026-11-24",
-  "odcisk": "e00653f054456cb3490b6344491f8265"
+  "odcisk": "6da86c0930b1af7c63090ad2f36d1bb0"
  },
  "robot-wynajem-bydgoszcz.html": {
   "data": "2026-11-24",
-  "odcisk": "41916d96fff2a67f08d6c65b2ffb2b0b"
+  "odcisk": "70609aad4e5d3bd64a23205c7ee34c4a"
  },
  "robot-wynajem-czestochowa.html": {
   "data": "2026-11-24",
-  "odcisk": "12232da9f1c167472ace5a862edc5882"
+  "odcisk": "399999d20eaafe62a10627dc3e06f5e8"
  },
  "robot-wynajem-elblag.html": {
   "data": "2026-11-24",
@@ -673,7 +677,7 @@
  },
  "robot-wynajem-gliwice.html": {
   "data": "2026-11-24",
-  "odcisk": "87008938532af176e7aef674bda57672"
+  "odcisk": "fbbb7ad4589236ed0d5a07c405715d90"
  },
  "robot-wynajem-grudziadz.html": {
   "data": "2026-11-24",
@@ -689,11 +693,11 @@
  },
  "robot-wynajem-katowice.html": {
   "data": "2026-11-24",
-  "odcisk": "dd0cd057628a48b2417f84ca52f2868d"
+  "odcisk": "0943503d03fea48d92c0e3c9b7df7ba9"
  },
  "robot-wynajem-kielce.html": {
   "data": "2026-11-24",
-  "odcisk": "739f2c68efef8031526e4bc28b04c913"
+  "odcisk": "f048af60815672cf312397ba54f600e7"
  },
  "robot-wynajem-koszalin.html": {
   "data": "2026-11-24",
@@ -709,11 +713,11 @@
  },
  "robot-wynajem-lodz.html": {
   "data": "2026-11-24",
-  "odcisk": "6a5b5be8a0164f963fc811d2028bed6b"
+  "odcisk": "b5c1af4a06e539c0f938ad479c68c08d"
  },
  "robot-wynajem-lublin.html": {
   "data": "2026-11-24",
-  "odcisk": "93052799c89fe9b908d5d273c3ac027e"
+  "odcisk": "f20cdaa6a38bf6ed98c095de9d9eeae3"
  },
  "robot-wynajem-mikolajki.html": {
   "data": "2026-11-24",
@@ -725,11 +729,11 @@
  },
  "robot-wynajem-olsztyn.html": {
   "data": "2026-11-24",
-  "odcisk": "df98c31913c67dbc10eb3fd307cab002"
+  "odcisk": "b7a3638de810c4be3b3f9421ae7c5a1e"
  },
  "robot-wynajem-opole.html": {
   "data": "2026-11-24",
-  "odcisk": "d372b7f8caefd70070a660e648b1c48e"
+  "odcisk": "e4fdd49aedc8b0cceaa2370dbad0d765"
  },
  "robot-wynajem-pila.html": {
   "data": "2026-11-24",
@@ -737,7 +741,7 @@
  },
  "robot-wynajem-plock.html": {
   "data": "2026-11-24",
-  "odcisk": "de59ff6a67d2359daea4fd7fe724d76a"
+  "odcisk": "f769bca35d2599c2d482a9f1d4a99634"
  },
  "robot-wynajem-poznan.html": {
   "data": "2026-11-24",
@@ -745,7 +749,7 @@
  },
  "robot-wynajem-radom.html": {
   "data": "2026-11-24",
-  "odcisk": "eff5848936bef375186efef70372980f"
+  "odcisk": "81a889d88de8ffed045862481b195d6b"
  },
  "robot-wynajem-rybnik.html": {
   "data": "2026-11-24",
@@ -753,7 +757,7 @@
  },
  "robot-wynajem-rzeszow.html": {
   "data": "2026-11-24",
-  "odcisk": "8e7659ee89ed7658bd92d6da7f00530b"
+  "odcisk": "7a0c9b10f101a71ec56bec01e6d1f36f"
  },
  "robot-wynajem-slupsk.html": {
   "data": "2026-11-24",
@@ -761,23 +765,23 @@
  },
  "robot-wynajem-szczecin.html": {
   "data": "2026-11-24",
-  "odcisk": "5034553dc0660939f1c278d496a37b3d"
+  "odcisk": "485fbd447f74837341ef582ac5edb192"
  },
  "robot-wynajem-tarnow.html": {
   "data": "2026-11-24",
-  "odcisk": "f816c03c435caad0916f6c65a13c44f3"
+  "odcisk": "20b1b1786db2ba3ea1eabe5d9d9153ba"
  },
  "robot-wynajem-torun.html": {
   "data": "2026-11-24",
-  "odcisk": "6bb764a76a00a9761fd98c3086025f94"
+  "odcisk": "4f8b26ab9f138b44ce573da6f93aeb35"
  },
  "robot-wynajem-walbrzych.html": {
   "data": "2026-11-24",
-  "odcisk": "fbc1063aa3f4035a543799aa11ad9efa"
+  "odcisk": "eaadb174b4114b8717ae9a88781e8c94"
  },
  "robot-wynajem-warszawa.html": {
   "data": "2026-11-24",
-  "odcisk": "5057a3b8cb32a29c594118b50d375b9b"
+  "odcisk": "d7f82a826bc6a7aed6f573ed9b44f8b4"
  },
  "robot-wynajem-wloclawek.html": {
   "data": "2026-11-24",
@@ -785,15 +789,15 @@
  },
  "robot-wynajem-wroclaw.html": {
   "data": "2026-11-24",
-  "odcisk": "9f24340c466225390240823aa303a2e9"
+  "odcisk": "67a45255f6623e897cfd85a4b52ff514"
  },
  "robot-wynajem-zielona-gora.html": {
   "data": "2026-11-24",
-  "odcisk": "a3c465de46b714ec0d7928f95fbbdd6b"
+  "odcisk": "0d93efb97019566865ea0cfaeff8f338"
  },
  "roboty-na-eventy-firmowe.html": {
   "data": "2026-11-24",
-  "odcisk": "19444f28219f38751b7005441d4876f1"
+  "odcisk": "0cc465e75a58becc22cccac1427ff665"
  },
  "show-robotow.html": {
   "data": "2026-11-24",
@@ -813,7 +817,7 @@
  },
  "wynajem-atrakcji-na-imprezy.html": {
   "data": "2026-11-24",
-  "odcisk": "10dc23097d0e93e797c6daf4c062967b"
+  "odcisk": "010ef952396f35e7ae5755dbf794c2be"
  },
  "wynajem-robota-do-firmy.html": {
   "data": "2026-11-24",
