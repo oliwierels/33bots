@@ -179,7 +179,7 @@ def zbuduj(plik_zrodla):
 <meta property="og:site_name" content="33bots" />
 <meta property="article:published_time" content="{d['data']}" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="alternate" type="application/rss+xml" title="33bots — blog RSS" href="https://33bots.pl/feed.xml" />
+<link rel="alternate" type="application/rss+xml" title="33bots – blog RSS" href="https://33bots.pl/feed.xml" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
 <script>document.documentElement.classList.add('js');</script>
