@@ -32,7 +32,7 @@ def czekaj(url, znacznik, minut=15):
 
 
 wynik = {'czekanie': {
-    'de_ueber_uns': czekaj('https://33bots.de/ueber-uns.html', 'Über 33bots'),
+    'de_netto': czekaj('https://33bots.de/roboter-mieten-preise.html', 'Nettopreise für Unternehmen'),
     'de_messen': czekaj('https://33bots.de/angebot-messen.html', 'Im Messegang bleiben Ihnen'),
     'at_impressum': czekaj('https://33bots.at/impressum.html', 'Rechtsform'),
 }}
@@ -44,7 +44,7 @@ for u in adresy:
     k, h, t = jeden(u)
     rob = re.search(r'<meta name="robots" content="([^"]*)"', t)
     kan = re.search(r'<link rel="canonical" href="([^"]*)"', t)
-    zle = [z for z in ('Outfit', 'Kostüm', 'kostenlos', 'zertifiziert', 'ec.europa.eu/consumers/odr') if z in t]
+    zle = [z for z in ('Outfit', 'Kostüm', 'kostenlos', 'zertifizierter Operator', 'ec.europa.eu/consumers/odr', 'tel:+48', 'LocalBusiness', 'Endpreis') if z in t]
     if k != 200 or (rob and 'noindex' in rob.group(1)) or not kan or kan.group(1) != u or zle:
         bledy.append({'url': u, 'kod': k, 'robots': rob and rob.group(1), 'canonical': kan and kan.group(1), 'zakazane': zle})
 wynik['bledy_de'] = bledy
@@ -52,6 +52,11 @@ for u in ('https://33bots.de/impressum.html', 'https://33bots.at/impressum.html'
     k, h, t = jeden(u)
     wynik[u] = {'kod': k, 'os_link': 'ec.europa.eu/consumers/odr' in t, 'rechtsform': 'Rechtsform' in t}
 k, h, t = jeden('https://33bots.de/')
-wynik['de_glowna'] = {'kod': k, 'ueber_uns_w_stopce': 'ueber-uns.html' in t, 'nowy_lead': 'Er spricht Deutsch und jede andere Sprache' in t}
+wynik['de_glowna'] = {'kod': k, 'netto': 'zzgl. MwSt.' in t, 'service_ld': '"@type": "Service"' in t, 'bez_telefonu': 'tel:' not in t}
+prz = {}
+for zr, cel in (('roboter-mieten-karlsruhe.html', 'https://33bots.de/humanoiden-roboter-mieten.html'), ('moderne-event-attraktionen.html', 'https://33bots.de/roboter-show.html')):
+    k2, h2, _ = jeden('https://33bots.de/' + zr)
+    prz[zr] = {'kod': k2, 'ok': h2.get('Location') == cel, 'location': h2.get('Location')}
+wynik['przekierowania'] = prz
 json.dump(wynik, open(sys.argv[1], 'w'), ensure_ascii=False, indent=1)
 print(json.dumps({'czekanie': wynik['czekanie'], 'mapa_de': wynik['mapa_de'], 'bledy': len(bledy)}))
