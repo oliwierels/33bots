@@ -60,7 +60,7 @@ const RYNKI = [
     kanoniczny: 'https://33bots.de/', h1: /humanoide roboter für events mieten/i,
     kotwice: ['top', 'hauptinhalt', 'referenzen', 'realisierungen', 'events', 'video', 'ueber-uns', 'auftritt',
       'leistungen', 'einsatzbereiche', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt'],
-    ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
+    ldTypy: ['Service', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['Individuelles Angebot', 'ab 2.500 €', 'pro Veranstaltungstag', '−15 %'], kalkTrzyDni: '6.375 €',
     kontakt: ['kontakt@33bots.de'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Unitree G1'],
@@ -229,12 +229,13 @@ for (const m of RYNKI) {
       for (const c of m.ceny) expect(ceny, c).toContain(c);
       const kontakt = await tresc(page, '#kontakt');
       for (const k of m.kontakt) expect(kontakt, k).toContain(k);
+      // Ceny .de są netto (potwierdzone 24.11.2026): strona musi to mówić wprost.
+      if (m.kod === 'de') expect(await tresc(page)).toMatch(/zzgl\. MwSt\./);
       const telefony = await page.locator('a[href^="tel:"]').count();
       if (!m.telefon) {
         expect(telefony, `33bots.${m.kod} nie podaje telefonu`).toBe(0);
         expect(await tresc(page)).not.toMatch(/\+48/);
       } else {
-        if (m.kod === 'de') expect(await tresc(page)).not.toMatch(/netto/);
         expect(telefony).toBeGreaterThan(0);
         await expect(page.locator('a[href^="tel:"]').first()).toHaveAttribute('href', 'tel:+48531408004');
       }
