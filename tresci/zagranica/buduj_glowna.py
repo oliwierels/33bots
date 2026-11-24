@@ -170,7 +170,8 @@ class Strona:
         menu = '\n'.join(f'      <a href="{h}">{t}</a>' for h, t in r['nav'])
         panel = '\n'.join(f'      <li><a href="{h}">{t}</a></li>' for h, t in r['nav'])
         dh, dt = r['nav_drugi']
-        kh, kt, katr = r['kontakt_nav']
+        # Rynek bez telefonu (np. .de od 24.11.2026): kontakt_nav = None, wtedy nie ma linku tel w menu.
+        tel_nav = (lambda miejsce: f'<a class="nav__tel" href="{r["kontakt_nav"][0]}" {r["kontakt_nav"][2]}="{miejsce}">{r["kontakt_nav"][1]}</a>') if r.get('kontakt_nav') else (lambda miejsce: '')
         return f'''<!-- ══════════ 01 NAWIGACJA ══════════ -->
 <header class="nav" id="nav">
   <div class="nav__in">
@@ -180,7 +181,7 @@ class Strona:
       <a class="nav__drugi" href="{dh}">{dt}</a>
     </nav>
     <div class="nav__akcje">
-      <a class="nav__tel" href="{kh}" {katr}="nav">{kt}</a>{self.panel_dostepnosci() if r['panel_dostepnosci'] else ''}
+      {tel_nav('nav')}{self.panel_dostepnosci() if r['panel_dostepnosci'] else ''}
       <a class="link nav__cta link--akcja" href="#kontakt" data-cta="nav">{r['cta_krotki']}</a>
       <button class="nav__przycisk" id="navPrzycisk" type="button" aria-expanded="false" aria-controls="navPanel">{r['menu']}</button>
     </div>
@@ -190,7 +191,7 @@ class Strona:
 {panel}
       <li><a href="{dh}">{dt}</a></li>
     </ul>
-    <a class="nav__tel" href="{kh}" {katr}="menu">{kt}</a>
+    {tel_nav('menu')}
     <a class="btn btn--akcja" href="#kontakt" data-cta="nav">{r['cta']}{STRZALKA}</a>
   </div>
 </header>'''
@@ -215,7 +216,7 @@ class Strona:
           <a class="btn btn--akcja" href="#kontakt" data-cta="hero">{r['cta']}{STRZALKA}</a>
         </div>
         <p class="termin__obietnica">{r['hero_obietnica']}</p>
-        <p class="termin__telefon">{r['hero_telefon']} <a href="{TEL[0]}" data-tel="hero">{TEL[1]}</a></p>
+        {f'<p class="termin__telefon">{r["hero_telefon"]} <a href="{TEL[0]}" data-tel="hero">{TEL[1]}</a></p>' if r.get('hero_telefon') else ''}
       </div>
       <a class="link" href="{lh}">{lt}</a>
     </div>
@@ -484,6 +485,8 @@ class Strona:
         r, f = self.r, self.r['form']
         osoby = wycinek('<ul class="osoby">', '</ul>').replace('kontakt@33bots.pl', r['mail'])
         osoby = self.teksty(osoby, 'kontakt — osoby')
+        if not r.get('kontakt_nav'):  # rynek bez telefonu: zostaje sam e-mail
+            osoby = re.sub(r'\s*<li class="osoba">(?:(?!</li>).)*osoba__tel(?:(?!</li>).)*</li>', '', osoby, flags=re.S)
         typy = '\n'.join(f'            <label class="chip"><input type="radio" name="event_type" value="{e(t)}" required /><span>{t}</span></label>' for t in f['typy'])
         goscie = '\n'.join(f'            <label class="chip"><input type="radio" name="guests" value="{e(g)}" /><span>{g}</span></label>' for g in f['goscie_opcje'])
         return f'''<!-- ══════════ 10 RESERVIERUNG ══════════
@@ -663,7 +666,7 @@ class Strona:
         return f'''<!-- ══════════ Pasek mobilny: pojawia się po minięciu hero ══════════ -->
 <div class="pasek" id="pasekMobilny">
   <a class="btn btn--akcja" href="#kontakt" data-cta="sticky">{r['pasek']}{STRZALKA}</a>
-  <a class="pasek__tel" href="{TEL[0]}" data-tel="pasek">{r['pasek_tel']}</a>
+  {f'<a class="pasek__tel" href="{TEL[0]}" data-tel="pasek">{r["pasek_tel"]}</a>' if r.get('pasek_tel') else ''}
 </div>
 <div class="pasek-odstep"></div>
 {cookies}

@@ -62,13 +62,14 @@ const RYNKI = [
       'leistungen', 'einsatzbereiche', 'case-study', 'preise', 'ablauf', 'faq', 'kontakt'],
     ldTypy: ['Product', 'FAQPage', 'ProfessionalService', 'WebSite'],
     ceny: ['Individuelles Angebot', 'ab 2.500 €', 'pro Veranstaltungstag', '−15 %'], kalkTrzyDni: '6.375 €',
-    kontakt: ['+48 531 408 004', 'kontakt@33bots.de'],
+    kontakt: ['kontakt@33bots.de'],
     nav: ['Referenzen', 'Auftritt', 'Preise', 'Ablauf', 'Unitree G1'],
     formularz: 'https://formspree.io/f/mnjwvray', dodatkowe: {},
-    blad: 'Senden fehlgeschlagen. Rufen Sie an: +48 531 408 004 oder schreiben Sie an kontakt@33bots.de.',
+    blad: 'Senden fehlgeschlagen. Schreiben Sie uns bitte direkt an kontakt@33bots.de.',
     miejsce: 'Berlin, Messe Berlin',
     linkLexai: 'case-study-lexai.html',
-    analityka: false, panel: true, t: T_DE, telefon: 'tel:+48531408004', faqLiczba: 10,
+    // .de bez numerów telefonu (decyzja z 24.11.2026): kontakt przez e-mail i formularz.
+    analityka: false, panel: true, t: T_DE, telefon: null, faqLiczba: 10,
   },
   {
     kod: 'at', adres: 'http://127.0.0.1:8082/', lang: 'de-AT',
