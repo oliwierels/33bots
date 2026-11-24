@@ -130,7 +130,7 @@ FAQ_MOWA = ('Spricht der Roboter mit den Gästen?',
 FAQ_ZALICZKA = ('Muss ich eine Anzahlung leisten?',
                 'Nein. Die Reservierung erfolgt ohne Anzahlung. Die Rechnung stellen wir erst nach der Veranstaltung, bei Bedarf mit längerem Zahlungsziel.')
 FAQ_OPERATOR = ('Muss ich den Roboter selbst bedienen können?',
-                'Nein. Während der gesamten Veranstaltung ist unser zertifizierter Operator vor Ort — er ist für Konfiguration, Bedienung und Sicherheit der Show verantwortlich.')
+                'Nein. Während der gesamten Veranstaltung ist unser Operator vor Ort — er ist für Konfiguration, Bedienung und Sicherheit der Show verantwortlich.')
 FAQ_BEZPIECZENSTWO = ('Ist der Roboter für die Gäste sicher?',
                       'Ja. Dank LiDAR und Computer Vision weicht der Roboter Menschen und Hindernissen in Echtzeit aus, der Operator überwacht die Show, und jeder Einsatz ist haftpflichtversichert.')
 FAQ_BRANDING = ('Kann ich mein Logo auf dem Roboter platzieren?',
@@ -827,7 +827,7 @@ TEKSTY_DE = {
     'TŁOCZNO — OPERATOR OBOK': 'GEDRÄNGE — OPERATOR NAH', 'LUŹNO — OPERATOR W CIENIU': 'RUHIG — OPERATOR DISKRET',
     'Operator: blisko, ale dyskretnie': 'Operator: nah, aber diskret',
     'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
-        'Ein zertifizierter Operator ist während der gesamten Veranstaltung beim Roboter. Wird es voll, steht er direkt daneben und achtet auf die Sicherheit. Ist es ruhiger, tritt er in den Hintergrund — die Gäste sehen den Roboter, nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
+        'Ein Operator ist während der gesamten Veranstaltung beim Roboter. Wird es voll, steht er direkt daneben und achtet auf die Sicherheit. Ist es ruhiger, tritt er in den Hintergrund — die Gäste sehen den Roboter, nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
     'Widzi ludzi wokół siebie': 'Er sieht die Menschen um sich herum',
     'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
         'Dank LiDAR und Computer Vision weicht er Menschen und Hindernissen in Echtzeit aus. Der Roboter bewegt sich ruhig zwischen den Gästen, und der Operator behält jeden Schritt im Blick.',
