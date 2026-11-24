@@ -1,0 +1,43 @@
+{
+ "czekanie": {
+  "de_ueber_uns": true,
+  "de_messen": true,
+  "at_impressum": true
+ },
+ "mapa_de": 48,
+ "bledy_de": [
+  {
+   "url": "https://33bots.de/",
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/",
+   "zakazane": [
+    "zertifiziert"
+   ]
+  },
+  {
+   "url": "https://33bots.de/datenschutz.html",
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/datenschutz.html",
+   "zakazane": [
+    "zertifiziert"
+   ]
+  }
+ ],
+ "https://33bots.de/impressum.html": {
+  "kod": 200,
+  "os_link": false,
+  "rechtsform": true
+ },
+ "https://33bots.at/impressum.html": {
+  "kod": 200,
+  "os_link": false,
+  "rechtsform": true
+ },
+ "de_glowna": {
+  "kod": 200,
+  "ueber_uns_w_stopce": true,
+  "nowy_lead": true
+ }
+}
