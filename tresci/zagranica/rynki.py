@@ -130,7 +130,7 @@ FAQ_MOWA = ('Spricht der Roboter mit den Gästen?',
 FAQ_ZALICZKA = ('Muss ich eine Anzahlung leisten?',
                 'Nein. Die Reservierung erfolgt ohne Anzahlung. Die Rechnung stellen wir erst nach der Veranstaltung, bei Bedarf mit längerem Zahlungsziel.')
 FAQ_OPERATOR = ('Muss ich den Roboter selbst bedienen können?',
-                'Nein. Während der gesamten Veranstaltung ist unser Operator vor Ort — er ist für Konfiguration, Bedienung und Sicherheit der Show verantwortlich.')
+                'Nein. Während der gesamten Veranstaltung ist unser zertifizierter Operator vor Ort — er ist für Konfiguration, Bedienung und Sicherheit der Show verantwortlich.')
 FAQ_BEZPIECZENSTWO = ('Ist der Roboter für die Gäste sicher?',
                       'Ja. Dank LiDAR und Computer Vision weicht der Roboter Menschen und Hindernissen in Echtzeit aus, der Operator überwacht die Show, und jeder Einsatz ist haftpflichtversichert.')
 FAQ_BRANDING = ('Kann ich mein Logo auf dem Roboter platzieren?',
@@ -292,7 +292,7 @@ DE = {**WSPOLNE_DE,
         ('Was muss der Veranstaltungsort bieten?', 'Etwa 2×2 m ebene Fläche und eine normale 230-V-Steckdose. Ob Messestand, Bühne oder Foyer, spielt keine Rolle. WLAN oder spezielles Licht brauchen wir nicht, die Ausrüstung bringt der Operator mit.'),
         ('Spricht der Roboter mit den Gästen?', 'Ja. Der Roboter spricht Deutsch und jede andere Sprache, mit natürlich klingender Stimme. Er begrüßt, beantwortet Fragen und sagt Programmpunkte an. Vorher legen wir seine Rolle fest und spielen ihm ein, was er über Ihr Unternehmen wissen soll: Angebot, Produktnamen, typische Fragen und den Ablauf. Diese Vorbereitung ist im Preis enthalten.'),
         ('Kann der Roboter unser Logo tragen?', 'Ja. Logo und QR-Code kommen auf seine Brust, und das Branding passt zum Anlass, vom T-Shirt bis zum Smoking. Aufpreis gibt es dafür keinen.'),
-        ('Wer steuert den Roboter?', 'Ein erfahrener Operator aus unserem eigenen Team, kein kurzfristig angeheuerter Fremdeinsatz. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen.'),
+        ('Wer steuert den Roboter?', 'Ein zertifizierter Operator aus unserem eigenen Team, kein kurzfristig angeheuerter Fremdeinsatz. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen.'),
         ('Ist das für die Gäste sicher?', 'Ja. LiDAR und Kameras erkennen Menschen und Hindernisse in Echtzeit, und der Roboter weicht ihnen aus. Der Operator entscheidet, was er wann zeigt. Jeder Einsatz ist haftpflichtversichert.'),
         ('Kommen Sie auch zu uns?', 'Ja, in jede Stadt in Deutschland, ob Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Düsseldorf oder eine kleinere Stadt. Die Anfahrt ist im Preis enthalten, eine Kilometerpauschale gibt es nicht.'),
         ('Wo sitzt 33bots?', 'In Warschau. 33bots ist ein polnisches Einzelunternehmen von Bartosz Wysocki. Die Rechnung kommt von dort, mit unserer EU-Umsatzsteuer-Identifikationsnummer PL5253090645. Im Einsatz waren wir bisher in Polen, Litauen, Deutschland, Tschechien und Rumänien.'),
@@ -796,19 +796,19 @@ LT = {
 # bez wpisu tutaj zatrzyma generator — tak ma być.
 TEKSTY_DE = {
     # skala
-    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern — Galas, Messen, Konferenzen, Firmen- und Outdoor-Events',
+    'wydarzeń w&nbsp;pięciu krajach – gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern — Galas, Messen, Konferenzen, Firmen- und Outdoor-Events',
     'krajów: Polska, Litwa, Niemcy, Czechy, Rumunia': 'Länder: Polen, Litauen, Deutschland, Tschechien, Rumänien',
     '„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk': 'TVP2-Frühstücksfernsehen, Teleexpress und TVP Danzig',
     '&nbsp;zł': '&nbsp;€',
-    'zaliczki — fakturę wystawiamy po wydarzeniu': 'Anzahlung — die Rechnung kommt nach der Veranstaltung',
+    'zaliczki – fakturę wystawiamy po wydarzeniu': 'Anzahlung — die Rechnung kommt nach der Veranstaltung',
     '&nbsp;min': '&nbsp;Min.',
-    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'bis zur Antwort mit Preis — am Telefon sofort',
+    'na odpowiedź z&nbsp;ceną – przez telefon od razu': 'bis zur Antwort mit Preis — am Telefon sofort',
     # robot z bliska
     '04 / 13 · Robot z bliska': '04 / 13 · Roboter aus der Nähe',
     'Poznaj go, zanim przyjedzie.': 'Lernen Sie ihn kennen, bevor er kommt.',
-    '01 · Głowa': '01 · Kopf', 'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR und Kamera — er sieht die Gäste um sich herum',
+    '01 · Głowa': '01 · Kopf', 'LiDAR i&nbsp;kamera – widzi gości wokół siebie': 'LiDAR und Kamera — er sieht die Gäste um sich herum',
     '02 · Twarz': '02 · Gesicht', 'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Spricht jede Sprache, mit natürlicher Stimme',
-    '03 · Pierś': '03 · Brust', 'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Ihr Logo und QR-Code — auf jedem Foto der Gäste',
+    '03 · Pierś': '03 · Brust', 'Twoje logo i&nbsp;kod QR – w&nbsp;każdym zdjęciu gości': 'Ihr Logo und QR-Code — auf jedem Foto der Gäste',
     '04 · Ręce': '04 · Hände', 'Wita, podaje rękę, pozuje do zdjęć': 'Begrüßt, gibt die Hand, posiert für Fotos',
     '05 · Nogi': '05 · Beine', 'Chodzi wśród gości i&nbsp;omija przeszkody': 'Geht zwischen den Gästen und weicht Hindernissen aus',
     '06 · Stopy': '06 · Füße', 'Wystarczy mu kilka metrów kwadratowych': 'Ihm genügen wenige Quadratmeter',
@@ -821,28 +821,28 @@ TEKSTY_DE = {
     # zasady
     '05 / 13 · Zasady': '05 / 13 · Grundsätze',
     'Najpierw bezpieczeństwo gości. Potem efekt.': 'Erst die Sicherheit der Gäste. Dann der Effekt.',
-    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce – operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
         'Was der Roboter wann macht, entscheidet immer der Operator. Komplexere Bewegungsabläufe zeigen wir nur dort, wo Platz dafür ist — der Operator schätzt den Saal ein, achtet auf Abstände und behält die Menge im Griff. So passiert niemandem etwas, und möglichst viele Menschen kommen mit dem Roboter ins Gespräch.',
     'Bezpieczeństwo': 'Sicherheit',
-    'TŁOCZNO — OPERATOR OBOK': 'GEDRÄNGE — OPERATOR NAH', 'LUŹNO — OPERATOR W CIENIU': 'RUHIG — OPERATOR DISKRET',
+    'TŁOCZNO – OPERATOR OBOK': 'GEDRÄNGE — OPERATOR NAH', 'LUŹNO – OPERATOR W CIENIU': 'RUHIG — OPERATOR DISKRET',
     'Operator: blisko, ale dyskretnie': 'Operator: nah, aber diskret',
-    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
-        'Ein Operator ist während der gesamten Veranstaltung beim Roboter. Wird es voll, steht er direkt daneben und achtet auf die Sicherheit. Ist es ruhiger, tritt er in den Hintergrund — die Gäste sehen den Roboter, nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień – goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+        'Ein zertifizierter Operator ist während der gesamten Veranstaltung beim Roboter. Wird es voll, steht er direkt daneben und achtet auf die Sicherheit. Ist es ruhiger, tritt er in den Hintergrund — die Gäste sehen den Roboter, nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
     'Widzi ludzi wokół siebie': 'Er sieht die Menschen um sich herum',
     'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
         'Dank LiDAR und Computer Vision weicht er Menschen und Hindernissen in Echtzeit aus. Der Roboter bewegt sich ruhig zwischen den Gästen, und der Operator behält jeden Schritt im Blick.',
-    'WYMIANA — POKAZ TRWA': 'AKKUWECHSEL — SHOW LÄUFT',
+    'WYMIANA – POKAZ TRWA': 'AKKUWECHSEL — SHOW LÄUFT',
     'Baterie bez przerwy w&nbsp;pokazie': 'Akkuwechsel ohne Showpause',
-    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia – pokaz nie staje na ładowanie.':
         'Der Roboter arbeitet mit Wechselakkus. Der Operator hat einen Satz Ersatzakkus dabei und tauscht sie während der Veranstaltung — die Show unterbricht nicht zum Laden.',
     'Kontakt z&nbsp;gośćmi': 'Kontakt mit den Gästen',
     'Wychodzimy do ludzi': 'Wir gehen auf die Menschen zu',
-    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy – tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
         'Der Roboter wartet nicht in der Ecke, bis jemand kommt. Er geht auf die Gäste zu, spricht sie an und lädt zum Gespräch ein — damit möglichst viele mit ihm reden, nicht nur die Mutigsten.',
     # powitania: język rynku idzie na pierwsze miejsce, polskie na jego dawne miejsce
     'Dzień dobry': 'Guten Tag', 'Guten Tag': 'Dzień dobry',
     'Rozmawia w&nbsp;każdym języku': 'Er spricht jede Sprache',
-    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia – także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Er spricht Deutsch und jede andere Sprache, mit natürlicher Stimme, und wechselt während der Veranstaltung zwischen den Sprachen — auch wenn die Gäste aus mehreren Ländern kommen.',
     'WYDARZENIE': 'VERANSTALTUNG', 'TWOJA FIRMA': 'IHRE FIRMA', 'OFERTA': 'ANGEBOT', 'PYTANIA GOŚCI': 'GÄSTEFRAGEN',
     'Zna Twoje wydarzenie': 'Er kennt Ihre Veranstaltung',
@@ -856,18 +856,18 @@ TEKSTY_DE = {
 }
 
 TEKSTY_LT = {
-    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'renginių penkiose šalyse — gala vakarai, parodos, konferencijos, įmonių ir lauko renginiai',
+    'wydarzeń w&nbsp;pięciu krajach – gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'renginių penkiose šalyse — gala vakarai, parodos, konferencijos, įmonių ir lauko renginiai',
     'krajów: Polska, Litwa, Niemcy, Czechy, Rumunia': 'šalys: Lenkija, Lietuva, Vokietija, Čekija, Rumunija',
     '„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk': 'TVP2 rytinė laida, Teleexpress ir TVP Gdanskas',
     '&nbsp;zł': '&nbsp;€',
-    'zaliczki — fakturę wystawiamy po wydarzeniu': 'avanso — sąskaitą išrašome po renginio',
+    'zaliczki – fakturę wystawiamy po wydarzeniu': 'avanso — sąskaitą išrašome po renginio',
     '&nbsp;min': '&nbsp;min',
-    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'iki atsakymo su kaina — telefonu iš karto',
+    'na odpowiedź z&nbsp;ceną – przez telefon od razu': 'iki atsakymo su kaina — telefonu iš karto',
     '04 / 13 · Robot z bliska': '04 / 13 · Robotas iš arti',
     'Poznaj go, zanim przyjedzie.': 'Susipažinkite su juo dar prieš jam atvykstant.',
-    '01 · Głowa': '01 · Galva', 'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR ir kamera — mato aplink esančius svečius',
+    '01 · Głowa': '01 · Galva', 'LiDAR i&nbsp;kamera – widzi gości wokół siebie': 'LiDAR ir kamera — mato aplink esančius svečius',
     '02 · Twarz': '02 · Veidas', 'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Kalba bet kuria kalba, natūraliu balsu',
-    '03 · Pierś': '03 · Krūtinė', 'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Jūsų logotipas ir QR kodas — kiekvienoje svečių nuotraukoje',
+    '03 · Pierś': '03 · Krūtinė', 'Twoje logo i&nbsp;kod QR – w&nbsp;każdym zdjęciu gości': 'Jūsų logotipas ir QR kodas — kiekvienoje svečių nuotraukoje',
     '04 · Ręce': '04 · Rankos', 'Wita, podaje rękę, pozuje do zdjęć': 'Pasisveikina, paspaudžia ranką, pozuoja nuotraukoms',
     '05 · Nogi': '05 · Kojos', 'Chodzi wśród gości i&nbsp;omija przeszkody': 'Vaikšto tarp svečių ir apeina kliūtis',
     '06 · Stopy': '06 · Pėdos', 'Wystarczy mu kilka metrów kwadratowych': 'Jam užtenka kelių kvadratinių metrų',
@@ -879,27 +879,27 @@ TEKSTY_LT = {
     'Podaje rękę': 'Paspaudžia ranką', 'Omija przeszkody': 'Apeina kliūtis', 'Kilka m²': 'Keli m²',
     '05 / 13 · Zasady': '05 / 13 · Principai',
     'Najpierw bezpieczeństwo gości. Potem efekt.': 'Pirmiausia — svečių saugumas. Tada — efektas.',
-    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce – operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
         'Ką ir kada daro robotas, visada sprendžia operatorius. Sudėtingesnius judesius rodome tik ten, kur jiems yra vietos — operatorius įvertina salę, prižiūri atstumus ir suvaldo minią. Todėl niekam nieko nenutinka, o su robotu pasikalba kuo daugiau žmonių.',
     'Bezpieczeństwo': 'Saugumas',
-    'TŁOCZNO — OPERATOR OBOK': 'ANKŠTA — OPERATORIUS ŠALIA', 'LUŹNO — OPERATOR W CIENIU': 'ERDVU — OPERATORIUS NUOŠALIAI',
+    'TŁOCZNO – OPERATOR OBOK': 'ANKŠTA — OPERATORIUS ŠALIA', 'LUŹNO – OPERATOR W CIENIU': 'ERDVU — OPERATORIUS NUOŠALIAI',
     'Operator: blisko, ale dyskretnie': 'Operatorius: arti, bet nepastebimai',
-    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień – goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
         'Sertifikuotas operatorius būna prie roboto viso renginio metu. Kai aplink susidaro spūstis, jis stovi šalia ir prižiūri saugumą. Kai erdviau, pasitraukia į šešėlį — svečiai mato robotą, o ne šalia jo esantį žmogų. Kiekvienai realizacijai taikomas civilinės atsakomybės draudimas.',
     'Widzi ludzi wokół siebie': 'Mato aplink esančius žmones',
     'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
         'LiDAR ir kompiuterinė rega leidžia realiu laiku apeiti žmones ir kliūtis. Robotas ramiai juda tarp svečių, o kiekvieną jo žingsnį prižiūri operatorius.',
-    'WYMIANA — POKAZ TRWA': 'KEITIMAS — ŠOU TĘSIASI',
+    'WYMIANA – POKAZ TRWA': 'KEITIMAS — ŠOU TĘSIASI',
     'Baterie bez przerwy w&nbsp;pokazie': 'Baterijos be pertraukos pasirodyme',
-    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia – pokaz nie staje na ładowanie.':
         'Robotas dirba su keičiamomis baterijomis. Operatorius turi atsarginį komplektą ir keičia baterijas renginio metu — pasirodymas nesustoja dėl įkrovimo.',
     'Kontakt z&nbsp;gośćmi': 'Bendravimas su svečiais',
     'Wychodzimy do ludzi': 'Einame pas žmones',
-    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy – tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
         'Robotas nelaukia kampe, kol kas nors prieis. Jis pats prieina prie svečių, užkalbina ir kviečia pasikalbėti — kad su robotu pasikalbėtų kuo daugiau žmonių, o ne tik drąsiausieji.',
     'Dzień dobry': 'Laba diena', 'Laba diena': 'Dzień dobry',
     'Rozmawia w&nbsp;każdym języku': 'Kalba bet kuria kalba',
-    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia – także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Kalba lietuviškai ir bet kuria kita kalba, natūraliu balsu, ir renginio metu perjungia kalbas — net tada, kai svečiai atvyko iš kelių šalių.',
     'WYDARZENIE': 'RENGINYS', 'TWOJA FIRMA': 'JŪSŲ ĮMONĖ', 'OFERTA': 'PASLAUGOS', 'PYTANIA GOŚCI': 'KLAUSIMAI',
     'Zna Twoje wydarzenie': 'Žino jūsų renginį',
@@ -984,35 +984,35 @@ ROBOT_LT = {
 # 33bots.at: sekcje brane z kodu .pl (skala, robot z bliska, zasady) z własnym niemieckim tekstem.
 # Krótkie etykiety interfejsu zostają wspólne z .de; dłuższe zdania są napisane osobno.
 TEKSTY_AT = {**TEKSTY_DE,
-    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern: Galas, Messen, Kongresse, Firmenfeste und Open-Air-Events',
-    'zaliczki — fakturę wystawiamy po wydarzeniu': 'Anzahlung — bezahlt wird nach dem Event',
-    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'bis Sie den Preis kennen — telefonisch sofort',
+    'wydarzeń w&nbsp;pięciu krajach – gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern: Galas, Messen, Kongresse, Firmenfeste und Open-Air-Events',
+    'zaliczki – fakturę wystawiamy po wydarzeniu': 'Anzahlung — bezahlt wird nach dem Event',
+    'na odpowiedź z&nbsp;ceną – przez telefon od razu': 'bis Sie den Preis kennen — telefonisch sofort',
     'Poznaj go, zanim przyjedzie.': 'Der Unitree G1 aus der Nähe.',
-    'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR und Kamera erfassen den Raum und die Gäste',
+    'LiDAR i&nbsp;kamera – widzi gości wokół siebie': 'LiDAR und Kamera erfassen den Raum und die Gäste',
     'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Natürliche Stimme, jede Sprache',
-    'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Platz für Ihr Logo und einen QR-Code',
+    'Twoje logo i&nbsp;kod QR – w&nbsp;każdym zdjęciu gości': 'Platz für Ihr Logo und einen QR-Code',
     'Wita, podaje rękę, pozuje do zdjęć': 'Winken, Händeschütteln, Posen fürs Foto',
     'Chodzi wśród gości i&nbsp;omija przeszkody': 'Geht frei durch den Saal und umgeht Hindernisse',
     'Wystarczy mu kilka metrów kwadratowych': 'Kommt mit einigen Quadratmetern aus',
     'Wydaj robotowi polecenie': 'Was soll der Roboter tun?',
     'Najpierw bezpieczeństwo gości. Potem efekt.': 'Zuerst die Sicherheit Ihrer Gäste, dann die Show.',
-    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce – operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
         'Der Operator bestimmt in jedem Moment, was der Roboter zeigt. Aufwendigere Bewegungen gibt es nur, wenn der Platz dafür reicht: Er beurteilt den Raum, hält Abstand und lenkt den Andrang. So bleibt der Abend für alle sicher, und viele Gäste kommen an die Reihe.',
     'Operator: blisko, ale dyskretnie': 'Der Operator: nah, wenn es eng wird',
-    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień – goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
         'Unser Operator begleitet den Roboter vom ersten bis zum letzten Auftritt. Bei Gedränge steht er unmittelbar daneben. In ruhigeren Phasen hält er sich zurück, damit der Roboter im Mittelpunkt steht und nicht sein Begleiter. Für jeden Einsatz besteht eine Haftpflichtversicherung.',
     'Widzi ludzi wokół siebie': 'Er nimmt wahr, wer um ihn steht',
     'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
         'LiDAR und Computer Vision erkennen Menschen und Hindernisse in Echtzeit, der Roboter umgeht sie. Er bewegt sich ruhig durch den Saal, und der Operator hat jeden Schritt im Auge.',
     'Baterie bez przerwy w&nbsp;pokazie': 'Frische Akkus, ohne Unterbrechung',
-    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia – pokaz nie staje na ładowanie.':
         'Die Akkus des Roboters sind austauschbar. Der Operator bringt einen Ersatzsatz mit und wechselt während der Veranstaltung. Eine Ladepause braucht die Show nicht.',
     'Wychodzimy do ludzi': 'Der Roboter geht auf die Gäste zu',
-    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy – tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
         'Er bleibt nicht am Rand stehen und wartet. Der Roboter geht hin, spricht Gäste an und beginnt das Gespräch. So kommen auch jene zum Zug, die von sich aus nicht hingegangen wären.',
     'Dzień dobry': 'Grüß Gott',
     'Rozmawia w&nbsp;każdym języku': 'Jede Sprache, auch gemischt',
-    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia – także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Der Roboter spricht Deutsch und jede andere Sprache, mit natürlicher Stimme. Kommen Ihre Gäste aus mehreren Ländern, wechselt er während der Veranstaltung von einer Sprache in die andere.',
     'Zna Twoje wydarzenie': 'Er ist auf Ihr Event vorbereitet',
     'Przed wydarzeniem wgrywamy to, czego potrzebujesz: informacje o&nbsp;samym wydarzeniu, o&nbsp;firmie, którą robot reprezentuje, o&nbsp;jej ofercie i&nbsp;najczęstszych pytaniach gości. Robot odpowiada konkretnie i&nbsp;nawiązuje do tego, co dzieje się na miejscu.':
@@ -1028,36 +1028,36 @@ ROBOT_AT = {**ROBOT_DE,
 # 33bots.de (24.11.2026): własne niemieckie teksty sekcji brane z kodu .pl. TEKSTY_DE zostaje bazą dla .at,
 # więc zmiany idą do osobnego słownika, który działa tylko na .de.
 TEKSTY_DE_STRONA = {**TEKSTY_DE,
-    'wydarzeń w&nbsp;pięciu krajach — gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern: Messen, Konferenzen, Galas, Firmen- und Stadtfeste',
+    'wydarzeń w&nbsp;pięciu krajach – gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe': 'Veranstaltungen in fünf Ländern: Messen, Konferenzen, Galas, Firmen- und Stadtfeste',
     '„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk': 'Beiträge im polnischen Fernsehen: TVP2-Frühstücksfernsehen, Teleexpress, TVP Danzig',
-    'zaliczki — fakturę wystawiamy po wydarzeniu': 'Anzahlung, die Rechnung kommt erst nach der Veranstaltung',
-    'na odpowiedź z&nbsp;ceną — przez telefon od razu': 'bis Sie einen konkreten Preis haben',
+    'zaliczki – fakturę wystawiamy po wydarzeniu': 'Anzahlung, die Rechnung kommt erst nach der Veranstaltung',
+    'na odpowiedź z&nbsp;ceną – przez telefon od razu': 'bis Sie einen konkreten Preis haben',
     'Poznaj go, zanim przyjedzie.': 'Der Unitree G1 im Detail.',
-    'LiDAR i&nbsp;kamera — widzi gości wokół siebie': 'LiDAR und Kamera erkennen, wer vor ihm steht',
+    'LiDAR i&nbsp;kamera – widzi gości wokół siebie': 'LiDAR und Kamera erkennen, wer vor ihm steht',
     'Mówi w&nbsp;każdym języku, naturalnym głosem': 'Natürliche Stimme in jeder Sprache',
-    'Twoje logo i&nbsp;kod QR — w&nbsp;każdym zdjęciu gości': 'Platz für Ihr Logo und einen QR-Code',
+    'Twoje logo i&nbsp;kod QR – w&nbsp;każdym zdjęciu gości': 'Platz für Ihr Logo und einen QR-Code',
     'Wita, podaje rękę, pozuje do zdjęć': 'Winkt, gibt die Hand, hält still fürs Foto',
     'Chodzi wśród gości i&nbsp;omija przeszkody': 'Läuft durch den Saal und umgeht Hindernisse',
     'Wystarczy mu kilka metrów kwadratowych': 'Braucht nur ein paar Quadratmeter',
     'Wydaj robotowi polecenie': 'Probieren Sie es aus',
     'Pomachaj': 'Winken', 'Zatańcz': 'Tanzen', 'Wyślij buziaka': 'Kusshand', 'Ręce w&nbsp;górę': 'Arme hoch', 'Powiedz coś': 'Sprechen',
     'Najpierw bezpieczeństwo gości. Potem efekt.': 'Sicherheit geht vor. Die Show kommt danach.',
-    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce — operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
+    'O tym, co i&nbsp;kiedy robi robot, zawsze decyduje operator. Bardziej złożone ewolucje pokazujemy tylko tam, gdzie jest na nie miejsce – operator ocenia salę, pilnuje odstępów i&nbsp;panuje nad tłumem. Dzięki temu nikomu nic się nie dzieje, a&nbsp;z&nbsp;robotem rozmawia jak najwięcej osób.':
         'Welche Bewegung der Roboter wann zeigt, bestimmt der Operator. Größere Figuren gibt es nur, wenn genug Platz ist: Er schaut sich den Raum an, hält die Leute auf Abstand und steuert den Andrang. So bleibt es für alle sicher, und trotzdem kommen möglichst viele Gäste mit dem Roboter in Kontakt.',
     'Operator: blisko, ale dyskretnie': 'Der Operator bleibt in Reichweite',
-    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień — goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
+    'Certyfikowany operator jest przy robocie przez cały event. Kiedy wokół robi się tłoczno, stoi tuż obok i&nbsp;pilnuje bezpieczeństwa. Kiedy jest luźniej, usuwa się w&nbsp;cień – goście widzą robota, a&nbsp;nie człowieka przy nim. Każda realizacja jest objęta OC.':
         'Unser Operator ist während der ganzen Veranstaltung beim Roboter. Wird es eng, steht er direkt daneben. Ist es ruhig, nimmt er sich zurück, damit die Gäste den Roboter sehen und nicht den Menschen daneben. Jeder Einsatz ist haftpflichtversichert.',
     'Widzi ludzi wokół siebie': 'Sensoren statt Zufall',
     'LiDAR i&nbsp;wizja komputerowa pozwalają omijać ludzi i&nbsp;przeszkody w&nbsp;czasie rzeczywistym. Robot porusza się wśród gości spokojnie, a&nbsp;nad każdym krokiem czuwa operator.':
         'LiDAR und Computer Vision erfassen Menschen und Hindernisse in Echtzeit, der Roboter weicht ihnen aus. Er bewegt sich in ruhigem Tempo, und der Operator behält jeden Schritt im Blick.',
     'Baterie bez przerwy w&nbsp;pokazie': 'Akkuwechsel im laufenden Betrieb',
-    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia — pokaz nie staje na ładowanie.':
+    'Robot pracuje na wymiennych bateriach. Operator ma ze sobą komplet zapasowych i&nbsp;wymienia je w&nbsp;trakcie wydarzenia – pokaz nie staje na ładowanie.':
         'Der Roboter läuft mit Wechselakkus. Der Operator hat Ersatz dabei und tauscht sie zwischen zwei Auftritten. Zum Laden muss niemand die Show unterbrechen.',
     'Wychodzimy do ludzi': 'Er wartet nicht, bis jemand kommt',
-    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy — tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
+    'Robot nie czeka w&nbsp;kącie, aż ktoś podejdzie. Podchodzi do gości, zagaduje i&nbsp;zaprasza do rozmowy – tak, żeby z&nbsp;robotem porozmawiało jak najwięcej osób, a&nbsp;nie tylko ci najodważniejsi.':
         'Statt in der Ecke zu stehen, geht der Roboter auf die Gäste zu und spricht sie an. So reden nicht nur die Mutigen mit ihm, sondern auch die, die sonst am Rand geblieben wären.',
     'Rozmawia w&nbsp;każdym języku': 'Mehrsprachig im selben Raum',
-    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia — także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
+    'Mówi po polsku i&nbsp;w&nbsp;każdym innym języku, naturalnym głosem, i&nbsp;przełącza się między językami w&nbsp;trakcie wydarzenia – także wtedy, gdy goście przyjechali z&nbsp;kilku krajów.':
         'Er spricht Deutsch und jede andere Sprache mit natürlicher Stimme. Sind Gäste aus mehreren Ländern da, wechselt er im Lauf des Abends die Sprache.',
     'Zna Twoje wydarzenie': 'Vorbereitet auf Ihr Programm',
     'Przed wydarzeniem wgrywamy to, czego potrzebujesz: informacje o&nbsp;samym wydarzeniu, o&nbsp;firmie, którą robot reprezentuje, o&nbsp;jej ofercie i&nbsp;najczęstszych pytaniach gości. Robot odpowiada konkretnie i&nbsp;nawiązuje do tego, co dzieje się na miejscu.':
