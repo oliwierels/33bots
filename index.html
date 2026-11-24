@@ -36,22 +36,34 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   "name": "Miete eines humanoiden Roboters Unitree G1",
-  "description": "Vermietung humanoider Roboter Unitree G1 für Events, Konferenzen und Messen in ganz Deutschland.",
-  "url": "https://33bots.de",
+  "serviceType": "Vermietung humanoider Roboter für Veranstaltungen",
+  "description": "Vermietung humanoider Roboter Unitree G1 mit Operator für Events, Konferenzen und Messen in ganz Deutschland.",
+  "url": "https://33bots.de/",
   "image": "https://33bots.de/robot-g1.jpg",
-  "brand": {
-    "@type": "Brand",
-    "name": "Unitree"
+  "provider": {
+    "@type": "Organization",
+    "name": "33bots",
+    "url": "https://33bots.de/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Deutschland"
   },
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "EUR",
     "lowPrice": "2500",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "2500",
+      "priceCurrency": "EUR",
+      "valueAddedTaxIncluded": false
+    },
     "availability": "https://schema.org/InStock",
     "url": "https://33bots.de/#preise",
-    "description": "Kompletter Veranstaltungstag inklusive Anfahrt, Operator und Branding. Keine Zusatzkosten, keine Anzahlung, Rechnung nach dem Event."
+    "description": "Kompletter Veranstaltungstag inklusive Anfahrt, Operator und Branding. Nettopreis zzgl. USt., keine Anzahlung, Rechnung nach der Veranstaltung."
   }
 }
   </script>
@@ -66,7 +78,7 @@
       "name": "Was kostet ein Einsatz?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ein ganzer Veranstaltungstag kostet ab 2.500 €. Wie hoch der Betrag am Ende ist, hängt vom Veranstaltungsort und vom Umfang der Show ab. Für einen kürzeren Auftritt von einigen Stunden machen wir ein eigenes Angebot, das immer unter dem Tagespreis liegt. Ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag, der Roboterhund kostet zusätzlich 850 € pro Tag. Anfahrt, Operator, Branding und Haftpflichtversicherung sind immer enthalten."
+        "text": "Ein ganzer Veranstaltungstag kostet ab 2.500 € zuzüglich Umsatzsteuer. Wie hoch der Betrag am Ende ist, hängt vom Veranstaltungsort und vom Umfang der Show ab. Für einen kürzeren Auftritt von einigen Stunden machen wir ein eigenes Angebot, das immer unter dem Tagespreis liegt. Ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag, der Roboterhund kostet zusätzlich 850 € pro Tag. Anfahrt, Operator, Branding und Haftpflichtversicherung sind immer enthalten."
       }
     },
     {
@@ -114,7 +126,7 @@
       "name": "Wer steuert den Roboter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Unser Operator. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen."
+        "text": "Ein erfahrener Operator aus unserem eigenen Team, kein kurzfristig angeheuerter Fremdeinsatz. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen."
       }
     },
     {
@@ -701,12 +713,12 @@
             <button class="kalk__krok" type="button" data-dni="1" aria-label="Einen Tag mehr">+</button>
           </div>
         </div>
-        <p class="label" id="kalkEtykieta">Ganzer Tag · Richtpreis</p>
+        <p class="label" id="kalkEtykieta">Ganzer Tag · netto</p>
         <p class="kalk__cena" aria-live="polite"><span class="kalk__od" id="kalkOd">ab</span> <span id="kalkKwota">2.500</span><span class="kalk__zl" id="kalkZl">&nbsp;€</span></p>
         <p class="body-sm" id="kalkOpis">Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.</p>
       </div>
     </div>
-    <p class="body formaty__wcenie">Im Preis: Operator, Anfahrt in ganz Deutschland, Branding (Logo, QR-Code), Haftpflichtversicherung. <strong>Bezahlt wird nach der Veranstaltung.</strong> Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.</p>
+    <p class="body formaty__wcenie">Im Preis: Operator, Anfahrt in ganz Deutschland, Branding (Logo, QR-Code), Haftpflichtversicherung. Alle Beträge zzgl. MwSt. <strong>Bezahlt wird nach der Veranstaltung.</strong> Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.</p>
     <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">Genauen Preis für Ihren Termin anfragen <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
@@ -798,7 +810,7 @@
     <div class="faq wejscie">
       <div class="faq__item">
         <h3 class="faq__h"><button class="faq__q" type="button" id="faq-1-q" aria-expanded="false" aria-controls="faq-1" data-faq="Was kostet ein Einsatz?">Was kostet ein Einsatz?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
-        <div class="faq__a" id="faq-1" role="region" aria-labelledby="faq-1-q" hidden><p>Ein ganzer Veranstaltungstag kostet ab 2.500 €. Wie hoch der Betrag am Ende ist, hängt vom Veranstaltungsort und vom Umfang der Show ab. Für einen kürzeren Auftritt von einigen Stunden machen wir ein eigenes Angebot, das immer unter dem Tagespreis liegt. Ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag, der Roboterhund kostet zusätzlich 850 € pro Tag. Anfahrt, Operator, Branding und Haftpflichtversicherung sind immer enthalten.</p></div>
+        <div class="faq__a" id="faq-1" role="region" aria-labelledby="faq-1-q" hidden><p>Ein ganzer Veranstaltungstag kostet ab 2.500 € zuzüglich Umsatzsteuer. Wie hoch der Betrag am Ende ist, hängt vom Veranstaltungsort und vom Umfang der Show ab. Für einen kürzeren Auftritt von einigen Stunden machen wir ein eigenes Angebot, das immer unter dem Tagespreis liegt. Ab zwei Tagen gibt es 15 % Rabatt auf jeden Tag, der Roboterhund kostet zusätzlich 850 € pro Tag. Anfahrt, Operator, Branding und Haftpflichtversicherung sind immer enthalten.</p></div>
       </div>
       <div class="faq__item">
         <h3 class="faq__h"><button class="faq__q" type="button" id="faq-2-q" aria-expanded="false" aria-controls="faq-2" data-faq="Brauchen Sie eine Anzahlung?">Brauchen Sie eine Anzahlung?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
@@ -822,7 +834,7 @@
       </div>
       <div class="faq__item">
         <h3 class="faq__h"><button class="faq__q" type="button" id="faq-7-q" aria-expanded="false" aria-controls="faq-7" data-faq="Wer steuert den Roboter?">Wer steuert den Roboter?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
-        <div class="faq__a" id="faq-7" role="region" aria-labelledby="faq-7-q" hidden><p>Unser Operator. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen.</p></div>
+        <div class="faq__a" id="faq-7" role="region" aria-labelledby="faq-7-q" hidden><p>Ein erfahrener Operator aus unserem eigenen Team, kein kurzfristig angeheuerter Fremdeinsatz. Er ist vom ersten bis zum letzten Auftritt dabei, steuert den Roboter, wechselt die Akkus und achtet auf den Abstand zu den Gästen. Aus Ihrem Team muss niemand etwas bedienen.</p></div>
       </div>
       <div class="faq__item">
         <h3 class="faq__h"><button class="faq__q" type="button" id="faq-8-q" aria-expanded="false" aria-controls="faq-8" data-faq="Ist das für die Gäste sicher?">Ist das für die Gäste sicher?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
@@ -1014,7 +1026,7 @@
         <a href="roboter-mieten-dresden.html">Dresden</a>
       </div>
     </details>
-    <p class="stopka__prawa">© 2026 33bots. Alle Rechte vorbehalten.</p>
+    <p class="stopka__prawa">© 2026 33bots. Alle Rechte vorbehalten. Alle Preise netto zzgl. gesetzlicher Umsatzsteuer.</p>
   </div>
 </footer>
 
@@ -1664,7 +1676,7 @@
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-a11y-motion'] });
 })();
 </script>
-<script src="js/glowna.js?v=047daefa" defer></script>
+<script src="js/glowna.js?v=04901dbe" defer></script>
 <script src="js/robot3d.js?v=b7771ca1" defer></script>
 <script src="a11y.js?v=cce707c6" defer></script>
 </body>

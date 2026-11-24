@@ -127,7 +127,7 @@
       const f = wybor();
       pole.dni.hidden = f !== 'dni';
       if (f === 'wejscie') {
-        pole.etykieta.textContent = "Kurzauftritt · einige Stunden · Richtpreis";
+        pole.etykieta.textContent = "Kurzauftritt · einige Stunden · netto";
         pole.od.textContent = "unter";
         pokazKwote(DZIEN);
         pole.opis.textContent = "Den Betrag nennen wir nach einem kurzen Gespräch über das Programm — immer günstiger als ein ganzer Tag.";
@@ -135,12 +135,12 @@
         const suma = dni * DZIEN * RABAT;
         pole.ile.textContent = String(dni);
         minus.disabled = dni <= 2; plus.disabled = dni >= 7;
-        pole.etykieta.textContent = `${dni} Tage · Richtpreis`;
+        pole.etykieta.textContent = `${dni} Tage · netto`;
         pole.od.textContent = "ab";
         pokazKwote(suma);
         pole.opis.textContent = `${dni} × ${kwota(DZIEN * RABAT)} € statt ${dni} × ${kwota(DZIEN)} € — Sie sparen ${kwota(dni * DZIEN * (1 - RABAT))} €.`;
       } else {
-        pole.etykieta.textContent = "Ganzer Tag · Richtpreis";
+        pole.etykieta.textContent = "Ganzer Tag · netto";
         pole.od.textContent = "ab";
         pokazKwote(DZIEN);
         pole.opis.textContent = "Der endgültige Preis hängt von Veranstaltungsort und Umfang der Show ab.";
