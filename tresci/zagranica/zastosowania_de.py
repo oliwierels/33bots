@@ -12,6 +12,12 @@ pod filmem zostają. Fakty wyłącznie z rynki.py i dotychczasowych stron .de.
 
     python3 tresci/zagranica/zastosowania_de.py     # potem buduj_podstrony.py de <repo>
 """
+
+import sys as _sys
+if "--nadpisz" not in _sys.argv:
+    _sys.exit("Ten generator był jednorazowy. Od 24.11.2026 strony w podstrony/de są poprawiane ręcznie "
+              "(teksty natywne, poprawki prawne). Ponowne uruchomienie nadpisałoby je. "
+              "Jeśli naprawdę trzeba, uruchom z --nadpisz.")
 import json
 import re
 from pathlib import Path
