@@ -1,0 +1,37 @@
+{
+ "czekanie": {
+  "de_netto": true,
+  "de_messen": true,
+  "at_impressum": true
+ },
+ "mapa_de": 48,
+ "bledy_de": [],
+ "https://33bots.de/impressum.html": {
+  "kod": 200,
+  "os_link": false,
+  "rechtsform": true
+ },
+ "https://33bots.at/impressum.html": {
+  "kod": 200,
+  "os_link": false,
+  "rechtsform": true
+ },
+ "de_glowna": {
+  "kod": 200,
+  "netto": true,
+  "service_ld": true,
+  "bez_telefonu": true
+ },
+ "przekierowania": {
+  "roboter-mieten-karlsruhe.html": {
+   "kod": 301,
+   "ok": true,
+   "location": "https://33bots.de/humanoiden-roboter-mieten.html"
+  },
+  "moderne-event-attraktionen.html": {
+   "kod": 301,
+   "ok": true,
+   "location": "https://33bots.de/roboter-show.html"
+  }
+ }
+}
