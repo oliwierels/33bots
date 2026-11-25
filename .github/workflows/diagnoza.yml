@@ -17,11 +17,11 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: "Kontrola na żywo - Abiball, miasta, B11"
-        run: mkdir -p badania/wyniki/po-wdrozeniu && python3 badania/po_wdrozeniu_8.py badania/wyniki/po-wdrozeniu/2026-11-25-miasta.json
+      - name: "Kontrola na żywo - nowa rama podstron"
+        run: mkdir -p badania/wyniki/po-wdrozeniu && python3 badania/po_wdrozeniu_9.py badania/wyniki/po-wdrozeniu/2026-11-25-uklad.json
       - name: Zapis wyników na gałąź
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add badania/wyniki
-          git commit -q -m "Wyniki: kontrola miasta 25.11" && git push -q origin HEAD:diagnoza-domen
+          git commit -q -m "Wyniki: kontrola uklad 25.11" && git push -q origin HEAD:diagnoza-domen
