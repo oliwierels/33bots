@@ -33,22 +33,6 @@
   }
 
 
-  const liczniki = [...document.querySelectorAll('[data-licz]')].filter((el) => +el.dataset.licz > 0);
-  if (!reduce && 'IntersectionObserver' in window) {
-    const liczDo = (el) => {
-      const cel = +el.dataset.licz, t0 = performance.now(), czas = 1500;
-      const krok = (t) => {
-        const p = Math.min(1, (t - t0) / czas), e = 1 - Math.pow(2, -10 * p);
-        el.textContent = kwota(cel * (p < 1 ? e : 1));
-        if (p < 1) requestAnimationFrame(krok);
-      };
-      requestAnimationFrame(krok);
-    };
-    const io = new IntersectionObserver((wpisy) => wpisy.forEach((w) => {
-      if (w.isIntersecting) { io.unobserve(w.target); liczDo(w.target); }
-    }), { threshold: 0.8 });
-    liczniki.forEach((el) => { if (el.getBoundingClientRect().top > innerHeight) { el.textContent = '0'; io.observe(el); } });
-  }
 
 
   const sekcja = document.getElementById('wystep');
@@ -105,6 +89,8 @@
   const kalk = document.getElementById('kalkulator');
   if (kalk) {
     const DZIEN = 2500, RABAT = 0.85;
+    const RABAT_2 = 0.85, WEJSCIE = DZIEN / 2, CZTERY = DZIEN * 6 / 8;
+    const rabat = (d) => (d >= 3 ? RABAT : RABAT_2);
     const el = (id) => document.getElementById(id);
     const pole = { dni: el('kalkDni'), ile: el('kalkIle'), etykieta: el('kalkEtykieta'), od: el('kalkOd'), kwota: el('kalkKwota'), zl: el('kalkZl'), opis: el('kalkOpis') };
     const minus = kalk.querySelector('[data-dni="-1"]'), plus = kalk.querySelector('[data-dni="1"]');
@@ -132,7 +118,7 @@
         pokazKwote(DZIEN);
         pole.opis.textContent = "Den Betrag nennen wir nach einem kurzen Gespräch über das Programm — immer günstiger als ein ganzer Tag.";
       } else if (f === 'dni') {
-        const suma = dni * DZIEN * RABAT;
+        const suma = dni * DZIEN * rabat(dni);
         pole.ile.textContent = String(dni);
         minus.disabled = dni <= 2; plus.disabled = dni >= 7;
         pole.etykieta.textContent = `${dni} Tage · netto`;
