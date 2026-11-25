@@ -38,6 +38,13 @@ if [ -f tresci/podstrony/przeszczep.py ]; then
   python3 tresci/podstrony/przeszczep.py
 fi
 
+# Najważniejsze podstrony (miasta, oferty) w układzie strony głównej: tresci/landing/strony/*.html
+# → strony w katalogu głównym; <head> strony bez zmian poza arkuszami stylów.
+if [ -f tresci/landing/buduj.py ]; then
+  echo "Składam podstrony w układzie strony głównej…"
+  python3 tresci/landing/buduj.py
+fi
+
 echo "Kompiluję arkusz stylów…"
 npx --yes tailwindcss@3.4.17 \
   -c tailwind.config.js \
@@ -88,12 +95,20 @@ echo "  js/strona.js?v=${WERSJA_STRONA} na $(grep -rl 'src="js/strona\.js' --inc
 # Strona główna: arkusz css/glowna.css, skrypty js/glowna.js i js/robot3d.js
 # oraz dane robota (robot/*.bin, wersja z sumy obu plików — robot3d.js dopisuje ją do adresu).
 WERSJA_GLOWNA_CSS=$(md5sum css/glowna.css | cut -c1-8)
-sed -i -E "s|href=\"css/glowna\.css(\?v=[^\"]*)?\"|href=\"css/glowna.css?v=${WERSJA_GLOWNA_CSS}\"|g" index.html
+for STRONA in $(grep -rl 'css/glowna\.css' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|href=\"css/glowna\.css(\?v=[^\"]*)?\"|href=\"css/glowna.css?v=${WERSJA_GLOWNA_CSS}\"|g" "${STRONA}"
+done
 WERSJA_DANYCH=$(cat robot/g1.bin robot/g1-lekki.bin | md5sum | cut -c1-8)
 sed -i -E "s|const WERSJA_DANYCH = '[^']*';|const WERSJA_DANYCH = '${WERSJA_DANYCH}';|" js/robot3d.js
-for PLIK in glowna robot3d; do
+for PLIK in glowna robot3d landing; do
   WERSJA=$(md5sum "js/${PLIK}.js" | cut -c1-8)
-  sed -i -E "s|src=\"js/${PLIK}\.js(\?v=[^\"]*)?\"|src=\"js/${PLIK}.js?v=${WERSJA}\"|g" index.html
+  for STRONA in $(grep -rl "src=\"js/${PLIK}\.js" --include='*.html' . | sed 's|^\./||' | sort); do
+    sed -i -E "s|src=\"js/${PLIK}\.js(\?v=[^\"]*)?\"|src=\"js/${PLIK}.js?v=${WERSJA}\"|g" "${STRONA}"
+  done
+done
+WERSJA_LANDING=$(md5sum css/landing.css | cut -c1-8)
+for STRONA in $(grep -rl 'css/landing\.css' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|href=\"css/landing\.css(\?v=[^\"]*)?\"|href=\"css/landing.css?v=${WERSJA_LANDING}\"|g" "${STRONA}"
 done
 echo "  index.html → css/glowna.css?v=${WERSJA_GLOWNA_CSS}, js/glowna.js, js/robot3d.js, dane robota ${WERSJA_DANYCH}"
 

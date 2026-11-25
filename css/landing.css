@@ -1,0 +1,145 @@
+/* ══════════════════════════════════════════════════════════════
+   Najważniejsze podstrony .pl w układzie strony głównej (strony miast, oferty).
+   Ładowany po css/site.css i css/glowna.css. Te same zasady co na stronie głównej:
+   czerń, biel, linie włosowe, zero cieni i zaokrągleń, cyjan tylko w drodze do rezerwacji.
+   Nowe są tu wyłącznie elementy, których strona główna nie ma: duży nagłówek H1
+   w hero, okruszki, sekcje tekstowe z nagłówkiem po lewej, listy odnośników i wideo.
+   Strony składa tresci/landing/buduj.py.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ——— Hero: H1 jest tu tytułem strony, więc dostaje skalę „display”, a nie etykiety ——— */
+.l-hero .hero__text { gap: 28px; }
+.l-okruchy { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 0; font: 400 0.8125rem/1.5 var(--font-body); color: var(--text-2); }
+.l-okruchy a { color: var(--text-2); text-decoration: none; transition: color .2s; }
+.l-okruchy a:hover { color: var(--text); }
+.l-okruchy a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.l-okruchy span[aria-hidden] { color: var(--line-strong); }
+.l-h1 { margin: 0; font: 300 clamp(2.5rem, 4.7vw, 4.75rem)/1.02 var(--font-display); letter-spacing: -.035em; color: var(--text); text-wrap: balance; }
+.l-hero .lead { max-width: 40ch; }
+.l-ufnosc { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; font: 400 0.875rem/1.5 var(--font-body); color: var(--text-2); }
+.l-ufnosc li { display: flex; align-items: baseline; gap: 10px; }
+.l-ufnosc li::before { content: ""; flex: none; width: 14px; height: 1px; background: var(--text); transform: translateY(-4px); }
+@media (max-width: 1023px) {
+  .l-h1 { font-size: clamp(2.125rem, 8.4vw, 3rem); }
+}
+
+/* ——— Sekcja tekstowa: nagłówek i numer po lewej (przyklejone), tekst po prawej ——— */
+.l-tekst { row-gap: 48px; }
+.l-tekst__glowa { grid-column: 1 / span 5; display: grid; gap: 24px; align-content: start; }
+.l-tekst__tresc { grid-column: 7 / -1; }
+@media (min-width: 1024px) { .l-tekst__glowa { position: sticky; top: calc(var(--nav-h) + 48px); align-self: start; } }
+@media (max-width: 1023px) { .l-tekst__glowa, .l-tekst__tresc { grid-column: 1 / -1; } }
+.l-proza { display: grid; gap: 20px; max-width: 64ch; }
+.l-proza > * { margin: 0; }
+.l-proza p, .l-proza li { font-size: clamp(1.0625rem, 1.25vw, 1.125rem); line-height: 1.65; color: var(--text-2); }
+.l-proza .l-wstep { font: 400 clamp(1.25rem, 1.7vw, 1.5rem)/1.45 var(--font-display); letter-spacing: -.01em; color: var(--text); }
+.l-proza strong, .l-proza b { font-weight: 500; color: var(--text); }
+.l-proza a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--line-strong); transition: text-decoration-color .2s; }
+.l-proza a:hover { text-decoration-color: var(--text); }
+.l-proza a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.l-proza h3 { margin-top: 28px; padding-top: var(--inset); border-top: 1px solid var(--line); font: 500 clamp(1.25rem, 1.67vw, 1.5rem)/1.3 var(--font-body); letter-spacing: -.01em; color: var(--text); }
+.l-proza ul { display: grid; gap: 14px; padding: 0; list-style: none; }
+.l-proza ul li { position: relative; padding-left: 28px; }
+.l-proza ul li::before { content: ""; position: absolute; left: 0; top: .82em; width: 14px; height: 1px; background: var(--text-2); }
+.l-proza .btn { justify-self: start; margin-top: 12px; color: var(--ink); text-decoration: none; }
+
+/* ——— Korzyści: trzy kolumny jak „Zasady” na stronie głównej, z numerem zamiast animacji ——— */
+.l-korzysci .zasada .label { color: var(--text-2); }
+.l-korzysci .zasada .link { justify-self: start; margin-top: 4px; }
+.l-nr { font: 300 clamp(3rem, 5vw, 4.5rem)/1 var(--font-display); letter-spacing: -.04em; color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ——— Realizacja w mieście: zdjęcie + opis, jedna linia włosowa nad całością ——— */
+.l-miejscowa { align-items: start; row-gap: 32px; }
+.l-miejscowa__foto { grid-column: 1 / span 5; margin: 0; }
+.l-miejscowa__foto img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.l-miejscowa__tekst { grid-column: 8 / -1; display: grid; gap: 20px; align-content: start; }
+.l-miejscowa__tekst .h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); font-family: var(--font-display); font-weight: 400; letter-spacing: -.02em; }
+@media (max-width: 1023px) { .l-miejscowa__foto, .l-miejscowa__tekst { grid-column: 1 / -1; } }
+
+/* ——— Dowody: duże wydarzenia jako trzy pola z liczbą ——— */
+.l-dowody { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--gutter); margin: 0; padding: 0; list-style: none; }
+.l-dowody a { display: grid; gap: 8px; padding: var(--inset) 0; border-top: 1px solid var(--line-strong); color: var(--text); text-decoration: none; transition: border-color .3s; }
+.l-dowody a:hover { border-top-color: var(--text); }
+.l-dowody a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.l-dowody .l-dowod__liczba { font: 300 clamp(2rem, 3.2vw, 2.75rem)/1.1 var(--font-display); letter-spacing: -.03em; }
+.l-dowody .l-dowod__opis { font: 400 0.9375rem/1.5 var(--font-body); color: var(--text-2); }
+@media (max-width: 767px) { .l-dowody { grid-template-columns: 1fr; } }
+
+/* ——— Wideo pionowe z opisem ——— */
+.l-wideo { align-items: center; row-gap: 32px; }
+.l-wideo__film { grid-column: 1 / span 4; margin: 0; }
+.l-wideo__film video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: var(--surface); object-fit: cover; }
+.l-wideo__tekst { grid-column: 6 / -1; display: grid; gap: 24px; align-content: center; }
+.l-wideo__tekst .body { font-size: clamp(1.125rem, 1.5vw, 1.375rem); line-height: 1.5; color: var(--text); max-width: 40ch; }
+.l-wideo__tekst .body strong { font-weight: 500; }
+.l-wideo__tekst .btn { justify-self: start; }
+@media (max-width: 1023px) { .l-wideo__film { grid-column: 1 / span 7; } .l-wideo__tekst { grid-column: 1 / -1; } }
+@media (max-width: 479px) { .l-wideo__film { grid-column: 1 / -1; } }
+
+/* ——— Listy odnośników (scenariusze, oferty, inne miasta): prostokąty z linią włosową ——— */
+.l-linki { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.l-linki a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line-strong);
+  color: var(--text); font: 400 0.9375rem/1.2 var(--font-body); text-decoration: none; transition: border-color .2s, background-color .2s, color .2s; }
+.l-linki a:hover { border-color: var(--text); }
+.l-linki a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.l-linki--male a { min-height: 36px; padding: 0 12px; font-size: 0.8125rem; color: var(--text-2); border-color: var(--line); }
+.l-linki--male a:hover { color: var(--text); border-color: var(--line-strong); }
+.l-linki--duze a { min-height: 56px; padding: 0 24px; font-size: 1.0625rem; }
+.l-linki__opis { margin: 0 0 24px; }
+.l-blok + .l-blok { margin-top: 64px; }
+
+/* ——— Pas „Oferty” pod tekstem lokalnym ——— */
+.l-oferty { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px var(--gutter); align-items: center;
+  padding: var(--inset) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.l-oferty .body { color: var(--text); max-width: none; }
+.l-oferty .body strong { font-weight: 500; }
+@media (max-width: 767px) { .l-oferty { grid-template-columns: 1fr; } }
+
+/* Kalkulator na podstronach: sekcja zaczyna się od nagłówka podstrony, nie strony głównej. */
+.landing #formaty .sec__glowa { margin-bottom: 64px; }
+
+/* ——— Lista kroków w tekście (ol): numer jak etykieta, linia włosowa ——— */
+.l-proza ol { display: grid; gap: 0; padding: 0; list-style: none; counter-reset: krok; border-top: 1px solid var(--line); }
+.l-proza ol li { counter-increment: krok; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 0 12px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.l-proza ol li::before { content: counter(krok, decimal-leading-zero); font: 500 0.75rem/2.2 var(--font-body); letter-spacing: .12em; color: var(--text-2); }
+
+/* ——— Karty z odnośnikiem (porównanie ofert, poradniki) ——— */
+.l-karty { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--gutter); margin: 0; padding: 0; list-style: none; }
+.l-karty--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.l-karty a { display: grid; gap: 10px; align-content: start; height: 100%; padding: var(--inset) 0 40px; border-top: 1px solid var(--line-strong);
+  color: var(--text); text-decoration: none; transition: border-color .3s; }
+.l-karty a:hover { border-top-color: var(--text); }
+.l-karty a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.l-karta__tytul { font: 400 clamp(1.375rem, 2vw, 1.75rem)/1.2 var(--font-display); letter-spacing: -.02em; }
+.l-karta__opis { font: 400 0.9375rem/1.55 var(--font-body); color: var(--text-2); }
+.l-karta__dalej { font: 500 0.875rem/1.4 var(--font-body); color: var(--text); }
+@media (max-width: 1023px) { .l-karty, .l-karty--4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 599px) { .l-karty, .l-karty--4 { grid-template-columns: 1fr; } }
+.l-dopisek { margin-top: 32px; }
+.l-dopisek a { color: var(--text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: var(--line-strong); }
+.l-dopisek a:hover { text-decoration-color: var(--text); }
+
+/* ——— Cennik w tabeli: liczba dni po lewej, kwota po prawej, linie włosowe ——— */
+.l-cennik { width: 100%; border-collapse: collapse; border-top: 1px solid var(--line-strong); }
+.l-cennik th, .l-cennik td { padding: 20px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: baseline; }
+.l-cennik th { width: 34%; font: 500 0.75rem/1.4 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.l-cennik td { font: 300 clamp(1.375rem, 2.2vw, 1.875rem)/1.25 var(--font-display); letter-spacing: -.02em; color: var(--text); }
+.l-cennik td small { display: block; margin-top: 4px; font: 400 0.875rem/1.5 var(--font-body); letter-spacing: 0; color: var(--text-2); }
+
+/* ——— Pasek ceny na stronach miast: kwota od razu, bez pełnego kalkulatora ——— */
+.l-cena { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 24px 48px; align-items: center;
+  padding: var(--inset) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.l-cena__kwota { margin: 0; font: 300 clamp(2.5rem, 5vw, 4.5rem)/1 var(--font-display); letter-spacing: -.04em; color: var(--text); white-space: nowrap; }
+.l-cena__kwota small { font: 400 1rem/1 var(--font-body); letter-spacing: 0; color: var(--text-2); }
+.l-cena .body { max-width: 52ch; }
+@media (max-width: 1023px) { .l-cena { grid-template-columns: 1fr; } .l-cena .btn { justify-self: start; } }
+
+/* Odstępy od linii włosowych: co najmniej --inset (24 / 32 px) od linii do tekstu (qa/odstepy.spec). */
+.l-korzysci .zasada { padding-top: calc(var(--inset) + 12px); }
+.l-karty a { padding-top: calc(var(--inset) + 10px); }
+.l-proza ol li { padding: var(--inset) 0; }
+.l-cennik th, .l-cennik td { padding: calc(var(--inset) + 10px) 0; }
+.l-dowody a { padding-top: calc(var(--inset) + 10px); }
+
+.l-cena { padding: calc(var(--inset) + 16px) 0; }
+.l-oferty { padding: calc(var(--inset) + 8px) 0; }
