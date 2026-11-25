@@ -6,7 +6,7 @@ import { test, expect } from '@playwright/test';
 const STRONY = [
   ['/', '#cookies', 'show'],
   ['/blog-atrakcje-eventowe.html', '#cookies', 'show'],
-  ['/robot-na-targi.html', '#cookieBanner', 'visible'],
+  ['/oferta-targi.html', '#cookieBanner', 'visible'],
   ['/polityka-prywatnosci.html', '#cookies', 'show'],
 ];
 const SKRYPT_CMP = 'https://consentboard.com/cmp.js?id=test';

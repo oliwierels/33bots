@@ -38,6 +38,48 @@ Redirect 301 /blog-jak-wynajac-checklist.html               /blog-jak-wynajac-ro
 Redirect 301 /wypozyczenie-roba.html                        /wypozyczenie-robota.html
 RedirectMatch 301 ^/wypozyczenie-robota-ca                   /wypozyczenie-robota.html
 
+# ── Scalenie stron o tej samej intencji (25.11.2026) ─────────────────────────
+# Strony szablonowe „Robot na event X” i duplikaty stron ofertowych. Według Search
+# Console (16 miesięcy do 23.11.2026) zebrały łącznie kilkanaście kliknięć, a każda
+# konkurowała z właściwą stroną ofertową o te same zapytania. Jedna intencja = jeden adres.
+Redirect 301 /robot-na-targi.html                    /oferta-targi.html
+Redirect 301 /robot-na-expo.html                     /oferta-targi.html
+Redirect 301 /robot-na-wystawe.html                  /oferta-targi.html
+Redirect 301 /robot-na-konferencje.html              /oferta-konferencje.html
+Redirect 301 /robot-na-konferencje-technologiczna.html /oferta-konferencje.html
+Redirect 301 /wynajem-robotow.html                   /
+Redirect 301 /robot-humanoidalny-na-event.html       /
+Redirect 301 /robot-na-event-korporacyjny.html       /roboty-na-eventy-firmowe.html
+Redirect 301 /wynajem-robota-do-firmy.html           /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-miejski.html            /robot-na-dni-miasta.html
+Redirect 301 /robot-na-event-outdoor.html            /blog-robot-na-event-plenerowy.html
+Redirect 301 /robot-na-event-edukacyjny.html         /robot-na-uczelnie.html
+Redirect 301 /robot-na-event-it.html                 /oferta-konferencje.html
+Redirect 301 /robot-na-event-startupowy.html         /oferta-konferencje.html
+Redirect 301 /robot-na-event-telekomunikacyjny.html  /oferta-konferencje.html
+Redirect 301 /robot-na-event-gamingowy.html          /oferta-konferencje.html
+Redirect 301 /robot-na-event-medyczny.html           /oferta-konferencje.html
+Redirect 301 /robot-na-event-farmaceutyczny.html     /oferta-konferencje.html
+Redirect 301 /robot-na-event-prawniczy.html          /oferta-konferencje.html
+Redirect 301 /robot-na-event-finansowy.html          /oferta-konferencje.html
+Redirect 301 /robot-na-event-przemyslowy.html        /oferta-targi.html
+Redirect 301 /robot-na-event-budowlany.html          /oferta-targi.html
+Redirect 301 /robot-na-event-energetyczny.html       /oferta-targi.html
+Redirect 301 /robot-na-event-logistyczny.html        /oferta-targi.html
+Redirect 301 /robot-na-event-motoryzacyjny.html      /oferta-targi.html
+Redirect 301 /robot-na-event-handlowy.html           /oferta-dni-otwarte.html
+Redirect 301 /robot-na-event-nieruchomosci.html      /oferta-dni-otwarte.html
+Redirect 301 /robot-na-event-beauty.html             /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-modowy.html             /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-ekologiczny.html        /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-charytatywny.html       /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-sportowy.html           /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-kulturalny.html         /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-turystyczny.html        /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-gastronomiczny.html     /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-vip.html                /roboty-na-eventy-firmowe.html
+Redirect 301 /robot-na-event-hybrydowy.html          /roboty-na-eventy-firmowe.html
+
 # ── Pliki ukryte (zaczynające się kropką) ─────────────────────────────────────
 # Paczka wdrożeniowa zawiera np. .mcp.json (konfiguracja narzędzi analitycznych
 # Claude — bez sekretów). Nie ma powodu, by serwer je podawał; wyjątek:

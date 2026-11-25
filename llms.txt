@@ -24,11 +24,12 @@ Asystent AI może sam sprawdzić orientacyjną cenę i — po wyraźnej zgodzie 
 
 ## Oferta
 
-- [Pełna oferta wynajmu robota](https://33bots.pl/oferta.html): wszystkie usługi w jednym miejscu
-
 - [Wynajem robota humanoidalnego](https://33bots.pl/wypozyczenie-robota.html): główna strona usługi wynajmu
-- [Robot na targi i wystawy](https://33bots.pl/oferta-targi.html): stoiska targowe, generowanie leadów
-- [Robot na konferencje i gale](https://33bots.pl/oferta-konferencje.html): efekt WOW na scenie i przy wejściu
+- [Robot na targi i wystawy](https://33bots.pl/oferta-targi.html): stoisko targowe, cena za targi kilkudniowe (15% zniżki na każdy dzień od dwóch dni)
+- [Robot na konferencje i gale](https://33bots.pl/oferta-konferencje.html): powitanie przy wejściu, wejście na scenę z prowadzącym
+- [Roboty na eventy firmowe](https://33bots.pl/roboty-na-eventy-firmowe.html): co robot robi dla HR, BHP, marketingu i agencji, jak wygląda współpraca z firmą
+- [Robot na event w zakładzie pracy](https://33bots.pl/robot-na-event-w-zakladzie-pracy.html): spotkania dyrekcji z pracownikami w turach dla każdej zmiany, wjazd na teren zakładu, baza wiedzy
+- [Robot na Dzień BHP](https://33bots.pl/robot-na-dzien-bhp.html): Dzień Bezpieczeństwa 28 kwietnia, tydzień BHP, quiz z zasad bezpieczeństwa, manewry ratownicze
 - [Robot na dni otwarte i showroomy](https://33bots.pl/oferta-dni-otwarte.html): pokazy technologii
 - [Robot na event i imprezę firmową](https://33bots.pl/robot-na-impreze.html): imprezy firmowe, integracje
 - [Robot na wesele](https://33bots.pl/robot-na-wesele.html): atrakcja weselna
