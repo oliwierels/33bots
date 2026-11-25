@@ -1,0 +1,54 @@
+{
+ "pl": {
+  "src": "js/glowna.js?v=35a22f80",
+  "kod": 200,
+  "bez_odliczania": true,
+  "licznik_100": true,
+  "faq_8h": true,
+  "low_2750": true,
+  "kalk_rabat_2": true
+ },
+ "de": {
+  "src": "js/glowna.js?v=c0fd11b2",
+  "kod": 200,
+  "bez_odliczania": true,
+  "licznik_100": true
+ },
+ "at": {
+  "src": "js/glowna.js?v=ec5ca481",
+  "kod": 200,
+  "bez_odliczania": true,
+  "licznik_100": true
+ },
+ "lt": {
+  "src": "js/glowna.js?v=e71cbae6",
+  "kod": 200,
+  "bez_odliczania": true,
+  "licznik_100": true
+ },
+ "targi": {
+  "9900": true,
+  "bez_9350": true,
+  "faq_name": true
+ },
+ "warszawa_lexai": true,
+ "blog_meta": true,
+ "tytuly": {
+  "robot-wynajem-warszawa.html": true,
+  "robot-wynajem-gdansk.html": true,
+  "robot-wynajem-wroclaw.html": true,
+  "robot-wynajem-poznan.html": true,
+  "robot-wynajem-katowice.html": true,
+  "robot-wynajem-lodz.html": true,
+  "robot-wynajem-krakow.html": true,
+  "robot-wynajem-lublin.html": true,
+  "robot-wynajem-szczecin.html": true,
+  "robot-wynajem-bydgoszcz.html": true,
+  "robot-wynajem-bialystok.html": true,
+  "wypozyczenie-robota.html": true,
+  "oferta-targi.html": true,
+  "oferta-konferencje.html": true
+ },
+ "wszystko_ok": true,
+ "proby": 1
+}
