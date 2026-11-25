@@ -56,8 +56,8 @@
   "odcisk": "04ed7a79e91721b6a8e524e3fca40b8c"
  },
  "blog-jak-przekonac-zarzad-do-robota.html": {
-  "data": "2026-11-24",
-  "odcisk": "c858699fb160407bc2b64a6243c68cc8"
+  "data": "2026-11-25",
+  "odcisk": "a11d380eb0427c03b91564369f0b1611"
  },
  "blog-jak-wybrac-firme-do-wynajmu-robota.html": {
   "data": "2026-11-24",
@@ -96,8 +96,8 @@
   "odcisk": "88f4ebed61f0771ce87e423d86cc2026"
  },
  "blog-robot-i-artysta-na-scenie.html": {
-  "data": "2026-11-24",
-  "odcisk": "13f7904d894bbfe4438e144aac7ece75"
+  "data": "2026-11-25",
+  "odcisk": "1a3b472c1ad4f969f3ce991ce48c7c7a"
  },
  "blog-robot-na-evencie.html": {
   "data": "2026-11-24",
@@ -152,8 +152,8 @@
   "odcisk": "51654e639fc02f2aca6787ec004d84e3"
  },
  "blog-robot-na-wesele.html": {
-  "data": "2026-11-24",
-  "odcisk": "a442fa20560e1dbaeea7f01a8f7d629a"
+  "data": "2026-11-25",
+  "odcisk": "ea3ffca983f53260e0756d16aed55be4"
  },
  "blog-robot-recepcjonista-witajacy-gosci.html": {
   "data": "2026-11-24",
@@ -184,8 +184,8 @@
   "odcisk": "8c7800f2f17a9218db0eaadf6f5f2f6b"
  },
  "blog-unitree-g1-robot.html": {
-  "data": "2026-11-24",
-  "odcisk": "f80f72d34e5e2ee428468a0c50a3c7d1"
+  "data": "2026-11-25",
+  "odcisk": "57f12b9b9727186352870d81d707fc53"
  },
  "blog-wdrozenie-robota-humanoidalnego-w-firmie.html": {
   "data": "2026-11-24",
@@ -256,12 +256,12 @@
   "odcisk": "013cb748063e2e75fdc9e084a6b48461"
  },
  "oferta-konferencje.html": {
-  "data": "2026-11-24",
-  "odcisk": "37f2a25db57ba6f081eb488029e48ca6"
+  "data": "2026-11-25",
+  "odcisk": "e7eeb7b8fc55685ad4cf52baed10effb"
  },
  "oferta-targi.html": {
-  "data": "2026-11-24",
-  "odcisk": "7045f2033c8553c68f46bf16267f258b"
+  "data": "2026-11-25",
+  "odcisk": "7b9d19c9619813e28fb777040f32a281"
  },
  "pokazy-na-event.html": {
   "data": "2026-11-24",
@@ -340,12 +340,8 @@
   "odcisk": "7653cbe825b91c9ddd9fc67dd565f621"
  },
  "robot-employer-branding.html": {
-  "data": "2026-11-24",
-  "odcisk": "de976c29a0d09834b5ff9e3f280fec7c"
- },
- "robot-humanoidalny-na-event.html": {
-  "data": "2026-11-24",
-  "odcisk": "22b5a4cef28a344170bdc98bdc8b9f37"
+  "data": "2026-11-25",
+  "odcisk": "fdbd859f84b9bf0242d2b9ba5cf3594e"
  },
  "robot-konferansjer.html": {
   "data": "2026-11-24",
@@ -375,6 +371,10 @@
   "data": "2026-11-24",
   "odcisk": "646feff44e1c9411a68c24f1446c0dbe"
  },
+ "robot-na-dzien-bhp.html": {
+  "data": "2026-11-25",
+  "odcisk": "5936934aea52e130c39521acdab92d05"
+ },
  "robot-na-dzien-dziecka.html": {
   "data": "2026-11-25",
   "odcisk": "5005775a499f1f3a93d5ac32b2b5b6be"
@@ -383,129 +383,13 @@
   "data": "2026-11-24",
   "odcisk": "dcb540bd038d1f67cd146e324d494fd7"
  },
- "robot-na-event-beauty.html": {
-  "data": "2026-11-24",
-  "odcisk": "317151ea6c48b545e884aab938e443a1"
- },
- "robot-na-event-budowlany.html": {
-  "data": "2026-11-24",
-  "odcisk": "3283ab294135a99e0c402f5f67e5528b"
- },
- "robot-na-event-charytatywny.html": {
-  "data": "2026-11-24",
-  "odcisk": "b894dfe8897fb9dd9ec96d706667ca24"
- },
- "robot-na-event-edukacyjny.html": {
+ "robot-na-event-w-zakladzie-pracy.html": {
   "data": "2026-11-25",
-  "odcisk": "11e9dfaa820c4436031c615a64243c17"
- },
- "robot-na-event-ekologiczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "fd91c871a8e17eb08796336ff3c6ae83"
- },
- "robot-na-event-energetyczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "6cae17e3bff92fa1839aaf6639eb9124"
- },
- "robot-na-event-farmaceutyczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "0676025ebde5c2caf91852ffdbb43af9"
- },
- "robot-na-event-finansowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "d0bc31d08facf6809a35897c7ad3bcf4"
- },
- "robot-na-event-gamingowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "5aa0214254264aa68b309a93804c7313"
- },
- "robot-na-event-gastronomiczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "821e10c4127eb45c899c4e702b03a74e"
- },
- "robot-na-event-handlowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "f0f18d2accc71746bfc01f919dc339a7"
- },
- "robot-na-event-hybrydowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "4ea49f69735858b55f4cf92eb0564851"
- },
- "robot-na-event-it.html": {
-  "data": "2026-11-24",
-  "odcisk": "02b65b5b5b862b4a2e2242529e0bbcca"
- },
- "robot-na-event-korporacyjny.html": {
-  "data": "2026-11-24",
-  "odcisk": "95e0776ad70a5697da8129da5e208f64"
- },
- "robot-na-event-kulturalny.html": {
-  "data": "2026-11-24",
-  "odcisk": "2352d7e2198f92215a6cd09c9a810f00"
- },
- "robot-na-event-logistyczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "b390e54d9ce3affa2eff879104891178"
- },
- "robot-na-event-medyczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "f29e5b67b54f1d813d2fe0829949d908"
- },
- "robot-na-event-miejski.html": {
-  "data": "2026-11-24",
-  "odcisk": "cff51b036cf149a35bc18c32f40ff6a8"
- },
- "robot-na-event-modowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "6d81ce8656456403508067f5d3f00619"
- },
- "robot-na-event-motoryzacyjny.html": {
-  "data": "2026-11-24",
-  "odcisk": "43cf9dec392c8b19d4991203e9732124"
- },
- "robot-na-event-nieruchomosci.html": {
-  "data": "2026-11-24",
-  "odcisk": "42327ceccd6e1d82e72cea0a4ad7dfea"
- },
- "robot-na-event-outdoor.html": {
-  "data": "2026-11-24",
-  "odcisk": "6d095a6de7e992d2706f4e40de57be19"
- },
- "robot-na-event-prawniczy.html": {
-  "data": "2026-11-24",
-  "odcisk": "14225c5a016c72d0464f2e3933369e27"
- },
- "robot-na-event-przemyslowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "d533c5a717beca6776c3346b7e5d261f"
- },
- "robot-na-event-sportowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "39e792134cb604d28cf95cd03f0c32f0"
- },
- "robot-na-event-startupowy.html": {
-  "data": "2026-11-24",
-  "odcisk": "a4def4bc1f4691d81e4aa87822c3b5d3"
- },
- "robot-na-event-telekomunikacyjny.html": {
-  "data": "2026-11-24",
-  "odcisk": "6b37a4d3c8a7f52b4f34a9967dba7eb4"
- },
- "robot-na-event-turystyczny.html": {
-  "data": "2026-11-24",
-  "odcisk": "6367c97cfaf8e8596dddeea79285ff2a"
- },
- "robot-na-event-vip.html": {
-  "data": "2026-11-24",
-  "odcisk": "7894884bd812027c76c1e68f8cd19b05"
+  "odcisk": "4f39bc6c8d51d1368f7b1410a7fc4ef2"
  },
  "robot-na-event.html": {
   "data": "2026-11-24",
   "odcisk": "18a25c09bc94d88a3bd77417c065372f"
- },
- "robot-na-expo.html": {
-  "data": "2026-11-24",
-  "odcisk": "b284a8d4c7670edf98ea04c3e666fde6"
  },
  "robot-na-festiwal.html": {
   "data": "2026-11-24",
@@ -536,8 +420,8 @@
   "odcisk": "d4b54d071efb22183ccec2ecef099cc3"
  },
  "robot-na-impreze.html": {
-  "data": "2026-11-24",
-  "odcisk": "ccafa67e8cd0ecaa1caded65dcfe36ad"
+  "data": "2026-11-25",
+  "odcisk": "6999c32c308634fd0ad3573856af72be"
  },
  "robot-na-integracje-firmowa.html": {
   "data": "2026-11-24",
@@ -551,17 +435,9 @@
   "data": "2026-11-25",
   "odcisk": "b3abf7ced9f22cbc1c83e6a9813017c4"
  },
- "robot-na-konferencje-technologiczna.html": {
-  "data": "2026-11-24",
-  "odcisk": "b560cc880e9b0bc0235f3a349bb36383"
- },
- "robot-na-konferencje.html": {
-  "data": "2026-11-24",
-  "odcisk": "7f7d0c2e6f2ea5250d2d2c3dce5de833"
- },
  "robot-na-konwent.html": {
-  "data": "2026-11-24",
-  "odcisk": "74faeff2cfbe1a74b9e05f0944f7e71d"
+  "data": "2026-11-25",
+  "odcisk": "ede80fbd8c1c9f931a7fcc6704df7549"
  },
  "robot-na-mikolajki.html": {
   "data": "2026-11-24",
@@ -580,8 +456,8 @@
   "odcisk": "f0864c2f70a5693a14f30ee1969673ad"
  },
  "robot-na-roadshow.html": {
-  "data": "2026-11-24",
-  "odcisk": "6594bf128ee540a612581e6062580104"
+  "data": "2026-11-25",
+  "odcisk": "62460a30b6b2d5d4639707230ac432c3"
  },
  "robot-na-rocznice-firmy.html": {
   "data": "2026-11-24",
@@ -607,17 +483,13 @@
   "data": "2026-11-24",
   "odcisk": "fa3defae23c8826a7596ff3f0b90e560"
  },
- "robot-na-targi.html": {
-  "data": "2026-11-24",
-  "odcisk": "58e9dfad5bf505871820afae3fa19e4b"
- },
  "robot-na-team-building.html": {
   "data": "2026-11-24",
   "odcisk": "397c338ce924b12490e888376cb70708"
  },
  "robot-na-uczelnie.html": {
   "data": "2026-11-25",
-  "odcisk": "4d34d06cf80a047fb7725cf8f6f80443"
+  "odcisk": "091709cadbaef04c5621e08c6328c495"
  },
  "robot-na-urodziny.html": {
   "data": "2026-11-24",
@@ -634,10 +506,6 @@
  "robot-na-wieczor-panienski.html": {
   "data": "2026-11-24",
   "odcisk": "c71e552d15afa1f247ebefbb0077a080"
- },
- "robot-na-wystawe.html": {
-  "data": "2026-11-24",
-  "odcisk": "1de8c9c96f1f2044d6e2262a81d0d08f"
  },
  "robot-na-wystep-sceniczny.html": {
   "data": "2026-11-24",
@@ -668,28 +536,28 @@
   "odcisk": "bfb817150585b369d885584337676d0b"
  },
  "robot-wynajem-bialystok.html": {
-  "data": "2026-11-24",
-  "odcisk": "5c0b608b5b2739387678bf8dd9268539"
+  "data": "2026-11-25",
+  "odcisk": "cdd5502dbccdd7ff1014b95575393c3d"
  },
  "robot-wynajem-bydgoszcz.html": {
-  "data": "2026-11-24",
-  "odcisk": "6a19686bfebb7cf1d3f894439acad044"
+  "data": "2026-11-25",
+  "odcisk": "25088114e1b8beab86860fb291494543"
  },
  "robot-wynajem-czestochowa.html": {
-  "data": "2026-11-24",
-  "odcisk": "accca41123c37a11d5b7166fe3d6a39c"
+  "data": "2026-11-25",
+  "odcisk": "894ae28da7a58ec11b692bac664f60ab"
  },
  "robot-wynajem-elblag.html": {
   "data": "2026-11-24",
   "odcisk": "432778ccd2325f90b3ccba65baec7df3"
  },
  "robot-wynajem-gdansk.html": {
-  "data": "2026-11-24",
-  "odcisk": "4a640079bf22300d9a4d84a533da278b"
+  "data": "2026-11-25",
+  "odcisk": "3305886c70db719cc6bb9c8c5dd2b554"
  },
  "robot-wynajem-gliwice.html": {
-  "data": "2026-11-24",
-  "odcisk": "382bc93842931a452c963bc3315749db"
+  "data": "2026-11-25",
+  "odcisk": "d38f8e8d848f75a0b502df230e87d93c"
  },
  "robot-wynajem-grudziadz.html": {
   "data": "2026-11-24",
@@ -704,32 +572,32 @@
   "odcisk": "10c94af74d6fa7c785d511a074801846"
  },
  "robot-wynajem-katowice.html": {
-  "data": "2026-11-24",
-  "odcisk": "c77bc20b58b91ec0bb4b6ba1b9f91037"
+  "data": "2026-11-25",
+  "odcisk": "31a433432faa65fef50d0f64f4e291de"
  },
  "robot-wynajem-kielce.html": {
-  "data": "2026-11-24",
-  "odcisk": "96cde0b62789e43579d044a01885b669"
+  "data": "2026-11-25",
+  "odcisk": "2baeb49f94697db8c5051ee39aa92076"
  },
  "robot-wynajem-koszalin.html": {
-  "data": "2026-11-24",
-  "odcisk": "213d614aab1a5b768e4f42758a0b84cf"
+  "data": "2026-11-25",
+  "odcisk": "f029a77d2a63073d19171074b61892aa"
  },
  "robot-wynajem-krakow.html": {
-  "data": "2026-11-24",
-  "odcisk": "e9bbd6132ad6a618121766637f8eea51"
+  "data": "2026-11-25",
+  "odcisk": "7b8ec6ad1ba87f827fa3ebf4996ab0c5"
  },
  "robot-wynajem-legnica.html": {
   "data": "2026-11-24",
   "odcisk": "5218216e084ca97447038b606800263f"
  },
  "robot-wynajem-lodz.html": {
-  "data": "2026-11-24",
-  "odcisk": "6bcf2e0af95c77985f1bd6170c27e969"
+  "data": "2026-11-25",
+  "odcisk": "d3c511ac2cd96a420f846dd0be55e90c"
  },
  "robot-wynajem-lublin.html": {
-  "data": "2026-11-24",
-  "odcisk": "dc14134373722e1351cdfa72109473d6"
+  "data": "2026-11-25",
+  "odcisk": "b4d885fac4fd6d7278a64ec73f797e10"
  },
  "robot-wynajem-mikolajki.html": {
   "data": "2026-11-24",
@@ -740,12 +608,12 @@
   "odcisk": "e8c1583d500d93c43e4470584294f305"
  },
  "robot-wynajem-olsztyn.html": {
-  "data": "2026-11-24",
-  "odcisk": "3fa3ec86ea4565ca33897ad9465052d3"
+  "data": "2026-11-25",
+  "odcisk": "45e179e3eab4c88f398e75f895179e14"
  },
  "robot-wynajem-opole.html": {
-  "data": "2026-11-24",
-  "odcisk": "438080f6f722d3a201c86c212158f347"
+  "data": "2026-11-25",
+  "odcisk": "9789dd5d77e4ee7a2d33e70823f54151"
  },
  "robot-wynajem-pila.html": {
   "data": "2026-11-24",
@@ -756,60 +624,60 @@
   "odcisk": "0afd028472f51aadb259b8193d112945"
  },
  "robot-wynajem-poznan.html": {
-  "data": "2026-11-24",
-  "odcisk": "6a7716167f1ddb07b626bc26e6e3b1f1"
+  "data": "2026-11-25",
+  "odcisk": "0f49cdb4c3c9153c46d64fd25a032957"
  },
  "robot-wynajem-radom.html": {
-  "data": "2026-11-24",
-  "odcisk": "b8c43de41366c31cc4e80fb330a6166a"
+  "data": "2026-11-25",
+  "odcisk": "07a524efca6e0f01b8592042d60d1c03"
  },
  "robot-wynajem-rybnik.html": {
   "data": "2026-11-24",
   "odcisk": "e33769b213c8b07e1b6e4e952f61caef"
  },
  "robot-wynajem-rzeszow.html": {
-  "data": "2026-11-24",
-  "odcisk": "64568805e74e61516d983f67420ff48c"
+  "data": "2026-11-25",
+  "odcisk": "4a56f3959ce3c9be621427a4c885e2e2"
  },
  "robot-wynajem-slupsk.html": {
   "data": "2026-11-24",
   "odcisk": "1910eaf9d0b1ebaa1034e07266d3c651"
  },
  "robot-wynajem-szczecin.html": {
-  "data": "2026-11-24",
-  "odcisk": "2296f47295e85eb0db3b851d80ab2b9a"
+  "data": "2026-11-25",
+  "odcisk": "fc53d565a238fa19c3dd5bfe9c47f853"
  },
  "robot-wynajem-tarnow.html": {
   "data": "2026-11-24",
   "odcisk": "2d14a6d0a9127fd5ac62ada365f56693"
  },
  "robot-wynajem-torun.html": {
-  "data": "2026-11-24",
-  "odcisk": "eadd22b996754e7da2efc38558539629"
+  "data": "2026-11-25",
+  "odcisk": "4d46c4117fdba69acc25a592e3ec92f0"
  },
  "robot-wynajem-walbrzych.html": {
   "data": "2026-11-24",
   "odcisk": "899e8ce58632d69090ab7f7aeb986fef"
  },
  "robot-wynajem-warszawa.html": {
-  "data": "2026-11-24",
-  "odcisk": "b5433ce9822aeac9d4355d67a0c24773"
+  "data": "2026-11-25",
+  "odcisk": "16ab6f5f56cc013da2dc965638d4c3f6"
  },
  "robot-wynajem-wloclawek.html": {
   "data": "2026-11-24",
   "odcisk": "456fab2d2a2dd075d268432bf01f2091"
  },
  "robot-wynajem-wroclaw.html": {
-  "data": "2026-11-24",
-  "odcisk": "ecd75ae9219994c493787593b4216e61"
+  "data": "2026-11-25",
+  "odcisk": "fbacf68db38af4c8446d15ad956be93e"
  },
  "robot-wynajem-zielona-gora.html": {
-  "data": "2026-11-24",
-  "odcisk": "3edbac2bb47af76ef8838202c39babb2"
+  "data": "2026-11-25",
+  "odcisk": "db7c28d8bde8f25c9781fdaf6c33f812"
  },
  "roboty-na-eventy-firmowe.html": {
-  "data": "2026-11-24",
-  "odcisk": "78f94f761d938607a7684804ea63e12f"
+  "data": "2026-11-25",
+  "odcisk": "1f0eaa370f9c56b37ba4a0fc25e0f396"
  },
  "show-robotow.html": {
   "data": "2026-11-24",
@@ -831,17 +699,9 @@
   "data": "2026-11-24",
   "odcisk": "010ef952396f35e7ae5755dbf794c2be"
  },
- "wynajem-robota-do-firmy.html": {
-  "data": "2026-11-24",
-  "odcisk": "013793e9bb7b8f78abb89e8b344ccda2"
- },
- "wynajem-robotow.html": {
-  "data": "2026-11-24",
-  "odcisk": "4488feaa61c38bf66d965f1052c05076"
- },
  "wypozyczenie-robota.html": {
-  "data": "2026-11-24",
-  "odcisk": "8a4d2f6077b4ce298e4c4c157a5fa5cd"
+  "data": "2026-11-25",
+  "odcisk": "fa5ffc0959d0b976aaad72b406867fc0"
  },
  "zabawy-weselne.html": {
   "data": "2026-11-24",
