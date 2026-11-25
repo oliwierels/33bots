@@ -1,0 +1,70 @@
+{
+ "oferta-targi.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "oferta-konferencje.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "robot-wynajem-warszawa.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "robot-wynajem-gdansk.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "robot-na-dzien-bhp.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "case-study-lexai.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "blog-unitree-g1-robot.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "robot-na-wesele.html": {
+  "kod": 200,
+  "nowa_rama": true,
+  "tytul_ok": true,
+  "h1_ok": true,
+  "canonical_ok": true,
+  "gtm": true
+ },
+ "css/podstrony.css": 200,
+ "css/site.css": 200,
+ "js/strona.js": 200,
+ "main.js": 200
+}
