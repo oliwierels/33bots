@@ -1,0 +1,32 @@
+{
+ "https://33bots.pl/dzien-kobiet-w-firmie.html": {
+  "zywa": true,
+  "w_mapie": true,
+  "canonical": true,
+  "noindex": false
+ },
+ "https://33bots.pl/robot-na-komunie.html": {
+  "zywa": true,
+  "w_mapie": true,
+  "canonical": true,
+  "noindex": false
+ },
+ "https://33bots.pl/robot-na-dzien-dziecka.html": {
+  "zywa": true,
+  "w_mapie": true,
+  "canonical": true,
+  "noindex": false
+ },
+ "https://33bots.pl/robot-na-rozpoczecie-roku-szkolnego.html": {
+  "zywa": true,
+  "w_mapie": true,
+  "canonical": true,
+  "noindex": false
+ },
+ "https://33bots.de/roboter-abiball.html": {
+  "zywa": false,
+  "w_mapie": true,
+  "canonical": false,
+  "noindex": false
+ }
+}
