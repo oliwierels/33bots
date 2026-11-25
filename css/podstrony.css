@@ -677,10 +677,18 @@
 .podstrona .section { max-width: var(--container); margin-inline: auto; padding-inline: var(--margin); }
 .podstrona main > .section + .section:not([style*="padding-top:0"]):not([style*="padding-top: 0"]) { border-top: 1px solid var(--line); }
 
-/* Wąskie bloki treści wyśrodkowane stylem inline: do lewej krawędzi, jak tekst na stronie głównej.
-   Bloki wyśrodkowane razem z tekstem (np. „Zaufali nam”) zostają na środku. */
-.podstrona main .section > [style*="margin:0 auto"]:not([style*="text-align:center"]),
-.podstrona main .section > [style*="margin: 0 auto"]:not([style*="text-align:center"]) { margin-left: 0 !important; }
+/* Jedna oś jak na stronie głównej: wszystko zaczyna się od lewej krawędzi kontenera (64 px na desktopie).
+   Wąskie kolumny wyśrodkowane stylem inline (treść case study, stare wpisy bloga, listy miast,
+   „Zaufali nam”) przesuwają się do tej krawędzi; ich szerokość zostaje, więc długość wiersza też. */
+.podstrona main [style*="margin:0 auto"],
+.podstrona main [style*="margin: 0 auto"],
+.podstrona main [style*="margin-inline:auto"],
+.podstrona main [style*="margin:var(--s8) auto"] { margin-left: 0 !important; }
+.podstrona main [style*="margin-inline:auto"][style*="padding-inline"]:not([style*="background"]):not([style*="border"]) { padding-inline: 0 !important; }
+.podstrona main [style*="text-align:center"] { text-align: left !important; }
+.podstrona main [style*="justify-content:center"] { justify-content: flex-start !important; }
+/* To samo dla kolumn wyśrodkowanych blokiem <style> w nagłówku strony (case study, stare wpisy, okazje). */
+.podstrona .article-body, .podstrona .ok-wrap, .podstrona .video-grid { margin-left: 0 !important; }
 
 /* — Hero: reset siatki strony głównej (kolizja klasy .hero) i typografia display — */
 .podstrona .hero {
@@ -688,7 +696,7 @@
   padding-top: 0 !important; padding-bottom: 0 !important; background: none; border: 0;
 }
 .podstrona .hero::before, .podstrona .hero::after { content: none !important; }
-.podstrona .hero__content { max-width: 1100px; padding: 64px 0 112px !important; }
+.podstrona .hero__content { max-width: 1100px; padding: 64px 0 64px !important; }
 .podstrona .hero__eyebrow {
   display: block; margin: 0 0 28px; padding: 0; border: 0; border-radius: 0; background: none;
   font: 500 .75rem/1.5 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--text-2);
@@ -756,7 +764,6 @@
   color: var(--text); text-wrap: balance; background: none; -webkit-text-fill-color: currentColor;
   margin-bottom: 24px;
 }
-.podstrona .ok-wrap { margin-left: 0 !important; }
 .podstrona h2.section-title[style*="font-size"] { font-size: clamp(1.875rem, 3vw, 2.75rem) !important; }
 .podstrona .lead-text { font: 400 clamp(1.125rem, 1.3vw, 1.3125rem)/1.55 var(--font-body); color: var(--text-2); max-width: 60ch; }
 .podstrona .body-text { font: 400 clamp(1.0625rem, 1.2vw, 1.125rem)/1.65 var(--font-body); color: var(--text-prose); max-width: 68ch; }
@@ -869,3 +876,10 @@
   .podstrona .section-header { margin-bottom: 40px; }
   .podstrona .form { padding: var(--inset) !important; }
 }
+
+/* Akapity w starych kontenerach .body-text (artykuły pisane ręcznie) nie miały odstępu i zlewały się w jeden blok. */
+.podstrona main .body-text > p + p { margin-top: 1em; }
+
+/* Numer sekcji („03”) należy do nagłówka pod nim: odstęp od poprzedniej treści nad numerem, nie między numerem a H2. */
+.podstrona .article-num { display: block !important; margin: 64px 0 8px !important; }
+.podstrona .article-num + h2 { margin-top: 0 !important; }
