@@ -5,7 +5,7 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://33bots.de/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://33bots.pl/" />
     <xhtml:link rel="alternate" hreflang="lt" href="https://33bots.lt/" />
@@ -296,6 +296,16 @@
     </video:video>
   </url>
   <url>
+    <loc>https://33bots.de/roboter-abiball.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/roboter-abiball.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/roboter-abiball.html" />
+    <image:image>
+      <image:loc>https://33bots.de/og-image.jpg</image:loc>
+      <image:title>Humanoider Roboter für den Abiball</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://33bots.de/roboter-employer-branding.html</loc>
     <lastmod>2026-11-24</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/roboter-employer-branding.html" />
@@ -425,7 +435,7 @@
   </url>
   <url>
     <loc>https://33bots.de/roboter-hochschule.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://33bots.de/roboter-hochschule.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://33bots.de/roboter-hochschule.html" />
     <image:image>
