@@ -9,6 +9,8 @@ const STRONY = [
   '/case-study-lexai.html',
   '/oferta-konferencje.html',
   '/oferta-targi.html',
+  '/robot-wynajem-warszawa.html',
+  '/robot-wynajem-gdansk.html',
   '/sklep.html',
   '/wdrozenia.html',
   // artykuły poradnika (nowy szablon)

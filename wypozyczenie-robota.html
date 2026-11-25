@@ -136,23 +136,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
   <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="css/site.css?v=4aa1b4e1" />
-  <link rel="stylesheet" href="css/podstrony.css?v=8b7543c5" />
+  <link rel="stylesheet" href="css/glowna.css?v=edda4ed1" />
+  <link rel="stylesheet" href="css/landing.css?v=15a988ae" />
     <link rel="dns-prefetch" href="//serve.albacross.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <style>
-    .hero { grid-template-columns: 1fr; min-height: 70vh; }
-    .hero__content { max-width: none; padding: var(--s12) 0 var(--s8); }
-    .hero__title { text-wrap: unset; }
-  </style>
 </head>
-<body class="podstrona">
-  <!-- Google Tag Manager (noscript) -->
+<body class="landing">
+<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR7R7CJ3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-
-  <header class="nav" id="nav">
+<header class="nav" id="nav">
   <div class="nav__in">
     <a class="nav__logo" href="index.html" aria-label="33bots – strona główna">33BOTS</a>
     <nav class="nav__menu" aria-label="Główna">
@@ -184,354 +179,423 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="btn btn--akcja" href="#kontakt" data-cta="nav">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
   </div>
 </header>
-  <main>
 
-  <nav class="crumbs" aria-label="Okruszki" style="max-width:1200px; margin:0 auto; padding:calc(var(--s8) + 48px) var(--s5) 0; font-size:0.78rem; letter-spacing:0.02em;">
-    <a href="index.html" style="color:var(--text-3); text-decoration:none;">Strona główna</a> <span aria-hidden="true" style="color:var(--text-3);">›</span> <span style="color:var(--text-2);">Wynajem robota humanoidalnego</span>
-  </nav>
-
-  <section class="hero">
-    <div class="hero__content">
-      <p class="hero__eyebrow">Wynajem robota humanoidalnego · Polska</p>
-      <h1 class="hero__title">Wypożyczenie robota<br />humanoidalnego –<br />cała Polska.</h1>
-      <p class="hero__sub">Wynajem robota humanoidalnego w całej Polsce. Unitree G1 z operatorem na targi, konferencję, galę, spotkanie z pracownikami lub dzień otwarty. Transport w cenie, certyfikowany operator, wycena zwykle w 30 minut.</p>
-      <div class="hero__ctas">
-        <a href="#kontakt" class="btn-primary">Zapytaj o wycenę</a>
-        <a href="index.html#uslugi" class="btn-ghost">Zobacz ofertę ↓</a>
+<main>
+<section class="hero l-hero" aria-labelledby="strona-h1">
+  <div class="hero__text">
+    <nav class="l-okruchy" aria-label="Okruszki"><a href="index.html">Strona główna</a> <span aria-hidden="true">›</span> <span>Wynajem robota humanoidalnego</span></nav>
+    <p class="label">Wynajem robota humanoidalnego · Polska</p>
+    <h1 id="strona-h1" class="l-h1">Wypożyczenie robota<br />humanoidalnego –<br />cała Polska.</h1>
+    <p class="lead">Wynajem robota humanoidalnego w całej Polsce. Unitree G1 z operatorem na targi, konferencję, galę, spotkanie z pracownikami lub dzień otwarty. Transport w cenie, certyfikowany operator, wycena zwykle w 30 minut.</p>
+    <div class="hero__actions hero__actions--termin">
+      <div class="termin">
+        <label class="label" for="heroData">Kiedy jest Twoje wydarzenie?</label>
+        <div class="termin__rzad">
+          <input class="termin__data" type="date" id="heroData" />
+          <a class="btn btn--akcja" href="#kontakt" data-cta="hero">Sprawdź&nbsp;termin i&nbsp;cenę <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="termin__obietnica"><strong>Bez zaliczki, płacisz po wydarzeniu.</strong> Odpowiadamy zwykle w&nbsp;ciągu 30 minut.</p>
+        <p class="termin__telefon">Wolisz zadzwonić? <a href="tel:+48531408004" data-tel="hero">+48 531 408 004</a></p>
       </div>
-      <p class="hero__kontakt"><b>Bez zaliczki, płacisz po wydarzeniu.</b> Odpowiadamy zwykle w ciągu 30 minut. Wolisz zadzwonić? <a href="tel:+48531408004" data-tel="hero">+48 531 408 004</a></p>
+      <a class="link" href="index.html#uslugi">Zobacz ofertę</a>
     </div>
-  </section>
-
-  <section class="section" id="korzysci">
-    <div class="section-header">
-      <span class="tag">Co dostajesz</span>
-      <h2 class="section-title">Kompleksowe wypożyczenie –<br />bez stresu</h2>
+    <ul class="l-ufnosc">
+      <li>Robot, operator i transport w jednej cenie</li>
+      <li>Od kilku godzin do kilku dni</li>
+      <li>Cała Polska</li>
+    </ul>
+  </div>
+  <figure class="hero__media" id="heroMedia">
+    <img src="realizacja-gala-wsrod-gosci.jpg" alt="Robot humanoidalny wśród gości gali" fetchpriority="high" decoding="async" width="900" height="1200">
+    <figcaption class="hero__podpis">
+      <span class="label" id="heroLicznik">01 / 06</span>
+      <span class="hero__opis" id="heroOpis"><b>Drezdeńska Noc Zamków</b> · Drezno</span>
+      <button class="hero__pauza" id="heroPauza" type="button" aria-pressed="false" hidden>Pauza</button>
+    </figcaption>
+  </figure>
+</section>
+<section class="proof" aria-label="Skala i media">
+  <div class="skala">
+    <div class="skala__liczba">
+      <p class="skala__cyfry"><span data-licz="100">100</span>+</p>
+      <p class="skala__opis">wydarzeń w&nbsp;pięciu krajach – gale, targi, konferencje, eventy firmowe i&nbsp;plenerowe</p>
     </div>
-    <div class="tiles">
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Wszystko w cenie</span></div>
-        <h3 class="tile__title">Robot + operator + transport</h3>
-        <p class="tile__desc">Wypożyczenie obejmuje robota Unitree G1, certyfikowanego operatora na miejscu i transport w cenie do całej Polski. Jedna cena, bez ukrytych kosztów.</p>
-        <a href="#kontakt" class="tile__link">Zapytaj o wycenę →</a>
-      </div>
-      <div class="tile tile--light">
-        <div class="tile__top"><span class="tile__tag">Elastyczność</span></div>
-        <h3 class="tile__title">Od godzin do dni</h3>
-        <p class="tile__desc">Potrzebujesz robota na 3 godziny na otwarcie? Albo na 3 dni targów? Wypożyczamy na dowolny czas, a cenę dopasowujemy do długości eventu.</p>
-        <a href="#kontakt" class="tile__link">Zapytaj o wycenę →</a>
-      </div>
-      <div class="tile">
-        <div class="tile__top"><span class="tile__tag">Bezpieczeństwo</span></div>
-        <h3 class="tile__title">Certyfikowany operator</h3>
-        <p class="tile__desc">Robot nie działa samodzielnie. Każde wypożyczenie obejmuje obecność certyfikowanego operatora 33bots. Pokazy, bezpieczeństwo gości i obsługa techniczna są po naszej stronie.</p>
-        <a href="#kontakt" class="tile__link">Zapytaj o wycenę →</a>
-      </div>
+    <dl class="skala__fakty">
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="5">5</span></dt><dd class="fakt__opis">krajów: Polska, Litwa, Niemcy, Czechy, Rumunia</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="3">3</span>&nbsp;×&nbsp;TVP</dt><dd class="fakt__opis">„Pytanie na śniadanie”, Teleexpress i&nbsp;TVP Gdańsk</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="0">0</span>&nbsp;zł</dt><dd class="fakt__opis">zaliczki – fakturę wystawiamy po wydarzeniu</dd></div>
+      <div class="fakt"><dt class="fakt__liczba"><span data-licz="30">30</span>&nbsp;min</dt><dd class="fakt__opis">na odpowiedź z&nbsp;ceną – przez telefon od razu</dd></div>
+    </dl>
+  </div>
+  <p class="label proof__label">Widziani w</p>
+  <ul class="proof__list">
+    <li><a href="https://vod.tvp.pl/programy,88/pytanie-na-sniadanie-odcinki,2542729/odcinek-1287,S03E1287,3348151" target="_blank" rel="noopener">Pytanie na śniadanie, TVP2 <span class="proof__note">0:35–1:00</span></a></li>
+    <li><a href="https://www.tiktok.com/@teleexpress.tvp/video/7654958168786619680" target="_blank" rel="noopener">Teleexpress, TVP</a></li>
+    <li><a href="case-study-women-in-tech.html">Women in Tech Summit</a></li>
+    <li><a href="https://naszemiasto.pl/wielki-final-eco-studio-electro-system-z-okazji-sprzatania-swiata/ar/c1p2-29359081" target="_blank" rel="noopener">Eko Partner 2026, ELECTRO-SYSTEM</a></li>
+  </ul>
+</section>
+
+<section id="korzysci" class="sec l-korzysci" aria-labelledby="korzysci-h">
+  <div class="wrap">
+    <div class="sec__glowa wejscie">
+      <p class="label sec__meta">Co dostajesz</p>
+      <h2 id="korzysci-h" class="h2">Kompleksowe wypożyczenie –<br />bez stresu</h2>
     </div>
-  </section>
+    <ul class="zasady wejscie">
+      <li class="zasada">
+        <span class="l-nr" aria-hidden="true">01</span>
+        <p class="label">Wszystko w cenie</p>
+        <h3 class="h3">Robot + operator + transport</h3>
+        <p class="body">Wypożyczenie obejmuje robota Unitree G1, certyfikowanego operatora na miejscu i transport w cenie do całej Polski. Jedna cena, bez ukrytych kosztów.</p>
+        <a class="link" href="#kontakt">Zapytaj o wycenę →</a>
+      </li>
+      <li class="zasada">
+        <span class="l-nr" aria-hidden="true">02</span>
+        <p class="label">Elastyczność</p>
+        <h3 class="h3">Od godzin do dni</h3>
+        <p class="body">Potrzebujesz robota na 3 godziny na otwarcie? Albo na 3 dni targów? Wypożyczamy na dowolny czas, a cenę dopasowujemy do długości eventu.</p>
+        <a class="link" href="#kontakt">Zapytaj o wycenę →</a>
+      </li>
+      <li class="zasada">
+        <span class="l-nr" aria-hidden="true">03</span>
+        <p class="label">Bezpieczeństwo</p>
+        <h3 class="h3">Certyfikowany operator</h3>
+        <p class="body">Robot nie działa samodzielnie. Każde wypożyczenie obejmuje obecność certyfikowanego operatora 33bots. Pokazy, bezpieczeństwo gości i obsługa techniczna są po naszej stronie.</p>
+        <a class="link" href="#kontakt">Zapytaj o wycenę →</a>
+      </li>
+    </ul>
+  </div>
+</section>
 
-  <section class="section">
-    <div class="onas-body" style="max-width:860px; margin:0 auto;">
-      <div class="onas-text">
-        <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem); margin-bottom:var(--s4);">Wypożyczalnia robotów humanoidalnych – czym jesteśmy?</h2>
-        <p class="lead-text">33bots wypożycza własne roboty humanoidalne, bez pośredników. Pracujemy na Unitree G1, humanoidzie, który chodzi, gestykuluje i wchodzi w interakcje z ludźmi.</p>
-        <p class="body-text">Wypożyczenie robota w 33bots to usługa turnkey: przywozimy sprzęt, ustawiamy go na miejscu, zapewniamy operatora przez cały czas trwania eventu i zabieramy po zakończeniu. Ty skupiasz się na gościach, my dbamy o resztę.</p>
-
-        <h3 style="font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin:var(--s6) 0 var(--s2); color:var(--text);">Na jakie eventy można wypożyczyć robota?</h3>
-        <p class="body-text">Robot do wynajęcia sprawdza się na każdym rodzaju imprezy, gdzie zależy Ci na przyciągnięciu uwagi i viralowym efekcie w social mediach:</p>
-        <ul style="color:var(--text-2); line-height:1.8; margin:var(--s3) 0 var(--s3) var(--s5);">
-          <li><strong style="color:var(--text);">Targi i wystawy</strong>: robot przyciąga tłumy do stoiska lepiej niż jakikolwiek roll-up</li>
-          <li><strong style="color:var(--text);">Konferencje i kongresy</strong>: wow-efekt na wejściu, żywa atrakcja w przerwach</li>
-          <li><strong style="color:var(--text);">Gale i eventy korporacyjne</strong>: nieoczekiwana atrakcja, która rozluźnia atmosferę</li>
-          <li><strong style="color:var(--text);">Dni otwarte i showroomy</strong>: zapada w pamięć lepiej niż ulotka</li>
-          <li><strong style="color:var(--text);">Festiwale i targi konsumenckie</strong>: rodziny z dziećmi nie mogą się oprzeć</li>
-          <li><strong style="color:var(--text);">Road show i kampanie promocyjne</strong>: robot jako ruchomy billboard</li>
+<section id="o-nas" class="sec" aria-labelledby="onas-h">
+  <div class="wrap grid12 l-tekst">
+    <div class="l-tekst__glowa wejscie">
+      <p class="label">Wypożyczalnia</p>
+      <h2 id="onas-h" class="h2">Wypożyczalnia robotów humanoidalnych – czym jesteśmy?</h2>
+    </div>
+    <div class="l-tekst__tresc wejscie">
+      <div class="l-proza">
+        <p class="l-wstep">33bots wypożycza własne roboty humanoidalne, bez pośredników. Pracujemy na Unitree G1, humanoidzie, który chodzi, gestykuluje i wchodzi w interakcje z ludźmi.</p>
+        <p>Wypożyczenie robota w 33bots to usługa turnkey: przywozimy sprzęt, ustawiamy go na miejscu, zapewniamy operatora przez cały czas trwania eventu i zabieramy po zakończeniu. Ty skupiasz się na gościach, my dbamy o resztę.</p>
+        <h3>Na jakie eventy można wypożyczyć robota?</h3>
+        <p>Robot do wynajęcia sprawdza się na każdym rodzaju imprezy, gdzie zależy Ci na przyciągnięciu uwagi i viralowym efekcie w social mediach:</p>
+        <ul>
+          <li><strong>Targi i wystawy</strong>: robot przyciąga tłumy do stoiska lepiej niż jakikolwiek roll-up</li>
+          <li><strong>Konferencje i kongresy</strong>: wow-efekt na wejściu, żywa atrakcja w przerwach</li>
+          <li><strong>Gale i eventy korporacyjne</strong>: nieoczekiwana atrakcja, która rozluźnia atmosferę</li>
+          <li><strong>Dni otwarte i showroomy</strong>: zapada w pamięć lepiej niż ulotka</li>
+          <li><strong>Festiwale i targi konsumenckie</strong>: rodziny z dziećmi nie mogą się oprzeć</li>
+          <li><strong>Road show i kampanie promocyjne</strong>: robot jako ruchomy billboard</li>
         </ul>
-
-        <h3 style="font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin:var(--s6) 0 var(--s2); color:var(--text);">Wypożyczenie robota krok po kroku</h3>
-        <ol style="color:var(--text-2); line-height:1.9; margin:var(--s3) 0 var(--s3) var(--s5);">
-          <li><strong style="color:var(--text);">Kontakt</strong>: wyślij zapytanie z datą, miastem i krótkim opisem eventu</li>
-          <li><strong style="color:var(--text);">Wycena zwykle w 30 minut</strong>: przysyłamy spersonalizowaną ofertę z ceną finalną</li>
-          <li><strong style="color:var(--text);">Rezerwacja</strong>: potwierdzamy termin i podpisujemy umowę</li>
-          <li><strong style="color:var(--text);">Realizacja</strong>: przywozimy robota, operator jest z Tobą przez cały czas</li>
-          <li><strong style="color:var(--text);">Po evencie</strong>: zbieramy sprzęt, możesz cieszyć się setkami zdjęć w relacjach gości</li>
+        <h3>Wypożyczenie robota krok po kroku</h3>
+        <ol>
+          <li><span><strong>Kontakt</strong>: wyślij zapytanie z datą, miastem i krótkim opisem eventu</span></li>
+          <li><span><strong>Wycena zwykle w 30 minut</strong>: przysyłamy spersonalizowaną ofertę z ceną finalną</span></li>
+          <li><span><strong>Rezerwacja</strong>: potwierdzamy termin i podpisujemy umowę</span></li>
+          <li><span><strong>Realizacja</strong>: przywozimy robota, operator jest z Tobą przez cały czas</span></li>
+          <li><span><strong>Po evencie</strong>: zbieramy sprzęt, możesz cieszyć się setkami zdjęć w relacjach gości</span></li>
         </ol>
-
-        <h3 style="font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin:var(--s6) 0 var(--s2); color:var(--text);">Zasięg geograficzny</h3>
-        <p class="body-text">Wypożyczamy roboty humanoidalne w całej Polsce, bez dopłat za transport. Warszawa, Kraków, Wrocław, Poznań, Gdańsk, Katowice, Łódź i wszystkie inne miasta. Jeden telefon i robot dojedzie wszędzie.</p>
-
-        <a href="#kontakt" class="btn-primary" style="margin-top:var(--s5); display:inline-flex;">Zapytaj o wycenę →</a>
+        <h3>Zasięg geograficzny</h3>
+        <p>Wypożyczamy roboty humanoidalne w całej Polsce, bez dopłat za transport. Warszawa, Kraków, Wrocław, Poznań, Gdańsk, Katowice, Łódź i wszystkie inne miasta. Jeden telefon i robot dojedzie wszędzie.</p>
+        <a href="#kontakt" class="btn btn--akcja" data-cta="tekst">Zapytaj o wycenę <span aria-hidden="true">→</span></a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" style="padding-top:0;">
-    <div style="max-width:860px; margin:0 auto;">
-      <div style="padding:var(--s5) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); flex-wrap:wrap;">
-        <p style="color:var(--text-2); font-size:0.9rem; margin:0;">Konkretne oferty według zastosowania: <strong style="color:var(--text);">targi i wystawy</strong> lub <strong style="color:var(--text);">konferencje i gale</strong></p>
-        <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
-          <a href="oferta-targi.html" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Targi →</a>
-          <a href="oferta-konferencje.html" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Konferencje →</a>
-          <a href="oferta-dni-otwarte.html" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Dni otwarte →</a>
+<section id="oferty" class="sec" aria-label="Oferty według zastosowania">
+  <div class="wrap">
+    <div class="l-oferty wejscie">
+      <p class="body">Konkretne oferty według zastosowania: <strong>targi i wystawy</strong> lub <strong>konferencje i gale</strong></p>
+      <ul class="l-linki">
+        <li><a href="oferta-targi.html">Targi →</a></li>
+        <li><a href="oferta-konferencje.html">Konferencje →</a></li>
+        <li><a href="oferta-dni-otwarte.html">Dni otwarte →</a></li>
+      </ul>
+    </div>
+    <p class="label l-linki__opis" style="margin-top:64px">Porównanie ofert wynajmu</p>
+    <ul class="l-karty wejscie">
+      <li><a href="oferta-targi.html"><span class="label">Targi i wystawy</span><span class="l-karta__tytul">Generowanie leadów →</span><span class="l-karta__opis">Cały dzień lub kilka dni, ciągła interakcja z gośćmi stoiska.</span></a></li>
+      <li><a href="oferta-konferencje.html"><span class="label">Konferencje i gale</span><span class="l-karta__tytul">Efekt WOW na scenie →</span><span class="l-karta__opis">Punktowo: powitanie, przerwa, gala. Budowa wizerunku marki.</span></a></li>
+      <li><a href="oferta-dni-otwarte.html"><span class="label">Dni otwarte i showroomy</span><span class="l-karta__tytul">Pokaz technologii →</span><span class="l-karta__opis">Interaktywna prezentacja dla odwiedzających, idealna do showroomów.</span></a></li>
+    </ul>
+    <p class="body l-dopisek">Nie wiesz, który scenariusz wybrać? Sprawdź <a href="blog-robot-targi-vs-konferencja.html">porównanie targi vs konferencja</a> albo <a href="blog-ile-kosztuje-wynajem-robota.html">cennik z pakietami</a>.</p>
+  </div>
+</section>
+<section id="formaty" class="sec" aria-labelledby="formaty-h">
+  <span class="kotwica" id="cennik"></span>
+  <div class="wrap">
+    <div class="sec__glowa wejscie">
+      <p class="label sec__meta">Formaty</p>
+      <h2 id="formaty-h" class="h2">Formaty i&nbsp;cena</h2>
+      <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
+    </div>
+    <!-- Kalkulator: te same trzy formaty i ceny co dotąd, wybór liczy kwotę od razu.
+         Bez JS widać wszystkie trzy opisy i cenę pełnego dnia. Kilka dni: 15% taniej
+         za każdy dzień (FAQ), czyli dni × 5 500 zł × 0,85. -->
+    <div class="kalk wejscie" id="kalkulator">
+      <fieldset class="kalk__formaty">
+        <legend class="label">Wybierz format</legend>
+        <label class="format"><input type="radio" name="kalk_format" value="wejscie" />
+          <span class="format__glowa"><span class="h3">Wejście</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Kilka godzin w&nbsp;programie wydarzenia – otwarcie, blok na scenie, godziny szczytu na stoisku.</span>
+          <span class="label format__cena-opis">Wycena indywidualna · zawsze taniej niż pełny dzień</span></label>
+        <label class="format"><input type="radio" name="kalk_format" value="dzien" checked />
+          <span class="format__glowa"><span class="h3">Pełny dzień</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Robot do dyspozycji przez cały dzień wydarzenia, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.</span>
+          <span class="label format__cena-opis">od 5&nbsp;500&nbsp;zł netto</span></label>
+        <label class="format"><input type="radio" name="kalk_format" value="dni" />
+          <span class="format__glowa"><span class="h3">Targi</span><span class="format__znak" aria-hidden="true"></span></span>
+          <span class="body">Dwa dni i&nbsp;więcej – targi, festiwale, roadshow.</span>
+          <span class="label format__cena-opis">−15% za każdy dzień</span></label>
+      </fieldset>
+      <div class="kalk__wynik">
+        <div class="kalk__dni" id="kalkDni" hidden>
+          <span class="label" id="kalkDniEtykieta">Liczba dni</span>
+          <div class="kalk__licznik" role="group" aria-labelledby="kalkDniEtykieta">
+            <button class="kalk__krok" type="button" data-dni="-1" aria-label="Jeden dzień mniej">−</button>
+            <output class="kalk__ile" id="kalkIle" aria-live="polite">2</output>
+            <button class="kalk__krok" type="button" data-dni="1" aria-label="Jeden dzień więcej">+</button>
+          </div>
         </div>
+        <p class="label" id="kalkEtykieta">Pełny dzień · cena netto</p>
+        <p class="kalk__cena" aria-live="polite"><span class="kalk__od" id="kalkOd">od</span> <span id="kalkKwota">5&nbsp;500</span><span class="kalk__zl" id="kalkZl">&nbsp;zł</span></p>
+        <p class="body-sm" id="kalkOpis">Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
       </div>
     </div>
-  </section>
+    <p class="body formaty__wcenie">W&nbsp;cenie: operator, transport, branding (logo, kod QR), ubezpieczenie OC. <strong>Płacisz po wydarzeniu.</strong> Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
+    <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">Sprawdź termin i dokładną cenę <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
 
-  <section class="section" style="padding-top:0;">
-    <div style="max-width:900px; margin:0 auto;">
-      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s4);">Porównanie ofert wynajmu</p>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s4);">
-        <a href="oferta-targi.html" style="display:flex; flex-direction:column; gap:6px; padding:var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Targi i wystawy</span>
-          <span style="font-size:1rem; font-weight:700; color:var(--text);">Generowanie leadów →</span>
-          <span style="font-size:0.85rem; color:var(--text-2);">Cały dzień lub kilka dni, ciągła interakcja z gośćmi stoiska.</span>
-        </a>
-        <a href="oferta-konferencje.html" style="display:flex; flex-direction:column; gap:6px; padding:var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Konferencje i gale</span>
-          <span style="font-size:1rem; font-weight:700; color:var(--text);">Efekt WOW na scenie →</span>
-          <span style="font-size:0.85rem; color:var(--text-2);">Punktowo – powitanie, przerwa, gala. Budowa wizerunku marki.</span>
-        </a>
-        <a href="oferta-dni-otwarte.html" style="display:flex; flex-direction:column; gap:6px; padding:var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Dni otwarte i showroomy</span>
-          <span style="font-size:1rem; font-weight:700; color:var(--text);">Pokaz technologii →</span>
-          <span style="font-size:0.85rem; color:var(--text-2);">Interaktywna prezentacja dla odwiedzających, idealna do showroomów.</span>
-        </a>
-      </div>
-      <p style="font-size:0.85rem; color:var(--text-2); margin-top:var(--s4);">Nie wiesz, który scenariusz wybrać? Sprawdź <a href="blog-robot-targi-vs-konferencja.html" style="color:var(--text); font-weight:600;">porównanie targi vs konferencja</a> albo <a href="blog-ile-kosztuje-wynajem-robota.html" style="color:var(--text); font-weight:600;">cennik z pakietami</a>.</p>
+<section id="realizacje" class="sec" aria-labelledby="realizacje-h">
+  <div class="wrap">
+    <div class="sec__glowa wejscie">
+      <p class="label sec__meta">Zaufali nam</p>
+      <h2 id="realizacje-h" class="h2">Ponad 100 wydarzeń w&nbsp;pięciu krajach</h2>
+      <p class="body">Z wynajmu robota 33bots korzystały m.in. <a class="link" href="case-study-women-in-tech.html">Fundacja Perspektywy</a> (Women in Tech Summit, największa konferencja women-in-tech w Europie), globalny operator logistyczny <strong>DSV</strong>, <strong>Cashify</strong> oraz <a class="link" href="case-study-lexai.html">LEX AI</a>, którego pokaz z naszym robotem trafił do Teleexpressu TVP.</p>
     </div>
-  </section>
-
-  <section class="section" style="padding-top:0;">
-    <div style="max-width:900px; margin:0 auto;">
-      <p style="font-size:0.75rem; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:var(--s3);">Najczęściej wybierane miasta</p>
-      <div style="display:flex; flex-wrap:wrap; gap:var(--s2);">
-        <a href="robot-wynajem-warszawa.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Warszawa</a>
-        <a href="robot-wynajem-krakow.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Kraków</a>
-        <a href="robot-wynajem-wroclaw.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Wrocław</a>
-        <a href="robot-wynajem-poznan.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Poznań</a>
-        <a href="robot-wynajem-gdansk.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Gdańsk</a>
-        <a href="robot-wynajem-katowice.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Katowice</a>
-        <a href="robot-wynajem-lodz.html" class="tile__link" style="padding:8px 16px; background:var(--surface-2); border:1px solid var(--border-mid); border-radius:8px;">Łódź</a>
-      </div>
+    <div class="pasy__glowa">
+      <p class="label">Kliknij kadr, żeby zobaczyć realizację</p>
+      <button class="pasy__pauza" type="button" aria-pressed="false" data-pasy="zdjecia" hidden>Zatrzymaj ruch</button>
     </div>
-  </section>
-
-
-  <!-- WIDEO -->
-  <!-- NIEMCY I AUSTRIA -->
-  <section class="section" style="padding-top:0;">
-    <div style="max-width:860px; margin:0 auto;">
-      <div style="padding:var(--s5) var(--s6); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:var(--s4); flex-wrap:wrap;">
-        <p style="color:var(--text-2); font-size:0.9rem; margin:0;">Wydarzenie za granicą? Robot pracował w <strong style="color:var(--text);">Niemczech</strong>, na Litwie, w Czechach i Rumunii. Oferta w języku kraju:</p>
-        <div style="display:flex; gap:var(--s3); flex-wrap:wrap;">
-          <a href="https://33bots.de/humanoiden-roboter-mieten.html" hreflang="de" lang="de" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Deutschland →</a>
-          <a href="https://33bots.at/humanoider-roboter-mieten.html" hreflang="de-AT" lang="de" style="color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">Österreich →</a>
-        </div>
-      </div>
+  </div>
+  <div class="pasy wejscie" data-grupa="zdjecia">
+    <div class="pas" data-predkosc="26" data-kierunek="-1">
+      <ul class="pas__tor">
+        <li><button class="realizacja" type="button" data-cs="eco-studio"><picture><source type="image/webp" srcset="realizacja-eco-studio-scena-400.webp 400w, realizacja-eco-studio-scena.webp 720w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-eco-studio-scena.jpg" alt="Robot humanoidalny na scenie finału Eco Studio w czerwonym świetle" width="720" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">ELECTRO-SYSTEM · Eco Studio</span><span class="realizacja__opis">Finał 7. sezonu · Warszawa · 2026</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="grupa-rekord"><picture><source type="image/webp" srcset="realizacja-grupa-rekord-mspo-400.webp 400w, realizacja-grupa-rekord-mspo.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-grupa-rekord-mspo.jpg" alt="Robot humanoidalny w barwach Grupy Rekord na stoisku targów MSPO w Kielcach" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Grupa Rekord</span><span class="realizacja__opis">MSPO · Targi Kielce · 2026</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="przelewice"><picture><source type="image/webp" srcset="realizacja-przelewice-noc-bajek-400.webp 400w, realizacja-przelewice-noc-bajek.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-przelewice-noc-bajek.jpg" alt="Robot humanoidalny w podświetlonych arkadach podczas Nocy Bajek w Przelewicach" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Ogród Dendrologiczny w Przelewicach</span><span class="realizacja__opis">Noc Bajek Pokolenia</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="loza"><picture><source type="image/webp" srcset="realizacja-event-nad-woda-400.webp 400w, realizacja-event-nad-woda.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-event-nad-woda.jpg" alt="Robot humanoidalny macha ręką na tarasie nad mariną z jachtami" width="900" height="1200" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Loża Przedsiębiorców</span><span class="realizacja__opis">Mikołajki</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="yeah-gym"><picture><source type="image/webp" srcset="realizacja-yeah-gym-silownia-400.webp 400w, realizacja-yeah-gym-silownia.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-yeah-gym-silownia.jpg" alt="Robot humanoidalny w strefie treningowej klubu YEAH GYM" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">YEAH GYM</span><span class="realizacja__opis">klub fitness · Wrocław</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="jednorozec"><picture><source type="image/webp" srcset="realizacja-jednorozec-parada-400.webp 400w, realizacja-jednorozec-parada.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-jednorozec-parada.jpg" alt="Robot humanoidalny w koszulce gminy Jednorożec wśród uczestników parady" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Gmina Jednorożec</span><span class="realizacja__opis">Parada Jednorożców</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="wesele"><picture><source type="image/webp" srcset="realizacja-wesele-konfetti-400.webp 400w, realizacja-wesele-konfetti.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-wesele-konfetti.jpg" alt="Robot humanoidalny w kłębach dymu na weselnym parkiecie" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Wesele</span><span class="realizacja__opis">przyjęcie weselne</span></button></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="section" id="wideo">
-    <div class="section-header">
-      <span class="tag">Wideo</span>
-      <h2 class="section-title">Zobacz robota<br />w akcji</h2>
+    <div class="pas" data-predkosc="20" data-kierunek="1">
+      <ul class="pas__tor">
+        <li><button class="realizacja" type="button" data-cs="women-in-tech"><picture><source type="image/webp" srcset="realizacja-women-in-tech-tlum-400.webp 400w, realizacja-women-in-tech-tlum.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-women-in-tech-tlum.jpg" alt="Uczestniczki Women in Tech Summit nagrywające robota humanoidalnego telefonami" width="900" height="1200" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Women in Tech Summit</span><span class="realizacja__opis">EXPO XXI · Warszawa · 2026</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="kopernik"><picture><source type="image/webp" srcset="realizacja-kopernik-noc-400.webp 400w, realizacja-kopernik-noc.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-kopernik-noc.jpg" alt="Robot humanoidalny na wystawie Centrum Nauki Kopernik podczas wieczoru dla dorosłych" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Centrum Nauki Kopernik</span><span class="realizacja__opis">„O czym śnią roboty” · Warszawa</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="tet-trung-thu"><picture><source type="image/webp" srcset="realizacja-tet-trung-thu-tlum-400.webp 400w, realizacja-tet-trung-thu-tlum.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-tet-trung-thu-tlum.jpg" alt="Goście Święta Środka Jesieni wokół robota humanoidalnego" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Tết Trung Thu</span><span class="realizacja__opis">Święto Środka Jesieni</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="gonia-auto"><picture><source type="image/webp" srcset="realizacja-robot-w-deszczu-400.webp 400w, realizacja-robot-w-deszczu.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-robot-w-deszczu.jpg" alt="Robot humanoidalny w czerwonej koszulce z parasolem przed salonem samochodowym" width="900" height="1200" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Gonia Auto</span><span class="realizacja__opis">salon samochodowy</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="dream-med"><picture><source type="image/webp" srcset="realizacja-dream-med-expo-400.webp 400w, realizacja-dream-med-expo.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-dream-med-expo.jpg" alt="Robot humanoidalny przy stoisku Dream-Med na Warsaw Medical Expo" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Dream-Med</span><span class="realizacja__opis">Warsaw Medical Expo · 2026</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="lexai"><picture><source type="image/webp" srcset="realizacja-lexai-ulica-400.webp 400w, realizacja-lexai-ulica.webp 900w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-lexai-ulica.jpg" alt="Robot humanoidalny LEX AI idący ulicą starówki z teczką w dłoni" width="900" height="1186" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">LEX AI</span><span class="realizacja__opis">Długi Targ · Gdańsk</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="matys"><picture><source type="image/webp" srcset="realizacja-matys-stoisko-400.webp 400w, realizacja-matys-stoisko.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-matys-stoisko.jpg" alt="Robot humanoidalny w koszulce Matys przy stoisku dewelopera" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Matys Development</span><span class="realizacja__opis">targi nieruchomości · Szczecin</span></button></li>
+        <li><button class="realizacja" type="button" data-cs="szkola-kosmos"><picture><source type="image/webp" srcset="realizacja-szkola-kosmos-scena-400.webp 400w, realizacja-szkola-kosmos-scena.webp 810w" sizes="(max-width: 767px) 168px, 248px" /><img src="realizacja-szkola-kosmos-scena.jpg" alt="Robot humanoidalny na scenie Szkoły Kosmos przed uczniami" width="810" height="1080" loading="lazy" decoding="async" draggable="false" /></picture><span class="realizacja__klient">Szkoła Kosmos</span><span class="realizacja__opis">rozpoczęcie roku · Majaland</span></button></li>
+      </ul>
     </div>
-    <div style="display:flex; flex-wrap:wrap; gap:var(--s6); align-items:center; justify-content:center; max-width:1000px; margin:0 auto;">
-      <video controls muted playsinline preload="none"
+  </div>
+  <div class="wrap">
+    <p class="realizacje__wiecej"><a class="link" href="realizacje-wideo.html">Wszystkie realizacje i&nbsp;nagrania <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<section id="wideo" class="sec" aria-labelledby="wideo-h">
+  <div class="wrap grid12 l-wideo">
+    <figure class="l-wideo__film wejscie"><video controls muted playsinline preload="none"
              poster="video/robot-branding-poster.jpg"
              width="324" height="576"
-             style="width:min(324px,85vw); border-radius:16px; border:1px solid var(--border-mid); background:var(--surface-2);"
              aria-label="Robot humanoidalny z brandingiem – logo i kod QR Twojej marki">
         <source src="video/robot-branding.mp4" type="video/mp4" />
         Twoja przeglądarka nie obsługuje wideo HTML5.
-      </video>
-      <div style="max-width:420px; display:flex; flex-direction:column; gap:var(--s4); text-align:left;">
-        <p style="color:var(--text-2); font-size:1rem; line-height:1.8; margin:0;">Zbliżenie na branding: logo i kod QR na klatce robota. Przy każdym wynajmie oklejamy G1 materiałami Twojej marki, w cenie.</p>
-        <a href="#kontakt" class="btn-primary" style="display:inline-flex; align-self:flex-start;">Zarezerwuj pokaz →</a>
+      </video></figure>
+    <div class="l-wideo__tekst wejscie">
+      <p class="label">Wideo</p>
+      <h2 id="wideo-h" class="h2">Zobacz robota<br />w akcji</h2>
+      <p class="body">Zbliżenie na branding: logo i kod QR na klatce robota. Przy każdym wynajmie oklejamy G1 materiałami Twojej marki, w cenie.</p>
+      <a class="btn btn--akcja" href="#kontakt" data-cta="wideo">Zarezerwuj pokaz <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="miasta" class="sec" aria-label="Miasta i zagranica">
+  <div class="wrap">
+    <p class="label l-linki__opis">Najczęściej wybierane miasta</p>
+    <ul class="l-linki l-linki--duze wejscie">
+      <li><a href="robot-wynajem-warszawa.html">Warszawa</a></li>
+      <li><a href="robot-wynajem-krakow.html">Kraków</a></li>
+      <li><a href="robot-wynajem-wroclaw.html">Wrocław</a></li>
+      <li><a href="robot-wynajem-poznan.html">Poznań</a></li>
+      <li><a href="robot-wynajem-gdansk.html">Gdańsk</a></li>
+      <li><a href="robot-wynajem-katowice.html">Katowice</a></li>
+      <li><a href="robot-wynajem-lodz.html">Łódź</a></li>
+    </ul>
+    <div class="l-oferty wejscie" style="margin-top:64px">
+      <p class="body">Wydarzenie za granicą? Robot pracował w <strong>Niemczech</strong>, na Litwie, w Czechach i Rumunii. Oferta w języku kraju:</p>
+      <ul class="l-linki">
+        <li><a href="https://33bots.de/humanoiden-roboter-mieten.html" hreflang="de" lang="de">Deutschland →</a></li>
+        <li><a href="https://33bots.at/humanoider-roboter-mieten.html" hreflang="de-AT" lang="de">Österreich →</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="poradniki" class="sec" aria-label="Poradniki przed wynajmem">
+  <div class="wrap">
+    <p class="label l-linki__opis">Poradniki przed wynajmem</p>
+    <ul class="l-karty l-karty--4 wejscie">
+      <li><a href="wynajem-atrakcji-na-imprezy.html"><span class="label">Przewodnik eventowy</span><span class="l-karta__opis">Wynajem atrakcji na imprezy – co, za ile, od kogo →</span></a></li>
+      <li><a href="blog-bezpieczenstwo-robota-na-evencie.html"><span class="label">Poradnik</span><span class="l-karta__opis">Czy robot na evencie jest bezpieczny? BHP, OC, procedury →</span></a></li>
+      <li><a href="blog-logistyka-robota-w-dniu-eventu.html"><span class="label">Poradnik</span><span class="l-karta__opis">Dzień eventu z robotem – logistyka od kulis →</span></a></li>
+      <li><a href="blog-robot-na-event-plenerowy.html"><span class="label">Poradnik</span><span class="l-karta__opis">Robot w plenerze – pogoda, nawierzchnie, zasilanie →</span></a></li>
+      <li><a href="blog-co-potrafi-robot-humanoidalny.html"><span class="label">Poradnik</span><span class="l-karta__opis">Co potrafi robot humanoidalny? 12 umiejętności G1 →</span></a></li>
+      <li><a href="blog-robot-z-ai-rozmawiajacy-po-polsku.html"><span class="label">Poradnik</span><span class="l-karta__opis">Robot z AI rozmawiający po polsku →</span></a></li>
+      <li><a href="blog-lekcje-z-eventow-z-robotem.html"><span class="label">Poradnik</span><span class="l-karta__opis">9 lekcji z kilkudziesięciu eventów z robotem →</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq" class="sec" aria-labelledby="faq-h">
+  <div class="wrap grid12">
+    <div class="faq__glowa wejscie">
+      <p class="label sec__meta">FAQ</p>
+      <h2 id="faq-h" class="h2">Pytania o<br />wypożyczenie robota</h2>
+    </div>
+    <div class="faq wejscie">
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="faq-1-q" aria-expanded="false" aria-controls="faq-1">Jak wypożyczyć robota humanoidalnego na event?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
+        <div class="faq__a" id="faq-1" role="region" aria-labelledby="faq-1-q" hidden><p>Wystarczy skontaktować się z nami przez formularz lub telefon. Podaj datę eventu, miasto i orientacyjną liczbę gości, a my wyślemy wycenę, zwykle w ciągu 30 minut. Zajmujemy się całą logistyką: transport, ustawienie, operator na miejscu.</p></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="faq-2-q" aria-expanded="false" aria-controls="faq-2">Czym się różni wypożyczenie robota od wynajmu?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
+        <div class="faq__a" id="faq-2" role="region" aria-labelledby="faq-2-q" hidden><p>Wypożyczenie i wynajem robota to to samo. Oba terminy oznaczają czasowe udostępnienie robota Unitree G1 na Twój event. W 33bots oferujemy kompleksową usługę: robot + operator + transport + ustawienie w jednej cenie.</p></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="faq-3-q" aria-expanded="false" aria-controls="faq-3">Na jak długo można wypożyczyć robota?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
+        <div class="faq__a" id="faq-3" role="region" aria-labelledby="faq-3-q" hidden><p>Wypożyczenie robota jest elastyczne, od kilku godzin (pokaz, otwarcie) do kilku dni (targi wielodniowe, road show). Cena zależy od czasu trwania i liczby dni. Najczęściej klienci wybierają opcję jednodniową (8h) lub wielodniową na targi.</p></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="faq-4-q" aria-expanded="false" aria-controls="faq-4">Ile kosztuje wypożyczenie robota humanoidalnego?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
+        <div class="faq__a" id="faq-4" role="region" aria-labelledby="faq-4-q" hidden><p>Cena wypożyczenia robota zależy od czasu trwania eventu, lokalizacji i zakresu usług. Każdą wycenę przygotowujemy indywidualnie. Skontaktuj się z nami, a zwykle w ciągu 30 minut podamy konkretną kwotę, bez zobowiązań. Transport w cenie jest zawsze wliczony w cenę.</p></div>
+      </div>
+      <div class="faq__item">
+        <h3 class="faq__h"><button class="faq__q" type="button" id="faq-5-q" aria-expanded="false" aria-controls="faq-5">Czy do wypożyczonego robota jest dołączony operator?<span class="faq__znak" aria-hidden="true"><span></span><span></span></span></button></h3>
+        <div class="faq__a" id="faq-5" role="region" aria-labelledby="faq-5-q" hidden><p>Tak, każde wypożyczenie obejmuje certyfikowanego operatora 33bots. Operator dba o bezpieczne działanie robota, prowadzi pokazy i odpowiada na pytania gości. Robota nie zostawiamy bez obsługi technicznej.</p></div>
       </div>
     </div>
-  </section>
-
-  <!-- PORADNIKI -->
-  <section class="section" style="padding-top:0;">
-    <div style="max-width:1000px; margin:0 auto;">
-      <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s4);">Poradniki przed wynajmem</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--s4);">
-        <a href="wynajem-atrakcji-na-imprezy.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Przewodnik eventowy</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Wynajem atrakcji na imprezy – co, za ile, od kogo →</span>
-        </a>
-        <a href="blog-bezpieczenstwo-robota-na-evencie.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Czy robot na evencie jest bezpieczny? BHP, OC, procedury →</span>
-        </a>
-        <a href="blog-logistyka-robota-w-dniu-eventu.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Dzień eventu z robotem – logistyka od kulis →</span>
-        </a>
-        <a href="blog-robot-na-event-plenerowy.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Robot w plenerze – pogoda, nawierzchnie, zasilanie →</span>
-        </a>
-        <a href="blog-co-potrafi-robot-humanoidalny.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Co potrafi robot humanoidalny? 12 umiejętności G1 →</span>
-        </a>
-        <a href="blog-robot-z-ai-rozmawiajacy-po-polsku.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">Robot z AI rozmawiający po polsku →</span>
-        </a>
-        <a href="blog-lekcje-z-eventow-z-robotem.html" style="display:flex; flex-direction:column; gap:4px; padding:var(--s4) var(--s5); background:var(--surface-2); border:1px solid var(--border-mid); border-radius:10px; text-decoration:none;">
-          <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3);">Poradnik</span>
-          <span style="font-size:0.95rem; font-weight:700; color:var(--text); letter-spacing:-0.015em; line-height:1.35;">9 lekcji z kilkudziesięciu eventów z robotem →</span>
-        </a>
-      </div>
+  </div>
+</section>
+<section id="kontakt" class="sec sec--powierzchnia" aria-labelledby="kontakt-h">
+  <div class="wrap grid12 rez">
+    <div class="rez__glowa wejscie">
+      <p class="label sec__meta">Rezerwacja</p>
+      <h2 id="kontakt-h" class="h2">Wypożycz robota<br />na swój event.</h2>
     </div>
-  </section>
 
-  <!-- TESTIMONIALE -->
+    <form class="rez__form wejscie" id="formularz" novalidate>
+      <div class="kroki-form" aria-hidden="true">
+        <span class="label" data-krok-etykieta="1" aria-current="step">01 Wydarzenie</span>
+        <span class="label" data-krok-etykieta="2">02 Kontakt</span>
+      </div>
 
-  <section class="section faq-section">
-    <div class="section-header">
-      <span class="tag">FAQ</span>
-      <h2 class="section-title">Pytania o<br />wypożyczenie robota</h2>
-    </div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Jak wypożyczyć robota humanoidalnego na event?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Wystarczy skontaktować się z nami przez formularz lub telefon. Podaj datę eventu, miasto i orientacyjną liczbę gości, a my wyślemy wycenę, zwykle w ciągu 30 minut. Zajmujemy się całą logistyką: transport, ustawienie, operator na miejscu.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Czym się różni wypożyczenie robota od wynajmu?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Wypożyczenie i wynajem robota to to samo. Oba terminy oznaczają czasowe udostępnienie robota Unitree G1 na Twój event. W 33bots oferujemy kompleksową usługę: robot + operator + transport + ustawienie w jednej cenie.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Na jak długo można wypożyczyć robota?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Wypożyczenie robota jest elastyczne, od kilku godzin (pokaz, otwarcie) do kilku dni (targi wielodniowe, road show). Cena zależy od czasu trwania i liczby dni. Najczęściej klienci wybierają opcję jednodniową (8h) lub wielodniową na targi.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Ile kosztuje wypożyczenie robota humanoidalnego?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Cena wypożyczenia robota zależy od czasu trwania eventu, lokalizacji i zakresu usług. Każdą wycenę przygotowujemy indywidualnie. Skontaktuj się z nami, a zwykle w ciągu 30 minut podamy konkretną kwotę, bez zobowiązań. Transport w cenie jest zawsze wliczony w cenę.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          <span>Czy do wypożyczonego robota jest dołączony operator?</span>
-          <span class="faq-q__icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" hidden><p>Tak, każde wypożyczenie obejmuje certyfikowanego operatora 33bots. Operator dba o bezpieczne działanie robota, prowadzi pokazy i odpowiada na pytania gości. Robota nie zostawiamy bez obsługi technicznej.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ZAUFALI NAM -->
-  <section class="section" style="padding-top:0; padding-bottom:var(--s8);">
-    <div style="max-width:1000px; margin:0 auto; text-align:center;">
-      <p style="font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:var(--s4);">Zaufali nam</p>
-      <p style="color:var(--text-2); font-size:0.98rem; line-height:1.8; max-width:680px; margin:0 auto;">Z wynajmu robota 33bots korzystały m.in. <a href="case-study-women-in-tech.html" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">Fundacja Perspektywy</a> (Women in Tech Summit, największa konferencja women-in-tech w Europie), globalny operator logistyczny <strong style="color:var(--text);">DSV</strong>, <strong style="color:var(--text);">Cashify</strong> oraz <a href="case-study-lexai.html" style="color:var(--text); text-decoration:underline; text-underline-offset:3px;">LEX AI</a>, którego pokaz z naszym robotem trafił do Teleexpressu TVP.</p>
-    </div>
-  </section>
-
-  <section class="section" id="kontakt">
-    <div class="contact-layout">
-      <div class="contact-left">
-        <span class="tag">Kontakt</span>
-        <h2 class="section-title">Wypożycz robota<br />na swój event.</h2>
-        <p class="body-text">Napisz do nas. Odpisujemy zwykle w ciągu 30 minut, z wyceną i dostępnym terminem.</p>
-        <div class="contact-details">
-          <a href="mailto:kontakt@33bots.pl" class="contact-detail">
-            <span class="contact-detail__label">E-mail</span>
-            <span class="contact-detail__val">kontakt@33bots.pl</span>
-          </a>
-          <a href="tel:+48531408004" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">+48 531 408 004</span>
-          </a>
-          <a href="tel:+48601499947" class="contact-detail">
-            <span class="contact-detail__label">Telefon</span>
-            <span class="contact-detail__val">+48 601 499 947</span>
-          </a>
-          <div class="contact-detail">
-            <span class="contact-detail__label">Zasięg</span>
-            <span class="contact-detail__val">Cała Polska – transport w cenie</span>
+      <div class="krok-form" id="krok1">
+        <fieldset class="pole" id="pole-typ">
+          <legend>Typ wydarzenia *</legend>
+          <div class="chipy">
+            <label class="chip"><input type="radio" name="event_type" value="Gala" required /><span>Gala</span></label>
+            <label class="chip"><input type="radio" name="event_type" value="Konferencja" required /><span>Konferencja</span></label>
+            <label class="chip"><input type="radio" name="event_type" value="Targi" required /><span>Targi</span></label>
+            <label class="chip"><input type="radio" name="event_type" value="Plener" required /><span>Plener</span></label>
+            <label class="chip"><input type="radio" name="event_type" value="Inne" required /><span>Inne</span></label>
+          </div>
+          <p class="pole__blad" id="blad-typ" hidden>Wybierz typ wydarzenia.</p>
+        </fieldset>
+        <div class="dwa">
+          <div class="pole">
+            <label for="pole-data">Data</label>
+            <input type="date" id="pole-data" name="date" />
+            <div class="chipy"><label class="chip"><input type="checkbox" id="data-nieustalona" /><span>Termin jeszcze nieustalony</span></label></div>
+          </div>
+          <div class="pole">
+            <label for="pole-miejsce">Miasto lub miejsce</label>
+            <input type="text" id="pole-miejsce" name="location" placeholder="np. Warszawa, EXPO XXI" autocomplete="address-level2" />
           </div>
         </div>
+        <fieldset class="pole">
+          <legend>Liczba gości</legend>
+          <div class="chipy">
+            <label class="chip"><input type="radio" name="guests" value="do 100" /><span>do 100</span></label>
+            <label class="chip"><input type="radio" name="guests" value="100–500" /><span>100–500</span></label>
+            <label class="chip"><input type="radio" name="guests" value="500–2000" /><span>500–2000</span></label>
+            <label class="chip"><input type="radio" name="guests" value="powyżej 2000" /><span>powyżej 2000</span></label>
+          </div>
+        </fieldset>
+        <div class="form-akcje">
+          <button class="btn btn--akcja" type="button" id="dalej">Dalej <span aria-hidden="true">→</span></button>
+        </div>
       </div>
-      <div class="contact-right">
-        <form id="contactForm" class="form" novalidate>
-          <div class="form-steps-header">
-            <span class="form-step-ind active" id="stepInd1">01 – Dane kontaktowe</span>
-            <span class="form-step-sep">/</span>
-            <span class="form-step-ind" id="stepInd2">02 – Twój event</span>
-          </div>
-          <div class="form-step" id="formStep1">
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-name">Imię i nazwisko *</label>
-                <input id="f-name" type="text" name="name" placeholder="Jan Kowalski" autocomplete="name" required />
-                <span class="form-field__err" aria-live="polite"></span>
-              </div>
-              <div class="form-field">
-                <label for="f-company">Firma</label>
-                <input id="f-company" type="text" name="company" placeholder="Nazwa firmy" autocomplete="organization" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-email">E-mail *</label>
-                <input id="f-email" type="email" name="email" placeholder="kontakt@firma.pl" autocomplete="email" required />
-                <span class="form-field__err" aria-live="polite"></span>
-              </div>
-              <div class="form-field">
-                <label for="f-phone">Telefon</label>
-                <input id="f-phone" type="tel" name="phone" placeholder="+48 531 408 004" autocomplete="tel" />
-              </div>
-            </div>
-            <button type="button" id="btnNext" class="btn-submit">Dalej – Opowiedz o evencie →</button>
-          </div>
-          <div class="form-step form-step--hidden" id="formStep2" aria-hidden="true">
-            <div class="form-row">
-              <div class="form-field">
-                <label for="f-date">Planowana data eventu</label>
-                <input id="f-date" type="date" name="date" />
-              </div>
-              <div class="form-field">
-                <label for="f-location">Miasto / Miejsce</label>
-                <input id="f-location" type="text" name="location" placeholder="np. Warszawa, obiekt X" autocomplete="address-level2" />
-              </div>
-            </div>
-            <div class="form-field">
-              <label for="f-message">Opisz swój event *</label>
-              <textarea id="f-message" name="message" rows="6" placeholder="Rodzaj eventu, orientacyjna liczba gości, jak długo chcesz wypożyczyć robota..." required></textarea>
-              <div class="form-field__footer">
-                <span class="form-field__err" aria-live="polite"></span>
-                <span class="char-counter"><span id="charCount">0</span> / 600</span>
-              </div>
-            </div>
-            <div class="form-step__nav">
-              <button type="button" id="btnBack" class="btn-back">← Wróć</button>
-              <button type="submit" class="btn-submit">Wyślij zapytanie →</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
 
-  </main>
-  <footer class="stopka">
+      <div class="krok-form" id="krok2" hidden>
+        <div class="dwa">
+          <div class="pole" id="pole-imie">
+            <label for="pole-name">Imię i&nbsp;nazwisko *</label>
+            <input type="text" id="pole-name" name="name" required autocomplete="name" />
+            <p class="pole__blad" hidden>Podaj imię i&nbsp;nazwisko.</p>
+          </div>
+          <div class="pole" id="pole-mail">
+            <label for="pole-email">E-mail *</label>
+            <input type="email" id="pole-email" name="email" required autocomplete="email" />
+            <p class="pole__blad" hidden>Podaj poprawny adres e-mail.</p>
+          </div>
+          <div class="pole">
+            <label for="pole-company">Firma</label>
+            <input type="text" id="pole-company" name="company" autocomplete="organization" />
+          </div>
+          <div class="pole">
+            <label for="pole-phone">Telefon</label>
+            <input type="tel" id="pole-phone" name="phone" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="pole">
+          <label for="pole-message">Opis wydarzenia</label>
+          <textarea id="pole-message" name="message" maxlength="600" rows="4" placeholder="Program, godziny, czego oczekujesz od robota, jeśli już wiesz."></textarea>
+          <span class="pole__licznik"><span id="licznik">0</span> / 600</span>
+        </div>
+        <div class="form-akcje">
+          <button class="wstecz" type="button" id="wstecz">Wstecz</button>
+          <button class="btn btn--akcja" type="submit" id="wyslij">Sprawdź termin i cenę <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="pole__blad" id="blad-wysylki" role="alert" hidden></p>
+      </div>
+    </form>
+
+    <div class="rez__kontakty wejscie">
+      <ul class="osoby">
+        <li class="osoba"><div><p class="osoba__imie">Oliwier Latek</p><p class="label">Odbiera osobiście</p></div>
+          <a class="osoba__tel" href="tel:+48531408004" data-tel="kontakt">+48 531 408 004</a></li>
+        <li class="osoba"><div><p class="osoba__imie">Bartosz Wysocki</p><p class="label">Odbiera osobiście</p></div>
+          <a class="osoba__tel" href="tel:+48601499947" data-tel="kontakt">+48 601 499 947</a></li>
+        <li class="osoba"><p class="label">E-mail</p>
+          <a class="link osoba__mail" href="mailto:kontakt@33bots.pl" data-mail="kontakt">kontakt@33bots.pl</a></li>
+      </ul>
+      <p class="body-sm">Odpowiadamy zwykle w&nbsp;ciągu 30 minut. Wycenę od razu podamy przez telefon. Rezerwacja bez zaliczki. Zasięg: Cała Polska – transport w cenie, a poza nim cała Polska.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="stopka">
   <div class="wrap grid12">
     <div class="stopka__marka">
       <p class="stopka__logo">33BOTS</p>
@@ -629,20 +693,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <div class="pasek-odstep"></div>
 
-  <div class="cookie-banner" id="cookieBanner" aria-live="polite">
-    <p class="cookie-banner__text">Ta strona używa plików cookie do celów analitycznych. <a href="#" class="cookie-banner__link">Polityka prywatności</a></p>
-    <button class="cookie-banner__btn" id="cookieAccept">Rozumiem</button>
+<div class="cookies" id="cookies" aria-live="polite">
+  <p class="cookies__text">
+    Używamy plików cookie do celów analitycznych.
+    <a href="polityka-prywatnosci.html" class="link">Polityka prywatności</a>
+  </p>
+  <button id="cookiesOk" class="btn btn--sm">
+    Rozumiem
+  </button>
+</div>
+
+<div class="szuflada-tlo" id="szufladaTlo" hidden></div>
+<aside class="szuflada" id="szuflada" role="dialog" aria-modal="true" aria-labelledby="szufladaTytul" hidden>
+  <div class="szuflada__glowa">
+    <div>
+      <p class="label" id="szufladaPodpis"></p>
+      <h2 class="h3" id="szufladaTytul"></h2>
+    </div>
+    <button class="szuflada__zamknij" id="szufladaZamknij" type="button">Zamknij</button>
   </div>
+  <dl class="szuflada__liczby" id="szufladaLiczby"></dl>
+  <p class="body" id="szufladaOpis"></p>
+  <div class="szuflada__zdjecia" id="szufladaZdjecia"></div>
+  <p><a class="link" id="szufladaLink" href="#">Pełne case study <span aria-hidden="true">→</span></a></p>
+</aside>
 
-  <div class="sticky-cta">
-    <a href="#kontakt" class="btn-primary">Zapytaj o wycenę →</a>
-  </div>
-
-  <script src="js/strona.js?v=fb0a392e" defer></script>
-
-  <script src="main.js?v=3f48f25c"></script>
-  <!-- Albacross -->
-  <script>window._nQc="89159321";</script>
-  <script async src="https://serve.albacross.com/track.js"></script>
+<script src="js/landing.js?v=a5f864e7" defer></script>
+<script src="js/glowna.js?v=e2370ccc" defer></script>
+<script>window._nQc="89159321";</script>
+<script async src="https://serve.albacross.com/track.js"></script>
 </body>
 </html>

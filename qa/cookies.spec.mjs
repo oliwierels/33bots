@@ -1,12 +1,14 @@
 // Baner cookie ustępuje ConsentBoard (baner zgód ładowany przez GTM). Cztery warianty kodu:
-// strona główna, artykuły ze strona.js, stare podstrony z main.js i strony prawne z kodem w pliku.
+// strona główna, artykuły ze strona.js, stare podstrony z main.js i strony prawne z kodem w pliku;
+// najważniejsze podstrony w układzie strony głównej (oferty, miasta) mają kod strony głównej (js/landing.js).
 // Bez ConsentBoard baner działa jak dawniej; z ConsentBoard znika i nie wraca, dopóki ten się ładuje.
 import { test, expect } from '@playwright/test';
 
 const STRONY = [
   ['/', '#cookies', 'show'],
   ['/blog-atrakcje-eventowe.html', '#cookies', 'show'],
-  ['/oferta-targi.html', '#cookieBanner', 'visible'],
+  ['/robot-na-wesele.html', '#cookieBanner', 'visible'],
+  ['/oferta-targi.html', '#cookies', 'show'],
   ['/polityka-prywatnosci.html', '#cookies', 'show'],
 ];
 const SKRYPT_CMP = 'https://consentboard.com/cmp.js?id=test';
