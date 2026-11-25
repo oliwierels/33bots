@@ -1,0 +1,18 @@
+{
+ "https://33bots.de/roboter-abiball.html": {
+  "kod": 200,
+  "ok": true
+ },
+ "https://33bots.pl/robot-wynajem-gdansk.html": {
+  "kod": 200,
+  "ok": true
+ },
+ "https://33bots.pl/robot-wynajem-wroclaw.html": {
+  "kod": 200,
+  "ok": true
+ },
+ "https://33bots.pl/blog-kreatywne-sposoby-wykorzystania-robota.html": {
+  "kod": 200,
+  "ok": true
+ }
+}
