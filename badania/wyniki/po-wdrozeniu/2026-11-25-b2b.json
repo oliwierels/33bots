@@ -1,0 +1,70 @@
+{
+ "nowe": {
+  "https://33bots.pl/robot-na-dzien-bhp.html": {
+   "zywa": true,
+   "w_mapie": true,
+   "canonical": true,
+   "tytul": "Robot na Dzień BHP i tydzień bezpieczeństwa w zakładzie | 33bots"
+  },
+  "https://33bots.pl/robot-na-event-w-zakladzie-pracy.html": {
+   "zywa": true,
+   "w_mapie": true,
+   "canonical": true,
+   "tytul": "Robot na event w zakładzie pracy – spotkania z załogą | 33bots"
+  },
+  "https://33bots.pl/roboty-na-eventy-firmowe.html": {
+   "zywa": true,
+   "w_mapie": true,
+   "canonical": true,
+   "tytul": "Roboty na eventy firmowe – HR, BHP, marketing, agencje | 33bots"
+  },
+  "https://33bots.pl/oferta-targi.html": {
+   "zywa": true,
+   "w_mapie": true,
+   "canonical": true,
+   "tytul": "Wynajem robota na targi – humanoid na stoisko od 5500 zł | 33bots"
+  }
+ },
+ "przekierowania": {
+  "robot-na-targi.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/oferta-targi.html",
+   "zgodny": true
+  },
+  "robot-na-konferencje.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/oferta-konferencje.html",
+   "zgodny": true
+  },
+  "wynajem-robotow.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/",
+   "zgodny": true
+  },
+  "robot-na-event-it.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/oferta-konferencje.html",
+   "zgodny": true
+  },
+  "robot-na-event-korporacyjny.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/roboty-na-eventy-firmowe.html",
+   "zgodny": true
+  },
+  "robot-na-event-modowy.html": {
+   "kod": 301,
+   "cel": "https://33bots.pl/roboty-na-eventy-firmowe.html",
+   "zgodny": true
+  }
+ },
+ "abiball": {
+  "kod": 200,
+  "location": null,
+  "abikomitee": false,
+  "tytul": "Roboter für Privatfeiern — humanoiden Roboter mieten | 33bots",
+  "bajty": 27743,
+  "w_mapie_de": true
+ },
+ "mapa_liczba_url": 176,
+ "mapa_bez_starych": true
+}
