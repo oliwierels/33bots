@@ -1,0 +1,39 @@
+{
+ "blog-unitree-g1-robot.html": {
+  "kod": 200,
+  "frazy": true,
+  "tytul": "Unitree G1 – specyfikacja, możliwości i wynajem | 33bots",
+  "myslnik_wrecza": false
+ },
+ "blog-co-potrafi-robot-humanoidalny.html": {
+  "kod": 200,
+  "frazy": true,
+  "tytul": "Co potrafi robot humanoidalny? 12 umiejętności Unitree G1",
+  "myslnik_wrecza": false
+ },
+ "case-study-grupa-rekord-mspo.html": {
+  "kod": 200,
+  "frazy": true,
+  "tytul": "Robot na stoisku Grupy Rekord podczas MSPO | 33bots",
+  "myslnik_wrecza": false
+ },
+ "oferta-targi.html": {
+  "kod": 200,
+  "frazy": true,
+  "tytul": "Wynajem robota na targi – humanoid na stoisko od 5500 zł | 33bots",
+  "myslnik_wrecza": false
+ },
+ "wigilia-firmowa-pomysly.html": {
+  "kod": 200,
+  "frazy": true,
+  "tytul": "Wigilia firmowa: pomysły, atrakcje, menu i organizacja 2026",
+  "myslnik_wrecza": false
+ },
+ "css": {
+  "article_num": true,
+  "body_text_p": true
+ },
+ "faq_pytanie_bez_zmian": true,
+ "tytul_targi_ok": true,
+ "proby": 1
+}
