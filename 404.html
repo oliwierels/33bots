@@ -15,7 +15,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=27" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="css/site.css?v=4aa1b4e1" />
+  <link rel="stylesheet" href="css/podstrony.css?v=aa2ceca6" />
     <link rel="dns-prefetch" href="//serve.albacross.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
   <style>
@@ -25,16 +28,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .error-links { display: flex; gap: var(--s3); flex-wrap: wrap; justify-content: center; margin-top: var(--s6); }
   </style>
 </head>
-<body>
+<body class="podstrona">
   <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR7R7CJ3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="logo">33BOTS</a>
+  <div class="nav__in">
+    <a class="nav__logo" href="index.html" aria-label="33bots – strona główna">33BOTS</a>
+    <nav class="nav__menu" aria-label="Główna">
+      <a href="oferta-targi.html">Targi</a>
+      <a href="oferta-konferencje.html">Konferencje i gale</a>
+      <a href="roboty-na-eventy-firmowe.html">Eventy firmowe</a>
+      <a href="realizacje-wideo.html">Realizacje</a>
+      <a href="blog.html">Blog</a>
+      <a class="nav__drugi" href="wdrozenia.html">Zakup i wdrożenia</a>
+    </nav>
+    <div class="nav__akcje">
+      <a class="nav__tel" href="tel:+48531408004" data-tel="nav">+48 531 408 004</a>
+      <a class="link nav__cta link--akcja" href="index.html#kontakt" data-cta="nav">Sprawdź termin</a>
+      <button class="nav__przycisk" id="navPrzycisk" type="button" aria-expanded="false" aria-controls="navPanel">Menu</button>
     </div>
-  </header>
+  </div>
+  <div class="nav__panel" id="navPanel" hidden>
+    <ul>
+      <li><a href="oferta-targi.html">Targi</a></li>
+      <li><a href="oferta-konferencje.html">Konferencje i gale</a></li>
+      <li><a href="oferta-dni-otwarte.html">Dni otwarte i showroomy</a></li>
+      <li><a href="roboty-na-eventy-firmowe.html">Eventy firmowe</a></li>
+      <li><a href="atrakcje-na-event.html">Wszystkie atrakcje</a></li>
+      <li><a href="realizacje-wideo.html">Realizacje</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="wdrozenia.html">Zakup i wdrożenia</a></li>
+    </ul>
+    <a class="nav__tel" href="tel:+48531408004" data-tel="menu">+48 531 408 004</a>
+    <a class="btn btn--akcja" href="index.html#kontakt" data-cta="nav">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
+  </div>
+</header>
   <main>
 
   <div class="error-page">
@@ -57,6 +87,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   </main>
+
+  <script src="js/strona.js?v=fb0a392e" defer></script>
 
   <script src="main.js?v=3f48f25c"></script>
   <!-- Albacross -->

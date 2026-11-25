@@ -31,6 +31,13 @@ if [ -f tresci/buduj_okazje.py ]; then
   python3 tresci/buduj_okazje.py
 fi
 
+# Stare podstrony (style.css) → rama nowego systemu wizualnego: nagłówek, stopka, pasek mobilny,
+# arkusz css/podstrony.css. Treść <main> i <head> (poza arkuszem) bez zmian.
+if [ -f tresci/podstrony/przeszczep.py ]; then
+  echo "Przenoszę podstrony na nową ramę…"
+  python3 tresci/podstrony/przeszczep.py
+fi
+
 echo "Kompiluję arkusz stylów…"
 npx --yes tailwindcss@3.4.17 \
   -c tailwind.config.js \
@@ -55,6 +62,13 @@ for STRONA in $(grep -rl 'css/site\.css' --include='*.html' . | sed 's|^\./||' |
   sed -i -E "s|href=\"css/site\.css(\?v=[^\"]*)?\"|href=\"css/site.css?v=${WERSJA_SITE}\"|g" "${STRONA}"
   echo "  ${STRONA} → css/site.css?v=${WERSJA_SITE}"
 done
+
+# css/podstrony.css — warstwa podstron w nowym systemie (treść starych podstron).
+WERSJA_PODSTRONY=$(md5sum css/podstrony.css | cut -c1-8)
+for STRONA in $(grep -rl 'css/podstrony\.css' --include='*.html' . | sed 's|^\./||' | sort); do
+  sed -i -E "s|href=\"css/podstrony\.css(\?v=[^\"]*)?\"|href=\"css/podstrony.css?v=${WERSJA_PODSTRONY}\"|g" "${STRONA}"
+done
+echo "  css/podstrony.css?v=${WERSJA_PODSTRONY} na $(grep -rl 'css/podstrony\.css' --include='*.html' . | wc -l) stronach"
 
 # main.js — skrypt starych podstron. Wersja w adresie z tego samego powodu:
 # stara kopia z pamięci przeglądarki nie pasowałaby do nowego HTML.

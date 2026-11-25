@@ -21,12 +21,19 @@
     tloNav();
   }
 
-  // Pasek mobilny: po minięciu nagłówka artykułu.
+  // Pasek mobilny: po minięciu nagłówka artykułu albo hero podstrony.
+  // Chowa się przy formularzu kontaktowym, żeby nie zasłaniał przycisku „Wyślij”.
   const pasek = document.getElementById('pasekMobilny');
-  const glowa = document.querySelector('.art__glowa');
-  if (pasek && glowa && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([w]) => pasek.classList.toggle('pasek--widoczny', !w.isIntersecting),
+  const glowa = document.querySelector('.art__glowa, main .hero');
+  const formularz = document.getElementById('kontakt');
+  if (pasek && 'IntersectionObserver' in window) {
+    let zaGlowa = !glowa, przyFormularzu = false;
+    const odswiez = () => pasek.classList.toggle('pasek--widoczny', zaGlowa && !przyFormularzu);
+    if (glowa) new IntersectionObserver(([w]) => { zaGlowa = !w.isIntersecting; odswiez(); },
       { rootMargin: '-80px 0px 0px 0px' }).observe(glowa);
+    if (formularz && formularz.tagName !== 'BODY') new IntersectionObserver(([w]) => { przyFormularzu = w.isIntersecting; odswiez(); })
+      .observe(formularz);
+    odswiez();
   }
 
   // Akordeon FAQ.

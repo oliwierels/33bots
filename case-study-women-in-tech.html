@@ -109,7 +109,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <script>history.scrollRestoration = 'manual';</script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=27" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/space-grotesk-latin-wght-normal.woff2" />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="css/site.css?v=4aa1b4e1" />
+  <link rel="stylesheet" href="css/podstrony.css?v=aa2ceca6" />
     <link rel="dns-prefetch" href="//serve.albacross.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" />
   <style>
@@ -139,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .faq-item__a { font-size: 0.95rem; color: var(--text-2); line-height: 1.75; margin: 0; }
   </style>
 </head>
-<body>
+<body class="podstrona">
   <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR7R7CJ3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -147,45 +150,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="index.html" class="logo">33BOTS</a>
-      <nav class="nav__links">
-        <div class="nav__dropdown">
-          <button class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button">Oferta <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="nav__dropdown-menu">
-            <a href="wypozyczenie-robota.html">Wynajem robota humanoidalnego</a>
-            <a href="oferta-targi.html">Targi</a>
-            <a href="oferta-konferencje.html">Konferencje i Gale</a>
-            <a href="oferta-dni-otwarte.html">Dni otwarte i showroomy</a>
-            <a href="atrakcje-na-event.html">Wszystkie atrakcje</a>
-          </div>
-        </div>
-        <a href="index.html#o-nas">O nas</a>
-        <a href="index.html#eventy">Eventy</a>
-        <a href="blog.html">Blog</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+  <div class="nav__in">
+    <a class="nav__logo" href="index.html" aria-label="33bots – strona główna">33BOTS</a>
+    <nav class="nav__menu" aria-label="Główna">
+      <a href="oferta-targi.html">Targi</a>
+      <a href="oferta-konferencje.html">Konferencje i gale</a>
+      <a href="roboty-na-eventy-firmowe.html">Eventy firmowe</a>
+      <a href="realizacje-wideo.html">Realizacje</a>
+      <a href="blog.html">Blog</a>
+      <a class="nav__drugi" href="wdrozenia.html">Zakup i wdrożenia</a>
+    </nav>
+    <div class="nav__akcje">
+      <a class="nav__tel" href="tel:+48531408004" data-tel="nav">+48 531 408 004</a>
+      <a class="link nav__cta link--akcja" href="#kontakt" data-cta="nav">Sprawdź termin</a>
+      <button class="nav__przycisk" id="navPrzycisk" type="button" aria-expanded="false" aria-controls="navPanel">Menu</button>
     </div>
-  </header>
+  </div>
+  <div class="nav__panel" id="navPanel" hidden>
+    <ul>
+      <li><a href="oferta-targi.html">Targi</a></li>
+      <li><a href="oferta-konferencje.html">Konferencje i gale</a></li>
+      <li><a href="oferta-dni-otwarte.html">Dni otwarte i showroomy</a></li>
+      <li><a href="roboty-na-eventy-firmowe.html">Eventy firmowe</a></li>
+      <li><a href="atrakcje-na-event.html">Wszystkie atrakcje</a></li>
+      <li><a href="realizacje-wideo.html">Realizacje</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="wdrozenia.html">Zakup i wdrożenia</a></li>
+    </ul>
+    <a class="nav__tel" href="tel:+48531408004" data-tel="menu">+48 531 408 004</a>
+    <a class="btn btn--akcja" href="#kontakt" data-cta="nav">Sprawdź termin i cenę <span aria-hidden="true">→</span></a>
+  </div>
+</header>
   <main>
 
   <nav class="crumbs" aria-label="Okruszki" style="max-width:1200px; margin:0 auto; padding:calc(var(--s8) + 48px) var(--s5) 0; font-size:0.78rem; letter-spacing:0.02em;">
     <a href="index.html" style="color:var(--text-3); text-decoration:none;">Strona główna</a> <span aria-hidden="true" style="color:var(--text-3);">›</span> <a href="realizacje-wideo.html" style="color:var(--text-3); text-decoration:none;">Realizacje wideo</a> <span aria-hidden="true" style="color:var(--text-3);">›</span> <span style="color:var(--text-2);">Case study: Women in Tech Summit</span>
   </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <span class="mobile-menu__label">Oferta</span>
-    <a href="wypozyczenie-robota.html" class="mobile-menu__sub">Wynajem robota humanoidalnego</a>
-    <a href="oferta-targi.html" class="mobile-menu__sub">Targi</a>
-    <a href="oferta-konferencje.html" class="mobile-menu__sub">Konferencje i Gale</a>
-    <a href="oferta-dni-otwarte.html" class="mobile-menu__sub">Dni otwarte i showroomy</a>
-    <a href="atrakcje-na-event.html" class="mobile-menu__sub">Wszystkie atrakcje</a>
-    <a href="index.html#o-nas">O nas</a>
-    <a href="index.html#eventy">Eventy</a>
-    <a href="blog.html">Blog</a>
-    <a href="#kontakt">Kontakt</a>
-  </div>
 
   <section class="hero">
     <div class="hero__content">
@@ -349,42 +349,109 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   </main>
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <span class="logo">33BOTS</span>
-        <p class="footer__tagline"><a href="index.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px;">Wynajem robotów humanoidalnych</a> · Polska</p>
-        <div class="footer__nap">
-          <a href="tel:+48531408004" class="footer__nap-item">+48 531 408 004</a>
-          <a href="mailto:kontakt@33bots.pl" class="footer__nap-item">kontakt@33bots.pl</a>
-        </div>
-      </div>
-      <div class="footer__links">
-        <a href="atrakcje-na-event.html">Atrakcje na event</a>
-        <a href="realizacje-wideo.html">Realizacje</a>
-        <a href="case-study-women-in-tech.html">Case study</a>
-        <a href="index.html#o-nas">O nas</a>
-        <a href="index.html#eventy">Eventy</a>
-        <a href="blog.html">Blog</a>
-        <a href="#kontakt">Kontakt</a>
-      </div>
-      <div class="footer__right">
-        <div class="footer__socials">
-          <a href="https://www.instagram.com/33bots_/" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Instagram</a>
-          <a href="https://www.tiktok.com/@aimforum" target="_blank" rel="noopener noreferrer" class="footer__social">↗ TikTok</a>
-          <a href="https://www.facebook.com/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ Facebook</a>
-          <a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener noreferrer" class="footer__social">↗ LinkedIn</a>
-        </div>
-        <span class="footer__copy">© 2026 33bots. Wszelkie prawa zastrzeżone. · <a href="regulamin.html" style="color:inherit">Regulamin</a> · <a href="polityka-prywatnosci.html" style="color:inherit">Polityka prywatności</a></span>
-        <span class="footer__copy footer__jezyki"><a href="https://33bots.lt/" hreflang="lt" lang="lt" style="color:inherit">Lietuvių – 33bots.lt</a> · <a href="https://33bots.de/" hreflang="de" lang="de" style="color:inherit">Deutsch – 33bots.de</a> · <a href="https://33bots.at/" hreflang="de-AT" lang="de-AT" style="color:inherit">Österreich – 33bots.at</a></span>
+  <footer class="stopka">
+  <div class="wrap grid12">
+    <div class="stopka__marka">
+      <p class="stopka__logo">33BOTS</p>
+      <p>Wynajem robotów humanoidalnych · cała Polska</p>
+      <p><a href="tel:+48531408004" data-tel="stopka">+48 531 408 004</a> · <a href="mailto:kontakt@33bots.pl" data-mail="stopka">kontakt@33bots.pl</a></p>
+      <p data-jezyki><a href="https://33bots.lt/" hreflang="lt" lang="lt">Lietuvių – 33bots.lt</a> · <a href="https://33bots.de/" hreflang="de" lang="de">Deutsch – 33bots.de</a> · <a href="https://33bots.at/" hreflang="de-AT" lang="de-AT">Österreich – 33bots.at</a></p>
+    </div>
+    <ul class="stopka__kol" aria-label="Oferta">
+      <li><a href="wdrozenia.html">Zakup i wdrożenia</a></li>
+      <li><a href="sklep.html">Sklep – zakup robota</a></li>
+      <li><a href="oferta-targi.html">Targi</a></li>
+      <li><a href="oferta-konferencje.html">Konferencje</a></li>
+      <li><a href="realizacje-wideo.html">Realizacje</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="wypozyczenie-robota.html">Wypożyczenie robota</a></li>
+    </ul>
+    <ul class="stopka__kol" aria-label="Zastosowania">
+      <li><a href="robot-na-gale.html">Gale i&nbsp;jubileusze</a></li>
+      <li><a href="roboty-na-eventy-firmowe.html">Eventy korporacyjne</a></li>
+      <li><a href="robot-na-impreze-firmowa.html">Imprezy firmowe</a></li>
+      <li><a href="robot-na-otwarcie.html">Otwarcia i&nbsp;premiery</a></li>
+      <li><a href="robot-na-dni-miasta.html">Dni miasta i&nbsp;festyny</a></li>
+      <li><a href="robot-na-piknik-firmowy.html">Pikniki firmowe</a></li>
+      <li><a href="robot-na-wesele.html">Wesela</a></li>
+    </ul>
+    <ul class="stopka__kol" aria-label="Social media">
+      <li><a href="https://www.instagram.com/33bots_/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@aimforum" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.linkedin.com/company/33bots" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <ul class="stopka__kol" aria-label="Więcej">
+      <li><a href="case-study-women-in-tech.html">Case study</a></li>
+      <li><a href="https://www.facebook.com/33bots">Facebook</a></li>
+    </ul>
+    <ul class="stopka__kol" aria-label="Dokumenty">
+      <li><a href="regulamin.html">Regulamin</a></li>
+      <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+    </ul>
+    <div class="stopka__poradnik">
+      <p>Poradnik dla organizatorów</p>
+      <div>
+        <a href="atrakcje-na-event.html">Atrakcje na event – 40 pomysłów</a>
+        <a href="atrakcje-na-impreze-firmowa.html">Atrakcje na imprezę firmową</a>
+        <a href="wynajem-atrakcji-na-imprezy.html">Wynajem atrakcji na imprezy</a>
+        <a href="atrakcje-na-wesele.html">Atrakcje na wesele</a>
+        <a href="ile-kosztuje-wesele.html">Ile kosztuje wesele w&nbsp;2026</a>
+        <a href="blog.html">Wszystkie poradniki</a>
       </div>
     </div>
-  </footer>
+    <details class="stopka__miasta">
+      <summary>Wynajem robota w&nbsp;Twoim mieście</summary>
+      <div>
+        <a href="robot-wynajem-warszawa.html">Warszawa</a>
+        <a href="robot-wynajem-krakow.html">Kraków</a>
+        <a href="robot-wynajem-wroclaw.html">Wrocław</a>
+        <a href="robot-wynajem-poznan.html">Poznań</a>
+        <a href="robot-wynajem-gdansk.html">Gdańsk</a>
+        <a href="robot-wynajem-katowice.html">Katowice</a>
+        <a href="robot-wynajem-lodz.html">Łódź</a>
+        <a href="robot-wynajem-szczecin.html">Szczecin</a>
+        <a href="robot-wynajem-bydgoszcz.html">Bydgoszcz</a>
+        <a href="robot-wynajem-lublin.html">Lublin</a>
+        <a href="robot-wynajem-bialystok.html">Białystok</a>
+        <a href="robot-wynajem-rzeszow.html">Rzeszów</a>
+        <a href="robot-wynajem-torun.html">Toruń</a>
+        <a href="robot-wynajem-olsztyn.html">Olsztyn</a>
+        <a href="robot-wynajem-kielce.html">Kielce</a>
+        <a href="robot-wynajem-opole.html">Opole</a>
+        <a href="robot-wynajem-gliwice.html">Gliwice</a>
+        <a href="robot-wynajem-czestochowa.html">Częstochowa</a>
+        <a href="robot-wynajem-radom.html">Radom</a>
+        <a href="robot-wynajem-zielona-gora.html">Zielona Góra</a>
+        <a href="robot-wynajem-plock.html">Płock</a>
+        <a href="robot-wynajem-elblag.html">Elbląg</a>
+        <a href="robot-wynajem-walbrzych.html">Wałbrzych</a>
+        <a href="robot-wynajem-koszalin.html">Koszalin</a>
+        <a href="robot-wynajem-legnica.html">Legnica</a>
+        <a href="robot-wynajem-kalisz.html">Kalisz</a>
+        <a href="robot-wynajem-tarnow.html">Tarnów</a>
+        <a href="robot-wynajem-slupsk.html">Słupsk</a>
+        <a href="robot-wynajem-nowy-sacz.html">Nowy Sącz</a>
+        <a href="robot-wynajem-pila.html">Piła</a>
+        <a href="robot-wynajem-karpacz.html">Karpacz</a>
+        <a href="robot-wynajem-mikolajki.html">Mikołajki</a>
+      </div>
+    </details>
+    <p class="stopka__prawa">© 2026 33bots. Wszelkie prawa zastrzeżone.</p>
+  </div>
+</footer>
+
+<div class="pasek" id="pasekMobilny">
+  <a class="btn btn--akcja" href="#kontakt" data-cta="sticky">Sprawdź termin <span aria-hidden="true">→</span></a>
+  <a class="pasek__tel" href="tel:+48531408004" data-tel="sticky" aria-label="Zadzwoń: +48 531 408 004">Zadzwoń</a>
+</div>
+<div class="pasek-odstep"></div>
 
   <div class="cookie-banner" id="cookieBanner" aria-live="polite">
     <p class="cookie-banner__text">Ta strona używa plików cookie do celów analitycznych. <a href="#" class="cookie-banner__link">Polityka prywatności</a></p>
     <button class="cookie-banner__btn" id="cookieAccept">Rozumiem</button>
   </div>
+
+  <script src="js/strona.js?v=fb0a392e" defer></script>
 
   <script src="main.js?v=3f48f25c"></script>
   <!-- Albacross -->
