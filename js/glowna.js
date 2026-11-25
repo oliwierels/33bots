@@ -33,23 +33,8 @@
     czesc();
   }
 
-  /* ——— Liczniki: liczą od zera, kiedy wchodzą na ekran (te widoczne od razu stoją) ——— */
-  const liczniki = [...document.querySelectorAll('[data-licz]')].filter((el) => +el.dataset.licz > 0);
-  if (!reduce && 'IntersectionObserver' in window) {
-    const liczDo = (el) => {
-      const cel = +el.dataset.licz, t0 = performance.now(), czas = 1500;
-      const krok = (t) => {
-        const p = Math.min(1, (t - t0) / czas), e = 1 - Math.pow(2, -10 * p);
-        el.textContent = kwota(cel * (p < 1 ? e : 1));
-        if (p < 1) requestAnimationFrame(krok);
-      };
-      requestAnimationFrame(krok);
-    };
-    const io = new IntersectionObserver((wpisy) => wpisy.forEach((w) => {
-      if (w.isIntersecting) { io.unobserve(w.target); liczDo(w.target); }
-    }), { threshold: 0.8 });
-    liczniki.forEach((el) => { if (el.getBoundingClientRect().top > innerHeight) { el.textContent = '0'; io.observe(el); } });
-  }
+  /* ——— Liczby w pasku skali stoją od początku ———
+     Odliczanie od zera pokazywało po drodze np. „99+” zamiast „100+”, więc go nie ma. */
 
   /* ——— Występ: krok najbliżej linii czytania ustawia pozę robota ———
      Desktop: linia w połowie ekranu. Telefon: tuż pod przyklejoną sceną. */
@@ -105,12 +90,14 @@
     }
   }
 
-  /* ——— Kalkulator ceny ———
-     Pełny dzień od 5 500 zł netto; dwa dni i więcej: 15% taniej za każdy dzień;
-     wejście (kilka godzin) wyceniamy indywidualnie, zawsze taniej niż pełny dzień. */
+  /* ——— Kalkulator ceny (cennik 33bots) ———
+     8 h na miejscu od 5 500 zł netto, 4 h = 6/8 tej kwoty (4 125 zł), 2 h = połowa (2 750 zł);
+     dwa dni: −10% od całości, trzy dni i więcej: −15%. Godziny po 22:00 liczone × 1,5. */
   const kalk = document.getElementById('kalkulator');
   if (kalk) {
     const DZIEN = 5500, RABAT = 0.85;
+    const RABAT_2 = 0.9, WEJSCIE = DZIEN / 2, CZTERY = DZIEN * 6 / 8;
+    const rabat = (d) => (d >= 3 ? RABAT : RABAT_2);
     const el = (id) => document.getElementById(id);
     const pole = { dni: el('kalkDni'), ile: el('kalkIle'), etykieta: el('kalkEtykieta'), od: el('kalkOd'), kwota: el('kalkKwota'), zl: el('kalkZl'), opis: el('kalkOpis') };
     const minus = kalk.querySelector('[data-dni="-1"]'), plus = kalk.querySelector('[data-dni="1"]');
@@ -133,23 +120,23 @@
       const f = wybor();
       pole.dni.hidden = f !== 'dni';
       if (f === 'wejscie') {
-        pole.etykieta.textContent = 'Wejście · kilka godzin · cena netto';
-        pole.od.textContent = 'poniżej';
-        pokazKwote(DZIEN);
-        pole.opis.textContent = 'Kwotę podajemy po krótkiej rozmowie o programie — zawsze taniej niż pełny dzień.';
+        pole.etykieta.textContent = 'Wejście · 2 godziny · cena netto';
+        pole.od.textContent = 'od';
+        pokazKwote(WEJSCIE);
+        pole.opis.textContent = `4 godziny od ${kwota(CZTERY)} zł netto. Godziny po 22:00 liczymy razy 1,5.`;
       } else if (f === 'dni') {
-        const suma = dni * DZIEN * RABAT;
+        const suma = dni * DZIEN * rabat(dni);
         pole.ile.textContent = String(dni);
         minus.disabled = dni <= 2; plus.disabled = dni >= 7;
         pole.etykieta.textContent = `${dni} dni · cena netto`;
         pole.od.textContent = 'od';
         pokazKwote(suma);
-        pole.opis.textContent = `${dni} × ${kwota(DZIEN * RABAT)} zł zamiast ${dni} × ${kwota(DZIEN)} zł — oszczędzasz ${kwota(dni * DZIEN * (1 - RABAT))} zł.`;
+        pole.opis.textContent = `${dni} dni po 8 godzin, rabat ${Math.round((1 - rabat(dni)) * 100)}% od całości. Oszczędzasz ${kwota(dni * DZIEN * (1 - rabat(dni)))} zł.`;
       } else {
-        pole.etykieta.textContent = 'Pełny dzień · cena netto';
+        pole.etykieta.textContent = 'Pełny dzień · 8 godzin · cena netto';
         pole.od.textContent = 'od';
         pokazKwote(DZIEN);
-        pole.opis.textContent = 'Ostateczna kwota zależy od lokalizacji i długości trwania.';
+        pole.opis.textContent = 'Ostateczna kwota zależy od miejsca wydarzenia i godzin pracy.';
       }
     };
     kalk.addEventListener('change', () => { ruszony = true; licz(); });
@@ -168,9 +155,9 @@
       if (!ruszony || opis.value.trim()) return;
       const f = wybor();
       const zl = (n) => kwota(n).replace(/\u00a0/g, ' '); // w polu tekstowym zwykła spacja
-      opis.value = f === 'wejscie' ? 'Interesuje mnie krótsze wejście (kilka godzin).'
-        : f === 'dni' ? `Interesuje mnie ${dni} dni (od ${zl(dni * DZIEN * RABAT)} zł netto).`
-          : `Interesuje mnie pełny dzień (od ${zl(DZIEN)} zł netto).`;
+      opis.value = f === 'wejscie' ? 'Interesuje mnie krótsze wejście (2 albo 4 godziny).'
+        : f === 'dni' ? `Interesuje mnie ${dni} dni (od ${zl(dni * DZIEN * rabat(dni))} zł netto).`
+          : `Interesuje mnie pełny dzień, 8 godzin (od ${zl(DZIEN)} zł netto).`;
       if (licznik) licznik.textContent = opis.value.length;
     });
   }

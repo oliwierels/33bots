@@ -885,19 +885,22 @@ class Strona:
         s, n = re.subn(r"const POWITANIA = \[[^\]]*\];", lambda _: 'const POWITANIA = ' + js(rb['powitania']).replace('","', '", "') + ';', s)
         assert n == 1, f'{o}: nie znaleziono POWITANIA'
         s = podmien(s, 'const DZIEN = 5500, RABAT = 0.85;', f'const DZIEN = {k["dzien_kwota"]}, RABAT = 0.85;', opis=o)
-        s = podmien(s, "pole.etykieta.textContent = 'Wejście · kilka godzin · cena netto';", f"pole.etykieta.textContent = {js(k['etykieta_wejscie'])};", opis=o)
-        s = podmien(s, "pole.od.textContent = 'poniżej';", f"pole.od.textContent = {js(k['ponizej'])};", opis=o)
-        s = podmien(s, "pole.opis.textContent = 'Kwotę podajemy po krótkiej rozmowie o programie — zawsze taniej niż pełny dzień.';",
-                    f"pole.opis.textContent = {js(k['opis_wejscie'])};", opis=o)
+        # .pl liczy wejście z cennika godzinowego i rabat 10% za dwa dni; rynki zostają przy swoim:
+        # wejście „poniżej” ceny dnia i ten sam rabat od drugiego dnia (chyba że rynek poda rabat_2).
+        s = podmien(s, 'const RABAT_2 = 0.9,', f"const RABAT_2 = {k.get('rabat_2', 0.85)},", opis=o)
+        s = podmien(s, "pole.etykieta.textContent = 'Wejście · 2 godziny · cena netto';\n        pole.od.textContent = 'od';\n        pokazKwote(WEJSCIE);\n"
+                       "        pole.opis.textContent = `4 godziny od ${kwota(CZTERY)} zł netto. Godziny po 22:00 liczymy razy 1,5.`;",
+                    f"pole.etykieta.textContent = {js(k['etykieta_wejscie'])};\n        pole.od.textContent = {js(k['ponizej'])};\n        pokazKwote(DZIEN);\n"
+                    f"        pole.opis.textContent = {js(k['opis_wejscie'])};", opis=o)
         s = podmien(s, "pole.etykieta.textContent = `${dni} dni · cena netto`;", f"pole.etykieta.textContent = {k['etykieta_dni']};", opis=o)
         s = podmien(s, "pole.od.textContent = 'od';", f"pole.od.textContent = {js(k['od'])};", n=2, opis=o)
-        s = podmien(s, "pole.opis.textContent = `${dni} × ${kwota(DZIEN * RABAT)} zł zamiast ${dni} × ${kwota(DZIEN)} zł — oszczędzasz ${kwota(dni * DZIEN * (1 - RABAT))} zł.`;",
+        s = podmien(s, "pole.opis.textContent = `${dni} dni po 8 godzin, rabat ${Math.round((1 - rabat(dni)) * 100)}% od całości. Oszczędzasz ${kwota(dni * DZIEN * (1 - rabat(dni)))} zł.`;",
                     f"pole.opis.textContent = {k['opis_dni']};", opis=o)
-        s = podmien(s, "pole.etykieta.textContent = 'Pełny dzień · cena netto';", f"pole.etykieta.textContent = {js(k['etykieta_dzien'])};", opis=o)
-        s = podmien(s, "pole.opis.textContent = 'Ostateczna kwota zależy od lokalizacji i długości trwania.';", f"pole.opis.textContent = {js(k['opis_dzien'])};", opis=o)
-        s = podmien(s, "opis.value = f === 'wejscie' ? 'Interesuje mnie krótsze wejście (kilka godzin).'", f"opis.value = f === 'wejscie' ? {k['zgloszenie_wejscie']}", opis=o)
-        s = podmien(s, ": f === 'dni' ? `Interesuje mnie ${dni} dni (od ${zl(dni * DZIEN * RABAT)} zł netto).`", f": f === 'dni' ? {k['zgloszenie_dni']}", opis=o)
-        s = podmien(s, ": `Interesuje mnie pełny dzień (od ${zl(DZIEN)} zł netto).`;", f": {k['zgloszenie_dzien']};", opis=o)
+        s = podmien(s, "pole.etykieta.textContent = 'Pełny dzień · 8 godzin · cena netto';", f"pole.etykieta.textContent = {js(k['etykieta_dzien'])};", opis=o)
+        s = podmien(s, "pole.opis.textContent = 'Ostateczna kwota zależy od miejsca wydarzenia i godzin pracy.';", f"pole.opis.textContent = {js(k['opis_dzien'])};", opis=o)
+        s = podmien(s, "opis.value = f === 'wejscie' ? 'Interesuje mnie krótsze wejście (2 albo 4 godziny).'", f"opis.value = f === 'wejscie' ? {k['zgloszenie_wejscie']}", opis=o)
+        s = podmien(s, ": f === 'dni' ? `Interesuje mnie ${dni} dni (od ${zl(dni * DZIEN * rabat(dni))} zł netto).`", f": f === 'dni' ? {k['zgloszenie_dni']}", opis=o)
+        s = podmien(s, ": `Interesuje mnie pełny dzień, 8 godzin (od ${zl(DZIEN)} zł netto).`;", f": {k['zgloszenie_dzien']};", opis=o)
         if r['panel_dostepnosci']:
             s = podmien(s, "const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;",
                         "const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches\n"
