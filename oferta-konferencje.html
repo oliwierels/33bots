@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "",
+      "name": "Ile miejsca na scenie lub w sali potrzebuje robot?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Do swobodnego działania G1 potrzebuje przestrzeni ok. 2×2 m. Na scenie wystarczy jeden wyznaczony punkt. Robot nie musi się przemieszczać, by robić wrażenie. Przy ustawieniu w strefie recepcji lub przy wejściu zalecamy min. 3 m² wolnej przestrzeni wokół robota, by goście mogli swobodnie podchodzić i pozować do zdjęć."
@@ -405,23 +405,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="body">Wyceniamy występ, a&nbsp;nie wypożyczenie sprzętu. W&nbsp;każdym formacie robot przyjeżdża z&nbsp;operatorem, scenariuszem i&nbsp;wiedzą o&nbsp;Twoim wydarzeniu.</p>
     </div>
     <!-- Kalkulator: te same trzy formaty i ceny co dotąd, wybór liczy kwotę od razu.
-         Bez JS widać wszystkie trzy opisy i cenę pełnego dnia. Kilka dni: 15% taniej
-         za każdy dzień (FAQ), czyli dni × 5 500 zł × 0,85. -->
+         Bez JS widać wszystkie trzy opisy i cenę pełnego dnia. Cennik: 8 h od 5 500 zł, 4 h od 4 125 zł,
+         2 h od 2 750 zł netto; dwa dni −10% od całości, trzy dni i więcej −15% (FAQ). -->
     <div class="kalk wejscie" id="kalkulator">
       <fieldset class="kalk__formaty">
         <legend class="label">Wybierz format</legend>
         <label class="format"><input type="radio" name="kalk_format" value="wejscie" />
           <span class="format__glowa"><span class="h3">Wejście</span><span class="format__znak" aria-hidden="true"></span></span>
-          <span class="body">Kilka godzin w&nbsp;programie wydarzenia – otwarcie, blok na scenie, godziny szczytu na stoisku.</span>
-          <span class="label format__cena-opis">Wycena indywidualna · zawsze taniej niż pełny dzień</span></label>
+          <span class="body">Dwie albo cztery godziny w&nbsp;programie wydarzenia: otwarcie, blok na scenie, godziny szczytu na stoisku.</span>
+          <span class="label format__cena-opis">2&nbsp;h od 2&nbsp;750&nbsp;zł · 4&nbsp;h od 4&nbsp;125&nbsp;zł netto</span></label>
         <label class="format"><input type="radio" name="kalk_format" value="dzien" checked />
           <span class="format__glowa"><span class="h3">Pełny dzień</span><span class="format__znak" aria-hidden="true"></span></span>
-          <span class="body">Robot do dyspozycji przez cały dzień wydarzenia, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.</span>
+          <span class="body">Osiem godzin na miejscu, z&nbsp;operatorem i&nbsp;zapasowymi bateriami.</span>
           <span class="label format__cena-opis">od 5&nbsp;500&nbsp;zł netto</span></label>
         <label class="format"><input type="radio" name="kalk_format" value="dni" />
           <span class="format__glowa"><span class="h3">Targi</span><span class="format__znak" aria-hidden="true"></span></span>
-          <span class="body">Dwa dni i&nbsp;więcej – targi, festiwale, roadshow.</span>
-          <span class="label format__cena-opis">−15% za każdy dzień</span></label>
+          <span class="body">Dwa dni i&nbsp;więcej: targi, festiwale, roadshow.</span>
+          <span class="label format__cena-opis">2 dni −10% · od 3 dni −15%</span></label>
       </fieldset>
       <div class="kalk__wynik">
         <div class="kalk__dni" id="kalkDni" hidden>
@@ -432,12 +432,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="kalk__krok" type="button" data-dni="1" aria-label="Jeden dzień więcej">+</button>
           </div>
         </div>
-        <p class="label" id="kalkEtykieta">Pełny dzień · cena netto</p>
+        <p class="label" id="kalkEtykieta">Pełny dzień · 8 godzin · cena netto</p>
         <p class="kalk__cena" aria-live="polite"><span class="kalk__od" id="kalkOd">od</span> <span id="kalkKwota">5&nbsp;500</span><span class="kalk__zl" id="kalkZl">&nbsp;zł</span></p>
-        <p class="body-sm" id="kalkOpis">Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
+        <p class="body-sm" id="kalkOpis">Ostateczna kwota zależy od miejsca wydarzenia i&nbsp;godzin pracy.</p>
       </div>
     </div>
-    <p class="body formaty__wcenie">W&nbsp;cenie: operator, transport, branding (logo, kod QR), ubezpieczenie OC. <strong>Płacisz po wydarzeniu.</strong> Ostateczna kwota zależy od lokalizacji i&nbsp;długości trwania.</p>
+    <p class="body formaty__wcenie">W&nbsp;cenie: operator, transport, branding (logo, kod QR), ubezpieczenie OC. <strong>Płacisz po wydarzeniu.</strong> Ostateczna kwota zależy od miejsca wydarzenia i&nbsp;godzin pracy.</p>
     <p class="formaty__cta"><a class="btn btn--akcja" href="#kontakt" data-cta="formaty">Sprawdź termin i dokładną cenę <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
@@ -752,7 +752,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>window.SLAJDY = [{"src": "realizacja-gala-palac.jpg", "alt": "Robot humanoidalny w smokingu we wnętrzu pałacowej sali balowej", "klient": "Drezdeńska Noc Zamków", "gdzie": "Drezno"}, {"src": "realizacja-eco-studio-scena.jpg", "alt": "Robot humanoidalny na scenie finału Eco Studio w czerwonym świetle", "klient": "Finał Eco Studio ELECTRO-SYSTEM", "gdzie": "Warszawa"}, {"src": "realizacja-women-in-tech-wybieg.jpg", "alt": "Robot humanoidalny na różowym wybiegu Women in Tech Summit", "klient": "Women in Tech Summit", "gdzie": "EXPO XXI, Warszawa"}, {"src": "realizacja-gala-wsrod-gosci.jpg", "alt": "Robot humanoidalny wśród gości gali", "klient": "Drezdeńska Noc Zamków", "gdzie": "Drezno"}, {"src": "realizacja-kopernik-noc.jpg", "alt": "Robot humanoidalny w przestrzeni wystawy Centrum Nauki Kopernik po zmroku", "klient": "Centrum Nauki Kopernik", "gdzie": "Warszawa"}];</script>
 <script src="js/landing.js?v=a5f864e7" defer></script>
-<script src="js/glowna.js?v=e2370ccc" defer></script>
+<script src="js/glowna.js?v=35a22f80" defer></script>
 <script>window._nQc="89159321";</script>
 <script async src="https://serve.albacross.com/track.js"></script>
 </body>

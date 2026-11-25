@@ -76,8 +76,8 @@ test.describe('kalkulator ceny', () => {
     await expect(page.locator('#kalkDni')).toBeHidden();
     await page.locator('label.format:has-text("Targi")').click();
     await expect(page.locator('#kalkDni')).toBeVisible();
-    await expect(kwota).toHaveText('9 350');
-    await expect(page.locator('#kalkOpis')).toContainText('oszczędzasz 1 650 zł');
+    await expect(kwota).toHaveText('9 900');
+    await expect(page.locator('#kalkOpis')).toContainText('rabat 10% od całości. Oszczędzasz 1 100 zł');
     await expect(page.locator('[data-dni="-1"]')).toBeDisabled(); // najmniej dwa dni
     for (let i = 0; i < 8; i++) await page.locator('[data-dni="1"]').click({ force: true });
     await expect(page.locator('#kalkIle')).toHaveText('7');
@@ -87,8 +87,11 @@ test.describe('kalkulator ceny', () => {
     await page.locator('[data-dni="-1"]').click();
     await page.locator('[data-dni="-1"]').click();
     await expect(kwota).toHaveText('14 025');
+    await expect(page.locator('#kalkOpis')).toContainText('rabat 15% od całości');
     await page.locator('label.format:has-text("Wejście")').click();
-    await expect(page.locator('#kalkOd')).toHaveText('poniżej');
+    await expect(page.locator('#kalkOd')).toHaveText('od');
+    await expect(kwota).toHaveText('2 750');
+    await expect(page.locator('#kalkOpis')).toContainText('4 godziny od 4 125 zł netto');
     await page.locator('label.format:has-text("Targi")').click();
     await page.locator('#formaty [data-cta="formaty"]').click();
     await expect(page.locator('#pole-message')).toHaveValue('Interesuje mnie 3 dni (od 14 025 zł netto).');
