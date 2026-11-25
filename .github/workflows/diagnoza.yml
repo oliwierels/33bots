@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - name: Kontrola na żywo: scalenie .pl i strony B2B
+      - name: "Kontrola na żywo - scalenie .pl i strony B2B"
         run: mkdir -p badania/wyniki/po-wdrozeniu && python3 badania/po_wdrozeniu_7.py badania/wyniki/po-wdrozeniu/2026-11-25-b2b.json
       - name: Zapis wyników na gałąź
         run: |
