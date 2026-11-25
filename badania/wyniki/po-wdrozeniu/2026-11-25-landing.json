@@ -1,0 +1,124 @@
+{
+ "strony": {
+  "robot-wynajem-warszawa.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-gdansk.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-wroclaw.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-poznan.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-katowice.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-lodz.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-krakow.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-lublin.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-szczecin.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-bydgoszcz.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "robot-wynajem-bialystok.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "wypozyczenie-robota.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "oferta-targi.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  },
+  "oferta-konferencje.html": {
+   "kod": 200,
+   "landing": true,
+   "tytul_ok": true,
+   "canonical_ok": true,
+   "h1": 1,
+   "formularz": true
+  }
+ },
+ "zasoby": {
+  "landing_css": 200,
+  "landing_js": 200,
+  "formspree_w_js": true
+ },
+ "pl_b11": true,
+ "lt_b11": true,
+ "proby": 1
+}
