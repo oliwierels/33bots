@@ -1,0 +1,59 @@
+{
+ "33bots.de": {
+  "cdx_kod": 200,
+  "zrzutow_miesiecznych": 0,
+  "miesiace": [],
+  "adresow_w_archiwum": 0,
+  "najstarsze": [],
+  "adresy_probka": []
+ },
+ "33bots.pl": {
+  "cdx_kod": 200,
+  "zrzutow_miesiecznych": 0,
+  "miesiace": [],
+  "adresow_w_archiwum": 0,
+  "najstarsze": [],
+  "adresy_probka": []
+ },
+ "33bots.lt": {
+  "cdx_kod": 200,
+  "zrzutow_miesiecznych": 0,
+  "miesiace": [],
+  "adresow_w_archiwum": 0,
+  "najstarsze": [],
+  "adresy_probka": []
+ },
+ "robotivo.de": {
+  "cdx_kod": 200,
+  "zrzutow_miesiecznych": 0,
+  "miesiace": [],
+  "adresow_w_archiwum": 0,
+  "najstarsze": [],
+  "adresy_probka": []
+ },
+ "robotivo_dns": "109.234.110.254",
+ "robotivo_https": {
+  "kod": 0,
+  "koncowy": "https://robotivo.de/",
+  "title": "",
+  "lang": "",
+  "canonical": "",
+  "robots": "",
+  "33bots": 0,
+  "linki": [],
+  "tekst": " "
+ },
+ "robotivo_http": {
+  "kod": 0,
+  "koncowy": "http://robotivo.de/",
+  "title": "",
+  "lang": "",
+  "canonical": "",
+  "robots": "",
+  "33bots": 0,
+  "linki": [],
+  "tekst": " "
+ },
+ "ip_33bots.de": "195.78.66.229",
+ "ip_33bots.pl": "195.78.66.229"
+}
