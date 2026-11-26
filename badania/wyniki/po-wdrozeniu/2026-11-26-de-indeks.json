@@ -1,0 +1,2276 @@
+{
+ "mapa": {
+  "kod": 200,
+  "typ": "application/xml",
+  "adresow": 49
+ },
+ "strony_z_mapy": {
+  "https://33bots.de/": {
+   "kroki": [
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/",
+   "hreflang": 8,
+   "czas": 0.79,
+   "typ": "text/html",
+   "lastmod": "2026-11-25",
+   "problem": false
+  },
+  "https://33bots.de/angebot-konferenzen-galas.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "hreflang": 8,
+   "czas": 0.67,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/angebot-messen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "hreflang": 8,
+   "czas": 0.65,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/angebot-tag-der-offenen-tuer.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+   "hreflang": 5,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-14",
+   "problem": false
+  },
+  "https://33bots.de/barrierefreiheit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/barrierefreiheit.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/barrierefreiheit.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/blog-psychologie-humanoider-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+   "hreflang": 5,
+   "czas": 0.84,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/blog-robotik-im-marketing.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-robotik-im-marketing.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-robotik-im-marketing.html",
+   "hreflang": 5,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-10-24",
+   "problem": false
+  },
+  "https://33bots.de/blog-sicherheit-roboter-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-sicherheit-roboter-event.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-sicherheit-roboter-event.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/blog-trends-humanoide-roboter-events.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+   "hreflang": 5,
+   "czas": 0.48,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/case-study-centrum-nauki-kopernik.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+   "hreflang": 5,
+   "czas": 0.48,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/case-study-eco-studio-electro-system.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-eco-studio-electro-system.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-eco-studio-electro-system.html",
+   "hreflang": 5,
+   "czas": 0.52,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/case-study-grupa-rekord-mspo.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-grupa-rekord-mspo.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-grupa-rekord-mspo.html",
+   "hreflang": 5,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/case-study-lexai.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-lexai.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-lexai.html",
+   "hreflang": 5,
+   "czas": 0.72,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/case-study-ogrod-przelewice.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-ogrod-przelewice.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-ogrod-przelewice.html",
+   "hreflang": 5,
+   "czas": 0.71,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/case-study-wallstreet.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-wallstreet.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-wallstreet.html",
+   "hreflang": 5,
+   "czas": 0.41,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/case-study-women-in-tech.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-women-in-tech.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/case-study-women-in-tech.html",
+   "hreflang": 5,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/datenschutz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/datenschutz.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/datenschutz.html",
+   "hreflang": 5,
+   "czas": 0.52,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/humanoiden-roboter-kaufen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/humanoiden-roboter-kaufen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/humanoiden-roboter-kaufen.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/humanoiden-roboter-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/humanoiden-roboter-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/humanoiden-roboter-mieten.html",
+   "hreflang": 8,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/impressum.html": {
+   "kroki": [
+    [
+     "https://33bots.de/impressum.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/impressum.html",
+   "hreflang": 5,
+   "czas": 0.4,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/ki-roboter-veranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/ki-roboter-veranstaltung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/ki-roboter-veranstaltung.html",
+   "hreflang": 5,
+   "czas": 0.64,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/referenzen-videos.html": {
+   "kroki": [
+    [
+     "https://33bots.de/referenzen-videos.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/referenzen-videos.html",
+   "hreflang": 7,
+   "czas": 0.64,
+   "typ": "text/html",
+   "lastmod": "2026-11-12",
+   "problem": false
+  },
+  "https://33bots.de/roboter-abiball.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-abiball.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-abiball.html",
+   "hreflang": 5,
+   "czas": 0.51,
+   "typ": "text/html",
+   "lastmod": "2026-11-25",
+   "problem": false
+  },
+  "https://33bots.de/roboter-employer-branding.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-employer-branding.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-employer-branding.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-eroeffnung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eroeffnung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eroeffnung.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-eventmoderation.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eventmoderation.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-eventmoderation.html",
+   "hreflang": 6,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-firmenevents.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "hreflang": 5,
+   "czas": 0.53,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-firmenfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-firmenfeier.html",
+   "hreflang": 6,
+   "czas": 0.53,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-fuer-eventagenturen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-fuer-eventagenturen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-fuer-eventagenturen.html",
+   "hreflang": 5,
+   "czas": 0.51,
+   "typ": "text/html",
+   "lastmod": "2026-11-14",
+   "problem": false
+  },
+  "https://33bots.de/roboter-gaesteempfang.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-gaesteempfang.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-gaesteempfang.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-hochschule.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochschule.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-hochschule.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-25",
+   "problem": false
+  },
+  "https://33bots.de/roboter-hochzeit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochzeit.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-hochzeit.html",
+   "hreflang": 7,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-berlin.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-berlin.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-berlin.html",
+   "hreflang": 5,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-dresden.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-dresden.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-dresden.html",
+   "hreflang": 5,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-duesseldorf.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "hreflang": 5,
+   "czas": 0.53,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-frankfurt.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "hreflang": 5,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-hamburg.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-hamburg.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-hamburg.html",
+   "hreflang": 5,
+   "czas": 0.52,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-koeln.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-koeln.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-koeln.html",
+   "hreflang": 5,
+   "czas": 0.53,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-muenchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-muenchen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-muenchen.html",
+   "hreflang": 5,
+   "czas": 0.55,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-mieten-preise.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-preise.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-mieten-preise.html",
+   "hreflang": 6,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-privatfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "hreflang": 5,
+   "czas": 0.51,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-produktlaunch.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-produktlaunch.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-produktlaunch.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-14",
+   "problem": false
+  },
+  "https://33bots.de/roboter-show.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-show.html",
+   "hreflang": 5,
+   "czas": 0.5,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-stadtfest.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-stadtfest.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-stadtfest.html",
+   "hreflang": 5,
+   "czas": 0.51,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-weihnachtsfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-weihnachtsfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-weihnachtsfeier.html",
+   "hreflang": 6,
+   "czas": 0.53,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/roboter-werbung-film.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-werbung-film.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/roboter-werbung-film.html",
+   "hreflang": 5,
+   "czas": 0.49,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/ueber-uns.html": {
+   "kroki": [
+    [
+     "https://33bots.de/ueber-uns.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "x_robots": null,
+   "canonical": "https://33bots.de/ueber-uns.html",
+   "hreflang": 5,
+   "czas": 0.51,
+   "typ": "text/html",
+   "lastmod": "2026-11-24",
+   "problem": false
+  },
+  "https://33bots.de/unitree-g1-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "x_robots": null,
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "hreflang": 7,
+   "czas": 0.54,
+   "typ": "text/html",
+   "lastmod": "2026-11-14",
+   "problem": false
+  }
+ },
+ "gsc_23_11": {
+  "http://33bots.de/": {
+   "kroki": [
+    [
+     "http://33bots.de/",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/",
+   "w_mapie": true
+  },
+  "https://33bots.de/": {
+   "kroki": [
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/",
+   "w_mapie": true
+  },
+  "https://33bots.de/angebot-konferenzen-galas.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/angebot-messen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/angebot-tag-der-offenen-tuer.html": {
+   "kroki": [
+    [
+     "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/attraktionen-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/attraktionen-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/attraktionen-mieten.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/barrierefreiheit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/barrierefreiheit.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/barrierefreiheit.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/betriebsveranstaltung-steuer.html": {
+   "kroki": [
+    [
+     "https://33bots.de/betriebsveranstaltung-steuer.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/betriebsveranstaltung-steuer.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-anbieter-roboter-vermietung-waehlen.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-preise.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-preise.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-attraktion-firmenevent.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-attraktion-firmenevent.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-attraktion-firmengala.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-attraktion-firmengala.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-event-attraktionen-ranking.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-event-attraktionen-ranking.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-show.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-humanoider-vs-mobiler-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-humanoider-vs-mobiler-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-kann-roboter-event-moderieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-kann-roboter-event-moderieren.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-eventmoderation.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-eventmoderation.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-psychologie-humanoider-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/blog-psychologie-humanoider-roboter.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-als-empfang.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-als-empfang.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-gaesteempfang.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-gaesteempfang.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-auf-dem-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-auf-dem-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-auf-der-hochzeit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-auf-der-hochzeit.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-hochzeit.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-hochzeit.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-branding-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-branding-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/blog-robotik-im-marketing.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/blog-robotik-im-marketing.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-fuer-event-auswaehlen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-fuer-event-auswaehlen.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-kinderveranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-kinderveranstaltung.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-messe-vs-konferenz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-messe-vs-konferenz.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-outdoor-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-outdoor-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-stadtfest.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-stadtfest.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-store-eroeffnung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-store-eroeffnung.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-eroeffnung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-eroeffnung.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roboter-und-kuenstler-auf-der-buehne.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-show.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-robotik-im-marketing.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-robotik-im-marketing.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/blog-robotik-im-marketing.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-roi-roboter-messestand.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-roi-roboter-messestand.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-messen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-messen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-trends-humanoide-roboter-events.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/blog-trends-humanoide-roboter-events.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-unitree-g1-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-unitree-g1-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog-was-kann-ein-humanoider-roboter.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog-was-kann-ein-humanoider-roboter.html",
+     301
+    ],
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/blog.html": {
+   "kroki": [
+    [
+     "https://33bots.de/blog.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/blog.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/case-study-centrum-nauki-kopernik.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-centrum-nauki-kopernik.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-eco-studio-electro-system.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-eco-studio-electro-system.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-eco-studio-electro-system.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-grupa-rekord-mspo.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-grupa-rekord-mspo.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-grupa-rekord-mspo.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-lexai.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-lexai.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-lexai.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-ogrod-przelewice.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-ogrod-przelewice.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-ogrod-przelewice.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-wallstreet.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-wallstreet.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-wallstreet.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/case-study-women-in-tech.html": {
+   "kroki": [
+    [
+     "https://33bots.de/case-study-women-in-tech.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/case-study-women-in-tech.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/datenschutz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/datenschutz.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/datenschutz.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/eroeffnung-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/eroeffnung-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/eroeffnung-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/event-attraktionen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/event-attraktionen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/event-attraktionen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/event-planen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/event-planen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/event-planen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/firmenfeier-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/firmenfeier-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/firmenfeier-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/firmenjubilaeum-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/firmenjubilaeum-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/firmenjubilaeum-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/humanoiden-roboter-kaufen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/humanoiden-roboter-kaufen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow, max-image-preview:large",
+   "canonical": "https://33bots.de/humanoiden-roboter-kaufen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/impressum.html": {
+   "kroki": [
+    [
+     "https://33bots.de/impressum.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/impressum.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/index.html": {
+   "kroki": [
+    [
+     "https://33bots.de/index.html",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/",
+   "w_mapie": true
+  },
+  "https://33bots.de/ki-roboter-veranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/ki-roboter-veranstaltung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/ki-roboter-veranstaltung.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/kick-off-veranstaltung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/kick-off-veranstaltung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/kick-off-veranstaltung.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/konferenz-organisieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/konferenz-organisieren.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/konferenz-organisieren.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/leistungen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/leistungen.html",
+     301
+    ],
+    [
+     "https://33bots.de/",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/",
+   "w_mapie": true
+  },
+  "https://33bots.de/messestand-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/messestand-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/messestand-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/moderator-buchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/moderator-buchen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/moderator-buchen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/referenzen-videos.html": {
+   "kroki": [
+    [
+     "https://33bots.de/referenzen-videos.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/referenzen-videos.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-corporate-event.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-corporate-event.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-employer-branding.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-employer-branding.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-employer-branding.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-eroeffnung.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eroeffnung.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-eroeffnung.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-eventmoderation.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-eventmoderation.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-eventmoderation.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-firmenevents.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenevents.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-firmenevents.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-firmenfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-firmenfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-firmenfeier.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-fuer-eventagenturen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-fuer-eventagenturen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-fuer-eventagenturen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-gaesteempfang.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-gaesteempfang.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-gaesteempfang.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-gala.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-gala.html",
+     301
+    ],
+    [
+     "https://33bots.de/angebot-konferenzen-galas.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/angebot-konferenzen-galas.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-geburtstag.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-geburtstag.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-hochschule.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochschule.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-hochschule.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-hochzeit.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-hochzeit.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-hochzeit.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-berlin.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-berlin.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-berlin.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-bielefeld.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bielefeld.html",
+     301
+    ],
+    [
+     "https://33bots.de/humanoiden-roboter-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/humanoiden-roboter-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-bochum.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bochum.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-bonn.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-bonn.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-koeln.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-koeln.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-dortmund.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-dortmund.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/roboter-mieten-dortmund.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/roboter-mieten-dresden.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-dresden.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-dresden.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-duesseldorf.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-frankfurt.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-hamburg.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-hamburg.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-hamburg.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-hannover.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-hannover.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/roboter-mieten-hannover.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/roboter-mieten-koeln.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-koeln.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-koeln.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-leipzig.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-leipzig.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/roboter-mieten-leipzig.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/roboter-mieten-mainz.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-mainz.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-mannheim.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-mannheim.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-moenchengladbach.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-moenchengladbach.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-duesseldorf.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-duesseldorf.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-muenchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-muenchen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-muenchen.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-nuernberg.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-nuernberg.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/roboter-mieten-nuernberg.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/roboter-mieten-preise.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-preise.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-preise.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-mieten-stuttgart.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-stuttgart.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/roboter-mieten-stuttgart.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/roboter-mieten-wiesbaden.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-mieten-wiesbaden.html",
+     301
+    ],
+    [
+     "https://33bots.de/roboter-mieten-frankfurt.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-mieten-frankfurt.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-privatfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-privatfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-privatfeier.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-produktlaunch.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-produktlaunch.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-produktlaunch.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-show.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-show.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-show.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-stadtfest.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-stadtfest.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-stadtfest.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-weihnachtsfeier.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-weihnachtsfeier.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-weihnachtsfeier.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/roboter-werbung-film.html": {
+   "kroki": [
+    [
+     "https://33bots.de/roboter-werbung-film.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/roboter-werbung-film.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/showact-buchen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/showact-buchen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/showact-buchen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/sitemap.xml": {
+   "kroki": [
+    [
+     "https://33bots.de/sitemap.xml",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": null,
+   "canonical": null,
+   "w_mapie": false
+  },
+  "https://33bots.de/sommerfest-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/sommerfest-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/sommerfest-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/stadtfest-organisieren.html": {
+   "kroki": [
+    [
+     "https://33bots.de/stadtfest-organisieren.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/stadtfest-organisieren.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/teambuilding-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/teambuilding-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/teambuilding-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/unitree-g1-mieten.html": {
+   "kroki": [
+    [
+     "https://33bots.de/unitree-g1-mieten.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "index, follow",
+   "canonical": "https://33bots.de/unitree-g1-mieten.html",
+   "w_mapie": true
+  },
+  "https://33bots.de/weihnachtsfeier-ideen.html": {
+   "kroki": [
+    [
+     "https://33bots.de/weihnachtsfeier-ideen.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/weihnachtsfeier-ideen.html",
+   "w_mapie": false
+  },
+  "https://33bots.de/weihnachtsfeier-spiele.html": {
+   "kroki": [
+    [
+     "https://33bots.de/weihnachtsfeier-spiele.html",
+     200
+    ]
+   ],
+   "kod": 200,
+   "robots": "noindex, follow",
+   "canonical": "https://33bots.de/weihnachtsfeier-spiele.html",
+   "w_mapie": false
+  }
+ },
+ "linki_wewn_zle": {
+  "https://33bots.de/blog.html": {
+   "kod": 200,
+   "robots": "noindex, follow",
+   "uwaga": "link do strony spoza mapy",
+   "ile_stron": 6
+  },
+  "https://33bots.de/index.html": {
+   "kod": 301,
+   "cel": "https://33bots.de/",
+   "z_stron": [
+    "https://33bots.de/angebot-konferenzen-galas.html",
+    "https://33bots.de/angebot-messen.html",
+    "https://33bots.de/angebot-tag-der-offenen-tuer.html",
+    "https://33bots.de/barrierefreiheit.html",
+    "https://33bots.de/blog-geschaeftsfuehrung-ueberzeugen.html"
+   ],
+   "ile_stron": 48
+  }
+ },
+ "warianty": {
+  "http://33bots.de/": [
+   [
+    "http://33bots.de/",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "https://www.33bots.de/": [
+   [
+    "https://www.33bots.de/",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "http://www.33bots.de/roboter-mieten-preise.html": [
+   [
+    "http://www.33bots.de/roboter-mieten-preise.html",
+    301
+   ],
+   [
+    "https://www.33bots.de/roboter-mieten-preise.html",
+    301
+   ],
+   [
+    "https://33bots.de/roboter-mieten-preise.html",
+    200
+   ]
+  ],
+  "https://33bots.de/index.html": [
+   [
+    "https://33bots.de/index.html",
+    301
+   ],
+   [
+    "https://33bots.de/",
+    200
+   ]
+  ],
+  "https://33bots.de/nie-ma-takiej-strony.html": [
+   [
+    "https://33bots.de/nie-ma-takiej-strony.html",
+    404
+   ]
+  ],
+  "robots.txt": "User-agent: *\nAllow: /\n\nSitemap: https://33bots.de/sitemap.xml\n"
+ },
+ "github_pages": {
+  "https://oliwierels.github.io/33bots/roboter-firmenfeier.html": {
+   "kod": 301,
+   "canonical": null
+  },
+  "https://oliwierels.github.io/33bots/": {
+   "kod": 301,
+   "canonical": null
+  }
+ },
+ "podsumowanie": {
+  "mapa_problemy": [],
+  "linki_zle": 1,
+  "gsc_koncowe_kody": {
+   "200": 101
+  },
+  "gsc_lancuchy_dluzsze_niz_1_skok": [],
+  "sredni_czas": 0.54
+ }
+}
